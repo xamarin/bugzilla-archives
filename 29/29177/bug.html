@@ -1,0 +1,1837 @@
+<html lang="en"><head>
+    <title>29177 – Mono-hosted OWIN server crashes under load.</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Runtime
+                 bz_component_Debugger
+                 bz_bug_29177 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;29177</span>
+
+        <span id="subtitle" class="subheader">Mono-hosted OWIN server crashes under load.</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2015-04-28 18:03:32 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2015-04-28 18:03:32">
+  <input type="hidden" name="id" value="29177">
+  <input type="hidden" name="token" value="1559163965-kWdwybOs9TtWJ1L7nP3TOrZcuDpYjgQT8q8lq0rRA7E">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;29177</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">Mono-hosted OWIN server crashes under load.</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>Mono-hosted OWIN server crashes under load.
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Runtime
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Mono
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">Debugger
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>3.12.0
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">Other
+        Linux
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>---
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2015-04-17 04:07 UTC by <span class="vcard"><span class="fn">Shawn Burke</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2015-04-28 18:03 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>5
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="adrian">adrian</option>
+                <option value="mark">mark</option>
+                <option value="miguel">miguel</option>
+                <option value="mono-bugs+mono">mono-bugs+mono</option>
+                <option value="mono-bugs+runtime">mono-bugs+runtime</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_application_zip">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10797&amp;file=OwinSimple.zip" title="View the content of the attachment">
+          <b>Simple OWIN web-service that will respond to any path.</b></a>
+
+          <span class="bz_attach_extra_info">
+              (210.83 KB,
+                application/zip)
+
+            <br>
+            <a href="#attach_10797" title="Go to the comment associated with the attachment">2015-04-17 04:07 UTC</a>,
+
+            <span class="vcard"><span class="fn">Shawn Burke</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10797&amp;file=OwinSimple.zip">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_application_octet-stream">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10884&amp;file=Thread.cs" title="View the content of the attachment">
+          <b>Thread.cs with Principal Workaround</b></a>
+
+          <span class="bz_attach_extra_info">
+              (29.58 KB,
+                application/octet-stream)
+
+            <br>
+            <a href="#attach_10884" title="Go to the comment associated with the attachment">2015-04-23 15:26 UTC</a>,
+
+            <span class="vcard"><span class="fn">Adrian</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10884&amp;file=Thread.cs">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_application_octet-stream">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10885&amp;file=Timer.cs" title="View the content of the attachment">
+          <b>Timer.cs with ManualResetEvent Native Handler Workaround</b></a>
+
+          <span class="bz_attach_extra_info">
+              (10.63 KB,
+                application/octet-stream)
+
+            <br>
+            <a href="#attach_10885" title="Go to the comment associated with the attachment">2015-04-23 15:26 UTC</a>,
+
+            <span class="vcard"><span class="fn">Adrian</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10885&amp;file=Timer.cs">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+            <a href="https://github.com/mono">GitHub</a> or <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Shawn Burke</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-17 04:07:20 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=10797&amp;file=OwinSimple.zip" name="attach_10797" title="Simple OWIN web-service that will respond to any path.">attachment 10797</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10797&amp;file=OwinSimple.zip" title="Simple OWIN web-service that will respond to any path.">[details]</a></span>
+Simple OWIN web-service that will respond to any path.
+
+When trying to run a OWIN-based webservice code to run on Linux, however mono crashes under concurrent load.
+
+Unfortunately, under any concurrent load on Linux the process faults.  It seems much more stable on OSX.
+
+Repro steps:
+
+* Unzip the attached file on Linux
+* Build
+* Execute "mono OwinSimple.exe"
+  - Note the "listening on <a href="http://+:9001">http://+:9001</a>, you can then call curl <a href="http://localhost:9001">http://localhost:9001</a>
+* Run AB against the server to generate load:
+  -  ab -n 10000 -c 100 <a href="http://localhost:9001/foo">http://localhost:9001/foo</a>
+
+Result:
+
+@@@@@@@@ Usually I get:
+
+Listening on 
+	<a href="http://*:9001">http://*:9001</a>
+CTRL+C to quit.
+Stacktrace:
+
+
+Native stacktrace:
+
+	mono() [0x4accac]
+	mono() [0x50451f]
+	mono() [0x42a7c7]
+	/lib/x86_64-linux-gnu/libpthread.so.0(+0xf0a0) [0x7f4d35bb80a0]
+
+Debug info from gdb:
+
+
+=================================================================
+Got a SIGSEGV while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+=================================================================
+
+
+@@@@@@ Occasionally I get an exception from SortedList:
+
+
+Listening on 
+	<a href="http://*:9001">http://*:9001</a>
+CTRL+C to quit.
+
+Unhandled Exception:
+System.InvalidOperationException: Operation is not valid due to the current state of the object
+  at System.Collections.SortedList.IndexOfKey (System.Object key) [0x00000] in &lt;filename unknown&gt;:0 
+  at System.Threading.Timer+Scheduler.InternalRemove (System.Threading.Timer timer) [0x00000] in &lt;filename unknown&gt;:0 
+  at System.Threading.Timer+Scheduler.Change (System.Threading.Timer timer, Int64 new_next_run) [0x00000] in &lt;filename unknown&gt;:0 
+  at System.Threading.Timer.Change (Int64 dueTime, Int64 period, Boolean first) [0x00000] in &lt;filename unknown&gt;:0 
+  at System.Threading.Timer.Change (Int32 dueTime, Int32 period) [0x00000] in &lt;filename unknown&gt;:0 
+  at (wrapper remoting-invoke-with-check) System.Threading.Timer:Change (int,int)
+  at System.Net.HttpConnection.BeginReadRequest () [0x00000] in &lt;filename unknown&gt;:0 
+  at System.Net.EndPointListener.OnAccept (System.Object sender, System.EventArgs e) [0x00000] in &lt;filename unknown&gt;:0 
+  at System.Net.Sockets.SocketAsyncEventArgs.OnCompleted (System.Net.Sockets.SocketAsyncEventArgs e) [0x00000] in &lt;filename unknown&gt;:0 
+  at System.Net.Sockets.SocketAsyncEventArgs.AcceptCallback (IAsyncResult ares) [0x00000] in &lt;filename unknown&gt;:0 
+  at System.Net.Sockets.SocketAsyncEventArgs.DispatcherCB (IAsyncResult ares) [0x00000] in &lt;filename unknown&gt;:0 
+vagrant@vagrant-ubuntu-trusty-64:~/OwinSimple/Docker$ sudo docker run -p 8080:9001 owinsimple
+
+
+
+@@@@@@@@@@@  I don't know if that's the same issue
+
+Also, it's easy to repro this with the Mono Docker container 
+
+
+1) Copy the following text into a Dockerfile, then build and place the bin/Debug contents into a subfolder called files:
+
+   FROM mono:3.12.0
+
+   COPY files /owin
+   WORKDIR /owin
+
+   EXPOSE 9001
+   ENTRYPOINT ["mono", "--debug",  "OwinSimple.exe"]
+
+
+2) Build the container: docker build -t owinsimple .
+3) Run the container: sudo docker run -p 8088:9001 owinsimple
+4) Run AB against it: ab -n 10000 -c 100 <a href="http://localhost:8088/foo">http://localhost:8088/foo</a></pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-17 11:58:03 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">On Linux, on a VM running Ubuntu 14.04.2 LTS I am unable to reproduce this issue with Mono 3.12.1:
+
+Mono JIT compiler version 3.12.1 (tarball Fri Mar  6 19:12:47 UTC 2015)
+
+I ran the described process multiple times without being able to reproduce.   Then I also tried the server with over a million requests, with concurrency set to 600 without any errors either.
+
+I tried Mono 4.0.0 and Mono/master (as of yesterday), and could not reproduce.   It might have been a bug in Mono 3.12.0 that we fixed later.
+
+I am also unable to reproduce this with a Mac with Mono 4.0.</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Shawn Burke</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-17 13:59:34 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks for looking at this so quickly.  Still seeing it.  I built these binaries using OSX, not sure if that matters.
+
+==&gt; I'm on a Virtual Box (Vagrant) Ubuntu 14.04.2 LTX VM as well:
+
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=14.04
+DISTRIB_CODENAME=trusty
+DISTRIB_DESCRIPTION="Ubuntu 14.04.2 LTS"
+NAME="Ubuntu"
+VERSION="14.04.2 LTS, Trusty Tahr"
+
+
+==&gt; I upgraded to 3.12.1 via apt-get mono-complete:
+
+
+vagrant@vagrant-ubuntu-trusty-64:~/OwinSimple/OwinSimple/bin/Debug$ mono --version
+Mono JIT compiler version 3.12.1 (tarball Fri Mar  6 19:12:47 UTC 2015)
+Copyright (C) 2002-2014 Novell, Inc, Xamarin Inc and Contributors. www.mono-project.com
+	TLS:           __thread
+	SIGSEGV:       altstack
+	Notifications: epoll
+	Architecture:  amd64
+	Disabled:      none
+	Misc:          softdebug 
+	LLVM:          supported, not enabled.
+	GC:            sgen
+vagrant@vagrant-ubuntu-trusty-64:~/OwinSimple/OwinSimple/bin/Debug$ mono OwinSimple.exe -p 8081
+Listening on 
+	<a href="http://*:8081">http://*:8081</a>
+CTRL+C to quit.
+
+
+vagrant@vagrant-ubuntu-trusty-64:~/OwinSimple/OwinSimple/bin/Debug$ mono OwinSimple.exe -p 8081
+Listening on 
+	<a href="http://*:8081">http://*:8081</a>
+CTRL+C to quit.
+
+==&gt;  ab -n 10000 -c 100  <a href="http://localhost:8081/1418">http://localhost:8081/1418</a>
+
+Stacktrace:
+
+
+Native stacktrace:
+
+	mono() [0x4accac]
+	mono() [0x50451f]
+	mono() [0x42a7c7]
+	/lib/x86_64-linux-gnu/libpthread.so.0(+0x10340) [0x7fd5a3e29340]
+
+Debug info from gdb:
+
+Could not attach to process.  If your uid matches the uid of the target
+process, check the setting of /proc/sys/kernel/yama/ptrace_scope, or try
+again as the root user.  For more details, see /etc/sysctl.d/10-ptrace.conf
+ptrace: Operation not permitted.
+No threads.
+
+=================================================================
+Got a SIGSEGV while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+=================================================================
+
+Aborted (core dumped)
+vagrant@vagrant-ubuntu-trusty-64:~/OwinSimple/OwinSimple/bin/Debug$ 
+
+==&gt; Sometimes I get...
+
+ ==&gt; ab -n 10000 -c 100  <a href="http://localhost:8081/1418">http://localhost:8081/1418</a>
+
+Unhandled Exception:
+System.NullReferenceException: Object reference not set to an instance of an object
+  at System.Net.HttpConnection.Close (Boolean force_close) [0x00000] in &lt;filename unknown&gt;:0 
+  at System.Net.HttpListenerResponse.Close (Boolean force) [0x00000] in &lt;filename unknown&gt;:0 
+  at System.Net.HttpListenerResponse.Abort () [0x00000] in &lt;filename unknown&gt;:0 
+  at Microsoft.Owin.Host.HttpListener.RequestProcessing.OwinHttpListenerResponse.End () [0x00000] in &lt;filename unknown&gt;:0 
+  at Microsoft.Owin.Host.HttpListener.RequestProcessing.OwinHttpListenerContext.End () [0x00000] in &lt;filename unknown&gt;:0 
+  at Microsoft.Owin.Host.HttpListener.RequestProcessing.OwinHttpListenerContext.End (System.Exception ex) [0x00000] in &lt;filename unknown&gt;:0 
+  at Microsoft.Owin.Host.HttpListener.OwinHttpListener+&lt;ProcessRequestAsync&gt;d__5.MoveNext () [0x00000] in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x00000] in &lt;filename unknown&gt;:0 
+  at System.Runtime.CompilerServices.TaskAwaiter.GetResult () [0x00000] in &lt;filename unknown&gt;:0 
+  at Microsoft.Owin.Host.HttpListener.OwinHttpListener+&lt;ProcessRequestsAsync&gt;d__0.MoveNext () [0x00000] in &lt;filename unknown&gt;:0</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-17 14:42:47 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Using Docker on the same Ubuntu configuration, with the 3.12.0 package does not exhibit this problem either.
+
+I started the test at 1:24pm, and the process continues running without a hitch at 2:41pm.
+
+Using this script:
+
+while true; do ab -n 10000 -c 100 <a href="http://localhost:8088/foo">http://localhost:8088/foo</a>; done</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-17 14:51:35 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Binaries you meant he "Owin.exe" app, or the Mono runtime itself?
+
+The exe file should not matter where it was built.    The Mono runtime cross-compiled might be tricky.</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-17 16:45:40 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">With Mono/Master (last update, from 072ab0db8356347fcceb5e41c80ab9441e3b6605 + a one line build fix), on Mac/64, I now get this:
+
+Thread 14 (process 97552):
+#0  0x00007fff87608582 in semaphore_timedwait_trap ()
+#1  0x000000010783b872 in mono_sem_timedwait (sem=0x1079178c8, timeout_ms=&lt;value temporarily unavailable, due to optimizations&gt;, alertable=1) at mono-semaphore.c:64
+#2  0x0000000107794dde in async_invoke_thread (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threadpool.c:1665
+#3  0x0000000107793eab in start_wrapper (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threads.c:683
+#4  0x000000010784308e in inner_start_thread (arg=&lt;value temporarily unavailable, due to optimizations&gt;) at mono-threads-posix.c:96
+#5  0x00007fff861972fc in _pthread_body ()
+#6  0x00007fff86197279 in _pthread_start ()
+#7  0x00007fff861954b1 in thread_start ()
+
+Thread 13 (process 97552):
+#0  0x00007fff8760d162 in __psynch_mutexwait ()
+#1  0x00007fff8619581e in _pthread_mutex_lock ()
+#2  0x000000010780a482 in mono_gc_alloc_obj (vtable=0x7ff41b11da18, size=80) at sgen-alloc.c:503
+#3  0x0000000107bb41c0 in ?? ()
+#4  0x00000001094db890 in System_Threading_Tasks_Task_ContinueWith_System_Action_1_System_Threading_Tasks_Task_System_Threading_Tasks_TaskContinuationOptions (this=@0x107ff8990, continuationAction=@0x10cf6a930, continuationOptions=OnlyOnFaulted) at Task.cs:3865
+#5  0x0000000109461590 in System_Runtime_CompilerServices_AsyncMethodBuilderCore_MoveNextRunner_InvokeMoveNext_object (stateMachine=0x50) at AsyncMethodBuilder.cs:1076
+#6  0x000000010957d637 in System_Threading_ExecutionContext_Run_System_Threading_ExecutionContext_System_Threading_ContextCallback_object_bool (executionContext=@0x107e306a0, callback=@0x10c8de6b0, state=0x107c5bca8) at ExecutionContext.cs:229
+#7  0x00000001094e2fe2 in System_Threading_Tasks_AwaitTaskContinuation_RunOrScheduleAction_System_Action_bool_System_Threading_Tasks_Task_ (action=@0x7ff41b11da18, allowInlining=true, currentTask=140686460464792) at TaskContinuation.cs:835
+#8  0x00000001094db28a in System_Threading_Tasks_Task_FinishContinuations (this=@0x107e30550) at Task.cs:3650
+#9  0x00000001094d9964 in System_Threading_Tasks_Task_FinishStageThree (this=@0x107e30550) at Task.cs:2387
+#10 0x00000001096fb5a8 in System_Threading_Tasks_TaskFactory_1__FromAsyncImplc__AnonStorey1__m__0_System_IAsyncResult (this=@0x107e305a0, iar=@0x107e30640) at FutureFactory.cs:860
+#11 0x0000000107bb1c43 in ?? ()
+#12 0x0000000107602609 in mono_jit_runtime_invoke (method=&lt;value temporarily unavailable, due to optimizations&gt;, obj=&lt;value temporarily unavailable, due to optimizations&gt;, params=0x107ff8928, exc=0x107e30550) at mini-runtime.c:2369
+#13 0x00000001077bc87e in mono_runtime_invoke (method=0x7ff41b120878, obj=0x10c8df530, params=0x107ff8928, exc=0x10fb00e00) at object.c:2836
+#14 0x00000001077c4ff2 in mono_async_result_invoke (ares=0x107ff8918, exc=0x10fb00e00) at object.c:6025
+#15 0x0000000107794fb6 in async_invoke_thread (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threadpool.c:591
+#16 0x0000000107793eab in start_wrapper (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threads.c:683
+#17 0x000000010784308e in inner_start_thread (arg=&lt;value temporarily unavailable, due to optimizations&gt;) at mono-threads-posix.c:96
+#18 0x00007fff861972fc in _pthread_body ()
+#19 0x00007fff86197279 in _pthread_start ()
+#20 0x00007fff861954b1 in thread_start ()
+
+Thread 12 (process 97552):
+#0  0x00007fff8760d162 in __psynch_mutexwait ()
+#1  0x00007fff8619581e in _pthread_mutex_lock ()
+#2  0x000000010780aeea in mono_gc_alloc_vector (vtable=0x7ff41d037938, size=48, max_length=14) at sgen-alloc.c:532
+#3  0x0000000107bb2d36 in ?? ()
+#4  0x0000000109551475 in Mono_Globalization_Unicode_SortKeyBuffer_Initialize_System_Globalization_CompareOptions_int_string_bool (this=@0x107ff59a0, options=IgnoreCase, lcid=486766904, s=0x30, frenchSort=false) at SortKeyBuffer.cs:86
+#5  0x000000010c7de183 in ?? ()
+
+Thread 11 (process 97552):
+#0  0x00007fff8760d8fe in __wait4 ()
+#1  0x000000010769f351 in mono_handle_native_sigsegv (signal=&lt;value temporarily unavailable, due to optimizations&gt;, ctx=0x10caa515c, info=0x0) at mini-exceptions.c:2362
+#2  0x00000001076faeaa in mono_arch_handle_altstack_exception (sigctx=0x10caa5f48, siginfo=&lt;value temporarily unavailable, due to optimizations&gt;, fault_addr=0x0, stack_ovf=0) at exceptions-amd64.c:856
+#3  0x0000000107600054 in mono_sigsegv_signal_handler (_dummy=&lt;value temporarily unavailable, due to optimizations&gt;, _info=&lt;value temporarily unavailable, due to optimizations&gt;, context=&lt;value temporarily unavailable, due to optimizations&gt;) at mini-runtime.c:2496
+#4  &lt;signal handler called&gt;
+#5  0x0000000000000000 in ?? ()
+#6  0x000000010c7dd308 in ?? ()
+#7  0x0000000109461590 in System_Runtime_CompilerServices_AsyncMethodBuilderCore_MoveNextRunner_InvokeMoveNext_object (stateMachine=0x107ffd400) at AsyncMethodBuilder.cs:1076
+#8  0x000000010957d637 in System_Threading_ExecutionContext_Run_System_Threading_ExecutionContext_System_Threading_ContextCallback_object_bool (executionContext=@0x107c10eb8, callback=@0x10c8de6b0, state=0x107c13000) at ExecutionContext.cs:229
+#9  0x00000001094e2fe2 in System_Threading_Tasks_AwaitTaskContinuation_RunOrScheduleAction_System_Action_bool_System_Threading_Tasks_Task_ (action=@0x107ffd308, allowInlining=true, currentTask=140686437138584) at TaskContinuation.cs:835
+#10 0x00000001094db28a in System_Threading_Tasks_Task_FinishContinuations (this=@0x107c10e28) at Task.cs:3650
+#11 0x00000001094d9964 in System_Threading_Tasks_Task_FinishStageThree (this=@0x107c10e28) at Task.cs:2387
+#12 0x0000000109461590 in System_Runtime_CompilerServices_AsyncMethodBuilderCore_MoveNextRunner_InvokeMoveNext_object (stateMachine=0x107c10e28) at AsyncMethodBuilder.cs:1076
+#13 0x000000010957d637 in System_Threading_ExecutionContext_Run_System_Threading_ExecutionContext_System_Threading_ContextCallback_object_bool (executionContext=@0x107c10d70, callback=@0x10c8de6b0, state=0x107c10e78) at ExecutionContext.cs:229
+#14 0x00000001094e2fe2 in System_Threading_Tasks_AwaitTaskContinuation_RunOrScheduleAction_System_Action_bool_System_Threading_Tasks_Task_ (action=@0x0, allowInlining=true, currentTask=140686437138584) at TaskContinuation.cs:835
+#15 0x00000001094db28a in System_Threading_Tasks_Task_FinishContinuations (this=@0x107c10cc0) at Task.cs:3650
+#16 0x00000001094d9964 in System_Threading_Tasks_Task_FinishStageThree (this=@0x107c10cc0) at Task.cs:2387
+#17 0x0000000109461590 in System_Runtime_CompilerServices_AsyncMethodBuilderCore_MoveNextRunner_InvokeMoveNext_object (stateMachine=0x107c10cc0) at AsyncMethodBuilder.cs:1076
+#18 0x000000010957d637 in System_Threading_ExecutionContext_Run_System_Threading_ExecutionContext_System_Threading_ContextCallback_object_bool (executionContext=@0x107c10c08, callback=@0x10c8de6b0, state=0x107c10d10) at ExecutionContext.cs:229
+#19 0x00000001094e2fe2 in System_Threading_Tasks_AwaitTaskContinuation_RunOrScheduleAction_System_Action_bool_System_Threading_Tasks_Task_ (action=@0x0, allowInlining=true, currentTask=140686437138584) at TaskContinuation.cs:835
+#20 0x00000001094db28a in System_Threading_Tasks_Task_FinishContinuations (this=@0x107c02a58) at Task.cs:3650
+#21 0x00000001094d9964 in System_Threading_Tasks_Task_FinishStageThree (this=@0x107c02a58) at Task.cs:2387
+#22 0x000000010973b107 in System_Threading_Tasks_TaskFactory_1_FromAsyncTrimPromise_1_System_Threading_Tasks_VoidTaskResult_System_IO_Stream_CompleteFromAsyncResult_System_IAsyncResult (asyncResult=@0x107c02a58) at FutureFactory.cs:1433
+#23 0x0000000107602609 in mono_jit_runtime_invoke (method=&lt;value temporarily unavailable, due to optimizations&gt;, obj=&lt;value temporarily unavailable, due to optimizations&gt;, params=0x107c1a088, exc=0x107c02a58) at mini-runtime.c:2369
+#24 0x00000001077bc87e in mono_runtime_invoke (method=0x7ff41d1ace30, obj=0x10c8dea30, params=0x107c1a088, exc=0x10f000e00) at object.c:2836
+#25 0x00000001077c4ff2 in mono_async_result_invoke (ares=0x107c1a078, exc=0x10f000e00) at object.c:6025
+#26 0x0000000107794fb6 in async_invoke_thread (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threadpool.c:591
+#27 0x0000000107793eab in start_wrapper (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threads.c:683
+#28 0x000000010784308e in inner_start_thread (arg=&lt;value temporarily unavailable, due to optimizations&gt;) at mono-threads-posix.c:96
+#29 0x00007fff861972fc in _pthread_body ()
+#30 0x00007fff86197279 in _pthread_start ()
+#31 0x00007fff861954b1 in thread_start ()
+
+Thread 10 (process 97552):
+#0  0x00007fff8760d486 in __semwait_signal ()
+#1  0x00007fff8b082f7d in nanosleep ()
+#2  0x0000000107854855 in monoeg_g_usleep (microseconds=&lt;value temporarily unavailable, due to optimizations&gt;) at gdate-unix.c:53
+#3  0x0000000107816cac in sgen_stop_world (generation=0) at sgen-stw.c:161
+#4  0x00000001077e7200 in sgen_perform_collection (requested_size=4096, generation_to_collect=0, reason=0x10787ccd1 "Nursery full", wait_to_finish=0) at sgen-gc.c:3087
+#5  0x000000010780ac00 in mono_gc_alloc_obj_nolock (vtable=0x7ff41d037938, size=48) at sgen-alloc.c:329
+#6  0x000000010780aef5 in mono_gc_alloc_vector (vtable=0x7ff41d037938, size=48, max_length=16) at sgen-alloc.c:534
+#7  0x0000000107bb2d36 in ?? ()
+#8  0x0000000109551434 in Mono_Globalization_Unicode_SortKeyBuffer_Initialize_System_Globalization_CompareOptions_int_string_bool (this=@0x107c8e0e8, options=IgnoreCase, lcid=486766904, s=0x30, frenchSort=false) at SortKeyBuffer.cs:84
+#9  0x000000010c2df88a in ?? ()
+#10 0x000000010c2def63 in ?? ()
+#11 0x000000010c2ded5f in ?? ()
+#12 0x0000000107602609 in mono_jit_runtime_invoke (method=&lt;value temporarily unavailable, due to optimizations&gt;, obj=&lt;value temporarily unavailable, due to optimizations&gt;, params=0x107ff2698, exc=0x10) at mini-runtime.c:2369
+#13 0x00000001077bc87e in mono_runtime_invoke (method=0x7ff41d1ace30, obj=0x10d31c1b0, params=0x107ff2698, exc=0x10d300e00) at object.c:2836
+#14 0x00000001077c4ff2 in mono_async_result_invoke (ares=0x107ff2688, exc=0x10d300e00) at object.c:6025
+#15 0x0000000107794fb6 in async_invoke_thread (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threadpool.c:591
+#16 0x0000000107793eab in start_wrapper (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threads.c:683
+#17 0x000000010784308e in inner_start_thread (arg=&lt;value temporarily unavailable, due to optimizations&gt;) at mono-threads-posix.c:96
+#18 0x00007fff861972fc in _pthread_body ()
+#19 0x00007fff86197279 in _pthread_start ()
+#20 0x00007fff861954b1 in thread_start ()
+
+Thread 9 (process 97552):
+#0  0x00007fff8760d132 in __psynch_cvwait ()
+#1  0x00007fff86197ea0 in _pthread_cond_wait ()
+#2  0x000000010781d595 in timedwait_signal_poll_cond [inlined] () at /cvs/mono/mono/io-layer/handles.c:1514
+#3  0x000000010781d595 in _wapi_handle_timedwait_signal_handle (handle=0xa12, timeout=0xb2a00, alertable=1, poll=&lt;value temporarily unavailable, due to optimizations&gt;) at handles.c:1604
+#4  0x000000010782d083 in wapi_WaitForSingleObjectEx (handle=&lt;value temporarily unavailable, due to optimizations&gt;, timeout=89999, alertable=1) at wait.c:196
+#5  0x000000010778f550 in mono_wait_uninterrupted [inlined] () at /cvs/mono/mono/metadata/threads.c:1409
+#6  0x000000010778f550 in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=&lt;value temporarily unavailable, due to optimizations&gt;, handle=0xa12, ms=Cannot access memory at address 0xffffffffffffffff
+) at threads.c:1543
+#7  0x000000010c2dca74 in ?? ()
+#8  0x00000001096b935c in System_Threading_WaitHandle_WaitOne_int (this=@0x107cf7848, millisecondsTimeout=89999) at WaitHandle.cs:388
+#9  0x00000001096b45ee in System_Threading_Thread_StartInternal (this=@0x0) at Thread.cs:702
+#10 0x0000000107602609 in mono_jit_runtime_invoke (method=&lt;value temporarily unavailable, due to optimizations&gt;, obj=&lt;value temporarily unavailable, due to optimizations&gt;, params=0x10c7bee68, exc=0x0) at mini-runtime.c:2369
+#11 0x00000001077bc87e in mono_runtime_invoke (method=0x7ff41d806860, obj=0x107cf79c0, params=0x10c7bee68, exc=0x0) at object.c:2836
+#12 0x0000000107793f3f in start_wrapper (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threads.c:689
+#13 0x000000010784308e in inner_start_thread (arg=&lt;value temporarily unavailable, due to optimizations&gt;) at mono-threads-posix.c:96
+#14 0x00007fff861972fc in _pthread_body ()
+#15 0x00007fff86197279 in _pthread_start ()
+#16 0x00007fff861954b1 in thread_start ()
+
+Thread 8 (process 97552):
+#0  0x00007fff8760e9de in shutdown ()
+#1  0x000000010782a166 in _wapi_shutdown (fd=11, how=2) at sockets.c:771
+#2  0x0000000107782794 in ves_icall_System_Net_Sockets_Socket_Shutdown_internal (sock=11, how=2, error=0x10c5b2dd8) at socket-io.c:2192
+#3  0x000000010c7e1c2c in ?? ()
+#4  0x000000010c7e1a40 in ?? ()
+#5  0x000000010c7e152b in ?? ()
+#6  0x0000000109461590 in System_Runtime_CompilerServices_AsyncMethodBuilderCore_MoveNextRunner_InvokeMoveNext_object (stateMachine=0x10c5b2dd8) at AsyncMethodBuilder.cs:1076
+#7  0x000000010957d637 in System_Threading_ExecutionContext_Run_System_Threading_ExecutionContext_System_Threading_ContextCallback_object_bool (executionContext=@0x107ffc9d0, callback=@0x10c8de6b0, state=0x107ffcad8) at ExecutionContext.cs:229
+#8  0x00000001094e2fe2 in System_Threading_Tasks_AwaitTaskContinuation_RunOrScheduleAction_System_Action_bool_System_Threading_Tasks_Task_ (action=@0x2, allowInlining=true, currentTask=140686403130520) at TaskContinuation.cs:835
+#9  0x00000001094db28a in System_Threading_Tasks_Task_FinishContinuations (this=@0x107ffc940) at Task.cs:3650
+#10 0x00000001094d9964 in System_Threading_Tasks_Task_FinishStageThree (this=@0x107ffc940) at Task.cs:2387
+#11 0x0000000109461590 in System_Runtime_CompilerServices_AsyncMethodBuilderCore_MoveNextRunner_InvokeMoveNext_object (stateMachine=0x107ffc940) at AsyncMethodBuilder.cs:1076
+#12 0x000000010957d637 in System_Threading_ExecutionContext_Run_System_Threading_ExecutionContext_System_Threading_ContextCallback_object_bool (executionContext=@0x107ffe960, callback=@0x10c8de6b0, state=0x107ffc990) at ExecutionContext.cs:229
+#13 0x00000001094e2fe2 in System_Threading_Tasks_AwaitTaskContinuation_RunOrScheduleAction_System_Action_bool_System_Threading_Tasks_Task_ (action=@0x0, allowInlining=true, currentTask=140686403130520) at TaskContinuation.cs:835
+#14 0x00000001094db28a in System_Threading_Tasks_Task_FinishContinuations (this=@0x107ffe8b0) at Task.cs:3650
+#15 0x00000001094d9964 in System_Threading_Tasks_Task_FinishStageThree (this=@0x107ffe8b0) at Task.cs:2387
+#16 0x0000000109461590 in System_Runtime_CompilerServices_AsyncMethodBuilderCore_MoveNextRunner_InvokeMoveNext_object (stateMachine=0x107ffe8b0) at AsyncMethodBuilder.cs:1076
+#17 0x000000010957d637 in System_Threading_ExecutionContext_Run_System_Threading_ExecutionContext_System_Threading_ContextCallback_object_bool (executionContext=@0x107ffe7f8, callback=@0x10c8de6b0, state=0x107ffe900) at ExecutionContext.cs:229
+#18 0x00000001094e2fe2 in System_Threading_Tasks_AwaitTaskContinuation_RunOrScheduleAction_System_Action_bool_System_Threading_Tasks_Task_ (action=@0x0, allowInlining=true, currentTask=140686403130520) at TaskContinuation.cs:835
+#19 0x00000001094db28a in System_Threading_Tasks_Task_FinishContinuations (this=@0x107fe9d48) at Task.cs:3650
+#20 0x00000001094d9964 in System_Threading_Tasks_Task_FinishStageThree (this=@0x107fe9d48) at Task.cs:2387
+#21 0x000000010973b107 in System_Threading_Tasks_TaskFactory_1_FromAsyncTrimPromise_1_System_Threading_Tasks_VoidTaskResult_System_IO_Stream_CompleteFromAsyncResult_System_IAsyncResult (asyncResult=@0x107fe9d48) at FutureFactory.cs:1433
+#22 0x0000000107602609 in mono_jit_runtime_invoke (method=&lt;value temporarily unavailable, due to optimizations&gt;, obj=&lt;value temporarily unavailable, due to optimizations&gt;, params=0x107ff1848, exc=0x107fe9d48) at mini-runtime.c:2369
+#23 0x00000001077bc87e in mono_runtime_invoke (method=0x7ff41d1ace30, obj=0x10c8dea30, params=0x107ff1848, exc=0x10c5b3e00) at object.c:2836
+#24 0x00000001077c4ff2 in mono_async_result_invoke (ares=0x107ff1838, exc=0x10c5b3e00) at object.c:6025
+#25 0x0000000107794fb6 in async_invoke_thread (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threadpool.c:591
+#26 0x0000000107793eab in start_wrapper (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threads.c:683
+#27 0x000000010784308e in inner_start_thread (arg=&lt;value temporarily unavailable, due to optimizations&gt;) at mono-threads-posix.c:96
+#28 0x00007fff861972fc in _pthread_body ()
+#29 0x00007fff86197279 in _pthread_start ()
+#30 0x00007fff861954b1 in thread_start ()
+
+Thread 7 (process 97552):
+#0  0x00007fff8760d486 in __semwait_signal ()
+#1  0x00007fff8b082f7d in nanosleep ()
+#2  0x000000010782ed5a in wapi_SleepEx (ms=&lt;value temporarily unavailable, due to optimizations&gt;, alertable=1) at wthreads.c:289
+#3  0x00000001077967d4 in monitor_thread (unused=&lt;value temporarily unavailable, due to optimizations&gt;) at threadpool.c:837
+#4  0x0000000107793eab in start_wrapper (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threads.c:683
+#5  0x000000010784308e in inner_start_thread (arg=&lt;value temporarily unavailable, due to optimizations&gt;) at mono-threads-posix.c:96
+#6  0x00007fff861972fc in _pthread_body ()
+#7  0x00007fff86197279 in _pthread_start ()
+#8  0x00007fff861954b1 in thread_start ()
+
+Thread 6 (process 97552):
+#0  0x00007fff87608582 in semaphore_timedwait_trap ()
+#1  0x000000010783b872 in mono_sem_timedwait (sem=0x1079178c8, timeout_ms=&lt;value temporarily unavailable, due to optimizations&gt;, alertable=1) at mono-semaphore.c:64
+#2  0x0000000107794dde in async_invoke_thread (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threadpool.c:1665
+#3  0x0000000107793eab in start_wrapper (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threads.c:683
+#4  0x000000010784308e in inner_start_thread (arg=&lt;value temporarily unavailable, due to optimizations&gt;) at mono-threads-posix.c:96
+#5  0x00007fff861972fc in _pthread_body ()
+#6  0x00007fff86197279 in _pthread_start ()
+#7  0x00007fff861954b1 in thread_start ()
+
+Thread 5 (process 97552):
+#0  0x00007fff8760d162 in __psynch_mutexwait ()
+#1  0x00007fff8619581e in _pthread_mutex_lock ()
+#2  0x00000001077ed044 in mono_gc_set_skip_thread (skip=0) at sgen-gc.c:5242
+#3  0x000000010779c18b in tp_poll_wait (p=0x107917840) at tpool-poll.c:200
+#4  0x0000000107793eab in start_wrapper (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threads.c:683
+#5  0x000000010784308e in inner_start_thread (arg=&lt;value temporarily unavailable, due to optimizations&gt;) at mono-threads-posix.c:96
+#6  0x00007fff861972fc in _pthread_body ()
+#7  0x00007fff86197279 in _pthread_start ()
+#8  0x00007fff861954b1 in thread_start ()
+
+Thread 4 (process 97552):
+#0  0x00007fff8760e22e in kevent64 ()
+#1  0x00007fff87b20d91 in _dispatch_mgr_invoke ()
+#2  0x00007fff87b20a6a in _dispatch_mgr_thread ()
+
+Thread 3 (process 97552):
+#0  0x00007fff8760856a in semaphore_wait_trap ()
+#1  0x000000010783b8d7 in mono_sem_wait (sem=0x107917d18, alertable=1) at mono-semaphore.c:103
+#2  0x00000001077ba802 in finalizer_thread (unused=0x1703) at gc.c:1105
+#3  0x0000000107793eab in start_wrapper (data=&lt;value temporarily unavailable, due to optimizations&gt;) at threads.c:683
+#4  0x000000010784308e in inner_start_thread (arg=&lt;value temporarily unavailable, due to optimizations&gt;) at mono-threads-posix.c:96
+#5  0x00007fff861972fc in _pthread_body ()
+#6  0x00007fff86197279 in _pthread_start ()
+#7  0x00007fff861954b1 in thread_start ()
+
+Thread 2 (process 97552):
+#0  0x00007fff8760d132 in __psynch_cvwait ()
+#1  0x00007fff86197ea0 in _pthread_cond_wait ()
+#2  0x00000001078189ff in continue_idle_job [inlined] () at /cvs/mono/mono/metadata/sgen-thread-pool.c:116
+#3  0x00000001078189ff in thread_func (thread_data=0x0) at sgen-thread-pool.c:107
+#4  0x00007fff861972fc in _pthread_body ()
+#5  0x00007fff86197279 in _pthread_start ()
+#6  0x00007fff861954b1 in thread_start ()
+
+Thread 1 (process 97552):
+#0  0x00007fff8760d132 in __psynch_cvwait ()
+#1  0x00007fff86197ea0 in _pthread_cond_wait ()
+#2  0x000000010781d5a2 in _wapi_handle_timedwait_signal_handle (handle=&lt;value temporarily unavailable, due to optimizations&gt;, timeout=&lt;value temporarily unavailable, due to optimizations&gt;, alertable=&lt;value temporarily unavailable, due to optimizations&gt;, poll=&lt;value temporarily unavailable, due to optimizations&gt;) at handles.c:1609
+#3  0x000000010782d090 in wapi_WaitForSingleObjectEx (handle=&lt;value temporarily unavailable, due to optimizations&gt;, timeout=4294967295, alertable=&lt;value temporarily unavailable, due to optimizations&gt;) at wait.c:194
+#4  0x00000001077bb6c6 in ves_icall_System_Threading_Monitor_Monitor_wait (obj=0x107cf92a8, ms=4294967295) at monitor.c:1092
+#5  0x000000010c2d87cf in ?? ()
+#6  0x00000001094dac1b in System_Threading_Tasks_Task_SpinThenBlockingWait_int_System_Threading_CancellationToken (this=@0x107cf59d0, millisecondsTimeout=-1, cancellationToken=0) at Task.cs:3356
+#7  0x00000001094dab43 in System_Threading_Tasks_Task_InternalWait_int_System_Threading_CancellationToken (this=@0x107cf59d0, millisecondsTimeout=-1, cancellationToken=0) at Task.cs:3295
+#8  0x0000000107bb2471 in ?? ()
+#9  0x0000000107602609 in mono_jit_runtime_invoke (method=&lt;value temporarily unavailable, due to optimizations&gt;, obj=&lt;value temporarily unavailable, due to optimizations&gt;, params=0x7fff5860a858, exc=0x10a3e8130) at mini-runtime.c:2369
+#10 0x00000001077bc87e in mono_runtime_invoke (method=0x7ff41c8038a0, obj=0x0, params=0x7fff5860a858, exc=0x0) at object.c:2836
+#11 0x00000001077c203b in mono_runtime_exec_main (method=0x7ff41c8038a0, args=&lt;value temporarily unavailable, due to optimizations&gt;, exc=0x0) at object.c:4093
+#12 0x000000010766ecc7 in mono_main (argc=&lt;value temporarily unavailable, due to optimizations&gt;, argv=&lt;value temporarily unavailable, due to optimizations&gt;) at driver.c:1066
+#13 0x00007fff869dd5c9 in start ()
+
+I have a couple of observations here: the segfault handler seems to be treating what looks like a managed NullReferenceException as a native exception (This is Thread 11, frames 5 and 6) which correlate with some managed crashes that I managed to get, and they look like this:
+
+Unhandled Exception:
+System.NullReferenceException: Object reference not set to an instance of an object
+  at System.Runtime.CompilerServices.AsyncMethodBuilderCore+MoveNextRunner.Run () &lt;0x1084e43b0 + 0x000ec&gt; in &lt;filename unknown&gt;:0 
+  at System.Threading.Tasks.AwaitTaskContinuation.RunOrScheduleAction (System.Action action, Boolean allowInlining, System.Threading.Tasks.Task&amp; currentTask) &lt;0x108565f70 + 0x00071&gt; in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () &lt;0x1084e6a50 + 0x00029&gt; in &lt;filename unknown&gt;:0 
+  at System.Threading.Tasks.AwaitTaskContinuation.&lt;ThrowAsyncIfNecessary&gt;m__0 (System.Object s) &lt;0x108566200 + 0x00041&gt; in &lt;filename unknown&gt;:0 
+mac$ /tmp/mono-gdb-commands.Rak10l:1: Error in sourced command file:
+Unable to access task for process-id 97527: (os/kern) failure.
+
+mac$ xMONO_LOG_LEVEL=debug /mono/bin/mono --debug OwinSimple.exe
+Listening on 
+	<a href="http://*:9001">http://*:9001</a>
+CTRL+C to quit.
+
+Unhandled Exception:
+System.InvalidOperationException: Cannot be changed after headers are sent.
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000c] in /cvs/mono/external/referencesource/mscorlib/system/runtime/exceptionservices/exceptionservicescommon.cs:137 
+  at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess (System.Threading.Tasks.Task task) [0x00047] in /cvs/mono/external/referencesource/mscorlib/system/runtime/compilerservices/TaskAwaiter.cs:201 
+  at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification (System.Threading.Tasks.Task task) [0x0002e] in /cvs/mono/external/referencesource/mscorlib/system/runtime/compilerservices/TaskAwaiter.cs:170 
+  at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd (System.Threading.Tasks.Task task) [0x0000b] in /cvs/mono/external/referencesource/mscorlib/system/runtime/compilerservices/TaskAwaiter.cs:142 
+  at System.Runtime.CompilerServices.TaskAwaiter.GetResult () [0x00000] in /cvs/mono/external/referencesource/mscorlib/system/runtime/compilerservices/TaskAwaiter.cs:124 
+  at Microsoft.Owin.Host.HttpListener.OwinHttpListener+&lt;ProcessRequestsAsync&gt;d__0.MoveNext () &lt;0x108094d40 + 0x006db&gt; in &lt;filename unknown&gt;:0 
+--- End of stack trace from previous location where exception was thrown ---
+  at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000c] in /cvs/mono/external/referencesource/mscorlib/system/runtime/exceptionservices/exceptionservicescommon.cs:137 
+  at System.Runtime.CompilerServices.AsyncMethodBuilderCore.&lt;ThrowAsync&gt;m__1 (System.Object state) [0x00000] in /cvs/mono/external/referencesource/mscorlib/system/runtime/compilerservices/AsyncMethodBuilder.cs:1022</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-17 18:20:22 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">With master, if I apply this patch, the unmanaged crashes go away.
+
+We probably should get this patch anyways, since when you assign null to Thread.CurrentPrincipal in .NET, we get back a GenericPrincipal (which btw, is different than the original one):
+
+diff --git a/mcs/class/corlib/System.Threading/Thread.cs b/mcs/class/corlib/System.Threading/Thread.cs
+index 3774614..02ae161 100644
+--- a/mcs/class/corlib/System.Threading/Thread.cs
++++ b/mcs/class/corlib/System.Threading/Thread.cs
+@@ -291,6 +291,8 @@ namespace System.Threading {
+                        set {
+                                Thread th = CurrentThread;
+ 
++                               if (value == null)
++                                       value = new GenericPrincipal (new GenericIdentity ("", ""), new string [1] { "" });
+                                if (value != GetDomain ().DefaultPrincipal) {
+                                        ++th.Internal._serialized_principal_version;
+                                        try {</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-17 18:21:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">With the above patch, on Mac/master I was able to keep the process running for at least an hour, before I had to go home.</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Shawn Burke</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-17 18:25:28 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">OK great thanks so much!  I'll see if I get the same results.</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-21 16:16:04 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The crash seems to happen in Microsoft.Owin.Host.HttpListener.RequestProcessing.OwinHttpListenerResponse:NotifyOnSendingHeaders ()
+
+at the get_Count () call:
+
+    IL_0000:  ldarg.0
+    IL_0001:  ldflda     class [mscorlib]System.Collections.Generic.IList`1&lt;class [mscorlib]System.Tuple`2&lt;class [mscorlib]System.Action`1&lt;object&gt;,object&gt;&gt; Microsoft.Owin.Host.HttpListener.RequestProcessing.OwinHttpListenerResponse::_onSendingHeadersActions
+    IL_0006:  ldnull
+    IL_0007:  call       !!0 [mscorlib]System.Threading.Interlocked::Exchange&lt;class [mscorlib]System.Collections.Generic.IList`1&lt;class [mscorlib]System.Tuple`2&lt;class [mscorlib]System.Action`1&lt;object&gt;,object&gt;&gt;&gt;(!!0&amp;,
+                                                                                                                                                                                                                  !!0)
+    IL_000c:  stloc.0
+    IL_000d:  ldloc.0
+    IL_000e:  callvirt   instance int32 class [mscorlib]System.Collections.Generic.ICollection`1&lt;class [mscorlib]System.Tuple`2&lt;class [mscorlib]System.Action`1&lt;object&gt;,object&gt;&gt;::get_Count()
+
+Looking at the assembly, it looks like we replace the Exchange() call with an intrinsics, but we don't emit a write barrier.</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-21 17:11:08 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">It looks like we do emit a wbarrier, but the object we call at IL_000e seems to be bogus.</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Adrian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-23 12:03:26 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">thank you shawn for posting this and miguel for your supper fast feedback.
+
+we currently integrate a high traffic owin/web api based solution at a customer's cloud foundry deployment and see the the same and other issues on 3.12.1 on ubuntu 14.04 LTS.
+
+we tested miguel's patch, but still saw strange errors initiated in the System.Threading.Timer. as far as we understand, owin (we use Nowin as the Server Factory, because Mono's HttpListener crashes when cancelling a TCP connection client-side) executes some time jobs (maybe cleanups), and during that, references disappeared magically: example was the changed mutex in the Timer while(true) loop. if check for that, errors appeared in the mutex-base-class (null exceptions)...
+
+we worked around by inserting a try/catch in the while(true) loop of the Timer Class (ScheduleThread) and break the loop in the catch. stability is way better now.
+
+let me know how I can help solving this issue cleanly.</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Adrian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-23 15:01:37 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Okay this was little stupid :) We changed:
+
+As a workaround
+- We removed the ManualResetEvent completely; because we have a Null Point Reference to the Native Handler
+
+- We changed the changed.WaitOne to Thread.Sleep(5);</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Shawn Burke</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-23 15:21:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Adrian - this is great.  
+
+Just to clarify, you decided the try/catch wasn't the best solution and instead made the two changes in <a href="bug.html">Comment 12</a>, in addition to Miguel's fix?  If so, is there a PR I could look at/merge?
+
+Zoltan, is there an additional fix coming from you as well?
+
+trying to figure out how to get this all into one branch.
+
+Thanks,
+
+Shawn</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Adrian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-23 15:26:24 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=10884&amp;file=Thread.cs" name="attach_10884" title="Thread.cs with Principal Workaround">attachment 10884</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10884&amp;file=Thread.cs" title="Thread.cs with Principal Workaround">[details]</a></span>
+Thread.cs with Principal Workaround</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Adrian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-23 15:26:55 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=10885&amp;file=Timer.cs" name="attach_10885" title="Timer.cs with ManualResetEvent Native Handler Workaround">attachment 10885</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10885&amp;file=Timer.cs" title="Timer.cs with ManualResetEvent Native Handler Workaround">[details]</a></span>
+Timer.cs with ManualResetEvent Native Handler Workaround</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Adrian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-23 15:29:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Ciao Shawn,
+
+I put two attachments (sorry to not provide a propper diff - was a very long day with debugging)
+
+As you see, we decided to modify the Timer.cs with a Thread.Sleep instead of the failing ManualResetEvent. As far as we analysed, this works pretty good. CPU and Memory is fine.
+
+Cheers</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-24 16:25:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">To continue <a href="bug.html">comment 9</a>:
+The crash in <a href="bug.html">comment 9</a> happens on amd64 with mono master, the crashing code is always
+
+IP 0x1079514c8 at offset 0x78 of method Microsoft.Owin.Host.HttpListener.RequestProcessing.OwinHttpListenerResponse:NotifyOnSendingHeaders () (0x107951450 0x107951550)[domain 0x7fd928602f90 - OwinSimple.exe]
+
+That method looks like the following:
+&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+0x107951450:	sub    $0x28,%rsp
+0x107951454:	mov    %r13,(%rsp)
+0x107951458:	mov    %r14,0x8(%rsp)
+0x10795145d:	mov    %r15,0x10(%rsp)
+0x107951462:	mov    %rdi,%r15
+0x107951465:	test   %r15,%r15
+0x107951468:	je     0x10795152e
+x10795146e:	lea    0x28(%r15),%rax
+0x107951472:	xor    %ecx,%ecx
+0x107951474:	mov    %rcx,%r11
+0x107951477:	xchg   %r11,(%rax)
+0x10795147a:	mov    %r11,%rdx
+0x10795147d:	mov    %rdx,0x18(%rsp)
+0x107951482:	mov    %rcx,%rdx
+0x107951485:	shr    $0x16,%rdx
+0x107951489:	cmp    $0x40b,%rdx
+0x107951490:	jne    0x1079514aa
+0x107951492:	mov    %rax,%rdx
+0x107951495:	shr    $0x9,%rdx
+0x107951499:	and    $0x7fffff,%rdx
+0x1079514a0:	add    0xa1(%rip),%rdx        # 0x107951548
+0x1079514a7:	movb   $0x1,(%rdx)
+0x1079514aa:	mov    0x18(%rsp),%rax
+0x1079514af:	mov    %rax,%r15
+0x1079514b2:	mov    %rax,%rdi
+0x1079514b5:	mov    (%rax),%rax
+0x1079514b8:	mov    $0x7fd92863e1e0,%r10
+0x1079514c2:	callq  *-0x98(%rax)
+<span class="quote">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span>
+
+The crash happens at the last call, which branches to 0. In the signal handler, the relevant registers are:
+rax - random value
+rdi/r15 - points to the heap to empty memory, interior to some object etc.
+
+Based on the code above, rax should contain the vtable pointer of the object at rdi/r15, but it doesn't, which probably means that the memory pointed to by rdi/r15 was changed by another thread after it was loaded into rax.
+
+There is always another thread doing a gc:
+
+Thread 8 (process 21552):
+#0  0x00007fff84c37a3a in __semwait_signal ()
+#1  0x00007fff8530ddc0 in nanosleep ()
+#2  0x000000010855dc83 in monoeg_g_usleep (microseconds=12380) at gdate-unix.c:53
+#3  0x00000001084f8c0f in restart_threads_until_none_in_managed_allocator () at sgen-stw.c:161
+#4  0x00000001084f7f0c in sgen_stop_world (generation=0) at sgen-stw.c:242</pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-24 18:29:22 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">So running MONO_GC_DEBUG=verify-before-collections mono OwinSimple/bin/Debug/OwinSimple.exe
+
+on mono master on amd64 leads to this:
+
+Listening on 
+	<a href="http://*:9001">http://*:9001</a>
+CTRL+C to quit.
+Oldspace-&gt;newspace reference 0x1030d34f8 at offset 264 in object 0x109730e00 (Microsoft.Owin.Host.HttpListener.RequestProcessing.CallEnvironment) not found in remsets.
+Oldspace-&gt;newspace reference 0x1030d34f8 at offset 56 in object 0x1077c61d0 (.&lt;ProcessRequestsAsync&gt;d__0) not found in remsets.
+Oldspace-&gt;newspace reference 0x1030d34f8 at offset 56 in object 0x1077c6230 (.&lt;ProcessRequestsAsync&gt;d__0) not found in remsets.
+Oldspace-&gt;newspace reference 0x1030d34f8 at offset 56 in object 0x1077c6290 (.&lt;ProcessRequestsAsync&gt;d__0) not found in remsets.
+
+When generating load using: ab -n 100000 -c 100 <a href="http://localhost:9001/foo">http://localhost:9001/foo</a></pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-24 18:40:46 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The field in the first message is _OwinHttpListener. Offset 264 is pretty big, so this might be be an object scanning problem.</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-28 18:03:32 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Fixed on master at 23372959cfe004fb1d47d25307871ece82c3f396.</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

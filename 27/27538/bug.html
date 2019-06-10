@@ -1,0 +1,1335 @@
+<html lang="en"><head>
+    <title>27538 – SIGABRT on iOS in Forms App Awaiting Task</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Forms
+                 bz_component_Forms
+                 bz_bug_27538 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;27538</span>
+
+        <span id="subtitle" class="subheader">SIGABRT on iOS in Forms App Awaiting Task</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2016-04-08 19:34:29 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2016-04-08 19:34:29">
+  <input type="hidden" name="id" value="27538">
+  <input type="hidden" name="token" value="1559162017-_AAdF1rDHemMhs0eCzm9ZJFGCR1kcJKq3ETDycd3pV4">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;27538</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">SIGABRT on iOS in Forms App Awaiting Task</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>SIGABRT on iOS in Forms App Awaiting Task
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          NORESPONSE
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Forms
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Xamarin
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">Forms
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>1.3.0
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Windows
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Bugzilla</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2015-03-01 14:31 UTC by <span class="vcard">troywillmot
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2016-04-08 19:34 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>5
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="ehart">ehart</option>
+                <option value="eric.maupin">eric.maupin</option>
+                <option value="jas">jas</option>
+                <option value="seth.rosetter">seth.rosetter</option>
+                <option value="udhams">udhams</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/xamarin">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">NORESPONSE
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">troywillmot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-01 14:31:03 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I've had the following error reported once via Insights from a real user device. They were running iOS 8.1.3 on an iPhone 5S. I am unable to reproduce the issue, but it appears something crashed inside either the mono-runtime or the parallel tasks library?
+
+The Insights events pane suggests the app was 'backgrounded' immediately prior to the crash. I *think* the task being waited on here was an httpclient.getasync call, but cannot be sure. Stack trace from the failing thread below, full Insights raw report data after that.
+
+Thanks.
+
+
+SIGABRTCrash in monoeg_log_default_handler
+
+
+
+libsystem_kernel.dylib.__pthread_kill
+
+libsystem_c.dylib.abort
+
+OntempoStoreCompanion.monoeg_log_default_handlergoutput.c:202
+
+OntempoStoreCompanion.monoeg_assertion_messagegoutput.c:114
+
+OntempoStoreCompanion._wapi_handle_set_signal_statehandles-private.h:165
+
+OntempoStoreCompanion.event_setevents.c:620
+
+OntempoStoreCompanion.SetEventevents.c:691
+
+OntempoStoreCompanion.ves_icall_System_Threading_Events_SetEvent_internalthreads.c:1628
+
+OntempoStoreCompanion.wrapper_managed_to_native_System_Threading_NativeEventCalls_SetEvent_internal_intptr
+
+OntempoStoreCompanion.p_2070_plt_System_Threading_EventWaitHandle_Set_llvmEventWaitHandle.cs:410
+
+OntempoStoreCompanion.p_2400_plt_System_Threading_ManualResetEventSlim_CommitChangeToHandle_long_llvm
+
+OntempoStoreCompanion.p_2205_plt_System_Threading_ManualResetEventSlim_Set_llvm
+
+OntempoStoreCompanion.mscorlib__System_Threading_Tasks_ManualResetContinuation_Execute
+
+OntempoStoreCompanion.mscorlib__System_Threading_Tasks_Task_ProcessCompleteDelegates
+
+OntempoStoreCompanion.p_2058_plt_System_Threading_Tasks_Task_HandleGenericException_System_AggregateException_llvm
+
+OntempoStoreCompanion.p_1790_plt_System_Threading_Tasks_Task_TrySetException_System_AggregateException_bool_bool_llvm
+
+OntempoStoreCompanion.mscorlib__System_Threading_Tasks_TaskCompletionSource_1_TrySetException_System_Collections_Generic_IEnumerable_1_System_Exception
+
+OntempoStoreCompanion.p_2175_plt_System_Threading_Tasks_TaskCompletionSource_1_SetException_System_Collections_Generic_IEnumerable_1_System_Exception_llvm
+
+OntempoStoreCompanion.mscorlib__System_Threading_Tasks_TaskCompletionSource_1_SetException_System_Exception
+
+OntempoStoreCompanion.p_2292_plt_System_Threading_Tasks_TaskFactory_1_InnerInvoke_System_Threading_Tasks_TaskCompletionSource_1_TResult_System_Func_2_System_IAsyncResult_TResult_System_IAsyncResult_llvmTaskFactory_T.cs:949
+
+OntempoStoreCompanion.mscorlib__System_Threading_Tasks_TaskFactory_1__FromAsyncBeginEndc__AnonStorey2__m__0_System_IAsyncResult
+
+OntempoStoreCompanion.System__System_Net_SimpleAsyncResult__SimpleAsyncResultc__AnonStorey0__m__0_System_Net_SimpleAsyncResult
+
+OntempoStoreCompanion.p_1437_plt_System_Net_SimpleAsyncResult_DoCallback_private_llvm
+
+OntempoStoreCompanion.p_1246_plt_System_Net_SimpleAsyncResult_SetCompleted_bool_System_Exception_llvm
+
+OntempoStoreCompanion.System__System_Net_HttpWebRequest_SetWriteStreamError_System_Net_WebExceptionStatus_System_Exception
+
+OntempoStoreCompanion.System__System_Net_WebConnection_InitConnection_object
+
+OntempoStoreCompanion.System_Net_WebConnection__WebConnectionm__0_object_0WebConnection.cs:248
+
+OntempoStoreCompanion.wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr_0
+
+OntempoStoreCompanion.mono_jit_runtime_invokemini.c:6729
+
+OntempoStoreCompanion.mono_runtime_invokeobject.c:2831
+
+OntempoStoreCompanion.mono_runtime_delegate_invokeobject.c:3542
+
+OntempoStoreCompanion.async_invoke_threadthreadpool.c:621
+
+OntempoStoreCompanion.start_wrapperthreads.c:660
+
+OntempoStoreCompanion.inner_start_threadmono-threads-posix.c:84
+
+libsystem_pthread.dylib._pthread_body
+
+libsystem_pthread.dylib._pthread_start
+
+libsystem_pthread.dylib.thread_start
+
+
+Here is a more complete report;
+
+Incident Identifier: 74224DE4-BDA5-41B1-8156-FF3C860DCD1C
+CrashReporter Key:   TODO
+Hardware Model:      iPhone6,2
+Process:         OntempoStoreComp [5230]
+Path:            /private/var/mobile/Containers/Bundle/Application/F885A248-1431-4DAA-BAD4-4DABAD9920A8/OntempoStoreCompanioniOS.app/OntempoStoreCompanion
+Identifier:      com.ontempo.ontempostorecompanion
+Version:         1.1
+Code Type:       ARM
+Parent Process:  launchd [1]
+
+Date/Time:       2015-03-01 01:12:12 +0000
+OS Version:      iPhone OS 8.1.3 (12B466)
+Report Version:  104
+
+Exception Type:  SIGABRT
+Exception Codes: #0 at 0x37ad4dfc
+Crashed Thread:  9
+
+Thread 0:
+0   ???                                 0x1fefdc7e 0x0 + 0
+1   ???                                 0x1fef0f1f 0x0 + 0
+2   libsystem_c.dylib                   0x37a751a7 __cxa_finalize_ranges + 299
+3   libsystem_c.dylib                   0x37a34b45 exit + 13
+4   UIKit                               0x2d1e80df -[UIApplication _terminateWithStatus:] + 351
+5   UIKit                               0x2d3cd303 -[UIApplication _handleApplicationDectivationWithScene:shouldForceExit:transitionContext:completion:] + 2519
+6   UIKit                               0x2d3c89bd -[UIApplication workspaceShouldExit:] + 141
+7   FrontBoardServices                  0x303f80d1 __31-[FBSSerialQueue performAsync:]_block_invoke + 13
+8   CoreFoundation                      0x29c6dd7d __CFRUNLOOP_IS_CALLING_OUT_TO_A_BLOCK__ + 13
+9   CoreFoundation                      0x29c6d041 __CFRunLoopDoBlocks + 217
+10  CoreFoundation                      0x29c6b7c3 __CFRunLoopRun + 763
+11  CoreFoundation                      0x29bb93c1 CFRunLoopRunSpecific + 477
+12  CoreFoundation                      0x29bb91d3 CFRunLoopRunInMode + 107
+13  GraphicsServices                    0x30f770a9 GSEventRunModal + 137
+14  UIKit                               0x2d1c77b1 UIApplicationMain + 1441
+15  OntempoStoreCompanion               0x0077c50c wrapper_managed_to_native_MonoTouch_UIKit_UIApplication_UIApplicationMain_int_string___intptr_intptr + 272
+16  OntempoStoreCompanion               0x00706a20 p_837_plt_MonoTouch_UIKit_UIApplication_Main_string___intptr_intptr_llvm + 44
+17  OntempoStoreCompanion               0x007069ec monotouch__MonoTouch_UIKit_UIApplication_Main_string___string_string + 148
+18  OntempoStoreCompanion               0x00093870 OntempoStoreCompanion__OntempoStore_Companion_iOS_Application_Main_string__ + 32
+19  OntempoStoreCompanion               0x002ca834 wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr_0 + 200
+20  OntempoStoreCompanion               0x009968eb mono_jit_runtime_invoke (mini.c:6729)
+21  OntempoStoreCompanion               0x009de269 mono_runtime_invoke (object.c:2831)
+22  OntempoStoreCompanion               0x009e1757 mono_runtime_exec_main (object.c:4086)
+23  OntempoStoreCompanion               0x009e1595 mono_runtime_run_main (object.c:3714)
+24  OntempoStoreCompanion               0x00980c91 mono_jit_exec (driver.g.c:1010)
+25  OntempoStoreCompanion               0x00a4384c monotouch_main (monotouch-main.m:450)
+26  OntempoStoreCompanion               0x00963a59 main (main.armv7.m:76)
+27  libdyld.dylib                       0x37a0eaaf start + 3
+
+Thread 1:
+0   libsystem_kernel.dylib              0x37ac12a0 kevent64 + 24
+1   libdispatch.dylib                   0x379f0213 _dispatch_mgr_thread + 39
+
+Thread 2:
+0   libsystem_kernel.dylib              0x37ad59cc __workq_kernreturn + 8
+1   libsystem_pthread.dylib             0x37b4fb84 start_wqthread + 8
+
+Thread 3:
+0   libsystem_kernel.dylib              0x37ac14f0 mach_msg_trap + 20
+1   CoreFoundation                      0x29c6d31b __CFRunLoopServiceMachPort + 147
+2   CoreFoundation                      0x29c6b8c1 __CFRunLoopRun + 1017
+3   CoreFoundation                      0x29bb93c1 CFRunLoopRunSpecific + 477
+4   CoreFoundation                      0x29bb91d3 CFRunLoopRunInMode + 107
+5   WebCore                             0x34ff0483 RunWebThread(void*) + 419
+6   libsystem_pthread.dylib             0x37b51e93 _pthread_body + 139
+7   libsystem_pthread.dylib             0x37b51e07 _pthread_start + 119
+8   libsystem_pthread.dylib             0x37b4fb90 thread_start + 8
+
+Thread 4:
+0   libsystem_kernel.dylib              0x37ac1540 semaphore_wait_trap + 8
+1   OntempoStoreCompanion               0x009b94f3 finalizer_thread (gc.c:1084)
+2   OntempoStoreCompanion               0x00a1c62d start_wrapper (threads.c:660)
+3   OntempoStoreCompanion               0x00a34fab inner_start_thread (mono-threads-posix.c:84)
+4   libsystem_pthread.dylib             0x37b51e93 _pthread_body + 139
+5   libsystem_pthread.dylib             0x37b51e07 _pthread_start + 119
+6   libsystem_pthread.dylib             0x37b4fb90 thread_start + 8
+
+Thread 5:
+0   libsystem_kernel.dylib              0x37ad4b38 __psynch_cvwait + 24
+1   libsystem_pthread.dylib             0x37b5231d pthread_cond_timedwait + 45
+2   OntempoStoreCompanion               0x00a20379 _wapi_handle_timedwait_signal_handle (handles.c:1595)
+3   OntempoStoreCompanion               0x00a29b7b WaitForSingleObjectEx (wait.c:196)
+4   OntempoStoreCompanion               0x00a18da9 ves_icall_System_Threading_WaitHandle_WaitOne_internal (threads.c:1489)
+5   OntempoStoreCompanion               0x00272fec wrapper_managed_to_native_System_Threading_WaitHandle_WaitOne_internal_System_Threading_WaitHandle_intptr_int_bool (WaitHandle.cs:352)
+6   OntempoStoreCompanion               0x0027326c System_Threading_WaitHandle_WaitOne_int_bool_0 (WaitHandle.cs:744)
+7   OntempoStoreCompanion               0x001c1148 mscorlib__System_Threading_WaitHandle_WaitOne_int + 24
+8   OntempoStoreCompanion               0x00272d28 System_Threading_Timer_Scheduler_SchedulerThread_0 (Timer.cs:706)
+9   OntempoStoreCompanion               0x001c02ec mscorlib__System_Threading_Thread_StartInternal + 224
+10  OntempoStoreCompanion               0x002ca834 wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr_0 + 200
+11  OntempoStoreCompanion               0x009968eb mono_jit_runtime_invoke (mini.c:6729)
+12  OntempoStoreCompanion               0x009de269 mono_runtime_invoke (object.c:2831)
+13  OntempoStoreCompanion               0x009e1173 mono_runtime_delegate_invoke (object.c:3542)
+14  OntempoStoreCompanion               0x00a1c68b start_wrapper (threads.c:683)
+15  OntempoStoreCompanion               0x00a34fab inner_start_thread (mono-threads-posix.c:84)
+16  libsystem_pthread.dylib             0x37b51e93 _pthread_body + 139
+17  libsystem_pthread.dylib             0x37b51e07 _pthread_start + 119
+18  libsystem_pthread.dylib             0x37b4fb90 thread_start + 8
+
+Thread 6:
+0   libsystem_kernel.dylib              0x37ad4b38 __psynch_cvwait + 24
+1   libsystem_pthread.dylib             0x37b5231d pthread_cond_timedwait + 45
+2   OntempoStoreCompanion               0x00a20379 _wapi_handle_timedwait_signal_handle (handles.c:1595)
+3   OntempoStoreCompanion               0x00a29b7b WaitForSingleObjectEx (wait.c:196)
+4   OntempoStoreCompanion               0x00a18da9 ves_icall_System_Threading_WaitHandle_WaitOne_internal (threads.c:1489)
+5   OntempoStoreCompanion               0x00272fec wrapper_managed_to_native_System_Threading_WaitHandle_WaitOne_internal_System_Threading_WaitHandle_intptr_int_bool (WaitHandle.cs:352)
+6   OntempoStoreCompanion               0x0027326c System_Threading_WaitHandle_WaitOne_int_bool_0 (WaitHandle.cs:744)
+7   OntempoStoreCompanion               0x001bf4b0 mscorlib__System_Threading_ManualResetEventSlim_Wait_int_System_Threading_CancellationToken + 328
+8   OntempoStoreCompanion               0x004dd4e0 p_431_plt_System_Collections_Concurrent_BlockingCollection_1_TryTake_T__int_System_Threading_CancellationToken_bool_llvm + 440
+9   OntempoStoreCompanion               0x004dd2ac p_430_plt_System_Collections_Concurrent_BlockingCollection_1_Take_System_Threading_CancellationToken_llvm + 56
+10  OntempoStoreCompanion               0x004dd26c System__System_Collections_Concurrent_BlockingCollection_1_Take + 44
+11  OntempoStoreCompanion               0x00103858 Xamarin_Forms_Platform_iOS__Xamarin_Forms_Platform_iOS_CADisplayLinkTicker_StartThread + 48
+12  OntempoStoreCompanion               0x001c02ec mscorlib__System_Threading_Thread_StartInternal + 224
+13  OntempoStoreCompanion               0x002ca834 wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr_0 + 200
+14  OntempoStoreCompanion               0x009968eb mono_jit_runtime_invoke (mini.c:6729)
+15  OntempoStoreCompanion               0x009de269 mono_runtime_invoke (object.c:2831)
+16  OntempoStoreCompanion               0x009e1173 mono_runtime_delegate_invoke (object.c:3542)
+17  OntempoStoreCompanion               0x00a1c68b start_wrapper (threads.c:683)
+18  OntempoStoreCompanion               0x00a34fab inner_start_thread (mono-threads-posix.c:84)
+19  libsystem_pthread.dylib             0x37b51e93 _pthread_body + 139
+20  libsystem_pthread.dylib             0x37b51e07 _pthread_start + 119
+21  libsystem_pthread.dylib             0x37b4fb90 thread_start + 8
+
+Thread 7:
+0   libsystem_kernel.dylib              0x37ad59cc __workq_kernreturn + 8
+1   libsystem_pthread.dylib             0x37b4fb84 start_wqthread + 8
+
+Thread 8:
+0   libsystem_kernel.dylib              0x37ad519c __semwait_signal + 24
+1   OntempoStoreCompanion               0x00a2af51 SleepEx (wthreads.c:290)
+2   OntempoStoreCompanion               0x00a16ab1 monitor_thread (threadpool.c:779)
+3   OntempoStoreCompanion               0x00a1c62d start_wrapper (threads.c:660)
+4   OntempoStoreCompanion               0x00a34fab inner_start_thread (mono-threads-posix.c:84)
+5   libsystem_pthread.dylib             0x37b51e93 _pthread_body + 139
+6   libsystem_pthread.dylib             0x37b51e07 _pthread_start + 119
+7   libsystem_pthread.dylib             0x37b4fb90 thread_start + 8
+
+Thread 9 Crashed:
+0   libsystem_kernel.dylib              0x37ad4dfc __pthread_kill + 8
+1   libsystem_c.dylib                   0x37a74909 abort + 77
+2   OntempoStoreCompanion               0x00a3cc31 monoeg_log_default_handler (goutput.c:202)
+3   OntempoStoreCompanion               0x00a3cce7 monoeg_assertion_message (goutput.c:114)
+4   OntempoStoreCompanion               0x00a1e1d3 _wapi_handle_set_signal_state (handles-private.h:165)
+5   OntempoStoreCompanion               0x00a1db89 event_set (events.c:620)
+6   OntempoStoreCompanion               0x00a1d531 SetEvent (events.c:691)
+7   OntempoStoreCompanion               0x00a18fd9 ves_icall_System_Threading_Events_SetEvent_internal (threads.c:1628)
+8   OntempoStoreCompanion               0x00270b88 wrapper_managed_to_native_System_Threading_NativeEventCalls_SetEvent_internal_intptr + 92
+9   OntempoStoreCompanion               0x00270274 p_2070_plt_System_Threading_EventWaitHandle_Set_llvm (EventWaitHandle.cs:410)
+10  OntempoStoreCompanion               0x001bf294 p_2400_plt_System_Threading_ManualResetEventSlim_CommitChangeToHandle_long_llvm + 108
+11  OntempoStoreCompanion               0x001bf1a8 p_2205_plt_System_Threading_ManualResetEventSlim_Set_llvm + 56
+12  OntempoStoreCompanion               0x001bac58 mscorlib__System_Threading_Tasks_ManualResetContinuation_Execute + 20
+13  OntempoStoreCompanion               0x001b8330 mscorlib__System_Threading_Tasks_Task_ProcessCompleteDelegates + 132
+14  OntempoStoreCompanion               0x001b858c p_2058_plt_System_Threading_Tasks_Task_HandleGenericException_System_AggregateException_llvm + 100
+15  OntempoStoreCompanion               0x001b7e50 p_1790_plt_System_Threading_Tasks_Task_TrySetException_System_AggregateException_bool_bool_llvm + 192
+16  OntempoStoreCompanion               0x001ba4b4 mscorlib__System_Threading_Tasks_TaskCompletionSource_1_TrySetException_System_Collections_Generic_IEnumerable_1_System_Exception + 120
+17  OntempoStoreCompanion               0x001ba2e0 p_2175_plt_System_Threading_Tasks_TaskCompletionSource_1_SetException_System_Collections_Generic_IEnumerable_1_System_Exception_llvm + 28
+18  OntempoStoreCompanion               0x001ba2a0 mscorlib__System_Threading_Tasks_TaskCompletionSource_1_SetException_System_Exception + 104
+19  OntempoStoreCompanion               0x0026fc90 p_2292_plt_System_Threading_Tasks_TaskFactory_1_InnerInvoke_System_Threading_Tasks_TaskCompletionSource_1_TResult_System_Func_2_System_IAsyncResult_TResult_System_IAsyncResult_llvm (TaskFactory_T.cs:949)
+20  OntempoStoreCompanion               0x001bc458 mscorlib__System_Threading_Tasks_TaskFactory_1__FromAsyncBeginEndc__AnonStorey2__m__0_System_IAsyncResult + 96
+21  OntempoStoreCompanion               0x004ffc94 System__System_Net_SimpleAsyncResult__SimpleAsyncResultc__AnonStorey0__m__0_System_Net_SimpleAsyncResult + 40
+22  OntempoStoreCompanion               0x004ffb84 p_1437_plt_System_Net_SimpleAsyncResult_DoCallback_private_llvm + 56
+23  OntempoStoreCompanion               0x004ffb2c p_1246_plt_System_Net_SimpleAsyncResult_SetCompleted_bool_System_Exception_llvm + 24
+24  OntempoStoreCompanion               0x004f8934 System__System_Net_HttpWebRequest_SetWriteStreamError_System_Net_WebExceptionStatus_System_Exception + 272
+25  OntempoStoreCompanion               0x005011cc System__System_Net_WebConnection_InitConnection_object + 352
+26  OntempoStoreCompanion               0x00567b54 System_Net_WebConnection__WebConnectionm__0_object_0 (WebConnection.cs:248)
+27  OntempoStoreCompanion               0x002ca834 wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr_0 + 200
+28  OntempoStoreCompanion               0x009968eb mono_jit_runtime_invoke (mini.c:6729)
+29  OntempoStoreCompanion               0x009de269 mono_runtime_invoke (object.c:2831)
+30  OntempoStoreCompanion               0x009e1173 mono_runtime_delegate_invoke (object.c:3542)
+31  OntempoStoreCompanion               0x00a15937 async_invoke_thread (threadpool.c:621)
+32  OntempoStoreCompanion               0x00a1c62d start_wrapper (threads.c:660)
+33  OntempoStoreCompanion               0x00a34fab inner_start_thread (mono-threads-posix.c:84)
+34  libsystem_pthread.dylib             0x37b51e93 _pthread_body + 139
+35  libsystem_pthread.dylib             0x37b51e07 _pthread_start + 119
+36  libsystem_pthread.dylib             0x37b4fb90 thread_start + 8
+
+Thread 10:
+0   libsystem_kernel.dylib              0x37ad4b38 __psynch_cvwait + 24
+1   libsystem_pthread.dylib             0x37b522dd pthread_cond_wait + 41
+2   OntempoStoreCompanion               0x00a202e9 _wapi_handle_timedwait_signal_handle (handles.c:1595)
+3   OntempoStoreCompanion               0x00a203eb _wapi_handle_wait_signal_handle (handles.c:1540)
+4   OntempoStoreCompanion               0x00a29b83 WaitForSingleObjectEx (wait.c:196)
+5   OntempoStoreCompanion               0x00a18da9 ves_icall_System_Threading_WaitHandle_WaitOne_internal (threads.c:1489)
+6   OntempoStoreCompanion               0x00272fec wrapper_managed_to_native_System_Threading_WaitHandle_WaitOne_internal_System_Threading_WaitHandle_intptr_int_bool (WaitHandle.cs:352)
+7   OntempoStoreCompanion               0x00273188 System_Threading_WaitHandle_WaitOne_0 (WaitHandle.cs:709)
+8   OntempoStoreCompanion               0x000e5ce4 OntempoStore_Companion_ImageLoadBehaviour__ProcessDownloadRequestsd__18_MoveNext + 680
+9   OntempoStoreCompanion               0x000b7a1c OntempoStoreCompanion__System_Runtime_CompilerServices_AsyncVoidMethodBuilder_Start_OntempoStore_Companion_ImageLoadBehaviour__ProcessDownloadRequestsd__18_OntempoStore_Companion_ImageLoadBehaviour__ProcessDownloadRequestsd__18_ + 16
+10  OntempoStoreCompanion               0x000d35dc OntempoStore_Companion_ImageLoadBehaviour_ProcessDownloadRequests_0 + 196
+11  OntempoStoreCompanion               0x001c02ec mscorlib__System_Threading_Thread_StartInternal + 224
+12  OntempoStoreCompanion               0x002ca834 wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr_0 + 200
+13  OntempoStoreCompanion               0x009968eb mono_jit_runtime_invoke (mini.c:6729)
+14  OntempoStoreCompanion               0x009de269 mono_runtime_invoke (object.c:2831)
+15  OntempoStoreCompanion               0x009e1173 mono_runtime_delegate_invoke (object.c:3542)
+16  OntempoStoreCompanion               0x00a1c68b start_wrapper (threads.c:683)
+17  OntempoStoreCompanion               0x00a34fab inner_start_thread (mono-threads-posix.c:84)
+18  libsystem_pthread.dylib             0x37b51e93 _pthread_body + 139
+19  libsystem_pthread.dylib             0x37b51e07 _pthread_start + 119
+20  libsystem_pthread.dylib             0x37b4fb90 thread_start + 8
+
+Thread 11:
+0   libsystem_kernel.dylib              0x37ad4b38 __psynch_cvwait + 24
+1   libsystem_pthread.dylib             0x37b522dd pthread_cond_wait + 41
+2   OntempoStoreCompanion               0x00a202e9 _wapi_handle_timedwait_signal_handle (handles.c:1595)
+3   OntempoStoreCompanion               0x00a203eb _wapi_handle_wait_signal_handle (handles.c:1540)
+4   OntempoStoreCompanion               0x00a29b83 WaitForSingleObjectEx (wait.c:196)
+5   OntempoStoreCompanion               0x00a18da9 ves_icall_System_Threading_WaitHandle_WaitOne_internal (threads.c:1489)
+6   OntempoStoreCompanion               0x00272fec wrapper_managed_to_native_System_Threading_WaitHandle_WaitOne_internal_System_Threading_WaitHandle_intptr_int_bool (WaitHandle.cs:352)
+7   OntempoStoreCompanion               0x00273188 System_Threading_WaitHandle_WaitOne_0 (WaitHandle.cs:709)
+8   OntempoStoreCompanion               0x000d38f0 OntempoStore_Companion_ImageLoadBehaviour_ProcessCompletedDownloads_0 + 148
+9   OntempoStoreCompanion               0x001c02ec mscorlib__System_Threading_Thread_StartInternal + 224
+10  OntempoStoreCompanion               0x002ca834 wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr_0 + 200
+11  OntempoStoreCompanion               0x009968eb mono_jit_runtime_invoke (mini.c:6729)
+12  OntempoStoreCompanion               0x009de269 mono_runtime_invoke (object.c:2831)
+13  OntempoStoreCompanion               0x009e1173 mono_runtime_delegate_invoke (object.c:3542)
+14  OntempoStoreCompanion               0x00a1c68b start_wrapper (threads.c:683)
+15  OntempoStoreCompanion               0x00a34fab inner_start_thread (mono-threads-posix.c:84)
+16  libsystem_pthread.dylib             0x37b51e93 _pthread_body + 139
+17  libsystem_pthread.dylib             0x37b51e07 _pthread_start + 119
+18  libsystem_pthread.dylib             0x37b4fb90 thread_start + 8
+
+Thread 12:
+0   libsystem_kernel.dylib              0x37ac14f0 mach_msg_trap + 20
+1   CoreFoundation                      0x29c6d31b __CFRunLoopServiceMachPort + 147
+2   CoreFoundation                      0x29c6b8c1 __CFRunLoopRun + 1017
+3   CoreFoundation                      0x29bb93c1 CFRunLoopRunSpecific + 477
+4   CoreFoundation                      0x29bb91d3 CFRunLoopRunInMode + 107
+5   CFNetwork                           0x2976e957 +[NSURLConnection(Loader) _resourceLoadLoop:] + 487
+6   Foundation                          0x2a9b7afb __NSThread__main__ + 1119
+7   libsystem_pthread.dylib             0x37b51e93 _pthread_body + 139
+8   libsystem_pthread.dylib             0x37b51e07 _pthread_start + 119
+9   libsystem_pthread.dylib             0x37b4fb90 thread_start + 8
+
+Thread 13:
+0   libsystem_kernel.dylib              0x37ad4b38 __psynch_cvwait + 24
+1   libsystem_pthread.dylib             0x37b522dd pthread_cond_wait + 41
+2   OntempoStoreCompanion               0x00a202e9 _wapi_handle_timedwait_signal_handle (handles.c:1595)
+3   OntempoStoreCompanion               0x00a203eb _wapi_handle_wait_signal_handle (handles.c:1540)
+4   OntempoStoreCompanion               0x00a29b83 WaitForSingleObjectEx (wait.c:196)
+5   OntempoStoreCompanion               0x00a18da9 ves_icall_System_Threading_WaitHandle_WaitOne_internal (threads.c:1489)
+6   OntempoStoreCompanion               0x00272fec wrapper_managed_to_native_System_Threading_WaitHandle_WaitOne_internal_System_Threading_WaitHandle_intptr_int_bool (WaitHandle.cs:352)
+7   OntempoStoreCompanion               0x0027326c System_Threading_WaitHandle_WaitOne_int_bool_0 (WaitHandle.cs:744)
+8   OntempoStoreCompanion               0x001bf4b0 mscorlib__System_Threading_ManualResetEventSlim_Wait_int_System_Threading_CancellationToken + 328
+9   OntempoStoreCompanion               0x0026f34c System_Threading_Tasks_Task_WaitCore_int_System_Threading_CancellationToken_bool_0 (Task.cs:1443)
+10  OntempoStoreCompanion               0x001b8604 mscorlib__System_Threading_Tasks_Task_Wait_int_System_Threading_CancellationToken + 32
+11  OntempoStoreCompanion               0x001b85e0 p_2309_plt_System_Threading_Tasks_Task_Wait_llvm + 20
+12  OntempoStoreCompanion               0x0080df68 Xamarin_InsightsCore_WebPoster40_TestPing_string_0 + 372
+13  OntempoStoreCompanion               0x007fc568 Xamarin_Insights__Xamarin_InsightsCore_NetworkAvailability_TestCommunication_string + 68
+14  OntempoStoreCompanion               0x0080cad8 Xamarin_InsightsCore_WebApi_AttemptCommunication_0 + 88
+15  OntempoStoreCompanion               0x0080d09c Xamarin_InsightsCore_WebApi__QueueCommunicationb__2_System_Threading_Tasks_Task_0 + 36
+16  OntempoStoreCompanion               0x001b98b4 mscorlib__System_Threading_Tasks_TaskActionInvoker_ActionTaskInvoke_Invoke_System_Threading_Tasks_Task_object_System_Threading_Tasks_Task + 20
+17  OntempoStoreCompanion               0x001b8080 p_2125_plt_System_Threading_Tasks_Task_InnerInvoke_llvm + 56
+18  OntempoStoreCompanion               0x0026ee5c System_Threading_Tasks_Task_ThreadStart (Task.cs:893)
+19  OntempoStoreCompanion               0x001b7e80 p_2307_plt_System_Threading_Tasks_Task_Execute_llvm + 12
+20  OntempoStoreCompanion               0x001bd228 mscorlib__System_Threading_Tasks_TpScheduler_TaskExecuterCallback_object + 68
+21  OntempoStoreCompanion               0x002ca834 wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr_0 + 200
+22  OntempoStoreCompanion               0x009968eb mono_jit_runtime_invoke (mini.c:6729)
+23  OntempoStoreCompanion               0x009de269 mono_runtime_invoke (object.c:2831)
+24  OntempoStoreCompanion               0x009e1173 mono_runtime_delegate_invoke (object.c:3542)
+25  OntempoStoreCompanion               0x00a15937 async_invoke_thread (threadpool.c:621)
+26  OntempoStoreCompanion               0x00a1c62d start_wrapper (threads.c:660)
+27  OntempoStoreCompanion               0x00a34fab inner_start_thread (mono-threads-posix.c:84)
+28  libsystem_pthread.dylib             0x37b51e93 _pthread_body + 139
+29  libsystem_pthread.dylib             0x37b51e07 _pthread_start + 119
+30  libsystem_pthread.dylib             0x37b4fb90 thread_start + 8
+
+Thread 14:
+0   libsystem_kernel.dylib              0x37ad4b38 __psynch_cvwait + 24
+1   libsystem_pthread.dylib             0x37b522dd pthread_cond_wait + 41
+2   OntempoStoreCompanion               0x00a202e9 _wapi_handle_timedwait_signal_handle (handles.c:1595)
+3   OntempoStoreCompanion               0x00a203eb _wapi_handle_wait_signal_handle (handles.c:1540)
+4   OntempoStoreCompanion               0x00a29b83 WaitForSingleObjectEx (wait.c:196)
+5   OntempoStoreCompanion               0x00a18da9 ves_icall_System_Threading_WaitHandle_WaitOne_internal (threads.c:1489)
+6   OntempoStoreCompanion               0x00272fec wrapper_managed_to_native_System_Threading_WaitHandle_WaitOne_internal_System_Threading_WaitHandle_intptr_int_bool (WaitHandle.cs:352)
+7   OntempoStoreCompanion               0x0027326c System_Threading_WaitHandle_WaitOne_int_bool_0 (WaitHandle.cs:744)
+8   OntempoStoreCompanion               0x001bf4b0 mscorlib__System_Threading_ManualResetEventSlim_Wait_int_System_Threading_CancellationToken + 328
+9   OntempoStoreCompanion               0x0026f34c System_Threading_Tasks_Task_WaitCore_int_System_Threading_CancellationToken_bool_0 (Task.cs:1443)
+10  OntempoStoreCompanion               0x001b8604 mscorlib__System_Threading_Tasks_Task_Wait_int_System_Threading_CancellationToken + 32
+11  OntempoStoreCompanion               0x001b85e0 p_2309_plt_System_Threading_Tasks_Task_Wait_llvm + 20
+12  OntempoStoreCompanion               0x007ff244 Xamarin_Insights__Xamarin_InsightsCore_WebPoster40__c__DisplayClass3__Submitb__0 + 460
+13  OntempoStoreCompanion               0x001b9a14 mscorlib__System_Threading_Tasks_TaskActionInvoker_FuncInvoke_1_Invoke_System_Threading_Tasks_Task_object_System_Threading_Tasks_Task + 68
+14  OntempoStoreCompanion               0x001b809c p_2125_plt_System_Threading_Tasks_Task_InnerInvoke_llvm + 84
+15  OntempoStoreCompanion               0x0026ee5c System_Threading_Tasks_Task_ThreadStart (Task.cs:893)
+16  OntempoStoreCompanion               0x001b7e80 p_2307_plt_System_Threading_Tasks_Task_Execute_llvm + 12
+17  OntempoStoreCompanion               0x001bd228 mscorlib__System_Threading_Tasks_TpScheduler_TaskExecuterCallback_object + 68
+18  OntempoStoreCompanion               0x002ca834 wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr_0 + 200
+19  OntempoStoreCompanion               0x009968eb mono_jit_runtime_invoke (mini.c:6729)
+20  OntempoStoreCompanion               0x009de269 mono_runtime_invoke (object.c:2831)
+21  OntempoStoreCompanion               0x009e1173 mono_runtime_delegate_invoke (object.c:3542)
+22  OntempoStoreCompanion               0x00a15937 async_invoke_thread (threadpool.c:621)
+23  OntempoStoreCompanion               0x00a1c62d start_wrapper (threads.c:660)
+24  OntempoStoreCompanion               0x00a34fab inner_start_thread (mono-threads-posix.c:84)
+25  libsystem_pthread.dylib             0x37b51e93 _pthread_body + 139
+26  libsystem_pthread.dylib             0x37b51e07 _pthread_start + 119
+27  libsystem_pthread.dylib             0x37b4fb90 thread_start + 8
+
+Thread 15:
+0   libsystem_kernel.dylib              0x37ad508c __select + 20
+1   libsystem_pthread.dylib             0x37b51e93 _pthread_body + 139
+2   libsystem_pthread.dylib             0x37b51e07 _pthread_start + 119
+3   libsystem_pthread.dylib             0x37b4fb90 thread_start + 8
+
+Thread 16:
+0   libsystem_kernel.dylib              0x37ad59cc __workq_kernreturn + 8
+1   libsystem_pthread.dylib             0x37b4fb84 start_wqthread + 8
+
+Thread 17:
+0   libsystem_kernel.dylib              0x37ad59cc __workq_kernreturn + 8
+1   libsystem_pthread.dylib             0x37b4fb84 start_wqthread + 8
+
+Thread 18:
+0   libsystem_kernel.dylib              0x37ad59cc __workq_kernreturn + 8
+1   libsystem_pthread.dylib             0x37b4fb84 start_wqthread + 8
+
+Thread 19:
+0   libsystem_kernel.dylib              0x37ac1558 semaphore_timedwait_trap + 8
+1   OntempoStoreCompanion               0x00a15429 async_invoke_thread (threadpool.c:1566)
+2   OntempoStoreCompanion               0x00a1c62d start_wrapper (threads.c:660)
+3   OntempoStoreCompanion               0x00a34fab inner_start_thread (mono-threads-posix.c:84)
+4   libsystem_pthread.dylib             0x37b51e93 _pthread_body + 139
+5   libsystem_pthread.dylib             0x37b51e07 _pthread_start + 119
+6   libsystem_pthread.dylib             0x37b4fb90 thread_start + 8
+
+Thread 9 crashed with ARM Thread State:
+    pc: 0x37ad4dfc     r7: 0x04d8696c     sp: 0x04d86960     r0: 0x00000000 
+    r1: 0x00000000     r2: 0x00000000     r3: 0x00000fff     r4: 0x00000006 
+    r5: 0x04d87000     r6: 0x02c37000     r8: 0x00e4ed7c     r9: 0x04d87000 
+   r10: 0x00000001    r11: 0x04d86ae4     ip: 0x00000148     lr: 0x37b52d37 
+  cpsr: 0x00000010 
+
+Binary Images:
+   0x7f000 -   0xde6fff +OntempoStoreCompanion armv7  &lt;728d5d64ae5f34e49cbbd8dae82b9ac5&gt; /private/var/mobile/Containers/Bundle/Application/F885A248-1431-4DAA-BAD4-4DABAD9920A8/OntempoStoreCompanioniOS.app/OntempoStoreCompanion
+0x2873d000 - 0x288a9fff  AVFoundation armv7s  &lt;23a20af23f733b39b5c87059c080f9f7&gt; /System/Library/Frameworks/AVFoundation.framework/AVFoundation
+0x288aa000 - 0x28908fff  libAVFAudio.dylib armv7s  &lt;e3f677adf77d37baa08716b5d334486f&gt; /System/Library/Frameworks/AVFoundation.framework/libAVFAudio.dylib
+0x28942000 - 0x28942fff  Accelerate armv7s  &lt;3c10ee15d8363fa58b719f2abca91b06&gt; /System/Library/Frameworks/Accelerate.framework/Accelerate
+0x28953000 - 0x28b6efff  vImage armv7s  &lt;3358de09601333a2881365e5c74c681e&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vImage.framework/vImage
+0x28b6f000 - 0x28c55fff  libBLAS.dylib armv7s  &lt;b46b7fd3985f371ca26b10f268965e63&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libBLAS.dylib
+0x28c56000 - 0x28f1afff  libLAPACK.dylib armv7s  &lt;eb228c255d9e349391cd6b227a9d2744&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libLAPACK.dylib
+0x28f1b000 - 0x28f2cfff  libLinearAlgebra.dylib armv7s  &lt;d2e989bc1bad320b918c37d3642db4b6&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libLinearAlgebra.dylib
+0x28f2d000 - 0x28fa9fff  libvDSP.dylib armv7s  &lt;07cf0625bd813336920eb5b62f99be06&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libvDSP.dylib
+0x28faa000 - 0x28fbcfff  libvMisc.dylib armv7s  &lt;28f38990063234318631d0d03eced5f1&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libvMisc.dylib
+0x28fbd000 - 0x28fbdfff  vecLib armv7s  &lt;108b763f155130828fa123813e3ff5f5&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/vecLib
+0x28fbe000 - 0x28fe4fff  Accounts armv7s  &lt;a5204dc40d2b3dd0b8603ecf491977c2&gt; /System/Library/Frameworks/Accounts.framework/Accounts
+0x28fe6000 - 0x29056fff  AddressBook armv7s  &lt;5d6a592fa31e3de09340c5a67cfbe7f3&gt; /System/Library/Frameworks/AddressBook.framework/AddressBook
+0x29057000 - 0x2917bfff  AddressBookUI armv7s  &lt;e3ac3ad5b4ad386eac974860b6930983&gt; /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
+0x29314000 - 0x29587fff  AudioToolbox armv7s  &lt;5d4f5b76b7ab37018df0216d9cb42056&gt; /System/Library/Frameworks/AudioToolbox.framework/AudioToolbox
+0x296f2000 - 0x2987afff  CFNetwork armv7s  &lt;97db33718ab838fd9f03530d4ba2cd07&gt; /System/Library/Frameworks/CFNetwork.framework/CFNetwork
+0x2987b000 - 0x298fcfff  CloudKit armv7s  &lt;a1fd0fc121e234198e795f8a2a45ccdf&gt; /System/Library/Frameworks/CloudKit.framework/CloudKit
+0x298fd000 - 0x2995cfff  CoreAudio armv7s  &lt;acf1796d96be308e83c2630ffca280fb&gt; /System/Library/Frameworks/CoreAudio.framework/CoreAudio
+0x29977000 - 0x29994fff  CoreBluetooth armv7s  &lt;48b836269a013afba54ee9b9492d45c6&gt; /System/Library/Frameworks/CoreBluetooth.framework/CoreBluetooth
+0x29995000 - 0x29ba0fff  CoreData armv7s  &lt;7ee78feaa6fb3d41af493ca96efffe7d&gt; /System/Library/Frameworks/CoreData.framework/CoreData
+0x29ba1000 - 0x29ecefff  CoreFoundation armv7s  &lt;5b54383b963a36369b45eaa35c3940be&gt; /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+0x29ecf000 - 0x29ff9fff  CoreGraphics armv7s  &lt;55099b33d2b33614bc45e7bce28902ef&gt; /System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+0x2a039000 - 0x2a03bfff  libCGXType.A.dylib armv7s  &lt;eb8cc68e1d393daaa12680feecae2820&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libCGXType.A.dylib
+0x2a03c000 - 0x2a046fff  libCMSBuiltin.A.dylib armv7s  &lt;116b191d69153124a81f505eb67bb5a5&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libCMSBuiltin.A.dylib
+0x2a22e000 - 0x2a249fff  libRIP.A.dylib armv7s  &lt;f6ec83e7d6273e6db93f358908174a61&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libRIP.A.dylib
+0x2a24a000 - 0x2a358fff  CoreImage armv7s  &lt;f5015bd2f3b6316ab9c185ae9d3eed9b&gt; /System/Library/Frameworks/CoreImage.framework/CoreImage
+0x2a359000 - 0x2a3b0fff  CoreLocation armv7s  &lt;61b16896f9993835b4d9493eab0a34f5&gt; /System/Library/Frameworks/CoreLocation.framework/CoreLocation
+0x2a3e2000 - 0x2a47cfff  CoreMedia armv7s  &lt;b26b2ae9087b382fa0b0e20b68e8e45c&gt; /System/Library/Frameworks/CoreMedia.framework/CoreMedia
+0x2a47d000 - 0x2a53cfff  CoreMotion armv7s  &lt;b5aa36fcb5793508998dc0ff688aa54c&gt; /System/Library/Frameworks/CoreMotion.framework/CoreMotion
+0x2a53d000 - 0x2a59bfff  CoreTelephony armv7s  &lt;fcb254101e31326f8edd32a9568143fd&gt; /System/Library/Frameworks/CoreTelephony.framework/CoreTelephony
+0x2a59c000 - 0x2a663fff  CoreText armv7s  &lt;45f514c16eb0317883ad41938634cedb&gt; /System/Library/Frameworks/CoreText.framework/CoreText
+0x2a664000 - 0x2a679fff  CoreVideo armv7s  &lt;3755b5d4d1a23154a9bb3e497ececab9&gt; /System/Library/Frameworks/CoreVideo.framework/CoreVideo
+0x2a67a000 - 0x2a770fff  EventKit armv7s  &lt;8bb311d23ac03b45b04977c1edcc24a0&gt; /System/Library/Frameworks/EventKit.framework/EventKit
+0x2a8e7000 - 0x2aae9fff  Foundation armv7s  &lt;800647056946399b93c7d21341c37a02&gt; /System/Library/Frameworks/Foundation.framework/Foundation
+0x2aaea000 - 0x2ab15fff  GLKit armv7s  &lt;9782e1b0ea3c30f6bb711eefc2f62dbe&gt; /System/Library/Frameworks/GLKit.framework/GLKit
+0x2ab16000 - 0x2ab35fff  GSS armv7s  &lt;f5841d73bb183032b51358205f547b6a&gt; /System/Library/Frameworks/GSS.framework/GSS
+0x2abc9000 - 0x2ac1ffff  IOKit armv7s  &lt;a4acf0d246b53114817cfd7a01fe5c0a&gt; /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit
+0x2ac20000 - 0x2ae62fff  ImageIO armv7s  &lt;f73b91e6710333b38f4b2893c9dabbe9&gt; /System/Library/Frameworks/ImageIO.framework/ImageIO
+0x2ae63000 - 0x2b1b1fff  JavaScriptCore armv7s  &lt;8d4aa85ff5e93acdb0e9179d4855b958&gt; /System/Library/Frameworks/JavaScriptCore.framework/JavaScriptCore
+0x2b48e000 - 0x2b496fff  MediaAccessibility armv7s  &lt;fe6d956fb92c34418fcd7e714126a786&gt; /System/Library/Frameworks/MediaAccessibility.framework/MediaAccessibility
+0x2b497000 - 0x2b670fff  MediaPlayer armv7s  &lt;73c55a2d17de3b91b8e6a23f5393f434&gt; /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
+0x2b671000 - 0x2b9ebfff  MediaToolbox armv7s  &lt;308cc02553e732e09726f5158b813816&gt; /System/Library/Frameworks/MediaToolbox.framework/MediaToolbox
+0x2b9ec000 - 0x2baaafff  MessageUI armv7s  &lt;3af810d8e9233bd7903e5c3b8057fe88&gt; /System/Library/Frameworks/MessageUI.framework/MessageUI
+0x2baab000 - 0x2bb17fff  Metal armv7s  &lt;a384b266648830f0af79c6701b4fe29a&gt; /System/Library/Frameworks/Metal.framework/Metal
+0x2bb18000 - 0x2bba8fff  MobileCoreServices armv7s  &lt;7d37e46113333ba39941502e9cdbf7ae&gt; /System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices
+0x2c684000 - 0x2c68cfff  OpenGLES armv7s  &lt;d9b66d56701b3de8bf8e91d63db07328&gt; /System/Library/Frameworks/OpenGLES.framework/OpenGLES
+0x2c68e000 - 0x2c68efff  libCVMSPluginSupport.dylib armv7s  &lt;2d945076afe83141af65c510e33a05ec&gt; /System/Library/Frameworks/OpenGLES.framework/libCVMSPluginSupport.dylib
+0x2c68f000 - 0x2c691fff  libCoreFSCache.dylib armv7s  &lt;ecc01c4cd2aa3cfabe2cb655e944d675&gt; /System/Library/Frameworks/OpenGLES.framework/libCoreFSCache.dylib
+0x2c692000 - 0x2c695fff  libCoreVMClient.dylib armv7s  &lt;f9bbda54797d3b119f02b904b5b616b8&gt; /System/Library/Frameworks/OpenGLES.framework/libCoreVMClient.dylib
+0x2c696000 - 0x2c69efff  libGFXShared.dylib armv7s  &lt;38da2ef7476f3e06a684c7d23e32b5d6&gt; /System/Library/Frameworks/OpenGLES.framework/libGFXShared.dylib
+0x2c69f000 - 0x2c6e1fff  libGLImage.dylib armv7s  &lt;226b647182f731399ce2ffa4ac908466&gt; /System/Library/Frameworks/OpenGLES.framework/libGLImage.dylib
+0x2cb81000 - 0x2ccd3fff  QuartzCore armv7s  &lt;d981d03747623398a3c7e252ad058785&gt; /System/Library/Frameworks/QuartzCore.framework/QuartzCore
+0x2ccd4000 - 0x2cd27fff  QuickLook armv7s  &lt;318bf310635a37edb9f1124050a05e2c&gt; /System/Library/Frameworks/QuickLook.framework/QuickLook
+0x2cf16000 - 0x2cf56fff  Security armv7s  &lt;56cdc560adfa3fcfa09ecc955e521caf&gt; /System/Library/Frameworks/Security.framework/Security
+0x2d0fa000 - 0x2d156fff  SystemConfiguration armv7s  &lt;f40e0ecca37c3f8cb107976317fa6250&gt; /System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration
+0x2d159000 - 0x2d9fcfff  UIKit armv7s  &lt;4a5a4391faef36a6b77a1ebe40611d0a&gt; /System/Library/Frameworks/UIKit.framework/UIKit
+0x2d9fd000 - 0x2da64fff  VideoToolbox armv7s  &lt;686a2e23c1aa38e8a6d717efccf6e06d&gt; /System/Library/Frameworks/VideoToolbox.framework/VideoToolbox
+0x2da65000 - 0x2dc4bfff  WebKit armv7s  &lt;e124671586b03daf8379003dd2870983&gt; /System/Library/Frameworks/WebKit.framework/WebKit
+0x2df2c000 - 0x2df37fff  AOSNotification armv7s  &lt;1f80daa07a603b748da563f4b4877377&gt; /System/Library/PrivateFrameworks/AOSNotification.framework/AOSNotification
+0x2e08c000 - 0x2e0d8fff  AccountsDaemon armv7s  &lt;22d177290ac53e9d9e3cf9e3a05f093c&gt; /System/Library/PrivateFrameworks/AccountsDaemon.framework/AccountsDaemon
+0x2e0d9000 - 0x2e0fafff  AccountsUI armv7s  &lt;2ddef05340b03573a659bc09c46abcef&gt; /System/Library/PrivateFrameworks/AccountsUI.framework/AccountsUI
+0x2e0fb000 - 0x2e0fffff  AggregateDictionary armv7s  &lt;ea95067fba273e28af6e30fde0960dff&gt; /System/Library/PrivateFrameworks/AggregateDictionary.framework/AggregateDictionary
+0x2e2c8000 - 0x2e2f3fff  AirPlaySupport armv7s  &lt;5961c9897d8b329c80c8152851e2c583&gt; /System/Library/PrivateFrameworks/AirPlaySupport.framework/AirPlaySupport
+0x2e4ed000 - 0x2e52bfff  AppSupport armv7s  &lt;a0e37cef8bbe3c85a186dcc49b049df6&gt; /System/Library/PrivateFrameworks/AppSupport.framework/AppSupport
+0x2e52c000 - 0x2e573fff  AppleAccount armv7s  &lt;6812345ae0953266a59389104bfa5ee8&gt; /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
+0x2e65b000 - 0x2e698fff  AppleJPEG armv7s  &lt;2931e6f7c6883b67ab38d35019beb8c6&gt; /System/Library/PrivateFrameworks/AppleJPEG.framework/AppleJPEG
+0x2e6a3000 - 0x2e6b5fff  ApplePushService armv7s  &lt;69c350865a9038388efef935f7a3af72&gt; /System/Library/PrivateFrameworks/ApplePushService.framework/ApplePushService
+0x2e6b6000 - 0x2e6bcfff  AppleSRP armv7s  &lt;96b159f9b8073ce88263a6c5cc12aa37&gt; /System/Library/PrivateFrameworks/AppleSRP.framework/AppleSRP
+0x2e6f1000 - 0x2e6fafff  AssertionServices armv7s  &lt;36d88e0e130c3b00a2af465f68ee9b15&gt; /System/Library/PrivateFrameworks/AssertionServices.framework/AssertionServices
+0x2e6fb000 - 0x2e713fff  AssetsLibraryServices armv7s  &lt;60c9dae4d68f3db39187492a7cd0559d&gt; /System/Library/PrivateFrameworks/AssetsLibraryServices.framework/AssetsLibraryServices
+0x2e714000 - 0x2e738fff  AssistantServices armv7s  &lt;d47e35e5a0b93ce1ad1a6ebd3538b1da&gt; /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
+0x2e768000 - 0x2e76cfff  BTLEAudioController armv7s  &lt;56dfdebd435d3c4db1f51210bea02cc1&gt; /System/Library/PrivateFrameworks/BTLEAudioController.framework/BTLEAudioController
+0x2e76d000 - 0x2e784fff  BackBoardServices armv7s  &lt;566e589cf5f63adab1a3779a4c893b23&gt; /System/Library/PrivateFrameworks/BackBoardServices.framework/BackBoardServices
+0x2e787000 - 0x2e7bcfff  BaseBoard armv7s  &lt;3275621768f630499ca5650aa1bd2d95&gt; /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
+0x2e7bd000 - 0x2e7c3fff  BluetoothManager armv7s  &lt;ddf9500debf436f0857223ca2d58445c&gt; /System/Library/PrivateFrameworks/BluetoothManager.framework/BluetoothManager
+0x2e7c4000 - 0x2e7eafff  Bom armv7s  &lt;c3e5f89d1b1b33c198b34b37c234a25a&gt; /System/Library/PrivateFrameworks/Bom.framework/Bom
+0x2e8b5000 - 0x2e8defff  CalendarFoundation armv7s  &lt;4ef3f46218c932da8f673a9787bf67aa&gt; /System/Library/PrivateFrameworks/CalendarFoundation.framework/CalendarFoundation
+0x2e9eb000 - 0x2e9f3fff  CaptiveNetwork armv7s  &lt;c58c19fe49cd357193c4a71b9ad24b52&gt; /System/Library/PrivateFrameworks/CaptiveNetwork.framework/CaptiveNetwork
+0x2e9f4000 - 0x2eb16fff  Celestial armv7s  &lt;32eb180c79fa30b29e850e7ac81222c7&gt; /System/Library/PrivateFrameworks/Celestial.framework/Celestial
+0x2eb24000 - 0x2eb3cfff  CertInfo armv7s  &lt;bb383f0159153a8ab1ebb908dffa040d&gt; /System/Library/PrivateFrameworks/CertInfo.framework/CertInfo
+0x2eb3d000 - 0x2eb42fff  CertUI armv7s  &lt;a7ef5556a0873e7baf86cc4b2070b4d9&gt; /System/Library/PrivateFrameworks/CertUI.framework/CertUI
+0x2ec6d000 - 0x2ec8efff  ChunkingLibrary armv7s  &lt;2163efa9d14737bdba691222f5ec13da&gt; /System/Library/PrivateFrameworks/ChunkingLibrary.framework/ChunkingLibrary
+0x2f139000 - 0x2f13bfff  CommonAuth armv7s  &lt;75dee790a8fb31879f7503f6d7dc7456&gt; /System/Library/PrivateFrameworks/CommonAuth.framework/CommonAuth
+0x2f13c000 - 0x2f14cfff  CommonUtilities armv7s  &lt;ec2b306470223b07b5467eccd21d33cc&gt; /System/Library/PrivateFrameworks/CommonUtilities.framework/CommonUtilities
+0x2f14d000 - 0x2f151fff  CommunicationsFilter armv7s  &lt;8c45cc73ac0b3909bf052f4ecde8baf4&gt; /System/Library/PrivateFrameworks/CommunicationsFilter.framework/CommunicationsFilter
+0x2f1c2000 - 0x2f1c6fff  ConstantClasses armv7s  &lt;f08de9d363ab35daa747fa7aff0fcc93&gt; /System/Library/PrivateFrameworks/ConstantClasses.framework/ConstantClasses
+0x2f1c7000 - 0x2f1fffff  ContentIndex armv7s  &lt;643dcd65f5d0337b94c21de3335473db&gt; /System/Library/PrivateFrameworks/ContentIndex.framework/ContentIndex
+0x2f200000 - 0x2f203fff  CoreAUC armv7s  &lt;50d681c11a053a6ca8d3215a9e2eb0cd&gt; /System/Library/PrivateFrameworks/CoreAUC.framework/CoreAUC
+0x2f228000 - 0x2f27cfff  CoreDAV armv7s  &lt;649ac16c8df133ad99bc149d48828105&gt; /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
+0x2f27d000 - 0x2f297fff  CoreDuet armv7s  &lt;06b4c8896d363cbc90e909b717955bd3&gt; /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
+0x2f29c000 - 0x2f2abfff  CoreDuetDaemonProtocol armv7s  &lt;f19f9851f0ff36bd9edccf6a95821029&gt; /System/Library/PrivateFrameworks/CoreDuetDaemonProtocol.framework/CoreDuetDaemonProtocol
+0x2f2b2000 - 0x2f2b4fff  CoreDuetDebugLogging armv7s  &lt;deb784762fce304486dfc0e63e51d8b4&gt; /System/Library/PrivateFrameworks/CoreDuetDebugLogging.framework/CoreDuetDebugLogging
+0x2f504000 - 0x2f59ffff  CorePDF armv7s  &lt;71246dd3f2e139c190f39ed5dd8e5023&gt; /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
+0x2f600000 - 0x2f60afff  CoreRecents armv7s  &lt;2e4e93bedf0238599e03f70363bf71c2&gt; /System/Library/PrivateFrameworks/CoreRecents.framework/CoreRecents
+0x2f682000 - 0x2f6a0fff  CoreServicesInternal armv7s  &lt;f121bb7b5fe03d658b22ab3642f2257f&gt; /System/Library/PrivateFrameworks/CoreServicesInternal.framework/CoreServicesInternal
+0x2f89e000 - 0x2f91efff  CoreUI armv7s  &lt;46ae871d6f293624b1c9e3996e7054c8&gt; /System/Library/PrivateFrameworks/CoreUI.framework/CoreUI
+0x2f91f000 - 0x2f989fff  CoreUtils armv7s  &lt;c527775cfc643d59bf9834dafc7d7b8e&gt; /System/Library/PrivateFrameworks/CoreUtils.framework/CoreUtils
+0x2f98a000 - 0x2f98ffff  CrashReporterSupport armv7s  &lt;76c2396dea663987a10c4dffb0aee27d&gt; /System/Library/PrivateFrameworks/CrashReporterSupport.framework/CrashReporterSupport
+0x2f990000 - 0x2f996fff  DAAPKit armv7s  &lt;8da2892b295938149f61c96e4321b44e&gt; /System/Library/PrivateFrameworks/DAAPKit.framework/DAAPKit
+0x2f9a2000 - 0x2f9e7fff  DataAccess armv7s  &lt;b9189af789f63aec8243b4ca3ac01e50&gt; /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
+0x2fbd9000 - 0x2fbfafff  DataAccessExpress armv7s  &lt;c9b406347afd31ea845ffa8b10bfe638&gt; /System/Library/PrivateFrameworks/DataAccessExpress.framework/DataAccessExpress
+0x2fc38000 - 0x2fc3efff  DataMigration armv7s  &lt;d72331f6c5033c4f9dcf147951d884fe&gt; /System/Library/PrivateFrameworks/DataMigration.framework/DataMigration
+0x2fc48000 - 0x2fc49fff  DiagnosticLogCollection armv7s  &lt;e8459bc8a9083c67903d2a866f014f20&gt; /System/Library/PrivateFrameworks/DiagnosticLogCollection.framework/DiagnosticLogCollection
+0x2fc4a000 - 0x2fc64fff  DictionaryServices armv7s  &lt;fea98879f6fe3eedb0caff8bc1c74c19&gt; /System/Library/PrivateFrameworks/DictionaryServices.framework/DictionaryServices
+0x2fc83000 - 0x2fca2fff  EAP8021X armv7s  &lt;48a05dfeeed73ef8a06e76a0b46e2bee&gt; /System/Library/PrivateFrameworks/EAP8021X.framework/EAP8021X
+0x2fd90000 - 0x2fda1fff  FTAWD armv7s  &lt;10a4a4c2551835d9b2365db1b29364e9&gt; /System/Library/PrivateFrameworks/FTAWD.framework/FTAWD
+0x2fda2000 - 0x2fda4fff  FTClientServices armv7s  &lt;642e299b95123201ae0c526b642727b0&gt; /System/Library/PrivateFrameworks/FTClientServices.framework/FTClientServices
+0x2fda5000 - 0x2fdd5fff  FTServices armv7s  &lt;7380e354916d383cbb915cd4f2fa3856&gt; /System/Library/PrivateFrameworks/FTServices.framework/FTServices
+0x2fdd6000 - 0x301f9fff  FaceCore armv7s  &lt;f3d741379dab3097a5d5f7dc7746450b&gt; /System/Library/PrivateFrameworks/FaceCore.framework/FaceCore
+0x3021e000 - 0x3021efff  FontServices armv7s  &lt;32be160ba6c7371a8a2345857ece8bf7&gt; /System/Library/PrivateFrameworks/FontServices.framework/FontServices
+0x3021f000 - 0x302f3fff  libFontParser.dylib armv7s  &lt;5b78e547c9603bf3a168632d027c25ac&gt; /System/Library/PrivateFrameworks/FontServices.framework/libFontParser.dylib
+0x302f4000 - 0x30300fff  libGSFontCache.dylib armv7s  &lt;86e2db581f2632bbbcf73f7d7dd82b25&gt; /System/Library/PrivateFrameworks/FontServices.framework/libGSFontCache.dylib
+0x303e3000 - 0x303fefff  FrontBoardServices armv7s  &lt;6cb3e3053c413f97bfa778c2d94c3e94&gt; /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices
+0x30ce8000 - 0x30cfefff  GenerationalStorage armv7s  &lt;fd0d9502e8b930c0a83fb9f55b8f5bc0&gt; /System/Library/PrivateFrameworks/GenerationalStorage.framework/GenerationalStorage
+0x30cff000 - 0x30f6dfff  GeoServices armv7s  &lt;cd5710c5b90e3cc7a31a885017926a8c&gt; /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+0x30f6e000 - 0x30f7efff  GraphicsServices armv7s  &lt;807dd07abf423685a095efc23cf878e6&gt; /System/Library/PrivateFrameworks/GraphicsServices.framework/GraphicsServices
+0x3101b000 - 0x3106afff  Heimdal armv7s  &lt;164c0b677b7f3e0f9dadf71c2ed8a637&gt; /System/Library/PrivateFrameworks/Heimdal.framework/Heimdal
+0x31100000 - 0x31180fff  HomeSharing armv7s  &lt;0d478f141c243a83be4406740c191588&gt; /System/Library/PrivateFrameworks/HomeSharing.framework/HomeSharing
+0x311df000 - 0x31235fff  IDS armv7s  &lt;962f25e28f4538fb9f0f79f5ce052784&gt; /System/Library/PrivateFrameworks/IDS.framework/IDS
+0x31236000 - 0x3125bfff  IDSFoundation armv7s  &lt;71fcf26834ee3cd889fcabd6ba2d334b&gt; /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
+0x3125c000 - 0x312c2fff  IMAVCore armv7s  &lt;1ddd755f2a5d31348d1d82196b21e13c&gt; /System/Library/PrivateFrameworks/IMAVCore.framework/IMAVCore
+0x312c3000 - 0x31372fff  IMCore armv7s  &lt;3ac9c7e3bfff336c900bffe53452f9f6&gt; /System/Library/PrivateFrameworks/IMCore.framework/IMCore
+0x3140c000 - 0x31470fff  IMFoundation armv7s  &lt;9adf83a51b0c343fbc8f6ae83c20c48e&gt; /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
+0x31478000 - 0x3147bfff  IOAccelerator armv7s  &lt;c188038aba743306a656c0b35269be44&gt; /System/Library/PrivateFrameworks/IOAccelerator.framework/IOAccelerator
+0x3147e000 - 0x31484fff  IOMobileFramebuffer armv7s  &lt;e4d15326e2f63f1180824d300f4440b6&gt; /System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer
+0x31485000 - 0x3148afff  IOSurface armv7s  &lt;8f9e1eaef9e83344ad4f902ba102b27c&gt; /System/Library/PrivateFrameworks/IOSurface.framework/IOSurface
+0x3148b000 - 0x3148cfff  IOSurfaceAccelerator armv7s  &lt;ba79f1c8cddd3d04bcec3ca169cc33ab&gt; /System/Library/PrivateFrameworks/IOSurfaceAccelerator.framework/IOSurfaceAccelerator
+0x31522000 - 0x31527fff  IncomingCallFilter armv7s  &lt;2a7b0ddce2b43f1ea867b86cd3c149fb&gt; /System/Library/PrivateFrameworks/IncomingCallFilter.framework/IncomingCallFilter
+0x31528000 - 0x3152efff  IntlPreferences armv7s  &lt;8956cc5bc6a5356382efce9a3e4cf272&gt; /System/Library/PrivateFrameworks/IntlPreferences.framework/IntlPreferences
+0x3152f000 - 0x31565fff  LanguageModeling armv7s  &lt;617f48d1df753057b1ff2cb2b2591d92&gt; /System/Library/PrivateFrameworks/LanguageModeling.framework/LanguageModeling
+0x315e0000 - 0x3161cfff  MIME armv7s  &lt;821fbb5da7833c74ac059139f7338134&gt; /System/Library/PrivateFrameworks/MIME.framework/MIME
+0x316c0000 - 0x316ccfff  MailServices armv7s  &lt;f501cb8373dc3e1ebdbd730a30ff43cb&gt; /System/Library/PrivateFrameworks/MailServices.framework/MailServices
+0x31700000 - 0x317a1fff  ManagedConfiguration armv7s  &lt;f5ecc069df313e479fd3fe99c1a4143d&gt; /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
+0x317ac000 - 0x317adfff  Marco armv7s  &lt;09420526cff03e688f97faf606b96de8&gt; /System/Library/PrivateFrameworks/Marco.framework/Marco
+0x317ae000 - 0x31826fff  MediaControlSender armv7s  &lt;6d55e6db1cba3432a3c2f2a4edb72e30&gt; /System/Library/PrivateFrameworks/MediaControlSender.framework/MediaControlSender
+0x318c5000 - 0x318d7fff  MediaRemote armv7s  &lt;dfddd830f9c034e289d51d656eb82628&gt; /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
+0x318d8000 - 0x318e7fff  MediaServices armv7s  &lt;ba8bb55e7d6f3951b0adb798ba51f98b&gt; /System/Library/PrivateFrameworks/MediaServices.framework/MediaServices
+0x31965000 - 0x31a42fff  Message armv7s  &lt;1dce99c17ce3358aa773e10f776b174d&gt; /System/Library/PrivateFrameworks/Message.framework/Message
+0x31a48000 - 0x31a4afff  MessageSupport armv7s  &lt;8bf824d77f553c2b8a2e98295eb37d98&gt; /System/Library/PrivateFrameworks/MessageSupport.framework/MessageSupport
+0x31a5c000 - 0x31a69fff  MobileAsset armv7s  &lt;8847bd961f1e35e3b1cc963f17895b5b&gt; /System/Library/PrivateFrameworks/MobileAsset.framework/MobileAsset
+0x31a90000 - 0x31a99fff  MobileBluetooth armv7s  &lt;cb9d17030ddb3679b2193d52f7648083&gt; /System/Library/PrivateFrameworks/MobileBluetooth.framework/MobileBluetooth
+0x31ab5000 - 0x31abcfff  MobileIcons armv7s  &lt;8e7cdc636e953a588be271a423b03efe&gt; /System/Library/PrivateFrameworks/MobileIcons.framework/MobileIcons
+0x31abd000 - 0x31ac4fff  MobileInstallation armv7s  &lt;45050889430036f2a920124f7fb2a52f&gt; /System/Library/PrivateFrameworks/MobileInstallation.framework/MobileInstallation
+0x31ac5000 - 0x31ad1fff  MobileKeyBag armv7s  &lt;c1f33f2e69213b1eb895ca44a40ed4a6&gt; /System/Library/PrivateFrameworks/MobileKeyBag.framework/MobileKeyBag
+0x31afe000 - 0x31b01fff  MobileSystemServices armv7s  &lt;6fa5a3df99f739e58e459b30cebeaf34&gt; /System/Library/PrivateFrameworks/MobileSystemServices.framework/MobileSystemServices
+0x31b23000 - 0x31b30fff  MobileWiFi armv7s  &lt;024c5601387c359e9cfbfbe655cff3c1&gt; /System/Library/PrivateFrameworks/MobileWiFi.framework/MobileWiFi
+0x31b6f000 - 0x31d0ffff  MusicLibrary armv7s  &lt;cf31525e14ef37f2b3d67a9f59b13ea6&gt; /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
+0x31da8000 - 0x31dadfff  Netrb armv7s  &lt;ca8684d1f44a31398abae040a385d3a1&gt; /System/Library/PrivateFrameworks/Netrb.framework/Netrb
+0x31dae000 - 0x31db4fff  NetworkStatistics armv7s  &lt;47347e706754339aa423c08cb5197a18&gt; /System/Library/PrivateFrameworks/NetworkStatistics.framework/NetworkStatistics
+0x31db5000 - 0x31dd2fff  Notes armv7s  &lt;74b03c7ed26133009f5a984f0aaf7037&gt; /System/Library/PrivateFrameworks/Notes.framework/Notes
+0x31dd8000 - 0x31ddafff  OAuth armv7s  &lt;7b2d1b1ae32b356aacf24ae8ebf4304a&gt; /System/Library/PrivateFrameworks/OAuth.framework/OAuth
+0x32535000 - 0x32571fff  OpenCL armv7s  &lt;e8059b12720532f8863300a5bf142bf4&gt; /System/Library/PrivateFrameworks/OpenCL.framework/OpenCL
+0x32663000 - 0x3268afff  PersistentConnection armv7s  &lt;a2ce4a23e4323ba9ade4407ce9b792d7&gt; /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
+0x32a6a000 - 0x32ab4fff  PhysicsKit armv7s  &lt;9f71e08bcc233c779fac8e6eeebdeaa4&gt; /System/Library/PrivateFrameworks/PhysicsKit.framework/PhysicsKit
+0x32ab5000 - 0x32acbfff  PlugInKit armv7s  &lt;8644b7f9f6803423ab22ab1c54623d18&gt; /System/Library/PrivateFrameworks/PlugInKit.framework/PlugInKit
+0x32acc000 - 0x32ad3fff  PowerLog armv7s  &lt;ba28696e76f73078a96b0eda0e35a4d2&gt; /System/Library/PrivateFrameworks/PowerLog.framework/PowerLog
+0x32cd1000 - 0x32d79fff  Preferences armv7s  &lt;efe14ba5777136daa5166d96504214ec&gt; /System/Library/PrivateFrameworks/Preferences.framework/Preferences
+0x32d7a000 - 0x32db7fff  PrintKit armv7s  &lt;1b458ab8943b3482b940cf1ad77a30fd&gt; /System/Library/PrivateFrameworks/PrintKit.framework/PrintKit
+0x32dbc000 - 0x32e50fff  ProofReader armv7s  &lt;8b4604af458d314f8e6804905289198f&gt; /System/Library/PrivateFrameworks/ProofReader.framework/ProofReader
+0x32e61000 - 0x32e6dfff  ProtocolBuffer armv7s  &lt;2190f9afee593716aea383b31dda60cf&gt; /System/Library/PrivateFrameworks/ProtocolBuffer.framework/ProtocolBuffer
+0x32ea0000 - 0x32f0ffff  Quagga armv7s  &lt;17a48ce11d7635f2a45608f76c4ab3b2&gt; /System/Library/PrivateFrameworks/Quagga.framework/Quagga
+0x33122000 - 0x331aefff  SAObjects armv7s  &lt;80d7196f58b3332b9fd188a51c34f602&gt; /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+0x3338b000 - 0x333a5fff  SpringBoardServices armv7s  &lt;ea78f186281e3b23a342a0127468b865&gt; /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
+0x33711000 - 0x3382afff  StoreServices armv7s  &lt;a66a1195a2a336f9a3b1e379ae5e5d2a&gt; /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
+0x338fb000 - 0x338fdfff  TCC armv7s  &lt;9e7af4ada9a3336abe1b382dd6d53fb7&gt; /System/Library/PrivateFrameworks/TCC.framework/TCC
+0x33944000 - 0x33981fff  TelephonyUtilities armv7s  &lt;c6a859a44b6e31deb2c57a0d950159b2&gt; /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
+0x339a1000 - 0x34544fff  KBLayouts_iPhone.dylib armv7s  &lt;9fff7c61cfb93ec6adb77306027bf0b4&gt; /System/Library/PrivateFrameworks/TextInput.framework/KBLayouts_iPhone.dylib
+0x34545000 - 0x3456dfff  TextInput armv7s  &lt;645357c2686c38c1994edf8c540b24ce&gt; /System/Library/PrivateFrameworks/TextInput.framework/TextInput
+0x34621000 - 0x346e3fff  UIFoundation armv7s  &lt;858f32be87783367a89a2b7e129b8952&gt; /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
+0x34700000 - 0x34703fff  UserFS armv7s  &lt;cf10fe6f6db23fadaefc104e93657562&gt; /System/Library/PrivateFrameworks/UserFS.framework/UserFS
+0x34e89000 - 0x34ea7fff  VoiceServices armv7s  &lt;aa1472c70e3733ffa2248a7b958a4489&gt; /System/Library/PrivateFrameworks/VoiceServices.framework/VoiceServices
+0x34f31000 - 0x34f57fff  WebBookmarks armv7s  &lt;8871fd988fff3793b0fb377497cfe31b&gt; /System/Library/PrivateFrameworks/WebBookmarks.framework/WebBookmarks
+0x34f6d000 - 0x35aedfff  WebCore armv7s  &lt;aeddcc832b933d02b5670d8256857845&gt; /System/Library/PrivateFrameworks/WebCore.framework/WebCore
+0x35aee000 - 0x35bacfff  WebKitLegacy armv7s  &lt;4600dcc6c62a3f8cadbf5852e973b25d&gt; /System/Library/PrivateFrameworks/WebKitLegacy.framework/WebKitLegacy
+0x35d4e000 - 0x35d56fff  XPCObjects armv7s  &lt;e2394741dd3333338d1c15a983b769a3&gt; /System/Library/PrivateFrameworks/XPCObjects.framework/XPCObjects
+0x35f41000 - 0x35f65fff  iCalendar armv7s  &lt;f76c5b909b023e979cb8e3afab36016a&gt; /System/Library/PrivateFrameworks/iCalendar.framework/iCalendar
+0x35f85000 - 0x35fc0fff  iTunesStore armv7s  &lt;3a0d41a3816c3c198fde6d1fc6c8eece&gt; /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
+0x36739000 - 0x36741fff  libAccessibility.dylib armv7s  &lt;b5c3d6d8026f3e9e9780d7dcde3f045e&gt; /usr/lib/libAccessibility.dylib
+0x36995000 - 0x369abfff  libCRFSuite.dylib armv7s  &lt;e4534db5eb4d3f078ddb2cb62fd8073b&gt; /usr/lib/libCRFSuite.dylib
+0x369dd000 - 0x36ae1fff  libFosl_dynamic.dylib armv7s  &lt;9639376d833a3b24b4f7167bdf22a70f&gt; /usr/lib/libFosl_dynamic.dylib
+0x36afb000 - 0x36b12fff  libMobileGestalt.dylib armv7s  &lt;6764bb38ffea36829be6ecb993f8ff02&gt; /usr/lib/libMobileGestalt.dylib
+0x36b38000 - 0x36b39fff  libSystem.B.dylib armv7s  &lt;216d10dc24c53f7a9d2699b30e8a1ffe&gt; /usr/lib/libSystem.B.dylib
+0x36baa000 - 0x36beefff  libTelephonyUtilDynamic.dylib armv7s  &lt;581e3f889083319eaa70746f31edc766&gt; /usr/lib/libTelephonyUtilDynamic.dylib
+0x36cfe000 - 0x36d20fff  libarchive.2.dylib armv7s  &lt;792c5bc64510315987f1aa4a372aa6f1&gt; /usr/lib/libarchive.2.dylib
+0x36d21000 - 0x36d21fff  libassertion_extension.dylib armv7s  &lt;6a63713be9c33cd78fa2bd03211ce434&gt; /usr/lib/libassertion_extension.dylib
+0x36d50000 - 0x36d5cfff  libbsm.0.dylib armv7s  &lt;6e0989fbae0a3d08855ed402ed0b3ec0&gt; /usr/lib/libbsm.0.dylib
+0x36d5d000 - 0x36d66fff  libbz2.1.0.dylib armv7s  &lt;a2f10a1138b93aafa9afe26bd6e1ee48&gt; /usr/lib/libbz2.1.0.dylib
+0x36d67000 - 0x36db1fff  libc++.1.dylib armv7s  &lt;dd79b1e22f583393b9c2b1763224dbd4&gt; /usr/lib/libc++.1.dylib
+0x36db2000 - 0x36dcdfff  libc++abi.dylib armv7s  &lt;174873ad6dbb39bab97eab06da2d3098&gt; /usr/lib/libc++abi.dylib
+0x36dcf000 - 0x36ddcfff  libcmph.dylib armv7s  &lt;bb3fc6a6155e36fcb49d395717f7d3f4&gt; /usr/lib/libcmph.dylib
+0x36ddd000 - 0x36de5fff  libcupolicy.dylib armv7s  &lt;c9de3731aa2e3a738c90a512c86f95ea&gt; /usr/lib/libcupolicy.dylib
+0x36e0c000 - 0x36e24fff  libextension.dylib armv7s  &lt;a95c14b6593e31bca3b5dd619a2fd896&gt; /usr/lib/libextension.dylib
+0x36e43000 - 0x36e46fff  libheimdal-asn1.dylib armv7s  &lt;8a06f2c88f93367e8861b4fb5f32b1d9&gt; /usr/lib/libheimdal-asn1.dylib
+0x36e47000 - 0x36f34fff  libiconv.2.dylib armv7s  &lt;58eb4155c7b0357b833c49ea04d3bdc1&gt; /usr/lib/libiconv.2.dylib
+0x36f35000 - 0x370a3fff  libicucore.A.dylib armv7s  &lt;e0938b0f43c336099be58eae9587cfa7&gt; /usr/lib/libicucore.A.dylib
+0x370b0000 - 0x370b0fff  liblangid.dylib armv7s  &lt;bb40f8ac13c0315a9d10feecc233bf75&gt; /usr/lib/liblangid.dylib
+0x370b1000 - 0x370bbfff  liblockdown.dylib armv7s  &lt;5238bf4a0815339ea59625cc1ff666aa&gt; /usr/lib/liblockdown.dylib
+0x370bc000 - 0x370d1fff  liblzma.5.dylib armv7s  &lt;b14ec458cf753130ae70090c291dd644&gt; /usr/lib/liblzma.5.dylib
+0x3744b000 - 0x3745ffff  libmis.dylib armv7s  &lt;d12e6275fe133b8b9fa891bf1881c936&gt; /usr/lib/libmis.dylib
+0x37488000 - 0x37682fff  libobjc.A.dylib armv7s  &lt;2f24d570e8253da29e77c4104a66ffff&gt; /usr/lib/libobjc.A.dylib
+0x37737000 - 0x3774dfff  libresolv.9.dylib armv7s  &lt;d93a4f7847a43b9c931dd9f42398d889&gt; /usr/lib/libresolv.9.dylib
+0x37778000 - 0x3781efff  libsqlite3.dylib armv7s  &lt;3f8122a2ef1a3ac6a576b5f77e3b485b&gt; /usr/lib/libsqlite3.dylib
+0x3786c000 - 0x37892fff  libtidy.A.dylib armv7s  &lt;2637f8b2b9b339ad98b40939155b904e&gt; /usr/lib/libtidy.A.dylib
+0x37893000 - 0x3789bfff  libtzupdate.dylib armv7s  &lt;cc59d1cd15f33b1a8d40966fe0ee5d94&gt; /usr/lib/libtzupdate.dylib
+0x3789f000 - 0x37955fff  libxml2.2.dylib armv7s  &lt;1ceb60da13db36a495e91fd985c5d6f9&gt; /usr/lib/libxml2.2.dylib
+0x37956000 - 0x37977fff  libxslt.1.dylib armv7s  &lt;7dd0493e5d1e32dd80542e22a0ee118f&gt; /usr/lib/libxslt.1.dylib
+0x37978000 - 0x37984fff  libz.1.dylib armv7s  &lt;fd35952ab6623a8484e1573481685182&gt; /usr/lib/libz.1.dylib
+0x37985000 - 0x37989fff  libcache.dylib armv7s  &lt;f3c6b77f893a39c2b7df1f1ecf41d06f&gt; /usr/lib/system/libcache.dylib
+0x3798a000 - 0x37993fff  libcommonCrypto.dylib armv7s  &lt;ca25627c29153adaa42f51a52e2a68d2&gt; /usr/lib/system/libcommonCrypto.dylib
+0x37994000 - 0x37998fff  libcompiler_rt.dylib armv7s  &lt;d91d7ecc118d3a1c99881923af73f7c6&gt; /usr/lib/system/libcompiler_rt.dylib
+0x37999000 - 0x3799ffff  libcopyfile.dylib armv7s  &lt;c953910ab8d23efeb8b90cff82bff8d4&gt; /usr/lib/system/libcopyfile.dylib
+0x379a0000 - 0x379ecfff  libcorecrypto.dylib armv7s  &lt;a550744e478e3e278d86f7e595ba260e&gt; /usr/lib/system/libcorecrypto.dylib
+0x379ed000 - 0x37a0cfff  libdispatch.dylib armv7s  &lt;a5361c5ac5153f018479723123b27118&gt; /usr/lib/system/libdispatch.dylib
+0x37a0d000 - 0x37a0efff  libdyld.dylib armv7s  &lt;d90174d96c0d3a02a9afce9a7e4d2929&gt; /usr/lib/system/libdyld.dylib
+0x37a0f000 - 0x37a0ffff  libkeymgr.dylib armv7s  &lt;6858de0933f535b2b8c03033a7ad58c4&gt; /usr/lib/system/libkeymgr.dylib
+0x37a10000 - 0x37a10fff  liblaunch.dylib armv7s  &lt;9edb1ff7a4d337279a4d3aea3202c993&gt; /usr/lib/system/liblaunch.dylib
+0x37a11000 - 0x37a14fff  libmacho.dylib armv7s  &lt;09c925ce076b39a7974c8001e775c815&gt; /usr/lib/system/libmacho.dylib
+0x37a15000 - 0x37a16fff  libremovefile.dylib armv7s  &lt;7f08307630a638aab800041abeb06720&gt; /usr/lib/system/libremovefile.dylib
+0x37a17000 - 0x37a28fff  libsystem_asl.dylib armv7s  &lt;d26d22e53561376ea2e8d5f0a56bdc19&gt; /usr/lib/system/libsystem_asl.dylib
+0x37a29000 - 0x37a29fff  libsystem_blocks.dylib armv7s  &lt;3d575aee5d8c306187d695801c94d400&gt; /usr/lib/system/libsystem_blocks.dylib
+0x37a2a000 - 0x37a8dfff  libsystem_c.dylib armv7s  &lt;e9ce9f0866563407a0f91e57902d248c&gt; /usr/lib/system/libsystem_c.dylib
+0x37a8e000 - 0x37a90fff  libsystem_configuration.dylib armv7s  &lt;22243b8824ea3e3b86ce85a2d9e21f3b&gt; /usr/lib/system/libsystem_configuration.dylib
+0x37a91000 - 0x37a92fff  libsystem_coreservices.dylib armv7s  &lt;f1690e04a8923f06b042472fcd8a2210&gt; /usr/lib/system/libsystem_coreservices.dylib
+0x37a93000 - 0x37a9ffff  libsystem_coretls.dylib armv7s  &lt;d1a9bfd5baa134d8b17745ad81804b95&gt; /usr/lib/system/libsystem_coretls.dylib
+0x37aa0000 - 0x37aa6fff  libsystem_dnssd.dylib armv7s  &lt;28cfa66349643550ad2e24ac3069e377&gt; /usr/lib/system/libsystem_dnssd.dylib
+0x37aa7000 - 0x37abffff  libsystem_info.dylib armv7s  &lt;a93d1391edb63969b454c858bb8cc703&gt; /usr/lib/system/libsystem_info.dylib
+0x37ac0000 - 0x37adafff  libsystem_kernel.dylib armv7s  &lt;437297ff29d7395aa5e239a98e97dfcd&gt; /usr/lib/system/libsystem_kernel.dylib
+0x37adb000 - 0x37afafff  libsystem_m.dylib armv7s  &lt;8bce73cfc30b3c67bbf8b9a76bd98674&gt; /usr/lib/system/libsystem_m.dylib
+0x37afb000 - 0x37b0dfff  libsystem_malloc.dylib armv7s  &lt;4e9efa8dc6553875a5f86408e609c98b&gt; /usr/lib/system/libsystem_malloc.dylib
+0x37b0e000 - 0x37b3bfff  libsystem_network.dylib armv7s  &lt;0da4311100f33af39cbd070884f83b72&gt; /usr/lib/system/libsystem_network.dylib
+0x37b3c000 - 0x37b41fff  libsystem_networkextension.dylib armv7s  &lt;24c43fa3880e3f01bc6a414953a9d4f6&gt; /usr/lib/system/libsystem_networkextension.dylib
+0x37b42000 - 0x37b49fff  libsystem_notify.dylib armv7s  &lt;042ef512d24a36028b5c4bf6879946bd&gt; /usr/lib/system/libsystem_notify.dylib
+0x37b4a000 - 0x37b4efff  libsystem_platform.dylib armv7s  &lt;ce04793612513649b79fc416b36fe49b&gt; /usr/lib/system/libsystem_platform.dylib
+0x37b4f000 - 0x37b55fff  libsystem_pthread.dylib armv7s  &lt;d35fcf2970a0368480c40fbb9e4e36a9&gt; /usr/lib/system/libsystem_pthread.dylib
+0x37b56000 - 0x37b58fff  libsystem_sandbox.dylib armv7s  &lt;171755ea8621325ba4df2ebee6f60168&gt; /usr/lib/system/libsystem_sandbox.dylib
+0x37b59000 - 0x37b5cfff  libsystem_stats.dylib armv7s  &lt;584d89930b6332769ddcbb2f4cf98fd7&gt; /usr/lib/system/libsystem_stats.dylib
+0x37b5d000 - 0x37b62fff  libsystem_trace.dylib armv7s  &lt;140f164e68ef337cb646fcad5330dab0&gt; /usr/lib/system/libsystem_trace.dylib
+0x37b63000 - 0x37b63fff  libunwind.dylib armv7s  &lt;30325f86e7963864ac1f6aa575608725&gt; /usr/lib/system/libunwind.dylib
+0x37b64000 - 0x37b7ffff  libxpc.dylib armv7s  &lt;e4684d2e0c1834638a17401c7133b92b&gt; /usr/lib/system/libxpc.dylib</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jason Smith [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-05-27 19:23:37 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">It looks like something blew up in your web handler. Sorry :(
+
+Without a better trace we can't really do anything here.</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">E.Z. Hart [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-04-08 19:34:29 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thank you for your bug report. As we have not received the information requested, we cannot properly triage your bug and are marking it resolved.
+
+Warm regards,
+Xamarin Forms Team</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

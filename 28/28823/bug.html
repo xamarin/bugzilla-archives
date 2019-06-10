@@ -1,0 +1,2044 @@
+<html lang="en"><head>
+    <title>28823 – strange behaviour causing loaded classes to appear unloaded when referenced from class attributes and using nay kind of linking.</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_iOS
+                 bz_component_Tools
+                 bz_bug_28823 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;28823</span>
+
+        <span id="subtitle" class="subheader">strange behaviour causing loaded classes to appear unloaded when referenced from class attributes and using nay kind of linking.</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2016-04-20 04:23:41 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2016-04-20 04:23:41">
+  <input type="hidden" name="id" value="28823">
+  <input type="hidden" name="token" value="1559164786-yoiBHrtCfkgAq3VudaZyZpu3oBr99DTT20gvB1pSgbQ">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;28823</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">strange behaviour causing loaded classes to appear unloaded when referenced from class attributes and using nay kind of linking.</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span><span title="strange behaviour causing loaded classes to appear unloaded when referenced from class attributes and using nay kind of linking.">strange behaviour causing loaded classes to appear unloaded when referenced f...
+        </span>
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">iOS
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Xamarin
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">Tools
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>master
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">Macintosh
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>8.13 (C6 alpha)
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2015-04-06 17:45 UTC by <span class="vcard"><span class="fn">George Cook</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2016-04-20 04:23 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>6
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="bugzilla.xamarin">bugzilla.xamarin</option>
+                <option value="david">david</option>
+                <option value="mono-bugs+mono">mono-bugs+mono</option>
+                <option value="mono-bugs+monotouch">mono-bugs+monotouch</option>
+                <option value="sebastien">sebastien</option>
+                <option value="udhams">udhams</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_application_zip">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10647&amp;file=LinkerIssue.zip" title="View the content of the attachment">
+          <b>example project showing the issue</b></a>
+
+          <span class="bz_attach_extra_info">
+              (7.31 MB,
+                application/zip)
+
+            <br>
+            <a href="#attach_10647" title="Go to the comment associated with the attachment">2015-04-06 18:35 UTC</a>,
+
+            <span class="vcard"><span class="fn">George Cook</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10647&amp;file=LinkerIssue.zip">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_image_png">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10663&amp;file=Screen%20Shot%202015%2004%2007%20at%204.18.59%20PM.png" title="View the content of the attachment">
+          <b>image showing that the app crashes and that the LinkerIssuses.iOS class IS referencing sharedClasses.</b></a>
+
+          <span class="bz_attach_extra_info">
+              (453.97 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_10663" title="Go to the comment associated with the attachment">2015-04-07 17:21 UTC</a>,
+
+            <span class="vcard"><span class="fn">George Cook</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10663&amp;file=Screen%20Shot%202015%2004%2007%20at%204.18.59%20PM.png">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_image_png">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10664&amp;file=Screen%20Shot%202015%2004%2007%20at%204.22.48%20PM.png" title="View the content of the attachment">
+          <b>image showing linker options for project, which crashes upon encountering JsonConverter tags</b></a>
+
+          <span class="bz_attach_extra_info">
+              (462.67 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_10664" title="Go to the comment associated with the attachment">2015-04-07 17:23 UTC</a>,
+
+            <span class="vcard"><span class="fn">George Cook</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10664&amp;file=Screen%20Shot%202015%2004%2007%20at%204.22.48%20PM.png">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_image_png">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10665&amp;file=Screen%20Shot%202015%2004%2007%20at%204.24.48%20PM.png" title="View the content of the attachment">
+          <b>image showing references for iOS project, demonstrating that the sharedClasses project is referenced</b></a>
+
+          <span class="bz_attach_extra_info">
+              (410.08 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_10665" title="Go to the comment associated with the attachment">2015-04-07 17:25 UTC</a>,
+
+            <span class="vcard"><span class="fn">George Cook</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10665&amp;file=Screen%20Shot%202015%2004%2007%20at%204.24.48%20PM.png">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_application_zip">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10668&amp;file=LinkerIssue.zip" title="View the content of the attachment">
+          <b>provided workaround does NOT work. Class is loaded. The diagnosis given is inaccurate. Look insideLinkerIssue.cs</b></a>
+
+          <span class="bz_attach_extra_info">
+              (7.31 MB,
+                application/zip)
+
+            <br>
+            <a href="#attach_10668" title="Go to the comment associated with the attachment">2015-04-07 23:51 UTC</a>,
+
+            <span class="vcard"><span class="fn">George Cook</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10668&amp;file=LinkerIssue.zip">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/xamarin">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-06 17:45:37 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I use Newtonsoft.Json (i.e. json.net) in my project. I have lots of Code that uses the [JsonConverter] attribute to inform the json deserializers which classes to use.
+
+Everything works fine, until I turn on any linking in my project (i.e. even SDK linking is enough to break my project).
+
+what happens is that the moment I try to deserialize nay class with the JsonConverter attribute I get a runtime exception saying the class could not be loaded. The strange thing is that the class IS loaded. I verify this in the following way.
+
+		1 var jsonString = "{\"items\":[]}";
+		2	var settings = new JsonSerializerSettings ();
+		3		settings.Converters.Add (new FixBadEmptyJsonArrayConverter&lt;string&gt; ());
+		4	var f = new FixBadEmptyJsonArrayConverter&lt;string&gt; ();
+		5	var testObject = JsonConvert.DeserializeObject&lt;object&gt; (jsonString, settings);
+
+		6			ProfileDTO profileDTO = await ProfileService.LoadProfileWithAccount (loadedAccount);
+
+I put a breakpoint at line 6 and inside my class . the code in FixBadEmptyJsonArrayConverter is executed (i.e breakpoint hit). testObject is correctly deserialized. var f is initialized. THIS CLASS IS 100% loaded.
+
+I then continue execution and upon running line 6, I get:
+<span class="quote">&gt; Could not load type Giganet.Core.Model.Converters.FixBadEmptyJsonArrayConverter`1[[System.String[], System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]], GiganetMobile.SharedModels, Version=1.0.5574.29870, Culture=neutral, PublicKeyToken=null while decoding custom attribute</span>
+
+This is a serious issue as I can't possibly use the linker.
+
+My app is 120mb in size, 6 times larger than it was when it was native only. I NEED this to work. I've been talking about this extensively on the forum, and in the course of identifying the issue raised another issue about the [Preserve] attrinbute. however, I can now see this has nothing to do with preserving at all. THE CLASS IS LOADED.
+
+I don't know what's going on, or how to work arount it; but this is not a good situation at all.</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-06 17:49:23 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">addition, the offending line of code is in one of my dtos and is this.
+
+
+namespace Giganet.Accounts.Login.Model
+{
+	public class ProfileDTO : WrappedData&lt;ProfileDTO&gt;
+	{
+		
+		[JsonProperty ("user")]
+		public Account Account { get; set; }
+
+		//TODO - server sends {} when there's no items
+		[JsonProperty ("favouriteMedia")]
+		[JsonConverter (typeof(FixBadEmptyJsonArrayConverter&lt;string[]&gt;))]
+		public string[] FavouriteIds;
+
+
+The jsconconverter property there is what crashes at runtime.</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-06 18:35:20 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=10647&amp;file=LinkerIssue.zip" name="attach_10647" title="example project showing the issue">attachment 10647</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10647&amp;file=LinkerIssue.zip" title="example project showing the issue">[details]</a></span>
+example project showing the issue
+
+this project doesn't even need linker flags set. it just blows up on the deserialization.</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-07 17:15:17 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This is a build dependency issue. Adding explicit reference of SharedClasses to LinkerIssue.iOS project fixes the problem.</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-07 17:21:03 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Perhaps I'm missing something. you will see from the image I'm about to upload. you will see I have a reference to SharedClasses in LinkerIssue.iOS.
+
+Does "explicit" reference mean something else in Xamarin studios; becuase you will observe from the screen shot the reference is there, and the program has crashed. 
+
+Linker flags are set to "link sdk only"
+
+thanks</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-07 17:21:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=10663&amp;file=Screen%20Shot%202015%2004%2007%20at%204.18.59%20PM.png" name="attach_10663" title="image showing that the app crashes and that the LinkerIssuses.iOS class IS referencing sharedClasses.">attachment 10663</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10663&amp;file=Screen%20Shot%202015%2004%2007%20at%204.18.59%20PM.png" title="image showing that the app crashes and that the LinkerIssuses.iOS class IS referencing sharedClasses.">[details]</a></span>
+image showing that the app crashes and that the LinkerIssuses.iOS class IS referencing sharedClasses.</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-07 17:23:48 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=10664&amp;file=Screen%20Shot%202015%2004%2007%20at%204.22.48%20PM.png" name="attach_10664" title="image showing linker options for project, which crashes upon encountering JsonConverter tags">attachment 10664</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10664&amp;file=Screen%20Shot%202015%2004%2007%20at%204.22.48%20PM.png" title="image showing linker options for project, which crashes upon encountering JsonConverter tags">[details]</a></span>
+image showing linker options for project, which crashes upon encountering JsonConverter tags</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-07 17:25:19 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=10665&amp;file=Screen%20Shot%202015%2004%2007%20at%204.24.48%20PM.png" name="attach_10665" title="image showing references for iOS project, demonstrating that the sharedClasses project is referenced">attachment 10665</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10665&amp;file=Screen%20Shot%202015%2004%2007%20at%204.24.48%20PM.png" title="image showing references for iOS project, demonstrating that the sharedClasses project is referenced">[details]</a></span>
+image showing references for iOS project, demonstrating that the sharedClasses project is referenced</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-07 22:04:24 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I think that what Marek meant by "explicit" is that there's no "real" (in the sense that the C# compiler can't remove) references to SharedClasses.dll from LinkerIssue.iOS. That's a common cause but I do not think that's the issue here.
+
+Can you tell me all the version information* about the software you're using ?
+
+* The easiest way to get exact version information is to use the "Xamarin Studio" menu, "About Xamarin Studio" item, "Show Details" button and copy/paste the version informations (you can use the "Copy Information" button).</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-07 22:47:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">It's a different but similar issue. The exact reasons for this are quite complex.
+
+1. Little known fact: the assembly references you give to Xamarin Studio (or VS) are hints. It tells the compiler where to look for types - but if it's not needed then it won't be part of the assembly binary [1]. That's totally normal (not a bug) from the C# compiler perspective;
+
+2. Our tools uses assembly references to find what's required at runtime. IOW if there's a reference then we copy the assemblies into the .app bundle. That step occurs well before the linker is even invoked (or even if it's disabled);
+
+3. That works very well in a 99%+ of the cases. The minority exception is when a type is loaded dynamically, e.g. `Type.GetType (xyz)`. In such case there's no assembly reference (by default) and you need to create one (even artificially) to get the assembly copied in your .app bundle.
+
+4. Now there's a very subtle case (the one you just hit, call it the 0.0001%, AFAIK you're the first one to report it [2]) with custom attributes. Custom attributes uses a special encoding and when used with `System.Type` argument(s) they do _not_ add the assembly into the assemblies references (it's only encoded in the custom attribute, no where else in the metadata). This, along with the compiler not including unneeded references (#1), means your LinkerIssue.dll does not have an _explicit_/real/hard reference to SharedClasses.dll - even if (from the IDE perperctive) it looks like one should be there.
+
+This is why it does not get copied to your app bundle - and that cause the exception you've been seeing.
+
+
+Now the solution is much more simple (than the above explication).
+
+You need to create a explicit (real) reference between your code and the SharedClasses.dll assembly, one that the C# compiler cannot ignore. That can be very simple, e.g. add this line to your `Main` method:
+
+<span class="quote">&gt; 			typeof(SharedClasses.JsonCreationConverter&lt;object&gt;).ToString ();</span>
+
+That will ensure the C# compiler keeps the reference to SharedClasses.dll. In turn our tools (mtouch's resolver) will see that this assembly is required and will make sure it's copied into your .app bundle.
+
+
+[1] that's actually a very good thing as it makes it easy to create smaller applications (even with the linker disabled). Without this behaviour the whole BCL would need to be copied into each application (and the executable size would be much bigger than what Apple allows on the AppStore for native executables).
+
+[2] if there was a bit more code in that shared assembly then it would likely be used (and referenced) elsewhere in the application. IOW the condition is not rare - it's just that there's generally something else that will create that hard reference (and no one notice that subtle case).</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-07 23:48:55 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I appreciate the long explanation; but it just confuses me further. in my real project, I reference *many* classes from (my equivalent of) the sharedModels project, the dll is most certainly loaded.
+
+Furthermore, the converter class is loaded in my real project at runtime, as I can instantiate it, and I can deserialize json using it, and breakpoint inside of that class.
+
+the problem *only* occurs with the use of the [JsonConverter] attribute.
+
+I just added the line to my main.cs, and ran the project again. I get the exact same behaviour.
+
+the class is loaded. I can instantiate it. I can breakpoint debug code INSIDE the class.
+
+I have no idea what the hell is happening here, and I really do appreciate your explanation; but that is not what is going on. 
+
+The code you asked me to add doesn't work. Did you try it? If so, can you please show me how? I placed the code in both the iOS project and the LinkerIssue project to no avail.
+
+I believe that this is something else, and it's potentially a real problem, and there are others on the forum talking about this; but I don't think they've been around the block enough to know that simply turning off linking to reduce size is going to bite them in the arse pretty badly in the not so distant future. 
+
+It's going to blow up in their faces for sure and leave a very bad taste if their organizations are experimenting with Xamarin and find at the last minute that their only option is to release &gt;130mb binaries in place of 40mb ones. I for one have to put my organization's Xamarin exploration on hold until I resolve this, or it will be dead in the water : they wont' go near it with these absurd app sizes. At the very least, I can tell them that the community and the Xamarin team are very responsive; but it won't be enough for me to present this to anyone - and I dread to think what would happen if I was working on a real project and this occurred - thankfully, this is just a technical poc.
+
+I will attach a zip of the project in a moment, which shows:
+
+I've added your code, 
+it doens't resolve the issue,
+the class is loaded, and deserializes fine if I do not use the attribute. 
+the app will crash upon attempting to reflect the [JsonConverter] attribute.
+
+I hope that will be sufficient for you guys to work out what this is.</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-07 23:51:32 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=10668&amp;file=LinkerIssue.zip" name="attach_10668" title="provided workaround does NOT work. Class is loaded. The diagnosis given is inaccurate. Look insideLinkerIssue.cs">attachment 10668</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10668&amp;file=LinkerIssue.zip" title="provided workaround does NOT work. Class is loaded. The diagnosis given is inaccurate. Look insideLinkerIssue.cs">[details]</a></span>
+provided workaround does NOT work. Class is loaded. The diagnosis given is inaccurate. Look insideLinkerIssue.cs
+
+Look insideLinkerIssue.cs, all will be abundantly clear.</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 08:33:58 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><span class="quote">&gt; Did you try it?</span>
+
+Of course :) It's the only change I did to your test case last night. With it:
+
+* the TypeLoadException was gone afterward; and
+
+* the required SharedClasses.dll was included in the .app bundle (and it's missing before that for the reasons given above);
+
+There might be another issue, specific to the version of the software you're using. Please provide the information requested in <a href="bug.html">comment #8</a>.
+
+Also please be more specific, e.g.
+
+<span class="quote">&gt; Class is loaded.</span>
+
+can be misinterpreted, which exact type are you talking about.</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 08:39:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">If I run you last attachment I get a black screen (but no exception) and the following is printed in the "Application Output" of XS.
+
+Starting iPhone 5s
+Launching application
+Application launched. PID = 36755
+Press enter to terminate the application
+<span class="quote">&gt;Loaded assembly: /Users/poupou/Library/Developer/CoreSimulator/Devices/05151A45-B795-4381-B95B-5468FF6442AD/data/Containers/Bundle/Application/4DB40E38-4815-4344-B090-27A3514C3F31/LinkerIssue.iOS.app/Xamarin.iOS.dll</span>
+Loaded assembly: /Users/poupou/Library/Developer/CoreSimulator/Devices/05151A45-B795-4381-B95B-5468FF6442AD/data/Containers/Bundle/Application/4DB40E38-4815-4344-B090-27A3514C3F31/LinkerIssue.iOS.app/System.dll
+Thread started:  #2
+Loaded assembly: /Users/poupou/Library/Developer/CoreSimulator/Devices/05151A45-B795-4381-B95B-5468FF6442AD/data/Containers/Bundle/Application/4DB40E38-4815-4344-B090-27A3514C3F31/LinkerIssue.iOS.app/LinkerIssue.iOS.exe
+Loaded assembly: /Users/poupou/Library/Developer/CoreSimulator/Devices/05151A45-B795-4381-B95B-5468FF6442AD/data/Containers/Bundle/Application/4DB40E38-4815-4344-B090-27A3514C3F31/LinkerIssue.iOS.app/Xamarin.Forms.Platform.iOS.dll
+Loaded assembly: /Users/poupou/Library/Developer/CoreSimulator/Devices/05151A45-B795-4381-B95B-5468FF6442AD/data/Containers/Bundle/Application/4DB40E38-4815-4344-B090-27A3514C3F31/LinkerIssue.iOS.app/Xamarin.Forms.Core.dll
+Loaded assembly: /Users/poupou/Library/Developer/CoreSimulator/Devices/05151A45-B795-4381-B95B-5468FF6442AD/data/Containers/Bundle/Application/4DB40E38-4815-4344-B090-27A3514C3F31/LinkerIssue.iOS.app/SharedClasses.dll
+Loaded assembly: /Users/poupou/Library/Developer/CoreSimulator/Devices/05151A45-B795-4381-B95B-5468FF6442AD/data/Containers/Bundle/Application/4DB40E38-4815-4344-B090-27A3514C3F31/LinkerIssue.iOS.app/Newtonsoft.Json.dll
+Loaded assembly: /Users/poupou/Library/Developer/CoreSimulator/Devices/05151A45-B795-4381-B95B-5468FF6442AD/data/Containers/Bundle/Application/4DB40E38-4815-4344-B090-27A3514C3F31/LinkerIssue.iOS.app/System.Xml.dll
+Loaded assembly: /Users/poupou/Library/Developer/CoreSimulator/Devices/05151A45-B795-4381-B95B-5468FF6442AD/data/Containers/Bundle/Application/4DB40E38-4815-4344-B090-27A3514C3F31/LinkerIssue.iOS.app/System.Runtime.Serialization.dll
+Loaded assembly: /Users/poupou/Library/Developer/CoreSimulator/Devices/05151A45-B795-4381-B95B-5468FF6442AD/data/Containers/Bundle/Application/4DB40E38-4815-4344-B090-27A3514C3F31/LinkerIssue.iOS.app/System.Core.dll
+Loaded assembly: /Users/poupou/Library/Developer/CoreSimulator/Devices/05151A45-B795-4381-B95B-5468FF6442AD/data/Containers/Bundle/Application/4DB40E38-4815-4344-B090-27A3514C3F31/LinkerIssue.iOS.app/Mono.Dynamic.Interpreter.dll
+Loaded assembly: /Users/poupou/Library/Developer/CoreSimulator/Devices/05151A45-B795-4381-B95B-5468FF6442AD/data/Containers/Bundle/Application/4DB40E38-4815-4344-B090-27A3514C3F31/LinkerIssue.iOS.app/System.Net.Http.dll
+Loaded assembly: /Users/poupou/Library/Developer/CoreSimulator/Devices/05151A45-B795-4381-B95B-5468FF6442AD/data/Containers/Bundle/Application/4DB40E38-4815-4344-B090-27A3514C3F31/LinkerIssue.iOS.app/LinkerIssue.dll
+Thread started:  #3
+Thread started:  #4
+Thread started: &lt;Thread Pool&gt; #5
+Thread started: &lt;Thread Pool&gt; #6
+completed {
+  "items": []
+}
+2015-04-08 08:35:11.982 LinkerIssue.iOS[36755:31542546] completed {
+  "items": []
+}
+
+Should I expect something else ?</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 08:43:36 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">If I uncomment the line
+
+			//var dummy = typeof(SharedClasses.JsonCreationConverter&lt;object&gt;).ToString ();
+
+then I get the exception again.
+
+
+2015-04-08 08:37:46.520 LinkerIssue.iOS[36804:31556514] Unhandled managed exception:
+Could not load type SharedClasses.FixBadEmptyJsonArrayConverter`1[[System.String[], System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]], SharedClasses, Version=1.0.5576.15438, Culture=neutral, PublicKeyToken=null while decoding custom attribute (System.TypeLoadException)
+  at (wrapper managed-to-native) System.MonoCustomAttrs:GetCustomAttributesInternal (System.Reflection.ICustomAttributeProvider,System.Type,bool)
+  at System.MonoCustomAttrs.GetCustomAttributesBase (ICustomAttributeProvider obj, System.Type attributeType, Boolean inheritedOnly) [0x00019] in /Users/poupou/git/xamarin/mono/mcs/class/corlib/System/MonoCustomAttrs.cs:103 
+  at System.MonoCustomAttrs.GetCustomAttributes (ICustomAttributeProvider obj, System.Type attributeType, Boolean inherit) [0x00040] in /Users/poupou/git/xamarin/mono/mcs/class/corlib/System/MonoCustomAttrs.cs:152 
+  at System.Attribute.GetCustomAttributes (System.Reflection.MemberInfo element, System.Type type, Boolean inherit) [0x00016] in /Users/poupou/git/xamarin/mono/mcs/class/corlib/System/Attribute.cs:232 
+  at Newtonsoft.Json.Utilities.ReflectionUtils.GetAttributes (System.Object attributeProvider, System.Type attributeType, Boolean inherit) [0x0007f] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Utilities.ReflectionUtils.GetAttributes[JsonConverterAttribute] (System.Object attributeProvider, Boolean inherit) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Utilities.ReflectionUtils.GetAttribute[JsonConverterAttribute] (System.Object attributeProvider, Boolean inherit) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.JsonTypeReflector.GetAttribute[JsonConverterAttribute] (System.Reflection.MemberInfo memberInfo) [0x0002c] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.JsonTypeReflector.GetAttribute[JsonConverterAttribute] (System.Object provider) [0x0001b] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Utilities.ThreadSafeStore`2[System.Object,Newtonsoft.Json.JsonConverterAttribute].AddValue (System.Object key) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Utilities.ThreadSafeStore`2[System.Object,Newtonsoft.Json.JsonConverterAttribute].Get (System.Object key) [0x00010] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.CachedAttributeGetter`1[Newtonsoft.Json.JsonConverterAttribute].GetAttribute (System.Object type) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.JsonTypeReflector.GetCachedAttribute[JsonConverterAttribute] (System.Object attributeProvider) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.JsonTypeReflector.GetJsonConverter (System.Object attributeProvider) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.DefaultContractResolver.SetPropertySettingsFromAttributes (Newtonsoft.Json.Serialization.JsonProperty property, System.Object attributeProvider, System.String name, System.Type declaringType, MemberSerialization memberSerialization, System.Boolean&amp; allowNonPublicAccess) [0x00157] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.DefaultContractResolver.CreateProperty (System.Reflection.MemberInfo member, MemberSerialization memberSerialization) [0x00046] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.DefaultContractResolver.CreateProperties (System.Type type, MemberSerialization memberSerialization) [0x0002f] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.DefaultContractResolver.CreateObjectContract (System.Type objectType) [0x00035] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.DefaultContractResolver.CreateContract (System.Type objectType) [0x000bf] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.DefaultContractResolver.ResolveContract (System.Type type) [0x00038] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.GetContractSafe (System.Type type) [0x00005] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize (Newtonsoft.Json.JsonReader reader, System.Type objectType, Boolean checkAdditionalContent) [0x0000e] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.JsonSerializer.DeserializeInternal (Newtonsoft.Json.JsonReader reader, System.Type objectType) [0x00057] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.JsonSerializer.Deserialize (Newtonsoft.Json.JsonReader reader, System.Type objectType) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.JsonConvert.DeserializeObject (System.String value, System.Type type, Newtonsoft.Json.JsonSerializerSettings settings) [0x0002d] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.JsonConvert.DeserializeObject[BadArrayJsonTest] (System.String value, Newtonsoft.Json.JsonSerializerSettings settings) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.JsonConvert.DeserializeObject[BadArrayJsonTest] (System.String value) [0x00000] in &lt;filename unknown&gt;:0 
+  at LinkerIssue.App.I_WILL_CRASH_CLAIMING_THAT_THE_CLASS_IS_NOT_LOADED_BUT_YOU_SAW_THAT_IT_WAS () [0x00008] in /Users/poupou/Downloads/LinkerIssue-2/LinkerIssue/LinkerIssue.cs:47 
+  at LinkerIssue.App..ctor () [0x0001e] in /Users/poupou/Downloads/LinkerIssue-2/LinkerIssue/LinkerIssue.cs:17 
+  at LinkerIssue.iOS.AppDelegate.FinishedLaunching (UIKit.UIApplication app, Foundation.NSDictionary options) [0x00007] in /Users/poupou/Downloads/LinkerIssue-2/iOS/AppDelegate.cs:17 
+  at (wrapper managed-to-native) UIKit.UIApplication:UIApplicationMain (int,string[],intptr,intptr)
+  at UIKit.UIApplication.Main (System.String[] args, IntPtr principal, IntPtr delegate) [0x00005] in /Users/poupou/git/xamarin/maccore/src/UIKit/UIApplication.cs:63 
+  at UIKit.UIApplication.Main (System.String[] args, System.String principalClassName, System.String delegateClassName) [0x00038] in /Users/poupou/git/xamarin/maccore/src/UIKit/UIApplication.cs:47 
+  at LinkerIssue.iOS.Application.Main (System.String[] args) [0x00008] in /Users/poupou/Downloads/LinkerIssue-2/iOS/Main.cs:19 
+
+
+Please make sure you do a Clean/Rebuild in XS and also do a "Reset Content and Settings" in the simulator. There could be a stale/bad file somewhere that gets loaded.</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 10:50:52 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Ok guys, thanks for your persistence here.
+
+I've tried this on the latest alpha stream, and also on Xamarin studio 5.8 (build 443) on mac.
+
+I donwloaded the zip fie I gave you onto my other mac, unchanged.
+
+I get excpetion Could not load type SharedClasses.FixBadEmptyJsonArrayConverter`1[[System.String[], System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]], SharedClasses, Version=1.0.5576.17574, Culture=neutral, PublicKeyToken=null while decoding custom attribute
+
+at runtime, at the exact same place.
+
+I did clean all, I reset the simulator. I can record a video to show you guys exactly what I'm doing; but to recap.
+
+On a different machine, load the zip file from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - strange behaviour causing loaded classes to appear unloaded when referenced from class attributes and using nay kind of linking." href="bug.html">https://bugzilla.xamarin.com/show_bug.cgi?id=28823</a>
+Run xamarin studio 5.8 (build 443),
+do not change anything, run - crashes at runtime with the above exception.
+Reset simulator,
+clean all projects in xamarin studio,
+run again,
+same crash as above.
+
+In every case the crash is :
+
+2015-04-08 09:50:14.605 LinkerIssue.iOS[1109:14198] Unhandled managed exception: Could not load type SharedClasses.FixBadEmptyJsonArrayConverter`1[[System.String[], System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]], SharedClasses, Version=1.0.5576.17574, Culture=neutral, PublicKeyToken=null while decoding custom attribute (System.TypeLoadException)
+  at (wrapper managed-to-native) System.MonoCustomAttrs:GetCustomAttributesInternal (System.Reflection.ICustomAttributeProvider,System.Type,bool)
+  at System.MonoCustomAttrs.GetCustomAttributesBase (ICustomAttributeProvider obj, System.Type attributeType, Boolean inheritedOnly) [0x00019] in /Developer/MonoTouch/Source/mono/mcs/class/corlib/System/MonoCustomAttrs.cs:103 
+  at System.MonoCustomAttrs.GetCustomAttributes (ICustomAttributeProvider obj, System.Type attributeType, Boolean inherit) [0x00040] in /Developer/MonoTouch/Source/mono/mcs/class/corlib/System/MonoCustomAttrs.cs:152 
+  at System.Attribute.GetCustomAttributes (System.Reflection.MemberInfo element, System.Type type, Boolean inherit) [0x00016] in /Developer/MonoTouch/Source/mono/mcs/class/corlib/System/Attribute.cs:232 
+  at Newtonsoft.Json.Utilities.ReflectionUtils.GetAttributes (System.Object attributeProvider, System.Type attributeType, Boolean inherit) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Utilities.ReflectionUtils.GetAttributes[JsonConverterAttribute] (System.Object attributeProvider, Boolean inherit) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Utilities.ReflectionUtils.GetAttribute[JsonConverterAttribute] (System.Object attributeProvider, Boolean inherit) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.JsonTypeReflector.GetAttribute[JsonConverterAttribute] (System.Reflection.MemberInfo memberInfo) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.JsonTypeReflector.GetAttribute[JsonConverterAttribute] (System.Object provider) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Utilities.ThreadSafeStore`2[System.Object,Newtonsoft.Json.JsonConverterAttribute].AddValue (System.Object key) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Utilities.ThreadSafeStore`2[System.Object,Newtonsoft.Json.JsonConverterAttribute].Get (System.Object key) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.CachedAttributeGetter`1[Newtonsoft.Json.JsonConverterAttribute].GetAttribute (System.Object type) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.JsonTypeReflector.GetCachedAttribute[JsonConverterAttribute] (System.Object attributeProvider) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.JsonTypeReflector.GetJsonConverter (System.Object attributeProvider) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.DefaultContractResolver.SetPropertySettingsFromAttributes (Newtonsoft.Json.Serialization.JsonProperty property, System.Object attributeProvider, System.String name, System.Type declaringType, MemberSerialization memberSerialization, System.Boolean&amp; allowNonPublicAccess) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.DefaultContractResolver.CreateProperty (System.Reflection.MemberInfo member, MemberSerialization memberSerialization) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.DefaultContractResolver.CreateProperties (System.Type type, MemberSerialization memberSerialization) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.DefaultContractResolver.CreateObjectContract (System.Type objectType) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.DefaultContractResolver.CreateContract (System.Type objectType) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.DefaultContractResolver.ResolveContract (System.Type type) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.GetContractSafe (System.Type type) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize (Newtonsoft.Json.JsonReader reader, System.Type objectType, Boolean checkAdditionalContent) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.JsonSerializer.DeserializeInternal (Newtonsoft.Json.JsonReader reader, System.Type objectType) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.JsonSerializer.Deserialize (Newtonsoft.Json.JsonReader reader, System.Type objectType) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.JsonConvert.DeserializeObject (System.String value, System.Type type, Newtonsoft.Json.JsonSerializerSettings settings) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.JsonConvert.DeserializeObject[BadArrayJsonTest] (System.String value, Newtonsoft.Json.JsonSerializerSettings settings) [0x00000] in &lt;filename unknown&gt;:0 
+  at Newtonsoft.Json.JsonConvert.DeserializeObject[BadArrayJsonTest] (System.String value) [0x00000] in &lt;filename unknown&gt;:0 
+  at LinkerIssue.App.I_WILL_CRASH_CLAIMING_THAT_THE_CLASS_IS_NOT_LOADED_BUT_YOU_SAW_THAT_IT_WAS () [0x00008] in /Users/georgecook/Downloads/LinkerIssue/LinkerIssue/LinkerIssue.cs:47 
+  at LinkerIssue.App..ctor () [0x0001e] in /Users/georgecook/Downloads/LinkerIssue/LinkerIssue/LinkerIssue.cs:17 
+  at LinkerIssue.iOS.AppDelegate.FinishedLaunching (UIKit.UIApplication app, Foundation.NSDictionary options) [0x00007] in /Users/georgecook/Downloads/LinkerIssue/iOS/AppDelegate.cs:17 
+  at (wrapper managed-to-native) UIKit.UIApplication:UIApplicationMain (int,string[],intptr,intptr)
+  at UIKit.UIApplication.Main (System.String[] args, IntPtr principal, IntPtr delegate) [0x00005] in /Developer/MonoTouch/Source/monotouch/src/UIKit/UIApplication.cs:62 
+  at UIKit.UIApplication.Main (System.String[] args, System.String principalClassName, System.String delegateClassName) [0x00038] in /Developer/MonoTouch/Source/monotouch/src/UIKit/UIApplication.cs:46 
+  at LinkerIssue.iOS.Application.Main (System.String[] args) [0x00018] in /Users/georgecook/Downloads/LinkerIssue/iOS/Main.cs:19 
+2015-04-08 09:50:14.607 LinkerIssue.iOS[1109:14198] critical: Stacktrace:
+
+2015-04-08 09:50:14.607 LinkerIssue.iOS[1109:14198] critical: 
+Native stacktrace:
+
+2015-04-08 09:50:14.638 LinkerIssue.iOS[1109:14198] critical: 	0   LinkerIssue.iOS                     0x0018d977 mono_handle_native_sigsegv + 311
+2015-04-08 09:50:14.638 LinkerIssue.iOS[1109:14198] critical: 	1   LinkerIssue.iOS                     0x0019930a sigabrt_signal_handler + 122
+2015-04-08 09:50:14.638 LinkerIssue.iOS[1109:14198] critical: 	2   libsystem_platform.dylib            0x03ef803b _sigtramp + 43
+2015-04-08 09:50:14.639 LinkerIssue.iOS[1109:14198] critical: 	3   ???                                 0xffffffff 0x0 + 4294967295
+2015-04-08 09:50:14.639 LinkerIssue.iOS[1109:14198] critical: 	4   libsystem_sim_c.dylib               0x03c7fa5a abort + 156
+2015-04-08 09:50:14.639 LinkerIssue.iOS[1109:14198] critical: 	5   LinkerIssue.iOS                     0x0030babf xamarin_unhandled_exception_handler + 287
+2015-04-08 09:50:14.639 LinkerIssue.iOS[1109:14198] critical: 	6   LinkerIssue.iOS                     0x0018e1cb mono_invoke_unhandled_exception_hook + 91
+2015-04-08 09:50:14.639 LinkerIssue.iOS[1109:14198] critical: 	7   LinkerIssue.iOS                     0x0018d1dd mono_handle_exception_internal + 6685
+2015-04-08 09:50:14.640 LinkerIssue.iOS[1109:14198] critical: 	8   LinkerIssue.iOS                     0x0018b7b9 mono_handle_exception + 41
+2015-04-08 09:50:14.640 LinkerIssue.iOS[1109:14198] critical: 	9   LinkerIssue.iOS                     0x00126b78 mono_x86_throw_exception + 136
+2015-04-08 09:50:14.640 LinkerIssue.iOS[1109:14198] critical: 	10  ???                                 0x0cba2e57 0x0 + 213528151
+2015-04-08 09:50:14.640 LinkerIssue.iOS[1109:14198] critical: 	11  LinkerIssue.iOS                     0x00200d72 custom_attrs_get_by_type + 130
+2015-04-08 09:50:14.640 LinkerIssue.iOS[1109:14198] critical: 	12  ???                                 0x0cbe57a8 0x0 + 213800872
+2015-04-08 09:50:14.641 LinkerIssue.iOS[1109:14198] critical: 	13  ???                                 0x0cbe5614 0x0 + 213800468
+2015-04-08 09:50:14.641 LinkerIssue.iOS[1109:14198] critical: 	14  ???                                 0x0cbe4658 0x0 + 213796440
+2015-04-08 09:50:14.641 LinkerIssue.iOS[1109:14198] critical: 	15  ???                                 0x0eb45bd4 0x0 + 246701012
+2015-04-08 09:50:14.641 LinkerIssue.iOS[1109:14198] critical: 	16  ???                                 0x0eafe630 0x0 + 246408752
+2015-04-08 09:50:14.642 LinkerIssue.iOS[1109:14198] critical: 	17  ???                                 0x0eb01f68 0x0 + 246423400
+2015-04-08 09:50:14.642 LinkerIssue.iOS[1109:14198] critical: 	18  ???                                 0x0eaff8a0 0x0 + 246413472
+2015-04-08 09:50:14.642 LinkerIssue.iOS[1109:14198] critical: 	19  ???                                 0x0eb45954 0x0 + 246700372
+2015-04-08 09:50:14.642 LinkerIssue.iOS[1109:14198] critical: 	20  ???                                 0x0eafd528 0x0 + 246404392
+2015-04-08 09:50:14.642 LinkerIssue.iOS[1109:14198] critical: 	21  ???                                 0x0eafccd4 0x0 + 246402260
+2015-04-08 09:50:14.643 LinkerIssue.iOS[1109:14198] critical: 	22  ???                                 0x0eafcc0c 0x0 + 246402060
+2015-04-08 09:50:14.643 LinkerIssue.iOS[1109:14198] critical: 	23  ???                                 0x0eafca88 0x0 + 246401672
+2015-04-08 09:50:14.643 LinkerIssue.iOS[1109:14198] critical: 	24  ???                                 0x0eafbf04 0x0 + 246398724
+2015-04-08 09:50:14.643 LinkerIssue.iOS[1109:14198] critical: 	25  ???                                 0x0eb07700 0x0 + 246445824
+2015-04-08 09:50:14.643 LinkerIssue.iOS[1109:14198] critical: 	26  ???                                 0x0eb44d38 0x0 + 246697272
+2015-04-08 09:50:14.644 LinkerIssue.iOS[1109:14198] critical: 	27  ???                                 0x0eb43810 0x0 + 246691856
+2015-04-08 09:50:14.644 LinkerIssue.iOS[1109:14198] critical: 	28  ???                                 0x0eb1f82e 0x0 + 246544430
+2015-04-08 09:50:14.644 LinkerIssue.iOS[1109:14198] critical: 	29  ???                                 0x0eb04e08 0x0 + 246435336
+2015-04-08 09:50:14.644 LinkerIssue.iOS[1109:14198] critical: 	30  ???                                 0x0eaf7f8f 0x0 + 246382479
+2015-04-08 09:50:14.644 LinkerIssue.iOS[1109:14198] critical: 	31  ???                                 0x0eaf6eba 0x0 + 246378170
+2015-04-08 09:50:14.645 LinkerIssue.iOS[1109:14198] critical: 	32  ???                                 0x0eaf6d25 0x0 + 246377765
+2015-04-08 09:50:14.645 LinkerIssue.iOS[1109:14198] critical: 	33  ???                                 0x0eaf66fc 0x0 + 246376188
+2015-04-08 09:50:14.645 LinkerIssue.iOS[1109:14198] critical: 	34  ???                                 0x0eaf4474 0x0 + 246367348
+2015-04-08 09:50:14.645 LinkerIssue.iOS[1109:14198] critical: 	35  ???                                 0x0eaf4173 0x0 + 246366579
+2015-04-08 09:50:14.645 LinkerIssue.iOS[1109:14198] critical: 	36  ???                                 0x0eaedd24 0x0 + 246340900
+2015-04-08 09:50:14.646 LinkerIssue.iOS[1109:14198] critical: 	37  ???                                 0x0eaed990 0x0 + 246339984
+2015-04-08 09:50:14.646 LinkerIssue.iOS[1109:14198] critical: 	38  ???                                 0x0eb41c80 0x0 + 246684800
+2015-04-08 09:50:14.646 LinkerIssue.iOS[1109:14198] critical: 	39  ???                                 0x0eb41bdc 0x0 + 246684636
+2015-04-08 09:50:14.646 LinkerIssue.iOS[1109:14198] critical: 	40  ???                                 0x0eab68f0 0x0 + 246114544
+2015-04-08 09:50:14.646 LinkerIssue.iOS[1109:14198] critical: 	41  ???                                 0x0d93d264 0x0 + 227791460
+2015-04-08 09:50:14.647 LinkerIssue.iOS[1109:14198] critical: 	42  ???                                 0x0d93d499 0x0 + 227792025
+2015-04-08 09:50:14.647 LinkerIssue.iOS[1109:14198] critical: 	43  LinkerIssue.iOS                     0x001bd355 mono_jit_runtime_invoke + 725
+2015-04-08 09:50:14.647 LinkerIssue.iOS[1109:14198] critical: 	44  LinkerIssue.iOS                     0x002530bf mono_runtime_invoke + 127
+2015-04-08 09:50:14.647 LinkerIssue.iOS[1109:14198] critical: 	45  LinkerIssue.iOS                     0x003153bb xamarin_trampoline + 5147
+2015-04-08 09:50:14.648 LinkerIssue.iOS[1109:14198] critical: 	46  UIKit                               0x00e7b97c -[UIApplication _handleDelegateCallbacksWithOptions:isSuspended:restoreState:] + 291
+2015-04-08 09:50:14.648 LinkerIssue.iOS[1109:14198] critical: 	47  UIKit                               0x00e7c687 -[UIApplication _callInitializationDelegatesForMainScene:transitionContext:] + 2869
+2015-04-08 09:50:14.648 LinkerIssue.iOS[1109:14198] critical: 	48  UIKit                               0x00e7fc0d -[UIApplication _runWithMainScene:transitionContext:completion:] + 1639
+2015-04-08 09:50:14.648 LinkerIssue.iOS[1109:14198] critical: 	49  UIKit                               0x00e987d0 __84-[UIApplication _handleApplicationActivationWithScene:transitionContext:completion:]_block_invoke + 59
+2015-04-08 09:50:14.648 LinkerIssue.iOS[1109:14198] critical: 	50  UIKit                               0x00e7e81f -[UIApplication workspaceDidEndTransaction:] + 155
+2015-04-08 09:50:14.649 LinkerIssue.iOS[1109:14198] critical: 	51  FrontBoardServices                  0x05fd59de __37-[FBSWorkspace clientEndTransaction:]_block_invoke_2 + 71
+2015-04-08 09:50:14.649 LinkerIssue.iOS[1109:14198] critical: 	52  FrontBoardServices                  0x05fd546f __40-[FBSWorkspace _performDelegateCallOut:]_block_invoke + 54
+2015-04-08 09:50:14.649 LinkerIssue.iOS[1109:14198] critical: 	53  FrontBoardServices                  0x05fe7425 __31-[FBSSerialQueue performAsync:]_block_invoke + 26
+2015-04-08 09:50:14.649 LinkerIssue.iOS[1109:14198] critical: 	54  CoreFoundation                      0x025bb1c0 __CFRUNLOOP_IS_CALLING_OUT_TO_A_BLOCK__ + 16
+2015-04-08 09:50:14.650 LinkerIssue.iOS[1109:14198] critical: 	55  CoreFoundation                      0x025b0ad3 __CFRunLoopDoBlocks + 195
+2015-04-08 09:50:14.650 LinkerIssue.iOS[1109:14198] critical: 	56  CoreFoundation                      0x025b092b __CFRunLoopRun + 2715
+2015-04-08 09:50:14.650 LinkerIssue.iOS[1109:14198] critical: 	57  CoreFoundation                      0x025afbcb CFRunLoopRunSpecific + 443
+2015-04-08 09:50:14.650 LinkerIssue.iOS[1109:14198] critical: 	58  CoreFoundation                      0x025af9fb CFRunLoopRunInMode + 123
+2015-04-08 09:50:14.651 LinkerIssue.iOS[1109:14198] critical: 	59  UIKit                               0x00e7e1e4 -[UIApplication _run] + 571
+2015-04-08 09:50:14.651 LinkerIssue.iOS[1109:14198] critical: 	60  UIKit                               0x00e818b6 UIApplicationMain + 1526
+2015-04-08 09:50:14.651 LinkerIssue.iOS[1109:14198] critical: 	61  ???                                 0x0d937448 0x0 + 227767368
+2015-04-08 09:50:14.651 LinkerIssue.iOS[1109:14198] critical: 	62  ???                                 0x0d937248 0x0 + 227766856
+2015-04-08 09:50:14.651 LinkerIssue.iOS[1109:14198] critical: 	63  ???                                 0x0d9354d8 0x0 + 227759320
+2015-04-08 09:50:14.652 LinkerIssue.iOS[1109:14198] critical: 	64  ???                                 0x0d935218 0x0 + 227758616
+2015-04-08 09:50:14.652 LinkerIssue.iOS[1109:14198] critical: 	65  ???                                 0x0d935376 0x0 + 227758966
+2015-04-08 09:50:14.652 LinkerIssue.iOS[1109:14198] critical: 	66  LinkerIssue.iOS                     0x001bd355 mono_jit_runtime_invoke + 725
+2015-04-08 09:50:14.652 LinkerIssue.iOS[1109:14198] critical: 	67  LinkerIssue.iOS                     0x002530bf mono_runtime_invoke + 127
+2015-04-08 09:50:14.652 LinkerIssue.iOS[1109:14198] critical: 	68  LinkerIssue.iOS                     0x00257c21 mono_runtime_exec_main + 401
+2015-04-08 09:50:14.653 LinkerIssue.iOS[1109:14198] critical: 	69  LinkerIssue.iOS                     0x002579ca mono_runtime_run_main + 682
+2015-04-08 09:50:14.653 LinkerIssue.iOS[1109:14198] critical: 	70  LinkerIssue.iOS                     0x0012206d mono_jit_exec + 93
+2015-04-08 09:50:14.653 LinkerIssue.iOS[1109:14198] critical: 	71  LinkerIssue.iOS                     0x00309b24 xamarin_main + 2500
+2015-04-08 09:50:14.653 LinkerIssue.iOS[1109:14198] critical: 	72  LinkerIssue.iOS                     0x000e37d5 main + 117
+2015-04-08 09:50:14.654 LinkerIssue.iOS[1109:14198] critical: 	73  libdyld.dylib                       0x03bd5ac9 start + 1
+2015-04-08 09:50:14.654 LinkerIssue.iOS[1109:14198] critical: 
+=================================================================
+Got a SIGABRT while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+============================================</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 10:53:57 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">and to be clear, in all cases, the first method call in the App class (in LinkerIssue.cs), named THIS_CODE_WILL_WORK_FINE_THE_CLASS_IS_LOADED works - so the class FixBadEmptyJsonArrayConverter, and it's dll absolutely must be loaded.</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 13:20:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The provided information is not detailed enough, I need the exact version of the software you're using. Please provide us with the data requested in <a href="bug.html">comment #8</a></pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 13:21:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">sorry, missed that.
+
+
+Xamarin Studio
+Version 5.8 (build 443)
+Installation UUID: a24a6e41-431a-45a1-9bde-6e41e9fd24ba
+Runtime:
+	Mono 3.12.1 ((detached/b7764aa)
+	GTK+ 2.24.23 (Raleigh theme)
+
+	Package version: 312010000
+
+Apple Developer Tools
+Xcode 6.1 (6604)
+Build 6A1052d
+
+Xamarin.Mac
+Not Installed
+
+Xamarin.Android
+Version: 4.20.0.37 (Indie Edition)
+Android SDK: /Users/georgecook/Library/Developer/Xamarin/android-sdk-macosx
+	Supported Android versions:
+		2.1   (API level 7)
+		2.2   (API level 8)
+		2.3   (API level 10)
+		3.1   (API level 12)
+		4.0.3 (API level 15)
+		4.1   (API level 16)
+		4.4   (API level 19)
+Java SDK: /usr
+java version "1.7.0_71"
+Java(TM) SE Runtime Environment (build 1.7.0_71-b14)
+Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
+
+Xamarin Android Player
+Version: Unknown version
+Location: /Applications/Xamarin Android Player.app
+
+Xamarin.iOS
+Version: 8.8.0.2 (Indie Edition)
+Hash: ccfcd59
+Branch: 
+Build date: 2015-03-10 02:20:32-0400
+
+Build Information
+Release ID: 508000443
+Git revision: 73883239470cbe8e261c94d95f7c3d0452fd393b
+Build date: 2015-03-10 07:22:51-04
+Xamarin addins: a2ff7b617f09d9c45d8bbf3d010b5db0d7d36100
+
+Operating System
+Mac OS X 10.10.2
+Darwin galadriel.local 14.1.0 Darwin Kernel Version 14.1.0
+    Mon Dec 22 23:10:38 PST 2014
+    root:xnu-2782.10.72~2/RELEASE_X86_64 x86_64</pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 13:29:16 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">and I get the exact same behaviour with this version also.
+
+Xamarin Studio
+Version 5.8.2 (build 7)
+Installation UUID: a24a6e41-431a-45a1-9bde-6e41e9fd24ba
+Runtime:
+    Mono 3.12.1 ((detached/0849ec7)
+    GTK+ 2.24.23 (Raleigh theme)
+
+    Package version: 312010003
+
+Xamarin.Android
+Version: 4.20.1.0 (Indie Edition)
+Android SDK: /Users/georgecook/Library/Developer/Xamarin/android-sdk-macosx
+    Supported Android versions:
+        2.1   (API level 7)
+        2.2   (API level 8)
+        2.3   (API level 10)
+        3.1   (API level 12)
+        4.0.3 (API level 15)
+        4.1   (API level 16)
+        4.4   (API level 19)
+Java SDK: /usr
+java version "1.7.0_71"
+Java(TM) SE Runtime Environment (build 1.7.0_71-b14)
+Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
+
+Xamarin Android Player
+Version: Unknown version
+Location: /Applications/Xamarin Android Player.app
+
+Apple Developer Tools
+Xcode 6.1 (6604)
+Build 6A1052d
+
+Xamarin.iOS
+Version: 8.8.2.4 (Indie Edition)
+Hash: 981acb3
+Branch: 
+Build date: 2015-03-25 14:21:05-0400
+
+Xamarin.Mac
+Not Installed
+
+Build Information
+Release ID: 508020007
+Git revision: 067ed06873402cf780f8a0899bb332c2a1c0af22
+Build date: 2015-03-27 14:17:13-04
+Xamarin addins: 02510c4990dee3475c282b3182d588975a63ff07
+
+Operating System
+Mac OS X 10.10.2
+Darwin galadriel.local 14.1.0 Darwin Kernel Version 14.1.0
+    Mon Dec 22 23:10:38 PST 2014
+    root:xnu-2782.10.72~2/RELEASE_X86_64 x86_64</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 14:05:23 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks! I got to a configuration that is closer to yours.
+
+Starting from scratch, here's what I did, step-by-step:
+
+1. I downloaded again the *first* test case <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10647&amp;file=LinkerIssue.zip">https://bugzilla.xamarin.com/attachment.cgi?id=10647</a>
+
+and ran it (as is) on the simulator. I got the TypeLoadException
+
+2015-04-08 13:45:18.929 LinkerIssue.iOS[73996:32681099] Unhandled managed exception:
+Could not load type SharedClasses.FixBadEmptyJsonArrayConverter`1[[System.String[], System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]], SharedClasses, Version=1.0.5576.24752, Culture=neutral, PublicKeyToken=null while decoding custom attribute (System.TypeLoadException)
+
+* The configuration uses "Don't link";
+* LinkerIssue.iOS.exe has no reference (in XS) to SharedClasses.dll
+
+
+2. I added two lines in Main.cs (before the call to UIApplicationMain)
+
+			var assembly = System.IO.Path.GetFullPath (System.IO.Path.Combine (NSBundle.MainBundle.ExecutablePath, "..", "SharedClasses.dll"));
+			Console.WriteLine ("{0} was {1}found", assembly, System.IO.File.Exists (assembly) ? String.Empty : "NOT ");
+
+to confirm that nothing else indirectly caused SharedClasses.dll to be copied into the .app bundle. I got this (expected) output:
+
+2015-04-08 13:47:42.234 LinkerIssue.iOS[74039:32692243] /Users/poupou/Library/Developer/CoreSimulator/Devices/1C6D73E1-2CB4-484D-A6E7-E0D57A39D3CB/data/Containers/Bundle/Application/1DD6B5E0-CA59-49A5-A624-EF6DE3DD053C/LinkerIssue.iOS.app/SharedClasses.dll was NOT found
+
+before the TypeLoadException.
+
+
+3. I added a reference to SharedClasses.dll to LinkerIssue.iOS.exe. That did not change anything, I still get:
+
+2015-04-08 13:47:42.234 LinkerIssue.iOS[74039:32692243] /Users/poupou/Library/Developer/CoreSimulator/Devices/1C6D73E1-2CB4-484D-A6E7-E0D57A39D3CB/data/Containers/Bundle/Application/1DD6B5E0-CA59-49A5-A624-EF6DE3DD053C/LinkerIssue.iOS.app/SharedClasses.dll was NOT found
+
+before the TypeLoadException. That's expected since the C# compiler can remove that unrequired assembly reference (and nothing was using it).
+
+
+4. I added another line to Main.cs
+
+<span class="quote">&gt; typeof(SharedClasses.JsonCreationConverter&lt;object&gt;).ToString ();</span>
+
+That changed the C.WL output to say the .dll was found. That was expected since the C# compiler now needs to include the reference into the assembly binary (and that means it gets copied into the .app bundle).
+
+2015-04-08 13:52:00.231 LinkerIssue.iOS[74177:32710787] /Users/poupou/Library/Developer/CoreSimulator/Devices/1C6D73E1-2CB4-484D-A6E7-E0D57A39D3CB/data/Containers/Bundle/Application/4B428E5B-3C10-4F14-88C2-B85B5A508931/LinkerIssue.iOS.app/SharedClasses.dll was found
+
+...
+
+2015-04-08 13:52:25.159 LinkerIssue.iOS[74177:32710787] Unhandled managed exception:
+Index (zero based) must be greater than or equal to zero and less than the size of the argument list. (System.FormatException)
+  at System.String.FormatHelper (System.Text.StringBuilder result, IFormatProvider provider, System.String format, System.Object[] args) [0x0010b] in /Users/poupou/git/xamarin/mono/mcs/class/corlib/System/String.cs:2005 
+  at System.String.Format (IFormatProvider provider, System.String format, System.Object[] args) [0x00000] in /Users/poupou/git/xamarin/mono/mcs/class/corlib/System/String.cs:1951 
+  at System.String.Format (System.String format, System.Object[] args) [0x00000] in /Users/poupou/git/xamarin/mono/mcs/class/corlib/System/String.cs:1946 
+  at LinkerIssue.BadArrayJsonTest.ToString () [0x0000c] in /Users/poupou/Downloads/LinkerIssue/LinkerIssue/BadArrayJsonTest.cs:17 
+  at System.String.Concat (System.Object arg0, System.Object arg1) [0x00000] in /Users/poupou/git/xamarin/mono/mcs/class/corlib/System/String.cs:2086 
+  at LinkerIssue.App.TestConversion_EmptyArray () [0x0000e] in /Users/poupou/Downloads/LinkerIssue/LinkerIssue/LinkerIssue.cs:42 
+  at LinkerIssue.App..ctor () [0x00008] in /Users/poupou/Downloads/LinkerIssue/LinkerIssue/LinkerIssue.cs:14 
+  at LinkerIssue.iOS.AppDelegate.FinishedLaunching (UIKit.UIApplication app, Foundation.NSDictionary options) [0x00007] in /Users/poupou/Downloads/LinkerIssue/iOS/AppDelegate.cs:17 
+  at (wrapper managed-to-native) UIKit.UIApplication:UIApplicationMain (int,string[],intptr,intptr)
+  at UIKit.UIApplication.Main (System.String[] args, IntPtr principal, IntPtr delegate) [0x00005] in /Users/poupou/git/xamarin/maccore/src/UIKit/UIApplication.cs:63 
+  at UIKit.UIApplication.Main (System.String[] args, System.String principalClassName, System.String delegateClassName) [0x00038] in /Users/poupou/git/xamarin/maccore/src/UIKit/UIApplication.cs:47 
+  at LinkerIssue.iOS.Application.Main (System.String[] args) [0x0005c] in /Users/poupou/Downloads/LinkerIssue/iOS/Main.cs:20 
+
+
+^ Note that the TypeLoadException is gone. There's a new one, that I assume to be normal (given the empty array input).
+
+That's pretty much identical to what I saw last night. I'll now compare this to the 2nd sample.</pre>
+    </div>
+
+    <div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 14:10:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">thanks. I would be so happy if I got the array index exception, that is the expected behaviour. God.. I feel like when my wife was in labour.. This is a really important issue for me, I'm set to give a glowing review of xamarin studio next week to our whole company, and I've literally got a draft email postponing the whole thing which I'll have to send out tomorrow if I can't get the app size down :(
+
+I know you guys are snowed, and I don't *yet* have any enterprise license; so I can't thank you enough for looking into this. I'll shut up and wait now :)</pre>
+    </div>
+
+    <div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 16:10:36 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The 2nd sample <a href="https://bugzilla.xamarin.com/attachment.cgi?id=10668&amp;file=LinkerIssue.zip">https://bugzilla.xamarin.com/attachment.cgi?id=10668</a> is a bit different, i.e.:
+
+* The main project is set to "Link SDK";
+* It has additional arguments for mtouch: --linkskip=SharedClasses,LinkerIssue
+* the LinkerIssue.iOS.exe already has a reference to SharedClasses.dll
+* it has code that will ensure the C# compiler will include a reference to SharedClasses.dll
+
+<span class="quote">&gt;	var dummy = typeof(SharedClasses.JsonCreationConverter&lt;object&gt;).ToString ();</span>
+
+If executed with XI 8.10 I get the TypeLoadException
+
+2015-04-08 14:08:59.769 LinkerIssue.iOS[74509:32783343] completed {
+  "items": []
+}
+completed {
+  "items": []
+}
+2015-04-08 14:09:16.009 LinkerIssue.iOS[74509:32783343] Unhandled managed exception:
+Could not load type SharedClasses.FixBadEmptyJsonArrayConverter`1[[System.String[], System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]], SharedClasses, Version=1.0.5576.25459, Culture=neutral, PublicKeyToken=null while decoding custom attribute (System.TypeLoadException)
+  at (wrapper managed-to-native) System.MonoCustomAttrs:GetCustomAttributesInternal (System.Reflection.ICustomAttributeProvider,System.Type,bool)
+  at System.MonoCustomAttrs.GetCustomAttributesBase (ICustomAttributeProvider obj, System.Type attributeType, Boolean inheritedOnly) [0x00019] in /Users/poupou/git/xamarin/mono/mcs/class/corlib/System/MonoCustomAttrs.cs:103 
+  at System.MonoCustomAttrs.GetCustomAttributes (ICustomAttributeProvider obj, System.Type attributeType, Boolean inherit) [0x00040] in /Users/poupou/git/xamarin/mono/mcs/class/corlib/System/MonoCustomAttrs.cs:152 
+  at System.Attribute.GetCustomAttributes (System.Reflection.MemberInfo element, System.Type type, Boolean inherit) [0x00016] in /Users/poupou/git/xamarin/mono/mcs/class/corlib/System/Attribute.cs:232 
+
+
+The workaround it to change the additional mtouch arguments from
+
+`--linkskip=SharedClasses,LinkerIssue` (which does nothing for Link SDK)
+
+to
+
+--linkskip=System.Runtime
+
+which will preserve the PCL facade assembly on which type (inside the custom attribute) has it's reference. That will give you almost all the benefit from Link SDK (size wise) as System.Runtime.dll is almost empty (11kb of metadata).
+
+Such a build gives me:
+
+...
+2015-04-08 16:09:15.565 LinkerIssue.iOS[91710:33142190] completed {
+  "items": []
+}
+completed {
+  "items": []
+}
+2015-04-08 16:09:17.511 LinkerIssue.iOS[91710:33142190] Unhandled managed exception:
+Index (zero based) must be greater than or equal to zero and less than the size of the argument list. (System.FormatException)
+...
+which is what you're expecting (and hopefully will be able to duplicate on your computers).
+
+
+Something similar was fixed recently (which might be why I could not reproduce with our master branch) but that case can still happen (with the upcoming 8.10) so I need to double check why (as it should have been back ported). Thanks again for the details!</pre>
+    </div>
+
+    <div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">George Cook</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 16:33:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">No, thank you looking into this.
+
+I can confirm that the skip flag you provided fixes the issue in the example project here AND in my real project too.
+
+app size is down to 56mb, which while a bit big (native app is 18mb), is presentable and easily justifiable with all the other benefits I'm going to layout!
+
+I'll update the forum to make sure this answer is easy to find. This would've been impossible for me to resolve without all your help: Even on the forum, with considerable input from many experiences c# and xamarin developers, this was a dead end.
+
+Thanks again!</pre>
+    </div>
+
+    <div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-10 17:36:03 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Fixed in mono/master 5186dea237916e063b01ed75f1117b6709b92a53
+
+Keeping bug open as maccore repo is not bumped to use that revision/branch at the moment.</pre>
+    </div>
+
+    <div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-23 11:10:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">QA: build c3733064e7f9d9f5da3f5ccffcf099210f9f2c07  (and more recent builds) from maccore/master can be used to very this</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

@@ -1,0 +1,1089 @@
+<html lang="en"><head>
+    <title>28625 – [iOS] Issue with data-binding in a Label in the font-attribute to a static resource</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Forms
+                 bz_component_Forms
+                 bz_bug_28625 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;28625</span>
+
+        <span id="subtitle" class="subheader">[iOS] Issue with data-binding in a Label in the font-attribute to a static resource</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2016-04-13 18:00:45 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2016-04-13 18:00:45">
+  <input type="hidden" name="id" value="28625">
+  <input type="hidden" name="token" value="1559165463-eWfUSvR_dOyKlsgnReGh7zBSgxNVtKPe-RwXbY9lYLA">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;28625</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">[iOS] Issue with data-binding in a Label in the font-attribute to a static resource</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span><span title="[iOS] Issue with data-binding in a Label in the font-attribute to a static resource">[iOS] Issue with data-binding in a Label in the font-attribute to a static re...
+        </span>
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          NORESPONSE
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Forms
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Xamarin
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">Forms
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>1.3.5
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Windows
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Jason Smith [MSFT]</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2015-04-01 07:59 UTC by <span class="vcard"><span class="fn">Anubhav Ranjan</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2016-04-13 18:00 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>5
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="chris.king">chris.king</option>
+                <option value="eric.maupin">eric.maupin</option>
+                <option value="jas">jas</option>
+                <option value="sahou">sahou</option>
+                <option value="seth.rosetter">seth.rosetter</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">ios xaml binding workaround
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/xamarin">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">NORESPONSE
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Anubhav Ranjan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-01 07:59:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">One of our customers is facing an issue when DataBinding is done for a Label where the Font attribute is bonded to Static Resource.
+
+Description:
+============
+
+Our team had a problem with getting our Xamarin Forms app approved by Apple. They are telling us that the app crashes at startup and gives the symbolized stack dump at the bottom of this email.
+
+After struggling for a while to find the problem, we finally found out that it only occurred on iPhone 6 (no other iPhones) and was triggered when data-binding the font of a label to a static resource as per below. Our workaround was to bind to the FontSize property instead. Just letting you know so you can fix this bug (at least we believe it is a bug) in future releases.
+
+CODE Example:
+============
+
+XAML FILE
+
+
+&lt;Label
+RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.4}"
+RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
+RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+Text="{Binding ResultString}" Font="{StaticResource Font}" TextColor="#B6B6B4"/&gt;
+
+
+STATIC RESOURCE FILE
+
+&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;Application xmlns="<a href="http://xamarin.com/schemas/2014/forms">http://xamarin.com/schemas/2014/forms</a>"
+xmlns:x="<a href="http://schemas.microsoft.com/winfx/2009/xaml">http://schemas.microsoft.com/winfx/2009/xaml</a>"
+x:Class="Livelox.Mobile.CoreUi.App"&gt;
+
+&lt;Application.Resources&gt;
+&lt;ResourceDictionary&gt;
+&lt;OnPlatform x:Key="Font" x:TypeArguments="Font"&gt;
+&lt;OnPlatform.Android&gt;Medium&lt;/OnPlatform.Android&gt;
+&lt;OnPlatform.iOS&gt;Small&lt;/OnPlatform.iOS&gt;
+&lt;/OnPlatform&gt;
+&lt;/ResourceDictionary&gt;
+&lt;/Application.Resources&gt;
+&lt;/Application&gt;
+
+
+DUMP FROM IOS
+
+Incident Identifier: 0BECF720-CFB1-4470-AC47-E012B11EFA29
+CrashReporter Key: 26c02c90683f836314c526cecc4cd8fa6f92528c
+Hardware Model: xxx
+Process: LiveloxMobileIos [233]
+Path: /private/var/mobile/Containers/Bundle/Application/FF251F93-4640-4040-94A7-211EF722EEB4/LiveloxMobileIos.app/LiveloxMobileIos
+Identifier: com.livelox.livelox
+Version: 1.9 (1.0)
+Code Type: ARM-64 (Native)
+Parent Process: launchd [1]
+
+Date/Time: 2015-03-30 09:22:19.676 -0700
+Launch Time: 2015-03-30 09:22:14.130 -0700
+OS Version: iOS 8.2 (12D508)
+Report Version: 105
+
+Exception Type: EXC_CRASH (SIGABRT)
+Exception Codes: 0x0000000000000000, 0x0000000000000000
+Triggered by Thread: 0
+
+Thread 0 name: Dispatch queue: com.apple.main-thread
+Thread 0 Crashed:
+0 libsystem_kernel.dylib 0x000000019409b270 0x194080000 + 111216
+1 libsystem_pthread.dylib 0x000000019413916c 0x194134000 + 20844
+2 libsystem_c.dylib 0x0000000194012b14 0x193fb0000 + 404244
+3 LiveloxMobileIos 0x0000000100cb4a5c mono_handle_native_sigsegv (mini-exceptions.c:2360)
+4 libsystem_platform.dylib 0x0000000194130958 0x19412c000 + 18776
+5 libsystem_pthread.dylib 0x000000019413916c 0x194134000 + 20844
+6 libsystem_c.dylib 0x0000000194012b14 0x193fb0000 + 404244
+7 LiveloxMobileIos 0x0000000100d78bac xamarin_unhandled_exception_handler (runtime.m:756)
+8 LiveloxMobileIos 0x0000000100cb4f80 mono_invoke_unhandled_exception_hook (mini-exceptions.c:2703)
+9 LiveloxMobileIos 0x0000000100cb4768 mono_handle_exception_internal (mini-exceptions.c:1713)
+10 LiveloxMobileIos 0x0000000100cb34d0 mono_handle_exception (mini-exceptions.c:1937)
+11 LiveloxMobileIos 0x0000000100cad7cc mono_arm_throw_exception (exceptions-arm64.c:379)
+12 LiveloxMobileIos 0x00000001003c38d4 rethrow_exception + 132
+13 LiveloxMobileIos 0x0000000100079d88 Livelox_Mobile_iOS_Application_Main_string__ + 72
+14 LiveloxMobileIos 0x00000001003876e8 wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr + 152
+15 LiveloxMobileIos 0x0000000100cc070c mono_jit_runtime_invoke (mini.c:6730)
+16 LiveloxMobileIos 0x0000000100d0fd90 mono_runtime_invoke (object.c:2842)
+17 LiveloxMobileIos 0x0000000100d13f18 mono_runtime_exec_main (object.c:4099)
+18 LiveloxMobileIos 0x0000000100d76cb0 xamarin_main (monotouch-main.m:400)
+19 LiveloxMobileIos 0x0000000100c889e0 main (main.arm64.m:75)
+20 libdyld.dylib 0x0000000193f82a04 0x193f80000 + 10756
+
+Thread 1 name: Dispatch queue: com.apple.libdispatch-manager
+Thread 1:
+0 libsystem_kernel.dylib 0x0000000194080c24 0x194080000 + 3108
+1 libdispatch.dylib 0x0000000193f65e6c 0x193f54000 + 73324
+2 libdispatch.dylib 0x0000000193f57998 0x193f54000 + 14744
+
+Thread 2:
+0 libsystem_kernel.dylib 0x000000019409bc78 0x194080000 + 113784
+1 libsystem_pthread.dylib 0x00000001941352d8 0x194134000 + 4824
+2 libsystem_pthread.dylib 0x0000000194134eec 0x194134000 + 3820
+
+Thread 3:
+0 libsystem_kernel.dylib 0x000000019409bc78 0x194080000 + 113784
+1 libsystem_pthread.dylib 0x00000001941352d8 0x194134000 + 4824
+2 libsystem_pthread.dylib 0x0000000194134eec 0x194134000 + 3820
+
+Thread 4:
+0 libsystem_kernel.dylib 0x000000019409bc78 0x194080000 + 113784
+1 libsystem_pthread.dylib 0x00000001941352d8 0x194134000 + 4824
+2 libsystem_pthread.dylib 0x0000000194134eec 0x194134000 + 3820
+
+Thread 5 name: WebThread
+Thread 5:
+0 libsystem_kernel.dylib 0x0000000194080e0c 0x194080000 + 3596
+1 libsystem_kernel.dylib 0x0000000194080c84 0x194080000 + 3204
+2 CoreFoundation 0x00000001826aa214 0x1825cc000 + 909844
+3 CoreFoundation 0x00000001826a8168 0x1825cc000 + 901480
+4 CoreFoundation 0x00000001825d51f0 0x1825cc000 + 37360
+5 WebCore 0x000000019085c61c 0x1907ac000 + 722460
+6 libsystem_pthread.dylib 0x0000000194137dc4 0x194134000 + 15812
+7 libsystem_pthread.dylib 0x0000000194137d20 0x194134000 + 15648
+8 libsystem_pthread.dylib 0x0000000194134ef4 0x194134000 + 3828
+
+Thread 6:
+0 libsystem_kernel.dylib 0x0000000194080e48 0x194080000 + 3656
+1 LiveloxMobileIos 0x0000000100d6ab84 mono_sem_wait (mono-semaphore.c:103)
+2 LiveloxMobileIos 0x0000000100ce4d38 finalizer_thread (gc.c:1077)
+3 LiveloxMobileIos 0x0000000100d54150 start_wrapper (threads.c:663)
+4 LiveloxMobileIos 0x0000000100d6b3d8 inner_start_thread (mono-threads-posix.c:88)
+5 libsystem_pthread.dylib 0x0000000194137dc4 0x194134000 + 15812
+6 libsystem_pthread.dylib 0x0000000194137d20 0x194134000 + 15648
+7 libsystem_pthread.dylib 0x0000000194134ef4 0x194134000 + 3828
+
+Thread 7:
+0 libsystem_kernel.dylib 0x000000019409b078 0x194080000 + 110712
+1 libsystem_pthread.dylib 0x0000000194136f28 0x194134000 + 12072
+2 LiveloxMobileIos 0x0000000100d57ec8 _wapi_handle_timedwait_signal_handle (handles.c:1520)
+3 LiveloxMobileIos 0x0000000100d5f938 WaitForSingleObjectEx (wait.c:196)
+4 LiveloxMobileIos 0x0000000100d51008 ves_icall_System_Threading_WaitHandle_WaitOne_internal (threads.c:1496)
+5 LiveloxMobileIos 0x000000010029f6ec wrapper_managed_to_native_System_Threading_WaitHandle_WaitOne_internal_System_Threading_WaitHandle_intptr_int_bool + 124
+6 LiveloxMobileIos 0x000000010029f950 System_Threading_WaitHandle_WaitOne_int_bool + 144
+7 LiveloxMobileIos 0x000000010029f9e8 System_Threading_WaitHandle_WaitOne_int + 40
+8 LiveloxMobileIos 0x000000010029efc0 System_Threading_Timer_Scheduler_SchedulerThread + 1344
+9 LiveloxMobileIos 0x000000010029ccb8 System_Threading_Thread_StartInternal + 168
+10 LiveloxMobileIos 0x00000001003876e8 wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr + 152
+11 LiveloxMobileIos 0x0000000100cc070c mono_jit_runtime_invoke (mini.c:6730)
+12 LiveloxMobileIos 0x0000000100d0fd90 mono_runtime_invoke (object.c:2842)
+13 LiveloxMobileIos 0x0000000100d541c4 start_wrapper (threads.c:669)
+14 LiveloxMobileIos 0x0000000100d6b3d8 inner_start_thread (mono-threads-posix.c:88)
+15 libsystem_pthread.dylib 0x0000000194137dc4 0x194134000 + 15812
+16 libsystem_pthread.dylib 0x0000000194137d20 0x194134000 + 15648
+17 libsystem_pthread.dylib 0x0000000194134ef4 0x194134000 + 3828
+
+Thread 8:
+0 libsystem_kernel.dylib 0x000000019409b078 0x194080000 + 110712
+1 libsystem_pthread.dylib 0x0000000194136f28 0x194134000 + 12072
+2 LiveloxMobileIos 0x0000000100d57ec8 _wapi_handle_timedwait_signal_handle (handles.c:1520)
+3 LiveloxMobileIos 0x0000000100d5f938 WaitForSingleObjectEx (wait.c:196)
+4 LiveloxMobileIos 0x0000000100d51008 ves_icall_System_Threading_WaitHandle_WaitOne_internal (threads.c:1496)
+5 LiveloxMobileIos 0x000000010029f6ec wrapper_managed_to_native_System_Threading_WaitHandle_WaitOne_internal_System_Threading_WaitHandle_intptr_int_bool + 124
+6 LiveloxMobileIos 0x000000010029f950 System_Threading_WaitHandle_WaitOne_int_bool + 144
+7 LiveloxMobileIos 0x000000010029b2d4 System_Threading_ManualResetEventSlim_Wait_int_System_Threading_CancellationToken + 420
+8 LiveloxMobileIos 0x00000001004178b0 System_Collections_Concurrent_BlockingCollection_1_TryTake_T__int_System_Threading_CancellationToken_bool + 464
+9 LiveloxMobileIos 0x0000000100417624 System_Collections_Concurrent_BlockingCollection_1_Take_System_Threading_CancellationToken + 52
+10 LiveloxMobileIos 0x00000001004175d4 System_Collections_Concurrent_BlockingCollection_1_Take + 52
+11 LiveloxMobileIos 0x00000001000889b0 Xamarin_Forms_Platform_iOS_CADisplayLinkTicker_StartThread + 32
+12 LiveloxMobileIos 0x000000010029ccb8 System_Threading_Thread_StartInternal + 168
+13 LiveloxMobileIos 0x00000001003876e8 wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr + 152
+14 LiveloxMobileIos 0x0000000100cc070c mono_jit_runtime_invoke (mini.c:6730)
+15 LiveloxMobileIos 0x0000000100d0fd90 mono_runtime_invoke (object.c:2842)
+16 LiveloxMobileIos 0x0000000100d541c4 start_wrapper (threads.c:669)
+17 LiveloxMobileIos 0x0000000100d6b3d8 inner_start_thread (mono-threads-posix.c:88)
+18 libsystem_pthread.dylib 0x0000000194137dc4 0x194134000 + 15812
+19 libsystem_pthread.dylib 0x0000000194137d20 0x194134000 + 15648
+20 libsystem_pthread.dylib 0x0000000194134ef4 0x194134000 + 3828
+
+Thread 9:
+0 libsystem_kernel.dylib 0x000000019409b570 0x194080000 + 111984
+1 libsystem_c.dylib 0x0000000193fbd92c 0x193fb0000 + 55596
+2 LiveloxMobileIos 0x0000000100d60eb0 SleepEx (wthreads.c:290)
+3 LiveloxMobileIos 0x0000000100d4e848 monitor_thread (threadpool.c:909)
+4 LiveloxMobileIos 0x0000000100d54150 start_wrapper (threads.c:663)
+5 LiveloxMobileIos 0x0000000100d6b3d8 inner_start_thread (mono-threads-posix.c:88)
+6 libsystem_pthread.dylib 0x0000000194137dc4 0x194134000 + 15812
+7 libsystem_pthread.dylib 0x0000000194137d20 0x194134000 + 15648
+8 libsystem_pthread.dylib 0x0000000194134ef4 0x194134000 + 3828
+
+Thread 10:
+0 libsystem_kernel.dylib 0x000000019409a3fc 0x194080000 + 107516
+1 LiveloxMobileIos 0x0000000100d5e08c _wapi_connect (sockets.c:309)
+2 LiveloxMobileIos 0x0000000100d4a61c ves_icall_System_Net_Sockets_Socket_Connect_internal (socket-io.c:1364)
+3 LiveloxMobileIos 0x000000010042c87c wrapper_managed_to_native_System_Net_Sockets_Socket_Connect_internal_intptr_System_Net_SocketAddress_int_ + 108
+4 LiveloxMobileIos 0x000000010042c9f8 System_Net_Sockets_Socket_Connect_System_Net_EndPoint + 312
+5 LiveloxMobileIos 0x0000000100466284 System_Net_WebConnection_Connect_System_Net_HttpWebRequest + 1172
+6 LiveloxMobileIos 0x000000010046906c System_Net_WebConnection_InitConnection_object + 348
+7 LiveloxMobileIos 0x000000010046b4b8 System_Net_WebConnection__WebConnectionm__0_object + 24
+8 LiveloxMobileIos 0x00000001003876e8 wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr + 152
+9 LiveloxMobileIos 0x0000000100cc070c mono_jit_runtime_invoke (mini.c:6730)
+10 LiveloxMobileIos 0x0000000100d0fd90 mono_runtime_invoke (object.c:2842)
+11 LiveloxMobileIos 0x0000000100d4d150 async_invoke_thread (threadpool.c:627)
+12 LiveloxMobileIos 0x0000000100d54150 start_wrapper (threads.c:663)
+13 LiveloxMobileIos 0x0000000100d6b3d8 inner_start_thread (mono-threads-posix.c:88)
+14 libsystem_pthread.dylib 0x0000000194137dc4 0x194134000 + 15812
+15 libsystem_pthread.dylib 0x0000000194137d20 0x194134000 + 15648
+16 libsystem_pthread.dylib 0x0000000194134ef4 0x194134000 + 3828
+
+
+Thread 11:
+0 libsystem_kernel.dylib 0x000000019409bc78 0x194080000 + 113784
+1 libsystem_pthread.dylib 0x00000001941352d8 0x194134000 + 4824
+2 libsystem_pthread.dylib 0x0000000194134eec 0x194134000 + 3820
+
+Thread 12:
+0 libsystem_kernel.dylib 0x0000000194080e60 0x194080000 + 3680
+1 LiveloxMobileIos 0x0000000100d6ab04 mono_sem_timedwait (mono-semaphore.c:64)
+2 LiveloxMobileIos 0x0000000100d4d3a8 async_invoke_thread (threadpool.c:1678)
+3 LiveloxMobileIos 0x0000000100d54150 start_wrapper (threads.c:663)
+4 LiveloxMobileIos 0x0000000100d6b3d8 inner_start_thread (mono-threads-posix.c:88)
+5 libsystem_pthread.dylib 0x0000000194137dc4 0x194134000 + 15812
+6 libsystem_pthread.dylib 0x0000000194137d20 0x194134000 + 15648
+7 libsystem_pthread.dylib 0x0000000194134ef4 0x194134000 + 3828
+
+Thread 13:
+0 libsystem_kernel.dylib 0x000000019409b498 0x194080000 + 111768
+1 LiveloxMobileIos 0x0000000100d6a734 mono_poll (mono-poll.c:81)
+2 LiveloxMobileIos 0x0000000100d4ebb0 tp_poll_wait (tpool-poll.c:186)
+3 LiveloxMobileIos 0x0000000100d54150 start_wrapper (threads.c:663)
+4 LiveloxMobileIos 0x0000000100d6b3d8 inner_start_thread (mono-threads-posix.c:88)
+5 libsystem_pthread.dylib 0x0000000194137dc4 0x194134000 + 15812
+6 libsystem_pthread.dylib 0x0000000194137d20 0x194134000 + 15648
+7 libsystem_pthread.dylib 0x0000000194134ef4 0x194134000 + 3828
+
+Thread 14:
+0 libsystem_kernel.dylib 0x0000000194080e60 0x194080000 + 3680
+1 LiveloxMobileIos 0x0000000100d6ab04 mono_sem_timedwait (mono-semaphore.c:64)
+2 LiveloxMobileIos 0x0000000100d4d3a8 async_invoke_thread (threadpool.c:1678)
+3 LiveloxMobileIos 0x0000000100d54150 start_wrapper (threads.c:663)
+4 LiveloxMobileIos 0x0000000100d6b3d8 inner_start_thread (mono-threads-posix.c:88)
+5 libsystem_pthread.dylib 0x0000000194137dc4 0x194134000 + 15812
+6 libsystem_pthread.dylib 0x0000000194137d20 0x194134000 + 15648
+7 libsystem_pthread.dylib 0x0000000194134ef4 0x194134000 + 3828
+
+Thread 15:
+0 libsystem_kernel.dylib 0x0000000194080e60 0x194080000 + 3680
+1 LiveloxMobileIos 0x0000000100d6ab04 mono_sem_timedwait (mono-semaphore.c:64)
+2 LiveloxMobileIos 0x0000000100d4d3a8 async_invoke_thread (threadpool.c:1678)
+3 LiveloxMobileIos 0x0000000100d54150 start_wrapper (threads.c:663)
+4 LiveloxMobileIos 0x0000000100d6b3d8 inner_start_thread (mono-threads-posix.c:88)
+5 libsystem_pthread.dylib 0x0000000194137dc4 0x194134000 + 15812
+6 libsystem_pthread.dylib 0x0000000194137d20 0x194134000 + 15648
+7 libsystem_pthread.dylib 0x0000000194134ef4 0x194134000 + 3828
+
+Thread 0 crashed with ARM Thread State (64-bit):
+x0: 0x0000000000000000 x1: 0x0000000000000000 x2: 0x0000000000000000 x3: 0x000000000000001e
+x4: 0x000000016fd898a8 x5: 0x0000000000000041 x6: 0x0000000000000000 x7: 0x0000000000000580
+x8: 0x0000000008000000 x9: 0x0000000004000000 x10: 0x0000000144f0c000 x11: 0x0000000000000fff
+x12: 0x000000000000001e x13: 0x0000000144f08000 x14: 0x0000000000003fff x15: 0x0000000000003fff
+x16: 0x0000000000000148 x17: 0x0000000000000010 x18: 0x0000000000000000 x19: 0x0000000000000006
+x20: 0x00000001980cb310 x21: 0x0000000101130de2 x22: 0x0000000101130e3f x23: 0x000000016fd89c08
+x24: 0x00000001980b20a8 x25: 0x0000000101130df2 x26: 0x0000000145b98890 x27: 0x0000000145813400
+x28: 0x0000000144d01900 fp: 0x000000016fd89ba0 lr: 0x0000000194139170
+sp: 0x000000016fd89b80 pc: 0x000000019409b270 cpsr: 0x00000000
+
+Binary Images:
+0x100074000 - 0x10114bfff LiveloxMobileIos arm64 &lt;73209ba92fe93e2283b8c560fed4017f&gt; /var/mobile/Containers/Bundle/Application/FF251F93-4640-4040-94A7-211EF722EEB4/LiveloxMobileIos.app/LiveloxMobileIos
+0x12005c000 - 0x120083fff dyld arm64 &lt;cbe9c4c5c080329aad62c7d2ef0e2b85&gt; /usr/lib/dyld
+0x180ecc000 - 0x18105ffff AVFoundation arm64 &lt;a0028621d1c030c18134b4d5ef0f4dd9&gt; /System/Library/Frameworks/AVFoundation.framework/AVFoundation
+0x181060000 - 0x1810c4fff libAVFAudio.dylib arm64 &lt;39796038cde83934a6b610acf7d390e5&gt; /System/Library/Frameworks/AVFoundation.framework/libAVFAudio.dylib
+0x181108000 - 0x181108fff Accelerate arm64 &lt;63d7fa4579f734c6b4305ec308608dbd&gt; /System/Library/Frameworks/Accelerate.framework/Accelerate
+0x181120000 - 0x18133ffff vImage arm64 &lt;c5393a13f8f63a369d024644d877d714&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vImage.framework/vImage
+0x181340000 - 0x1813e7fff libBLAS.dylib arm64 &lt;0c01cae9dbe3333fa4853cf8e348adfa&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libBLAS.dylib
+0x1813e8000 - 0x181762fff libLAPACK.dylib arm64 &lt;0446cba8ab043e1891ddc27c9ae49996&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libLAPACK.dylib
+0x181764000 - 0x181779fff libLinearAlgebra.dylib arm64 &lt;7337464e923d3027a2bb769e3fc2dbe4&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libLinearAlgebra.dylib
+0x18177c000 - 0x1817e4fff libvDSP.dylib arm64 &lt;e3883da1b693391199aacb00540ef7f7&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libvDSP.dylib
+0x1817e8000 - 0x18180bfff libvMisc.dylib arm64 &lt;ef13193c192138aaa45e2d828e51651b&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libvMisc.dylib
+0x18180c000 - 0x18180cfff vecLib arm64 &lt;43888b6baa1d36f7983ee020eee68835&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/vecLib
+0x181810000 - 0x18183efff Accounts arm64 &lt;83225ceee3cc33e69a7ac742274d5ac7&gt; /System/Library/Frameworks/Accounts.framework/Accounts
+0x181844000 - 0x1818c2fff AddressBook arm64 &lt;145b887f147d3c00817f1f44ff330355&gt; /System/Library/Frameworks/AddressBook.framework/AddressBook
+0x181bdc000 - 0x181e99fff AudioToolbox arm64 &lt;352dbb7ad03b344584e5e1dc8fa318ea&gt; /System/Library/Frameworks/AudioToolbox.framework/AudioToolbox
+0x182038000 - 0x182244fff CFNetwork arm64 &lt;bf52bd798c9d3f5ba5e08362235390c0&gt; /System/Library/Frameworks/CFNetwork.framework/CFNetwork
+0x1822e0000 - 0x182345fff CoreAudio arm64 &lt;2ab4708d783a337b959fb2ba9303fc26&gt; /System/Library/Frameworks/CoreAudio.framework/CoreAudio
+0x182368000 - 0x182389fff CoreBluetooth arm64 &lt;5bd3e8fb52a53a599839316ab88192f3&gt; /System/Library/Frameworks/CoreBluetooth.framework/CoreBluetooth
+0x18238c000 - 0x1825cafff CoreData arm64 &lt;4ef54d96f87d3a33bdef4dbaf09790fb&gt; /System/Library/Frameworks/CoreData.framework/CoreData
+0x1825cc000 - 0x182928fff CoreFoundation arm64 &lt;8f2c2cca86f435118367064f044c8af3&gt; /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+0x18292c000 - 0x182a8efff CoreGraphics arm64 &lt;2c031f12b007347d9c3c8a751fe1ce99&gt; /System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+0x182ae4000 - 0x182ae6fff libCGXType.A.dylib arm64 &lt;98ae8d0b5089349fbe74f872d8330fb4&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libCGXType.A.dylib
+0x182ae8000 - 0x182af3fff libCMSBuiltin.A.dylib arm64 &lt;37ed055eac74360f8e63e828615a0e09&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libCMSBuiltin.A.dylib
+0x182ce8000 - 0x182d06fff libRIP.A.dylib arm64 &lt;9395d153e0a53b4094d8d8ab473ecfab&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libRIP.A.dylib
+0x182d08000 - 0x182e35fff CoreImage arm64 &lt;1a8e265243ef3345bfc6ca14fb0210ff&gt; /System/Library/Frameworks/CoreImage.framework/CoreImage
+0x182e38000 - 0x182e96fff CoreLocation arm64 &lt;5852321673e230b8a1c108c8a09e9529&gt; /System/Library/Frameworks/CoreLocation.framework/CoreLocation
+0x182ed0000 - 0x182f8ffff CoreMedia arm64 &lt;4506da2462323c85bdeb8f641e12aeba&gt; /System/Library/Frameworks/CoreMedia.framework/CoreMedia
+0x182f90000 - 0x18307dfff CoreMotion arm64 &lt;381ea60514b03989bf24b8130d1c9f22&gt; /System/Library/Frameworks/CoreMotion.framework/CoreMotion
+0x183080000 - 0x1830f1fff CoreTelephony arm64 &lt;b3c45dc201db395794fbb112c020016e&gt; /System/Library/Frameworks/CoreTelephony.framework/CoreTelephony
+0x1830f4000 - 0x1831fcfff CoreText arm64 &lt;eb47ed3c7f4136d99c82d1869b3f4b9e&gt; /System/Library/Frameworks/CoreText.framework/CoreText
+0x183200000 - 0x18321cfff CoreVideo arm64 &lt;4344b0862c833616b45cb206c9ac616f&gt; /System/Library/Frameworks/CoreVideo.framework/CoreVideo
+0x1834f4000 - 0x18374afff Foundation arm64 &lt;d7439ba04f163911aa2abda9a2f2b3e7&gt; /System/Library/Frameworks/Foundation.framework/Foundation
+0x18374c000 - 0x183777fff GLKit arm64 &lt;171c2f8713a23d238763fc4e88627a84&gt; /System/Library/Frameworks/GLKit.framework/GLKit
+0x183884000 - 0x1838effff IOKit arm64 &lt;a39b5db69a3233b6856b023900115302&gt; /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit
+0x1838f0000 - 0x183b8afff ImageIO arm64 &lt;0d32c17abd6b32cfa917df3ae1eaf902&gt; /System/Library/Frameworks/ImageIO.framework/ImageIO
+0x183b8c000 - 0x18402cfff JavaScriptCore arm64 &lt;3e890e7de3bf3ceda33612556c9f0c6e&gt; /System/Library/Frameworks/JavaScriptCore.framework/JavaScriptCore
+0x1848a0000 - 0x1848a6fff MediaAccessibility arm64 &lt;fea45025be6a34b8a9dff8b5abd71bf3&gt; /System/Library/Frameworks/MediaAccessibility.framework/MediaAccessibility
+0x184acc000 - 0x184ee6fff MediaToolbox arm64 &lt;f7fb48bf487630648bfa4ff00147b80a&gt; /System/Library/Frameworks/MediaToolbox.framework/MediaToolbox
+0x184fbc000 - 0x18502ffff Metal arm64 &lt;7f8693f46d82335897d982222ec09dc7&gt; /System/Library/Frameworks/Metal.framework/Metal
+0x185030000 - 0x1850dffff MobileCoreServices arm64 &lt;aca65a0718ea3c9ca740ece1980f90ef&gt; /System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices
+0x186264000 - 0x18626efff OpenGLES arm64 &lt;4cb0e96b2de837a8ae59714fd9b44cc9&gt; /System/Library/Frameworks/OpenGLES.framework/OpenGLES
+0x186274000 - 0x186275fff libCVMSPluginSupport.dylib arm64 &lt;96c3edca748c3ba5a5a1256e4c3c8656&gt; /System/Library/Frameworks/OpenGLES.framework/libCVMSPluginSupport.dylib
+0x186278000 - 0x18627bfff libCoreFSCache.dylib arm64 &lt;b38ec88ba1a83251bb664f038d89fabb&gt; /System/Library/Frameworks/OpenGLES.framework/libCoreFSCache.dylib
+0x18627c000 - 0x186280fff libCoreVMClient.dylib arm64 &lt;cfbf3b0693623f74976be575b782551a&gt; /System/Library/Frameworks/OpenGLES.framework/libCoreVMClient.dylib
+0x186284000 - 0x18628efff libGFXShared.dylib arm64 &lt;8be7a7dc70893f0c97e4802c1ebdb7d6&gt; /System/Library/Frameworks/OpenGLES.framework/libGFXShared.dylib
+0x186290000 - 0x1862dbfff libGLImage.dylib arm64 &lt;e5c0d9d97e0a35dc9f547d1e9554b351&gt; /System/Library/Frameworks/OpenGLES.framework/libGLImage.dylib
+0x186844000 - 0x1869c8fff QuartzCore arm64 &lt;1457c2add35f3846a44c6fc48bae2ae2&gt; /System/Library/Frameworks/QuartzCore.framework/QuartzCore
+0x186c5c000 - 0x186caffff Security arm64 &lt;9d616146a16b35a198be8987a3524d43&gt; /System/Library/Frameworks/Security.framework/Security
+0x186e74000 - 0x186ee8fff SystemConfiguration arm64 &lt;0ef25273d9243e0c86f6daea42115cdd&gt; /System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration
+0x186ef0000 - 0x187868fff UIKit arm64 &lt;1b263519d017372db2bee18614a18c16&gt; /System/Library/Frameworks/UIKit.framework/UIKit
+0x18786c000 - 0x1878e5fff VideoToolbox arm64 &lt;8db8a306b5b439d18bf6255a13dc5f27&gt; /System/Library/Frameworks/VideoToolbox.framework/VideoToolbox
+0x1881d0000 - 0x1881d5fff AggregateDictionary arm64 &lt;600bfe6c8bfe34b9981e0d6ef8d25e13&gt; /System/Library/PrivateFrameworks/AggregateDictionary.framework/AggregateDictionary
+0x1883d4000 - 0x188408fff AirPlaySupport arm64 &lt;e77c8d1f28303cb3be223f3bbb838013&gt; /System/Library/PrivateFrameworks/AirPlaySupport.framework/AirPlaySupport
+0x188660000 - 0x1886a8fff AppSupport arm64 &lt;a295d6c1d63b375c8de4bfe65da9b832&gt; /System/Library/PrivateFrameworks/AppSupport.framework/AppSupport
+0x18880c000 - 0x188854fff AppleJPEG arm64 &lt;dcdc94f434b23d56ac7ed21aa69b82ea&gt; /System/Library/PrivateFrameworks/AppleJPEG.framework/AppleJPEG
+0x188880000 - 0x188889fff AppleSRP arm64 &lt;759a89d419f63b1d9b8abb1829baa94c&gt; /System/Library/PrivateFrameworks/AppleSRP.framework/AppleSRP
+0x18889c000 - 0x1888a7fff AssertionServices arm64 &lt;b39148c677be352d8f25150f73597cdc&gt; /System/Library/PrivateFrameworks/AssertionServices.framework/AssertionServices
+0x1888a8000 - 0x1888c4fff AssetsLibraryServices arm64 &lt;d34d345585d6350cbb60adb6b51d5128&gt; /System/Library/PrivateFrameworks/AssetsLibraryServices.framework/AssetsLibraryServices
+0x188940000 - 0x188944fff BTLEAudioController arm64 &lt;3f3f6f5d5349355bac97d9b6b786e931&gt; /System/Library/PrivateFrameworks/BTLEAudioController.framework/BTLEAudioController
+0x188948000 - 0x188964fff BackBoardServices arm64 &lt;6f387775b70b344f804a7c6034eb8766&gt; /System/Library/PrivateFrameworks/BackBoardServices.framework/BackBoardServices
+0x18896c000 - 0x1889a9fff BaseBoard arm64 &lt;f4765765ca64395ca48559ab06c41af7&gt; /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
+0x188cc4000 - 0x188ccefff CaptiveNetwork arm64 &lt;1fe8e861716635b9b5411641e4f93dfd&gt; /System/Library/PrivateFrameworks/CaptiveNetwork.framework/CaptiveNetwork
+0x188cd0000 - 0x188e1afff Celestial arm64 &lt;ddf2483c17703b8ea4ff2c3d957f39fe&gt; /System/Library/PrivateFrameworks/Celestial.framework/Celestial
+0x18952c000 - 0x18953efff CommonUtilities arm64 &lt;b0c064819893366ca1609c757cfaafb2&gt; /System/Library/PrivateFrameworks/CommonUtilities.framework/CommonUtilities
+0x189540000 - 0x189544fff CommunicationsFilter arm64 &lt;b13925af08823708a7ec1f460d260138&gt; /System/Library/PrivateFrameworks/CommunicationsFilter.framework/CommunicationsFilter
+0x1895cc000 - 0x1895d1fff ConstantClasses arm64 &lt;cab12fccf2a03f0884b59ddfc7d1f849&gt; /System/Library/PrivateFrameworks/ConstantClasses.framework/ConstantClasses
+0x189614000 - 0x189618fff CoreAUC arm64 &lt;5a9dfe0b01a539f080fa13c9295d7bae&gt; /System/Library/PrivateFrameworks/CoreAUC.framework/CoreAUC
+0x1896b0000 - 0x1896d6fff CoreDuet arm64 &lt;d9f9cb6c31fb361fb5021a5f0f4586b3&gt; /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
+0x1896e0000 - 0x1896f3fff CoreDuetDaemonProtocol arm64 &lt;a2de0737796f3614bca9004bed4ed5f3&gt; /System/Library/PrivateFrameworks/CoreDuetDaemonProtocol.framework/CoreDuetDaemonProtocol
+0x1896fc000 - 0x1896fefff CoreDuetDebugLogging arm64 &lt;5044815f2a1b3219b09083b63e2c4a0a&gt; /System/Library/PrivateFrameworks/CoreDuetDebugLogging.framework/CoreDuetDebugLogging
+0x189e00000 - 0x189e92fff CoreUI arm64 &lt;a8851f39a69d31f4952fca8c94f723f2&gt; /System/Library/PrivateFrameworks/CoreUI.framework/CoreUI
+0x189e94000 - 0x189f10fff CoreUtils arm64 &lt;87cfa6e71bf934248ca4aea975951a4d&gt; /System/Library/PrivateFrameworks/CoreUtils.framework/CoreUtils
+0x189f14000 - 0x189f1afff CrashReporterSupport arm64 &lt;3269b618bc553679b3bccac4d63d4d82&gt; /System/Library/PrivateFrameworks/CrashReporterSupport.framework/CrashReporterSupport
+0x18a1dc000 - 0x18a202fff DataAccessExpress arm64 &lt;c6c4ec04b3713357907877571d3794d1&gt; /System/Library/PrivateFrameworks/DataAccessExpress.framework/DataAccessExpress
+0x18a254000 - 0x18a25bfff DataMigration arm64 &lt;1248b6558b9a341ebe59a5f96dc691a7&gt; /System/Library/PrivateFrameworks/DataMigration.framework/DataMigration
+0x18a264000 - 0x18a265fff DiagnosticLogCollection arm64 &lt;185b5c8345e034b39c1881a3864e4284&gt; /System/Library/PrivateFrameworks/DiagnosticLogCollection.framework/DiagnosticLogCollection
+0x18a268000 - 0x18a288fff DictionaryServices arm64 &lt;a7faf6dee31330c9a0b3378eae91797d&gt; /System/Library/PrivateFrameworks/DictionaryServices.framework/DictionaryServices
+0x18a2b0000 - 0x18a2d6fff EAP8021X arm64 &lt;920d64a4105e346996d771f7f022635e&gt; /System/Library/PrivateFrameworks/EAP8021X.framework/EAP8021X
+0x18a438000 - 0x18a865fff FaceCore arm64 &lt;797f59eb23d63717ae6ee79a3ca5b09f&gt; /System/Library/PrivateFrameworks/FaceCore.framework/FaceCore
+0x18a898000 - 0x18a898fff FontServices arm64 &lt;5a4ecba4c96d306f8bf5acc4c43b6120&gt; /System/Library/PrivateFrameworks/FontServices.framework/FontServices
+0x18a89c000 - 0x18a97cfff libFontParser.dylib arm64 &lt;7bd1bf8aed1738ee9406cd6169ffa287&gt; /System/Library/PrivateFrameworks/FontServices.framework/libFontParser.dylib
+0x18a9a4000 - 0x18a9b3fff libGSFontCache.dylib arm64 &lt;1218a74b3de53819a48ef2d195351242&gt; /System/Library/PrivateFrameworks/FontServices.framework/libGSFontCache.dylib
+0x18aac0000 - 0x18aae0fff FrontBoardServices arm64 &lt;947af883c6d5381eac90af6c7a2980ea&gt; /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices
+0x18b62c000 - 0x18b912fff GeoServices arm64 &lt;d4c950f074e134de993bcbce075282f5&gt; /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+0x18b914000 - 0x18b927fff GraphicsServices arm64 &lt;8720ed4423eb322ba4f7a75ef0f3cbd9&gt; /System/Library/PrivateFrameworks/GraphicsServices.framework/GraphicsServices
+0x18bc84000 - 0x18bceffff IDS arm64 &lt;075f1fa3ae3b3016a0570662450e3d1f&gt; /System/Library/PrivateFrameworks/IDS.framework/IDS
+0x18bcf0000 - 0x18bd1efff IDSFoundation arm64 &lt;591f53c772503e298cefa279eb96ae92&gt; /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
+0x18bf04000 - 0x18bf75fff IMFoundation arm64 &lt;57dc25b2991f3b7f827256b8e167a826&gt; /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
+0x18bf80000 - 0x18bf83fff IOAccelerator arm64 &lt;473f8d645a6f37a1bd4d899b1f17c249&gt; /System/Library/PrivateFrameworks/IOAccelerator.framework/IOAccelerator
+0x18bf88000 - 0x18bf8ffff IOMobileFramebuffer arm64 &lt;2cc2449ff2cf322792233e7dd9eb2f1e&gt; /System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer
+0x18bf90000 - 0x18bf96fff IOSurface arm64 &lt;2c65b7a1f55c340c989089a72531a34d&gt; /System/Library/PrivateFrameworks/IOSurface.framework/IOSurface
+0x18bf98000 - 0x18bf9afff IOSurfaceAccelerator arm64 &lt;d0567d1fa91b3607804d86edf9ef1bb5&gt; /System/Library/PrivateFrameworks/IOSurfaceAccelerator.framework/IOSurfaceAccelerator
+0x18c05c000 - 0x18c09efff LanguageModeling arm64 &lt;2ad559e1bc9035afa7da0d18649ace1b&gt; /System/Library/PrivateFrameworks/LanguageModeling.framework/LanguageModeling
+0x18c244000 - 0x18c2fffff ManagedConfiguration arm64 &lt;a02b247ce2d6384c9c5af7a09905e378&gt; /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
+0x18c310000 - 0x18c311fff Marco arm64 &lt;f5b75855f02b33c9a7bda6b52b9604ad&gt; /System/Library/PrivateFrameworks/Marco.framework/Marco
+0x18c314000 - 0x18c39afff MediaControlSender arm64 &lt;8ffa36e1d6d43e8287cc31f4619ee542&gt; /System/Library/PrivateFrameworks/MediaControlSender.framework/MediaControlSender
+0x18c44c000 - 0x18c464fff MediaRemote arm64 &lt;6c637d6f82c3338a8f41601bed98f037&gt; /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
+0x18c468000 - 0x18c47dfff MediaServices arm64 &lt;a5c6864de8513b5bbaecece59a6cb6bf&gt; /System/Library/PrivateFrameworks/MediaServices.framework/MediaServices
+0x18c634000 - 0x18c643fff MobileAsset arm64 &lt;95a01014d4cd3f83b1581ff73c325a00&gt; /System/Library/PrivateFrameworks/MobileAsset.framework/MobileAsset
+0x18c6b0000 - 0x18c6b9fff MobileInstallation arm64 &lt;abcbd119ce1b34e594fe14267f06901f&gt; /System/Library/PrivateFrameworks/MobileInstallation.framework/MobileInstallation
+0x18c6bc000 - 0x18c6cbfff MobileKeyBag arm64 &lt;0aaa6c56f086377eae1a0fd4842b6631&gt; /System/Library/PrivateFrameworks/MobileKeyBag.framework/MobileKeyBag
+0x18c708000 - 0x18c70bfff MobileSystemServices arm64 &lt;257e956743783e93950dd1c837a95206&gt; /System/Library/PrivateFrameworks/MobileSystemServices.framework/MobileSystemServices
+0x18c734000 - 0x18c745fff MobileWiFi arm64 &lt;2494d9252f2c324aabdbf222a7aa49c6&gt; /System/Library/PrivateFrameworks/MobileWiFi.framework/MobileWiFi
+0x18cb08000 - 0x18cb0efff Netrb arm64 &lt;907181c6c4543d79830b1e8afe905802&gt; /System/Library/PrivateFrameworks/Netrb.framework/Netrb
+0x18cb10000 - 0x18cb17fff NetworkStatistics arm64 &lt;968f052ab6b638368b8e9c78d5d91e0b&gt; /System/Library/PrivateFrameworks/NetworkStatistics.framework/NetworkStatistics
+0x18cb44000 - 0x18cb47fff OAuth arm64 &lt;b08fc7a4067f3e00b352bc9bf34e6778&gt; /System/Library/PrivateFrameworks/OAuth.framework/OAuth
+0x18d31c000 - 0x18d36afff OpenCL arm64 &lt;fc50451080f83b8d8e2760637df05097&gt; /System/Library/PrivateFrameworks/OpenCL.framework/OpenCL
+0x18d4cc000 - 0x18d4f5fff PersistentConnection arm64 &lt;a5c51d4d38ab3dab8d28a072736a8b43&gt; /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
+0x18d940000 - 0x18d98dfff PhysicsKit arm64 &lt;8a360488f4163915ad8a9306ce5cd711&gt; /System/Library/PrivateFrameworks/PhysicsKit.framework/PhysicsKit
+0x18d9ac000 - 0x18d9b4fff PowerLog arm64 &lt;139ebc9d315f3601830f26caca9244bf&gt; /System/Library/PrivateFrameworks/PowerLog.framework/PowerLog
+0x18dcd8000 - 0x18dd1ffff PrintKit arm64 &lt;31e2f9ed34cf3d0a9ec70877ad234682&gt; /System/Library/PrivateFrameworks/PrintKit.framework/PrintKit
+0x18dd24000 - 0x18dde3fff ProofReader arm64 &lt;1ee3092b98653617b615fd9be27e169c&gt; /System/Library/PrivateFrameworks/ProofReader.framework/ProofReader
+0x18ddf8000 - 0x18de06fff ProtocolBuffer arm64 &lt;21e478eecc2737868e0489e8fe2c52e7&gt; /System/Library/PrivateFrameworks/ProtocolBuffer.framework/ProtocolBuffer
+0x18de48000 - 0x18dec6fff Quagga arm64 &lt;d5c3bff934ea3e5e8262da95d7ead3ec&gt; /System/Library/PrivateFrameworks/Quagga.framework/Quagga
+0x18e3c8000 - 0x18e3e8fff SpringBoardServices arm64 &lt;a32b01002d963f7e9bf2289225899561&gt; /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
+0x18e7e4000 - 0x18e940fff StoreServices arm64 &lt;f2d0a6c2352236438fbf60e8890d0c35&gt; /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
+0x18ea34000 - 0x18ea37fff TCC arm64 &lt;1331002ead2a352cbdfd8c99c2a3196c&gt; /System/Library/PrivateFrameworks/TCC.framework/TCC
+0x18ea88000 - 0x18ead4fff TelephonyUtilities arm64 &lt;ac254fb05b803a4598448b583656caa2&gt; /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
+0x18fc30000 - 0x18fc5efff TextInput arm64 &lt;3824ec277bae36b6ab93ebd48905c86b&gt; /System/Library/PrivateFrameworks/TextInput.framework/TextInput
+0x18fd3c000 - 0x18fe16fff UIFoundation arm64 &lt;0589105a24a938e08a91c2e6cd07ebae&gt; /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
+0x18fe44000 - 0x18fe47fff UserFS arm64 &lt;8f03819273b73593b81e5ec31ed8a3c1&gt; /System/Library/PrivateFrameworks/UserFS.framework/UserFS
+0x1907ac000 - 0x1916d3fff WebCore arm64 &lt;7f419cda818d3e1cb5743b0154c10169&gt; /System/Library/PrivateFrameworks/WebCore.framework/WebCore
+0x1916d4000 - 0x1917a6fff WebKitLegacy arm64 &lt;dfde04f7799f3533bdfa9ebae7857f51&gt; /System/Library/PrivateFrameworks/WebKitLegacy.framework/WebKitLegacy
+0x192948000 - 0x192951fff libAccessibility.dylib arm64 &lt;218c2118cd6e3ceb8a657c8faa3baece&gt; /usr/lib/libAccessibility.dylib
+0x192be4000 - 0x192bfffff libCRFSuite.dylib arm64 &lt;02b19f29c72f3e7a8994390e8b976329&gt; /usr/lib/libCRFSuite.dylib
+0x192c40000 - 0x192d77fff libFosl_dynamic.dylib arm64 &lt;2fccec42906a3c15a4cb64bfaf070ff7&gt; /usr/lib/libFosl_dynamic.dylib
+0x192d9c000 - 0x192db6fff libMobileGestalt.dylib arm64 &lt;0671899969373e4a9c00d1d3b67efd2c&gt; /usr/lib/libMobileGestalt.dylib
+0x192de8000 - 0x192de9fff libSystem.B.dylib arm64 &lt;3c676f137a7a380f9d2ee3d176131c75&gt; /usr/lib/libSystem.B.dylib
+0x192e6c000 - 0x192ebafff libTelephonyUtilDynamic.dylib arm64 &lt;b1a777b3a0f33fb7bb6a173b3c06bdf2&gt; /usr/lib/libTelephonyUtilDynamic.dylib
+0x192fe4000 - 0x19300efff libarchive.2.dylib arm64 &lt;458c2e89d2e63110a68c8a3fb5328ab7&gt; /usr/lib/libarchive.2.dylib
+0x193050000 - 0x193060fff libbsm.0.dylib arm64 &lt;4abeca43c0773000ac890e047bb222ef&gt; /usr/lib/libbsm.0.dylib
+0x193064000 - 0x193074fff libbz2.1.0.dylib arm64 &lt;f32fe77dd04734cf9a9d48c62c3ffa85&gt; /usr/lib/libbz2.1.0.dylib
+0x193078000 - 0x1930cefff libc++.1.dylib arm64 &lt;ee592e72d20d34fb81ebc7f8dda898ac&gt; /usr/lib/libc++.1.dylib
+0x1930d0000 - 0x1930f2fff libc++abi.dylib arm64 &lt;a409707dc8ce3d9f9f60ccff239dd011&gt; /usr/lib/libc++abi.dylib
+0x1930f8000 - 0x193109fff libcmph.dylib arm64 &lt;eeebc89e4ec63c9a82b08db05f267444&gt; /usr/lib/libcmph.dylib
+0x193150000 - 0x19316dfff libextension.dylib arm64 &lt;89754e963f1d34d0af1abdf6cdbcdc17&gt; /usr/lib/libextension.dylib
+0x1931a4000 - 0x193297fff libiconv.2.dylib arm64 &lt;1a4643b9a813384286e0cf84f2a9e011&gt; /usr/lib/libiconv.2.dylib
+0x193298000 - 0x19347ffff libicucore.A.dylib arm64 &lt;c185b14bc4303f8cac8b2d82880818bd&gt; /usr/lib/libicucore.A.dylib
+0x193494000 - 0x193495fff liblangid.dylib arm64 &lt;c6687d2f9df43d86bf316ef0b3a44e0b&gt; /usr/lib/liblangid.dylib
+0x193498000 - 0x1934a4fff liblockdown.dylib arm64 &lt;bd3a926b7141304587be3ba34355c11c&gt; /usr/lib/liblockdown.dylib
+0x1934a8000 - 0x1934c1fff liblzma.5.dylib arm64 &lt;60c964271c2a3e1b8bd6d174f69a2f30&gt; /usr/lib/liblzma.5.dylib
+0x193898000 - 0x1938b0fff libmis.dylib arm64 &lt;c55d38ebfb773176a11e4a3de1900e8e&gt; /usr/lib/libmis.dylib
+0x1938fc000 - 0x193af8fff libobjc.A.dylib arm64 &lt;3dfe5a83ab92338b8e45b3b7fe4edb6c&gt; /usr/lib/libobjc.A.dylib
+0x193be0000 - 0x193bfdfff libresolv.9.dylib arm64 &lt;c12ecdb1696f3542b66be11f09b2b429&gt; /usr/lib/libresolv.9.dylib
+0x193c30000 - 0x193d0dfff libsqlite3.dylib arm64 &lt;62d0e2b07cb436a79313f8fc1c81470b&gt; /usr/lib/libsqlite3.dylib
+0x193d64000 - 0x193d96fff libtidy.A.dylib arm64 &lt;821b9e84d37637658182b872d3fed0aa&gt; /usr/lib/libtidy.A.dylib
+0x193da8000 - 0x193e96fff libxml2.2.dylib arm64 &lt;4d23734e8cd6356bbbeb51968458abb6&gt; /usr/lib/libxml2.2.dylib
+0x193e98000 - 0x193ec1fff libxslt.1.dylib arm64 &lt;521c7c60e95b352ca40a9e0d0c56ae24&gt; /usr/lib/libxslt.1.dylib
+0x193ec4000 - 0x193ed5fff libz.1.dylib arm64 &lt;928345b4ed713766a1a39a420aa2118c&gt; /usr/lib/libz.1.dylib
+0x193ed8000 - 0x193edcfff libcache.dylib arm64 &lt;f9e311097bc63af996c8079d8a8ae5b1&gt; /usr/lib/system/libcache.dylib
+0x193ee0000 - 0x193eecfff libcommonCrypto.dylib arm64 &lt;1815a24510133e849239b8dbdabb3aab&gt; /usr/lib/system/libcommonCrypto.dylib
+0x193ef0000 - 0x193ef3fff libcompiler_rt.dylib arm64 &lt;adbd24d2e5113f32bfed4f387c6982a6&gt; /usr/lib/system/libcompiler_rt.dylib
+0x193ef4000 - 0x193efbfff libcopyfile.dylib arm64 &lt;65b38b57f99631fdb5b53ff412cb28a3&gt; /usr/lib/system/libcopyfile.dylib
+0x193efc000 - 0x193f51fff libcorecrypto.dylib arm64 &lt;889941c9cd223dcebbcdbdb327097242&gt; /usr/lib/system/libcorecrypto.dylib
+0x193f54000 - 0x193f7cfff libdispatch.dylib arm64 &lt;b7282712caa63de08f86813768cffcbf&gt; /usr/lib/system/libdispatch.dylib
+0x193f80000 - 0x193f82fff libdyld.dylib arm64 &lt;6f53e5e1c04a366896ffee9246893304&gt; /usr/lib/system/libdyld.dylib
+0x193f84000 - 0x193f84fff liblaunch.dylib arm64 &lt;855ac551fdde3f77b53f83cb1b3ebdbf&gt; /usr/lib/system/liblaunch.dylib
+0x193f88000 - 0x193f8dfff libmacho.dylib arm64 &lt;3a37a2820c9037fc84426f9061147c47&gt; /usr/lib/system/libmacho.dylib
+0x193f90000 - 0x193f91fff libremovefile.dylib arm64 &lt;790de8759aa23cec9648d34b11bbbfc8&gt; /usr/lib/system/libremovefile.dylib
+0x193f94000 - 0x193fa9fff libsystem_asl.dylib arm64 &lt;bf21ee177b723e82b17b1a66811f5181&gt; /usr/lib/system/libsystem_asl.dylib
+0x193fac000 - 0x193fadfff libsystem_blocks.dylib arm64 &lt;0839472ff8773bdea33e5595129f7c59&gt; /usr/lib/system/libsystem_blocks.dylib
+0x193fb0000 - 0x194030fff libsystem_c.dylib arm64 &lt;5eee09894c023d22afe4d420fb35a9b5&gt; /usr/lib/system/libsystem_c.dylib
+0x194034000 - 0x194036fff libsystem_configuration.dylib arm64 &lt;a249ab4804eb30c48bf8ec515fbe1521&gt; /usr/lib/system/libsystem_configuration.dylib
+0x194038000 - 0x194039fff libsystem_coreservices.dylib arm64 &lt;ef301d23ae3a33c08e9f5a9e3714c47b&gt; /usr/lib/system/libsystem_coreservices.dylib
+0x19403c000 - 0x19404cfff libsystem_coretls.dylib arm64 &lt;b3849f2889013d9cb6fda10999e2d1f6&gt; /usr/lib/system/libsystem_coretls.dylib
+0x194050000 - 0x194058fff libsystem_dnssd.dylib arm64 &lt;d703aff7c15b3347adb1e649587ded5c&gt; /usr/lib/system/libsystem_dnssd.dylib
+0x19405c000 - 0x19407dfff libsystem_info.dylib arm64 &lt;e319fda9213836949d6d9385b4546b3c&gt; /usr/lib/system/libsystem_info.dylib
+0x194080000 - 0x1940a0fff libsystem_kernel.dylib arm64 &lt;3e54c7bc049e391b810aba73f0ab6b0f&gt; /usr/lib/system/libsystem_kernel.dylib
+0x1940a4000 - 0x1940c0fff libsystem_m.dylib arm64 &lt;d8c4d183d3483d18b527447c072ee9da&gt; /usr/lib/system/libsystem_m.dylib
+0x1940c4000 - 0x1940ddfff libsystem_malloc.dylib arm64 &lt;2540c115b94932fb9956d69946caee34&gt; /usr/lib/system/libsystem_malloc.dylib
+0x1940e0000 - 0x194117fff libsystem_network.dylib arm64 &lt;75b6934e414631139f85e5fb793d8597&gt; /usr/lib/system/libsystem_network.dylib
+0x194118000 - 0x19411efff libsystem_networkextension.dylib arm64 &lt;f081518337df3f30b03a57b8e8e71ec2&gt; /usr/lib/system/libsystem_networkextension.dylib
+0x194120000 - 0x19412afff libsystem_notify.dylib arm64 &lt;9843d03ada163e9685d4ffe88f6c0041&gt; /usr/lib/system/libsystem_notify.dylib
+0x19412c000 - 0x194130fff libsystem_platform.dylib arm64 &lt;12ff138b89f33dbf954451dfef6d3365&gt; /usr/lib/system/libsystem_platform.dylib
+0x194134000 - 0x19413cfff libsystem_pthread.dylib arm64 &lt;c69b9555ae9d3d1191f057c7b78fcd92&gt; /usr/lib/system/libsystem_pthread.dylib
+0x194140000 - 0x194142fff libsystem_sandbox.dylib arm64 &lt;70d36da6677d36fdae465cdb40ce55c3&gt; /usr/lib/system/libsystem_sandbox.dylib
+0x194144000 - 0x194147fff libsystem_stats.dylib arm64 &lt;2b9b5540e37e3cda9e6785ed43258bb1&gt; /usr/lib/system/libsystem_stats.dylib
+0x194148000 - 0x19414efff libsystem_trace.dylib arm64 &lt;de796458167b37c395e5528e3155f534&gt; /usr/lib/system/libsystem_trace.dylib
+0x194150000 - 0x194155fff libunwind.dylib arm64 &lt;70db9f10a72731588be15afffca71205&gt; /usr/lib/system/libunwind.dylib
+0x194158000 - 0x19417bfff libxpc.dylib arm64 &lt;3c982bc25b46305a9a093c3d15332820&gt; /usr/lib/system/libxpc.dylib</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Samantha Houts [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-04-13 18:00:45 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thank you for your bug report. As we have not received the information requested, we cannot properly triage your bug and are marking it resolved.
+
+Warm regards,
+Xamarin Forms Team</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

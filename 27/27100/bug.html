@@ -1,0 +1,1340 @@
+<html lang="en"><head>
+    <title>27100 – NSInternalInconsistencyException using Maps</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Forms
+                 bz_component_Forms
+                 bz_bug_27100 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;27100</span>
+
+        <span id="subtitle" class="subheader">NSInternalInconsistencyException using Maps</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2016-04-08 19:33:34 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2016-04-08 19:33:34">
+  <input type="hidden" name="id" value="27100">
+  <input type="hidden" name="token" value="1559168528-nzBna1VZjnYbo8eDLe7j0nM3hfOXWlgW9yVZbn7_wio">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;27100</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">NSInternalInconsistencyException using Maps</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>NSInternalInconsistencyException using Maps
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Forms
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Xamarin
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">Forms
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>1.3.3
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">Macintosh
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Jason Smith [MSFT]</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2015-02-16 10:13 UTC by <span class="vcard"><span class="fn">fabio.marcone@gmail.com</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2016-04-08 19:33 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>5
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="abhishekk">abhishekk</option>
+                <option value="eric.maupin">eric.maupin</option>
+                <option value="jas">jas</option>
+                <option value="sahou">sahou</option>
+                <option value="seth.rosetter">seth.rosetter</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">ios crash maps
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_image_png">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=9850&amp;file=Schermata%202015%2002%2016%20alle%2016.12.02.png" title="View the content of the attachment">
+          <b>Screenshot</b></a>
+
+          <span class="bz_attach_extra_info">
+              (82.28 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_9850" title="Go to the comment associated with the attachment">2015-02-16 10:13 UTC</a>,
+
+            <span class="vcard"><span class="fn">fabio.marcone@gmail.com</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=9850&amp;file=Schermata%202015%2002%2016%20alle%2016.12.02.png">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/xamarin">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">fabio.marcone@gmail.com</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-16 10:13:48 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=9850&amp;file=Schermata%202015%2002%2016%20alle%2016.12.02.png" name="attach_9850" title="Screenshot">attachment 9850</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=9850&amp;file=Schermata%202015%2002%2016%20alle%2016.12.02.png" title="Screenshot">[details]</a></span>
+Screenshot
+
+Hi all,
+I'm using a Map with pins in a NavigationPage. 
+When I go to root page I get an exception on iPhone 5c with iOS 8.1.3:
+Unhandled managed exception: Objective-C exception thrown. Name: NSInternalInconsistencyException Reason: An instance 0x175f45e0 of class MKPointAnnotation was deallocated while key value observers were still registered with it. Current observation info: (
+Context: 0x0, Property: 0x1744d210&gt;
+) (Foundation.MonoTouchException)
+at ObjCRuntime.Runtime.ThrowNSException (IntPtr ns_exception) [0x00000] in /Developer/MonoTouch/Source/maccore/src/ObjCRuntime/Runtime.cs:156
+at ObjCRuntime.Runtime.throw_ns_exception (IntPtr exc) [0x00000] in :0
+at (wrapper native-to-managed) ObjCRuntime.Runtime:throw_ns_exception (intptr)
+at (wrapper managed-to-native) UIKit.UIApplication:UIApplicationMain (int,string[],intptr,intptr)
+at UIKit.UIApplication.Main (System.String[] args, IntPtr principal, IntPtr delegate) [0x00005] in /Developer/MonoTouch/Source/monotouch/src/UIKit/UIApplication.cs:62
+at UIKit.UIApplication.Main (System.String[] args, System.String principalClassName, System.String delegateClassName) [0x0001c] in /Developer/MonoTouch/Source/monotouch/src/UIKit/UIApplication.cs:45
+at &lt;project name&gt;.Application.Main (System.String[] args) [0x00008] in &lt;project dir&gt;/Main.cs:17 
+
+The same code in simulator runs without error.
+
+Thanks.
+Fabio</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Abhishek</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-17 06:27:37 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have tried this issue and unable to reproduce the reported behavior at my end.
+
+Steps To Reproduce:
+1. Downloaded map sample from <a href="http://developer.xamarin.com/guides/cross-platform/xamarin-forms/working-with/maps/">http://developer.xamarin.com/guides/cross-platform/xamarin-forms/working-with/maps/</a>
+2. Update the package Xamarin.Forms 1.3.4.6331-pre4 and Xamarin.Forms.Maps 1.3.4.6331-pre4.
+3. Run the application on the device.
+
+**Actual Result**
+Application deploy successfully and when I go to root page with pins it does not gives any Exception.
+
+If You are still getting this issue at yours end. Could you please provide the sample test with the bug so that I can reproduce the reported behavior at my end?
+Also provide the IDE Log, iOS Device log, Build Info and Application Output along with exception.
+
+IDE Log via Help-&gt; Open Log Directory.
+iOS Device Log via-&gt;View-&gt; Pads-&gt; iOS Device Log.
+Build Info:Xamarin Studio-&gt; About Xamarin Studio-&gt; Show Details.
+
+Build Info:
+Xamarin.Forms 1.3.4.6331-pre4
+Xamarin.Forms.Maps 1.3.4.6331-pre4
+
+=== Xamarin Studio ===
+
+Version 5.7.1 (build 17)
+Installation UUID: 93e693b0-b53d-40f4-b29c-b61ff5cbe892
+Runtime:
+	Mono 3.12.0 ((detached/de2f33f)
+	GTK+ 2.24.23 (Raleigh theme)
+
+	Package version: 312000076
+
+=== Apple Developer Tools ===
+
+Xcode 6.1 (6604)
+Build 6A1052d
+
+=== Xamarin.Mac ===
+
+Version: 1.12.0.4 (Enterprise Edition)
+
+=== Xamarin.Android ===
+
+Version: 4.20.0.28 (Enterprise Edition)
+Android SDK: /Users/xamarin23/Desktop/android-sdk-macosx
+	Supported Android versions:
+		2.1    (API level 7)
+		2.2    (API level 8)
+		2.3    (API level 10)
+		3.1    (API level 12)
+		4.0    (API level 14)
+		4.0.3  (API level 15)
+		4.1    (API level 16)
+		4.2    (API level 17)
+		4.3    (API level 18)
+		4.4    (API level 19)
+		4.4.87 (API level 20)
+		5.0    (API level 21)
+Java SDK: /usr
+java version "1.7.0_71"
+Java(TM) SE Runtime Environment (build 1.7.0_71-b14)
+Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
+
+=== Xamarin.iOS ===
+
+Version: 8.6.1.26 (Enterprise Edition)
+Hash: 98ee412
+Branch: 
+Build date: 2015-02-11 04:37:05-0500
+
+=== Build Information ===
+
+Release ID: 507010017
+Git revision: 0bc7d3550b6b088ac25b08dcf7bbe73bcc8658b3
+Build date: 2015-02-03 19:43:29-05
+Xamarin addins: f7b7d34419c9ec24501bfa7c658e80a6305613e0
+
+=== Operating System ===
+
+Mac OS X 10.10.0
+Darwin 800BC.local 14.0.0 Darwin Kernel Version 14.0.0
+    Fri Sep 19 00:26:44 PDT 2014
+    root:xnu-2782.1.97~2/RELEASE_X86_64 x86_64</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">fabio.marcone@gmail.com</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-17 11:53:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I will give you requested info but I will update Forms in the next days, I can't now.
+
+Full Exception:
+Foundation.MonoTouchException: Objective-C exception thrown.  Name: NSInternalInconsistencyException Reason: An instance 0x1c2119b0 of class MKPointAnnotation was deallocated while key value observers were still registered with it. Current observation info: &lt;NSKeyValueObservationInfo 0x1c211970&gt; (
+&lt;NSKeyValueObservance 0x1c211900: Observer: 0x18c33760, Key path: coordinate, Options: &lt;New: NO, Old: YES, Prior: YES&gt; Context: 0x0, Property: 0x19ea5540&gt;
+)
+  at ObjCRuntime.Runtime.ThrowNSException (IntPtr ns_exception) [0x00000] in /Developer/MonoTouch/Source/maccore/src/ObjCRuntime/Runtime.cs:156
+  at ObjCRuntime.Runtime.throw_ns_exception (IntPtr exc) [0x00000] in &lt;filename unknown&gt;:0
+  at at (wrapper native-to-managed) ObjCRuntime.Runtime:throw_ns_exception (intptr)
+  at at (wrapper managed-to-native) UIKit.UIApplication:UIApplicationMain (int,string[],intptr,intptr)
+  at UIKit.UIApplication.Main (System.String[] args, IntPtr principal, IntPtr delegate) [0x00005] in /Developer/MonoTouch/Source/monotouch/src/UIKit/UIApplication.cs:62
+  at UIKit.UIApplication.Main (System.String[] args, System.String principalClassName, System.String delegateClassName) [0x0001c] in /Developer/MonoTouch/Source/monotouch/src/UIKit/UIApplication.cs:45
+  at AbruzzoByNight.iOS.Application.Main (System.String[] args) [0x00008] in &lt;project dir&gt;/iOS/Main.cs:16
+
+iOS Device log:
+Feb 17 17:47:34 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884454.957486]: scanCache: Purging scan cache
+Feb 17 17:47:56 iPhone-di-Fabio MobileMail[139] &lt;Warning&gt;: Data provider timed out waiting for sound from fetch! Will not play sound for upcoming bulletin.
+Feb 17 17:48:13 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884493.843677]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority normal on en0
+Feb 17 17:48:13 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884493.844507]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:48:13 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884493.845179]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:48:13 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884493.845746]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:48:14 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884494.345139]: Completed Apple80211ScanAsync on en0 (0)
+Feb 17 17:48:14 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884494.347754]: Async scan request completed for "locationd" (0)
+Feb 17 17:48:15 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884495.365937]: __WiFiLQAMgrIsLinkBad: LQAManager BadLinkRssi -82
+Feb 17 17:48:21 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884501.352864]: scanCache: Purging scan cache
+Feb 17 17:48:28 iPhone-di-Fabio backboardd[57] &lt;Notice&gt;: ALS: SetDisplayFactor: factor=0.0100
+Feb 17 17:48:28 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884508.549515]: Device display is ON
+Feb 17 17:48:28 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884508.549921]: __WiFiManagerSetEnableState: state TRUE, manager-&gt;enable.setting TRUE, manager-&gt;unlockedSinceBoot TRUE
+Feb 17 17:48:28 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884508.551348]: Already connected to Telecom-48951197.
+Feb 17 17:48:28 iPhone-di-Fabio backboardd[57] &lt;Notice&gt;: MultitouchHID: detection mode: 255-&gt;6 (deferring until bootloaded)
+Feb 17 17:48:28 iPhone-di-Fabio backboardd[57] &lt;Notice&gt;: ALS: SetDisplayFactor: factor=1.0000
+Feb 17 17:48:28 iPhone-di-Fabio SpringBoard[43] &lt;Warning&gt;: [MPUSystemMediaControls] Enabling lock screen media controls updates for screen turning on.
+Feb 17 17:48:28 iPhone-di-Fabio sharingd[26] &lt;Notice&gt;: 17:48:28.732 : Stopping Handoff scanning
+Feb 17 17:48:28 iPhone-di-Fabio wirelessproxd[45] &lt;Notice&gt;: (Error) trying to stop a scan while the central isn't available
+Feb 17 17:48:28 iPhone-di-Fabio backboardd[57] &lt;Notice&gt;: MultitouchHID: device bootloaded
+Feb 17 17:48:28 iPhone-di-Fabio backboardd[57] &lt;Notice&gt;: MultitouchHID: detection mode: 6-&gt;6
+Feb 17 17:48:30 iPhone-di-Fabio backboardd[57] &lt;Notice&gt;: MultitouchHID: detection mode: 6-&gt;3
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.746252]: ATJManager: setting ask-to-join interaction mode to Interactive
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.746836]: ATJManager: no entries to purge
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.747107]: Device is UNLOCKED
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.747547]: Ignoring lock state
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.747958]: problematic networks =  and potentially problematic networks =
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.748311]: Unblacklisting
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.750749]: No Change in Background Scan Networks, Skip Re-Programming Background Scan
+Feb 17 17:48:30 iPhone-di-Fabio sharingd[26] &lt;Notice&gt;: 17:48:30.829 : Stopping Handoff scanning
+Feb 17 17:48:30 iPhone-di-Fabio wirelessproxd[45] &lt;Warning&gt;: (Warn ) CoreBluetooth: API MISUSE: &lt;CBCentralManager: 0x146647d0&gt; can only accept this command while in the powered on state
+Feb 17 17:48:30 iPhone-di-Fabio wirelessproxd[45] &lt;Notice&gt;: (Error) trying to stop a scan while the central isn't available
+Feb 17 17:48:30 iPhone-di-Fabio wirelessproxd[45] &lt;Warning&gt;: (Warn ) CoreBluetooth: API MISUSE: &lt;CBCentralManager: 0x146647d0&gt; can only accept this command while in the powered on state
+Feb 17 17:48:30 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;:
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.902863]: Already connected to Telecom-48951197.
+Feb 17 17:48:30 iPhone-di-Fabio Facebook[1171] &lt;Warning&gt;: Attempting to badge the application icon but haven't received permission from the user to badge the application
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.965917]: Foreground Network Application entered.
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.967397]: BG Application: Present, BG Daemon: Present. Daemons: apsd lockdownd networkd identityservices UserEventAgent assistantd
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.967748]: problematic networks =  and potentially problematic networks =
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.968081]: Unblacklisting
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.976480]: No Change in Background Scan Networks, Skip Re-Programming Background Scan
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;:
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.977038]: __WiFiManagerSetEnableState: state TRUE, manager-&gt;enable.setting TRUE, manager-&gt;unlockedSinceBoot TRUE
+Feb 17 17:48:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884510.978315]: Already connected to Telecom-48951197.
+Feb 17 17:48:31 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:48:32 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:48:33 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884513.157875]: Foreground Network Application exited.
+Feb 17 17:48:33 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884513.160171]: BG Application: Present, BG Daemon: Present. Daemons: apsd lockdownd networkd identityservices UserEventAgent assistantd
+Feb 17 17:48:33 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884513.160870]: __WiFiManagerSetEnableState: state TRUE, manager-&gt;enable.setting TRUE, manager-&gt;unlockedSinceBoot TRUE
+Feb 17 17:48:33 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884513.162095]: Already connected to Telecom-48951197.
+Feb 17 17:48:33 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884513.165385]: BG Application: Present, BG Daemon: Present. Daemons: apsd lockdownd networkd identityservices UserEventAgent assistantd
+Feb 17 17:48:33 iPhone-di-Fabio Facebook[1171] &lt;Warning&gt;: Snapshotting a view that has not been rendered results in an empty snapshot. Ensure your view has been rendered at least once before snapshotting or snapshot after screen updates.
+Feb 17 17:48:35 iPhone-di-Fabio wifid[69] &lt;Error&gt;: WiFi:[445884515.179329]: Disable WoW requested by "apsd"
+Feb 17 17:48:35 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884515.477535]: __WiFiLQAMgrIsLinkGood: LQAManager: GoodLinkRssi -74
+Feb 17 17:48:37 iPhone-di-Fabio wifid[69] &lt;Error&gt;: WiFi:[445884517.036275]: Enable WoW requested by "apsd"
+Feb 17 17:48:37 iPhone-di-Fabio kernel[0] &lt;Notice&gt;: xpcproxy[1735] Container: /private/var/mobile/Containers/Data/Application/6353D065-9833-4DCF-A58F-F4636190AC98 (sandbox)
+Feb 17 17:48:37 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:48:37 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: &lt;Google&gt; To get test ads on this device, call: request.testDevices = @[ @"3b8b05a04b08df3cbc626982a1f12a0c" ];
+Feb 17 17:48:38 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884518.761528]: WiFiLocaleManagerCheckLocale: locale &lt;IT&gt; was determined at 2/17/15, 5:06:04 PM Central European Standard Time, has been valid for 42.57 mins [cache timeout 60.00 mins]
+Feb 17 17:48:40 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Error&gt;: assertion failed: 12B466: libxpc.dylib + 51947 [E4684D2E-0C18-3463-8A17-401C7133B92B]: 0x7d
+Feb 17 17:48:40 iPhone-di-Fabio Unknown[1735] &lt;Error&gt;:
+Feb 17 17:48:41 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884521.702246]: BG Application: Present, BG Daemon: Present. Daemons: apsd lockdownd networkd identityservices UserEventAgent assistantd
+Feb 17 17:48:43 iPhone-di-Fabio geod[1634] &lt;Warning&gt;: Can't get bundle identifier for process 64
+Feb 17 17:48:43 iPhone-di-Fabio geod[1634] &lt;Warning&gt;: Can't get bundle identifier for process 64
+Feb 17 17:48:43 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884523.292961]: WiFi unquiescing requested by "locationd"
+Feb 17 17:48:43 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884523.316600]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority normal on en0
+Feb 17 17:48:43 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884523.317161]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:48:43 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884523.317490]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:48:43 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884523.317856]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:48:43 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884523.377835]: WiFi unquiescing requested by "locationd"
+Feb 17 17:48:43 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Location icon should now be in state 'Active'
+Feb 17 17:48:43 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884523.395837]: WiFi unquiescing requested by "locationd"
+Feb 17 17:48:43 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884523.596380]: Completed Apple80211ScanAsync on en0 (0)
+Feb 17 17:48:43 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884523.598123]: Async scan request completed for "locationd" (0)
+Feb 17 17:48:43 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884523.602647]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority normal on en0
+Feb 17 17:48:43 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884523.603281]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:48:43 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884523.603724]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:48:43 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884523.604226]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:48:43 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: &lt;Google:HTML&gt; You are currently using version 6.12.2 of the SDK, which doesn't officially support iOS 8. Please consider updating your SDK to the most recent sdk version, 7.0.0, to get iOS 8 support, including a fix for smart banner rendering in landscape mode. The latest SDK can be downloaded from <a href="http://goo.gl/iGzfsP">http://goo.gl/iGzfsP</a>. A full list of release notes is available at <a href="https://developers.google.com/mobile-ads-sdk/docs/admob/ios/rel-notes">https://developers.google.com/mobile-ads-sdk/docs/admob/ios/rel-notes</a>.
+Feb 17 17:48:44 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884524.090163]: Completed Apple80211ScanAsync on en0 (0)
+Feb 17 17:48:44 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884524.091337]: Async scan request completed for "locationd" (0)
+Feb 17 17:48:45 iPhone-di-Fabio CompassCalibrationViewService[1726] &lt;Warning&gt;: Received memory warning.
+Feb 17 17:48:45 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: ERROR: com.apple.CompassCalibrationViewService is depending on legacy on-demand authorization, which is not supported for new apps
+Feb 17 17:48:45 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:48:45 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: ERROR: com.apple.CompassCalibrationViewService is depending on legacy on-demand authorization, which is not supported for new apps
+Feb 17 17:48:48 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884528.340633]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority low on en0
+Feb 17 17:48:48 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884528.341263]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:48:48 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884528.341697]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:48:48 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884528.341973]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:48:48 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884528.342322]: Completed Apple80211ScanAsync on en0 (-528350121)
+Feb 17 17:48:48 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884528.342605]: Async scan request completed for "locationd" (-528350121)
+Feb 17 17:48:51 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884531.093846]: scanCache: Purging scan cache
+Feb 17 17:48:51 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884531.194678]:
+Feb 17 17:48:51 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: Too frequent(0.665931 secs) rssi event from driver, ignoring
+Feb 17 17:48:51 iPhone-di-Fabio wifid[69] &lt;Notice&gt;:
+Feb 17 17:48:53 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884533.304810]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority normal on en0
+Feb 17 17:48:53 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884533.305501]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:48:53 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884533.308461]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:48:53 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884533.311321]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:48:53 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884533.360990]: WiFi unquiescing requested by "locationd"
+Feb 17 17:48:53 iPhone-di-Fabio geod[1634] &lt;Warning&gt;: Can't get bundle identifier for process 64
+Feb 17 17:48:53 iPhone-di-Fabio geod[1634] &lt;Warning&gt;: Can't get bundle identifier for process 64
+Feb 17 17:48:53 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884533.380089]: WiFi unquiescing requested by "locationd"
+Feb 17 17:48:53 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884533.595100]: Completed Apple80211ScanAsync on en0 (0)
+Feb 17 17:48:53 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884533.597536]: Async scan request completed for "locationd" (0)
+Feb 17 17:48:53 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884533.602066]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority normal on en0
+Feb 17 17:48:53 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884533.602540]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:48:53 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884533.602904]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:48:53 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884533.603211]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:48:54 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884534.061709]: Completed Apple80211ScanAsync on en0 (0)
+Feb 17 17:48:54 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884534.062916]: Async scan request completed for "locationd" (0)
+Feb 17 17:48:54 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884534.066555]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority low on en0
+Feb 17 17:48:54 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884534.067116]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:48:54 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884534.067988]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:48:54 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884534.068294]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:48:54 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884534.068637]: Completed Apple80211ScanAsync on en0 (-528350121)
+Feb 17 17:48:54 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884534.069492]: Async scan request completed for "locationd" (-528350121)
+Feb 17 17:48:55 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:48:55 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:48:56 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884536.353169]: Background Network Application entered
+Feb 17 17:48:56 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884536.353733]: BG Application: Not Present, BG Daemon: Present. Daemons: apsd lockdownd networkd identityservices UserEventAgent assistantd
+Feb 17 17:48:56 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884536.354061]: __WiFiManagerSetEnableState: state TRUE, manager-&gt;enable.setting TRUE, manager-&gt;unlockedSinceBoot TRUE
+Feb 17 17:48:56 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884536.354954]: Already connected to Telecom-48951197.
+Feb 17 17:48:59 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884539.127383]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority low on en0
+Feb 17 17:48:59 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884539.127900]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:48:59 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884539.128217]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:48:59 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884539.128537]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:48:59 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884539.129090]: Completed Apple80211ScanAsync on en0 (-528350121)
+Feb 17 17:48:59 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884539.129491]: Async scan request completed for "locationd" (-528350121)
+Feb 17 17:49:01 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884541.067661]: scanCache: Purging scan cache
+Feb 17 17:49:04 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884544.130826]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority low on en0
+Feb 17 17:49:04 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884544.131707]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:49:04 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884544.132777]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:49:04 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884544.133233]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:49:04 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884544.133905]: Completed Apple80211ScanAsync on en0 (-528350121)
+Feb 17 17:49:04 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884544.134269]: Async scan request completed for "locationd" (-528350121)
+Feb 17 17:49:05 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: ERROR: com.apple.CompassCalibrationViewService is depending on legacy on-demand authorization, which is not supported for new apps
+Feb 17 17:49:05 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:49:05 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: ERROR: com.apple.CompassCalibrationViewService is depending on legacy on-demand authorization, which is not supported for new apps
+Feb 17 17:49:09 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884549.143756]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority low on en0
+Feb 17 17:49:09 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884549.144775]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:49:09 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884549.145187]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:49:09 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884549.145569]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:49:09 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884549.146035]: Completed Apple80211ScanAsync on en0 (-528350121)
+Feb 17 17:49:09 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884549.146638]: Async scan request completed for "locationd" (-528350121)
+Feb 17 17:49:11 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:49:11 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:49:14 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884554.217402]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority low on en0
+Feb 17 17:49:14 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884554.217845]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:49:14 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884554.218297]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:49:14 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884554.218575]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:49:14 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884554.219260]: Completed Apple80211ScanAsync on en0 (-528350121)
+Feb 17 17:49:14 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884554.219616]: Async scan request completed for "locationd" (-528350121)
+Feb 17 17:49:15 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884555.682045]: __WiFiLQAMgrIsLinkBad: LQAManager BadLinkRssi -81
+Feb 17 17:49:17 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884557.169854]: Async scan requested by "locationd" for 1 iterations with maxage=2 priority low on en0
+Feb 17 17:49:17 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884557.170322]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:49:17 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884557.170635]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:49:17 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884557.170903]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:49:17 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884557.171270]: Completed Apple80211ScanAsync on en0 (-528350121)
+Feb 17 17:49:17 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884557.171534]: Async scan request completed for "locationd" (-528350121)
+Feb 17 17:49:17 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884557.226144]: WiFi unquiescing requested by "locationd"
+Feb 17 17:49:19 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:49:19 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:49:19 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;:
+Unhandled Exception:
+0   AbruzzoByNight.iOS                  0x010ab673 mono_handle_exception_internal + 2134
+1   AbruzzoByNight.iOS                  0x010aae17 mono_handle_exception + 10
+2   AbruzzoByNight.iOS                  0x010a5377 mono_arm_throw_exception + 110
+3   AbruzzoByNight.iOS                  0x003ff128 throw_exception + 64
+at ObjCRuntime.Runtime.throw_ns_exception (intptr) [0x00000] in /Developer/MonoTouch/Source/maccore/runtime/Delegates.generated.cs:100
+at (wrapper native-to-managed) ObjCRuntime.Runtime.throw_ns_exception (intptr) &lt;0x00044&gt;
+6   AbruzzoByNight.iOS                  0x01148c00 xamarin_throw_ns_exception + 52
+7   AbruzzoByNight.iOS                  0x0114a968 exception_handler + 224
+8   CoreFoundation                      0x2b0d87cf &lt;redacted&gt; + 630
+9   libobjc.A.dylib                     0x388d2f13 &lt;redacted&gt; + 174
+10  libc++abi.dylib                     0x3820ade3 &lt;redacted&gt; + 78
+11  libc++abi.dylib                     0x3820a8af __cxa_rethrow + 102
+12  libobjc.A.dylib                     0x388d2dd3 objc_exception_rethrow + 42
+13  CoreFoundation                      0x2afea45d CFRunLoopRunSpecific + 632
+14  CoreFoundation                      0x2afea1d3 CFRunLoopRunInMode + 106
+15  GraphicsServices                    0x323e80a9 GSEventRunModal + 136
+16  UIKit                               0x2e5f87b1 UIApplicationMain + 1440
+at (wrapper managed-to-native) UIKit.UIApplication.UIApplicationMain (int,string[],intptr,intptr) &lt;0x00110&gt;
+at UIKit.UIApplication.Main (string[],intptr,intptr) [0x00005] in /Developer/MonoTouch/Source/monotouch/src/UIKit/UIApplication.cs:62
+at UIKit.UIApplication.Main (string[],string,string) [0x00038] in /Developer/MonoTouch/Source/monotouch/src/UIKit/UIApplication.cs:46
+at AbruzzoByNight.iOS.Application.Main (string[]) [0x0000d] in /Users/fabiomarcone/progetti/ABNXamarin/AbruzzoByNight/iOS/Main.cs:17
+at (wrapper runtime-invoke) object.runtime_invoke_dynamic (intptr,intptr,intptr,intptr) &lt;0x000c8&gt;
+22  AbruzzoByNight.iOS                  0x010b6b03 mono_jit_runtime_invoke + 1162
+23  AbruzzoByNight.iOS                  0x010f3c45 mono_runtime_invoke + 88
+24  AbruzzoByNight.iOS                  0x010f6eeb mono_runtime_exec_main + 282
+25  AbruzzoByNight.iOS                  0x010f6d29 mono_runtime_run_main + 492
+26  AbruzzoByNight.iOS                  0x010a5179 mono_jit_exec + 48
+27  AbruzzoByNight.iOS                  0x011478d4 xamarin_main + 2172
+28  AbruzzoByNight.iOS                  0x00fc4aed main + 108
+29  libdyld.dylib                       0x38e52aaf &lt;redacted&gt; + 2
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: Unhandled managed exception: Objective-C exception thrown.  Name: NSInternalInconsistencyException Reason: An instance 0x1858e270 of class MKPointAnnotation was deallocated while key value observers were still registered with it. Current observation info: &lt;NSKeyValueObservationInfo 0x1858e960&gt; (
+&lt;NSKeyValueObservance 0x1858e9d0: Observer: 0x16a03110, Key path: coordinate, Options: &lt;New: NO, Old: YES, Prior: YES&gt; Context: 0x0, Property: 0x1858e660&gt;
+) (Foundation.MonoTouchException)
+at ObjCRuntime.Runtime.ThrowNSException (IntPtr ns_exception) [0x00000] in /Developer/MonoTouch/Source/maccore/src/ObjCRuntime/Runtime.cs:156
+at ObjCRuntime.Runtime.throw_ns_exception (IntPtr exc) [0x00000] in &lt;filename unknown&gt;:0
+at (wrapper native-to-managed) ObjCRuntime.Runtime:throw_ns_exception (intptr)
+at (wrapper managed-to-native) UIKit.UIApplication:UIApplicationMain (int,string[],intptr,intptr)
+at UIKit.UIApplication.Main (System.String[] args, IntPtr principal, IntPtr delegate) [0x00005] in /Developer/MonoTouch/Source/monotouch/src/UIKit/UIApplication.cs:62
+at UIKit.UIApplication.Main (System.String[] args, System.String principalClassName, System.String delegateClassName) [0x0001c] in /Developer/MonoTouch/Source/monotouch/src/UIKit/UIApplication.cs:45
+at AbruzzoByNight.iOS.Application.Main (System.String[] args) [0x00008] in /Users/fabiomarcone/progetti/ABNXamarin/AbruzzoByNight/iOS/Main.cs:16
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: Stacktrace:
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical:
+Native stacktrace:
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	0   AbruzzoByNight.iOS                  0x010abf05 mono_handle_native_sigsegv + 240
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	1   AbruzzoByNight.iOS                  0x010b0bcb sigabrt_signal_handler + 102
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	2   libsystem_platform.dylib            0x38f9287b _sigtramp + 42
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	3   libsystem_pthread.dylib             0x38f96d37 pthread_kill + 62
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	4   libsystem_c.dylib                   0x38eb8909 abort + 76
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	5   AbruzzoByNight.iOS                  0x0114a24c fetch_virt_property + 0
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	6   AbruzzoByNight.iOS                  0x010ac467 mono_invoke_unhandled_exception_hook + 66
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	7   AbruzzoByNight.iOS                  0x010b715f mono_thread_abort_dummy + 62
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	8   AbruzzoByNight.iOS                  0x010abd99 mono_handle_exception_internal + 3964
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	9   AbruzzoByNight.iOS                  0x010aae17 mono_handle_exception + 10
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	10  AbruzzoByNight.iOS                  0x010a5377 mono_arm_throw_exception + 110
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	11  AbruzzoByNight.iOS                  0x003ff128 throw_exception + 64
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	12  AbruzzoByNight.iOS                  0x0015fd98 ObjCRuntime_Runtime_throw_ns_exception_intptr + 28
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	13  AbruzzoByNight.iOS                  0x00211f08 wrapper_native_to_managed_ObjCRuntime_Runtime_throw_ns_exception_intptr + 68
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	14  AbruzzoByNight.iOS                  0x01148c00 xamarin_throw_ns_exception + 52
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	15  AbruzzoByNight.iOS                  0x0114a968 exception_handler + 224
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	16  CoreFoundation                      0x2b0d87cf &lt;redacted&gt; + 630
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	17  libobjc.A.dylib                     0x388d2f13 &lt;redacted&gt; + 174
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	18  libc++abi.dylib                     0x3820ade3 &lt;redacted&gt; + 78
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	19  libc++abi.dylib                     0x3820a8af __cxa_rethrow + 102
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	20  libobjc.A.dylib                     0x388d2dd3 objc_exception_rethrow + 42
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	21  CoreFoundation                      0x2afea45d CFRunLoopRunSpecific + 632
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	22  CoreFoundation                      0x2afea1d3 CFRunLoopRunInMode + 106
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	23  GraphicsServices                    0x323e80a9 GSEventRunModal + 136
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	24  UIKit                               0x2e5f87b1 UIApplicationMain + 1440
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	25  AbruzzoByNight.iOS                  0x002115ec wrapper_managed_to_native_UIKit_UIApplication_UIApplicationMain_int_string___intptr_intptr + 272
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	26  AbruzzoByNight.iOS                  0x0018a694 UIKit_UIApplication_Main_string___intptr_intptr + 52
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	27  AbruzzoByNight.iOS                  0x0018a654 UIKit_UIApplication_Main_string___string_string + 204
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	28  AbruzzoByNight.iOS                  0x000e7120 AbruzzoByNight_iOS_Application_Main_string__ + 172
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	29  AbruzzoByNight.iOS                  0x003c4348 wrapper_runtime_invoke_object_runtime_invoke_dynamic_intptr_intptr_intptr_intptr + 200
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	30  AbruzzoByNight.iOS                  0x010b6b03 mono_jit_runtime_invoke + 1162
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	31  AbruzzoByNight.iOS                  0x010f3c45 mono_runtime_invoke + 88
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	32  AbruzzoByNight.iOS                  0x010f6eeb mono_runtime_exec_main + 282
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	33  AbruzzoByNight.iOS                  0x010f6d29 mono_runtime_run_main + 492
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	34  AbruzzoByNight.iOS                  0x010a5179 mono_jit_exec + 48
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	35  AbruzzoByNight.iOS                  0x011478d4 xamarin_main + 2172
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	36  AbruzzoByNight.iOS                  0x00fc4aed main + 108
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical: 	37  libdyld.dylib                       0x38e52aaf &lt;redacted&gt; + 2
+Feb 17 17:49:19 iPhone-di-Fabio AbruzzoByNight.iOS[1735] &lt;Warning&gt;: critical:
+=================================================================
+Got a SIGABRT while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries
+used by your application.
+=================================================================
+Feb 17 17:49:19 iPhone-di-Fabio ReportCrash[1736] &lt;Error&gt;: task_set_exception_ports(B07, 400, D03, 0, 0) failed with error (4: (os/kern) invalid argument)
+Feb 17 17:49:19 iPhone-di-Fabio ReportCrash[1736] &lt;Notice&gt;: ReportCrash acting against PID 1735
+Feb 17 17:49:19 iPhone-di-Fabio ReportCrash[1736] &lt;Notice&gt;: Formulating crash report for process AbruzzoByNight.iOS[1735]
+Feb 17 17:49:19 iPhone-di-Fabio mediaserverd[1672] &lt;Notice&gt;: '' it.s4i.AbruzzoByNight.iOS(pid = 1735) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_None
+Feb 17 17:49:19 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:49:19 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:49:19 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:49:19 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:49:19 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:49:19 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:49:19 iPhone-di-Fabio com.apple.xpc.launchd[1] (UIKitApplication:it.s4i.AbruzzoByNight.iOS[0x7cc][1735]) &lt;Notice&gt;: Service exited due to signal: Abort trap: 6
+Feb 17 17:49:20 iPhone-di-Fabio SpringBoard[43] &lt;Warning&gt;: Application 'UIKitApplication:it.s4i.AbruzzoByNight.iOS[0x7cc]' crashed.
+Feb 17 17:49:20 iPhone-di-Fabio assertiond[58] &lt;Warning&gt;: Could not set priority of &lt;BKNewProcess: 0x17e37330; it.s4i.AbruzzoByNight.iOS; pid: 1735; hostpid: -1&gt; to 2, priority: No such process
+Feb 17 17:49:20 iPhone-di-Fabio assertiond[58] &lt;Warning&gt;: Could not set priority of &lt;BKNewProcess: 0x17e37330; it.s4i.AbruzzoByNight.iOS; pid: 1735; hostpid: -1&gt; to 4096, priority: No such process
+Feb 17 17:49:20 iPhone-di-Fabio UserEventAgent[18] &lt;Warning&gt;: id=it.s4i.AbruzzoByNight.iOS pid=1735, state=0
+Feb 17 17:49:20 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884560.237523]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority low on en0
+Feb 17 17:49:20 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884560.238130]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:49:20 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884560.238465]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:49:20 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884560.238997]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:49:20 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884560.240329]: Completed Apple80211ScanAsync on en0 (-528350121)
+Feb 17 17:49:20 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884560.240811]: Async scan request completed for "locationd" (-528350121)
+Feb 17 17:49:20 iPhone-di-Fabio ReportCrash[1736] &lt;Notice&gt;: Saved report to /var/mobile/Library/Logs/CrashReporter/AbruzzoByNight.iOS_2015-02-17-174919_iPhone-di-Fabio.ips
+Feb 17 17:49:20 iPhone-di-Fabio kernel[0] &lt;Notice&gt;: AppleAP3GDL::handleInterrupt2 FIFO is Empty
+Feb 17 17:49:21 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884561.008171]: apsd[87] is a wow client
+Feb 17 17:49:21 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884561.008826]: UserEventAgent[18] is a wow client
+Feb 17 17:49:21 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884561.009131]: lockdownd[27] is a wow client
+Feb 17 17:49:21 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884561.009399]: WoW is Enabled, 3 WoW Clients
+Feb 17 17:49:21 iPhone-di-Fabio timed[35] &lt;Notice&gt;: (Note ) CoreTime: Received time 02/17/2015 16:49:21±0.00 from "GPS"
+Feb 17 17:49:21 iPhone-di-Fabio timed[35] &lt;Notice&gt;: (Note ) CoreTime: Want active time in 3332.89min. Need active time in 8332.89min. Remaining retry interval: 0.000000min.
+Feb 17 17:49:25 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884565.238774]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority low on en0
+Feb 17 17:49:25 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884565.239213]: Enqueuing command type: "Scan" pending commands: 0
+Feb 17 17:49:25 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884565.239525]: Dequeuing command type: "Scan" pending commands: 0
+Feb 17 17:49:25 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884565.239799]: Attempting Apple80211ScanAsync on en0
+Feb 17 17:49:25 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884565.240553]: Completed Apple80211ScanAsync on en0 (-528350121)
+Feb 17 17:49:25 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884565.240854]: Async scan request completed for "locationd" (-528350121)
+Feb 17 17:49:25 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884565.925609]: WiFi unquiescing requested by "locationd"
+Feb 17 17:49:28 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:49:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884570.752151]: __WiFiLQAMgrIsLinkGood: LQAManager: GoodLinkRssi -72
+Feb 17 17:49:30 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Location icon should now be in state 'Inactive'
+Feb 17 17:49:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884570.849127]: Background Network Application entered
+Feb 17 17:49:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884570.849553]: BG Application: Present, BG Daemon: Present. Daemons: apsd lockdownd networkd identityservices UserEventAgent assistantd
+Feb 17 17:49:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884570.849925]: __WiFiManagerSetEnableState: state TRUE, manager-&gt;enable.setting TRUE, manager-&gt;unlockedSinceBoot TRUE
+Feb 17 17:49:30 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884570.850958]: Already connected to Telecom-48951197.
+Feb 17 17:49:36 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:50:06 iPhone-di-Fabio backboardd[57] &lt;Notice&gt;: ALS: SetDisplayFactor: factor=0.0500
+Feb 17 17:50:06 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:50:21 iPhone-di-Fabio backboardd[57] &lt;Notice&gt;: ALS: SetDisplayFactor: factor=0.0000
+Feb 17 17:50:21 iPhone-di-Fabio kernel[0] &lt;Notice&gt;: AppleMultitouchN1SPI: updating power statistics
+Feb 17 17:50:21 iPhone-di-Fabio SpringBoard[43] &lt;Warning&gt;: [MPUSystemMediaControls] Disabling lock screen media controls updates for screen turning off.
+Feb 17 17:50:21 iPhone-di-Fabio backboardd[57] &lt;Notice&gt;: MultitouchHID: detection mode: 3-&gt;255
+Feb 17 17:50:21 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884621.667901]: Device display is OFF
+Feb 17 17:50:21 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884621.698145]: ATJManager: setting ask-to-join interaction mode to NonInteractive
+Feb 17 17:50:21 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884621.698570]: ATJManager: no entries to purge
+Feb 17 17:50:21 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884621.699021]: Device is LOCKED
+Feb 17 17:50:21 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884621.701430]: Ignoring lock state
+Feb 17 17:50:22 iPhone-di-Fabio kernel[0] &lt;Notice&gt;: IOReturn AppleCLCD::setActivePixelBacklightModulation(bool, bool): no power
+Feb 17 17:50:22 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884622.449300]: Background Network Application entered
+Feb 17 17:50:22 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884622.449735]: BG Application: Not Present, BG Daemon: Present. Daemons: apsd lockdownd networkd identityservices UserEventAgent assistantd
+Feb 17 17:50:22 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884622.450508]: __WiFiManagerSetEnableState: state TRUE, manager-&gt;enable.setting TRUE, manager-&gt;unlockedSinceBoot TRUE
+Feb 17 17:50:22 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884622.451531]: Already connected to Telecom-48951197.
+Feb 17 17:50:22 iPhone-di-Fabio backupd[1737] &lt;Warning&gt;: INFO: Scheduling next backup at 2/18/15, 3:02:45 AM
+Feb 17 17:50:29 iPhone-di-Fabio kernel[0] &lt;Notice&gt;: 162012.266082 wlan0.A[33508] AppleBCMWLANBGScanManager::configurePrivateMACForBGScans(): BG-SCAN PRIVATE MAC 0 0 0 0 0 0
+Feb 17 17:50:33 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:50:33 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:50:33 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:50:33 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:50:34 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: client 'com.facebook.Facebook' stopping significant location changes
+Feb 17 17:50:38 iPhone-di-Fabio wifid[69] &lt;Notice&gt;: WiFi:[445884638.756904]: WiFiLocaleManagerCheckLocale: locale &lt;IT&gt; was determined at 2/17/15, 5:06:04 PM Central European Standard Time, has been valid for 44.57 mins [cache timeout 60.00 mins]
+Feb 17 17:50:44 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:50:44 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:50:44 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:50:44 iPhone-di-Fabio locationd[64] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning] ====== IDS Traffic Usage:
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]    Service: com.apple.private.alloy.phonecontinuity
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]      incoming-messages: 3
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]    Service: com.apple.private.alloy.sms
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]      outgoing-messages: 6
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]      incoming-messages: 4
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]    Service: com.apple.ess
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]      queries: 2
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]      query-requests: 9
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]    Service: com.apple.madrid
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]      query-requests: 140
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]      queries: 8
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]      incoming-messages: 55
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]      outgoing-messages: 25
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]    Service: com.apple.private.alloy.bulletinboard
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]      queries: 1
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]      outgoing-messages: 18
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]      incoming-messages: 4
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]    Service: com.apple.private.ac
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]      query-requests: 1
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning]
+Feb 17 17:51:07 iPhone-di-Fabio identityservicesd[42] &lt;Warning&gt;: [Warning] ====== Done
+Feb 17 17:51:17 iPhone-di-Fabio ubd[1738] &lt;Warning&gt;: iCloud Documents through ubd is deactivated, using bird instead (Oct 20 2014 : 23:44:42).
+
+
+Build info:
+=== Xamarin Studio ===
+
+Version 5.7.1 (build 17)
+Installation UUID: 307aad4d-c2c4-49ae-8462-b5f0f63e20d8
+Runtime:
+	Mono 3.12.0 ((detached/de2f33f)
+	GTK+ 2.24.23 (Raleigh theme)
+
+	Package version: 312000076
+
+=== Apple Developer Tools ===
+
+Xcode 6.1.1 (6611)
+Build 6A2008a
+
+=== Xamarin.Mac ===
+
+Not Installed
+
+=== Xamarin.Android ===
+
+Version: 4.20.0.28 (Trial Edition)
+Android SDK: /Users/fabiomarcone/Library/Developer/Xamarin/android-sdk-macosx
+	Supported Android versions:
+		2.1   (API level 7)
+		2.2   (API level 8)
+		2.3   (API level 10)
+		3.1   (API level 12)
+		4.0   (API level 14)
+		4.0.3 (API level 15)
+		4.4   (API level 19)
+		5.0   (API level 21)
+Java SDK: /usr
+java version "1.8.0_31"
+Java(TM) SE Runtime Environment (build 1.8.0_31-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 25.31-b07, mixed mode)
+
+=== Xamarin.iOS ===
+
+Version: 8.6.1.20 (Trial Edition)
+Hash: 3b3ef43
+Branch: 
+Build date: 2015-01-24 09:42:21-0500
+
+=== Build Information ===
+
+Release ID: 507010017
+Git revision: 0bc7d3550b6b088ac25b08dcf7bbe73bcc8658b3
+Build date: 2015-02-03 19:43:29-05
+Xamarin addins: f7b7d34419c9ec24501bfa7c658e80a6305613e0
+
+=== Operating System ===
+
+Mac OS X 10.10.2
+Darwin MBPdiFaoMarcone.homenet.telecomitalia.it 14.1.0 Darwin Kernel Version 14.1.0
+    Mon Dec 22 23:10:38 PST 2014
+    root:xnu-2782.10.72~2/RELEASE_X86_64 x86_64</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Seth Rosetter</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-05-18 16:33:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Fabio,
+
+I have not been able to verify this issue against newest stable on iOS device. Can you verify that this is no longer an issue for you?
+
+Thanks!
+-Seth</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Seth Rosetter</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-05-18 16:37:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">To be more specific, this does not seem to be an issue with 1.4.2.6359.</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Samantha Houts [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-04-08 19:33:34 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thank you for taking the time to submit this report. After reviewing the description of this bug, we believe it no longer affects the current version of Xamarin.Forms. If you are still experiencing the issue after updating your packages, please reopen this report with an attached reproduction.
+ 
+For your convenience, we have created some reproduction best practices viewable here: <a href="https://gist.github.com/jassmith/92405c300e54a01dcc6d">https://gist.github.com/jassmith/92405c300e54a01dcc6d</a>
+
+Warm regards,
+Xamarin Forms Team</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>
