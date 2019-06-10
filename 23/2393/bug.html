@@ -1,0 +1,2267 @@
+<html lang="en"><head>
+    <title>2393 – [Gtk] Pango in Mono 2.10.7 does not work on snow leopard</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Xamarin_Studio
+                 bz_component_General
+                 bz_bug_2393 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;2393</span>
+
+        <span id="subtitle" class="subheader">[Gtk] Pango in Mono 2.10.7 does not work on snow leopard</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2012-02-15 15:36:05 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2012-02-15 15:36:05">
+  <input type="hidden" name="id" value="2393">
+  <input type="hidden" name="token" value="1559147031-sF5HXd6hIM8GNiQE3TmCexuGWYTZ5nqglvGAIWSkofE">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;2393</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">[Gtk] Pango in Mono 2.10.7 does not work on snow leopard</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>[Gtk] Pango in Mono 2.10.7 does not work on snow leopard
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Xamarin Studio
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Desktop
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">General
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>Trunk
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Highest
+       critical
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Alex Corrado [MSFT]</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2011-12-07 11:53 UTC by <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2012-02-15 15:36 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>7
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="kris">kris</option>
+                <option value="lewing">lewing</option>
+                <option value="mhutch">mhutch</option>
+                <option value="miguel">miguel</option>
+                <option value="mitch">mitch</option>
+                <option value="mono-bugs+monodevelop">mono-bugs+monodevelop</option>
+                <option value="pj.beaman">pj.beaman</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">gtk
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1024&amp;file=working_fonts" title="View the content of the attachment">
+          <b>working configuration</b></a>
+
+          <span class="bz_attach_extra_info">
+              (40.86 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_1024" title="Go to the comment associated with the attachment">2011-12-09 15:01 UTC</a>,
+
+            <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1024&amp;file=working_fonts">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1052&amp;file=mono_2011%2012%2015%20164938_chkn.crash" title="View the content of the attachment">
+          <b>Stacktrace from crash reporter (with line numbers)</b></a>
+
+          <span class="bz_attach_extra_info">
+              (54.81 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_1052" title="Go to the comment associated with the attachment">2011-12-15 16:54 UTC</a>,
+
+            <span class="vcard"><span class="fn">Alex Corrado [MSFT]</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1052&amp;file=mono_2011%2012%2015%20164938_chkn.crash">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1053&amp;file=pango%20crash%20hotfix%203.patch" title="View the content of the attachment">
+          <b>Patch that cures the crash</b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.40 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_1053" title="Go to the comment associated with the attachment">2011-12-15 17:29 UTC</a>,
+
+            <span class="vcard"><span class="fn">Michael Natterer</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1053&amp;file=pango%20crash%20hotfix%203.patch">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1284&amp;file=0002%20Make%20CoreText%20backend%20more%20robust%20against%20broken%20fon.patch" title="View the content of the attachment">
+          <b>Make CoreText backend more robust against broken fonts</b></a>
+
+          <span class="bz_attach_extra_info">
+              (4.43 KB,
+                patch)
+
+            <br>
+            <a href="#attach_1284" title="Go to the comment associated with the attachment">2012-01-28 05:21 UTC</a>,
+
+            <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1284&amp;file=0002%20Make%20CoreText%20backend%20more%20robust%20against%20broken%20fon.patch">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/mono/monodevelop/issues">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-07 11:53:37 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Everyone (2 people so far) experiencing this bug has Snow Leopard. No-one on lion can reproduce the issue.
+
+Stacktrace:
+
+  at (wrapper managed-to-native) Pango.Layout.pango_layout_get_pixel_size (intptr,int&amp;,int&amp;) &lt;IL 0x00025, 0xffffffff&gt;
+  at Pango.Layout.GetPixelSize (int&amp;,int&amp;) &lt;IL 0x00008, 0x0001b&gt;
+  at MonoDevelop.Ide.Gui.Dialogs.AboutMonoDevelopTabPage/ScrollBox.DrawText () [0x0000f] in /private/tmp/source/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide.Gui.Dialogs/AboutMonoDevelopTabPage.cs:290
+  at MonoDevelop.Ide.Gui.Dialogs.AboutMonoDevelopTabPage/ScrollBox.OnExposeEvent (Gdk.EventExpose) [0x0000f] in /private/tmp/source/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide.Gui.Dialogs/AboutMonoDevelopTabPage.cs:308
+  at Gtk.Widget.exposeevent_cb (intptr,intptr) &lt;IL 0x00014, 0x00061&gt;
+  at (wrapper native-to-managed) Gtk.Widget.exposeevent_cb (intptr,intptr) &lt;IL 0x00020, 0xffffffff&gt;
+  at (wrapper managed-to-native) Gtk.Application.gtk_main () &lt;IL 0x00022, 0xffffffff&gt;
+  at Gtk.Application.Run () &lt;IL 0x00000, 0x0000b&gt;
+  at MonoDevelop.Ide.IdeApp.Run () [0x00000] in /private/tmp/source/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/Ide.cs:385
+  at MonoDevelop.Ide.IdeStartup.Run (MonoDevelop.Ide.MonoDevelopOptions) [0x006ac] in /private/tmp/source/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/IdeStartup.cs:275
+  at MonoDevelop.Ide.IdeStartup.Main (string[]) [0x0005e] in /private/tmp/source/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/IdeStartup.cs:542
+  at MonoDevelop.Startup.MonoDevelopMain.Main (string[]) [0x00000] in /private/tmp/source/monodevelop/main/src/core/MonoDevelop.Startup/MonoDevelop.Startup/MonoDevelopMain.cs:16
+  at (wrapper runtime-invoke) &lt;Module&gt;.runtime_invoke_int_object (object,intptr,intptr,intptr) &lt;IL 0x0005c, 0xffffffff&gt;
+
+Native stacktrace:
+
+	0   monodevelop                         0x00094fcc mono_handle_native_sigsegv + 284
+	1   monodevelop                         0x000050b8 mono_sigsegv_signal_handler + 248
+	2   libSystem.B.dylib                   0x9136105b _sigtramp + 43
+	3   ???                                 0xffffffff 0x0 + 4294967295
+	4   libpangocairo-1.0.0.dylib           0x046c2c27 gchar_from_cf_string + 23
+	5   libpangocairo-1.0.0.dylib           0x046c3025 _pango_core_text_font_description_from_ct_font_descriptor + 69
+	6   libpangocairo-1.0.0.dylib           0x046c3211 pango_core_text_face_describe + 49
+	7   libpango-1.0.0.dylib                0x0472a8c7 pango_font_face_describe + 183
+	8   libpangocairo-1.0.0.dylib           0x046c4e3e find_best_match + 78
+	9   libpangocairo-1.0.0.dylib           0x046c57e6 pango_core_text_fontset_new + 214
+	10  libpangocairo-1.0.0.dylib           0x046c51b6 pango_core_text_font_map_load_fontset + 166
+	11  libpango-1.0.0.dylib                0x047375f4 pango_font_map_load_fontset + 132
+	12  libpango-1.0.0.dylib                0x04734358 itemize_state_update_for_new_run + 536
+	13  libpango-1.0.0.dylib                0x04734479 itemize_state_process_run + 41
+	14  libpango-1.0.0.dylib                0x0473499d pango_itemize_with_base_dir + 461
+	15  libpango-1.0.0.dylib                0x0474313b pango_layout_check_lines + 1115
+	16  libpango-1.0.0.dylib                0x04740aac pango_layout_get_extents_internal + 268
+	17  libpango-1.0.0.dylib                0x04740f42 pango_layout_get_extents + 114
+	18  libpango-1.0.0.dylib                0x04741015 pango_layout_get_pixel_extents + 197
+	19  libpango-1.0.0.dylib                0x047410e2 pango_layout_get_pixel_size + 50
+	20  ???                                 0x21622058 0x0 + 560078936
+	21  ???                                 0x21622014 0x0 + 560078868
+	22  ???                                 0x21621e7c 0x0 + 560078460
+	23  ???                                 0x21621de8 0x0 + 560078312
+	24  ???                                 0x1e291472 0x0 + 506008690
+	25  ???                                 0x1a68e6c4 0x0 + 443082436
+	26  libgtk-quartz-2.0.0.dylib           0x04205cbe _gtk_marshal_BOOLEAN__BOXED + 286
+	27  libgobject-2.0.0.dylib              0x0407a54e g_type_class_meta_marshal + 142
+	28  libgobject-2.0.0.dylib              0x0407a154 g_closure_invoke + 468
+	29  libgobject-2.0.0.dylib              0x0409835f signal_emit_unlocked_R + 3679
+	30  libgobject-2.0.0.dylib              0x04096eb1 g_signal_emit_valist + 2785
+	31  libgobject-2.0.0.dylib              0x040972d1 g_signal_emit + 65
+	32  libgtk-quartz-2.0.0.dylib           0x043b15b9 gtk_widget_event_internal + 713
+	33  libgtk-quartz-2.0.0.dylib           0x043b11e1 gtk_widget_send_expose + 369
+	34  libgtk-quartz-2.0.0.dylib           0x04201ea8 gtk_main_do_event + 600
+	35  libgdk-quartz-2.0.0.dylib           0x04638802 _gdk_window_process_updates_recurse + 786
+	36  libgdk-quartz-2.0.0.dylib           0x046386fa _gdk_window_process_updates_recurse + 522
+	37  libgdk-quartz-2.0.0.dylib           0x04645422 -[GdkQuartzView drawRect:] + 418
+	38  AppKit                              0x9666861e -[NSView _drawRect:clip:] + 3510
+	39  AppKit                              0x966672bc -[NSView _recursiveDisplayAllDirtyWithLockFocus:visRect:] + 1600
+	40  AppKit                              0x966675f1 -[NSView _recursiveDisplayAllDirtyWithLockFocus:visRect:] + 2421
+	41  AppKit                              0x966657db -[NSView _recursiveDisplayRectIfNeededIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:topView:] + 711
+	42  AppKit                              0x9666534f -[NSThemeFrame _recursiveDisplayRectIfNeededIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:topView:] + 265
+	43  AppKit                              0x96661c96 -[NSView _displayRectIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:] + 3309
+	44  AppKit                              0x965c284b -[NSView displayIfNeeded] + 818
+	45  AppKit                              0x9658bb64 -[NSWindow displayIfNeeded] + 204
+	46  AppKit                              0x965bd07e _handleWindowNeedsDisplay + 696
+	47  CoreFoundation                      0x9881edd2 __CFRunLoopDoObservers + 1186
+	48  CoreFoundation                      0x987daced __CFRunLoopRun + 557
+	49  CoreFoundation                      0x987da3c4 CFRunLoopRunSpecific + 452
+	50  CoreFoundation                      0x987da1f1 CFRunLoopRunInMode + 97
+	51  HIToolbox                           0x91bb2d60 RunCurrentEventLoopInMode + 392
+	52  HIToolbox                           0x91bb2a53 ReceiveNextEventCommon + 158
+	53  HIToolbox                           0x91bb299c BlockUntilNextEventMatchingListInMode + 81
+	54  AppKit                              0x96593595 _DPSNextEvent + 847
+	55  AppKit                              0x96592dd6 -[NSApplication nextEventMatchingMask:untilDate:inMode:dequeue:] + 156
+	56  libgdk-quartz-2.0.0.dylib           0x04651b6d poll_func + 317
+	57  libglib-2.0.0.dylib                 0x03f56f09 g_main_context_poll + 329
+	58  libglib-2.0.0.dylib                 0x03f5606d g_main_context_iterate + 1277
+	59  libglib-2.0.0.dylib                 0x03f569ea g_main_loop_run + 1050
+	60  libgtk-quartz-2.0.0.dylib           0x04201540 gtk_main + 240
+	61  ???                                 0x1e4d7ecc 0x0 + 508395212
+	62  ???                                 0x1e4d7e94 0x0 + 508395156
+	63  ???                                 0x1e4d7e74 0x0 + 508395124
+	64  ???                                 0x039bc950 0x0 + 60541264
+	65  ???                                 0x004a6f98 0x0 + 4878232
+	66  ???                                 0x004a6d9c 0x0 + 4877724
+	67  ???                                 0x004a6e56 0x0 + 4877910
+	68  monodevelop                         0x0000d352 mono_jit_runtime_invoke + 722
+	69  monodevelop                         0x001a43aa mono_runtime_invoke + 170
+	70  monodevelop                         0x001a6eec mono_runtime_exec_main + 620
+	71  monodevelop                         0x001a6151 mono_runtime_run_main + 929
+	72  monodevelop                         0x00069a65 mono_jit_exec + 149
+	73  monodevelop                         0x0006bfe3 mono_main + 9587
+	74  monodevelop                         0x00002369 main + 441
+	75  monodevelop                         0x00002176 start + 54
+
+Debug info from gdb:
+
+warning: Trying to remove a section from the ordered section list that did not exist at 0x33c000.
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/closure.o" - no debug information available for "closure.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/error.o" - no debug information available for "error.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/object.o" - no debug information available for "object.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/ptrarray.o" - no debug information available for "ptrarray.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/signal.o" - no debug information available for "signal.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/type.o" - no debug information available for "type.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/unichar.o" - no debug information available for "unichar.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/value.o" - no debug information available for "value.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/valuearray.o" - no debug information available for "valuearray.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/thread.o" - no debug information available for "thread.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/errno.o" - no debug information available for "errno.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/map.o" - no debug information available for "map.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/signal.o" - no debug information available for "signal.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/stdio.o" - no debug information available for "stdio.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/string.o" - no debug information available for "string.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/stdlib.o" - no debug information available for "stdlib.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/dirent.o" - no debug information available for "dirent.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/fcntl.o" - no debug information available for "fcntl.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/fstab.o" - no debug information available for "fstab.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/grp.o" - no debug information available for "grp.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/macros.o" - no debug information available for "macros.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/old-map.o" - no debug information available for "old-map.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/pwd.o" - no debug information available for "pwd.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/serial.o" - no debug information available for "serial.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/sys-mman.o" - no debug information available for "sys-mman.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/sys-sendfile.o" - no debug information available for "sys-sendfile.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/sys-stat.o" - no debug information available for "sys-stat.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/sys-statvfs.o" - no debug information available for "sys-statvfs.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/sys-time.o" - no debug information available for "sys-time.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/sys-utsname.o" - no debug information available for "sys-utsname.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/sys-wait.o" - no debug information available for "sys-wait.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/sys-xattr.o" - no debug information available for "sys-xattr.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/syslog.o" - no debug information available for "syslog.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/time.o" - no debug information available for "time.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/unistd.o" - no debug information available for "unistd.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/utime.o" - no debug information available for "utime.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/x-struct-str.o" - no debug information available for "x-struct-str.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/zlib-helper.o" - no debug information available for "zlib-helper.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/ioapi.o" - no debug information available for "ioapi.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/unzip.o" - no debug information available for "unzip.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/support/.libs/zip.o" - no debug information available for "zip.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-garray.o)" - no debug information available for "garray.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gbytearray.o)" - no debug information available for "gbytearray.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gerror.o)" - no debug information available for "gerror.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-ghashtable.o)" - no debug information available for "ghashtable.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gmem.o)" - no debug information available for "gmem.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-goutput.o)" - no debug information available for "goutput.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gstr.o)" - no debug information available for "gstr.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gslist.o)" - no debug information available for "gslist.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gstring.o)" - no debug information available for "gstring.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gptrarray.o)" - no debug information available for "gptrarray.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-glist.o)" - no debug information available for "glist.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gqueue.o)" - no debug information available for "gqueue.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gpath.o)" - no debug information available for "gpath.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gshell.o)" - no debug information available for "gshell.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gspawn.o)" - no debug information available for "gspawn.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gfile.o)" - no debug information available for "gfile.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gfile-posix.o)" - no debug information available for "gfile-posix.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gpattern.o)" - no debug information available for "gpattern.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gmarkup.o)" - no debug information available for "gmarkup.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gutf8.o)" - no debug information available for "gutf8.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gunicode.o)" - no debug information available for "gunicode.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gdate-unix.o)" - no debug information available for "gdate-unix.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gdir-unix.o)" - no debug information available for "gdir-unix.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gfile-unix.o)" - no debug information available for "gfile-unix.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gmisc-unix.o)" - no debug information available for "gmisc-unix.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gmodule-unix.o)" - no debug information available for "gmodule-unix.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-gtimer-unix.o)" - no debug information available for "gtimer-unix.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.7/eglib/src/.libs/libeglib.a(libeglib_la-vasprintf.o)" - no debug information available for "vasprintf.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/adjustment.o" - no debug information available for "adjustment.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/cellrenderer.o" - no debug information available for "cellrenderer.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/clipboard.o" - no debug information available for "clipboard.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/colorseldialog.o" - no debug information available for "colorseldialog.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/container.o" - no debug information available for "container.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/nodestore.o" - no debug information available for "nodestore.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/object.o" - no debug information available for "object.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/selectiondata.o" - no debug information available for "selectiondata.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/statusicon.o" - no debug information available for "statusicon.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/style.o" - no debug information available for "style.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/targetlist.o" - no debug information available for "targetlist.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/widget.o" - no debug information available for "widget.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/generated.o" - no debug information available for "generated.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gdk/glue/.libs/dragcontext.o" - no debug information available for "dragcontext.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gdk/glue/.libs/device.o" - no debug information available for "device.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gdk/glue/.libs/event.o" - no debug information available for "event.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gdk/glue/.libs/selection.o" - no debug information available for "selection.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gdk/glue/.libs/windowmanager.o" - no debug information available for "windowmanager.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gdk/glue/.libs/generated.o" - no debug information available for "generated.c".
+
+Attaching to process 73944.
+Reading symbols for shared libraries . done
+Reading symbols for shared libraries ............................................................................................................................................................................ done
+0x91305e59 in read$UNIX2003 ()
+  15                                 0x91320412 in __workq_kernreturn ()
+  14                                 0x912fab4e in semaphore_timedwait_trap ()
+  13                                 0x912fab4e in semaphore_timedwait_trap ()
+  12                                 0x91328aa2 in __semwait_signal ()
+  11                                 0x912fab4e in semaphore_timedwait_trap ()
+  10                                 0x91321382 in kevent ()
+   9                                 0x91328aa2 in __semwait_signal ()
+   8                                 0x91328aa2 in __semwait_signal ()
+   7                                 0x912fab4e in semaphore_timedwait_trap ()
+   6                                 0x91328aa2 in __semwait_signal ()
+   5                                 0x91328aa2 in __semwait_signal ()
+   4 "com.apple.libdispatch-manager" 0x91321382 in kevent ()
+   3                                 0x912fab36 in semaphore_wait_trap ()
+   2                                 0x912faafa in mach_msg_trap ()
+*  1 "com.apple.main-thread"         0x91305e59 in read$UNIX2003 ()
+
+Thread 15 (process 73944):
+#0  0x91320412 in __workq_kernreturn ()
+#1  0x913209a8 in _pthread_wqthread ()
+#2  0x913205c6 in start_wqthread ()
+
+Thread 14 (process 73944):
+#0  0x912fab4e in semaphore_timedwait_trap ()
+#1  0x0023d607 in mono_sem_timedwait (sem=0x31a388, timeout_ms=2000, alertable=1) at mono-semaphore.c:76
+#2  0x001e72d8 in async_invoke_thread (data=0x0) at threadpool.c:1485
+#3  0x001e92a1 in start_wrapper_internal (data=0x1b876400) at threads.c:783
+#4  0x001e9357 in start_wrapper (data=0x1b876400) at threads.c:831
+#5  0x0022e6fe in thread_start_routine (args=0x282d820) at wthreads.c:287
+#6  0x00268118 in GC_start_routine (arg=0x18c7c900) at pthread_support.c:1468
+#7  0x91328259 in _pthread_start ()
+#8  0x913280de in thread_start ()
+
+Thread 13 (process 73944):
+#0  0x912fab4e in semaphore_timedwait_trap ()
+#1  0x0023d607 in mono_sem_timedwait (sem=0x31a388, timeout_ms=2000, alertable=1) at mono-semaphore.c:76
+#2  0x001e72d8 in async_invoke_thread (data=0x0) at threadpool.c:1485
+#3  0x001e92a1 in start_wrapper_internal (data=0x1c965590) at threads.c:783
+#4  0x001e9357 in start_wrapper (data=0x1c965590) at threads.c:831
+#5  0x0022e6fe in thread_start_routine (args=0x282d5b4) at wthreads.c:287
+#6  0x00268118 in GC_start_routine (arg=0x452660) at pthread_support.c:1468
+#7  0x91328259 in _pthread_start ()
+#8  0x913280de in thread_start ()
+
+Thread 12 (process 73944):
+#0  0x91328aa2 in __semwait_signal ()
+#1  0x9132875e in _pthread_cond_wait ()
+#2  0x9132a3f8 in pthread_cond_wait$UNIX2003 ()
+#3  0x04650d8d in select_thread_func ()
+#4  0x91328259 in _pthread_start ()
+#5  0x913280de in thread_start ()
+
+Thread 11 (process 73944):
+#0  0x912fab4e in semaphore_timedwait_trap ()
+#1  0x0023d607 in mono_sem_timedwait (sem=0x31a2a8, timeout_ms=2000, alertable=1) at mono-semaphore.c:76
+#2  0x001e72d8 in async_invoke_thread (data=0x0) at threadpool.c:1485
+#3  0x001e92a1 in start_wrapper_internal (data=0x1dcf970) at threads.c:783
+#4  0x001e9357 in start_wrapper (data=0x1dcf970) at threads.c:831
+#5  0x0022e6fe in thread_start_routine (args=0x282d440) at wthreads.c:287
+#6  0x00268118 in GC_start_routine (arg=0x452960) at pthread_support.c:1468
+#7  0x91328259 in _pthread_start ()
+#8  0x913280de in thread_start ()
+
+Thread 10 (process 73944):
+#0  0x91321382 in kevent ()
+#1  0x001e2e25 in tp_kqueue_wait (p=0x31a320) at tpool-kqueue.c:95
+#2  0x001e92a1 in start_wrapper_internal (data=0x1dcfb00) at threads.c:783
+#3  0x001e9357 in start_wrapper (data=0x1dcfb00) at threads.c:831
+#4  0x0022e6fe in thread_start_routine (args=0x282d3c4) at wthreads.c:287
+#5  0x00268118 in GC_start_routine (arg=0x452960) at pthread_support.c:1468
+#6  0x91328259 in _pthread_start ()
+#7  0x913280de in thread_start ()
+
+Thread 9 (process 73944):
+#0  0x91328aa2 in __semwait_signal ()
+#1  0x913549c5 in nanosleep$UNIX2003 ()
+#2  0x0022f7ee in SleepEx (ms=500, alertable=1) at wthreads.c:1027
+#3  0x001ea80f in ves_icall_System_Threading_Thread_Sleep_internal (ms=500) at threads.c:1319
+#4  0x1e44b4fc in ?? ()
+#5  0x1e44b478 in ?? ()
+#6  0x1e44b22c in ?? ()
+#7  0x03f077ca in ?? ()
+#8  0x039b4459 in ?? ()
+#9  0x0000d352 in mono_jit_runtime_invoke (method=0x109534c, obj=0x19fd2738, params=0xb07f8ea0, exc=0x0) at mini.c:5791
+#10 0x001a43aa in mono_runtime_invoke (method=0x109534c, obj=0x19fd2738, params=0xb07f8ea0, exc=0x0) at object.c:2755
+#11 0x001a5c47 in mono_runtime_delegate_invoke (delegate=0x19fd2738, params=0xb07f8ea0, exc=0x0) at object.c:3420
+#12 0x001e92f6 in start_wrapper_internal (data=0x1a4e7220) at threads.c:789
+#13 0x001e9357 in start_wrapper (data=0x1a4e7220) at threads.c:831
+#14 0x0022e6fe in thread_start_routine (args=0x282d250) at wthreads.c:287
+#15 0x00268118 in GC_start_routine (arg=0x452a20) at pthread_support.c:1468
+#16 0x91328259 in _pthread_start ()
+#17 0x913280de in thread_start ()
+
+Thread 8 (process 73944):
+#0  0x91328aa2 in __semwait_signal ()
+#1  0x9132875e in _pthread_cond_wait ()
+#2  0x913282b1 in pthread_cond_timedwait$UNIX2003 ()
+#3  0x0021453c in _wapi_handle_timedwait_signal_handle (handle=0x419, timeout=0xb06b0c10, alertable=1, poll=0) at handles.c:1653
+#4  0x0022c095 in WaitForSingleObjectEx (handle=0x419, timeout=5000, alertable=1) at wait.c:205
+#5  0x001eb678 in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=0x18dc0d38, handle=0x419, ms=5000, exitContext=1) at threads.c:1664
+#6  0x03f08248 in ?? ()
+#7  0x1e3669f8 in ?? ()
+#8  0x1e36696c in ?? ()
+#9  0x1e366858 in ?? ()
+#10 0x03f077ca in ?? ()
+#11 0x039b4459 in ?? ()
+#12 0x0000d352 in mono_jit_runtime_invoke (method=0x109534c, obj=0x1a192e38, params=0xb06b0ea0, exc=0x0) at mini.c:5791
+#13 0x001a43aa in mono_runtime_invoke (method=0x109534c, obj=0x1a192e38, params=0xb06b0ea0, exc=0x0) at object.c:2755
+#14 0x001a5c47 in mono_runtime_delegate_invoke (delegate=0x1a192e38, params=0xb06b0ea0, exc=0x0) at object.c:3420
+#15 0x001e92f6 in start_wrapper_internal (data=0x1c964810) at threads.c:789
+#16 0x001e9357 in start_wrapper (data=0x1c964810) at threads.c:831
+#17 0x0022e6fe in thread_start_routine (args=0x282cfe4) at wthreads.c:287
+#18 0x00268118 in GC_start_routine (arg=0x452420) at pthread_support.c:1468
+#19 0x91328259 in _pthread_start ()
+#20 0x913280de in thread_start ()
+
+Thread 7 (process 73944):
+#0  0x912fab4e in semaphore_timedwait_trap ()
+#1  0x0023d607 in mono_sem_timedwait (sem=0x31a388, timeout_ms=2000, alertable=1) at mono-semaphore.c:76
+#2  0x001e72d8 in async_invoke_thread (data=0x0) at threadpool.c:1485
+#3  0x001e92a1 in start_wrapper_internal (data=0x17700050) at threads.c:783
+#4  0x001e9357 in start_wrapper (data=0x17700050) at threads.c:831
+#5  0x0022e6fe in thread_start_routine (args=0x282c824) at wthreads.c:287
+#6  0x00268118 in GC_start_routine (arg=0x452f00) at pthread_support.c:1468
+#7  0x91328259 in _pthread_start ()
+#8  0x913280de in thread_start ()
+
+Thread 6 (process 73944):
+#0  0x91328aa2 in __semwait_signal ()
+#1  0x913549c5 in nanosleep$UNIX2003 ()
+#2  0x0022f7ee in SleepEx (ms=500, alertable=1) at wthreads.c:1027
+#3  0x001e4d9a in monitor_thread (unused=0x0) at threadpool.c:777
+#4  0x001e92a1 in start_wrapper_internal (data=0x58f670) at threads.c:783
+#5  0x001e9357 in start_wrapper (data=0x58f670) at threads.c:831
+#6  0x0022e6fe in thread_start_routine (args=0x282c7a8) at wthreads.c:287
+#7  0x00268118 in GC_start_routine (arg=0x452f00) at pthread_support.c:1468
+#8  0x91328259 in _pthread_start ()
+#9  0x913280de in thread_start ()
+
+Thread 5 (process 73944):
+#0  0x91328aa2 in __semwait_signal ()
+#1  0x9132875e in _pthread_cond_wait ()
+#2  0x9132a3f8 in pthread_cond_wait$UNIX2003 ()
+#3  0x00214553 in _wapi_handle_timedwait_signal_handle (handle=0x408, timeout=0x0, alertable=1, poll=0) at handles.c:1655
+#4  0x002142f4 in _wapi_handle_wait_signal_handle (handle=0x408, alertable=1) at handles.c:1598
+#5  0x0022c06f in WaitForSingleObjectEx (handle=0x408, timeout=4294967295, alertable=1) at wait.c:203
+#6  0x001eb678 in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=0x45e0d8, handle=0x408, ms=-1, exitContext=0) at threads.c:1664
+#7  0x03f08248 in ?? ()
+#8  0x03f08090 in ?? ()
+#9  0x03f07982 in ?? ()
+#10 0x03f077ca in ?? ()
+#11 0x039b4459 in ?? ()
+#12 0x0000d352 in mono_jit_runtime_invoke (method=0x109534c, obj=0x4c5620, params=0xb0388ea0, exc=0x0) at mini.c:5791
+#13 0x001a43aa in mono_runtime_invoke (method=0x109534c, obj=0x4c5620, params=0xb0388ea0, exc=0x0) at object.c:2755
+#14 0x001a5c47 in mono_runtime_delegate_invoke (delegate=0x4c5620, params=0xb0388ea0, exc=0x0) at object.c:3420
+#15 0x001e92f6 in start_wrapper_internal (data=0x64bff0) at threads.c:789
+#16 0x001e9357 in start_wrapper (data=0x64bff0) at threads.c:831
+#17 0x0022e6fe in thread_start_routine (args=0x282c72c) at wthreads.c:287
+#18 0x00268118 in GC_start_routine (arg=0x452f60) at pthread_support.c:1468
+#19 0x91328259 in _pthread_start ()
+#20 0x913280de in thread_start ()
+
+Thread 4 (process 73944):
+#0  0x91321382 in kevent ()
+#1  0x91321a9c in _dispatch_mgr_invoke ()
+#2  0x91320f59 in _dispatch_queue_invoke ()
+#3  0x91320cfe in _dispatch_worker_thread2 ()
+#4  0x91320781 in _pthread_wqthread ()
+#5  0x913205c6 in start_wqthread ()
+
+Thread 3 (process 73944):
+#0  0x912fab36 in semaphore_wait_trap ()
+#1  0x0023d682 in mono_sem_wait (sem=0x319b14, alertable=1) at mono-semaphore.c:115
+#2  0x001234f2 in finalizer_thread (unused=0x0) at gc.c:1066
+#3  0x001e92a1 in start_wrapper_internal (data=0x1e143f0) at threads.c:783
+#4  0x001e9357 in start_wrapper (data=0x1e143f0) at threads.c:831
+#5  0x0022e6fe in thread_start_routine (args=0x282c5b8) at wthreads.c:287
+#6  0x00268118 in GC_start_routine (arg=0x452f60) at pthread_support.c:1468
+#7  0x91328259 in _pthread_start ()
+#8  0x913280de in thread_start ()
+
+Thread 2 (process 73944):
+#0  0x912faafa in mach_msg_trap ()
+#1  0x912fb267 in mach_msg ()
+#2  0x000d9d9a in mach_exception_thread (arg=0x0) at mini-darwin.c:129
+#3  0x00268118 in GC_start_routine (arg=0x452f60) at pthread_support.c:1468
+#4  0x91328259 in _pthread_start ()
+#5  0x913280de in thread_start ()
+
+Thread 1 (process 73944):
+#0  0x91305e59 in read$UNIX2003 ()
+#1  0x0009518e in mono_handle_native_sigsegv (signal=11, ctx=0xbfffb9b0) at mini-exceptions.c:2208
+#2  0x000050b8 in mono_sigsegv_signal_handler (_dummy=10, info=0xbfffb970, context=0xbfffb9b0) at mini.c:5917
+#3  &lt;signal handler called&gt;
+#4  0x987a6dd0 in CFStringGetLength ()
+#5  0x046c2c27 in gchar_from_cf_string ()
+#6  0x046c3025 in _pango_core_text_font_description_from_ct_font_descriptor ()
+#7  0x046c3211 in pango_core_text_face_describe ()
+#8  0x0472a8c7 in pango_font_face_describe ()
+#9  0x046c4e3e in find_best_match ()
+#10 0x046c57e6 in pango_core_text_fontset_new ()
+#11 0x046c51b6 in pango_core_text_font_map_load_fontset ()
+#12 0x047375f4 in pango_font_map_load_fontset ()
+#13 0x04734358 in itemize_state_update_for_new_run ()
+#14 0x04734479 in itemize_state_process_run ()
+#15 0x0473499d in pango_itemize_with_base_dir ()
+#16 0x0474313b in pango_layout_check_lines ()
+#17 0x04740aac in pango_layout_get_extents_internal ()
+#18 0x04740f42 in pango_layout_get_extents ()
+#19 0x04741015 in pango_layout_get_pixel_extents ()
+#20 0x047410e2 in pango_layout_get_pixel_size ()
+#21 0x21622058 in ?? ()
+#22 0x21622014 in ?? ()
+#23 0x21621e7c in ?? ()
+#24 0x21621de8 in ?? ()
+#25 0x1e291472 in ?? ()
+#26 0x1a68e6c4 in ?? ()
+#27 0x04205cbe in _gtk_marshal_BOOLEAN__BOXED ()
+#28 0x0407a54e in g_type_class_meta_marshal ()
+#29 0x0407a154 in g_closure_invoke ()
+#30 0x0409835f in signal_emit_unlocked_R ()
+#31 0x04096eb1 in g_signal_emit_valist ()
+#32 0x040972d1 in g_signal_emit ()
+#33 0x043b15b9 in gtk_widget_event_internal ()
+#34 0x043b11e1 in gtk_widget_send_expose ()
+#35 0x04201ea8 in gtk_main_do_event ()
+#36 0x04638802 in _gdk_window_process_updates_recurse ()
+#37 0x046386fa in _gdk_window_process_updates_recurse ()
+#38 0x04645422 in -[GdkQuartzView drawRect:] ()
+#39 0x9666861e in -[NSView _drawRect:clip:] ()
+#40 0x966672bc in -[NSView _recursiveDisplayAllDirtyWithLockFocus:visRect:] ()
+#41 0x966675f1 in -[NSView _recursiveDisplayAllDirtyWithLockFocus:visRect:] ()
+#42 0x966657db in -[NSView _recursiveDisplayRectIfNeededIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:topView:] ()
+#43 0x9666534f in -[NSThemeFrame _recursiveDisplayRectIfNeededIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:topView:] ()
+#44 0x96661c96 in -[NSView _displayRectIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:] ()
+#45 0x965c284b in -[NSView displayIfNeeded] ()
+#46 0x9658bb64 in -[NSWindow displayIfNeeded] ()
+#47 0x965bd07e in _handleWindowNeedsDisplay ()
+#48 0x9881edd2 in __CFRunLoopDoObservers ()
+#49 0x987daced in __CFRunLoopRun ()
+#50 0x987da3c4 in CFRunLoopRunSpecific ()
+#51 0x987da1f1 in CFRunLoopRunInMode ()
+#52 0x91bb2d60 in RunCurrentEventLoopInMode ()
+#53 0x91bb2a53 in ReceiveNextEventCommon ()
+#54 0x91bb299c in BlockUntilNextEventMatchingListInMode ()
+#55 0x96593595 in _DPSNextEvent ()
+#56 0x96592dd6 in -[NSApplication nextEventMatchingMask:untilDate:inMode:dequeue:] ()
+#57 0x04651b6d in poll_func ()
+#58 0x03f56f09 in g_main_context_poll ()
+#59 0x03f5606d in g_main_context_iterate ()
+#60 0x03f569ea in g_main_loop_run ()
+#61 0x04201540 in gtk_main ()
+#62 0x1e4d7ecc in ?? ()
+#63 0x1e4d7e94 in ?? ()
+#64 0x1e4d7e74 in ?? ()
+#65 0x039bc950 in ?? ()
+#66 0x004a6f98 in ?? ()
+#67 0x004a6d9c in ?? ()
+#68 0x004a6e56 in ?? ()
+#69 0x0000d352 in mono_jit_runtime_invoke (method=0x200081c, obj=0x0, params=0xbffff1b8, exc=0x0) at mini.c:5791
+#70 0x001a43aa in mono_runtime_invoke (method=0x200081c, obj=0x0, params=0xbffff1b8, exc=0x0) at object.c:2755
+#71 0x001a6eec in mono_runtime_exec_main (method=0x200081c, args=0x45de00, exc=0x0) at object.c:3930
+#72 0x001a6151 in mono_runtime_run_main (method=0x200081c, argc=0, argv=0xbffff3f4, exc=0x0) at object.c:3560
+#73 0x00069a65 in mono_jit_exec (domain=0x456e00, assembly=0x1d01450, argc=1, argv=0xbffff3f0) at driver.c:944
+#74 0x0006bfe3 in mono_main (argc=3, argv=0xbffff3e8) at driver.c:1003
+#75 0x00002369 in main (argc=3, argv=0xbffff3e8) at main.c:66
+
+=================================================================
+Got a SIGSEGV while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+=================================================================</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-07 11:54:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This is caused by opening the 'About' dialog in monodevelop.</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jeffrey Stedfast</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-07 15:25:24 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">FWIW, I can't reproduce on Snow Leopard and I'm running 2.10.7 beta.</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Natterer</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-09 05:20:04 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The crash most likely depends on a certain combination of fonts, it
+just works for other fonts. Alan, can you tell your system font please?</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Larry Ewing [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-09 14:55:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Here is the output of fc-list on my machine
+
+Verdana:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Candara:style=Italic
+Luxi Serif:style=Regular
+LucidaBright:style=Italic
+Consolas:style=Italic
+Courier:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Lucida Console:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Navadno,Arrunta
+Rockwell:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+Utopia:style=Bold Italic
+BlairMdITC TT:style=Medium
+Papyrus:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Goudy Old Style:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+Wide Latin:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Mistral:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Times New Roman:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,thường,Arrunta
+News Gothic MT:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+.Aqua Kana,.Aqua かな:style=Regular,レギュラー
+Bitstream Vera Sans Mono:style=Bold
+Arial Narrow:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Webdings:style=Regular
+Heiti SC,黑體\-簡,黒体\-簡,Heiti\-간체,黑体\-简:style=中黑,Medium,Halbfett,Normaali,Moyen,Medio,ミディアム,중간체,Médio,Средний,Normal,中等,Media
+Batang,바탕:style=Regular
+Serto Malankara:style=Regular
+Century Schoolbook:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Kino MT:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Plantagenet Cherokee:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Lucida Sans Typewriter:style=Oblique,oblik,Schräg,Inclinada,Kallistettu,Schuin,Lutande,Inclinado
+Geeza Pro:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Helvetica Neue:style=Light Italic,細斜體,Mager kursiv,Fein\, Kursiv,Ohut kursiivi,Fin italique,Leggero corsivo,ライト・イタリック,가는 이탤릭체,Licht Cursief,Tynn kursiv,Itálico Leve,Облегченный курсивный,细斜体,Fina cursiva
+Gill Sans:style=Italic,斜體,Kursiv,Kursiivi,Italique,Corsivo,イタリック,이탤릭체,Cursief,Itálico,Курсивный,斜体,Cursiva
+Apple Braille:style=Pinpoint 8 Dot
+Luxi Serif:style=Bold
+Verdana:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+Microsoft Tai Le:style=Bold
+Lucida Bright:style=Demibold
+Gill Sans MT:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+PMingLiU,新細明體:style=Regular
+Eurostile:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Bernard MT Condensed:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Georgia:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+Serto Mardin:style=Regular
+Comic Sans MS:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Calibri:style=Bold Italic
+Raanana:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Lucida Fax:style=Italic,kursiv,Cursiva,Kursivoitu,Italique,Corsivo,Cursief,Itálico
+Apple Symbols:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Bookman Old Style:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Lucida Bright:style=Italic
+LucidaTypewriter:style=Sans Bold
+Fixed:style=Bold
+Garamond:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+Helvetica Neue:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Sathu:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Rockwell:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Helvetica Neue:style=Italic,斜體,Kursiv,Kursiivi,Italique,Corsivo,イタリック,이탤릭체,Cursief,Itálico,Курсивный,斜体,Cursiva
+Bitstream Vera Sans:style=Oblique
+Goudy Old Style:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Estrangelo Edessa:style=Regular
+Serto Kharput:style=Regular
+Kokonor:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Palatino:style=Italic,Italique,Kursiv,Corsivo,Cursief,Cursiva,Itálico,Kursivoitu,レギュラー
+Bell MT:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Lucida Sans Typewriter:style=Bold,fed,Fett,Negrita,Lihavoitu,Gras,Grassetto,Vet,Halvfet,Fet,Negrito
+Bell MT:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+Times:style=Bold Italic
+Clean:style=Regular
+Luxi Mono:style=Bold
+Palatino:style=Bold Italic,Gras italique,Fett Kursiv,Grassetto corsivo,Vet cursief,Fet Kursiv,Cursiva Negrita,Fed kursiv,Carregado Itálico,Lihavoitu kursivoitu,レギュラー
+Georgia:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+Utopia:style=Bold
+Tw Cen MT:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+Estrangelo Nisibin:style=Regular
+Baskerville:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Mshtakan:style=Oblique,斜型體,Skrå,Kursiv,Kallistettu,Obliquo,オブリーク,기울임체,Schuin,Skråstilt,Oblíquo,Наклоненный,Snedställd,斜体,Oblicua
+ClearlyU PUA:style=Regular
+.Aqua Kana,.Aqua かな,.Aqua Kana Bold,.Aqua かな ボールド:style=Bold,ボールド
+Apple Braille:style=Pinpoint 6 Dot
+Geneva CY:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Menlo:style=Regular
+Consolas:style=Bold
+Bitstream Vera Sans:style=Roman
+Charter:style=Bold Italic
+Copperplate Gothic Light:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Bitstream Charter:style=Bold Italic
+Apple Braille:style=Outline 8 Dot
+Helvetica Neue:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Luxi Sans:style=Bold
+Futura:style=中黑,Medium,Halbfett,Normaali,Moyen,Medio,ミディアム,중간체,Médio,Средний,Normal,中等,Media
+Serto Batnan:style=Bold
+Calibri:style=Bold
+Chalkboard:style=Regular
+Helvetica CY:style=BoldOblique,粗斜型體,Fed skrå,Fett\, Kursiv,Puolilihava kallistettu,Gras oblique,Grassetto obliquo,ボールド・オブリーク,볼드기울임체,VetSchuin,Fet skråstilt,Negrito Oblíquo,Жирный наклоненный,Fet snedställd,粗斜体,Negrita oblicua
+Copperplate:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Apple Braille:style=Outline 6 Dot
+Copperplate:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Lucida Sans:style=Demibold Roman,halvfed,Halbfett,Seminegrita,Puolilihavoitu,Demi-gras,Demi-grassetto,Halfvet,Trekvartsfet,Seminegrito
+News Gothic MT:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Microsoft Sans Serif:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Copperplate Gothic Bold:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Cambria:style=Bold Italic
+Zapf Dingbats:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Cochin:style=Italic,斜體,Kursiv,Kursiivi,Italique,Corsivo,イタリック,이탤릭체,Cursief,Itálico,Курсивный,斜体,Cursiva
+Tw Cen MT:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Abadi MT Condensed Extra Bold:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Hiragino Kaku Gothic StdN,ヒラギノ角ゴ StdN,Hiragino Kaku Gothic StdN W8,ヒラギノ角ゴ StdN W8:style=W8,Regular
+Hiragino Kaku Gothic ProN,ヒラギノ角ゴ ProN,Hiragino Kaku Gothic ProN W6,ヒラギノ角ゴ ProN W6:style=W6,Regular
+Hiragino Kaku Gothic ProN,ヒラギノ角ゴ ProN,Hiragino Kaku Gothic ProN W3,ヒラギノ角ゴ ProN W3:style=W3,Regular
+Baskerville:style=Italic,斜體,Kursiv,Kursiivi,Italique,Corsivo,イタリック,이탤릭체,Cursief,Itálico,Курсивный,斜体,Cursiva
+Gill Sans:style=Light,細體,Mager,Fein,Ohut,Fin,Leggero,ライト,가는체,Licht,Tynn,Leve,Светлый,细体,Fina
+Charcoal CY:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Helvetica CY:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Helvetica Neue:style=Medium
+Estrangelo Midyat:style=Regular
+Desdemona:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Gurmukhi MT:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+.Keyboard:style=Regular
+Estrangelo Talada:style=Regular
+Braggadocio:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Hoefler Text:style=Ornaments,修飾體,Ornamenter,Ornamente,Koristeet,Ornements,Ornamenti,オーナメント,그림자 문자 장식,Ornamenten,Ornamentos,Орнаменты,Ornament,修饰体
+Helvetica CY:style=Plain,平體,Almindelig,Standard,Normaali,Simple,Piano,プレーン,보통체,Normaal,Vanlig,Plano,Прямой,Normall,普通体
+Franklin Gothic Medium:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+Century Gothic:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Engravers MT:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Courier:style=Bold Italic
+Luxi Sans:style=Regular
+Skia:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Meiryo,メイリオ:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,ボールド,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Trebuchet MS:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+MS Gothic,ＭＳ ゴシック:style=Regular,標準
+Lucida Fax:style=Demibold Italic,halvfed kursiv,Halbfett Kursiv,Seminegrita Cursiva,Puolilihavoitu Kursivoitu,Demi-gras Italique,Demi-grassetto Corsivo,Halfvet Cursief,Trekvartsfet Kursiv,Seminegrito Itálico
+Courier:style=Regular
+Charter:style=Bold
+Zapfino:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Cursor:style=Regular
+Helvetica:style=Oblique
+Apple Chancery:style=筆寫斜體,Chancery,공문서체,Kalligrafisk,Tribunal,Kansliskrift,档案体,Cancillería
+Franklin Gothic Book:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+Book Antiqua:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+Abadi MT Condensed Light:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Candara:style=Regular
+Helvetica Neue:style=Condensed Black,壓縮黑體,Smal sort,Schmal\, Sehr fett,Kavennettu lihava,Condensé noir,Condensato nero,コンデンス・ブラック,자간 축소 두껍게,Gecomprimeerd Zwart,Fortettet svart,Preto Condensado,Узкий насыщенный жирный,Smal,紧缩黑体,Condensada negra
+Palatino Linotype:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,thường,Arrunta
+LucidaBright:style=Regular
+Times:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Terminal:style=Bold
+Estrangelo Quenneshrin:style=Regular
+Cochin:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+BiauKai:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Trebuchet MS:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+American Typewriter:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Baskerville:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Cambria:style=Bold
+Arial Rounded MT Bold:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Helvetica:style=Oblique,斜體,Kursiv,Kursiivi,Italique,Corsivo,イタリック,이탤릭체,Cursief,Itálico,Курсивный,斜体,Cursiva
+Corsiva Hebrew:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Baskerville Old Face:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Serto Jerusalem:style=Regular
+Imprint MT Shadow:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Times New Roman:style=Italic,cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,kursywa,Itálico,Курсив,İtalik,Poševno,nghiêng,Etzana
+Bookshelf Symbol 7:style=Regular
+East Syriac Ctesiphon:style=Regular
+New Peninim MT:style=Bold Inclined,粗傾斜體,Fed hældende,Fett\, Kursiv,Puolilihava kallistettu,Gras incliné,Grassetto inclinato,ボールド・インクライン,볼드 경사체,Vet Hellend,Fet skrånet,Negrito Inclinado,Жирный наклонный,Fet lutande,粗斜体,Negrita inclinada
+MS Reference Specialty:style=Regular
+Bookman Old Style:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+Lucida Grande:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Corbel:style=Italic
+Constantia:style=Italic
+Bitstream Charter:style=Regular
+Verdana:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Euphemia UCAS:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Fixed:style=Bold SemiCondensed
+Microsoft Yi Baiti:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+SimSun\-ExtB:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Osaka:style=Regular-Mono,レギュラー−等幅
+PortagoITC TT:style=Regular
+Al Bayan:style=Plain,平體,Almindelig,Standard,Normaali,Simple,Piano,プレーン,보통체,Normaal,Vanlig,Plano,Прямой,Normall,普通体
+Mongolian Baiti:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Andale Mono:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+STFangsong:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Eurostile:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Perpetua Titling MT:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Constantia:style=Bold Italic
+Monotype Sorts:style=Regular
+Cochin:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+MS PGothic,ＭＳ Ｐゴシック:style=Regular,標準
+Hiragino Mincho Pro,ヒラギノ明朝 Pro,Hiragino Mincho Pro W6,ヒラギノ明朝 Pro W6:style=W6,Regular
+Hiragino Mincho Pro,ヒラギノ明朝 Pro,Hiragino Mincho Pro W3,ヒラギノ明朝 Pro W3:style=W3,Regular
+Monotype Corsiva:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Heiti TC,黑體\-繁,黒体\-繁,Heiti\-번체,黑体\-繁:style=Light,細體,Mager,Fein,Ohut,Fin,Leggero,ライト,가는체,Licht,Tynn,Leve,Светлый,细体,Fina
+Georgia:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Palatino:style=Regular,Standard,Normale,Normaal,Normal,Almindelig,Vanlig,Normaali,レギュラー
+Apple LiSung:style=Light,Fin,Mager,Chiaro,Licht,Fina,Ohut,ライト
+Serto Jerusalem Outline:style=Regular
+Gill Sans:style=Bold Italic,粗斜體,Fed kursiv,Fett\, Kursiv,Puolilihava kursiivi,Gras italique,Grassetto corsivo,ボールド・イタリック,볼드 이탤릭체,Vet Cursief,Fet kursiv,Negrito Itálico,Жирный курсивный,粗斜体,Negrita cursiva
+Bordeaux Roman Bold LET:style=Plain
+Times New Roman:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiona,Negrito,Полужирный,Fet,Kalın,Krepko,đậm,Lodia
+SimSun,宋体:style=Regular
+Arial Black:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+LiSong Pro:style=Light,細體,Mager,Fein,Ohut,Fin,Leggero,ライト,가는체,Licht,Tynn,Leve,Светлый,细体,Fina
+Fixed:style=SemiCondensed
+Bitstream Vera Sans Mono:style=Oblique
+Edwardian Script ITC:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Lucida Sans Typewriter:style=Regular,normal,Standard,Normaali,Normale,Standaard
+Garamond:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Perpetua:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+Century:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Navadno,Arrunta
+Euphemia UCAS:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Times:style=Bold
+Bookman Old Style:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+Book Antiqua:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Arial Hebrew:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Helvetica Neue:style=Condensed Bold,壓縮粗體,Smal fed,Schmal\, Fett,Kavennettu puolilihava,Condensé gras,Condensato grassetto,コンデンス・ボールド,자간 축소 볼드체,Gecomprimeerd Vet,Fortettet fet,Negrito Condensado,Узкий жирный,Smal fet,紧缩粗体,Condensada negrita
+Gujarati MT:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Courier New:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,thường,Arrunta
+Didot:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Helvetica Neue:style=Bold Italic,粗斜體,Fed kursiv,Fett\, Kursiv,Puolilihava kursiivi,Gras italique,Grassetto corsivo,ボールド・イタリック,볼드 이탤릭체,Vet Cursief,Fet kursiv,Negrito Itálico,Жирный курсивный,粗斜体,Negrita cursiva
+Optima:style=ExtraBlack,加黑體,Ekstra sort,Extrafett,Erikoislihava,Extranoir,Nero-extra,エクストラブラック,아주 두껍게,ExtraZwart,Ekstra svart,Extra Preto,Сверхжирный,Extra extrafet,特黑体,Extranegra
+Courier 10 Pitch:style=Bold Italic
+Palatino Linotype:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,đậm,Lodia
+Charter:style=Italic
+Trebuchet MS:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Britannic Bold:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Lucida Bright:style=Regular
+Luxi Mono:style=Regular
+Estrangelo Antioch:style=Regular
+Arial:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,nghiêng đậm,Lodi etzana
+Wingdings 2:style=Regular
+Wingdings 3:style=Regular
+Meiryo,メイリオ:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,ボールド イタリック,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+Century Gothic:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+Consolas:style=Bold Italic
+Devanagari MT:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Wingdings:style=Regular
+MingLiU_HKSCS\-ExtB,細明體_HKSCS\-ExtB:style=Regular
+Engravers MT:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Courier:style=Oblique
+Tw Cen MT:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Trebuchet MS:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+Corbel:style=Regular
+Bitstream Charter:style=Italic
+Newspaper:style=Regular
+Comic Sans MS:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Futura:style=Condensed ExtraBold,中黑,Smal ekstra fed,Schmal\, Extrafett,Kavennettu lihava,Condensé extragras,Condensato,コンデンス・エクストラボールド,자간 축소 견출체,Gecomprimeerd ExtraVet,Fortettet ekstra fet,Condensado,Узкий сверхжирный,Smal extrafet,壓縮加黑體,Condensada extranegrita
+Times:style=Bold Italic,粗斜體,Fed kursiv,Fett\, Kursiv,Puolilihava kursiivi,Gras italique,Grassetto corsivo,ボールド・イタリック,볼드 이탤릭체,Vet Cursief,Fet kursiv,Negrito Itálico,Жирный курсивный,粗斜体,Negrita cursiva
+Serto Urhoy:style=Bold
+Helvetica Neue:style=Light,細體,Mager,Fein,Ohut,Fin,Leggero,ライト,가는체,Licht,Tynn,Leve,Светлый,细体,Fina
+Cambria:style=Italic
+Lucida Sans:style=Regular,normal,Standard,Normaali,Normale,Standaard
+Arial Hebrew:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Times:style=Italic
+Chalkboard:style=Bold
+Palatino:style=Bold,Gras,Fett,Grassetto,Vet,Fet,Negrita,Fed,Carregado,Lihavoitu,レギュラー
+STHeiti:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+STSong:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Cochin:style=BoldItalic,粗斜體,Fed kursiv,Fett\, Kursiv,Puolilihava kursiivi,Gras italique,Grassetto corsivo,ボールドイタリック,볼드이탤릭체,VetCursief,Fet kursiv,Negrito Itálico,Жирный курсивный,粗斜体,Negrita cursiva
+Papyrus:style=Condensed,壓縮體,Smal,Schmal,Kavennettu,Condensé,Condensato,コンデンス,자간 축소,Gecomprimeerd,Fortettet,Condensado,Узкий,紧缩体,Condensada
+ClearlyU:style=Regular
+Cooper Black:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Marker Felt:style=Wide,寬體,Bred,Breit,Leveä,Épais,Allargato,ワイド,넓게,Breed,Amplo,Широкий,宽体,Ancha
+Lucida:style=Sans Bold
+Gloucester MT Extra Condensed:style=Regular
+Bitstream Vera Sans:style=Bold
+Century Gothic:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+PMingLiU\-ExtB,新細明體\-ExtB:style=Regular
+Helvetica:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Hiragino Kaku Gothic Std,ヒラギノ角ゴ Std,Hiragino Kaku Gothic Std W8,ヒラギノ角ゴ Std W8:style=W8,Regular
+Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro,Hiragino Kaku Gothic Pro W6,ヒラギノ角ゴ Pro W6:style=W6,Regular
+Baskerville:style=SemiBold Italic,半粗斜體,Halvfed kursiv,Halbfett\, Kursiv,Voimakas kursiivi,Demi-gras italique,Semigrassetto corsivo,セミボールド・イタリック,세미볼드 이탤릭체,SemiVet Cursief,Halvfet kursiv,Semi-negrito Itálico,Полужирный курсивный,半粗斜体,Seminegrita cursiva
+Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro,Hiragino Kaku Gothic Pro W3,ヒラギノ角ゴ Pro W3:style=W3,Regular
+Gill Sans:style=Light Italic,細斜體,Mager kursiv,Fein\, Kursiv,Ohut kursiivi,Fin italique,Leggero corsivo,ライト・イタリック,가는 이탤릭체,Licht Cursief,Tynn kursiv,Itálico Leve,Облегченный курсивный,细斜体,Fina cursiva
+Verdana:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+micro.pcf:style=Regular
+Century Gothic:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Fixed:style=Oblique SemiCondensed
+.Times LT MM:style=Regular
+Thonburi:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Arial Narrow:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+American Typewriter:style=Condensed,壓縮體,Smal,Schmal,Kavennettu,Condensé,Condensato,コンデンス,자간 축소,Gecomprimeerd,Fortettet,Condensado,Узкий,紧缩体,Condensada
+Apple LiGothic:style=Medium,Moyen,Halbfett,Medio,Normal,Media,Médio,Normaali,ミディアム
+Perpetua:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Fixed:style=Oblique
+MS Reference Sans Serif:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Devanagari MT:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Times:style=Italic,斜體,Kursiv,Kursiivi,Italique,Corsivo,イタリック,이탤릭체,Cursief,Itálico,Курсивный,斜体,Cursiva
+Arial Unicode MS:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Onyx:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Courier New:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+Heiti TC,黑體\-繁,黒体\-繁,Heiti\-번체,黑体\-繁:style=中黑,Medium,Halbfett,Normaali,Moyen,Medio,ミディアム,중간체,Médio,Средний,Normal,中等,Media
+Helvetica:style=Light
+LucidaTypewriter:style=Sans
+New Century Schoolbook:style=Bold
+Courier:style=Bold Oblique,粗斜體,Fed kursiv,Fett\, Kursiv,Puolilihava kursiivi,Gras italique,Grassetto corsivo,ボールド・イタリック,볼드 이탤릭체,Vet Cursief,Fet kursiv,Negrito Itálico,Жирный курсивный,粗斜体,Negrita cursiva
+Lucida Fax:style=Demibold,halvfed,Halbfett,Seminegrita,Puolilihavoitu,Demi-gras,Demi-grassetto,Halfvet,Trekvartsfet,Seminegrito
+LiHei Pro:style=中黑,Medium,Halbfett,Normaali,Moyen,Medio,ミディアム,중간체,Médio,Средний,Normal,中等,Media
+Lucida Calligraphy:style=Italic
+Hoefler Text:style=Italic,斜體,Kursiv,Kursiivi,Italique,Corsivo,イタリック,이탤릭체,Cursief,Itálico,Курсивный,斜体,Cursiva
+Calisto MT:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Marlett:style=Regular
+Palatino Linotype:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,nghiêng đậm,Lodi etzana
+Courier:style=Oblique,斜體,Kursiv,Kursiivi,Italique,Corsivo,イタリック,이탤릭체,Cursief,Itálico,Курсивный,斜体,Cursiva
+Helvetica:style=Light Oblique
+ClearlyU Alternate Glyphs:style=Regular
+Rockwell:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+Kai:style=Regular
+Optima:style=Bold Italic,粗斜體,Fed kursiv,Fett\, Kursiv,Puolilihava kursiivi,Gras italique,Grassetto corsivo,ボールド・イタリック,볼드 이탤릭체,Vet Cursief,Fet kursiv,Negrito Itálico,Жирный курсивный,粗斜体,Negrita cursiva
+Courier 10 Pitch:style=Italic
+Utopia:style=Italic
+Hiragino Maru Gothic Pro,ヒラギノ丸ゴ Pro,Hiragino Maru Gothic Pro W4,ヒラギノ丸ゴ Pro W4:style=W4,Regular
+Hiragino Mincho ProN,ヒラギノ明朝 ProN,Hiragino Mincho ProN W3,ヒラギノ明朝 ProN W3:style=W3,Regular
+Hiragino Mincho ProN,ヒラギノ明朝 ProN,Hiragino Mincho ProN W6,ヒラギノ明朝 ProN W6:style=W6,Regular
+Casual,Apple Casual:style=Regular
+Baskerville:style=Bold Italic,粗斜體,Fed kursiv,Fett\, Kursiv,Puolilihava kursiivi,Gras italique,Grassetto corsivo,ボールド・イタリック,볼드 이탤릭체,Vet Cursief,Fet kursiv,Negrito Itálico,Жирный курсивный,粗斜体,Negrita cursiva
+Corbel:style=Bold
+Courier:style=Bold Oblique
+Arial:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,nghiêng,Etzana
+Lucida:style=Sans Italic
+Perpetua Titling MT:style=Light,Mager,Fina,Maigre,Chiarissimo
+Helvetica CY:style=Oblique,斜型體,Skrå,Kursiv,Kallistettu,Obliquo,オブリーク,기울임체,Schuin,Skråstilt,Oblíquo,Наклоненный,Snedställd,斜体,Oblicua
+Hei:style=Regular
+Bitstream Vera Serif:style=Roman
+HeadLineA:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+PCMyungjo:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Book Antiqua:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+Copperplate:style=Light,細體,Mager,Fein,Ohut,Fin,Leggero,ライト,가는체,Licht,Tynn,Leve,Светлый,细体,Fina
+Optima:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Hiragino Maru Gothic ProN,ヒラギノ丸ゴ ProN,Hiragino Maru Gothic ProN W4,ヒラギノ丸ゴ ProN W4:style=W4,Regular
+Lucida:style=Sans
+Constantia:style=Regular
+InaiMathi:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Tahoma:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,thường,Arrunta
+.Helvetica LT MM:style=Regular
+Hoefler Text:style=Black Italic,黑斜體,Sort kursiv,Sehr fett\, Kursiv,Lihava kursiivi,Noir italique,Nero corsivo,ブラック・イタリック,두꺼운 이탤릭체,Zwart Cursief,Svart kursiv,Itálico Preto,Жирный курсивный,Extrafet kursiv,黑斜体,Negra cursiva
+Bitstream Vera Sans Mono:style=Bold Oblique
+Lucida Fax:style=Regular,normal,Standard,Normaali,Normale,Standaard
+Optima:style=Italic,斜體,Kursiv,Kursiivi,Italique,Corsivo,イタリック,이탤릭체,Cursief,Itálico,Курсивный,斜体,Cursiva
+Footlight MT Light:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Meiryo,メイリオ:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,イタリック,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+Lucida Sans Typewriter:style=Bold Oblique,fed oblik,Fett Schräg,Negrita Inclinada,Lihavoitu Kallistettu,Gras Oblique,Grassetto Oblique,Vet Schuin,Halvfet Lutande,Fet Lutande,Negrito Inclinado
+Serto Urhoy:style=Regular
+MingLiU\-ExtB,細明體\-ExtB:style=Regular
+Optima:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Luxi Serif:style=Oblique
+Century Schoolbook:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+News Gothic MT:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+American Typewriter:style=Condensed Light,壓縮細體,Smal mager,Schmal\, Fein,Kavennettu ohut,Condensé fin,Condensato leggero,コンデンス・ライト,자간 축소 가는체,Gecomprimeerd Licht,Fortettet tynn,Condensado Leve,Узкий светлый,紧缩细体,Condensada fina
+Courier New:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,nghiêng,Etzana
+Calibri:style=Italic
+Bitstream Vera Sans:style=Bold Oblique
+Euphemia UCAS:style=Italic,斜體,Kursiv,Kursiivi,Italique,Corsivo,イタリック,이탤릭체,Cursief,Itálico,Курсивный,斜体,Cursiva
+Rockwell Extra Bold:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Tahoma:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,đậm,Lodia
+Luxi Serif:style=Bold Oblique
+Serto Batnan:style=Regular
+Arial:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,thường,Arrunta
+Menlo:style=Bold Italic
+Didot:style=Italic,斜體,Kursiv,Kursiivi,Italique,Corsivo,イタリック,이탤릭체,Cursief,Itálico,Курсивный,斜体,Cursiva
+Calisto MT:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+SimHei,黑体:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+MS Mincho,ＭＳ 明朝:style=Regular,標準
+decsess.pcf:style=Regular
+STHeiti:style=Light,細體,Mager,Fein,Ohut,Fin,Leggero,ライト,가는체,Licht,Tynn,Leve,Светлый,细体,Fina
+Symbol:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Helvetica:style=Bold Oblique,粗斜體,Fed kursiv,Fett\, Kursiv,Puolilihava kursiivi,Gras italique,Grassetto corsivo,ボールド・イタリック,볼드 이탤릭체,Vet Cursief,Fet kursiv,Negrito Itálico,Жирный курсивный,粗斜体,Negrita cursiva
+MingLiU,細明體:style=Regular
+Helvetica:style=Bold
+Gulim,굴림:style=Regular
+Baskerville:style=SemiBold,半粗體,Halvfed,Halbfett,Voimakas,Demi-gras,Semigrassetto,セミボールド,세미볼드체,SemiVet,Halvfet,Semi-negrito,Полужирный,半粗体,Seminegrita
+Times:style=Regular
+Arial Narrow:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+New Century Schoolbook:style=Bold Italic
+Bitstream Vera Sans Mono:style=Roman
+Mshtakan:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Marker Felt:style=Thin,細瘦體,Tynd,Extraschmal,Ohut,Maigre,Fino,シン,얇게,Dun,Smal,Estreito,Узкий тонкий,Tunn,瘦体,Estrecha
+Gill Sans MT:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Luxi Mono:style=Oblique
+Harrington:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Goudy Old Style:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Franklin Gothic Book:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Microsoft Tai Le:style=Regular
+Candara:style=Bold Italic
+Geeza Pro:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Courier 10 Pitch:style=Regular
+Lucida:style=Sans Bold Italic
+Nadeem:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Gujarati MT:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Courier New:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,đậm,Lodia
+Helvetica:style=Regular
+Luxi Sans:style=Oblique
+Osaka:style=Regular,レギュラー
+Big Caslon:style=中黑,Medium,Halbfett,Normaali,Moyen,Medio,ミディアム,중간체,Médio,Средний,Normal,中等,Media
+Raanana:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Haettenschweiler:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Modern No. 20:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Serto Mardin:style=Bold
+American Typewriter:style=Condensed Bold,壓縮粗體,Smal fed,Schmal\, Fett,Kavennettu puolilihava,Condensé gras,Condensato grassetto,コンデンス・ボールド,자간 축소 볼드체,Gecomprimeerd Vet,Fortettet fet,Negrito Condensado,Узкий жирный,Smal fet,紧缩粗体,Condensada negrita
+Calisto MT:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+Mshtakan:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Cambria Math:style=Regular
+Meiryo,メイリオ:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,レギュラー,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Baghdad:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Estrangelo TurAbdin:style=Regular
+Lucida Sans Unicode:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Candara:style=Bold
+Courier:style=Italic
+Cambria:style=Regular
+Al Bayan:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Didot:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Gabriola:style=Regular
+Bell MT:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Mshtakan:style=BoldOblique,粗斜型體,Fed skrå,Fett\, Kursiv,Puolilihava kallistettu,Gras oblique,Grassetto obliquo,ボールド・オブリーク,볼드기울임체,VetSchuin,Fet skråstilt,Negrito Oblíquo,Жирный наклоненный,Fet snedställd,粗斜体,Negrita oblicua
+Corbel:style=Bold Italic
+deccurs.pcf:style=Regular
+Gill Sans:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+cursor.pcf:style=Regular
+Calisto MT:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+MingLiU_HKSCS,細明體_HKSCS:style=Regular
+Charter:style=Regular
+Courier 10 Pitch:style=Bold
+Cracked:style=Regular
+Herculanum:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Hoefler Text:style=Black,黑體,Sort,Sehr fett,Lihava,Noir,Nero,ブラック,두껍게,Zwart,Svart,Preto,Насыщенный жирный,Extrafet,黑体,Negra
+Hoefler Text:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Serto Jerusalem:style=Italic
+Terminal:style=Regular
+Serto Jerusalem:style=Bold
+Hiragino Sans GB,Hiragino Sans GB W6:style=W6,Bold
+Ayuthaya:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Lucida Handwriting:style=Italic,kursiv,Cursiva,Kursivoitu,Italique,Corsivo,Cursief,Itálico
+Fixed:style=ko
+Fixed:style=ja
+Gill Sans MT:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+Heiti SC,黑體\-簡,黒体\-簡,Heiti\-간체,黑体\-简:style=Light,細體,Mager,Fein,Ohut,Fin,Leggero,ライト,가는체,Licht,Tynn,Leve,Светлый,细体,Fina
+Arial Narrow:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+Fixed:style=Regular
+Gill Sans Ultra Bold:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Matura MT Script Capitals:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Lucida Sans:style=Demibold Italic,halvfed kursiv,Halbfett Kursiv,Seminegrita Cursiva,Puolilihavoitu Kursivoitu,Demi-gras Italique,Demi-grassetto Corsivo,Halfvet Cursief,Trekvartsfet Kursiv,Seminegrito Itálico
+Helvetica:style=Bold Oblique
+Century Schoolbook:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Palatino Linotype:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,nghiêng,Etzana
+Arial:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,đậm,Lodia
+Gill Sans MT:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+MT Extra:style=Regular
+Lucida Sans:style=Italic,kursiv,Cursiva,Kursivoitu,Italique,Corsivo,Cursief,Itálico
+MS PMincho,ＭＳ Ｐ明朝:style=Regular,標準
+KufiStandardGK:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Curlz MT:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Navadno,Arrunta
+Courier:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+New Century Schoolbook:style=Italic
+Playbill:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Menlo:style=Bold
+Luxi Sans:style=Bold Oblique
+Garamond:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Apple Braille:style=Regular
+Franklin Gothic Medium:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Bitstream Vera Serif:style=Bold
+Calibri:style=Regular
+Bookman Old Style:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Helvetica:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Monaco:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Colonna MT:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Lucida Blackletter:style=Regular
+New Peninim MT:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+New Peninim MT:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Bauhaus 93:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Thonburi:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Luxi Mono:style=Bold Oblique
+Courier:style=Bold
+Times:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Tw Cen MT:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+LastResort:style=Regular
+Rockwell:style=Bold,Negreta,tučné,fed,Fett,Έντονα,Negrita,Lihavoitu,Gras,Félkövér,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,Полужирный,Fet,Kalın,Krepko,Lodia
+Perpetua:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Utopia:style=Regular
+Perpetua:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+Hiragino Sans GB,Hiragino Sans GB W3:style=W3,Regular
+Stencil:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Handwriting \- Dakota:style=Regular
+Impact:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Krungthep:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Geneva:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Helvetica Neue:style=UltraLight,極細體,Ultramager,Extrafein,Erikoisohut,Ultrafin,Ultraleggero,ウルトラ・ライト,아주 가는체,UltraLicht,Ultratynn,Ultra Leve,Сверхсветлый,Extra mager,超细体,Ultrafina
+New Peninim MT:style=Inclined,傾斜體,Hældende,Kursiv,Kallistettu,Incliné,Inclinato,インクライン,경사체,Hellend,Skrånet,Inclinado,Наклонный,Lutande,斜体,Inclinada
+Chalkduster:style=Regular
+Brush Script MT:style=Italic,Cursiva,kurzíva,kursiv,Πλάγια,Kursivoitu,Italique,Dőlt,Corsivo,Cursief,Kursywa,Itálico,Курсив,İtalik,Poševno,Etzana
+Goha\-Tibeb Zemen:style=Regular
+Consolas:style=Regular
+Georgia:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Estrangelo Nisibin Outline:style=Regular
+East Syriac Adiabene:style=Regular
+Corsiva Hebrew:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Bitstream Charter:style=Bold
+Kailasa:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Lucida Grande:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Lucida Bright:style=Demibold Italic
+Silom:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Book Antiqua:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Microsoft Himalaya:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,Arrunta
+Times New Roman:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,nghiêng đậm,Lodi etzana
+American Typewriter:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Gill Sans:style=Bold,粗體,Fed,Fett,Puolilihava,Gras,Grassetto,ボールド,볼드체,Vet,Fet,Negrito,Жирный,粗体,Negrita
+Helvetica Neue:style=UltraLight Italic,極細斜體,Ultramager kursiv,Extrafein\, Kursiv,Erikoisohut kursiivi,Ultrafin italique,Ultraleggero corsivo,ウルトラ・ライト・イタリック,아주 가는 이탤릭체,UltraLicht Cursief,Ultratynn kursiv,Itálico Ultra Leve,Сверхоблегченный курсивный,Extramager kursiv,超细斜体,Ultrafina cursiva
+Menlo:style=Italic
+New Century Schoolbook:style=Regular
+DecoType Naskh:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Futura:style=Condensed Medium,壓縮中體,Smal medium,Schmal\, Halbfett,Kavennettu voimakas,Condensé moyen,Condensato medio,コンデンス・ミディアム,자간 축소 중간체,Gecomprimeerd Gemiddeld,Fortettet medium,Condensado,Узкий средний,紧缩中等体,Condensada mediana
+Century Schoolbook:style=Bold Italic,Negreta cursiva,tučné kurzíva,fed kursiv,Fett Kursiv,Έντονα Πλάγια,Negrita Cursiva,Lihavoitu Kursivoi,Gras Italique,Félkövér dőlt,Grassetto Corsivo,Vet Cursief,Halvfet Kursiv,Pogrubiona kursywa,Negrito Itálico,Полужирный Курсив,Tučná kurzíva,Fet Kursiv,Kalın İtalik,Krepko poševno,Lodi etzana
+STKaiti:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+AppleGothic:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体
+Futura:style=Medium Italic,中斜體,Medium kursiv,Halbfett\, Kursiv,Voimakas kursiivi,Moyen italique,Medio corsivo,ミディアム・イタリック,중간 이탤릭체,Gemiddeld Cursief,Itálico Médio,Средний курсивный,中等斜体,Mediana cursiva
+American Typewriter:style=Light,細體,Mager,Fein,Ohut,Fin,Leggero,ライト,가는체,Licht,Tynn,Leve,Светлый,细体,Fina
+Constantia:style=Bold
+PilGi:style=Regular,標準體,Ordinær,Normal,Normaali,Regolare,レギュラー,일반체,Regulier,Обычный,常规体</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-09 15:01:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=1024&amp;file=working_fonts" name="attach_1024" title="working configuration">attachment 1024</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1024&amp;file=working_fonts" title="working configuration">[details]</a></span>
+working configuration
+
+I've attached the output of fc_list on my working (Lion) system.</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Natterer</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-13 07:28:02 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I still can't reproduce this on Lion, I think it's safe to assume
+that "on snow leopard" is correct.
+
+From looking at the stack trace, I think it can only crash this
+way if:
+
+  cf_str = CTFontDescriptorCopyAttribute (desc, kCTFontFamilyNameAttribute);
+
+in
+
+  _pango_core_text_font_description_from_ct_font_descriptor()
+
+returns NULL, which would trigger a SEGV in gchar_from_cf_string().
+But that's just stating the obvious, will investigate further.</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alex Corrado [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-15 16:54:53 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=1052&amp;file=mono_2011%2012%2015%20164938_chkn.crash" name="attach_1052" title="Stacktrace from crash reporter (with line numbers)">attachment 1052</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1052&amp;file=mono_2011%2012%2015%20164938_chkn.crash" title="Stacktrace from crash reporter (with line numbers)">[details]</a></span>
+Stacktrace from crash reporter (with line numbers)
+
+I can reproduce this. Also, I get a trace with line numbers courtesy of the Apple crash reporter. Attached.</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Natterer</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-15 17:29:16 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=1053&amp;file=pango%20crash%20hotfix%203.patch" name="attach_1053" title="Patch that cures the crash">attachment 1053</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1053&amp;file=pango%20crash%20hotfix%203.patch" title="Patch that cures the crash">[details]</a></span>
+Patch that cures the crash
+
+This is a hotfix that fixes the crash.
+Hotfix because I couldn't figure why
+
+CTFontDescriptorCopyAttribute (desc, kCTFontStyleNameAttribute)
+
+return a NULL family name. It's IMO most likely that
+the real bug is somewhere else.</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-03 13:27:02 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Alex, I am assigning this to you, can you get this patch in, so we can ship an updated version with the installer?
+
+Michael, I am adding you, can you verify that we need to patch Mono, or if we are always getting a fresh batch of patches for the Mono/Beta package (the one with the updated Gtk+ from Lanedo)</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-03 14:12:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The patch is already in Bockbuild: <a href="https://github.com/xamarin/bockbuild/commit/b9242e4092d91b53ff5497f014c6a91f9231ab2d">https://github.com/xamarin/bockbuild/commit/b9242e4092d91b53ff5497f014c6a91f9231ab2d</a>
+
+Our latest package (Mono 2.10.8.1 beta) used the old Pango, though, so it doesn't matter to that. There are a couple of other Pango issues before we can ship it, so I think we'll aim for just GTK first.</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alex Corrado [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-06 12:09:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">If we decide to ship the new Pango, I'll make sure we get the patches from Bockbuild.</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-28 05:19:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">My brief analysis of this bug.  The crash occurs when Pango is looking for the best font face for the requested font.  During this process, the CoreText backend has to translate CTFontDescriptors to PangoFontDescriptions. It appears that there are some fonts which do not have a font family name and/or style name set. It is clear that we have to guard for such broken fonts, this will also fix the crash that's shown in the back traces.
+
+I am not sure how this relates to the crash exposing itself when the About dialog in Mono Develop is opened.  It is well possible that when the About Dialog is opened and the font "Tahoma" is requested for rendering, some of the broken fonts on a system are being iterated during the best font matching. However, I cannot confirm this. As has been noted before, this very much depends on the set of installed fonts on a user's system.
+
+CoreText can return NULL for style name on both Lion and Snow Leopard. However, a NULL font family name only occurs on Snow Leopard, the version of CoreText shipped with Lion appears to include some magic to return the correct  font family name after all.  In our backend code, we correct this problem by querying the font name (postscript name) when we get a NULL font family name. From the postscript name we determine the family name manually.
+
+We have also put in a guard for a NULL bitmap when requesting font coverage.
+
+I have tested this with the font "Skia" which is installed on Lion and Snow Leopard by default. CoreText is not returning a style name and font family name for this font on Snow Leopard. On Lion the Oblique renditions of this font (which I guess are synthesized by the backend) do not seem to work, but they do work on Snow Leopard (the irony). Perhaps determining the family name from the postscript name works better than the font family names returned by CoreText...</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-28 05:21:26 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=1284&amp;file=0002%20Make%20CoreText%20backend%20more%20robust%20against%20broken%20fon.patch" name="attach_1284" title="Make CoreText backend more robust against broken fonts">attachment 1284</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1284&amp;file=0002%20Make%20CoreText%20backend%20more%20robust%20against%20broken%20fon.patch" title="Make CoreText backend more robust against broken fonts">[details]</a></span>
+Make CoreText backend more robust against broken fonts
+
+This patch has been tested on Snow Leopard as well as Lion. It will also be committed to Pango's master branch today, together with the main font fallback patch.</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-28 05:22:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The patch in <a href="bug.html">comment 14</a> obsoletes the one in <a href="bug.html">comment 8</a>.</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jeffrey Stedfast</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-02-15 15:36:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">fixed in Mono 2.10.9</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

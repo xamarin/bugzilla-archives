@@ -1,0 +1,1656 @@
+<html lang="en"><head>
+    <title>21338 – NuGet does not use MonoMac assemblies</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Xamarin_Studio
+                 bz_component_NuGet
+                 bz_bug_21338 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;21338</span>
+
+        <span id="subtitle" class="subheader">NuGet does not use MonoMac assemblies</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2017-07-17 21:12:15 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2017-07-17 21:12:15">
+  <input type="hidden" name="id" value="21338">
+  <input type="hidden" name="token" value="1559148250-n7bsE-GtEIKNxIx19Xr5sb6-ePLiqtcuuy6BaaBqPPc">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;21338</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">NuGet does not use MonoMac assemblies</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>NuGet does not use MonoMac assemblies
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          UPSTREAM
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Xamarin Studio
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Desktop
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">NuGet
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>5.2
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">Macintosh
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>High
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>master
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Matt Ward</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2014-07-15 12:01 UTC by <span class="vcard"><span class="fn">Michael Teper</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2017-07-17 21:12 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>6
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="chris.hamons">chris.hamons</option>
+                <option value="elevenworks">elevenworks</option>
+                <option value="michael">michael</option>
+                <option value="mohitk">mohitk</option>
+                <option value="sadika">sadika</option>
+                <option value="xavier.rigau">xavier.rigau</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/mono/monodevelop/issues">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">UPSTREAM
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Teper</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-07-15 12:01:10 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Create a new Xam.Mac project, add ReactiveUI via NuGet, observe that references were added from the Net45 folder instead of the MonoMac folder, forcing user to have to manually edit .csproj and hint path (after tear hair our for hours to figure out why things are failing in mysterious ways).</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matt Ward</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-07-15 12:08:02 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The problem is that a Xam.Mac project currently has a target framework of .NETFramework and not MonoMac so NuGet will not install anything from the MonoMac folder inside a NuGet package. Visual Studio will have the same behaviour as Xamarin Studio here.
+
+As far as I am aware no Xamarin.Mac project nor any MonoMac project has used the MonoMac target framework even though NuGet supports it.
+
+It might be better to get the ReactiveUI NuGet package changed so maybe it uses the an assembly in the Net45 folder that is compatible with the Mac.</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Teper</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-07-15 12:13:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Matt, I don't think that's practical. The Net45 package is targeting Windows and WPF and has dependencies that don't exist on the Mac. How does NuGet handle fallback? In other words, if the project were to target Xamarin.Mac or MonoMac, would it fall back to Net45 if one of those folders were not found in a NuGet package?</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matt Ward</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-07-15 12:45:42 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Agreed it is not going to work if ReactiveUI has WPF specific dependencies when targeting Net45 that are not supported on Mono.
+
+The only fallback built into NuGet is that if a project targets .NET 4.5 then any version of .NET 4.5 or lower is considered compatible. So it could use Net45, Net40, Net20 assemblies in the NuGet package.
+
+If the project had a target framework of MonoMac then only assemblies in a MonoMac folder could be used. If this was missing from the NuGet package then installation would fail.</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Teper</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-07-15 13:19:27 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Too bad.
+
+Still, we *badly* need a solution here because MonoMac/Xam.Mac is in this weird area that is neither clearly foreign (iOS / Android) nor truly .NETFramework. Splat is another NuGet package that needs to be able to target it specifically.</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Teper</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-07-25 11:53:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Matt, a handful of NuGet packages pushed updates today and I had to hand-edit a dozen project and packages.config files to compensate for the current behavior. This is (a) unnecessary pain and friction and (b) makes for special knowledge that each team member has to acquire just to deal with XS.</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sadik Ali</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-04 05:06:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have checked this issue and I am also getting the same behavior.
+
+Steps I followed:
+
+1. Create a Xamain.Mac project.
+2. Add "Reactive Ui" from nuget.
+3. Open .csproj file and search for "&lt;HintPath&gt;" tag
+
+When I add the "ReactiveUI" via NuGet and check the .csproj file, I observed that references is added from the Net45.
+
+Following is the location of "Reactive UI" references: 
+&lt;HintPath&gt;..\packages\reactiveui-core.6.1.0\lib\Net45\ReactiveUI.dll&lt;/HintPath&gt;
+
+Screencast: <a href="http://www.screencast.com/t/uIchrkyJDiqQ">http://www.screencast.com/t/uIchrkyJDiqQ</a>
+
+Environment Info:
+
+Mac OS X 10.10.0
+Xamarin Studio: 5.5.3 (build 6)
+Xcode 6.0.1 (6528)
+Xamarin.Mac: 1.10.0.18 (Trial Edition)
+=== Build Information ===
+
+Release ID: 505030006
+Git revision: fbe3e9453daf6a3bb9a9709ed22bec35f7c9056b
+Build date: 2014-10-23 13:08:38-04
+Xamarin addins: e44add2b39de4dd57c0742bb2e620dfad84c64c6</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Teper</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-05-12 19:11:48 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Any word on this? Doesn't look like Unified is going to bring relief (see <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Unified API migration tool incorrectly updates the target framework on XamMac projects" href="show_bug.cgi?id=27206">bug 27206</a>).</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Xavier Rigau</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-07-17 21:03:36 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I am having a similar issue. When I have a Xamarin.Mac .NET 4.5 app install my nuget package it uses the net45 targetFramework or the uap10.0 if available. If I don't remove the uap10.0 group my nuget package won't install at all.
+
+
+I am writing the nuspec for our multiplatform Xamarin package and I run into issues with the dependencies. 
+
+    &lt;metadata&gt;
+
+Bla bla
+            
+        &lt;!-- This dependencies are extrated from the packages.config and changing package for dependency. --&gt;
+        &lt;!-- all targetsFrameworks must be removed --&gt;            
+        &lt;dependencies&gt;
+           
+            &lt;!-- Desktop  net452 --&gt;
+I am trying to set the dependencies for desktop apps using the &gt;NET framework 4.5.2
+            &lt;group targetFramework="net452"&gt;
+                &lt;dependency id="JetBrains.Annotations" version="10.4.0"/&gt;
+                &lt;dependency id="Microsoft.Bcl.Build" version="1.0.21"/&gt;
+                &lt;dependency id="Newtonsoft.Json" version="10.0.2"/&gt;
+                &lt;dependency id="PCLStorage" version="1.0.2"/&gt;
+            &lt;/group&gt;
+            
+This will be the section for Android API 19
+            &lt;!-- Android --&gt;
+            &lt;group targetFramework="monoandroid71"&gt;
+                &lt;dependency id="Microsoft.Bcl.Build" version="1.0.21"/&gt;
+            &lt;/group&gt;
+            
+This will be the section for iOS
+            &lt;!-- iOS --&gt;
+            &lt;group targetFramework="xamarinios10"&gt;
+                &lt;dependency id="Microsoft.Bcl.Build" version="1.0.21"/&gt;
+            &lt;/group&gt;
+            
+            &lt;!-- OSX --&gt;
+These two groups are for both flavor of mac Xamarin.
+
+I believe this one is what in VS Mac is shown as Xamarin.Mac Mobile Framework
+            &lt;group targetFramework="Xamarinmac20"&gt;
+                &lt;dependency id="BouncyCastle-PCL" version="1.0.0.6"/&gt;
+                &lt;dependency id="JetBrains.Annotations" version="10.4.0"/&gt;
+                &lt;dependency id="Newtonsoft.Json" version="10.0.2"/&gt;
+                &lt;dependency id="PCLStorage" version="1.0.2"/&gt;
+            &lt;/group&gt;
+I believe this one is what in VS Mac is shown as Xamarin.Mac .NET 4.5 Framework
+            &lt;group targetFramework="net45"&gt;
+                &lt;dependency id="BouncyCastle-PCL" version="1.0.0.6"/&gt;
+                &lt;dependency id="JetBrains.Annotations" version="10.4.0"/&gt;
+                &lt;dependency id="Newtonsoft.Json" version="10.0.2"/&gt;
+                &lt;dependency id="PCLStorage" version="1.0.2"/&gt;
+            &lt;/group&gt;            
+            
+This one was supposed to target  UWP but if I don’t remove it the nuget package 
+Installer in Mac OSX uses this group! See the log from nuget below
+            &lt;!-- UWP --&gt;
+            &lt;group targetFramework="uap10.0"&gt;
+                &lt;dependency id="JetBrains.Annotations" version="10.4.0"/&gt;
+                &lt;dependency id="Microsoft.NETCore.UniversalWindowsPlatform" version="5.2.3"/&gt;
+            &lt;/group&gt;         
+        &lt;/dependencies&gt;
+    &lt;/metadata&gt;
+
+
+When I don’t comment the UWP section the error I get is this: Package 'Microsoft.NETCore.Jit.1.0.3' does not exist in folder '/Users/xavierr/svn/XamarinNew/packages'
+
+However the log shows it was retrieved.</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Xavier Rigau</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-07-17 21:03:45 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Attempting to gather dependency information for package 'Hbla bla' with respect to project 'CocoaTestApp', targeting '.NETFramework,Version=v4.5'
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/Packages(Id='HP.Pdsmq.Xamarin.2015',Version='5.0.0.10-wip">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/Packages(Id='HP.Pdsmq.Xamarin.2015',Version='5.0.0.10-wip</a>')
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/Packages(Id='HP.Pdsmq.Xamarin.2015',Version='5.0.0.10-wip">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/Packages(Id='HP.Pdsmq.Xamarin.2015',Version='5.0.0.10-wip</a>') 5ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='JetBrains.Annotations">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='JetBrains.Annotations</a>'
+
+I don’t know why the group for UWP is used here.
+
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.UniversalWindowsPlatform">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.UniversalWindowsPlatform</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/bouncycastle-pcl/index.json">https://api.nuget.org/v3/registration2-gz/bouncycastle-pcl/index.json</a>
+  GET <a href="https://api.nuget.org/v3/registration2-gz/jetbrains.annotations/index.json">https://api.nuget.org/v3/registration2-gz/jetbrains.annotations/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Bcl.Build">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Bcl.Build</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.bcl.build/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.bcl.build/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Newtonsoft.Json">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Newtonsoft.Json</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/newtonsoft.json/index.json">https://api.nuget.org/v3/registration2-gz/newtonsoft.json/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='PCLStorage">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='PCLStorage</a>'
+ GET <a href="https://api.nuget.org/v3/registration2-gz/pclstorage/index.json">https://api.nuget.org/v3/registration2-gz/pclstorage/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='BouncyCastle-PCL">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='BouncyCastle-PCL</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.UniversalWindowsPlatform">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.UniversalWindowsPlatform</a>' 27ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.universalwindowsplatform/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.universalwindowsplatform/index.json</a>
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='JetBrains.Annotations">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='JetBrains.Annotations</a>' 29ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Bcl">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Bcl</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.bcl/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.bcl/index.json</a>
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Bcl.Build">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Bcl.Build</a>' 31ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Newtonsoft.Json">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Newtonsoft.Json</a>' 34ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='PCLStorage">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='PCLStorage</a>' 35ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='BouncyCastle-PCL">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='BouncyCastle-PCL</a>' 37ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Bcl">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Bcl</a>' 11ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/bouncycastle-pcl/index.json">https://api.nuget.org/v3/registration2-gz/bouncycastle-pcl/index.json</a> 263ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.bcl.build/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.bcl.build/index.json</a> 442ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/newtonsoft.json/index.json">https://api.nuget.org/v3/registration2-gz/newtonsoft.json/index.json</a> 589ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/jetbrains.annotations/index.json">https://api.nuget.org/v3/registration2-gz/jetbrains.annotations/index.json</a> 804ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/pclstorage/index.json">https://api.nuget.org/v3/registration2-gz/pclstorage/index.json</a> 867ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.universalwindowsplatform/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.universalwindowsplatform/index.json</a> 1080ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Runtime">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Runtime</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.componentmodel.eventbasedasync/index.json">https://api.nuget.org/v3/registration2-gz/system.componentmodel.eventbasedasync/index.json</a>
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.runtime/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.runtime/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Portable.Compatibility">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Portable.Compatibility</a>'
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Win32.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Win32.Primitives</a>'
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ComponentModel.EventBasedAsync">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ComponentModel.EventBasedAsync</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.portable.compatibility/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.portable.compatibility/index.json</a>
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.win32.primitives/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.win32.primitives/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Data.Common">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Data.Common</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.data.common/index.json">https://api.nuget.org/v3/registration2-gz/system.data.common/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.StackTrace">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.StackTrace</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Runtime">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Runtime</a>' 29ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore</a>' 29ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.diagnostics.stacktrace/index.json">https://api.nuget.org/v3/registration2-gz/system.diagnostics.stacktrace/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Contracts">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Contracts</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.diagnostics.contracts/index.json">https://api.nuget.org/v3/registration2-gz/system.diagnostics.contracts/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.IsolatedStorage">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.IsolatedStorage</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Win32.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Win32.Primitives</a>' 34ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Portable.Compatibility">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Portable.Compatibility</a>' 35ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Sockets">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Sockets</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.io.isolatedstorage/index.json">https://api.nuget.org/v3/registration2-gz/system.io.isolatedstorage/index.json</a>
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ComponentModel.EventBasedAsync">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ComponentModel.EventBasedAsync</a>' 38ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Data.Common">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Data.Common</a>' 36ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.net.sockets/index.json">https://api.nuget.org/v3/registration2-gz/system.net.sockets/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Requests">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Requests</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Contracts">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Contracts</a>' 12ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.StackTrace">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.StackTrace</a>' 38ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.WebHeaderCollection">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.WebHeaderCollection</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.net.requests/index.json">https://api.nuget.org/v3/registration2-gz/system.net.requests/index.json</a>
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.IsolatedStorage">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.IsolatedStorage</a>' 12ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Sockets">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Sockets</a>' 10ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.net.webheadercollection/index.json">https://api.nuget.org/v3/registration2-gz/system.net.webheadercollection/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Http.Rtc">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Http.Rtc</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.WebHeaderCollection">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.WebHeaderCollection</a>' 7ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Requests">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Requests</a>' 11ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.net.http.rtc/index.json">https://api.nuget.org/v3/registration2-gz/system.net.http.rtc/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Numerics.Vectors.WindowsRuntime">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Numerics.Vectors.WindowsRuntime</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Http.Rtc">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Http.Rtc</a>' 7ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Numerics.Vectors.WindowsRuntime">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Numerics.Vectors.WindowsRuntime</a>' 3ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices.WindowsRuntime">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices.WindowsRuntime</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.numerics.vectors.windowsruntime/index.json">https://api.nuget.org/v3/registration2-gz/system.numerics.vectors.windowsruntime/index.json</a>
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices.WindowsRuntime">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices.WindowsRuntime</a>' 3ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.bcl/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.bcl/index.json</a> 1150ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices.windowsruntime/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices.windowsruntime/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Context">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Context</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Context">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Context</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.reflection.context/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection.context/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.componentmodel.eventbasedasync/index.json">https://api.nuget.org/v3/registration2-gz/system.componentmodel.eventbasedasync/index.json</a> 264ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Serialization.Json">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Serialization.Json</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Serialization.Json">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Serialization.Json</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.serialization.json/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.serialization.json/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.runtime/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.runtime/index.json</a> 330ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Serialization.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Serialization.Primitives</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Serialization.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Serialization.Primitives</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.serialization.primitives/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.serialization.primitives/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore/index.json</a> 468ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.NetTcp">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.NetTcp</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.NetTcp">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.NetTcp</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.servicemodel.nettcp/index.json">https://api.nuget.org/v3/registration2-gz/system.servicemodel.nettcp/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.portable.compatibility/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.portable.compatibility/index.json</a> 641ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.WindowsRuntime.UI.Xaml">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.WindowsRuntime.UI.Xaml</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.WindowsRuntime.UI.Xaml">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.WindowsRuntime.UI.Xaml</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.windowsruntime.ui.xaml/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.windowsruntime.ui.xaml/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.win32.primitives/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.win32.primitives/index.json</a> 809ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.WindowsRuntime">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.WindowsRuntime</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.WindowsRuntime">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.WindowsRuntime</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.windowsruntime/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.windowsruntime/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.data.common/index.json">https://api.nuget.org/v3/registration2-gz/system.data.common/index.json</a> 979ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Duplex">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Duplex</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Duplex">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Duplex</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.servicemodel.duplex/index.json">https://api.nuget.org/v3/registration2-gz/system.servicemodel.duplex/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.diagnostics.stacktrace/index.json">https://api.nuget.org/v3/registration2-gz/system.diagnostics.stacktrace/index.json</a> 1036ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.Encoding.CodePages">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.Encoding.CodePages</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.Encoding.CodePages">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.Encoding.CodePages</a>' 4ms
+ GET <a href="https://api.nuget.org/v3/registration2-gz/system.text.encoding.codepages/index.json">https://api.nuget.org/v3/registration2-gz/system.text.encoding.codepages/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.diagnostics.contracts/index.json">https://api.nuget.org/v3/registration2-gz/system.diagnostics.contracts/index.json</a> 1148ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Primitives</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Primitives</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.servicemodel.primitives/index.json">https://api.nuget.org/v3/registration2-gz/system.servicemodel.primitives/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.io.isolatedstorage/index.json">https://api.nuget.org/v3/registration2-gz/system.io.isolatedstorage/index.json</a> 1211ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Http">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Http</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Http">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Http</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.servicemodel.http/index.json">https://api.nuget.org/v3/registration2-gz/system.servicemodel.http/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.net.sockets/index.json">https://api.nuget.org/v3/registration2-gz/system.net.sockets/index.json</a> 1346ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.XmlSerializer">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.XmlSerializer</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.XmlSerializer">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.XmlSerializer</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.xml.xmlserializer/index.json">https://api.nuget.org/v3/registration2-gz/system.xml.xmlserializer/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.net.requests/index.json">https://api.nuget.org/v3/registration2-gz/system.net.requests/index.json</a> 1399ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Security">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Security</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Security">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ServiceModel.Security</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.servicemodel.security/index.json">https://api.nuget.org/v3/registration2-gz/system.servicemodel.security/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.net.webheadercollection/index.json">https://api.nuget.org/v3/registration2-gz/system.net.webheadercollection/index.json</a> 1505ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Serialization.Xml">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Serialization.Xml</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Serialization.Xml">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Serialization.Xml</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.serialization.xml/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.serialization.xml/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.net.http.rtc/index.json">https://api.nuget.org/v3/registration2-gz/system.net.http.rtc/index.json</a> 1542ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.NameResolution">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.NameResolution</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.NameResolution">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.NameResolution</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.net.nameresolution/index.json">https://api.nuget.org/v3/registration2-gz/system.net.nameresolution/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.numerics.vectors.windowsruntime/index.json">https://api.nuget.org/v3/registration2-gz/system.numerics.vectors.windowsruntime/index.json</a> 1698ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.WebSockets.Client">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.WebSockets.Client</a>'
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices.windowsruntime/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices.windowsruntime/index.json</a> 1696ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.WebSockets.Client">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.WebSockets.Client</a>' 3ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.WebSockets">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.WebSockets</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.net.websockets.client/index.json">https://api.nuget.org/v3/registration2-gz/system.net.websockets.client/index.json</a>
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.WebSockets">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.WebSockets</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.net.websockets/index.json">https://api.nuget.org/v3/registration2-gz/system.net.websockets/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.serialization.json/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.serialization.json/index.json</a> 1665ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.reflection.context/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection.context/index.json</a> 1923ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Runtime.CoreCLR">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Runtime.CoreCLR</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Runtime.CoreCLR">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Runtime.CoreCLR</a>' 4ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Targets">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Targets</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.runtime.coreclr/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.runtime.coreclr/index.json</a>
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Targets">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Targets</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.targets/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.targets/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.serialization.primitives/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.serialization.primitives/index.json</a> 1837ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.NonGeneric">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.NonGeneric</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.NonGeneric">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.NonGeneric</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.collections.nongeneric/index.json">https://api.nuget.org/v3/registration2-gz/system.collections.nongeneric/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.servicemodel.nettcp/index.json">https://api.nuget.org/v3/registration2-gz/system.servicemodel.nettcp/index.json</a> 1702ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.Specialized">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.Specialized</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.Specialized">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.Specialized</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.collections.specialized/index.json">https://api.nuget.org/v3/registration2-gz/system.collections.specialized/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.windowsruntime.ui.xaml/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.windowsruntime.ui.xaml/index.json</a> 1743ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.XmlDocument">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.XmlDocument</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.XmlDocument">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.XmlDocument</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.xml.xmldocument/index.json">https://api.nuget.org/v3/registration2-gz/system.xml.xmldocument/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.windowsruntime/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.windowsruntime/index.json</a> 1587ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Overlapped">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Overlapped</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Overlapped">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Overlapped</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.threading.overlapped/index.json">https://api.nuget.org/v3/registration2-gz/system.threading.overlapped/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.text.encoding.codepages/index.json">https://api.nuget.org/v3/registration2-gz/system.text.encoding.codepages/index.json</a> 1511ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.Compiler">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.Compiler</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.Compiler">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.Compiler</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.net.native.compiler/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.net.native.compiler/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.servicemodel.duplex/index.json">https://api.nuget.org/v3/registration2-gz/system.servicemodel.duplex/index.json</a> 1583ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.threading/index.json">https://api.nuget.org/v3/registration2-gz/system.threading/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.servicemodel.http/index.json">https://api.nuget.org/v3/registration2-gz/system.servicemodel.http/index.json</a> 1495ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.runtime/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.servicemodel.primitives/index.json">https://api.nuget.org/v3/registration2-gz/system.servicemodel.primitives/index.json</a> 1646ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Resources.ResourceManager">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Resources.ResourceManager</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Resources.ResourceManager">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Resources.ResourceManager</a>' 24ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.resources.resourcemanager/index.json">https://api.nuget.org/v3/registration2-gz/system.resources.resourcemanager/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.xml.xmlserializer/index.json">https://api.nuget.org/v3/registration2-gz/system.xml.xmlserializer/index.json</a> 1607ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.threading.tasks/index.json">https://api.nuget.org/v3/registration2-gz/system.threading.tasks/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.servicemodel.security/index.json">https://api.nuget.org/v3/registration2-gz/system.servicemodel.security/index.json</a> 1594ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Runtime.Native">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Runtime.Native</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Runtime.Native">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Runtime.Native</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.runtime.native/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.runtime.native/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.serialization.xml/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.serialization.xml/index.json</a> 1737ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.CSharp">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.CSharp</a>'
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.net.nameresolution/index.json">https://api.nuget.org/v3/registration2-gz/system.net.nameresolution/index.json</a> 1754ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.CSharp">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.CSharp</a>' 26ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.csharp/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.csharp/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.collections/index.json">https://api.nuget.org/v3/registration2-gz/system.collections/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.net.websockets.client/index.json">https://api.nuget.org/v3/registration2-gz/system.net.websockets.client/index.json</a> 1864ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.net.websockets/index.json">https://api.nuget.org/v3/registration2-gz/system.net.websockets/index.json</a> 1886ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.AppContext">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.AppContext</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.AppContext">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.AppContext</a>' 4ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.Concurrent">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.Concurrent</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.appcontext/index.json">https://api.nuget.org/v3/registration2-gz/system.appcontext/index.json</a>
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.Concurrent">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.Concurrent</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.collections.concurrent/index.json">https://api.nuget.org/v3/registration2-gz/system.collections.concurrent/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.targets/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.targets/index.json</a> 1908ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.Immutable">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.Immutable</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.Immutable">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Collections.Immutable</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.collections.immutable/index.json">https://api.nuget.org/v3/registration2-gz/system.collections.immutable/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.runtime.coreclr/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.runtime.coreclr/index.json</a> 1958ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.VisualBasic">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.VisualBasic</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.VisualBasic">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.VisualBasic</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.visualbasic/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.visualbasic/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.collections.specialized/index.json">https://api.nuget.org/v3/registration2-gz/system.collections.specialized/index.json</a> 1981ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Debug">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Debug</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Debug">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Debug</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.diagnostics.debug/index.json">https://api.nuget.org/v3/registration2-gz/system.diagnostics.debug/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.collections.nongeneric/index.json">https://api.nuget.org/v3/registration2-gz/system.collections.nongeneric/index.json</a> 2062ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ComponentModel.Annotations">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ComponentModel.Annotations</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ComponentModel.Annotations">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ComponentModel.Annotations</a>' 23ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.componentmodel.annotations/index.json">https://api.nuget.org/v3/registration2-gz/system.componentmodel.annotations/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.xml.xmldocument/index.json">https://api.nuget.org/v3/registration2-gz/system.xml.xmldocument/index.json</a> 2124ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Tracing">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Tracing</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Tracing">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Tracing</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.diagnostics.tracing/index.json">https://api.nuget.org/v3/registration2-gz/system.diagnostics.tracing/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.threading.overlapped/index.json">https://api.nuget.org/v3/registration2-gz/system.threading.overlapped/index.json</a> 2126ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Dynamic.Runtime">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Dynamic.Runtime</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Dynamic.Runtime">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Dynamic.Runtime</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.dynamic.runtime/index.json">https://api.nuget.org/v3/registration2-gz/system.dynamic.runtime/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.threading/index.json">https://api.nuget.org/v3/registration2-gz/system.threading/index.json</a> 2206ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Globalization">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Globalization</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Globalization">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Globalization</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.globalization/index.json">https://api.nuget.org/v3/registration2-gz/system.globalization/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.runtime/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime/index.json</a> 2291ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Globalization.Calendars">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Globalization.Calendars</a>'
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.net.native.compiler/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.net.native.compiler/index.json</a> 2496ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Globalization.Calendars">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Globalization.Calendars</a>' 5ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.globalization.calendars/index.json">https://api.nuget.org/v3/registration2-gz/system.globalization.calendars/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Tools">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Tools</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Tools">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Diagnostics.Tools</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.diagnostics.tools/index.json">https://api.nuget.org/v3/registration2-gz/system.diagnostics.tools/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.resources.resourcemanager/index.json">https://api.nuget.org/v3/registration2-gz/system.resources.resourcemanager/index.json</a> 2402ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.threading.tasks/index.json">https://api.nuget.org/v3/registration2-gz/system.threading.tasks/index.json</a> 2242ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.Compression.ZipFile">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.Compression.ZipFile</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.Compression.ZipFile">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.Compression.ZipFile</a>' 4ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Globalization.Extensions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Globalization.Extensions</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.io.compression.zipfile/index.json">https://api.nuget.org/v3/registration2-gz/system.io.compression.zipfile/index.json</a>
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Globalization.Extensions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Globalization.Extensions</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.globalization.extensions/index.json">https://api.nuget.org/v3/registration2-gz/system.globalization.extensions/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.csharp/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.csharp/index.json</a> 2113ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.io/index.json">https://api.nuget.org/v3/registration2-gz/system.io/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.runtime.native/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.runtime.native/index.json</a> 2540ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.Compression">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.Compression</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.Compression">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.Compression</a>' 28ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.io.compression/index.json">https://api.nuget.org/v3/registration2-gz/system.io.compression/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.collections/index.json">https://api.nuget.org/v3/registration2-gz/system.collections/index.json</a> 2306ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.UnmanagedMemoryStream">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.UnmanagedMemoryStream</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.UnmanagedMemoryStream">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.UnmanagedMemoryStream</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.io.unmanagedmemorystream/index.json">https://api.nuget.org/v3/registration2-gz/system.io.unmanagedmemorystream/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.appcontext/index.json">https://api.nuget.org/v3/registration2-gz/system.appcontext/index.json</a> 2068ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.FileSystem.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.FileSystem.Primitives</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.FileSystem.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.FileSystem.Primitives</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.io.filesystem.primitives/index.json">https://api.nuget.org/v3/registration2-gz/system.io.filesystem.primitives/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.collections.concurrent/index.json">https://api.nuget.org/v3/registration2-gz/system.collections.concurrent/index.json</a> 2172ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.linq/index.json">https://api.nuget.org/v3/registration2-gz/system.linq/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.collections.immutable/index.json">https://api.nuget.org/v3/registration2-gz/system.collections.immutable/index.json</a> 1979ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Http">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Http</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Http">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Http</a>' 27ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.net.http/index.json">https://api.nuget.org/v3/registration2-gz/system.net.http/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.visualbasic/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.visualbasic/index.json</a> 2108ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.diagnostics.debug/index.json">https://api.nuget.org/v3/registration2-gz/system.diagnostics.debug/index.json</a> 1867ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.FileSystem">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.FileSystem</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.FileSystem">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.IO.FileSystem</a>' 28ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.io.filesystem/index.json">https://api.nuget.org/v3/registration2-gz/system.io.filesystem/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq.Parallel">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq.Parallel</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq.Parallel">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq.Parallel</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.linq.parallel/index.json">https://api.nuget.org/v3/registration2-gz/system.linq.parallel/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.componentmodel.annotations/index.json">https://api.nuget.org/v3/registration2-gz/system.componentmodel.annotations/index.json</a> 2016ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.diagnostics.tracing/index.json">https://api.nuget.org/v3/registration2-gz/system.diagnostics.tracing/index.json</a> 1762ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ObjectModel">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ObjectModel</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ObjectModel">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ObjectModel</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.objectmodel/index.json">https://api.nuget.org/v3/registration2-gz/system.objectmodel/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.NetworkInformation">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.NetworkInformation</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.NetworkInformation">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.NetworkInformation</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.net.networkinformation/index.json">https://api.nuget.org/v3/registration2-gz/system.net.networkinformation/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.dynamic.runtime/index.json">https://api.nuget.org/v3/registration2-gz/system.dynamic.runtime/index.json</a> 1893ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Primitives</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Net.Primitives</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.net.primitives/index.json">https://api.nuget.org/v3/registration2-gz/system.net.primitives/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.globalization/index.json">https://api.nuget.org/v3/registration2-gz/system.globalization/index.json</a> 1674ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq.Expressions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq.Expressions</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq.Expressions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq.Expressions</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.linq.expressions/index.json">https://api.nuget.org/v3/registration2-gz/system.linq.expressions/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.globalization.calendars/index.json">https://api.nuget.org/v3/registration2-gz/system.globalization.calendars/index.json</a> 1589ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Extensions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Extensions</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Extensions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Extensions</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.reflection.extensions/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection.extensions/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.diagnostics.tools/index.json">https://api.nuget.org/v3/registration2-gz/system.diagnostics.tools/index.json</a> 1630ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq.Queryable">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq.Queryable</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq.Queryable">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Linq.Queryable</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.linq.queryable/index.json">https://api.nuget.org/v3/registration2-gz/system.linq.queryable/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.io.compression.zipfile/index.json">https://api.nuget.org/v3/registration2-gz/system.io.compression.zipfile/index.json</a> 1639ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ComponentModel">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ComponentModel</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ComponentModel">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.ComponentModel</a>' 27ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.globalization.extensions/index.json">https://api.nuget.org/v3/registration2-gz/system.globalization.extensions/index.json</a> 1754ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.componentmodel/index.json">https://api.nuget.org/v3/registration2-gz/system.componentmodel/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.DispatchProxy">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.DispatchProxy</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.DispatchProxy">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.DispatchProxy</a>' 5ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.reflection.dispatchproxy/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection.dispatchproxy/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.io/index.json">https://api.nuget.org/v3/registration2-gz/system.io/index.json</a> 1730ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Numerics.Vectors">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Numerics.Vectors</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Numerics.Vectors">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Numerics.Vectors</a>' 5ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.numerics.vectors/index.json">https://api.nuget.org/v3/registration2-gz/system.numerics.vectors/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.io.compression/index.json">https://api.nuget.org/v3/registration2-gz/system.io.compression/index.json</a> 1737ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Claims">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Claims</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Claims">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Claims</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.security.claims/index.json">https://api.nuget.org/v3/registration2-gz/system.security.claims/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.io.unmanagedmemorystream/index.json">https://api.nuget.org/v3/registration2-gz/system.io.unmanagedmemorystream/index.json</a> 1831ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection</a>' 5ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.reflection/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.io.filesystem.primitives/index.json">https://api.nuget.org/v3/registration2-gz/system.io.filesystem.primitives/index.json</a> 1920ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Primitives</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Primitives</a>' 22ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.reflection.primitives/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection.primitives/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.linq/index.json">https://api.nuget.org/v3/registration2-gz/system.linq/index.json</a> 1987ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.TypeExtensions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.TypeExtensions</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.TypeExtensions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.TypeExtensions</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.reflection.typeextensions/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection.typeextensions/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.net.http/index.json">https://api.nuget.org/v3/registration2-gz/system.net.http/index.json</a> 2107ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Extensions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Extensions</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Extensions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Extensions</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.extensions/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.extensions/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.io.filesystem/index.json">https://api.nuget.org/v3/registration2-gz/system.io.filesystem/index.json</a> 2027ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.Encoding.Extensions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.Encoding.Extensions</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.Encoding.Extensions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.Encoding.Extensions</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.text.encoding.extensions/index.json">https://api.nuget.org/v3/registration2-gz/system.text.encoding.extensions/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.linq.parallel/index.json">https://api.nuget.org/v3/registration2-gz/system.linq.parallel/index.json</a> 2154ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.objectmodel/index.json">https://api.nuget.org/v3/registration2-gz/system.objectmodel/index.json</a> 2074ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Principal">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Principal</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Principal">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Principal</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.security.principal/index.json">https://api.nuget.org/v3/registration2-gz/system.security.principal/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.net.networkinformation/index.json">https://api.nuget.org/v3/registration2-gz/system.net.networkinformation/index.json</a> 2217ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.Encoding">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.Encoding</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.Encoding">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.Encoding</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.text.encoding/index.json">https://api.nuget.org/v3/registration2-gz/system.text.encoding/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.net.primitives/index.json">https://api.nuget.org/v3/registration2-gz/system.net.primitives/index.json</a> 2138ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Handles">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Handles</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Handles">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Handles</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.handles/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.handles/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.linq.expressions/index.json">https://api.nuget.org/v3/registration2-gz/system.linq.expressions/index.json</a> 2225ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Numerics">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Numerics</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Numerics">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.Numerics</a>' 4ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.reflection.extensions/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection.extensions/index.json</a> 2117ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.numerics/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.numerics/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks.Parallel">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks.Parallel</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks.Parallel">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks.Parallel</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.threading.tasks.parallel/index.json">https://api.nuget.org/v3/registration2-gz/system.threading.tasks.parallel/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.linq.queryable/index.json">https://api.nuget.org/v3/registration2-gz/system.linq.queryable/index.json</a> 2221ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Metadata">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Metadata</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Metadata">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Reflection.Metadata</a>' 32ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.reflection.metadata/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection.metadata/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.reflection.dispatchproxy/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection.dispatchproxy/index.json</a> 2118ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.ReaderWriter">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.ReaderWriter</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.ReaderWriter">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.ReaderWriter</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.xml.readerwriter/index.json">https://api.nuget.org/v3/registration2-gz/system.xml.readerwriter/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.componentmodel/index.json">https://api.nuget.org/v3/registration2-gz/system.componentmodel/index.json</a> 2240ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Timer">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Timer</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Timer">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Timer</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.threading.timer/index.json">https://api.nuget.org/v3/registration2-gz/system.threading.timer/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.numerics.vectors/index.json">https://api.nuget.org/v3/registration2-gz/system.numerics.vectors/index.json</a> 2044ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.XDocument">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.XDocument</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.XDocument">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Xml.XDocument</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.xml.xdocument/index.json">https://api.nuget.org/v3/registration2-gz/system.xml.xdocument/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.security.claims/index.json">https://api.nuget.org/v3/registration2-gz/system.security.claims/index.json</a> 2055ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.reflection/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection/index.json</a> 1970ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.RegularExpressions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.RegularExpressions</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.RegularExpressions">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Text.RegularExpressions</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.text.regularexpressions/index.json">https://api.nuget.org/v3/registration2-gz/system.text.regularexpressions/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks.Dataflow">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks.Dataflow</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks.Dataflow">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks.Dataflow</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.threading.tasks.dataflow/index.json">https://api.nuget.org/v3/registration2-gz/system.threading.tasks.dataflow/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.reflection.primitives/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection.primitives/index.json</a> 1868ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Platforms">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Platforms</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Platforms">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Platforms</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.platforms/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.platforms/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.reflection.typeextensions/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection.typeextensions/index.json</a> 1869ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices.PInvoke">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices.PInvoke</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices.PInvoke">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices.PInvoke</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices.pinvoke/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices.pinvoke/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.extensions/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.extensions/index.json</a> 1677ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.X509Certificates">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.X509Certificates</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.X509Certificates">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.X509Certificates</a>' 5ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.security.cryptography.x509certificates/index.json">https://api.nuget.org/v3/registration2-gz/system.security.cryptography.x509certificates/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.text.encoding.extensions/index.json">https://api.nuget.org/v3/registration2-gz/system.text.encoding.extensions/index.json</a> 1767ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Private.Uri">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Private.Uri</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Private.Uri">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Private.Uri</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.private.uri/index.json">https://api.nuget.org/v3/registration2-gz/system.private.uri/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices/index.json</a> 1699ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Windows.ApiSets">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Windows.ApiSets</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Windows.ApiSets">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Windows.ApiSets</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.windows.apisets/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.windows.apisets/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.security.principal/index.json">https://api.nuget.org/v3/registration2-gz/system.security.principal/index.json</a> 1800ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.text.encoding/index.json">https://api.nuget.org/v3/registration2-gz/system.text.encoding/index.json</a> 1657ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Jit">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Jit</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Jit">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.NETCore.Jit</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.jit/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.jit/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.SharedLibrary-x86">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.SharedLibrary-x86</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.SharedLibrary-x86">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.SharedLibrary-x86</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.net.native.sharedlibrary-x86/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.net.native.sharedlibrary-x86/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.handles/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.handles/index.json</a> 1735ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.SharedLibrary-arm">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.SharedLibrary-arm</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.SharedLibrary-arm">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.SharedLibrary-arm</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.net.native.sharedlibrary-arm/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.net.native.sharedlibrary-arm/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.numerics/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.numerics/index.json</a> 1704ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.SharedLibrary-x64">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.SharedLibrary-x64</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.SharedLibrary-x64">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Native.SharedLibrary-x64</a>' 4ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.net.native.sharedlibrary-x64/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.net.native.sharedlibrary-x64/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.threading.tasks.parallel/index.json">https://api.nuget.org/v3/registration2-gz/system.threading.tasks.parallel/index.json</a> 1850ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks.Unofficial">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks.Unofficial</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks.Unofficial">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Threading.Tasks.Unofficial</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.threading.tasks.unofficial/index.json">https://api.nuget.org/v3/registration2-gz/system.threading.tasks.unofficial/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.reflection.metadata/index.json">https://api.nuget.org/v3/registration2-gz/system.reflection.metadata/index.json</a> 1759ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Http">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Http</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Http">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='Microsoft.Net.Http</a>' 3ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/microsoft.net.http/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.net.http/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.xml.readerwriter/index.json">https://api.nuget.org/v3/registration2-gz/system.xml.readerwriter/index.json</a> 1804ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.threading.timer/index.json">https://api.nuget.org/v3/registration2-gz/system.threading.timer/index.json</a> 1768ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.xml.xdocument/index.json">https://api.nuget.org/v3/registration2-gz/system.xml.xdocument/index.json</a> 1913ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.text.regularexpressions/index.json">https://api.nuget.org/v3/registration2-gz/system.text.regularexpressions/index.json</a> 1995ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.threading.tasks.dataflow/index.json">https://api.nuget.org/v3/registration2-gz/system.threading.tasks.dataflow/index.json</a> 2026ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='NETStandard.Library">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='NETStandard.Library</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/netstandard.library/index.json">https://api.nuget.org/v3/registration2-gz/netstandard.library/index.json</a>
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='NETStandard.Library">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='NETStandard.Library</a>' 24ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices.RuntimeInformation">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices.RuntimeInformation</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices.runtimeinformation/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices.runtimeinformation/index.json</a>
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices.RuntimeInformation">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Runtime.InteropServices.RuntimeInformation</a>' 5ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.platforms/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.platforms/index.json</a> 2187ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices.pinvoke/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices.pinvoke/index.json</a> 2233ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.security.cryptography.x509certificates/index.json">https://api.nuget.org/v3/registration2-gz/system.security.cryptography.x509certificates/index.json</a> 2275ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Encoding">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Encoding</a>'
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Encryption">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Encryption</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.security.cryptography.encoding/index.json">https://api.nuget.org/v3/registration2-gz/system.security.cryptography.encoding/index.json</a>
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.security.cryptography.encryption/index.json">https://api.nuget.org/v3/registration2-gz/system.security.cryptography.encryption/index.json</a>
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Algorithms">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Algorithms</a>'
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Encoding">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Encoding</a>' 5ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Encryption">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Encryption</a>' 5ms
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Algorithms">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Algorithms</a>' 8ms
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.security.cryptography.algorithms/index.json">https://api.nuget.org/v3/registration2-gz/system.security.cryptography.algorithms/index.json</a>
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.private.uri/index.json">https://api.nuget.org/v3/registration2-gz/system.private.uri/index.json</a> 2214ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.windows.apisets/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.windows.apisets/index.json</a> 2157ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.netcore.jit/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.netcore.jit/index.json</a> 2151ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.net.native.sharedlibrary-x86/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.net.native.sharedlibrary-x86/index.json</a> 2170ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.net.native.sharedlibrary-arm/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.net.native.sharedlibrary-arm/index.json</a> 2194ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.net.native.sharedlibrary-x64/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.net.native.sharedlibrary-x64/index.json</a> 2133ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/microsoft.net.http/index.json">https://api.nuget.org/v3/registration2-gz/microsoft.net.http/index.json</a> 2001ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.threading.tasks.unofficial/index.json">https://api.nuget.org/v3/registration2-gz/system.threading.tasks.unofficial/index.json</a> 2155ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/netstandard.library/index.json">https://api.nuget.org/v3/registration2-gz/netstandard.library/index.json</a> 1314ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices.runtimeinformation/index.json">https://api.nuget.org/v3/registration2-gz/system.runtime.interopservices.runtimeinformation/index.json</a> 1405ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.security.cryptography.encryption/index.json">https://api.nuget.org/v3/registration2-gz/system.security.cryptography.encryption/index.json</a> 1119ms
+  GET <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Primitives</a>'
+  GET <a href="https://api.nuget.org/v3/registration2-gz/system.security.cryptography.primitives/index.json">https://api.nuget.org/v3/registration2-gz/system.security.cryptography.primitives/index.json</a>
+  OK <a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Primitives">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/FindPackagesById()?id='System.Security.Cryptography.Primitives</a>' 5ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.security.cryptography.encoding/index.json">https://api.nuget.org/v3/registration2-gz/system.security.cryptography.encoding/index.json</a> 1296ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.security.cryptography.algorithms/index.json">https://api.nuget.org/v3/registration2-gz/system.security.cryptography.algorithms/index.json</a> 1407ms
+  OK <a href="https://api.nuget.org/v3/registration2-gz/system.security.cryptography.primitives/index.json">https://api.nuget.org/v3/registration2-gz/system.security.cryptography.primitives/index.json</a> 426ms
+Total number of results gathered : 358
+Gathering dependency information took 15.54 sec
+Summary of time taken to gather dependencies per source :
+<a href="https://api.nuget.org/v3/index.json">https://api.nuget.org/v3/index.json</a>        -              3.4 min
+<a href="http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/">http://15.80.6.240:8080/nexus/service/local/nuget/san-cscr-nuget/</a>        -              1.27 sec
+/Users/xavierr/svn/XamarinNew/packages          -              396.89 ms
+Attempting to resolve dependencies for package 'HP.Pdsmq.Xamarin.2015.5.0.0.10-wip' with DependencyBehavior 'Lowest'
+Resolving dependency information took 0 ms
+Resolving actions to install package 'HP.Pdsmq.Xamarin.2015.5.0.0.10-wip'
+Resolved actions to install package 'HP.Pdsmq.Xamarin.2015.5.0.0.10-wip'
+Retrieving package 'HP.Pdsmq.Xamarin.2015 5.0.0.10-wip' from 'cscr-wip'.
+Retrieving package 'Microsoft.CSharp 4.0.1' from 'nuget.org'.
+Retrieving package 'Microsoft.NETCore 5.0.2' from 'nuget.org'.
+Retrieving package 'Microsoft.NETCore.Jit 1.0.3' from 'nuget.org'.
+Retrieving package 'Microsoft.NETCore.Platforms 1.0.1' from 'nuget.org'.
+Retrieving package 'Microsoft.NETCore.Portable.Compatibility 1.0.2' from 'nuget.org'.
+Retrieving package 'Microsoft.NETCore.Runtime.CoreCLR 1.0.3' from 'nuget.org'.
+Retrieving package 'Microsoft.NETCore.Targets 1.0.3' from 'nuget.org'.
+Retrieving package 'Microsoft.NETCore.UniversalWindowsPlatform 5.2.3' from 'nuget.org'.
+Retrieving package 'Microsoft.NETCore.Windows.ApiSets 1.0.1' from 'nuget.org'.
+Retrieving package 'Microsoft.VisualBasic 10.0.1' from 'nuget.org'.
+Retrieving package 'Microsoft.Win32.Primitives 4.0.1' from 'nuget.org'.
+Retrieving package 'System.AppContext 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Collections 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Collections.Concurrent 4.0.12' from 'nuget.org'.
+Retrieving package 'System.Collections.Immutable 1.2.0' from 'nuget.org'.
+Retrieving package 'System.Collections.NonGeneric 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Collections.Specialized 4.0.1' from 'nuget.org'.
+Retrieving package 'System.ComponentModel 4.0.1' from 'nuget.org'.
+Retrieving package 'System.ComponentModel.Annotations 4.1.0' from 'nuget.org'.
+Retrieving package 'System.ComponentModel.EventBasedAsync 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Data.Common 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Diagnostics.Contracts 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Diagnostics.Debug 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Diagnostics.StackTrace 4.3.0-preview1-24530-04' from 'nuget.org'.
+Retrieving package 'System.Diagnostics.Tools 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Diagnostics.Tracing 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Dynamic.Runtime 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Globalization 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Globalization.Calendars 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Globalization.Extensions 4.0.1' from 'nuget.org'.
+Retrieving package 'System.IO 4.1.0' from 'nuget.org'.
+Retrieving package 'System.IO.Compression 4.3.0-preview1-24530-04' from 'nuget.org'.
+Retrieving package 'System.IO.Compression.ZipFile 4.0.1' from 'nuget.org'.
+Retrieving package 'System.IO.FileSystem 4.0.1' from 'nuget.org'.
+Retrieving package 'System.IO.FileSystem.Primitives 4.0.1' from 'nuget.org'.
+Retrieving package 'System.IO.IsolatedStorage 4.0.1' from 'nuget.org'.
+Retrieving package 'System.IO.UnmanagedMemoryStream 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Linq 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Linq.Expressions 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Linq.Parallel 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Linq.Queryable 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Net.Http 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Net.Http.Rtc 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Net.NameResolution 4.0.0' from 'nuget.org'.
+Retrieving package 'System.Net.NetworkInformation 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Net.Primitives 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Net.Requests 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Net.Sockets 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Net.WebHeaderCollection 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Net.WebSockets 4.0.0' from 'nuget.org'.
+Retrieving package 'System.Net.WebSockets.Client 4.0.0' from 'nuget.org'.
+Retrieving package 'System.Numerics.Vectors 4.1.1' from 'nuget.org'.
+Retrieving package 'System.Numerics.Vectors.WindowsRuntime 4.0.1' from 'nuget.org'.
+Retrieving package 'System.ObjectModel 4.0.12' from 'nuget.org'.
+Retrieving package 'System.Reflection 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Reflection.Context 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Reflection.DispatchProxy 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Reflection.Extensions 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Reflection.Metadata 1.3.0' from 'nuget.org'.
+Retrieving package 'System.Reflection.Primitives 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Reflection.TypeExtensions 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Resources.ResourceManager 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Runtime 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Runtime.Extensions 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Runtime.Handles 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Runtime.InteropServices 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Runtime.InteropServices.WindowsRuntime 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Runtime.Numerics 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Runtime.Serialization.Json 4.0.3' from 'nuget.org'.
+Retrieving package 'System.Runtime.Serialization.Primitives 4.1.1' from 'nuget.org'.
+Retrieving package 'System.Runtime.Serialization.Xml 4.1.2' from 'nuget.org'.
+Retrieving package 'System.Runtime.WindowsRuntime 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Runtime.WindowsRuntime.UI.Xaml 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Security.Claims 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Security.Principal 4.0.1' from 'nuget.org'.
+Retrieving package 'System.ServiceModel.Duplex 4.0.1' from 'nuget.org'.
+Retrieving package 'System.ServiceModel.Http 4.1.0' from 'nuget.org'.
+Retrieving package 'System.ServiceModel.NetTcp 4.1.0' from 'nuget.org'.
+Retrieving package 'System.ServiceModel.Primitives 4.1.0' from 'nuget.org'.
+Retrieving package 'System.ServiceModel.Security 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Text.Encoding 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Text.Encoding.CodePages 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Text.Encoding.Extensions 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Text.RegularExpressions 4.1.0' from 'nuget.org'.
+Retrieving package 'System.Threading 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Threading.Overlapped 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Threading.Tasks 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Threading.Tasks.Dataflow 4.6.0' from 'nuget.org'.
+Retrieving package 'System.Threading.Tasks.Parallel 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Threading.Timer 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Xml.ReaderWriter 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Xml.XDocument 4.0.11' from 'nuget.org'.
+Retrieving package 'System.Xml.XmlDocument 4.0.1' from 'nuget.org'.
+Retrieving package 'System.Xml.XmlSerializer 4.0.11' from 'nuget.org'.
+For adding package 'Microsoft.CSharp.4.0.1' to project 'CocoaTestApp' that targets 'net45'.
+For adding package 'Microsoft.CSharp.4.0.1' to project 'CocoaTestApp' that targets 'net45'.
+Adding package 'Microsoft.CSharp.4.0.1' to folder '/Users/xavierr/svn/XamarinNew/packages'
+Added package 'Microsoft.CSharp.4.0.1' to folder '/Users/xavierr/svn/XamarinNew/packages'
+Added package 'Microsoft.CSharp.4.0.1' to folder '/Users/xavierr/svn/XamarinNew/packages' from source '<a href="https://api.nuget.org/v3/index.json">https://api.nuget.org/v3/index.json</a>'
+Added package 'Microsoft.CSharp.4.0.1' to 'packages.config'
+Added file 'packages.config' to project 'CocoaTestApp'.
+Successfully installed 'Microsoft.CSharp 4.0.1' to CocoaTestApp
+Install failed. Rolling back...
+Package 'Microsoft.NETCore.Jit.1.0.3' does not exist in project 'CocoaTestApp'
+Removed package 'Microsoft.CSharp.4.0.1' from 'packages.config'
+Added file 'packages.config' to project 'CocoaTestApp'.
+Package 'Microsoft.NETCore.Jit.1.0.3' does not exist in folder '/Users/xavierr/svn/XamarinNew/packages'
+Removing package 'Microsoft.CSharp.4.0.1' from folder '/Users/xavierr/svn/XamarinNew/packages'
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib/portable-net45+win8+wp8+wpa81'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/portable-net45+win8+wp8+wpa81'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netstandard1.0/zh-hans'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netstandard1.0/zh-hant'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netcore50/zh-hans'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netcore50/zh-hant'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netstandard1.0/de'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netstandard1.0/es'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netstandard1.0/fr'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netstandard1.0/it'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netstandard1.0/ja'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netstandard1.0/ko'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netstandard1.0/ru'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib/xamarinwatchos10'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/xamarinwatchos10'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib/netstandard1.3'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netstandard1.0'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib/MonoAndroid10'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib/xamarintvos10'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/MonoAndroid10'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/xamarintvos10'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib/xamarinios10'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib/xamarinmac20'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netcore50/de'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netcore50/es'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netcore50/fr'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netcore50/it'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netcore50/ja'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netcore50/ko'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netcore50/ru'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/xamarinios10'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/xamarinmac20'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib/MonoTouch10'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/MonoTouch10'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib/netcore50'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/netcore50'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib/net45'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib/wpa81'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/net45'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/wpa81'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib/win8'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib/wp80'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/win8'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref/wp80'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/lib'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1/ref'.
+Removed file 'Microsoft.CSharp.4.0.1.nupkg' from folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1'.
+Removed folder '/Users/xavierr/svn/XamarinNew/packages/Microsoft.CSharp.4.0.1'.
+Removed package 'Microsoft.CSharp.4.0.1' from folder '/Users/xavierr/svn/XamarinNew/packages'
+Executing nuget actions took 559.99 ms
+Could not install package 'Microsoft.NETCore.Jit 1.0.3'. You are trying to install this package into a project that targets '.NETFramework,Version=v4.5', but the package does not contain any assembly references or content files that are compatible with that framework. For more information, contact the package author.</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matt Ward</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-07-17 21:12:15 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Xavier - The problem with Xamarin.Mac (NET 4.5) not being supported by NuGet is being tracked on the NuGet issues site:
+
+<a href="https://github.com/NuGet/Home/issues/2662">https://github.com/NuGet/Home/issues/2662</a></pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

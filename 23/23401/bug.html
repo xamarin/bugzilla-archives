@@ -1,0 +1,3623 @@
+<html lang="en"><head>
+    <title>23401 – Sgen's marksweep-conc fails under load test</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Runtime
+                 bz_component_GC
+                 bz_bug_23401 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;23401</span>
+
+        <span id="subtitle" class="subheader">Sgen's marksweep-conc fails under load test</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2015-09-25 13:20:54 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2015-09-25 13:20:54">
+  <input type="hidden" name="id" value="23401">
+  <input type="hidden" name="token" value="1559154423-DEJCduqQAOceekFdp6OeQYxJh88jM1mqpNbG2C29DXw">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;23401</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">Sgen's marksweep-conc fails under load test</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>Sgen's marksweep-conc fails under load test
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Runtime
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Mono
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">GC
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>3.8.0
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Linux
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>---
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2014-09-26 05:42 UTC by <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2015-09-25 13:20 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>3
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="kumpera">kumpera</option>
+                <option value="mono-bugs+mono">mono-bugs+mono</option>
+                <option value="mono-bugs+runtime">mono-bugs+runtime</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_application_pdf">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8575&amp;file=Mono%203.12.1%20SGen%20Performance%20Test%20October%2014%202014.pdf" title="View the content of the attachment">
+          <b>Graphs of application memory use and GC performance under load test</b></a>
+
+          <span class="bz_attach_extra_info">
+              (407.05 KB,
+                application/pdf)
+
+            <br>
+            <a href="#attach_8575" title="Go to the comment associated with the attachment">2014-10-31 13:55 UTC</a>,
+
+            <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8575&amp;file=Mono%203.12.1%20SGen%20Performance%20Test%20October%2014%202014.pdf">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_application_vnd.ms-excel">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8576&amp;file=ms%20conc%20256%202014%2010%2030%2023%2000%2009%20snapshot.csv" title="View the content of the attachment">
+          <b>CSV file containing memory and GC data points for an SGen load test</b></a>
+
+          <span class="bz_attach_extra_info">
+              (370.30 KB,
+                application/vnd.ms-excel)
+
+            <br>
+            <a href="#attach_8576" title="Go to the comment associated with the attachment">2014-10-31 13:59 UTC</a>,
+
+            <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8576&amp;file=ms%20conc%20256%202014%2010%2030%2023%2000%2009%20snapshot.csv">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8577&amp;file=ms%20conc%20256%202014%2010%2030%2023%2000%2009.stack.txt" title="View the content of the attachment">
+          <b>Stack trace from ms-conc test</b></a>
+
+          <span class="bz_attach_extra_info">
+              (60.91 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_8577" title="Go to the comment associated with the attachment">2014-10-31 14:04 UTC</a>,
+
+            <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8577&amp;file=ms%20conc%20256%202014%2010%2030%2023%2000%2009.stack.txt">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_application_pdf">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8605&amp;file=GC%20Comparison%20MS_CONC%20MS%20Boehm%202014%2011%2001.pdf" title="View the content of the attachment">
+          <b>Performance comparison between MS-CONC, MS and Boehm</b></a>
+
+          <span class="bz_attach_extra_info">
+              (250.98 KB,
+                application/pdf)
+
+            <br>
+            <a href="#attach_8605" title="Go to the comment associated with the attachment">2014-11-03 14:04 UTC</a>,
+
+            <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8605&amp;file=GC%20Comparison%20MS_CONC%20MS%20Boehm%202014%2011%2001.pdf">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_application_vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8606&amp;file=GC%20Comparison%20MS_CONC%20MS%20Boehm%202014%2011%2001.xlsx" title="View the content of the attachment">
+          <b>Performance comparison between MS-CONC, MS and Boehm</b></a>
+
+          <span class="bz_attach_extra_info">
+              (447.41 KB,
+                application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)
+
+            <br>
+            <a href="#attach_8606" title="Go to the comment associated with the attachment">2014-11-03 14:04 UTC</a>,
+
+            <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8606&amp;file=GC%20Comparison%20MS_CONC%20MS%20Boehm%202014%2011%2001.xlsx">Details</a>
+        </td>
+      </tr>
+      <tr id="a6" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8756&amp;file=stack%20trace%20fix%2023401%2006b8128992f9cb66827a2534a6607861183f85cd.txt" title="View the content of the attachment">
+          <b>Stack trace for commit 06b8128992f9cb66827a2534a6607861183f85cd</b></a>
+
+          <span class="bz_attach_extra_info">
+              (57.92 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_8756" title="Go to the comment associated with the attachment">2014-11-16 20:05 UTC</a>,
+
+            <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8756&amp;file=stack%20trace%20fix%2023401%2006b8128992f9cb66827a2534a6607861183f85cd.txt">Details</a>
+        </td>
+      </tr>
+      <tr id="a7" class="bz_contenttype_application_pdf">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8776&amp;file=GC%20Comparison%20Nursery%20Sizes%20All%20Timings%20HTTP%20Client%20Test.pdf" title="View the content of the attachment">
+          <b>GC Comparison - marksweep-conc perf for various nursery sizes</b></a>
+
+          <span class="bz_attach_extra_info">
+              (194.48 KB,
+                application/pdf)
+
+            <br>
+            <a href="#attach_8776" title="Go to the comment associated with the attachment">2014-11-17 20:22 UTC</a>,
+
+            <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8776&amp;file=GC%20Comparison%20Nursery%20Sizes%20All%20Timings%20HTTP%20Client%20Test.pdf">Details</a>
+        </td>
+      </tr>
+      <tr id="a8" class="bz_contenttype_application_pdf">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8777&amp;file=GC%20Comparison%20Multiple%20Nursery%20Sizes%20Timing%20Averages%20HTTP%20Client%20Test.pdf" title="View the content of the attachment">
+          <b>GC Comparison - marksweep-conc, various nursery sizes, average timings</b></a>
+
+          <span class="bz_attach_extra_info">
+              (115.21 KB,
+                application/pdf)
+
+            <br>
+            <a href="#attach_8777" title="Go to the comment associated with the attachment">2014-11-17 20:23 UTC</a>,
+
+            <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8777&amp;file=GC%20Comparison%20Multiple%20Nursery%20Sizes%20Timing%20Averages%20HTTP%20Client%20Test.pdf">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+            <a href="https://github.com/mono">GitHub</a> or <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-09-26 05:42:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'm load testing boehm/sgen to determine the best GC settings to use at large scale.
+
+Both Boehm and sgen's marksweep-par are stable, however markweep-conc will fail reliably on the same test.</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-09-26 05:43:03 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Stack Trace:
+
+* Assertion at sgen-marksweep.c:1293, condition `!SGEN_OBJECT_IS_FORWARDED (obj)' not met
+
+
+Native stacktrace:
+
+        mono() [0x4a4d75]
+        /lib64/libpthread.so.0(+0xf710) [0x7f4c85d4c710]
+        /lib64/libc.so.6(gsignal+0x35) [0x7f4c859db925]
+        /lib64/libc.so.6(abort+0x175) [0x7f4c859dd105]
+        mono() [0x637dcd]
+        mono() [0x637e77]
+        mono() [0x5d8577]
+        mono() [0x5eca1e]
+        mono() [0x5e41db]
+        mono() [0x5ee5a6]
+        /lib64/libpthread.so.0(+0x79d1) [0x7f4c85d449d1]
+        /lib64/libc.so.6(clone+0x6d) [0x7f4c85a91b6d]
+
+Debug info from gdb:
+
+Mono support loaded.
+[New LWP 31178]
+[New LWP 31177]
+[New LWP 31176]
+[New LWP 31039]
+[New LWP 31037]
+[New LWP 31036]
+[New LWP 31035]
+[New LWP 31034]
+[New LWP 31030]
+[New LWP 31029]
+[New LWP 31028]
+[New LWP 31027]
+[New LWP 31026]
+[New LWP 31024]
+[New LWP 31021]
+[New LWP 31020]
+[New LWP 29856]
+[New LWP 29855]
+[New LWP 29854]
+[New LWP 29853]
+[New LWP 29852]
+[New LWP 29851]
+[New LWP 29844]
+[New LWP 29843]
+[New LWP 29841]
+[New LWP 29840]
+[New LWP 29838]
+[New LWP 29837]
+[New LWP 29830]
+[New LWP 29827]
+[New LWP 29782]
+[New LWP 29781]
+[New LWP 29780]
+[New LWP 29779]
+[New LWP 29778]
+[New LWP 29777]
+[New LWP 29776]
+[New LWP 29775]
+[New LWP 29774]
+[New LWP 29773]
+[New LWP 29772]
+[New LWP 29771]
+[New LWP 29770]
+[New LWP 29769]
+[New LWP 29768]
+[New LWP 29767]
+[New LWP 29766]
+[New LWP 29765]
+[New LWP 29764]
+[New LWP 29763]
+[New LWP 29762]
+[New LWP 29761]
+[New LWP 29760]
+[New LWP 29759]
+[New LWP 29758]
+[New LWP 29757]
+[New LWP 29756]
+[New LWP 29755]
+[New LWP 29754]
+[New LWP 29753]
+[New LWP 29752]
+[New LWP 29751]
+[New LWP 29750]
+[New LWP 29749]
+[New LWP 29748]
+[New LWP 29747]
+[New LWP 29746]
+[New LWP 29745]
+[New LWP 29744]
+[New LWP 29743]
+[New LWP 29742]
+[New LWP 29741]
+[New LWP 29740]
+[New LWP 29739]
+[New LWP 29737]
+[New LWP 29736]
+[New LWP 29733]
+[New LWP 29732]
+[New LWP 29729]
+[New LWP 29728]
+[New LWP 29727]
+[New LWP 29723]
+[New LWP 29722]
+[New LWP 29719]
+[New LWP 29718]
+[New LWP 29714]
+[New LWP 29713]
+[New LWP 29710]
+[New LWP 29709]
+[New LWP 29708]
+[New LWP 29706]
+[New LWP 29704]
+[New LWP 29703]
+[New LWP 29700]
+[New LWP 29695]
+[New LWP 29692]
+[New LWP 29689]
+[New LWP 29685]
+[New LWP 29684]
+[New LWP 29681]
+[New LWP 29677]
+[New LWP 29676]
+[New LWP 29675]
+[New LWP 29671]
+[New LWP 29670]
+[New LWP 29667]
+[New LWP 29663]
+[New LWP 29662]
+[New LWP 29659]
+[New LWP 29657]
+[New LWP 29654]
+[New LWP 29653]
+[New LWP 29652]
+[New LWP 29649]
+[New LWP 29648]
+[New LWP 29645]
+[New LWP 29644]
+[New LWP 29641]
+[New LWP 29640]
+[New LWP 29639]
+[New LWP 29637]
+[New LWP 29635]
+[New LWP 29634]
+[New LWP 29631]
+[New LWP 29627]
+[New LWP 29624]
+[New LWP 29621]
+[New LWP 29617]
+[New LWP 29613]
+[New LWP 29612]
+[New LWP 29609]
+[New LWP 29605]
+[New LWP 29603]
+[New LWP 29602]
+[New LWP 29600]
+[New LWP 29599]
+[New LWP 29598]
+[New LWP 29596]
+[New LWP 29595]
+[New LWP 29594]
+[New LWP 29593]
+[New LWP 29592]
+[Thread debugging using libthread_db enabled]
+0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+63        return INLINE_SYSCALL (rt_sigsuspend, 2, CHECK_SIGSET (set), _NSIG / 8);
+  143 Thread 0x7f4c7e010700 (LWP 29592)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  142 Thread 0x7f4c7d1ff700 (LWP 29593)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  141 Thread 0x7f4c7cffe700 (LWP 29594)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  140 Thread 0x7f4c7cdfd700 (LWP 29595)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  139 Thread 0x7f4c7cdbc700 (LWP 29596)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  138 Thread 0x7f4c7cb7a700 (LWP 29598)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  137 Thread 0x7f4c7c979700 (LWP 29599)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  136 Thread 0x7f4c7c5ff700 (LWP 29600)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  135 Thread 0x7f4c7c778700 (LWP 29602)  0x00007f4c85a92163 in epoll_wait () at ../sysdeps/unix/syscall-template.S:82
+  134 Thread 0x7f4c7c1fd700 (LWP 29603)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  133 Thread 0x7f4c7c3fe700 (LWP 29605)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  132 Thread 0x7f4c7c17b700 (LWP 29609)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  131 Thread 0x7f4c47be8700 (LWP 29612)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  130 Thread 0x7f4c7c13a700 (LWP 29613)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  129 Thread 0x7f4c7c0f9700 (LWP 29617)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  128 Thread 0x7f4c7c0b8700 (LWP 29621)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  127 Thread 0x7f4c7c077700 (LWP 29624)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  126 Thread 0x7f4c471e3700 (LWP 29627)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  125 Thread 0x7f4c46fa1700 (LWP 29631)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  124 Thread 0x7f4c46f60700 (LWP 29634)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  123 Thread 0x7f4c46d5f700 (LWP 29635)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  122 Thread 0x7f4c46d1e700 (LWP 29637)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  121 Thread 0x7f4c46b1d700 (LWP 29639)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  120 Thread 0x7f4c46adc700 (LWP 29640)  sem_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_wait.S:86
+  119 Thread 0x7f4c468db700 (LWP 29641)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  118 Thread 0x7f4c4689a700 (LWP 29644)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  117 Thread 0x7f4c46699700 (LWP 29645)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  116 Thread 0x7f4c46658700 (LWP 29648)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  115 Thread 0x7f4c46457700 (LWP 29649)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  114 Thread 0x7f4c46416700 (LWP 29652)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  113 Thread 0x7f4c46215700 (LWP 29653)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  112 Thread 0x7f4c461d4700 (LWP 29654)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  111 Thread 0x7f4c45fd3700 (LWP 29657)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  110 Thread 0x7f4c45d91700 (LWP 29659)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  109 Thread 0x7f4c45d50700 (LWP 29662)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  108 Thread 0x7f4c45b4f700 (LWP 29663)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  107 Thread 0x7f4c4590d700 (LWP 29667)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  106 Thread 0x7f4c458cc700 (LWP 29670)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  105 Thread 0x7f4c456cb700 (LWP 29671)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  104 Thread 0x7f4c45489700 (LWP 29675)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  103 Thread 0x7f4c452ff700 (LWP 29676)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  102 Thread 0x7f4c45448700 (LWP 29677)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  101 Thread 0x7f4c44efd700 (LWP 29681)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  100 Thread 0x7f4c44ebc700 (LWP 29684)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  99 Thread 0x7f4c44cbb700 (LWP 29685)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  98 Thread 0x7f4c44a75700 (LWP 29689)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  97 Thread 0x7f4c4482b700 (LWP 29692)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  96 Thread 0x7f4c445e1700 (LWP 29695)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  95 Thread 0x7f4c44397700 (LWP 29700)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  94 Thread 0x7f4c4433f700 (LWP 29703)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  93 Thread 0x7f4c4413e700 (LWP 29704)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  92 Thread 0x7f4b5bfff700 (LWP 29706)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  91 Thread 0x7f4c440f9700 (LWP 29708)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  90 Thread 0x7f4b5bdfe700 (LWP 29709)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  89 Thread 0x7f4c440b0700 (LWP 29710)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  88 Thread 0x7f4b5bbfd700 (LWP 29713)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  87 Thread 0x7f4c4406b700 (LWP 29714)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  86 Thread 0x7f4b5b9fc700 (LWP 29718)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  85 Thread 0x7f4b5b7fb700 (LWP 29719)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  84 Thread 0x7f4b5b7ba700 (LWP 29722)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  83 Thread 0x7f4b5b5b9700 (LWP 29723)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  82 Thread 0x7f4b5b377700 (LWP 29727)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  81 Thread 0x7f4b5b336700 (LWP 29728)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  80 Thread 0x7f4b5b135700 (LWP 29729)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  79 Thread 0x7f4b5b0f4700 (LWP 29732)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  78 Thread 0x7f4b5aef3700 (LWP 29733)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  77 Thread 0x7f4b5aeae700 (LWP 29736)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  76 Thread 0x7f4b5aca9700 (LWP 29737)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  75 Thread 0x7f4b5aa4f700 (LWP 29739)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  74 Thread 0x7f4c7cbbb700 (LWP 29740)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  73 Thread 0x7f4b5aa07700 (LWP 29741)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  72 Thread 0x7f4b5a9c6700 (LWP 29742)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  71 Thread 0x7f4b5a981700 (LWP 29743)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  70 Thread 0x7f4b5a93c700 (LWP 29744)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  69 Thread 0x7f4b5a8f7700 (LWP 29745)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  68 Thread 0x7f4b5a8b2700 (LWP 29746)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  67 Thread 0x7f4b5a86d700 (LWP 29747)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  66 Thread 0x7f4b5a828700 (LWP 29748)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  65 Thread 0x7f4b5a7e3700 (LWP 29749)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  64 Thread 0x7f4b5a79e700 (LWP 29750)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  63 Thread 0x7f4b5a759700 (LWP 29751)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  62 Thread 0x7f4b5a714700 (LWP 29752)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  61 Thread 0x7f4b5a6cf700 (LWP 29753)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  60 Thread 0x7f4b5a68a700 (LWP 29754)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  59 Thread 0x7f4b5a645700 (LWP 29755)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  58 Thread 0x7f4b5a600700 (LWP 29756)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  57 Thread 0x7f4b5a5bb700 (LWP 29757)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  56 Thread 0x7f4b5a576700 (LWP 29758)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  55 Thread 0x7f4b5a531700 (LWP 29759)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  54 Thread 0x7f4b5a4ec700 (LWP 29760)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  53 Thread 0x7f4b5a4a7700 (LWP 29761)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  52 Thread 0x7f4b5a462700 (LWP 29762)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  51 Thread 0x7f4b5a41d700 (LWP 29763)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  50 Thread 0x7f4b5a3d8700 (LWP 29764)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  49 Thread 0x7f4b5a393700 (LWP 29765)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  48 Thread 0x7f4b5a34e700 (LWP 29766)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  47 Thread 0x7f4b5a309700 (LWP 29767)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  46 Thread 0x7f4b5a2c4700 (LWP 29768)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  45 Thread 0x7f4b5a27f700 (LWP 29769)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  44 Thread 0x7f4b5a23a700 (LWP 29770)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  43 Thread 0x7f4b5a1f5700 (LWP 29771)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  42 Thread 0x7f4b5a1b0700 (LWP 29772)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  41 Thread 0x7f4b5a16b700 (LWP 29773)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  40 Thread 0x7f4b5a126700 (LWP 29774)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  39 Thread 0x7f4b5a0e1700 (LWP 29775)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  38 Thread 0x7f4b5a09c700 (LWP 29776)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  37 Thread 0x7f4b5a057700 (LWP 29777)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  36 Thread 0x7f4b59db8700 (LWP 29778)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  35 Thread 0x7f4b593aa700 (LWP 29779)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  34 Thread 0x7f4b59d6f700 (LWP 29780)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  33 Thread 0x7f4b59bff700 (LWP 29781)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  32 Thread 0x7f4b59bbe700 (LWP 29782)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  31 Thread 0x7f4a59dff700 (LWP 29827)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  30 Thread 0x7f4a43fff700 (LWP 29830)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  29 Thread 0x7f4a2ffff700 (LWP 29837)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  28 Thread 0x7f49f38ff700 (LWP 29838)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  27 Thread 0x7f49dffff700 (LWP 29840)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  26 Thread 0x7f49d58ff700 (LWP 29841)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  25 Thread 0x7f49be1ff700 (LWP 29843)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  24 Thread 0x7f49b5bff700 (LWP 29844)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  23 Thread 0x7f499f9ff700 (LWP 29851)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  22 Thread 0x7f4996fff700 (LWP 29852)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  21 Thread 0x7f4994fff700 (LWP 29853)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  20 Thread 0x7f498c7ff700 (LWP 29854)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  19 Thread 0x7f49827ff700 (LWP 29855)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  18 Thread 0x7f496f5ff700 (LWP 29856)  0x00007f4c85d4c2ad in __libc_waitpid (pid=&lt;value optimized out&gt;, stat_loc=&lt;value optimized out&gt;, options=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/waitpid.c:41
+  17 Thread 0x7f49a59ff700 (LWP 31020)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  16 Thread 0x7f4b5ac64700 (LWP 31021)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  15 Thread 0x7f4c47de9700 (LWP 31024)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  14 Thread 0x7f4c475e5700 (LWP 31026)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  13 Thread 0x7f4b5b578700 (LWP 31027)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  12 Thread 0x7f4c450fe700 (LWP 31028)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  11 Thread 0x7f49ad5ff700 (LWP 31029)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  10 Thread 0x7f4c477e6700 (LWP 31030)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  9 Thread 0x7f48e9bff700 (LWP 31034)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  8 Thread 0x7f48e87ff700 (LWP 31035)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  7 Thread 0x7f48db1ff700 (LWP 31036)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  6 Thread 0x7f48d9dff700 (LWP 31037)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  5 Thread 0x7f48d2fff700 (LWP 31039)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  4 Thread 0x7f4c447e6700 (LWP 31176)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  3 Thread 0x7f4c479e7700 (LWP 31177)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  2 Thread 0x7f48ad7ff700 (LWP 31178)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+* 1 Thread 0x7f4c867f9780 (LWP 29591)  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+
+Thread 143 (Thread 0x7f4c7e010700 (LWP 29592)):
+#0  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+#1  __sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:78
+#2  0x00000000005cbf54 in suspend_thread (sig=&lt;value optimized out&gt;, siginfo=&lt;value optimized out&gt;, context=0x7f4c7e00f780) at sgen-os-posix.c:113
+#3  suspend_handler (sig=&lt;value optimized out&gt;, siginfo=&lt;value optimized out&gt;, context=0x7f4c7e00f780) at sgen-os-posix.c:140
+#4  &lt;signal handler called&gt;
+#5  sem_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_wait.S:85
+#6  0x000000000062db88 in mono_sem_wait (sem=0x97a0c0, alertable=1) at mono-semaphore.c:101
+#7  0x00000000005a62b9 in finalizer_thread (unused=&lt;value optimized out&gt;) at gc.c:1077
+#8  0x00000000005834bb in start_wrapper_internal (data=&lt;value optimized out&gt;) at threads.c:660
+#9  start_wrapper (data=&lt;value optimized out&gt;) at threads.c:707
+#10 0x0000000000633226 in inner_start_thread (arg=&lt;value optimized out&gt;) at mono-threads-posix.c:100
+#11 0x00007f4c85d449d1 in start_thread (arg=0x7f4c7e010700) at pthread_create.c:301
+#12 0x00007f4c85a91b6d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:115
+
+Thread 142 (Thread 0x7f4c7d1ff700 (LWP 29593)):
+#0  0x00007f4c859dbcd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+#1  __sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:78
+#2  0x00000000005cbf54 in suspend_thread (sig=&lt;value optimized out&gt;, siginfo=&lt;value optimized out&gt;, context=0x7f4c7d1fe380) at sgen-os-posix.c:113
+#3  suspend_handler (sig=&lt;value optimized out&gt;, siginfo=&lt;value optimized out&gt;, context=0x7f4c7d1fe380) at sgen-os-posix.c:140
+#4  &lt;signal handler called&gt;
+#5  clock_nanosleep (clock_id=&lt;value optimized out&gt;, flags=&lt;value optimized out&gt;, req=&lt;value optimized out&gt;, rem=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:51
+#6  0x0000000000621085 in SleepEx (ms=&lt;value optimized out&gt;, alertable=1) at wthreads.c:277
+#7  0x00000000005847b9 in ves_icall_System_Threading_Thread_Sleep_internal (ms=15000) at threads.c:1107
+#8  0x0000000041692a42 in ?? ()
+#9  0x00007f4c70002640 in ?? ()
+#10 0x00007f4c7d1fed90 in ?? ()
+#11 0x00007f4c607b8310 in ?? ()
+#12 0x00007f4c607b8310 in ?? ()
+#13 0x00007f4c607b8378 in ?? ()
+#14 0x00007f4c700025e0 in ?? ()
+#15 0x00000000416929c4 in ?? ()
+#16 0x00007f4c7d1feb10 in ?? ()
+#17 0x00007f4c7d1fe9b0 in ?? ()
+#18 0x00007f4c7e2aeba7 in System.Threading.Thread:Sleep (millisecondsTimeout=../../gdb/dwarf2-frame.c:694: internal-error: Unknown CFI encountered.
+A problem internal to GDB has been detected,
+further debugging may prove unreliable.
+Quit this debugging session? (y or n) [answered Y; input not from terminal]
+../../gdb/dwarf2-frame.c:694: internal-error: Unknown CFI encountered.
+A problem internal to GDB has been detected,
+further debugging may prove unreliable.
+Create a core file of GDB? (y or n) [answered Y; input not from terminal]
+
+=================================================================
+Got a SIGABRT while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries
+used by your application.
+=================================================================</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-09-26 05:43:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">MONO_GC_PARAMS are: major=marksweep-conc,nursery-size=1g</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-05 15:01:44 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Do you have a test case?</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-21 09:18:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Not at the moment Mark, I'll revisit shortly and look for a reliable test case.</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-28 15:15:43 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mark, at the moment I'm tracking down the source of very high GC CPU usage in my app. At some trigger point the time in GC heads to around 95% of runtime. System memory usage can be &lt;&lt;&lt; 50% but the process will be collecting like crazy.
+
+I build Mono from source and I can see loads of nice logging code in the sgen*.c files - how do I turn this on and get analyzable output?
+
+Some example output I'm capturing already:
+----------------------------------------------------------------------------------------------------
+Time: 2014-10-28 19:03:13Z
+Process: id=18757
+CPU: user=569.5s, total=868.8s
+Threads: count=41
+Memory: working=16,096MB, virtual=19,084MB, private=18,927MB, paged=0MB
+GC: totalMemory=15,972MB, count0=315, count1=7
+GC Monitor: counts=39, totalTimeInGC=116,299ms, avgTimeInGC=2,982ms
+----------------------------------------------------------------------------------------------------
+Time: 2014-10-28 19:03:28Z
+Process: id=18757
+CPU: user=572.3s, total=877.8s
+Threads: count=41
+Memory: working=16,274MB, virtual=19,227MB, private=19,070MB, paged=0MB
+GC: totalMemory=16,105MB, count0=316, count1=8
+GC Monitor: counts=40, totalTimeInGC=124,500ms, avgTimeInGC=3,112ms
+
+The numbers come from System.Environment.Process.GetCurrentProcess(), GC and from a GC watcher thread (catches any STW &gt; 2s) a bit like: <a href="http://msdn.microsoft.com/en-us/library/cc713687(v=vs.110).aspx">http://msdn.microsoft.com/en-us/library/cc713687(v=vs.110).aspx</a> minus the bits that aren't implemented in Mono.</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-28 18:53:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I've seen this stacktrace now more than once:
+
+* Assertion at sgen-gc.c:1036, condition `!concurrent_collection_in_progress' not met
+
+Stacktrace:
+
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at (wrapper managed-to-native) object.__icall_wrapper_mono_gc_alloc_vector (intptr,intptr,intptr) &lt;0xffffffff&gt;
+  at (wrapper alloc) object.AllocVector (intptr,intptr) &lt;0xffffffff&gt;
+  at System.Collections.ArrayList.EnsureCapacity (int) &lt;0x0005e&gt;
+  at System.Collections.ArrayList.InsertRange (int,System.Collections.ICollection) &lt;0x0009f&gt;
+  at System.Collections.ArrayList.AddRange (System.Collections.ICollection) &lt;0x00024&gt;
+  at System.Diagnostics.ProcessThreadCollection..ctor (System.Diagnostics.ProcessThread[]) &lt;0x00098&gt;
+  at System.Diagnostics.Process.get_Threads () &lt;0x00087&gt;
+  at (wrapper remoting-invoke-with-check) System.Diagnostics.Process.get_Threads () &lt;0xffffffff&gt;
+  at Exony.XXXXX.Server.Heartbeat.HeartbeatThread (object) &lt;0x0020b&gt;
+  at System.Threading.Thread.StartInternal () &lt;0x000f7&gt;
+  at (wrapper runtime-invoke) object.runtime_invoke_void__this__ (object,intptr,intptr,intptr) &lt;0xffffffff&gt;
+
+-----------------------
+This code is 3.8 from the tar with <a href="https://github.com/mono/mono/commit/5ae9f7d93f265f2a424cf20171e846f37335824c">https://github.com/mono/mono/commit/5ae9f7d93f265f2a424cf20171e846f37335824c</a> added. Mono was exec'd with:
+
+export MONO_GC_PARAMS=nursery-size=256m,major=marksweep-conc,max-heap-size=16g &amp;&amp; mono --server XXXXXX.exe</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-28 20:26:42 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Ok, here is a test case:
+
+<a href="https://github.com/exony-craigminihan/TestGCPathological">https://github.com/exony-craigminihan/TestGCPathological</a>
+
+I stumbled upon this when playing with max-heap-size, so execute with:
+
+export MONO_GC_PARAMS=nursery-size=256m,major=marksweep-conc,max-heap-size=2g &amp;&amp; mono --server TestGCPathological.exe
+
+It should crash within a few seconds.
+
+Low values of heap size put us at the asset at sgen-gc.c line 1036.
+
+Setting the heap size higher or removing it show the v high GC time case I mention above.</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-28 20:31:28 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Some performance numbers from .NET 4.5 and Mono 3.8 executing the same binary:
+
+MONO:
+Pass: 236
+Pass: 237
+Pass: 238
+Pass: 239
+Pass: 240
+Pass: 241
+Pass: 242
+Process: id=33797, CPU: user=134.7s, total=386.6s, Threads: count=14
+Memory: working=18,012MB, virtual=19,086MB, private=18,939MB, paged=0MB
+GC: totalMemory=16,468MB, count0=54, count1=10
+GC Monitor: counts=29, totalTimeInGC=117,022ms, avgTimeInGC=4,035ms, timeInGC=41%
+
+Windows:
+Pass: 437
+Pass: 438
+Pass: 439
+Pass: 440
+Pass: 441
+Pass: 442
+Pass: 443
+Process: id=6364, CPU: user=96.9s, total=158.0s, Threads: count=24
+Memory: working=769MB, virtual=1,125MB, private=773MB, paged=773MB
+GC: totalMemory=639MB, count0=16886, count1=8106
+GC Monitor: counts=0, totalTimeInGC=0ms, avgTimeInGC=0ms, timeInGC=0%
+
+Apart from the timings the memory usage numbers are very different as well.</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-29 10:19:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Updated timing numbers from master:
+
+MONO/master/2e8f21d4f2402516b81ed42aacf0f1d43103621e
+Pass: 235
+Pass: 236
+Pass: 237
+Process: id=42847, CPU: user=132.1s, total=288.9s, Threads: count=14
+Memory: working=20,249MB, virtual=21,249MB, private=21,123MB, paged=0MB
+GC: totalMemory=18,866MB, count0=51, count1=10
+GC Monitor: counts=7, totalTimeInGC=22,177ms, avgTimeInGC=3,168ms, timeInGC=12%
+
+Seems like the optimizations (array, memcpy, etc) have had a big impact.</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-30 13:16:10 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I can reproduce this bug.  It actually looks like three separate bugs, two of which are related to the out-of-memory condition, independent of concurrent M&amp;S, the third looks to be specific to concurrent M&amp;S.  I've fixed the first two (not on master yet), but haven't found the third one yet.</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-30 13:30:40 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Nice work! I ran load tests on master last night - unfortunately it isn't very stable. Generally 3.8 marksweep-par finished 75% of the time, at the moment conc from master hasn't completed yet.
+
+I also noticed memory utilization shooting up and back down again very quickly in my app logs:
+----------------------------------------------------------------------------------------------------
+Time: 2014-10-30 08:37:08Z
+Process: id=13279
+CPU: user=40,799.3s, total=44,765.6s
+Threads: count=152
+Memory: working=30,843MB, virtual=41,087MB, private=40,949MB, paged=0MB
+GC: totalMemory=25,266MB, count0=3334, count1=426
+GC Monitor: counts=966, totalTimeInGC=18,346,271ms, avgTimeInGC=18,991ms, timeInGC=40%
+----------------------------------------------------------------------------------------------------
+Time: 2014-10-30 08:37:19Z
+Process: id=13279
+CPU: user=40,810.6s, total=44,780.5s
+Threads: count=152
+Memory: working=37,502MB, virtual=47,751MB, private=47,613MB, paged=0MB
+GC: totalMemory=29,760MB, count0=3335, count1=426
+GC Monitor: counts=966, totalTimeInGC=18,346,271ms, avgTimeInGC=18,991ms, timeInGC=40%
+----------------------------------------------------------------------------------------------------
+Time: 2014-10-30 08:37:29Z
+Process: id=13279
+CPU: user=40,824.9s, total=44,798.0s
+Threads: count=152
+Memory: working=43,589MB, virtual=53,842MB, private=53,704MB, paged=0MB
+GC: totalMemory=33,847MB, count0=3336, count1=427
+GC Monitor: counts=967, totalTimeInGC=18,351,294ms, avgTimeInGC=18,977ms, timeInGC=40%
+----------------------------------------------------------------------------------------------------
+Time: 2014-10-30 08:37:41Z
+Process: id=13279
+CPU: user=40,849.2s, total=44,825.8s
+Threads: count=152
+Memory: working=50,467MB, virtual=60,724MB, private=60,586MB, paged=0MB
+GC: totalMemory=38,451MB, count0=3337, count1=427
+GC Monitor: counts=967, totalTimeInGC=18,351,294ms, avgTimeInGC=18,977ms, timeInGC=40%
+----------------------------------------------------------------------------------------------------
+Time: 2014-10-30 08:37:53Z
+Process: id=13279
+CPU: user=40,873.9s, total=44,854.1s
+Threads: count=152
+Memory: working=57,347MB, virtual=67,608MB, private=67,470MB, paged=0MB
+GC: totalMemory=43,113MB, count0=3338, count1=427
+GC Monitor: counts=968, totalTimeInGC=18,353,343ms, avgTimeInGC=18,960ms, timeInGC=40%
+----------------------------------------------------------------------------------------------------
+Time: 2014-10-30 08:38:06Z
+Process: id=13279
+CPU: user=40,898.9s, total=44,882.6s
+Threads: count=152
+Memory: working=64,255MB, virtual=74,520MB, private=74,382MB, paged=0MB
+GC: totalMemory=47,797MB, count0=3339, count1=427
+GC Monitor: counts=969, totalTimeInGC=18,355,386ms, avgTimeInGC=18,942ms, timeInGC=40%
+----------------------------------------------------------------------------------------------------
+Time: 2014-10-30 08:38:16Z
+Process: id=13279
+CPU: user=40,919.3s, total=44,906.0s
+Threads: count=152
+Memory: working=70,523MB, virtual=80,791MB, private=80,653MB, paged=0MB
+GC: totalMemory=51,989MB, count0=3339, count1=427
+GC Monitor: counts=969, totalTimeInGC=18,355,386ms, avgTimeInGC=18,942ms, timeInGC=40%
+----------------------------------------------------------------------------------------------------
+Time: 2014-10-30 08:38:33Z
+Process: id=13279
+CPU: user=40,934.9s, total=44,924.5s
+Threads: count=152
+Memory: working=30,845MB, virtual=41,089MB, private=40,951MB, paged=0MB
+GC: totalMemory=25,510MB, count0=3340, count1=427
+GC Monitor: counts=970, totalTimeInGC=18,366,800ms, avgTimeInGC=18,934ms, timeInGC=40%
+----------------------------------------------------------------------------------------------------
+
+The app should have been idling - certainly not gobbling 40GB in a couple of mins and then dropping back down. This pass ended with: "* Assertion at sgen-marksweep.c:892, condition `!SGEN_OBJECT_IS_FORWARDED (obj)' not met".
+
+I've enabled CSV log output now but it hasn't stayed up long enough in subsequent runs to get decent data from it. Another nasty I've seen is:
+
+Stacktrace:
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at (wrapper managed-to-native) object.__icall_wrapper_mono_gc_alloc_obj (intptr,intptr) &lt;0xffffffff&gt;
+  at (wrapper alloc) object.AllocSmall (intptr) &lt;0xffffffff&gt;
+  at System.Threading.ReaderWriterLock.get_IsReaderLockHeld () &lt;0x0004f&gt;
+
+Hopefully this matches what you've found.</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-31 13:18:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I applied the three GC fixes in master and ran a load test overnight. The process stayed up!! Until right now, when it didn't.
+
+Takeaways were:
+* the GC can take up to 80s in STW
+* within 1 min allocated memory can go from 50GB to 100GB, this looks like it is related to activity in the major collector
+* it most likely crashed at <a href="https://github.com/mono/mono/blob/master/mono/metadata/sgen-marksweep.c#L893">https://github.com/mono/mono/blob/master/mono/metadata/sgen-marksweep.c#L893</a> again (you can have the stack dump if you want - but it is about 2k lines)
+
+With relatively low memory usage (&lt;20GB) the system looks much better than before. Above this (guessed) threshold allocations more often than not seem to cause a major collection which causes the system to go nuts. I've got a complete memory log of the app lifetime which I'll attach to this issue - I'll make some nice graphs to show the main behavior points too.</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-31 13:22:08 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I do want the stack trace, though it's likely not of much help.  I'd love to see the graphs, too.
+
+I assume you don't have a test case for the current crash?</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-31 13:55:48 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8575&amp;file=Mono%203.12.1%20SGen%20Performance%20Test%20October%2014%202014.pdf" name="attach_8575" title="Graphs of application memory use and GC performance under load test">attachment 8575</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8575&amp;file=Mono%203.12.1%20SGen%20Performance%20Test%20October%2014%202014.pdf" title="Graphs of application memory use and GC performance under load test">[details]</a></span>
+Graphs of application memory use and GC performance under load test</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-31 13:59:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8576&amp;file=ms%20conc%20256%202014%2010%2030%2023%2000%2009%20snapshot.csv" name="attach_8576" title="CSV file containing memory and GC data points for an SGen load test">attachment 8576</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8576&amp;file=ms%20conc%20256%202014%2010%2030%2023%2000%2009%20snapshot.csv" title="CSV file containing memory and GC data points for an SGen load test">[details]</a></span>
+CSV file containing memory and GC data points for an SGen load test</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-31 14:04:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8577&amp;file=ms%20conc%20256%202014%2010%2030%2023%2000%2009.stack.txt" name="attach_8577" title="Stack trace from ms-conc test">attachment 8577</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8577&amp;file=ms%20conc%20256%202014%2010%2030%2023%2000%2009.stack.txt" title="Stack trace from ms-conc test">[details]</a></span>
+Stack trace from ms-conc test</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-31 14:17:19 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">That crash is from concurrent M&amp;S.  Does the program still crash with non-concurrent?
+
+Also, if you run with concurrent, can you try the `no-cementing` option for `MONO_GC_PARAMS`?
+
+What happened at 5:30?  Does the program run into the heap size limit?</pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-01 20:10:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I ran with standard marksweep and the test completed. GC times and memory usage look roughly the same - but I've not analysed too deeply yet. Subsequent system tests yielded the longest collection at ~170s.
+
+I'm going to repeat the test with Boehm (with a modified MAX_HEAP_SECTS) since I need to understand which GC profile best fits my app.
+
+TBH I'm looking for collection times &lt;20s and ideally &lt;10s which is probably asking a lot for a single Mono process. The option I have is to shard the data set to spread the GC load and hopefully get close to where I need to be.</pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-03 14:04:10 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8605&amp;file=GC%20Comparison%20MS_CONC%20MS%20Boehm%202014%2011%2001.pdf" name="attach_8605" title="Performance comparison between MS-CONC, MS and Boehm">attachment 8605</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8605&amp;file=GC%20Comparison%20MS_CONC%20MS%20Boehm%202014%2011%2001.pdf" title="Performance comparison between MS-CONC, MS and Boehm">[details]</a></span>
+Performance comparison between MS-CONC, MS and Boehm</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-03 14:04:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8606&amp;file=GC%20Comparison%20MS_CONC%20MS%20Boehm%202014%2011%2001.xlsx" name="attach_8606" title="Performance comparison between MS-CONC, MS and Boehm">attachment 8606</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8606&amp;file=GC%20Comparison%20MS_CONC%20MS%20Boehm%202014%2011%2001.xlsx" title="Performance comparison between MS-CONC, MS and Boehm">[details]</a></span>
+Performance comparison between MS-CONC, MS and Boehm
+
+With source data</pre>
+    </div>
+
+    <div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-03 14:08:58 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mark, I've added two new attachments showing relative performance between MS-CONC, MS and Boehm.
+
+The surprise is that Boehm does significantly better than MS. It finishes the test 24 mins before MS (CONC doesn't finish at all). It does use more memory however. The longest Boehm pause is 12s, for MS it is 70s.
+
+I'll re-run the test with nocomenting and also under .NET 4.5 and add updated  results here</pre>
+    </div>
+
+    <div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-04 14:21:56 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Would you mind trying `marksweep-conc` on this branch:
+
+  <a href="https://github.com/schani/mono/tree/fix-23401">https://github.com/schani/mono/tree/fix-23401</a></pre>
+    </div>
+
+    <div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-04 19:26:04 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mark, no problems - cloning now. I'll post the results ASAP.</pre>
+    </div>
+
+    <div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-05 08:44:22 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">First pass succeeded. I'll run again and post comparative perf results.</pre>
+    </div>
+
+    <div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-05 19:08:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I've updated the branch with a bugfix for the OOM case.  It should now always report an OOM in a more or less unsavory way.</pre>
+    </div>
+
+    <div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-06 17:08:23 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mark, I'm running a complete test pass on the updated code. I'll repeat the earlier OOM related tests tomorrow and report the results back here. Thanks for your help!</pre>
+    </div>
+
+    <div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-07 17:32:55 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">It was all going so well - but I just got this stack:
+
+Stacktrace:
+
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at (wrapper managed-to-native) object.__icall_wrapper_mono_gc_alloc_string (intptr,intptr,int) &lt;0xffffffff&gt;
+  at (wrapper alloc) object.AllocString (intptr,int) &lt;0xffffffff&gt;
+  at System.Text.StringBuilder..ctor (string,int,int,int,int) &lt;0x00110&gt;
+  at System.Text.StringBuilder..ctor (string,int,int,int) &lt;0x00026&gt;
+  at System.Text.StringBuilder..ctor (int) &lt;0x00028&gt;
+  at Exony.TachosDB.Common.StringBuilderPool..ctor (int,int) &lt;0x000a5&gt;
+  at Exony.TachosDB.HttpWebServer.HttpWebResponse..ctor (Exony.TachosDB.HttpWebServer.HttpWebSocket,int) &lt;0x00047&gt;
+  at Exony.TachosDB.HttpWebServer.HttpWebServer.HandleRequests (Exony.TachosDB.HttpWebServer.HttpWebSocket) &lt;0x0044b&gt;
+  at Exony.TachosDB.HttpWebServer.HttpWebServer.AcceptRequest (object,System.Net.Sockets.SocketAsyncEventArgs) &lt;0x0010b&gt;
+  at System.Net.Sockets.SocketAsyncEventArgs.OnCompleted (System.Net.Sockets.SocketAsyncEventArgs) &lt;0x0002e&gt;
+  at System.Net.Sockets.SocketAsyncEventArgs.AcceptCallback (System.IAsyncResult) &lt;0x00306&gt;
+  at System.Net.Sockets.SocketAsyncEventArgs.DispatcherCB (System.IAsyncResult) &lt;0x00107&gt;
+  at (wrapper runtime-invoke) &lt;Module&gt;.runtime_invoke_void__this___object (object,intptr,intptr,intptr) &lt;0xffffffff&gt;
+
+Native stacktrace:
+
+        /usr/local/bin/mono() [0x4a4595]
+        /usr/local/bin/mono() [0x4ff8ef]
+        /usr/local/bin/mono() [0x4160a9]
+        /lib64/libpthread.so.0(+0xf710) [0x7f274ae0f710]
+        /usr/local/bin/mono() [0x5d21b8]
+        /usr/local/bin/mono() [0x5cca41]
+        /usr/local/bin/mono() [0x5d2828]
+        /usr/local/bin/mono() [0x5e0660]
+        /usr/local/bin/mono() [0x5e0a03]
+        [0x4033196e]
+
+Debug info from gdb:
+
+Mono support loaded.
+[New LWP 10360]
+[New LWP 10347]
+[New LWP 10346]
+[New LWP 10345]
+[New LWP 10344]
+[New LWP 10300]
+[New LWP 10299]
+[New LWP 10298]
+[New LWP 10297]
+[New LWP 10296]
+[New LWP 10295]
+[New LWP 10294]
+[New LWP 10293]
+[New LWP 10292]
+[New LWP 10291]
+[New LWP 10290]
+[New LWP 10289]
+[New LWP 10288]
+[New LWP 10287]
+[New LWP 10286]
+[New LWP 10285]
+[New LWP 10284]
+[New LWP 10283]
+[New LWP 10282]
+[New LWP 10281]
+[New LWP 10280]
+[New LWP 10279]
+[New LWP 10278]
+[New LWP 10277]
+[New LWP 10276]
+[New LWP 10275]
+[New LWP 10274]
+[New LWP 10273]
+[New LWP 10272]
+[New LWP 10271]
+[New LWP 10270]
+[New LWP 10269]
+[New LWP 10268]
+[New LWP 10267]
+[New LWP 10266]
+[New LWP 10265]
+[New LWP 10264]
+[New LWP 10263]
+[New LWP 10262]
+[New LWP 10261]
+[New LWP 10260]
+[New LWP 10259]
+[New LWP 10258]
+[New LWP 10257]
+[New LWP 10256]
+[New LWP 10255]
+[New LWP 10254]
+[New LWP 10253]
+[New LWP 10252]
+[New LWP 10251]
+[New LWP 10250]
+[New LWP 10249]
+[New LWP 10248]
+[New LWP 10247]
+[New LWP 10246]
+[New LWP 10245]
+[New LWP 10244]
+[New LWP 10243]
+[New LWP 10242]
+[New LWP 10241]
+[New LWP 10240]
+[New LWP 10239]
+[New LWP 10238]
+[New LWP 10237]
+[New LWP 10236]
+[New LWP 10235]
+[New LWP 10234]
+[New LWP 10233]
+[New LWP 10232]
+[New LWP 10231]
+[New LWP 10230]
+[New LWP 10229]
+[New LWP 10228]
+[New LWP 10227]
+[New LWP 10226]
+[New LWP 10225]
+[New LWP 10224]
+[New LWP 10214]
+[New LWP 10213]
+[New LWP 10212]
+[New LWP 10211]
+[New LWP 10210]
+[New LWP 10209]
+[New LWP 10208]
+[New LWP 10207]
+[New LWP 10206]
+[New LWP 10205]
+[New LWP 10204]
+[New LWP 10203]
+[New LWP 10202]
+[New LWP 10201]
+[New LWP 10200]
+[New LWP 10199]
+[New LWP 10198]
+[New LWP 10197]
+[New LWP 10196]
+[New LWP 10195]
+[New LWP 10194]
+[New LWP 10193]
+[New LWP 10192]
+[New LWP 10191]
+[New LWP 10188]
+[New LWP 10187]
+[New LWP 10184]
+[New LWP 10183]
+[New LWP 10182]
+[New LWP 10181]
+[New LWP 10178]
+[New LWP 10177]
+[New LWP 10174]
+[New LWP 10173]
+[New LWP 10171]
+[New LWP 10169]
+[New LWP 10168]
+[New LWP 10166]
+[New LWP 10165]
+[New LWP 10164]
+[New LWP 10163]
+[New LWP 10160]
+[New LWP 10159]
+[New LWP 10157]
+[New LWP 10156]
+[New LWP 10154]
+[New LWP 10153]
+[New LWP 10152]
+[New LWP 10151]
+[New LWP 10150]
+[New LWP 10149]
+[New LWP 10148]
+[New LWP 10147]
+[New LWP 10146]
+[New LWP 10145]
+[New LWP 10144]
+[New LWP 10143]
+[New LWP 10142]
+[New LWP 10141]
+[New LWP 10140]
+[New LWP 10139]
+[New LWP 10138]
+[New LWP 10137]
+[New LWP 10136]
+[New LWP 10135]
+[New LWP 10134]
+[New LWP 10133]
+[New LWP 10132]
+[New LWP 10131]
+[Thread debugging using libthread_db enabled]
+0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+63        return INLINE_SYSCALL (rt_sigsuspend, 2, CHECK_SIGSET (set), _NSIG / 8);
+  152 Thread 0x7f27430ca700 (LWP 10131)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  151 Thread 0x7f27422f7700 (LWP 10132)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  150 Thread 0x7f27420f6700 (LWP 10133)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  149 Thread 0x7f2741ef5700 (LWP 10134)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  148 Thread 0x7f2741cf4700 (LWP 10135)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  147 Thread 0x7f2741af3700 (LWP 10136)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  146 Thread 0x7f27418f2700 (LWP 10137)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  145 Thread 0x7f27416f1700 (LWP 10138)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  144 Thread 0x7f27414f0700 (LWP 10139)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  143 Thread 0x7f27412ef700 (LWP 10140)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  142 Thread 0x7f27410ee700 (LWP 10141)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  141 Thread 0x7f2740eed700 (LWP 10142)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  140 Thread 0x7f2740cec700 (LWP 10143)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  139 Thread 0x7f2740aeb700 (LWP 10144)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  138 Thread 0x7f27408ea700 (LWP 10145)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  137 Thread 0x7f27406e9700 (LWP 10146)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  136 Thread 0x7f27404e8700 (LWP 10147)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  135 Thread 0x7f27402e7700 (LWP 10148)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  134 Thread 0x7f26e7fff700 (LWP 10149)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  133 Thread 0x7f26e7dfe700 (LWP 10150)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  132 Thread 0x7f26e7bfd700 (LWP 10151)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  131 Thread 0x7f26e79fc700 (LWP 10152)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  130 Thread 0x7f274009c700 (LWP 10153)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  129 Thread 0x7f26e77fb700 (LWP 10154)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  128 Thread 0x7f26e75fa700 (LWP 10156)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  127 Thread 0x7f26e73f9700 (LWP 10157)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  126 Thread 0x7f26e71f8700 (LWP 10159)  0x00007f274ab55163 in epoll_wait () at ../sysdeps/unix/syscall-template.S:82
+  125 Thread 0x7f26e71b7700 (LWP 10160)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  124 Thread 0x7f26e6dfe700 (LWP 10163)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  123 Thread 0x7f26e6bfd700 (LWP 10164)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  122 Thread 0x7f26e69fc700 (LWP 10165)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  121 Thread 0x7f26e67fb700 (LWP 10166)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c                                                                                                                                   :63
+  120 Thread 0x7f26e65fa700 (LWP 10168)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  119 Thread 0x7f26e65b9700 (LWP 10169)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  118 Thread 0x7f26e63b8700 (LWP 10171)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  117 Thread 0x7f26e6377700 (LWP 10173)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  116 Thread 0x7f26e6176700 (LWP 10174)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  115 Thread 0x7f26e6135700 (LWP 10177)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  114 Thread 0x7f26e5f34700 (LWP 10178)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  113 Thread 0x7f26e5ef3700 (LWP 10181)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  112 Thread 0x7f26e5cf2700 (LWP 10182)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  111 Thread 0x7f26e5cb1700 (LWP 10183)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  110 Thread 0x7f26e5ab0700 (LWP 10184)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  109 Thread 0x7f26e5a6f700 (LWP 10187)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  108 Thread 0x7f26e586e700 (LWP 10188)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  107 Thread 0x7f26e582d700 (LWP 10191)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  106 Thread 0x7f26e5628700 (LWP 10192)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  105 Thread 0x7f26e55e3700 (LWP 10193)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  104 Thread 0x7f26e53de700 (LWP 10194)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  103 Thread 0x7f26e5392700 (LWP 10195)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  102 Thread 0x7f26e518d700 (LWP 10196)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  101 Thread 0x7f26e5148700 (LWP 10197)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  100 Thread 0x7f26e4f43700 (LWP 10198)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  99 Thread 0x7f26e4efe700 (LWP 10199)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  98 Thread 0x7f26e4cf9700 (LWP 10200)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  97 Thread 0x7f26e4cb4700 (LWP 10201)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  96 Thread 0x7f26e4aaf700 (LWP 10202)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  95 Thread 0x7f26e4a6a700 (LWP 10203)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  94 Thread 0x7f26e4865700 (LWP 10204)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  93 Thread 0x7f26e4820700 (LWP 10205)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  92 Thread 0x7f26e461b700 (LWP 10206)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  91 Thread 0x7f26e45d6700 (LWP 10207)  0x00007f274ae0f2ad in __libc_waitpid (pid=&lt;value optimized out&gt;, stat_loc=&lt;value optimized out&gt;, options=&lt;v                                                                                                                                   alue optimized out&gt;) at ../sysdeps/unix/sysv/linux/waitpid.c:41
+  90 Thread 0x7f26e43d1700 (LWP 10208)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  89 Thread 0x7f26e438c700 (LWP 10209)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  88 Thread 0x7f26e4187700 (LWP 10210)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  87 Thread 0x7f261ffff700 (LWP 10211)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  86 Thread 0x7f26e413e700 (LWP 10212)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  85 Thread 0x7f261fdfe700 (LWP 10213)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  84 Thread 0x7f26e40f4700 (LWP 10214)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  83 Thread 0x7f261fbfd700 (LWP 10224)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  82 Thread 0x7f26e40ab700 (LWP 10225)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  81 Thread 0x7f261f9fc700 (LWP 10226)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  80 Thread 0x7f26e4062700 (LWP 10227)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  79 Thread 0x7f261f7fb700 (LWP 10228)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  78 Thread 0x7f261f5fa700 (LWP 10229)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  77 Thread 0x7f261f5b9700 (LWP 10230)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  76 Thread 0x7f261f3b8700 (LWP 10231)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  75 Thread 0x7f261f377700 (LWP 10232)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  74 Thread 0x7f261f176700 (LWP 10233)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  73 Thread 0x7f261f135700 (LWP 10234)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  72 Thread 0x7f261ef34700 (LWP 10235)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  71 Thread 0x7f261eeef700 (LWP 10236)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  70 Thread 0x7f261ecea700 (LWP 10237)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  69 Thread 0x7f261eca5700 (LWP 10238)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  68 Thread 0x7f261eaa0700 (LWP 10239)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  67 Thread 0x7f261ea5b700 (LWP 10240)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  66 Thread 0x7f261e856700 (LWP 10241)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  65 Thread 0x7f261e811700 (LWP 10242)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  64 Thread 0x7f261e60c700 (LWP 10243)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  63 Thread 0x7f261e5c7700 (LWP 10244)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  62 Thread 0x7f261e3c2700 (LWP 10245)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  61 Thread 0x7f261e37d700 (LWP 10246)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  60 Thread 0x7f261e178700 (LWP 10247)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  59 Thread 0x7f261e133700 (LWP 10248)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  58 Thread 0x7f261df2e700 (LWP 10249)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  57 Thread 0x7f261dee9700 (LWP 10250)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  56 Thread 0x7f261dce4700 (LWP 10251)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  55 Thread 0x7f261dc9f700 (LWP 10252)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  54 Thread 0x7f261da9a700 (LWP 10253)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  53 Thread 0x7f261da55700 (LWP 10254)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  52 Thread 0x7f261d850700 (LWP 10255)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  51 Thread 0x7f261d80b700 (LWP 10256)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  50 Thread 0x7f261d606700 (LWP 10257)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  49 Thread 0x7f261d5c1700 (LWP 10258)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  48 Thread 0x7f261d3bc700 (LWP 10259)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  47 Thread 0x7f261d377700 (LWP 10260)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  46 Thread 0x7f261d172700 (LWP 10261)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  45 Thread 0x7f274005b700 (LWP 10262)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  44 Thread 0x7f261cf06700 (LWP 10263)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  43 Thread 0x7f261cec5700 (LWP 10264)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  42 Thread 0x7f261ce84700 (LWP 10265)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  41 Thread 0x7f261ce43700 (LWP 10266)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  40 Thread 0x7f261ce02700 (LWP 10267)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  39 Thread 0x7f261cdbd700 (LWP 10268)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  38 Thread 0x7f261cd78700 (LWP 10269)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  37 Thread 0x7f261cd33700 (LWP 10270)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  36 Thread 0x7f261ccee700 (LWP 10271)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  35 Thread 0x7f261cca9700 (LWP 10272)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  34 Thread 0x7f261cc64700 (LWP 10273)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  33 Thread 0x7f261cc1f700 (LWP 10274)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  32 Thread 0x7f261cbda700 (LWP 10275)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  31 Thread 0x7f261cb95700 (LWP 10276)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  30 Thread 0x7f261cb50700 (LWP 10277)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  29 Thread 0x7f261cb0b700 (LWP 10278)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  28 Thread 0x7f261cac6700 (LWP 10279)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  27 Thread 0x7f261ca81700 (LWP 10280)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  26 Thread 0x7f261ca3c700 (LWP 10281)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  25 Thread 0x7f261c9f7700 (LWP 10282)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  24 Thread 0x7f261c9b2700 (LWP 10283)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  23 Thread 0x7f261c96d700 (LWP 10284)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  22 Thread 0x7f261c928700 (LWP 10285)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  21 Thread 0x7f261c8e3700 (LWP 10286)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  20 Thread 0x7f261c89e700 (LWP 10287)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  19 Thread 0x7f261c859700 (LWP 10288)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  18 Thread 0x7f261c814700 (LWP 10289)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  17 Thread 0x7f261c7cf700 (LWP 10290)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  16 Thread 0x7f261c78a700 (LWP 10291)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  15 Thread 0x7f261c745700 (LWP 10292)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  14 Thread 0x7f261c700700 (LWP 10293)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  13 Thread 0x7f261c6bb700 (LWP 10294)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  12 Thread 0x7f261c676700 (LWP 10295)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  11 Thread 0x7f261c631700 (LWP 10296)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  10 Thread 0x7f261c5ec700 (LWP 10297)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  9 Thread 0x7f261c5a7700 (LWP 10298)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  8 Thread 0x7f261c562700 (LWP 10299)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  7 Thread 0x7f261c51d700 (LWP 10300)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  6 Thread 0x7f261c4d8700 (LWP 10344)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  5 Thread 0x7f261c493700 (LWP 10345)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  4 Thread 0x7f261c20f700 (LWP 10346)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:6                                                                                                                                   3
+  3 Thread 0x7f24d35ff700 (LWP 10347)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:6                                                                                                                                   3
+  2 Thread 0x7f245f93b700 (LWP 10360)  sem_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_wait.S:86
+* 1 Thread 0x7f274b8b6760 (LWP 10129)  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:6                                                                                                                                   3
+
+Thread 152 (Thread 0x7f27430ca700 (LWP 10131)):
+#0  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+#1  __sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:78
+#2  0x00000000005c31c4 in suspend_thread (_dummy=&lt;value optimized out&gt;, _info=&lt;value optimized out&gt;, context=0x7f27430c97c0) at sgen-os-po
+#3  suspend_handler (_dummy=&lt;value optimized out&gt;, _info=&lt;value optimized out&gt;, context=0x7f27430c97c0) at sgen-os-posix.c:153
+#4  &lt;signal handler called&gt;
+#5  sem_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_wait.S:85
+#6  0x0000000000618348 in mono_sem_wait (sem=0x963240, alertable=1) at mono-semaphore.c:101
+#7  0x000000000059e8ed in finalizer_thread (unused=&lt;value optimized out&gt;) at gc.c:1077
+#8  0x000000000057eb77 in start_wrapper_internal (data=&lt;value optimized out&gt;) at threads.c:657
+#9  start_wrapper (data=&lt;value optimized out&gt;) at threads.c:704
+#10 0x000000000061da06 in inner_start_thread (arg=&lt;value optimized out&gt;) at mono-threads-posix.c:84
+#11 0x00007f274ae079d1 in start_thread (arg=0x7f27430ca700) at pthread_create.c:301
+#12 0x00007f274ab54b6d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:115
+
+Thread 151 (Thread 0x7f27422f7700 (LWP 10132)):
+#0  0x00007f274aa9ecd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+#1  __sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:78
+#2  0x00000000005c31c4 in suspend_thread (_dummy=&lt;value optimized out&gt;, _info=&lt;value optimized out&gt;, context=0x7f27422f5ec0) at sgen-os-po
+#3  suspend_handler (_dummy=&lt;value optimized out&gt;, _info=&lt;value optimized out&gt;, context=0x7f27422f5ec0) at sgen-os-posix.c:153
+#4  &lt;signal handler called&gt;
+#5  pthread_cond_wait@@GLIBC_2.3.2 () at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:181
+#6  0x00000000005f86bb in _wapi_handle_timedwait_signal_handle (handle=0x400, timeout=0x0, alertable=1, poll=&lt;value optimized out&gt;) at han                                                                                                                                            14
+#7  0x000000000060aaf9 in WaitForMultipleObjectsEx (numobjects=2, handles=0x7f27422f67e0, waitall=0, timeout=4294967295, alertable=1) at w
+#8  0x000000000057f7dd in mono_wait_uninterrupted (thread=0x7f274b7e82d0, multiple=1, numhandles=2, handles=0x7f27422f67e0, waitall=0, ms=                                                                                                                                            able=1) at threads.c:1355
+#9  0x000000000057fa0d in ves_icall_System_Threading_WaitHandle_WaitAny_internal (mono_handles=0x7f27307b34b8, ms=-1, exitContext=&lt;value o                                                                                                                                            out&gt;) at threads.c:1454
+#10 0x00000000403c9f4e in ?? ()
+#11 0x00007f272c002640 in ?? ()
+#12 0x00007f27422f6db0 in ?? ()
+#13 0x00007f27307b11a8 in ?? ()
+#14 0x00007f27307b11a8 in ?? ()
+#15 0x00007f27307b1210 in ?? ()
+#16 0x00007f272c0025e0 in ?? ()
+#17 0x00007f27307b11a8 in ?? ()
+#18 0x00007f27422f6b30 in ?? ()
+#19 0x00007f27422f6a20 in ?? ()
+#20 0x00007f2743370a44 in System.Threading.WaitHandle:WaitAny (waitHandles=../../gdb/dwarf2-frame.c:694: internal-error: Unknown CFI encou
+A problem internal to GDB has been detected,
+further debugging may prove unreliable.
+Quit this debugging session? (y or n) [answered Y; input not from terminal]
+../../gdb/dwarf2-frame.c:694: internal-error: Unknown CFI encountered.
+A problem internal to GDB has been detected,
+further debugging may prove unreliable.
+Create a core file of GDB? (y or n) [answered Y; input not from terminal]
+
+=================================================================
+Got a SIGSEGV while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries
+used by your application.
+=================================================================</pre>
+    </div>
+
+    <div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-07 17:35:26 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mark, if it helps I can get you access to the test box - I can make it available for at least 2-3 days next week. Email me at: craig at ripcordsoftware.com and I'll sent you access details and info on how to pilot the thing.</pre>
+    </div>
+
+    <div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-13 18:48:54 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Craig, could you try again with this branch:
+
+  <a href="https://github.com/schani/mono/tree/fix-23401">https://github.com/schani/mono/tree/fix-23401</a></pre>
+    </div>
+
+    <div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-16 09:36:45 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Running now.</pre>
+    </div>
+
+    <div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-16 20:05:32 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8756&amp;file=stack%20trace%20fix%2023401%2006b8128992f9cb66827a2534a6607861183f85cd.txt" name="attach_8756" title="Stack trace for commit 06b8128992f9cb66827a2534a6607861183f85cd">attachment 8756</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8756&amp;file=stack%20trace%20fix%2023401%2006b8128992f9cb66827a2534a6607861183f85cd.txt" title="Stack trace for commit 06b8128992f9cb66827a2534a6607861183f85cd">[details]</a></span>
+Stack trace for commit 06b8128992f9cb66827a2534a6607861183f85cd</pre>
+    </div>
+
+    <div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-16 20:06:22 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mark, crashed out, trace in <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8756&amp;file=stack%20trace%20fix%2023401%2006b8128992f9cb66827a2534a6607861183f85cd.txt" name="attach_8756" title="Stack trace for commit 06b8128992f9cb66827a2534a6607861183f85cd">attachment 8756</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8756&amp;file=stack%20trace%20fix%2023401%2006b8128992f9cb66827a2534a6607861183f85cd.txt" title="Stack trace for commit 06b8128992f9cb66827a2534a6607861183f85cd">[details]</a></span> above.</pre>
+    </div>
+
+    <div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-17 20:22:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8776&amp;file=GC%20Comparison%20Nursery%20Sizes%20All%20Timings%20HTTP%20Client%20Test.pdf" name="attach_8776" title="GC Comparison - marksweep-conc perf for various nursery sizes">attachment 8776</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8776&amp;file=GC%20Comparison%20Nursery%20Sizes%20All%20Timings%20HTTP%20Client%20Test.pdf" title="GC Comparison - marksweep-conc perf for various nursery sizes">[details]</a></span>
+GC Comparison - marksweep-conc perf for various nursery sizes</pre>
+    </div>
+
+    <div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-17 20:23:52 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8777&amp;file=GC%20Comparison%20Multiple%20Nursery%20Sizes%20Timing%20Averages%20HTTP%20Client%20Test.pdf" name="attach_8777" title="GC Comparison - marksweep-conc, various nursery sizes, average timings">attachment 8777</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8777&amp;file=GC%20Comparison%20Multiple%20Nursery%20Sizes%20Timing%20Averages%20HTTP%20Client%20Test.pdf" title="GC Comparison - marksweep-conc, various nursery sizes, average timings">[details]</a></span>
+GC Comparison - marksweep-conc, various nursery sizes, average timings</pre>
+    </div>
+
+    <div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-17 20:28:07 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks.
+
+Could you try setting `SGEN_MAX_ASSERT_LEVEL` to `9` in `sgen-conf.h` and running again?</pre>
+    </div>
+
+    <div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-17 20:58:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mark, I've just added attachments 8776 and 8777. These come from some testing
+I've been doing against System.Net.HttpWebRequest where I've seen wild
+request/response timings - anyhow these results point at GC oddness. The test
+boils down to:
+
+        private static void FireGetRequest(string url)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(url);
+
+            request.UserAgent = "testclient/1.0";
+            request.Method = "GET";
+            request.Accept = "text/*";
+
+            var response = (HttpWebResponse)request.GetResponse();
+
+            var memStream = new MemoryStream((int)response.ContentLength);      
+            using (var stream = response.GetResponseStream())
+            {
+                stream.CopyTo(memStream);
+            }
+        }
+
+-----------------------------------------------------------------------
+In the test the memory stream is sized based on the response (in my test this
+is always 6MB). There is a fixed buffer test (a static buffer) and the above
+code which I'm classifying as a dynamic buffer (since it is allocated each time
+the function is invoked).
+
+I'd expect the static buffer to be faster since there should only ever be one
+allocation - but the opposite is the case, the fixed buffer is much slower, in
+fact much slower than just invoking new MemoryStream(). Comparing the average
+timing results shows a strange progression - the 32MB results show pretty good
+performance for the dynamic buffer but pretty wild for the fixed buffer.
+Looking at bigger nursery sizes there are striking similarities for the higher
+numbers but these are offset by ^2 in most cases.
+
+There are hints here that the GC isn't dealing with the test case very well -
+just compare dynamic,nursery=16 (sweet!) with dynamic,nursery=256 (ouch!) and
+fixed,nursery=256. 
+
+The allocations during the lifetime of the test should be identical: I've
+traced through CopyTo and both test cases take approximately the same path so
+it isn't an issue in the response stream or MemoryStream. 
+
+I guess reducing the work done by the GC should help mitigating the crash
+issues we are seeing elsewhere.</pre>
+    </div>
+
+    <div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-18 17:54:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">These are quite weird.  Can you provide a test for this?</pre>
+    </div>
+
+    <div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-18 18:42:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mark, certainly do. I'll stick on github shortly.</pre>
+    </div>
+
+    <div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-18 19:05:28 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mark, I've just run the "SGEN_MAX_ASSERT_LEVEL 9" test. The process stayed up for 30s - did you expect it to terminate that quickly? The stack isn't very interesting:
+
+Stacktrace:
+
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at (wrapper managed-to-native) object.__icall_wrapper_mono_gc_alloc_vector (intptr,intptr,intptr) &lt;0xffffffff&gt;
+  at (wrapper alloc) object.AllocVector (intptr,intptr) &lt;0xffffffff&gt;
+  at System.Array.Resize&lt;T&gt; (T[]&amp;,int) &lt;0x000a2&gt;
+  at System.Collections.Generic.List`1.set_Capacity (int) &lt;0x00051&gt;
+  at System.Collections.Generic.List`1.GrowIfNeeded (int) &lt;0x0006a&gt;
+  at System.Collections.Generic.List`1.Add (T) &lt;0x00034&gt;
+  at ....
+  at System.Net.Sockets.SocketAsyncEventArgs.OnCompleted (System.Net.Sockets.SocketAsyncEventArgs) &lt;0x0002e&gt;
+  at System.Net.Sockets.SocketAsyncEventArgs.AcceptCallback (System.IAsyncResult) &lt;0x00306&gt;
+  at System.Net.Sockets.SocketAsyncEventArgs.DispatcherCB (System.IAsyncResult) &lt;0x00107&gt;
+  at (wrapper runtime-invoke) &lt;Module&gt;.runtime_invoke_void__this___object (object,intptr,intptr,intptr) &lt;0xffffffff&gt;
+
+Native stacktrace:
+
+        /usr/local/bin/mono() [0x4a4595]
+        /lib64/libpthread.so.0(+0xf710) [0x7f46c2bc8710]
+        /lib64/libc.so.6(gsignal+0x35) [0x7f46c2857925]
+        /lib64/libc.so.6(abort+0x175) [0x7f46c2859105]
+        /usr/local/bin/mono() [0x623f89]
+        /usr/local/bin/mono() [0x624017]
+        /usr/local/bin/mono() [0x624163]
+        /usr/local/bin/mono() [0x5cfd18]
+        /usr/local/bin/mono() [0x5ed722]
+        /usr/local/bin/mono() [0x5ca40c]
+        /usr/local/bin/mono() [0x5cb25c]
+        /usr/local/bin/mono() [0x5cc4fb]
+        /usr/local/bin/mono() [0x5d2cf8]
+        /usr/local/bin/mono() [0x5e0ca0]
+        /usr/local/bin/mono() [0x5e1273]
+        [0x4164574e]
+
+Debug info from gdb:
+
+Mono support loaded.
+[New LWP 39810]
+[New LWP 39781]
+[New LWP 39780]
+[New LWP 39779]
+[New LWP 39778]
+[New LWP 39777]
+[New LWP 39776]
+[New LWP 39775]
+[New LWP 39774]
+[New LWP 39773]
+[New LWP 39772]
+[New LWP 39771]
+[New LWP 39770]
+[New LWP 39769]
+[New LWP 39768]
+[New LWP 39767]
+[New LWP 39766]
+[New LWP 39765]
+[New LWP 39764]
+[New LWP 39763]
+[New LWP 39762]
+[New LWP 39761]
+[New LWP 39760]
+[New LWP 39759]
+[New LWP 39758]
+[New LWP 39757]
+[New LWP 39756]
+[New LWP 39755]
+[New LWP 39754]
+[New LWP 39753]
+[New LWP 39752]
+[New LWP 39751]
+[New LWP 39750]
+[New LWP 39749]
+[New LWP 39748]
+[New LWP 39747]
+[New LWP 39746]
+[New LWP 39744]
+[New LWP 39743]
+[New LWP 39742]
+[New LWP 39741]
+[New LWP 39740]
+[New LWP 39739]
+[New LWP 39738]
+[New LWP 39737]
+[New LWP 39736]
+[New LWP 39735]
+[New LWP 39734]
+[New LWP 39733]
+[New LWP 39732]
+[New LWP 39731]
+[New LWP 39730]
+[New LWP 39729]
+[New LWP 39728]
+[New LWP 39727]
+[New LWP 39726]
+[New LWP 39725]
+[New LWP 39724]
+[New LWP 39723]
+[New LWP 39722]
+[New LWP 39721]
+[New LWP 39720]
+[New LWP 39719]
+[New LWP 39718]
+[New LWP 39717]
+[New LWP 39716]
+[New LWP 39715]
+[New LWP 39714]
+[New LWP 39713]
+[New LWP 39712]
+[New LWP 39711]
+[New LWP 39709]
+[New LWP 39708]
+[New LWP 39707]
+[New LWP 39704]
+[New LWP 39703]
+[New LWP 39702]
+[New LWP 39701]
+[New LWP 39700]
+[New LWP 39699]
+[New LWP 39698]
+[New LWP 39697]
+[New LWP 39695]
+[New LWP 39693]
+[New LWP 39692]
+[New LWP 39691]
+[New LWP 39690]
+[New LWP 39689]
+[New LWP 39688]
+[New LWP 39687]
+[New LWP 39686]
+[New LWP 39685]
+[New LWP 39682]
+[New LWP 39681]
+[New LWP 39680]
+[New LWP 39679]
+[New LWP 39678]
+[New LWP 39677]
+[New LWP 39676]
+[New LWP 39675]
+[New LWP 39674]
+[New LWP 39673]
+[New LWP 39627]
+[New LWP 39626]
+[New LWP 39625]
+[New LWP 39624]
+[New LWP 39623]
+[New LWP 39622]
+[New LWP 39621]
+[New LWP 39620]
+[New LWP 39619]
+[New LWP 39616]
+[New LWP 39615]
+[New LWP 39614]
+[New LWP 39613]
+[New LWP 39612]
+[New LWP 39611]
+[New LWP 39610]
+[New LWP 39609]
+[New LWP 39607]
+[New LWP 39606]
+[New LWP 39605]
+[New LWP 39604]
+[New LWP 39602]
+[New LWP 39601]
+[New LWP 39598]
+[New LWP 39597]
+[New LWP 39595]
+[New LWP 39594]
+[New LWP 39593]
+[New LWP 39592]
+[New LWP 39591]
+[New LWP 39590]
+[New LWP 39589]
+[New LWP 39588]
+[New LWP 39587]
+[New LWP 39586]
+[New LWP 39585]
+[New LWP 39584]
+[New LWP 39583]
+[New LWP 39582]
+[New LWP 39581]
+[New LWP 39580]
+[New LWP 39579]
+[New LWP 39578]
+[New LWP 39577]
+[New LWP 39576]
+[New LWP 39575]
+[New LWP 39574]
+[New LWP 39573]
+[New LWP 39572]
+[Thread debugging using libthread_db enabled]
+0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+63        return INLINE_SYSCALL (rt_sigsuspend, 2, CHECK_SIGSET (set), _NSIG / 8);
+  152 Thread 0x7f46bae83700 (LWP 39572)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  151 Thread 0x7f46ba423700 (LWP 39573)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  150 Thread 0x7f46ba222700 (LWP 39574)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  149 Thread 0x7f46ba021700 (LWP 39575)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  148 Thread 0x7f46b9e20700 (LWP 39576)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  147 Thread 0x7f46b9c1f700 (LWP 39577)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  146 Thread 0x7f46b9a1e700 (LWP 39578)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  145 Thread 0x7f46b981d700 (LWP 39579)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  144 Thread 0x7f46b961c700 (LWP 39580)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  143 Thread 0x7f46b941b700 (LWP 39581)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  142 Thread 0x7f46b921a700 (LWP 39582)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  141 Thread 0x7f46b9015700 (LWP 39583)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  140 Thread 0x7f46b8e10700 (LWP 39584)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  139 Thread 0x7f46b8c0b700 (LWP 39585)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  138 Thread 0x7f46b8a06700 (LWP 39586)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  137 Thread 0x7f46b8801700 (LWP 39587)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  136 Thread 0x7f46b85fc700 (LWP 39588)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  135 Thread 0x7f46b83f7700 (LWP 39589)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  134 Thread 0x7f46b3fff700 (LWP 39590)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  133 Thread 0x7f46b3dfe700 (LWP 39591)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  132 Thread 0x7f46b3bfd700 (LWP 39592)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  131 Thread 0x7f46b39fc700 (LWP 39593)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  130 Thread 0x7f46b818b700 (LWP 39594)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  129 Thread 0x7f46b37fb700 (LWP 39595)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  128 Thread 0x7f46b35fa700 (LWP 39597)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  127 Thread 0x7f46b33f9700 (LWP 39598)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  126 Thread 0x7f46b80f0700 (LWP 39601)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  125 Thread 0x7f46b80ab700 (LWP 39602)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  124 Thread 0x7f46b2ff7700 (LWP 39604)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  123 Thread 0x7f46b2df6700 (LWP 39605)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  122 Thread 0x7f46b2bf5700 (LWP 39606)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  121 Thread 0x7f46b27ff700 (LWP 39607)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  120 Thread 0x7f46b29f4700 (LWP 39609)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  119 Thread 0x7f46b25fe700 (LWP 39610)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  118 Thread 0x7f46b29ab700 (LWP 39611)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  117 Thread 0x7f46b23fd700 (LWP 39612)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  116 Thread 0x7f46b2962700 (LWP 39613)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  115 Thread 0x7f46b21fc700 (LWP 39614)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  114 Thread 0x7f46b1ffb700 (LWP 39615)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  113 Thread 0x7f46b1fba700 (LWP 39616)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  112 Thread 0x7f46b1db9700 (LWP 39619)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  111 Thread 0x7f46b1d78700 (LWP 39620)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  110 Thread 0x7f46b1b77700 (LWP 39621)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  109 Thread 0x7f46b1b36700 (LWP 39622)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  108 Thread 0x7f46b1931700 (LWP 39623)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  107 Thread 0x7f46b18ec700 (LWP 39624)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  106 Thread 0x7f46b16e7700 (LWP 39625)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  105 Thread 0x7f46b16a2700 (LWP 39626)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  104 Thread 0x7f46b149d700 (LWP 39627)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  103 Thread 0x7f46b1458700 (LWP 39673)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  102 Thread 0x7f46b1253700 (LWP 39674)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  101 Thread 0x7f46b120e700 (LWP 39675)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  100 Thread 0x7f46b1009700 (LWP 39676)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  99 Thread 0x7f46b0fc4700 (LWP 39677)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  98 Thread 0x7f46b0dbf700 (LWP 39678)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  97 Thread 0x7f46b0d7a700 (LWP 39679)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  96 Thread 0x7f46b03ff700 (LWP 39680)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  95 Thread 0x7f45b7fff700 (LWP 39681)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  94 Thread 0x7f46b07ff700 (LWP 39682)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  93 Thread 0x7f45b71ff700 (LWP 39685)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+  92 Thread 0x7f46b07be700 (LWP 39686)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  91 Thread 0x7f45b51ff700 (LWP 39687)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  90 Thread 0x7f46b077d700 (LWP 39688)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  89 Thread 0x7f45b43ff700 (LWP 39689)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  88 Thread 0x7f46b05ff700 (LWP 39690)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  87 Thread 0x7f4592faa700 (LWP 39691)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  86 Thread 0x7f46b05be700 (LWP 39692)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  85 Thread 0x7f4590fff700 (LWP 39693)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  84 Thread 0x7f46b057d700 (LWP 39695)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  83 Thread 0x7f4590dfe700 (LWP 39697)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  82 Thread 0x7f46b01fe700 (LWP 39698)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  81 Thread 0x7f4590bfd700 (LWP 39699)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  80 Thread 0x7f46b01bd700 (LWP 39700)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  79 Thread 0x7f45909fc700 (LWP 39701)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  78 Thread 0x7f46b017c700 (LWP 39702)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  77 Thread 0x7f45907fb700 (LWP 39703)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  76 Thread 0x7f46b013b700 (LWP 39704)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  75 Thread 0x7f45905fa700 (LWP 39707)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  74 Thread 0x7f46b00fa700 (LWP 39708)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  73 Thread 0x7f45903f9700 (LWP 39709)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  72 Thread 0x7f46b00b9700 (LWP 39711)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  71 Thread 0x7f454ffff700 (LWP 39712)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  70 Thread 0x7f46b0078700 (LWP 39713)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  69 Thread 0x7f454fdfe700 (LWP 39714)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  68 Thread 0x7f45b7dfe700 (LWP 39715)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  67 Thread 0x7f454fbfd700 (LWP 39716)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  66 Thread 0x7f45b7dbd700 (LWP 39717)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  65 Thread 0x7f454f9fc700 (LWP 39718)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  64 Thread 0x7f45b7d7c700 (LWP 39719)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  63 Thread 0x7f454f7fb700 (LWP 39720)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  62 Thread 0x7f45b7bff700 (LWP 39721)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  61 Thread 0x7f454f5fa700 (LWP 39722)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  60 Thread 0x7f45b7bbe700 (LWP 39723)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  59 Thread 0x7f454f3f9700 (LWP 39724)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  58 Thread 0x7f45b7b7d700 (LWP 39725)  __lll_lock_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:136
+  57 Thread 0x7f454f1f8700 (LWP 39726)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  56 Thread 0x7f45b79ff700 (LWP 39727)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  55 Thread 0x7f454eff7700 (LWP 39728)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  54 Thread 0x7f45b79be700 (LWP 39729)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  53 Thread 0x7f454edf6700 (LWP 39730)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  52 Thread 0x7f45b797d700 (LWP 39731)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  51 Thread 0x7f454ebf5700 (LWP 39732)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  50 Thread 0x7f45b77ff700 (LWP 39733)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  49 Thread 0x7f454e9f4700 (LWP 39734)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  48 Thread 0x7f45b77be700 (LWP 39735)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  47 Thread 0x7f454e7f3700 (LWP 39736)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  46 Thread 0x7f45b777d700 (LWP 39737)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  45 Thread 0x7f454e5f2700 (LWP 39738)  0x00007f46c2bc82ad in __libc_waitpid (pid=&lt;value optimized out&gt;, stat_loc=&lt;value optimized out&gt;, options=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/waitpid.c:41
+  44 Thread 0x7f45b75ff700 (LWP 39739)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  43 Thread 0x7f46b8142700 (LWP 39740)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  42 Thread 0x7f45b75be700 (LWP 39741)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  41 Thread 0x7f45b757d700 (LWP 39742)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  40 Thread 0x7f45b73ff700 (LWP 39743)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  39 Thread 0x7f45b73be700 (LWP 39744)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  38 Thread 0x7f45b737d700 (LWP 39746)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  37 Thread 0x7f45b6ffe700 (LWP 39747)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  36 Thread 0x7f45b6fbd700 (LWP 39748)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  35 Thread 0x7f45b6f7c700 (LWP 39749)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  34 Thread 0x7f45b6dff700 (LWP 39750)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  33 Thread 0x7f45b6dbe700 (LWP 39751)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  32 Thread 0x7f45b6d7d700 (LWP 39752)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  31 Thread 0x7f45b6bff700 (LWP 39753)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  30 Thread 0x7f45b6bbe700 (LWP 39754)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  29 Thread 0x7f45b6b7d700 (LWP 39755)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  28 Thread 0x7f45b69ff700 (LWP 39756)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  27 Thread 0x7f45b69be700 (LWP 39757)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  26 Thread 0x7f45b697d700 (LWP 39758)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  25 Thread 0x7f45b67ff700 (LWP 39759)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  24 Thread 0x7f45b67be700 (LWP 39760)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  23 Thread 0x7f45b677d700 (LWP 39761)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  22 Thread 0x7f45b65ff700 (LWP 39762)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  21 Thread 0x7f45b65be700 (LWP 39763)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  20 Thread 0x7f45b657d700 (LWP 39764)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  19 Thread 0x7f45b63ff700 (LWP 39765)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  18 Thread 0x7f45b63be700 (LWP 39766)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  17 Thread 0x7f45b637d700 (LWP 39767)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  16 Thread 0x7f45b61ff700 (LWP 39768)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  15 Thread 0x7f45b61be700 (LWP 39769)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  14 Thread 0x7f45b617d700 (LWP 39770)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  13 Thread 0x7f45b5fff700 (LWP 39771)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  12 Thread 0x7f45b5fbe700 (LWP 39772)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  11 Thread 0x7f45b5f7d700 (LWP 39773)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  10 Thread 0x7f45b5dff700 (LWP 39774)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  9 Thread 0x7f45b5dbe700 (LWP 39775)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  8 Thread 0x7f45b5d7d700 (LWP 39776)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  7 Thread 0x7f45b5bff700 (LWP 39777)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  6 Thread 0x7f45b5bbe700 (LWP 39778)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  5 Thread 0x7f45b5b7d700 (LWP 39779)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  4 Thread 0x7f45b59ff700 (LWP 39780)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  3 Thread 0x7f45b59be700 (LWP 39781)  sem_timedwait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_timedwait.S:106
+  2 Thread 0x7f43cd7ff700 (LWP 39810)  sem_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_wait.S:86
+* 1 Thread 0x7f46c366f760 (LWP 39570)  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+
+Thread 152 (Thread 0x7f46bae83700 (LWP 39572)):
+#0  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+#1  __sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:78
+#2  0x00000000005c31c4 in suspend_thread (_dummy=&lt;value optimized out&gt;, _info=&lt;value optimized out&gt;, context=0x7f46bae827c0) at sgen-os-posix.c:126
+#3  suspend_handler (_dummy=&lt;value optimized out&gt;, _info=&lt;value optimized out&gt;, context=0x7f46bae827c0) at sgen-os-posix.c:153
+#4  &lt;signal handler called&gt;
+#5  sem_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_wait.S:85
+#6  0x0000000000619c98 in mono_sem_wait (sem=0x965220, alertable=1) at mono-semaphore.c:101
+#7  0x000000000059e8ed in finalizer_thread (unused=&lt;value optimized out&gt;) at gc.c:1077
+#8  0x000000000057eb77 in start_wrapper_internal (data=&lt;value optimized out&gt;) at threads.c:657
+#9  start_wrapper (data=&lt;value optimized out&gt;) at threads.c:704
+#10 0x000000000061f356 in inner_start_thread (arg=&lt;value optimized out&gt;) at mono-threads-posix.c:84
+#11 0x00007f46c2bc09d1 in start_thread (arg=0x7f46bae83700) at pthread_create.c:301
+#12 0x00007f46c290db6d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:115
+
+Thread 151 (Thread 0x7f46ba423700 (LWP 39573)):
+#0  0x00007f46c2857cd4 in do_sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:63
+#1  __sigsuspend (set=&lt;value optimized out&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:78
+#2  0x00000000005c31c4 in suspend_thread (_dummy=&lt;value optimized out&gt;, _info=&lt;value optimized out&gt;, context=0x7f46ba421ec0) at sgen-os-posix.c:126
+#3  suspend_handler (_dummy=&lt;value optimized out&gt;, _info=&lt;value optimized out&gt;, context=0x7f46ba421ec0) at sgen-os-posix.c:153
+#4  &lt;signal handler called&gt;
+#5  pthread_cond_wait@@GLIBC_2.3.2 () at ../nptl/sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:181
+#6  0x00000000005fa00b in _wapi_handle_timedwait_signal_handle (handle=0x400, timeout=0x0, alertable=1, poll=&lt;value optimized out&gt;) at handles.c:1614
+#7  0x000000000060c449 in WaitForMultipleObjectsEx (numobjects=2, handles=0x7f46ba4227e0, waitall=0, timeout=4294967295, alertable=1) at wait.c:637
+#8  0x000000000057f7dd in mono_wait_uninterrupted (thread=0x7f46c35a42d0, multiple=1, numhandles=2, handles=0x7f46ba4227e0, waitall=0, ms=-1, alertable=1) at threads.c:1355
+#9  0x000000000057fa0d in ves_icall_System_Threading_WaitHandle_WaitAny_internal (mono_handles=0x7f46a047ac08, ms=-1, exitContext=&lt;value optimized out&gt;) at threads.c:1454
+#10 0x00000000416de76e in ?? ()
+#11 0x00007f4698002640 in ?? ()
+#12 0x00007f46ba422db0 in ?? ()
+#13 0x00007f46a0476ca8 in ?? ()
+#14 0x00007f46a0476ca8 in ?? ()
+#15 0x00007f46a0476d10 in ?? ()
+#16 0x00007f46980025e0 in ?? ()
+#17 0x00000000416de700 in ?? ()
+#18 0x00007f46ba422b30 in ?? ()
+#19 0x00007f46ba422a20 in ?? ()
+#20 0x00007f46bb129a44 in System.Threading.WaitHandle:WaitAny (waitHandles=../../gdb/dwarf2-frame.c:694: internal-error: Unknown CFI encountered.
+A problem internal to GDB has been detected,
+further debugging may prove unreliable.
+Quit this debugging session? (y or n) [answered Y; input not from terminal]
+../../gdb/dwarf2-frame.c:694: internal-error: Unknown CFI encountered.
+A problem internal to GDB has been detected,
+further debugging may prove unreliable.
+Create a core file of GDB? (y or n) [answered Y; input not from terminal]
+
+=================================================================
+Got a SIGABRT while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries
+used by your application.
+=================================================================</pre>
+    </div>
+
+    <div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-18 19:30:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The second pass lasted 30s too, short trace:
+
+Stacktrace:
+
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at (wrapper managed-to-native) object.__icall_wrapper_mono_gc_alloc_string (intptr,intptr,int) &lt;0xffffffff&gt;
+  at (wrapper alloc) object.AllocString (intptr,int) &lt;0xffffffff&gt;
+  at System.Text.StringBuilder..ctor (string,int,int,int,int) &lt;0x00110&gt;
+  at System.Text.StringBuilder..ctor (string,int,int,int) &lt;0x00026&gt;
+  at System.Text.StringBuilder..ctor (int) &lt;0x00028&gt;
+  at ...
+  at System.Net.Sockets.SocketAsyncEventArgs.OnCompleted (System.Net.Sockets.SocketAsyncEventArgs) &lt;0x0002e&gt;
+  at System.Net.Sockets.SocketAsyncEventArgs.AcceptCallback (System.IAsyncResult) &lt;0x00306&gt;
+  at System.Net.Sockets.SocketAsyncEventArgs.DispatcherCB (System.IAsyncResult) &lt;0x00107&gt;
+  at (wrapper runtime-invoke) &lt;Module&gt;.runtime_invoke_void__this___object (object,intptr,intptr,intptr) &lt;0xffffffff&gt;</pre>
+    </div>
+
+    <div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-18 19:32:01 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Does it report a failed assertion?</pre>
+    </div>
+
+    <div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-18 19:34:03 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Ah, from stdout: "block 0x1 is pinned, BTW why is this bad?"</pre>
+    </div>
+
+    <div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-18 20:11:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Test app here: <a href="https://github.com/exony-craigminihan/TestHttpClientPerf">https://github.com/exony-craigminihan/TestHttpClientPerf</a>
+
+Modify lines 30-32 in Program.cs to use either dynamic, expanding or fixed memory. You'll need NodeJS installed for the web server - see the README.</pre>
+    </div>
+
+    <div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-19 11:46:55 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I removed the line:
+
+SGEN_ASSERT (9, !block-&gt;pinned, "block %p is pinned, BTW why is this bad?");
+
+and restarted the test (just to see if there are any more). It crashed after about 5 hours - with no other assertion messages just the usual stack trace.</pre>
+    </div>
+
+    <div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-01-16 18:51:56 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">To celebrate 3.12 escaping into the wild I've re-run my previously failing tests. So far the test passes - 3 times in a row - it didn't do that before. I'll continue to repeat over the next few days. I'll also compare sgen/boehm perf to see how much the margins have narrowed - if I get any good data I'll post back here.</pre>
+    </div>
+
+    <div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-09-23 12:49:55 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Any update on this?</pre>
+    </div>
+
+    <div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Craig Minihan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-09-25 10:32:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">You are good to close this Mark. I'm not working with Mono now but the last time I ran it up sgen was substantially better than in earlier versions. Nice work.</pre>
+    </div>
+
+    <div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-09-25 13:20:54 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks!</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

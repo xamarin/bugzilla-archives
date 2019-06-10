@@ -1,0 +1,2631 @@
+<html lang="en"><head>
+    <title>23667 – Webview crash on startup randomly [iOS8]</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_iOS
+                 bz_component_Samples
+                 bz_bug_23667 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;23667</span>
+
+        <span id="subtitle" class="subheader">Webview crash on startup randomly [iOS8]</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2016-01-08 21:17:36 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2016-01-08 21:17:36">
+  <input type="hidden" name="id" value="23667">
+  <input type="hidden" name="token" value="1559153542-zngjwnKH42l86ZDtW9Ppme1pTFFHblThGLj2dS_HzMw">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;23667</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">Webview crash on startup randomly [iOS8]</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>Webview crash on startup randomly [iOS8]
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          UPSTREAM
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">iOS
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Xamarin
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">Samples
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>XI 8.2.0
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">Macintosh
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>Untriaged
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Oleg Demchenko</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2014-10-07 10:14 UTC by <span class="vcard"><span class="fn">kechis</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2016-01-08 21:17 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>7
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="alex.soto">alex.soto</option>
+                <option value="allie.miller">allie.miller</option>
+                <option value="ciprarau">ciprarau</option>
+                <option value="mono-bugs+monotouch">mono-bugs+monotouch</option>
+                <option value="oleg.demchenko">oleg.demchenko</option>
+                <option value="pmcquay">pmcquay</option>
+                <option value="sadika">sadika</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8336&amp;file=crash%20log%20xamarin%20webapp%20Development.txt" title="View the content of the attachment">
+          <b>build with development profile in debug</b></a>
+
+          <span class="bz_attach_extra_info">
+              (47.69 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_8336" title="Go to the comment associated with the attachment">2014-10-07 10:14 UTC</a>,
+
+            <span class="vcard"><span class="fn">kechis</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8336&amp;file=crash%20log%20xamarin%20webapp%20Development.txt">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_application_octet-stream">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8473&amp;file=HybridViewController.cs" title="View the content of the attachment">
+          <b>single edit</b></a>
+
+          <span class="bz_attach_extra_info">
+              (3.87 KB,
+                application/octet-stream)
+
+            <br>
+            <a href="#attach_8473" title="Go to the comment associated with the attachment">2014-10-22 12:40 UTC</a>,
+
+            <span class="vcard"><span class="fn">kechis</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8473&amp;file=HybridViewController.cs">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_application_zip">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8485&amp;file=ABWebViewTest.zip" title="View the content of the attachment">
+          <b>Test Case</b></a>
+
+          <span class="bz_attach_extra_info">
+              (15.52 KB,
+                application/zip)
+
+            <br>
+            <a href="#attach_8485" title="Go to the comment associated with the attachment">2014-10-23 15:59 UTC</a>,
+
+            <span class="vcard"><span class="fn">Alex Soto [MSFT]</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8485&amp;file=ABWebViewTest.zip">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_application_zip">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8493&amp;file=Appverse.zip" title="View the content of the attachment">
+          <b>xamarion ios solution still crashing in iphone 4s and iphone 6</b></a>
+
+          <span class="bz_attach_extra_info">
+              (16.79 KB,
+                application/zip)
+
+            <br>
+            <a href="#attach_8493" title="Go to the comment associated with the attachment">2014-10-24 04:03 UTC</a>,
+
+            <span class="vcard"><span class="fn">kechis</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8493&amp;file=Appverse.zip">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8494&amp;file=ABWebViewTest%20log.txt" title="View the content of the attachment">
+          <b>iphone 4s crash with ABWebViewTest solution</b></a>
+
+          <span class="bz_attach_extra_info">
+              (44.34 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_8494" title="Go to the comment associated with the attachment">2014-10-24 04:04 UTC</a>,
+
+            <span class="vcard"><span class="fn">kechis</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8494&amp;file=ABWebViewTest%20log.txt">Details</a>
+        </td>
+      </tr>
+      <tr id="a6" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8495&amp;file=iphone6%20xamarin.ios.txt" title="View the content of the attachment">
+          <b>iphone6 webview crash log with xamarin.ios solution</b></a>
+
+          <span class="bz_attach_extra_info">
+              (49.32 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_8495" title="Go to the comment associated with the attachment">2014-10-24 04:05 UTC</a>,
+
+            <span class="vcard"><span class="fn">kechis</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8495&amp;file=iphone6%20xamarin.ios.txt">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/xamarin">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">UPSTREAM
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-07 10:14:55 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8336&amp;file=crash%20log%20xamarin%20webapp%20Development.txt" name="attach_8336" title="build with development profile in debug">attachment 8336</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8336&amp;file=crash%20log%20xamarin%20webapp%20Development.txt" title="build with development profile in debug">[details]</a></span>
+build with development profile in debug
+
+Hi! I have created a new solution from Xamarin:
+
+File -&gt; New -&gt; Solution -&gt; WebView Application
+
+I have modified just one function in the file HybridViewController.cs:
+
+public override void ViewDidLoad ()
+    {
+        base.ViewDidLoad ();
+
+        // Intercept URL loading to handle native calls from browser
+        webView.ShouldStartLoad += HandleShouldStartLoad;
+
+        // Render the view from the type generated from RazorView.cshtml
+
+        //var model = new Model1 () { Text = "Text goes here" };
+        //var template = new RazorView () { Model = model };
+        //var page = template.GenerateString ();
+
+        // Load the rendered HTML into the view with a base URL 
+        // that points to the root of the bundled Resources folder
+
+        //webView.LoadHtmlString (page, NSBundle.MainBundle.BundleUrl);
+
+
+        string url = "<a href="http://xamarin.com">http://xamarin.com</a>";
+        //url = "<a href="http://goo.gl/jh92It">http://goo.gl/jh92It</a>"; //jqmobile
+        //url = "<a href="http://goo.gl/ecAGTO">http://goo.gl/ecAGTO</a>"; //st
+        webView.LoadRequest(new NSUrlRequest(new NSUrl(url)));
+        webView.ScalesPageToFit = true;
+        // Perform any additional setup after loading the view, typically from a nib.
+    }
+
+as a result the app crash sometimes when I open it, more or less 3 times every 10 I have tried to launch.
+
+After this test, I have tested aswell running the other 2 webapps in that code:
+
+case a) a Sencha Touch Hello World app, with a low use (3/10 in terms of complexity) with the same result, it crash very frequently
+
+case b) a jQuery Mobile app with a minimum use of javascript (1/10) it cannot be simplier, this one NEVER crash
+
+With this result, and having in mind: 
+- that xamarin web also crash so we cannot blame sencha 
+- that all the crash mention a WebThread and JavaScriptCore
+- that one on the major differences in the 3 apps is the weight of the javascript
+
+I think the problem is in that JavaScriptCore.
+
+
+
+Additionally I have changed the Webview to WKWebview and it is stable, never crashes, but I need the Webview due to backwards compatibility, so it is not a solution for me
+
+Moreover I connect the device to the Xcode Instrument -&gt; Zombies and this is what I got:
+
+"An Objective-C message was sent to a deallocated 'UIViewAnimationState' object (zombie) at address: 0x18092470."
+
+It seems that the app start and when it shift from the splash screen to the UIWebView the app crash with that message and this stacktrace:
+
+Event Type ∆ RefCt RefCt Timestamp Responsible Library Responsible Caller
+
+0 Malloc +1 1 00:11.656.045 UIKit +[UIViewAnimationState pushViewAnimationState:context:]
+
+1 Retain +1 2 00:11.665.320 QuartzCore CA::AttrList::set(unsigned int, _CAValueType, void const*)
+
+2 Retain +1 3 00:11.665.332 UIKit -[UIViewAnimationState setAnimationAttributes:correctZeroDuration:skipDelegateAssignment:customCurve:]
+
+3 Release -1 2 00:11.670.000 UIKit +[UIViewAnimationState popAnimationState]
+
+4 Release -1 1 00:11.670.926 UIKit +[UIViewAnimationState popAnimationState]
+
+4.1 Retain/Release (2) 00:11.677.347 Foundation +[NSConcreteNotification newTempNotificationWithName:object:userInfo:]
+
+7 Release -1 0 00:11.677.437 QuartzCore CA::Layer::run_animation_callbacks(void*)
+
+8 Zombie -1 00:19.564.208 QuartzCore CA::release_objects(X::List*)</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sadik Ali</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-09 07:28:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I can't reproduce this, we may have to see if a developer can figure out what's going on from the stack trace. If you have a chance, it might also be helpful to include build information and logs ( symbolicated + IDE).
+
+You can get build information and logs from here:
+
+Build Information : Xamarin Studio =&gt; About Xamarin Studio =&gt; Show Details =&gt; Copy Information
+
+Symbolicate logs: Xcode =&gt; Window =&gt; Devices =&gt; Select Device and copy the logs.
+IDE logs:  Xamarin Studio =&gt; Help =&gt; Open Log Directory =&gt; Choose the latest IDE logs.</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-09 09:56:19 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Build Information:
+=== Xamarin Studio ===
+
+Version 5.5 (build 227)
+Installation UUID: ed4c26d2-9c7d-4c6e-b0ce-3509b2a9a912
+Runtime:
+	Mono 3.10.0 ((detached/47db868)
+	GTK+ 2.24.23 (Raleigh theme)
+
+	Package version: 310000019
+
+=== Apple Developer Tools ===
+
+Xcode 6.0.1 (6528)
+Build 6A317
+
+=== Xamarin.iOS ===
+
+Version: 8.2.0.193 (Business Edition)
+Hash: 959c1e4
+Branch: 
+Build date: 2014-10-03 00:25:37-0400
+
+=== Xamarin.Android ===
+
+Version: 4.18.0 (Starter Edition)
+Android SDK: /Users/Kechis/Library/Developer/Xamarin/android-sdk-mac_x86
+	Supported Android versions:
+		2.1   (API level 7)
+		2.2   (API level 8)
+		2.3   (API level 10)
+		3.1   (API level 12)
+		4.0   (API level 14)
+		4.0.3 (API level 15)
+Java SDK: /usr
+java version "1.7.0_51"
+Java(TM) SE Runtime Environment (build 1.7.0_51-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 24.51-b03, mixed mode)
+
+=== Xamarin.Mac ===
+
+Version:
+
+=== Build Information ===
+
+Release ID: 505000227
+Git revision: 7b721eeec7a2fa4c4f4de0ecd2aed4dc25edac95
+Build date: 2014-10-02 15:53:38-04
+Xamarin addins: 99ed56b428b31eba1efaace4d82188d6f334e6ca
+
+=== Operating System ===
+
+Mac OS X 10.9.4
+Darwin gfts-imac.barcelona.gft.com 13.3.0 Darwin Kernel Version 13.3.0
+    Tue Jun  3 21:27:35 PDT 2014
+    root:xnu-2422.110.17~1/RELEASE_X86_64 x86_64
+
+
+
+
+
+Symbolicate log
+
+Oct  9 15:50:58 Appverse-iPhone-4s locationd[63] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Oct  9 15:50:59 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: BSXPCMessage received error for message: Connection interrupted
+Oct  9 15:50:59 Appverse-iPhone-4s mediaserverd[164] &lt;Notice&gt;: '' com.gft.appverse.showcase(pid = 1786) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_None
+Oct  9 15:50:59 Appverse-iPhone-4s mediaserverd[164] &lt;Notice&gt;: '' com.gft.appverse.showcase(pid = 1786) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_None
+Oct  9 15:50:59 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: [MPUSystemMediaControls] Updating supported commands for now playing application.
+Oct  9 15:50:59 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: [MPUSystemMediaControls] Updating supported commands for now playing application.
+Oct  9 15:50:59 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: Application 'UIKitApplication:com.gft.appverse.showcase[0x41f3]' exited voluntarily.
+Oct  9 15:50:59 Appverse-iPhone-4s assertiond[57] &lt;Error&gt;: assertion failed: 12A405: assertiond + 62335 [032107D4-DB2B-36DD-AC98-6060D8C62F73]: 0x3
+Oct  9 15:50:59 Appverse-iPhone-4s assertiond[57] &lt;Warning&gt;: pid_suspend failed for &lt;BKNewProcess: 0x16d533b0; com.gft.appverse.showcase; pid: 1786&gt;: Unknown error: -1, Unknown error: -1
+Oct  9 15:50:59 Appverse-iPhone-4s assertiond[57] &lt;Warning&gt;: Could not set priority of &lt;BKNewProcess: 0x16d533b0; com.gft.appverse.showcase; pid: 1786&gt; to 2, priority: No such process
+Oct  9 15:50:59 Appverse-iPhone-4s assertiond[57] &lt;Warning&gt;: Could not set priority of &lt;BKNewProcess: 0x16d533b0; com.gft.appverse.showcase; pid: 1786&gt; to 4096, priority: No such process
+Oct  9 15:50:59 Appverse-iPhone-4s Unknown[57] &lt;Error&gt;: 
+Oct  9 15:51:00 Appverse-iPhone-4s UserEventAgent[17] &lt;Warning&gt;: id=com.gft.appverse.showcase pid=1786, state=0
+Oct  9 15:50:59 Appverse-iPhone-4s assertiond[57] &lt;Error&gt;: assertion failed: 12A405: assertiond + 62335 [032107D4-DB2B-36DD-AC98-6060D8C62F73]: 0x3
+Oct  9 15:50:59 Appverse-iPhone-4s Unknown[57] &lt;Error&gt;: 
+Oct  9 15:51:00 Appverse-iPhone-4s locationd[63] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Oct  9 15:51:02 Appverse-iPhone-4s kernel[0] &lt;Notice&gt;: xpcproxy[1794] Container: /private/var/mobile/Containers/Data/Application/F7FE2906-2213-48D2-B9A2-C16E6AD79DF2 (sandbox)
+Oct  9 15:51:02 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: LICreateIconForImage passed NULL CGImageRef image
+Oct  9 15:51:02 Appverse-iPhone-4s locationd[63] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Oct  9 15:51:02 Appverse-iPhone-4s splashboardd[1795] &lt;Warning&gt;: Unknown class HybridViewController in Interface Builder file.
+Oct  9 15:51:02 Appverse-iPhone-4s splashboardd[1795] &lt;Error&gt;: *** Terminating app due to uncaught exception 'NSUnknownKeyException', reason: '[&lt;UIViewController 0x14e9c9f0&gt; setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key webView.'
+	*** First throw call stack:
+	(0x224ccf87 0x2fc2bc77 0x224ccc95 0x231313d5 0x231436a3 0x2241d4b3 0x25d06cf9 0x25c2765f 0x25a676b5 0x2594b659 0x2594b5dd 0x8186f 0x30198e71 0x3018c5ff 0x301972b7 0x22492e61 0x22491581 0x223dedb1 0x223debc3 0x23116171 0x231645e5 0x81dbb 0x301c7aaf)
+Oct  9 15:51:02 Appverse-iPhone-4s ReportCrash[1796] &lt;Error&gt;: task_set_exception_ports(B07, 400, D03, 0, 0) failed with error (4: (os/kern) invalid argument)
+Oct  9 15:51:02 Appverse-iPhone-4s ReportCrash[1796] &lt;Notice&gt;: ReportCrash acting against PID 1795
+Oct  9 15:51:03 Appverse-iPhone-4s diagnosticd[1691] &lt;Error&gt;: error evaluating process info - pid: 1795, punique: 1795
+Oct  9 15:51:03 Appverse-iPhone-4s ReportCrash[1796] &lt;Notice&gt;: Formulating crash report for process splashboardd[1795]
+Oct  9 15:51:03 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: BSXPCMessage received error for message: Connection interrupted
+Oct  9 15:51:03 Appverse-iPhone-4s com.apple.xpc.launchd[1] (com.apple.splashboard.7FCD6502-C580-43D1-83A4-4DE284B62FDA[1795]) &lt;Notice&gt;: Service exited due to signal: Abort trap: 6
+Oct  9 15:51:03 Appverse-iPhone-4s ReportCrash[1796] &lt;Notice&gt;: Saved report to /var/mobile/Library/Logs/CrashReporter/splashboardd_2014-10-09-155102_Appverse-iPhone-4s.ips
+Oct  9 15:51:04 Appverse-iPhone-4s Appverse[1794] &lt;Error&gt;: assertion failed: 12A405: libxpc.dylib + 51955 [84E1BEE3-B897-39DD-9A7B-D061B6B252C5]: 0x7d
+Oct  9 15:51:04 Appverse-iPhone-4s Unknown[1794] &lt;Error&gt;: 
+Oct  9 15:51:05 Appverse-iPhone-4s locationd[63] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Oct  9 15:51:11 Appverse-iPhone-4s locationd[63] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Oct  9 15:51:12 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: BSXPCMessage received error for message: Connection interrupted
+Oct  9 15:51:12 Appverse-iPhone-4s mediaserverd[164] &lt;Notice&gt;: '' com.gft.appverse.showcase(pid = 1794) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_None
+Oct  9 15:51:12 Appverse-iPhone-4s mediaserverd[164] &lt;Notice&gt;: '' com.gft.appverse.showcase(pid = 1794) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_None
+Oct  9 15:51:13 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: [MPUSystemMediaControls] Updating supported commands for now playing application.
+Oct  9 15:51:13 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: [MPUSystemMediaControls] Updating supported commands for now playing application.
+Oct  9 15:51:13 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: Application 'UIKitApplication:com.gft.appverse.showcase[0xb88d]' exited voluntarily.
+Oct  9 15:51:13 Appverse-iPhone-4s assertiond[57] &lt;Warning&gt;: pid_suspend failed for &lt;BKNewProcess: 0x16d4fdc0; com.gft.appverse.showcase; pid: 1794&gt;: Unknown error: -1, Unknown error: -1
+Oct  9 15:51:13 Appverse-iPhone-4s assertiond[57] &lt;Warning&gt;: Could not set priority of &lt;BKNewProcess: 0x16d4fdc0; com.gft.appverse.showcase; pid: 1794&gt; to 2, priority: No such process
+Oct  9 15:51:13 Appverse-iPhone-4s assertiond[57] &lt;Error&gt;: assertion failed: 12A405: assertiond + 62335 [032107D4-DB2B-36DD-AC98-6060D8C62F73]: 0x3
+Oct  9 15:51:13 Appverse-iPhone-4s assertiond[57] &lt;Warning&gt;: Could not set priority of &lt;BKNewProcess: 0x16d4fdc0; com.gft.appverse.showcase; pid: 1794&gt; to 4096, priority: No such process
+Oct  9 15:51:13 Appverse-iPhone-4s Unknown[57] &lt;Error&gt;: 
+Oct  9 15:51:13 Appverse-iPhone-4s locationd[63] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Oct  9 15:51:13 Appverse-iPhone-4s kernel[0] &lt;Notice&gt;: xpcproxy[1798] Container: /private/var/mobile/Containers/Data/Application/F7FE2906-2213-48D2-B9A2-C16E6AD79DF2 (sandbox)
+Oct  9 15:51:14 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: LICreateIconForImage passed NULL CGImageRef image
+Oct  9 15:51:14 Appverse-iPhone-4s locationd[63] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Oct  9 15:51:14 Appverse-iPhone-4s splashboardd[1799] &lt;Warning&gt;: Unknown class HybridViewController in Interface Builder file.
+Oct  9 15:51:14 Appverse-iPhone-4s splashboardd[1799] &lt;Error&gt;: *** Terminating app due to uncaught exception 'NSUnknownKeyException', reason: '[&lt;UIViewController 0x14e3e010&gt; setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key webView.'
+	*** First throw call stack:
+	(0x224ccf87 0x2fc2bc77 0x224ccc95 0x231313d5 0x231436a3 0x2241d4b3 0x25d06cf9 0x25c2765f 0x25a676b5 0x2594b659 0x2594b5dd 0xf886f 0x30198e71 0x3018c5ff 0x301972b7 0x22492e61 0x22491581 0x223dedb1 0x223debc3 0x23116171 0x231645e5 0xf8dbb 0x301c7aaf)
+Oct  9 15:51:14 Appverse-iPhone-4s ReportCrash[1800] &lt;Error&gt;: task_set_exception_ports(B07, 400, D03, 0, 0) failed with error (4: (os/kern) invalid argument)
+Oct  9 15:51:14 Appverse-iPhone-4s ReportCrash[1800] &lt;Notice&gt;: ReportCrash acting against PID 1799
+Oct  9 15:51:14 Appverse-iPhone-4s diagnosticd[1691] &lt;Error&gt;: error evaluating process info - pid: 1799, punique: 1799
+Oct  9 15:51:14 Appverse-iPhone-4s ReportCrash[1800] &lt;Notice&gt;: Formulating crash report for process splashboardd[1799]
+Oct  9 15:51:14 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: BSXPCMessage received error for message: Connection interrupted
+Oct  9 15:51:14 Appverse-iPhone-4s com.apple.xpc.launchd[1] (com.apple.splashboard.C59FD5D1-74F1-4B72-95AB-A56F8DD185FA[1799]) &lt;Notice&gt;: Service exited due to signal: Abort trap: 6
+Oct  9 15:51:14 Appverse-iPhone-4s ReportCrash[1800] &lt;Notice&gt;: Saved report to /var/mobile/Library/Logs/CrashReporter/splashboardd_2014-10-09-155114_Appverse-iPhone-4s.ips
+Oct  9 15:51:16 Appverse-iPhone-4s Appverse[1798] &lt;Error&gt;: assertion failed: 12A405: libxpc.dylib + 51955 [84E1BEE3-B897-39DD-9A7B-D061B6B252C5]: 0x7d
+Oct  9 15:51:16 Appverse-iPhone-4s Unknown[1798] &lt;Error&gt;: 
+Oct  9 15:51:16 Appverse-iPhone-4s locationd[63] &lt;Notice&gt;: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Oct  9 15:51:17 Appverse-iPhone-4s kernel[0] &lt;Notice&gt;: 058466.699676 wlan0.A[6906] AppleBCMWLANCore::dumpWmeCounters():  per AC tx counters: 232945 24560 0 2372, rx counters: 411326 0 0 46 
+Oct  9 15:51:17 Appverse-iPhone-4s kernel[0] &lt;Notice&gt;: 058466.699729 wlan0.A[6907] AppleBCMWLANCore::dumpWmeCounters():                AWDL: Tx 0 0 0 0      Rx: 0 0 0 0 
+Oct  9 15:51:19 Appverse-iPhone-4s ReportCrash[1800] &lt;Notice&gt;: ReportCrash acting against PID 1798
+Oct  9 15:51:19 Appverse-iPhone-4s ReportCrash[1800] &lt;Notice&gt;: Formulating crash report for process Appverse[1798]
+Oct  9 15:51:19 Appverse-iPhone-4s mediaserverd[164] &lt;Notice&gt;: '' com.gft.appverse.showcase(pid = 1798) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_None
+Oct  9 15:51:19 Appverse-iPhone-4s mediaserverd[164] &lt;Notice&gt;: '' com.gft.appverse.showcase(pid = 1798) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_None
+Oct  9 15:51:19 Appverse-iPhone-4s com.apple.xpc.launchd[1] (UIKitApplication:com.gft.appverse.showcase[0xfefe][1798]) &lt;Notice&gt;: Service exited due to signal: Trace/BPT trap: 5
+Oct  9 15:51:19 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: [MPUSystemMediaControls] Updating supported commands for now playing application.
+Oct  9 15:51:19 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: [MPUSystemMediaControls] Updating supported commands for now playing application.
+Oct  9 15:51:19 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: Unable to get short BSD proc info for 1798: No such process
+Oct  9 15:51:19 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: Unable to get short BSD proc info for 1798: No such process
+Oct  9 15:51:19 Appverse-iPhone-4s SpringBoard[171] &lt;Warning&gt;: Application 'UIKitApplication:com.gft.appverse.showcase[0xfefe]' crashed.
+Oct  9 15:51:19 Appverse-iPhone-4s assertiond[57] &lt;Warning&gt;: pid_suspend failed for &lt;BKNewProcess: 0x16e47f60; com.gft.appverse.showcase; pid: 1798&gt;: Unknown error: -1, Unknown error: -1
+Oct  9 15:51:19 Appverse-iPhone-4s assertiond[57] &lt;Warning&gt;: Could not set priority of &lt;BKNewProcess: 0x16e47f60; com.gft.appverse.showcase; pid: 1798&gt; to 2, priority: No such process
+Oct  9 15:51:19 Appverse-iPhone-4s assertiond[57] &lt;Warning&gt;: Could not set priority of &lt;BKNewProcess: 0x16e47f60; com.gft.appverse.showcase; pid: 1798&gt; to 4096, priority: No such process
+Oct  9 15:51:19 Appverse-iPhone-4s UserEventAgent[17] &lt;Warning&gt;: id=com.gft.appverse.showcase pid=1798, state=0
+Oct  9 15:51:19 Appverse-iPhone-4s ReportCrash[1800] &lt;Notice&gt;: Saved report to /var/mobile/Library/Logs/CrashReporter/Appverse_2014-10-09-155119_Appverse-iPhone-4s.ips
+
+
+crash log from device(Xcode):
+
+Incident Identifier: 1C3EB267-D083-4041-9E8F-C7D6FB072170
+CrashReporter Key:   e59fb21d95e29016af4055ab1dec074fa8d16f62
+Hardware Model:      iPhone4,1
+Process:             Appverse [1798]
+Path:                /private/var/mobile/Containers/Bundle/Application/51EA9B0B-5517-4118-BB27-4A96499EB947/Appverse.app/Appverse
+Identifier:          com.gft.appverse.showcase
+Version:             1.0 (1.0)
+Code Type:           ARM (Native)
+Parent Process:      launchd [1]
+
+Date/Time:           2014-10-09 15:51:19.394 +0200
+Launch Time:         2014-10-09 15:51:13.931 +0200
+OS Version:          iOS 8.0.2 (12A405)
+Report Version:      105
+
+Exception Type:  EXC_BREAKPOINT (SIGTRAP)
+Exception Codes: 0x0000000000000001, 0x00000000e7ffdefe
+Triggered by Thread:  7
+
+Thread 0 name:  Dispatch queue: com.apple.main-thread
+Thread 0:
+0   libsystem_kernel.dylib        	0x30279518 mach_msg_trap + 20
+1   libsystem_kernel.dylib        	0x3027930c mach_msg + 36
+2   CoreFoundation                	0x22492dc6 __CFRunLoopServiceMachPort + 142
+3   CoreFoundation                	0x2249138c __CFRunLoopRun + 1012
+4   CoreFoundation                	0x223dedac CFRunLoopRunSpecific + 472
+5   CoreFoundation                	0x223debbe CFRunLoopRunInMode + 102
+6   GraphicsServices              	0x2976a04c GSEventRunModal + 132
+7   UIKit                         	0x259aaa2c UIApplicationMain + 1436
+8   Appverse                      	0x0021790c 0xfc000 + 1161484
+9   Appverse                      	0x001fe1d4 0xfc000 + 1057236
+10  Appverse                      	0x001fe194 0xfc000 + 1057172
+11  Appverse                      	0x00103de8 0xfc000 + 32232
+12  Appverse                      	0x001b3da0 0xfc000 + 753056
+13  Appverse                      	0x00279ae8 0xfc000 + 1563368
+14  Appverse                      	0x002b2c76 0xfc000 + 1797238
+15  Appverse                      	0x002b5eca 0xfc000 + 1810122
+16  Appverse                      	0x002b5d08 0xfc000 + 1809672
+17  Appverse                      	0x0026855c 0xfc000 + 1492316
+18  Appverse                      	0x00302404 0xfc000 + 2122756
+19  Appverse                      	0x0024c188 0xfc000 + 1376648
+20  libdyld.dylib                 	0x301c7aac start + 0
+
+Thread 1 name:  Dispatch queue: com.apple.libdispatch-manager
+Thread 1:
+0   libsystem_kernel.dylib        	0x302792c8 kevent64 + 24
+1   libdispatch.dylib             	0x3019bec4 _dispatch_mgr_invoke + 276
+2   libdispatch.dylib             	0x3019bbf6 _dispatch_mgr_thread$VARIANT$mp + 34
+
+Thread 2:
+0   libsystem_kernel.dylib        	0x3028d9cc __workq_kernreturn + 8
+1   libsystem_pthread.dylib       	0x30309e9c _pthread_wqthread + 788
+2   libsystem_pthread.dylib       	0x30309b74 start_wqthread + 4
+
+Thread 3:
+0   libsystem_kernel.dylib        	0x3028d9cc __workq_kernreturn + 8
+1   libsystem_pthread.dylib       	0x30309e9c _pthread_wqthread + 788
+2   libsystem_pthread.dylib       	0x30309b74 start_wqthread + 4
+
+Thread 4:
+0   libsystem_kernel.dylib        	0x30279568 semaphore_wait_trap + 8
+1   Appverse                      	0x002f8926 0xfc000 + 2083110
+2   Appverse                      	0x002950ca 0xfc000 + 1675466
+3   Appverse                      	0x002e84be 0xfc000 + 2016446
+4   Appverse                      	0x002f8fa4 0xfc000 + 2084772
+5   libsystem_pthread.dylib       	0x3030be64 _pthread_body + 136
+6   libsystem_pthread.dylib       	0x3030bdd6 _pthread_start + 114
+7   libsystem_pthread.dylib       	0x30309b80 thread_start + 4
+
+Thread 5:
+0   libsystem_kernel.dylib        	0x3028d9cc __workq_kernreturn + 8
+1   libsystem_pthread.dylib       	0x30309e9c _pthread_wqthread + 788
+2   libsystem_pthread.dylib       	0x30309b74 start_wqthread + 4
+
+Thread 6:
+0   libsystem_kernel.dylib        	0x3028d9cc __workq_kernreturn + 8
+1   libsystem_pthread.dylib       	0x30309e9c _pthread_wqthread + 788
+2   libsystem_pthread.dylib       	0x30309b74 start_wqthread + 4
+
+Thread 7 name:  WebThread
+Thread 7 Crashed:
+0   CoreFoundation                	0x223e2704 CFBasicHashRemoveValue + 1960
+1   CoreFoundation                	0x223e173e CFRunLoopRemoveTimer + 262
+2   Foundation                    	0x231d05c4 __NSFireDelayedPerform + 432
+3   CoreFoundation                	0x22493734 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 12
+4   CoreFoundation                	0x224932b4 __CFRunLoopDoTimer + 652
+5   CoreFoundation                	0x2249151e __CFRunLoopRun + 1414
+6   CoreFoundation                	0x223dedac CFRunLoopRunSpecific + 472
+7   CoreFoundation                	0x223debbe CFRunLoopRunInMode + 102
+8   WebCore                       	0x2d696cbc RunWebThread(void*) + 412
+9   libsystem_pthread.dylib       	0x3030be64 _pthread_body + 136
+10  libsystem_pthread.dylib       	0x3030bdd6 _pthread_start + 114
+11  libsystem_pthread.dylib       	0x30309b80 thread_start + 4
+
+Thread 8:
+0   libsystem_kernel.dylib        	0x3028d9cc __workq_kernreturn + 8
+1   libsystem_pthread.dylib       	0x30309e9c _pthread_wqthread + 788
+2   libsystem_pthread.dylib       	0x30309b74 start_wqthread + 4
+
+Thread 9 name:  JavaScriptCore::BlockFree
+Thread 9:
+0   libsystem_kernel.dylib        	0x3028cb38 __psynch_cvwait + 24
+1   libsystem_pthread.dylib       	0x3030b3dc _pthread_cond_wait + 516
+2   libsystem_pthread.dylib       	0x3030c2ec pthread_cond_timedwait + 40
+3   libc++.1.dylib                	0x2f3f9074 std::__1::condition_variable::__do_timed_wait(std::__1::unique_lock&lt;std::__1::mutex&gt;&amp;, std::__1::chrono::time_point&lt;std::__1::chrono::system_clock, std::__1::chrono::duration&lt;long long, std::__1::ratio&lt;1ll, 1000000000ll&gt; &gt; &gt;) + 180
+4   JavaScriptCore                	0x237bf7fc std::__1::cv_status std::__1::condition_variable::wait_for&lt;long long, std::__1::ratio&lt;1ll, 1000ll&gt; &gt;(std::__1::unique_lock&lt;std::__1::mutex&gt;&amp;, std::__1::chrono::duration&lt;long long, std::__1::ratio&lt;1ll, 1000ll&gt; &gt; const&amp;) + 196
+5   JavaScriptCore                	0x2369af26 JSC::BlockAllocator::blockFreeingThreadMain() + 82
+6   JavaScriptCore                	0x2369745c WTF::wtfThreadEntryPoint(void*) + 12
+7   libsystem_pthread.dylib       	0x3030be64 _pthread_body + 136
+8   libsystem_pthread.dylib       	0x3030bdd6 _pthread_start + 114
+9   libsystem_pthread.dylib       	0x30309b80 thread_start + 4
+
+Thread 10 name:  JavaScriptCore::Marking
+Thread 10:
+0   libsystem_kernel.dylib        	0x3028cb38 __psynch_cvwait + 24
+1   libsystem_pthread.dylib       	0x3030b3dc _pthread_cond_wait + 516
+2   libsystem_pthread.dylib       	0x3030c2ac pthread_cond_wait + 36
+3   libc++.1.dylib                	0x2f3f8fa4 std::__1::condition_variable::wait(std::__1::unique_lock&lt;std::__1::mutex&gt;&amp;) + 32
+4   JavaScriptCore                	0x2385fb70 JSC::GCThread::waitForNextPhase() + 100
+5   JavaScriptCore                	0x2385fbd4 JSC::GCThread::gcThreadMain() + 48
+6   JavaScriptCore                	0x2369745c WTF::wtfThreadEntryPoint(void*) + 12
+7   libsystem_pthread.dylib       	0x3030be64 _pthread_body + 136
+8   libsystem_pthread.dylib       	0x3030bdd6 _pthread_start + 114
+9   libsystem_pthread.dylib       	0x30309b80 thread_start + 4
+
+Thread 11 name:  com.apple.NSURLConnectionLoader
+Thread 11:
+0   libsystem_kernel.dylib        	0x30279518 mach_msg_trap + 20
+1   libsystem_kernel.dylib        	0x3027930c mach_msg + 36
+2   CoreFoundation                	0x22492dc6 __CFRunLoopServiceMachPort + 142
+3   CoreFoundation                	0x2249138c __CFRunLoopRun + 1012
+4   CoreFoundation                	0x223dedac CFRunLoopRunSpecific + 472
+5   CoreFoundation                	0x223debbe CFRunLoopRunInMode + 102
+6   CFNetwork                     	0x21f971fa +[NSURLConnection(Loader) _resourceLoadLoop:] + 482
+7   Foundation                    	0x231db1b6 __NSThread__main__ + 1114
+8   libsystem_pthread.dylib       	0x3030be64 _pthread_body + 136
+9   libsystem_pthread.dylib       	0x3030bdd6 _pthread_start + 114
+10  libsystem_pthread.dylib       	0x30309b80 thread_start + 4
+
+Thread 12 name:  WebCore: CFNetwork Loader
+Thread 12:
+0   libsystem_kernel.dylib        	0x30279518 mach_msg_trap + 20
+1   libsystem_kernel.dylib        	0x3027930c mach_msg + 36
+2   CoreFoundation                	0x22492dc6 __CFRunLoopServiceMachPort + 142
+3   CoreFoundation                	0x2249138c __CFRunLoopRun + 1012
+4   CoreFoundation                	0x223dedac CFRunLoopRunSpecific + 472
+5   CoreFoundation                	0x223debbe CFRunLoopRunInMode + 102
+6   WebCore                       	0x2d6c0040 WebCore::runLoaderThread(void*) + 288
+7   JavaScriptCore                	0x2369745c WTF::wtfThreadEntryPoint(void*) + 12
+8   libsystem_pthread.dylib       	0x3030be64 _pthread_body + 136
+9   libsystem_pthread.dylib       	0x3030bdd6 _pthread_start + 114
+10  libsystem_pthread.dylib       	0x30309b80 thread_start + 4
+
+Thread 13 name:  com.apple.CFSocket.private
+Thread 13:
+0   libsystem_kernel.dylib        	0x3028d08c __select + 20
+1   CoreFoundation                	0x2249754e __CFSocketManager + 486
+2   libsystem_pthread.dylib       	0x3030be64 _pthread_body + 136
+3   libsystem_pthread.dylib       	0x3030bdd6 _pthread_start + 114
+4   libsystem_pthread.dylib       	0x30309b80 thread_start + 4
+
+Thread 14 name:  WebCore: LocalStorage
+Thread 14:
+0   libsystem_kernel.dylib        	0x3028cb38 __psynch_cvwait + 24
+1   libsystem_pthread.dylib       	0x3030b3dc _pthread_cond_wait + 516
+2   libsystem_pthread.dylib       	0x3030c2ac pthread_cond_wait + 36
+3   JavaScriptCore                	0x2369b0ea WTF::ThreadCondition::timedWait(WTF::Mutex&amp;, double) + 58
+4   WebCore                       	0x2df36546 std::__1::unique_ptr&lt;WTF::Function&lt;void ()&gt;, std::__1::default_delete&lt;WTF::Function&lt;void ()&gt; &gt; &gt; WTF::MessageQueue&lt;WTF::Function&lt;void ()&gt; &gt;::waitForMessageFilteredWithTimeout&lt;WTF::MessageQueue&lt;WTF::Function&lt;void ()&gt; &gt;::waitForMessage()::'lambda'(WTF::Function&lt;void ()&gt; const&amp;)&gt;(WTF::MessageQueueWaitResult&amp;, WTF::MessageQueue&lt;WTF::Function&lt;void ()&gt; &gt;::waitForMessage()::'lambda'(WTF::Function&lt;void ()&gt; const&amp;)&amp;&amp;, double) + 70
+5   WebCore                       	0x2d755806 WebCore::StorageThread::threadEntryPoint() + 150
+6   JavaScriptCore                	0x2369745c WTF::wtfThreadEntryPoint(void*) + 12
+7   libsystem_pthread.dylib       	0x3030be64 _pthread_body + 136
+8   libsystem_pthread.dylib       	0x3030bdd6 _pthread_start + 114
+9   libsystem_pthread.dylib       	0x30309b80 thread_start + 4
+
+Thread 15 name:  com.apple.coremedia.player.async
+Thread 15:
+0   libsystem_kernel.dylib        	0x30279568 semaphore_wait_trap + 8
+1   libdispatch.dylib             	0x3019956a _dispatch_semaphore_wait_slow + 186
+2   MediaToolbox                  	0x23e854fe fpa_AsyncMovieControlThread + 1962
+3   CoreMedia                     	0x22c34e84 figThreadMain + 184
+4   libsystem_pthread.dylib       	0x3030be64 _pthread_body + 136
+5   libsystem_pthread.dylib       	0x3030bdd6 _pthread_start + 114
+6   libsystem_pthread.dylib       	0x30309b80 thread_start + 4
+
+Thread 16 name:  AVAudioSession Notify Thread
+Thread 16:
+0   libsystem_kernel.dylib        	0x30279518 mach_msg_trap + 20
+1   libsystem_kernel.dylib        	0x3027930c mach_msg + 36
+2   CoreFoundation                	0x22492dc6 __CFRunLoopServiceMachPort + 142
+3   CoreFoundation                	0x2249138c __CFRunLoopRun + 1012
+4   CoreFoundation                	0x223dedac CFRunLoopRunSpecific + 472
+5   CoreFoundation                	0x223debbe CFRunLoopRunInMode + 102
+6   libAVFAudio.dylib             	0x21108708 GenericRunLoopThread::Entry(void*) + 128
+7   libAVFAudio.dylib             	0x210fac04 CAPThread::Entry(CAPThread*) + 192
+8   libsystem_pthread.dylib       	0x3030be64 _pthread_body + 136
+9   libsystem_pthread.dylib       	0x3030bdd6 _pthread_start + 114
+10  libsystem_pthread.dylib       	0x30309b80 thread_start + 4
+
+Thread 7 crashed with ARM Thread State (32-bit):
+    r0: 0xc23ae422    r1: 0x305947c8      r2: 0x22537a89      r3: 0x3dfae422
+    r4: 0xc23ae422    r5: 0x0000006b      r6: 0xa7baadb1      r7: 0x0392df30
+    r8: 0x00000000    r9: 0x0000006f     r10: 0x166b6050     r11: 0x0000006a
+    ip: 0x01030301    sp: 0x0392def0      lr: 0x22537a74      pc: 0x223e2704
+  cpsr: 0x20000010
+
+Binary Images:
+0xfc000 - 0x457fff Appverse armv7  &lt;a52fdc6fd9443286b086a7193c1bf2bd&gt; /var/mobile/Containers/Bundle/Application/51EA9B0B-5517-4118-BB27-4A96499EB947/Appverse.app/Appverse
+0x1fe0e000 - 0x1fe31fff dyld armv7  &lt;6e778e287a303a9aaaf655849ae1d611&gt; /usr/lib/dyld
+0x20d62000 - 0x20e4efff RawCamera armv7  &lt;4317141434783109a965641bb6f05672&gt; /System/Library/CoreServices/RawCamera.bundle/RawCamera
+0x20e64000 - 0x20f78fff IMGSGX543GLDriver armv7  &lt;e1301434da3833c3aa30df072bdc35f2&gt; /System/Library/Extensions/IMGSGX543GLDriver.bundle/IMGSGX543GLDriver
+0x20f82000 - 0x210eefff AVFoundation armv7  &lt;82d1ce4181dc3bf4bd730f7492f05a92&gt; /System/Library/Frameworks/AVFoundation.framework/AVFoundation
+0x210ef000 - 0x2114dfff libAVFAudio.dylib armv7  &lt;1b7ba3faa65c3850a72317a96ec43025&gt; /System/Library/Frameworks/AVFoundation.framework/libAVFAudio.dylib
+0x21188000 - 0x21188fff Accelerate armv7  &lt;6489308d54873b748557138e7540d733&gt; /System/Library/Frameworks/Accelerate.framework/Accelerate
+0x21199000 - 0x213b2fff vImage armv7  &lt;9df0c9ce894a39f381ee083b84f63faa&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vImage.framework/vImage
+0x213b3000 - 0x21490fff libBLAS.dylib armv7  &lt;f7c32b998307330ba5f35ecac6b06824&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libBLAS.dylib
+0x21491000 - 0x21754fff libLAPACK.dylib armv7  &lt;7964d0bd893432319fca6e8cddb2b119&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libLAPACK.dylib
+0x21755000 - 0x21767fff libLinearAlgebra.dylib armv7  &lt;c3f84b77ae383b5594fe0390218ecb8d&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libLinearAlgebra.dylib
+0x21768000 - 0x217ddfff libvDSP.dylib armv7  &lt;2e809e9146b536958f515517ed636a5e&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libvDSP.dylib
+0x217de000 - 0x217effff libvMisc.dylib armv7  &lt;036ca731b2cf35cbb2762d08f6a16dfe&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libvMisc.dylib
+0x217f0000 - 0x217f0fff vecLib armv7  &lt;332674aaa39b3d94993ff677468b9d87&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/vecLib
+0x217f1000 - 0x21817fff Accounts armv7  &lt;13071672ad5c35fe9ebad729d8cbf029&gt; /System/Library/Frameworks/Accounts.framework/Accounts
+0x21819000 - 0x21889fff AddressBook armv7  &lt;3ca79f630bd93678ae5a115995754f5c&gt; /System/Library/Frameworks/AddressBook.framework/AddressBook
+0x21b44000 - 0x21db5fff AudioToolbox armv7  &lt;503cd792e29c3a22a0e6797a3a1f052a&gt; /System/Library/Frameworks/AudioToolbox.framework/AudioToolbox
+0x21f1b000 - 0x220a2fff CFNetwork armv7  &lt;fa99828f278f3d6fae61a96388b3b52e&gt; /System/Library/Frameworks/CFNetwork.framework/CFNetwork
+0x22124000 - 0x22182fff CoreAudio armv7  &lt;711dada83c8c3c29aaf9d17c1e088a94&gt; /System/Library/Frameworks/CoreAudio.framework/CoreAudio
+0x2219b000 - 0x221b8fff CoreBluetooth armv7  &lt;771793a76e38327390b62d1191240128&gt; /System/Library/Frameworks/CoreBluetooth.framework/CoreBluetooth
+0x221b9000 - 0x223c4fff CoreData armv7  &lt;92438c5f749d35a18446ba947d7767db&gt; /System/Library/Frameworks/CoreData.framework/CoreData
+0x223c5000 - 0x226f4fff CoreFoundation armv7  &lt;50123e7208983ab8a3f8801b22df38f2&gt; /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+0x226f5000 - 0x2281efff CoreGraphics armv7  &lt;66e9fc039182333c9ac1900bc3e787a8&gt; /System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+0x2285e000 - 0x22860fff libCGXType.A.dylib armv7  &lt;70ec36eaacb835acb41004592e122018&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libCGXType.A.dylib
+0x22861000 - 0x2286bfff libCMSBuiltin.A.dylib armv7  &lt;10d337c33046387986d04e6a8d176286&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libCMSBuiltin.A.dylib
+0x22a53000 - 0x22a6efff libRIP.A.dylib armv7  &lt;194c9ceb501d30a6ad1eea845b0fbcae&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libRIP.A.dylib
+0x22a6f000 - 0x22b7cfff CoreImage armv7  &lt;52f3d145099233a1ae5bf151a30968c9&gt; /System/Library/Frameworks/CoreImage.framework/CoreImage
+0x22c06000 - 0x22ca0fff CoreMedia armv7  &lt;cfaa8fe16921322a8d051be58f0ba5a8&gt; /System/Library/Frameworks/CoreMedia.framework/CoreMedia
+0x22ca1000 - 0x22d61fff CoreMotion armv7  &lt;f6b92a7c724c314899e4ddc1a812fecc&gt; /System/Library/Frameworks/CoreMotion.framework/CoreMotion
+0x22d62000 - 0x22dc0fff CoreTelephony armv7  &lt;1865940137713dcfae217d4b0de6958d&gt; /System/Library/Frameworks/CoreTelephony.framework/CoreTelephony
+0x22dc1000 - 0x22e88fff CoreText armv7  &lt;44d68be1c4173eefb39dee7fb833ab5f&gt; /System/Library/Frameworks/CoreText.framework/CoreText
+0x22e89000 - 0x22e9efff CoreVideo armv7  &lt;e73497bc01ad3dfa9021bbd545b238ec&gt; /System/Library/Frameworks/CoreVideo.framework/CoreVideo
+0x2310a000 - 0x2330cfff Foundation armv7  &lt;b2799048242f307c9892b904a9b36a09&gt; /System/Library/Frameworks/Foundation.framework/Foundation
+0x233ec000 - 0x23442fff IOKit armv7  &lt;cf83377abd033964b8ea67aa40a4f8fc&gt; /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit
+0x23443000 - 0x23685fff ImageIO armv7  &lt;4d8d2eec2be7389f9bef4cc206ab1c51&gt; /System/Library/Frameworks/ImageIO.framework/ImageIO
+0x23686000 - 0x239cffff JavaScriptCore armv7  &lt;f68088db48413473b5b08c8a81549667&gt; /System/Library/Frameworks/JavaScriptCore.framework/JavaScriptCore
+0x23c9e000 - 0x23ca6fff MediaAccessibility armv7  &lt;c46f7282336e3a3598119ed19753bcfe&gt; /System/Library/Frameworks/MediaAccessibility.framework/MediaAccessibility
+0x23ca7000 - 0x23e80fff MediaPlayer armv7  &lt;47084b277b70389ea10780652d363957&gt; /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
+0x23e81000 - 0x241f9fff MediaToolbox armv7  &lt;6b17033e979c3cbdbe59068d214c3c8c&gt; /System/Library/Frameworks/MediaToolbox.framework/MediaToolbox
+0x242b9000 - 0x24325fff Metal armv7  &lt;d971a1b8b8d637a98f1c9131c6bc75c6&gt; /System/Library/Frameworks/Metal.framework/Metal
+0x24326000 - 0x243b5fff MobileCoreServices armv7  &lt;6350e1d9a8233b0b8663716cbc0255be&gt; /System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices
+0x2440a000 - 0x24499fff NetworkExtension armv7  &lt;052ee9b0fef533e7892cd7985c0e1b6a&gt; /System/Library/Frameworks/NetworkExtension.framework/NetworkExtension
+0x24da7000 - 0x24e7efff GLEngine armv7  &lt;a8bdb1797cb930b4b2f53fa349ccb7d1&gt; /System/Library/Frameworks/OpenGLES.framework/GLEngine.bundle/GLEngine
+0x24e7f000 - 0x24e87fff OpenGLES armv7  &lt;c87c554261393aa5bf85fac5c48ba03a&gt; /System/Library/Frameworks/OpenGLES.framework/OpenGLES
+0x24e89000 - 0x24e89fff libCVMSPluginSupport.dylib armv7  &lt;e78a40f2f13c33dd8d80c8972f0da994&gt; /System/Library/Frameworks/OpenGLES.framework/libCVMSPluginSupport.dylib
+0x24e8a000 - 0x24e8cfff libCoreFSCache.dylib armv7  &lt;464a9b4119763133a2d9351025007b45&gt; /System/Library/Frameworks/OpenGLES.framework/libCoreFSCache.dylib
+0x24e8d000 - 0x24e90fff libCoreVMClient.dylib armv7  &lt;d9e168b21cf63cb9b4cd49d30bfad66c&gt; /System/Library/Frameworks/OpenGLES.framework/libCoreVMClient.dylib
+0x24e91000 - 0x24e99fff libGFXShared.dylib armv7  &lt;431e1f47629237109f9ab0ba085deab3&gt; /System/Library/Frameworks/OpenGLES.framework/libGFXShared.dylib
+0x24e9a000 - 0x24ed9fff libGLImage.dylib armv7  &lt;0009f6d507073ee7891d95f6e2b12729&gt; /System/Library/Frameworks/OpenGLES.framework/libGLImage.dylib
+0x24eda000 - 0x25014fff libGLProgrammability.dylib armv7  &lt;f45683cfd123376081f7f83bce64f37b&gt; /System/Library/Frameworks/OpenGLES.framework/libGLProgrammability.dylib
+0x25367000 - 0x254b7fff QuartzCore armv7  &lt;6245b916ab9d326e9de1b06c3ef06d8d&gt; /System/Library/Frameworks/QuartzCore.framework/QuartzCore
+0x254b8000 - 0x2550bfff QuickLook armv7  &lt;e5f7110a42ca327c8b8a6a31a24beab9&gt; /System/Library/Frameworks/QuickLook.framework/QuickLook
+0x256f9000 - 0x25739fff Security armv7  &lt;7cdab4ed556c3ffdb9faff4d07141431&gt; /System/Library/Frameworks/Security.framework/Security
+0x258dd000 - 0x25939fff SystemConfiguration armv7  &lt;184b320bb96d38bd90198ab7d330874e&gt; /System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration
+0x2593c000 - 0x261d5fff UIKit armv7  &lt;138d9c8feea63d80b08a7bc110bbdce7&gt; /System/Library/Frameworks/UIKit.framework/UIKit
+0x261d6000 - 0x2623dfff VideoToolbox armv7  &lt;d85f06b8d5b03255b1ed26b392f10356&gt; /System/Library/Frameworks/VideoToolbox.framework/VideoToolbox
+0x2623e000 - 0x26422fff WebKit armv7  &lt;251363e78141385b9ff29f65601b1339&gt; /System/Library/Frameworks/WebKit.framework/WebKit
+0x2690f000 - 0x26913fff AggregateDictionary armv7  &lt;b3a8631ab71b38dd89b8a5c12523e88b&gt; /System/Library/PrivateFrameworks/AggregateDictionary.framework/AggregateDictionary
+0x26ad8000 - 0x26b02fff AirPlaySupport armv7  &lt;701f2b977a83350dbcc270660cdeb9ab&gt; /System/Library/PrivateFrameworks/AirPlaySupport.framework/AirPlaySupport
+0x26cfa000 - 0x26d38fff AppSupport armv7  &lt;ef00e8bfb45f30eba14f2814991daecb&gt; /System/Library/PrivateFrameworks/AppSupport.framework/AppSupport
+0x26e67000 - 0x26ea4fff AppleJPEG armv7  &lt;bece852b679738698169770603dbe38a&gt; /System/Library/PrivateFrameworks/AppleJPEG.framework/AppleJPEG
+0x26ec2000 - 0x26ec8fff AppleSRP armv7  &lt;b6847dfcc40334ea9722d3f13554a46d&gt; /System/Library/PrivateFrameworks/AppleSRP.framework/AppleSRP
+0x26efd000 - 0x26f06fff AssertionServices armv7  &lt;c977f6aef66130c39617094d607ee5c6&gt; /System/Library/PrivateFrameworks/AssertionServices.framework/AssertionServices
+0x26f07000 - 0x26f1ffff AssetsLibraryServices armv7  &lt;635a3ad0b5d73847bacbe4a64b9bed28&gt; /System/Library/PrivateFrameworks/AssetsLibraryServices.framework/AssetsLibraryServices
+0x26f73000 - 0x26f77fff BTLEAudioController armv7  &lt;d93ccb2b76d83d4397f2d52d0453e553&gt; /System/Library/PrivateFrameworks/BTLEAudioController.framework/BTLEAudioController
+0x26f78000 - 0x26f8ffff BackBoardServices armv7  &lt;757aabecc11a30f1b0abc0fa1262d17e&gt; /System/Library/PrivateFrameworks/BackBoardServices.framework/BackBoardServices
+0x26f92000 - 0x26fc7fff BaseBoard armv7  &lt;91b34e60fd50334e9fc2b4567236cc65&gt; /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
+0x26fc8000 - 0x26fcefff BluetoothManager armv7  &lt;19d30b3a0ce83e028adcff4c45244677&gt; /System/Library/PrivateFrameworks/BluetoothManager.framework/BluetoothManager
+0x271f6000 - 0x271fefff CaptiveNetwork armv7  &lt;588eadc07ec13c5e8d309447f31a183e&gt; /System/Library/PrivateFrameworks/CaptiveNetwork.framework/CaptiveNetwork
+0x271ff000 - 0x27321fff Celestial armv7  &lt;3d9133a892cb3fdaa79a1e5dafca8821&gt; /System/Library/PrivateFrameworks/Celestial.framework/Celestial
+0x27478000 - 0x27499fff ChunkingLibrary armv7  &lt;c359ead48938353fb522523c08409f3e&gt; /System/Library/PrivateFrameworks/ChunkingLibrary.framework/ChunkingLibrary
+0x27938000 - 0x27948fff CommonUtilities armv7  &lt;e94371f0c3af3df2b36c35c11e91e77a&gt; /System/Library/PrivateFrameworks/CommonUtilities.framework/CommonUtilities
+0x27949000 - 0x2794dfff CommunicationsFilter armv7  &lt;797d402b98a9374fb920676f8c03cd18&gt; /System/Library/PrivateFrameworks/CommunicationsFilter.framework/CommunicationsFilter
+0x279bc000 - 0x279c0fff ConstantClasses armv7  &lt;da2dc377cd593070aac7616e05a4cb93&gt; /System/Library/PrivateFrameworks/ConstantClasses.framework/ConstantClasses
+0x279fa000 - 0x279fdfff CoreAUC armv7  &lt;73fc866359063f30baf942f7e3f61f60&gt; /System/Library/PrivateFrameworks/CoreAUC.framework/CoreAUC
+0x27a76000 - 0x27a8ffff CoreDuet armv7  &lt;8884c503754d3e11bef8665285845f4c&gt; /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
+0x27a94000 - 0x27aa3fff CoreDuetDaemonProtocol armv7  &lt;b145140cf14733c78ab45771ac23a25a&gt; /System/Library/PrivateFrameworks/CoreDuetDaemonProtocol.framework/CoreDuetDaemonProtocol
+0x27aaa000 - 0x27aacfff CoreDuetDebugLogging armv7  &lt;5360d9f729b33046879514799ee116d6&gt; /System/Library/PrivateFrameworks/CoreDuetDebugLogging.framework/CoreDuetDebugLogging
+0x27cfa000 - 0x27d95fff CorePDF armv7  &lt;1f44fd0a22fe3d7f8e76d161350b2afe&gt; /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
+0x27e78000 - 0x27e96fff CoreServicesInternal armv7  &lt;9489d2acff3b383e88f4206935a42ac7&gt; /System/Library/PrivateFrameworks/CoreServicesInternal.framework/CoreServicesInternal
+0x28094000 - 0x28114fff CoreUI armv7  &lt;1c2e75c0a2973beb827d13d08802b2f1&gt; /System/Library/PrivateFrameworks/CoreUI.framework/CoreUI
+0x28115000 - 0x2817efff CoreUtils armv7  &lt;33d430ac0c6931749a3fc020c2c31493&gt; /System/Library/PrivateFrameworks/CoreUtils.framework/CoreUtils
+0x2817f000 - 0x28184fff CrashReporterSupport armv7  &lt;b390f4fa5603386ea83d56f48fdeacd8&gt; /System/Library/PrivateFrameworks/CrashReporterSupport.framework/CrashReporterSupport
+0x28185000 - 0x2818bfff DAAPKit armv7  &lt;4e88a4be652032138a02c419ec184ebc&gt; /System/Library/PrivateFrameworks/DAAPKit.framework/DAAPKit
+0x283d1000 - 0x283f2fff DataAccessExpress armv7  &lt;68681cbe3ed937f6a74291ed288e2395&gt; /System/Library/PrivateFrameworks/DataAccessExpress.framework/DataAccessExpress
+0x283fd000 - 0x28415fff DataDetectorsCore armv7  &lt;e1b74004728338ad869ff28c7e3497af&gt; /System/Library/PrivateFrameworks/DataDetectorsCore.framework/DataDetectorsCore
+0x28417000 - 0x28430fff DataDetectorsUI armv7  &lt;0ec41fa98ed93c5391e0c79abc561e67&gt; /System/Library/PrivateFrameworks/DataDetectorsUI.framework/DataDetectorsUI
+0x28431000 - 0x28437fff DataMigration armv7  &lt;50bff91cdbdf3a6ebe55c4cdfd1318b5&gt; /System/Library/PrivateFrameworks/DataMigration.framework/DataMigration
+0x28441000 - 0x28442fff DiagnosticLogCollection armv7  &lt;4d0d31ac66e43d03a4fba8eec2bebffe&gt; /System/Library/PrivateFrameworks/DiagnosticLogCollection.framework/DiagnosticLogCollection
+0x28443000 - 0x2845dfff DictionaryServices armv7  &lt;606f886854653188a384feb88c727c6b&gt; /System/Library/PrivateFrameworks/DictionaryServices.framework/DictionaryServices
+0x2847c000 - 0x2849bfff EAP8021X armv7  &lt;1b02879f4e23365a83c8e9bb7e480729&gt; /System/Library/PrivateFrameworks/EAP8021X.framework/EAP8021X
+0x285ce000 - 0x289f1fff FaceCore armv7  &lt;96fe282a3c903468bccffee0f45ffa2a&gt; /System/Library/PrivateFrameworks/FaceCore.framework/FaceCore
+0x28a16000 - 0x28a16fff FontServices armv7  &lt;00fa3270936839b4bb7c64f2be3e7f50&gt; /System/Library/PrivateFrameworks/FontServices.framework/FontServices
+0x28a17000 - 0x28aeafff libFontParser.dylib armv7  &lt;a9532d1a53a138de80e57f38b4d585a1&gt; /System/Library/PrivateFrameworks/FontServices.framework/libFontParser.dylib
+0x28aeb000 - 0x28af7fff libGSFontCache.dylib armv7  &lt;e1ea799391e43de79fec5f1af55f6f7c&gt; /System/Library/PrivateFrameworks/FontServices.framework/libGSFontCache.dylib
+0x28bda000 - 0x28bf5fff FrontBoardServices armv7  &lt;bc58f1f043413960b218aeb7f8b50286&gt; /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices
+0x2915b000 - 0x29162fff libGPUSupportMercury.dylib armv7  &lt;14c01d491e6a3b61bd836bc1db42b155&gt; /System/Library/PrivateFrameworks/GPUSupport.framework/libGPUSupportMercury.dylib
+0x294da000 - 0x294f0fff GenerationalStorage armv7  &lt;bfac200419ad3196b39022d7650c29cb&gt; /System/Library/PrivateFrameworks/GenerationalStorage.framework/GenerationalStorage
+0x29761000 - 0x29771fff GraphicsServices armv7  &lt;9efdf5cfa1b8391bbbf872c4496f5825&gt; /System/Library/PrivateFrameworks/GraphicsServices.framework/GraphicsServices
+0x298f5000 - 0x29974fff HomeSharing armv7  &lt;c4214bd02c98385aa715f90e85113b4b&gt; /System/Library/PrivateFrameworks/HomeSharing.framework/HomeSharing
+0x299d3000 - 0x29a29fff IDS armv7  &lt;13c160f9f3ba38d6bbf0f6b3811ba1e4&gt; /System/Library/PrivateFrameworks/IDS.framework/IDS
+0x29a2a000 - 0x29a4bfff IDSFoundation armv7  &lt;709c320879a235b6886a0226796ec4ea&gt; /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
+0x29bf9000 - 0x29c5dfff IMFoundation armv7  &lt;3dace4bdefff3757b5e669b0c68b3518&gt; /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
+0x29c65000 - 0x29c68fff IOAccelerator armv7  &lt;5b718623c85d3670b62447ace8d4b00d&gt; /System/Library/PrivateFrameworks/IOAccelerator.framework/IOAccelerator
+0x29c6b000 - 0x29c71fff IOMobileFramebuffer armv7  &lt;1f7e71ccb940316abc4d3c702d6d8830&gt; /System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer
+0x29c72000 - 0x29c77fff IOSurface armv7  &lt;30ff04d22c7632028ca42a4e0c97b2ae&gt; /System/Library/PrivateFrameworks/IOSurface.framework/IOSurface
+0x29c78000 - 0x29c79fff IOSurfaceAccelerator armv7  &lt;ca94112c1c7e3d5f8f386e3d86fc22ca&gt; /System/Library/PrivateFrameworks/IOSurfaceAccelerator.framework/IOSurfaceAccelerator
+0x29d1c000 - 0x29d52fff LanguageModeling armv7  &lt;b40438d2f27b389cb73743c61d3c011c&gt; /System/Library/PrivateFrameworks/LanguageModeling.framework/LanguageModeling
+0x29d53000 - 0x29d71fff LatentSemanticMapping armv7  &lt;3ce5428fb4c8369591dcccc67396ac09&gt; /System/Library/PrivateFrameworks/LatentSemanticMapping.framework/LatentSemanticMapping
+0x29eae000 - 0x29f4dfff ManagedConfiguration armv7  &lt;3d453a4bdcd735caa12ec7bac4a430c8&gt; /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
+0x29f57000 - 0x29f58fff Marco armv7  &lt;68cbf0bb03a23415af7f9a724f9f7d5c&gt; /System/Library/PrivateFrameworks/Marco.framework/Marco
+0x29f59000 - 0x29fd0fff MediaControlSender armv7  &lt;91c297b9dc3131d0afb22e56b628a230&gt; /System/Library/PrivateFrameworks/MediaControlSender.framework/MediaControlSender
+0x2a06f000 - 0x2a081fff MediaRemote armv7  &lt;eb5a6085e4433915be19daaf8f31c7e2&gt; /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
+0x2a082000 - 0x2a091fff MediaServices armv7  &lt;1d6bd929ff1c3e92892315cadafba2d8&gt; /System/Library/PrivateFrameworks/MediaServices.framework/MediaServices
+0x2a206000 - 0x2a213fff MobileAsset armv7  &lt;876d4a6cda803783a7588999c2247225&gt; /System/Library/PrivateFrameworks/MobileAsset.framework/MobileAsset
+0x2a23a000 - 0x2a243fff MobileBluetooth armv7  &lt;a323e89fcb3d35beab1f7dba97b3f0a1&gt; /System/Library/PrivateFrameworks/MobileBluetooth.framework/MobileBluetooth
+0x2a267000 - 0x2a26efff MobileInstallation armv7  &lt;4af983ee77833064bc7503cbed22e164&gt; /System/Library/PrivateFrameworks/MobileInstallation.framework/MobileInstallation
+0x2a26f000 - 0x2a27bfff MobileKeyBag armv7  &lt;26e4ea84cc393fbdbec77b0024e144e7&gt; /System/Library/PrivateFrameworks/MobileKeyBag.framework/MobileKeyBag
+0x2a2a8000 - 0x2a2abfff MobileSystemServices armv7  &lt;ae4ef39d4c073c5395b7070df717326d&gt; /System/Library/PrivateFrameworks/MobileSystemServices.framework/MobileSystemServices
+0x2a2cd000 - 0x2a2dafff MobileWiFi armv7  &lt;156a2f7f3abb3dd79df11aeb6b9dab66&gt; /System/Library/PrivateFrameworks/MobileWiFi.framework/MobileWiFi
+0x2a319000 - 0x2a4b7fff MusicLibrary armv7  &lt;fc38abd909e031c38f7bb10604077ac4&gt; /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
+0x2a550000 - 0x2a555fff Netrb armv7  &lt;74cd9bc39770377d982a67cff76cccc7&gt; /System/Library/PrivateFrameworks/Netrb.framework/Netrb
+0x2a556000 - 0x2a55cfff NetworkStatistics armv7  &lt;9d8ed51a234836048ce9f8d711a60f72&gt; /System/Library/PrivateFrameworks/NetworkStatistics.framework/NetworkStatistics
+0x2a580000 - 0x2a582fff OAuth armv7  &lt;1b4ad044062c30d29f87f399bd847c25&gt; /System/Library/PrivateFrameworks/OAuth.framework/OAuth
+0x2acda000 - 0x2ad16fff OpenCL armv7  &lt;8c9c716a2de93b38be82b2277bb9632d&gt; /System/Library/PrivateFrameworks/OpenCL.framework/OpenCL
+0x2adfc000 - 0x2ae23fff PersistentConnection armv7  &lt;f0c9f9b0930c3925948e5b528515d1ac&gt; /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
+0x2b1f7000 - 0x2b241fff PhysicsKit armv7  &lt;3d40d332c97c32ac80772192145ea414&gt; /System/Library/PrivateFrameworks/PhysicsKit.framework/PhysicsKit
+0x2b242000 - 0x2b258fff PlugInKit armv7  &lt;2886203577c73e94a363d3a98fbb4879&gt; /System/Library/PrivateFrameworks/PlugInKit.framework/PlugInKit
+0x2b259000 - 0x2b260fff PowerLog armv7  &lt;e307e1f427233b1a83fe7134e49921ba&gt; /System/Library/PrivateFrameworks/PowerLog.framework/PowerLog
+0x2b502000 - 0x2b53ffff PrintKit armv7  &lt;59173b68b2333f598a17dc7c56f569f4&gt; /System/Library/PrivateFrameworks/PrintKit.framework/PrintKit
+0x2b544000 - 0x2b5d8fff ProofReader armv7  &lt;b9f28c4e72fc309e907b939d493127b8&gt; /System/Library/PrivateFrameworks/ProofReader.framework/ProofReader
+0x2b5e9000 - 0x2b5f5fff ProtocolBuffer armv7  &lt;39fea739a0ae30e99cdd935e06437e24&gt; /System/Library/PrivateFrameworks/ProtocolBuffer.framework/ProtocolBuffer
+0x2b628000 - 0x2b696fff Quagga armv7  &lt;8276ca0278403a45a6ec46bf05b050f3&gt; /System/Library/PrivateFrameworks/Quagga.framework/Quagga
+0x2baa9000 - 0x2bac3fff SpringBoardServices armv7  &lt;960b4be1356f38e89f870af9987aae41&gt; /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
+0x2be2e000 - 0x2bf46fff StoreServices armv7  &lt;08c51ed16c4c3da0b465e3e6bb6e56a0&gt; /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
+0x2c009000 - 0x2c00ffff SymptomReporter armv7  &lt;e328bf3c95203994b05ae2cf7f1e777a&gt; /System/Library/PrivateFrameworks/Symptoms.framework/Frameworks/SymptomReporter.framework/SymptomReporter
+0x2c018000 - 0x2c01afff TCC armv7  &lt;bd765a3a2cc736a0925aeeae1b246631&gt; /System/Library/PrivateFrameworks/TCC.framework/TCC
+0x2c061000 - 0x2c09efff TelephonyUtilities armv7  &lt;87c96336d7b433b1bd54f9a0efbc8fed&gt; /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
+0x2cc00000 - 0x2cc27fff TextInput armv7  &lt;2c5cc34e04d8316c9eaf54177d191916&gt; /System/Library/PrivateFrameworks/TextInput.framework/TextInput
+0x2ccda000 - 0x2cd9afff UIFoundation armv7  &lt;428374a21c553f4892ffd62a9e50f499&gt; /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
+0x2cdb7000 - 0x2cdbafff UserFS armv7  &lt;897a747e849e3128a52593f4e311783c&gt; /System/Library/PrivateFrameworks/UserFS.framework/UserFS
+0x2d5ff000 - 0x2d613fff WebContentAnalysis armv7  &lt;a6a0c7f724ee358dbb0a6eb6ee878ffa&gt; /System/Library/PrivateFrameworks/WebContentAnalysis.framework/WebContentAnalysis
+0x2d614000 - 0x2e188fff WebCore armv7  &lt;4453f473bc773bbb863cde0919a18749&gt; /System/Library/PrivateFrameworks/WebCore.framework/WebCore
+0x2e189000 - 0x2e247fff WebKitLegacy armv7  &lt;d5184a7aeee03189b65ca65c48fe5f10&gt; /System/Library/PrivateFrameworks/WebKitLegacy.framework/WebKitLegacy
+0x2e3e7000 - 0x2e3effff XPCObjects armv7  &lt;7b274a8d00e536638b46bf56b2b13c3e&gt; /System/Library/PrivateFrameworks/XPCObjects.framework/XPCObjects
+0x2e61f000 - 0x2e65afff iTunesStore armv7  &lt;73ef2d4a03da349296ccb5d911f977f2&gt; /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
+0x2edc3000 - 0x2edcbfff libAccessibility.dylib armv7  &lt;32190dda98163ebbb0643169fc09b1a5&gt; /usr/lib/libAccessibility.dylib
+0x2f01f000 - 0x2f035fff libCRFSuite.dylib armv7  &lt;0a5fee6c5fb13987a0014c7e6db619aa&gt; /usr/lib/libCRFSuite.dylib
+0x2f067000 - 0x2f16afff libFosl_dynamic.dylib armv7  &lt;1b7e35e68bb13a7885642804a30db6cc&gt; /usr/lib/libFosl_dynamic.dylib
+0x2f184000 - 0x2f19efff libMobileGestalt.dylib armv7  &lt;b8857e7870e537d98b1d0ae6aaa083ff&gt; /usr/lib/libMobileGestalt.dylib
+0x2f1c4000 - 0x2f1c5fff libSystem.B.dylib armv7  &lt;f8d939cc441439e7b2855a6ef4d77c08&gt; /usr/lib/libSystem.B.dylib
+0x2f236000 - 0x2f27afff libTelephonyUtilDynamic.dylib armv7  &lt;ad405763cdac370bb854e61772bf394a&gt; /usr/lib/libTelephonyUtilDynamic.dylib
+0x2f38a000 - 0x2f3acfff libarchive.2.dylib armv7  &lt;4ed6612a4606309b975cbc258ba02c4f&gt; /usr/lib/libarchive.2.dylib
+0x2f3ad000 - 0x2f3adfff libassertion_extension.dylib armv7  &lt;a66a6dcaa7ac387c8b07413a12671773&gt; /usr/lib/libassertion_extension.dylib
+0x2f3dc000 - 0x2f3e8fff libbsm.0.dylib armv7  &lt;1d4e1966264c32f38d75e858496cf7f8&gt; /usr/lib/libbsm.0.dylib
+0x2f3e9000 - 0x2f3f2fff libbz2.1.0.dylib armv7  &lt;4b7ac694d66732dc9ea3d1d05f012df7&gt; /usr/lib/libbz2.1.0.dylib
+0x2f3f3000 - 0x2f43dfff libc++.1.dylib armv7  &lt;31d0bc3ad77a36f78c370c6d154f50d4&gt; /usr/lib/libc++.1.dylib
+0x2f43e000 - 0x2f459fff libc++abi.dylib armv7  &lt;8651f217a2113143b778e44e36676179&gt; /usr/lib/libc++abi.dylib
+0x2f45b000 - 0x2f468fff libcmph.dylib armv7  &lt;73d53cf7c39237759bfd66e8050dd5ae&gt; /usr/lib/libcmph.dylib
+0x2f469000 - 0x2f471fff libcupolicy.dylib armv7  &lt;9aa9d081ac923b5f94854d7de628a79a&gt; /usr/lib/libcupolicy.dylib
+0x2f498000 - 0x2f4b0fff libextension.dylib armv7  &lt;cd9c4b4d72b9359f9fc0dfb9d4a871bc&gt; /usr/lib/libextension.dylib
+0x2f5e5000 - 0x2f6d2fff libiconv.2.dylib armv7  &lt;1b0fd67a32a23c998b57ab552f1562cf&gt; /usr/lib/libiconv.2.dylib
+0x2f6d3000 - 0x2f840fff libicucore.A.dylib armv7  &lt;f4c624598fbf37b0bbee174fac154d91&gt; /usr/lib/libicucore.A.dylib
+0x2f84d000 - 0x2f84dfff liblangid.dylib armv7  &lt;ac2f558933ab3a9bbc0f376833feb5da&gt; /usr/lib/liblangid.dylib
+0x2f84e000 - 0x2f858fff liblockdown.dylib armv7  &lt;ea95ceffad2531eaa6433591b81c57f3&gt; /usr/lib/liblockdown.dylib
+0x2f859000 - 0x2f86efff liblzma.5.dylib armv7  &lt;c7608f137e0c3fc892a214899dc3364e&gt; /usr/lib/liblzma.5.dylib
+0x2fbe6000 - 0x2fbfafff libmis.dylib armv7  &lt;8fea81a19fa8324c8afe054d17b5e529&gt; /usr/lib/libmis.dylib
+0x2fc25000 - 0x2fe1ffff libobjc.A.dylib armv7  &lt;3dfb8b1d89c53df7be0b4d8b17b51b6b&gt; /usr/lib/libobjc.A.dylib
+0x2fed4000 - 0x2feeafff libresolv.9.dylib armv7  &lt;dd12c5d28f193f46aa1dcffbecdaaa4e&gt; /usr/lib/libresolv.9.dylib
+0x2ff15000 - 0x2ffbafff libsqlite3.dylib armv7  &lt;0aacf80bb3573654b41574dc849aeb4f&gt; /usr/lib/libsqlite3.dylib
+0x30008000 - 0x3002ffff libtidy.A.dylib armv7  &lt;f42dd1583f533d5ebf43cea1436f8f6f&gt; /usr/lib/libtidy.A.dylib
+0x3003c000 - 0x300f2fff libxml2.2.dylib armv7  &lt;e766a404f6ef3eb482ad641bdc4c5b16&gt; /usr/lib/libxml2.2.dylib
+0x300f3000 - 0x30114fff libxslt.1.dylib armv7  &lt;a53526d8b3b73c04a3d6b8d6a02b9639&gt; /usr/lib/libxslt.1.dylib
+0x30115000 - 0x30121fff libz.1.dylib armv7  &lt;6e6680acca983153ae913c0c17a6c1cd&gt; /usr/lib/libz.1.dylib
+0x30122000 - 0x30126fff libcache.dylib armv7  &lt;9961bace92213372ab8863cdfb3a29d6&gt; /usr/lib/system/libcache.dylib
+0x30127000 - 0x30130fff libcommonCrypto.dylib armv7  &lt;1de129ade05e38949012159687a5c051&gt; /usr/lib/system/libcommonCrypto.dylib
+0x30131000 - 0x30135fff libcompiler_rt.dylib armv7  &lt;5c4da79950b53afe84ace67fb55833c4&gt; /usr/lib/system/libcompiler_rt.dylib
+0x30136000 - 0x3013cfff libcopyfile.dylib armv7  &lt;30fa82f404f63dc1a5d3cc5e3491335d&gt; /usr/lib/system/libcopyfile.dylib
+0x3013d000 - 0x30189fff libcorecrypto.dylib armv7  &lt;eff1ee3e2472389c9be2abbaa995a213&gt; /usr/lib/system/libcorecrypto.dylib
+0x3018a000 - 0x301c5fff libdispatch.dylib armv7  &lt;429ae50a967737d6b5b4a05c3de017e2&gt; /usr/lib/system/libdispatch.dylib
+0x301c6000 - 0x301c7fff libdyld.dylib armv7  &lt;5085dc61f4c03595bb85b15629273fbc&gt; /usr/lib/system/libdyld.dylib
+0x301c8000 - 0x301c8fff libkeymgr.dylib armv7  &lt;262bd92918bd3c1c9eb6fcaa3791775e&gt; /usr/lib/system/libkeymgr.dylib
+0x301c9000 - 0x301c9fff liblaunch.dylib armv7  &lt;ded7a799dc293fb98cf67551ca948c7f&gt; /usr/lib/system/liblaunch.dylib
+0x301ca000 - 0x301cdfff libmacho.dylib armv7  &lt;239e78697d683d6991a2a9c0044474b3&gt; /usr/lib/system/libmacho.dylib
+0x301ce000 - 0x301cffff libremovefile.dylib armv7  &lt;0557b72ca4a3362e884d7cff30e8cafb&gt; /usr/lib/system/libremovefile.dylib
+0x301d0000 - 0x301e1fff libsystem_asl.dylib armv7  &lt;70cf5e1898f13ce18eb75f3458dbd796&gt; /usr/lib/system/libsystem_asl.dylib
+0x301e2000 - 0x301e2fff libsystem_blocks.dylib armv7  &lt;0c999fc715d3379a82ba8c6354709999&gt; /usr/lib/system/libsystem_blocks.dylib
+0x301e3000 - 0x30245fff libsystem_c.dylib armv7  &lt;cab1d3836e903af7bce3e4e60a34fccb&gt; /usr/lib/system/libsystem_c.dylib
+0x30246000 - 0x30248fff libsystem_configuration.dylib armv7  &lt;d7cbf07df41a3ea997b79a821ded7d97&gt; /usr/lib/system/libsystem_configuration.dylib
+0x30249000 - 0x3024afff libsystem_coreservices.dylib armv7  &lt;4b9f774a6d3b3ca79c2fe7d1d45b8b22&gt; /usr/lib/system/libsystem_coreservices.dylib
+0x3024b000 - 0x30257fff libsystem_coretls.dylib armv7  &lt;0cc38bb44c223315b61e3dd8ba7c98b6&gt; /usr/lib/system/libsystem_coretls.dylib
+0x30258000 - 0x3025efff libsystem_dnssd.dylib armv7  &lt;cc3c60b9d86732c7a53f794c7d09debc&gt; /usr/lib/system/libsystem_dnssd.dylib
+0x3025f000 - 0x30277fff libsystem_info.dylib armv7  &lt;30d86b05ccfc364c80512007c565d251&gt; /usr/lib/system/libsystem_info.dylib
+0x30278000 - 0x30292fff libsystem_kernel.dylib armv7  &lt;00aa93fc92383f9db118534f8851cc2a&gt; /usr/lib/system/libsystem_kernel.dylib
+0x30293000 - 0x302b3fff libsystem_m.dylib armv7  &lt;78dafecdbdc136da89fa5a9f4bb571b7&gt; /usr/lib/system/libsystem_m.dylib
+0x302b4000 - 0x302c6fff libsystem_malloc.dylib armv7  &lt;1cbb1e6f834f352cada0bfe6aae7ced1&gt; /usr/lib/system/libsystem_malloc.dylib
+0x302c7000 - 0x302f4fff libsystem_network.dylib armv7  &lt;d9711d62164c37e084aa419ed251c264&gt; /usr/lib/system/libsystem_network.dylib
+0x302f5000 - 0x302fafff libsystem_networkextension.dylib armv7  &lt;9e633ce07c5631f0b08ea45b745ee3a6&gt; /usr/lib/system/libsystem_networkextension.dylib
+0x302fb000 - 0x30302fff libsystem_notify.dylib armv7  &lt;2c4117afd36435a795a2c2367723434e&gt; /usr/lib/system/libsystem_notify.dylib
+0x30303000 - 0x30308fff libsystem_platform.dylib armv7  &lt;f36fba051a0833fa889eb0bd2cd81875&gt; /usr/lib/system/libsystem_platform.dylib
+0x30309000 - 0x3030ffff libsystem_pthread.dylib armv7  &lt;f4ec7178f33f3366ac51b475b6105ba2&gt; /usr/lib/system/libsystem_pthread.dylib
+0x30310000 - 0x30312fff libsystem_sandbox.dylib armv7  &lt;d2a92447495235bb915ea76606b37012&gt; /usr/lib/system/libsystem_sandbox.dylib
+0x30313000 - 0x30316fff libsystem_stats.dylib armv7  &lt;dfc8455c709d34b39f0b82ca4d497e2d&gt; /usr/lib/system/libsystem_stats.dylib
+0x30317000 - 0x3031cfff libsystem_trace.dylib armv7  &lt;e82b8baeae2739ee8ce1cb26784a7f79&gt; /usr/lib/system/libsystem_trace.dylib
+0x3031d000 - 0x3031dfff libunwind.dylib armv7  &lt;8c41ef1c4e4733ac87472a1910dfe445&gt; /usr/lib/system/libunwind.dylib
+0x3031e000 - 0x30339fff libxpc.dylib armv7  &lt;84e1bee3b89739dd9a7bd061b6b252c5&gt; /usr/lib/system/libxpc.dylib
+
+
+IDE Logs:
+
+latest IDE logs are from yesterday:
+
+[2014-10-08 17:41:03.0] ERROR: Unrecoverable SocketException.. Spin up attempts: 151, failure retries: 0
+System.Net.Sockets.SocketException: Connection refused
+  at System.Net.Sockets.Socket.Connect (System.Net.EndPoint remoteEP) [0x000f1] in /private/tmp/source-mono-mac-3.10.0-branch/bockbuild-mono-3.10.0-branch/profiles/mono-mac-xamarin/build-root/mono-3.10.0/mcs/class/System/System.Net.Sockets/Socket_2_1.cs:1249 
+  at Mono.Unix.UnixClient.Connect (Mono.Unix.UnixEndPoint remoteEndPoint) [0x00006] in /private/tmp/source-mono-mac-3.10.0-branch/bockbuild-mono-3.10.0-branch/profiles/mono-mac-xamarin/build-root/mono-3.10.0/mcs/class/Mono.Posix/Mono.Unix/UnixClient.cs:174 
+  at (wrapper remoting-invoke-with-check) Mono.Unix.UnixClient:Connect (Mono.Unix.UnixEndPoint)
+  at MonoTouch.Design.Client.Mac.MacServerProcessConnection.SendRequestImpl (System.Action`1 send) [0x0002b] in /Users/builder/data/lanes/monodevelop-lion-monodevelop-5.5-branch/7b721eee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client.Mac/MacServerProcessConnection.cs:121 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (System.Action`1 send, System.Action`1 recv, Boolean throwIfNotRunning) [0x0001b] in /Users/builder/data/lanes/monodevelop-lion-monodevelop-5.5-branch/7b721eee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:267 
+[2014-10-08 17:42:09.6] WARN: DisplayServer message thread is dying due to: System.SystemException: Kernel returned: 268451846 (268451846): (ipc/rcv) port changed
+  at MonoTouch.Hosting.CheckReturnExtensions.Check (kern_return_t result, System.String message) [0x0003c] in /Users/builder/data/lanes/monodevelop-lion-monodevelop-5.5-branch/7b721eee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/MachPort.cs:435 
+  at MonoTouch.Hosting.MachPort.ReceiveRaw (System.Void* messageBuffer, UInt32 bufferSize) [0x00049] in /Users/builder/data/lanes/monodevelop-lion-monodevelop-5.5-branch/7b721eee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/MachPort.cs:133 
+  at MonoTouch.Hosting.MachPort.Receive (System.Void* messageBuffer, UInt32 bufferSize, System.Int32&amp; msgId, MonoTouch.Hosting.MachPort&amp; replyPort) [0x0002d] in /Users/builder/data/lanes/monodevelop-lion-monodevelop-5.5-branch/7b721eee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/MachPort.cs:107 
+  at MonoTouch.Hosting.DisplayServer.MessageHandler () [0x0016c] in /Users/builder/data/lanes/monodevelop-lion-monodevelop-5.5-branch/7b721eee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/DisplayServer.cs:96</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-15 06:40:04 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">any update, please?</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alex Soto [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-15 15:09:57 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hello
+
+I was not able to repro the crash with the code provided in <a href="bug.html">comment #1</a> do you think you can provide us a test case so it is easily for us to investigate? 
+
+I've tried iPhone 5 and 6+ both on iOS 8.0.2 and I could not make it crash a single time 10/10 success.
+
+Alex</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-16 03:24:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><a href="https://dl.dropboxusercontent.com/u/30557508/xamarin/Appverse.zip">https://dl.dropboxusercontent.com/u/30557508/xamarin/Appverse.zip</a>
+
+here is the binary that crash, the example was just as simple as I described up here</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-16 03:55:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"> Cody Beyer from xamarin could reproduce this issue, could you contact him?</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-16 05:43:43 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">additionally we have an iPhone 4S in iOS 8.0.2 that crash very frequently</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-17 06:45:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">We have test the new xamarin.iOS update and the issue is still there at least in the iPhone 4S</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-17 07:18:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This version still crash:
+
+Xamarin Studio
+Version 5.5 (build 227)
+Installation UUID: ed4c26d2-9c7d-4c6e-b0ce-3509b2a9a912
+Runtime:
+	Mono 3.10.0 ((detached/47db868)
+	GTK+ 2.24.23 (Raleigh theme)
+
+	Package version: 310000019
+
+Apple Developer Tools
+Xcode 6.0.1 (6528)
+Build 6A317
+
+Xamarin.iOS
+Version: 8.2.0.193 (Business Edition)
+Hash: 959c1e4
+Branch: 
+Build date: 2014-10-03 00:25:37-0400
+
+Xamarin.Android
+Version: 4.18.0 (Starter Edition)
+Android SDK: /Users/Kechis/Library/Developer/Xamarin/android-sdk-mac_x86
+	Supported Android versions:
+		2.1   (API level 7)
+		2.2   (API level 8)
+		2.3   (API level 10)
+		3.1   (API level 12)
+		4.0   (API level 14)
+		4.0.3 (API level 15)
+Java SDK: /usr
+java version "1.7.0_51"
+Java(TM) SE Runtime Environment (build 1.7.0_51-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 24.51-b03, mixed mode)
+
+Xamarin.Mac
+Version:
+
+Build Information
+Release ID: 505000227
+Git revision: 7b721eeec7a2fa4c4f4de0ecd2aed4dc25edac95
+Build date: 2014-10-02 15:53:38-04
+Xamarin addins: 99ed56b428b31eba1efaace4d82188d6f334e6ca
+
+Operating System
+Mac OS X 10.9.4
+Darwin gfts-imac.barcelona.gft.com 13.3.0 Darwin Kernel Version 13.3.0
+    Tue Jun  3 21:27:35 PDT 2014
+    root:xnu-2422.110.17~1/RELEASE_X86_64 x86_64</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-20 05:54:04 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Have you been able to reproduce it?</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Patrick McQuay</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-20 15:46:59 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hi Kechis,
+
+I believe I have the same issue as you. Your crash logs look quite similar to mine, and your app is very similar in structure.
+
+Unfortunately, I've been stuck here for the last 3 weeks and have made no progress.
+
+Patrick</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-21 07:01:23 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have updated all the enviroment as it follows and still same behaviour, device in iOS 8.1:
+
+=== Xamarin Studio ===
+
+Version 5.5.2 (build 3)
+Installation UUID: ed4c26d2-9c7d-4c6e-b0ce-3509b2a9a912
+Runtime:
+	Mono 3.10.0 ((detached/e204655)
+	GTK+ 2.24.23 (Raleigh theme)
+
+	Package version: 310000023
+
+=== Apple Developer Tools ===
+
+Xcode 6.1 (6604)
+Build 6A1052d
+
+=== Xamarin.Mac ===
+
+Version:
+
+=== Xamarin.Android ===
+
+Version: 4.18.0 (Starter Edition)
+Android SDK: /Users/Kechis/Library/Developer/Xamarin/android-sdk-mac_x86
+	Supported Android versions:
+		2.1   (API level 7)
+		2.2   (API level 8)
+		2.3   (API level 10)
+		3.1   (API level 12)
+		4.0   (API level 14)
+		4.0.3 (API level 15)
+Java SDK: /usr
+java version "1.7.0_51"
+Java(TM) SE Runtime Environment (build 1.7.0_51-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 24.51-b03, mixed mode)
+
+=== Xamarin.iOS ===
+
+Version: 8.4.0.14 (Business Edition)
+Hash: 1d464a1
+Branch: 
+Build date: 2014-10-17 21:50:07-0400
+
+=== Build Information ===
+
+Release ID: 505020003
+Git revision: 6d4c806e383ba366b15fbccca9ddc1ba94f8d5ad
+Build date: 2014-10-15 15:00:36-04
+Xamarin addins: 069ddd29bb70a42238142eee9bac21a5e4b2f9f9
+
+=== Operating System ===
+
+Mac OS X 10.9.4
+Darwin gfts-imac.barcelona.gft.com 13.3.0 Darwin Kernel Version 13.3.0
+    Tue Jun  3 21:27:35 PDT 2014
+    root:xnu-2422.110.17~1/RELEASE_X86_64 x86_64</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alex Soto [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-21 17:10:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I was not able to repro the crash with the code provided in <a href="bug.html">comment #1</a> I now have used an iPhone 4 running iOS 7.1.2. (I thought it could be a performance issue unfortunately I do not own a 4S)
+
+Could you please provide a Xamarin.iOS solution that I can use to repro the issue? I might have different code as yours and thats why I am no able to repro the issue.
+
+Cheers</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-22 03:17:27 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">As I said in the topic subject it happens in iOS8, the binary is linked some replys above but here you got it again:
+
+<a href="https://dl.dropboxusercontent.com/u/30557508/xamarin/Appverse.zip">https://dl.dropboxusercontent.com/u/30557508/xamarin/Appverse.zip</a></pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alex Soto [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-22 11:50:27 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@kechis 
+
+Unfortunately we need the source code so we can debug it so you have two options here
+
+a) provide us a self contained test case that repro the issue you are seeing and attach it to the bug report
+
+b) provide us Appverse's code by attaching it to the bug report and mark it as private so only Xamarin team members and you are able to see it.
+
+Hope I explained myself a lil better this time :) 
+
+About why I tested this in iOS 7 it is because iPhone 4 cannot be upgraded to iOS 8 and the (slowest?) device I have in iOS 8 is an iPhone 5 and I could not repro the issue on it. 
+
+Can you repro this issue in other iOS 8 devices?
+
+Cheers!</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-22 12:40:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8473&amp;file=HybridViewController.cs" name="attach_8473" title="single edit">attachment 8473</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8473&amp;file=HybridViewController.cs" title="single edit">[details]</a></span>
+single edit
+
+as posted, this is the single modification from the original iOS -&gt; Classic API -&gt; Webview application sample
+
+both debug and release build crash</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-22 12:50:22 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">it happens in iphone 4 s ios8.1 and iphone 6, in iphone 5 it does NOT happen</pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alex Soto [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-23 15:59:26 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8485&amp;file=ABWebViewTest.zip" name="attach_8485" title="Test Case">attachment 8485</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8485&amp;file=ABWebViewTest.zip" title="Test Case">[details]</a></span>
+Test Case
+
+@kechis 
+
+I have tried to repro the issue in different Devices (iPhone 5, 6 Plus, iPad Mini Retina and simulators) and have been unable to repro the issue using latest stable X.I 8.4.0
+
+I attached a test case can you confirm this crashes on your iPhone 6? So I can hand this test case to someone with an iPhone 6 or 4S
+
+Thanks for your feedback on tracking this down.</pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-24 04:01:08 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">your solution crash on the third run under iPhone 4s with iOS8.1
+ log uploaded -- ABWebViewTest log.txt
+
+In iPhone6 your version does NOT crash, but I have tested again with the uploaded version (Appverse.zip) and it DOES still crash. 
+
+differences:
+1 webView.ShouldStartLoad += HandleShouldStartLoad; is not commented
+2 here we are testing xamarin.ios instead of monotouch
+
+any hint? log uploaded (iphone6 xamarin,ios,txt)</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-24 04:03:54 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8493&amp;file=Appverse.zip" name="attach_8493" title="xamarion ios solution still crashing in iphone 4s and iphone 6">attachment 8493</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8493&amp;file=Appverse.zip" title="xamarion ios solution still crashing in iphone 4s and iphone 6">[details]</a></span>
+xamarion ios solution still crashing in iphone 4s and iphone 6</pre>
+    </div>
+
+    <div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-24 04:04:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8494&amp;file=ABWebViewTest%20log.txt" name="attach_8494" title="iphone 4s crash with ABWebViewTest solution">attachment 8494</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8494&amp;file=ABWebViewTest%20log.txt" title="iphone 4s crash with ABWebViewTest solution">[details]</a></span>
+iphone 4s crash with ABWebViewTest solution</pre>
+    </div>
+
+    <div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-24 04:05:34 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=8495&amp;file=iphone6%20xamarin.ios.txt" name="attach_8495" title="iphone6 webview crash log with xamarin.ios solution">attachment 8495</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=8495&amp;file=iphone6%20xamarin.ios.txt" title="iphone6 webview crash log with xamarin.ios solution">[details]</a></span>
+iphone6 webview crash log with xamarin.ios solution</pre>
+    </div>
+
+    <div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alex Soto [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-25 16:57:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hello, finally managed to reproduce the crash using your test case (that is why is always a good idea to submit a fully testable project when submitting your bugs)  ;)
+
+Here is a symbolicated crashlog <a href="https://gist.github.com/dalexsoto/73e4f68d0aba55ec0639">https://gist.github.com/dalexsoto/73e4f68d0aba55ec0639</a>
+
+I need to investigate more the issue since it is not clear what is going on.</pre>
+    </div>
+
+    <div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-27 12:16:43 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">any hint?</pre>
+    </div>
+
+    <div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ciprian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-28 20:51:57 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hi, 
+I got the same issue using Objective-C. I've created a GitHub with the source. From time to time the UIWebView is crashing. 
+It looks to me a iOS8 issue, but any solution is greatly appreciated.
+
+Ciprian.</pre>
+    </div>
+
+    <div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ciprian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-28 20:52:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The GitHub is: <a href="https://github.com/crarau/WebViewCrash">https://github.com/crarau/WebViewCrash</a>
+Ciprian.</pre>
+    </div>
+
+    <div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-30 05:12:27 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The example in that Git crash to me too, but the one in this Githttps://github.com/hessler/iOS-Web-View-Multiwindow does NOT crash, one of the major differences I find is the pressence of the spalshscreen.
+
+
+Have you any good news?</pre>
+    </div>
+
+    <div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-03 02:36:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">have you gotten any closer to the resolution of the issue?</pre>
+    </div>
+
+    <div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ciprian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-04 11:07:16 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have created also this StackOverFlow issue: <a href="http://stackoverflow.com/questions/26656342/uiwebview-random-crash-at-uiviewanimationstate-release-message-sent-to-deallo">http://stackoverflow.com/questions/26656342/uiwebview-random-crash-at-uiviewanimationstate-release-message-sent-to-deallo</a>
+
+Kind regards,
+Ciprian.</pre>
+    </div>
+
+    <div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-05 03:03:54 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thx ciprian, hope someone could help us, I really need a solution to keep working</pre>
+    </div>
+
+    <div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-10 03:31:59 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">nothing yet?</pre>
+    </div>
+
+    <div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alex Soto [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-10 04:03:37 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hello All
+
+First of all Sorry, was sick and off most of last week :(
+
+This seems to be a bug on Apple's iOS, I managed to get the crash on an Xcode sample too even using a splash screen so no workaround available at this time at least not for 4s devices.
+
+On more newer devices like 6+ this does crash but in a more infrequent basis (1 out of 10 and sometimes none). So this seems to be happening in "slow" devices.</pre>
+    </div>
+
+    <div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alex Soto [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-10 04:05:27 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Have not tested yet with iOS 8.1.1  Beta to see if it is fixed there, what I could recommend right now is to submit a radar to Apple, I already did one</pre>
+    </div>
+
+    <div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-10 06:49:29 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">i have tested the xamarin example i sent you in ios8.1.1 under iphone 5 and the issue is still there, it keeps crashing :/</pre>
+    </div>
+
+    <div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kechis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-10 11:11:43 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">could you please share with me the example you are testing from Xcode samples to test if this crash to me?
+
+Thank you</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

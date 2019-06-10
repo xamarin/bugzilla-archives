@@ -1,0 +1,3466 @@
+<html lang="en"><head>
+    <title>25443 – [Lollipop] Instability in Android app on older devices which have been upgraded to Lollipop, possibly related to .Handle is IntPtr.Zero before being disposed.</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Android
+                 bz_component_General
+                 bz_bug_25443 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;25443</span>
+
+        <span id="subtitle" class="subheader">[Lollipop] Instability in Android app on older devices which have been upgraded to Lollipop, possibly related to .Handle is IntPtr.Zero before being disposed.</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2017-05-28 02:32:24 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2017-05-28 02:32:24">
+  <input type="hidden" name="id" value="25443">
+  <input type="hidden" name="token" value="1559186285-CIxaRCZhvQF_DNER0PpRy6WyQYM38o57c_hKdidjf0E">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;25443</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">[Lollipop] Instability in Android app on older devices which have been upgraded to Lollipop, possibly related to .Handle is IntPtr.Zero before being disposed.</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span><span title="[Lollipop] Instability in Android app on older devices which have been upgraded to Lollipop, possibly related to .Handle is IntPtr.Zero before being disposed.">[Lollipop] Instability in Android app on older devices which have been upgrad...
+        </span>
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Android
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Xamarin
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">General
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>4.20.0
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2014-12-16 20:35 UTC by <span class="vcard"><span class="fn">Kent Green [MSFT]</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2017-05-28 02:32 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>6
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="chrisntr">chrisntr</option>
+                <option value="divil5000">divil5000</option>
+                <option value="hvaughan3">hvaughan3</option>
+                <option value="miguel">miguel</option>
+                <option value="mohitk">mohitk</option>
+                <option value="mono-bugs+monodroid">mono-bugs+monodroid</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_application_zip">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=9094&amp;file=crash%20IDE%20logs.zip" title="View the content of the attachment">
+          <b>crash &amp; IDE log files from customer</b></a>
+
+          <span class="bz_attach_extra_info">
+              (163.19 KB,
+                application/zip)
+
+            <br>
+            <a href="#attach_9094" title="Go to the comment associated with the attachment">2014-12-16 20:35 UTC</a>,
+
+            <span class="vcard"><span class="fn">Kent Green [MSFT]</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=9094&amp;file=crash%20IDE%20logs.zip">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/xamarin">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kent Green [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-16 20:35:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=9094&amp;file=crash%20IDE%20logs.zip" name="attach_9094" title="crash &amp; IDE log files from customer">attachment 9094</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=9094&amp;file=crash%20IDE%20logs.zip" title="crash &amp; IDE log files from customer">[details]</a></span>
+crash &amp; IDE log files from customer
+
+---Overview---
+From this desk case:
+<a href="https://xamarin.desk.com/agent/case/111662">https://xamarin.desk.com/agent/case/111662</a>
+
+Customer reports that they are seeing instability in their Android app on older devices which have been upgraded to Lollipop, possibly related to .Handle is IntPtr.Zero before being disposed. They also included IDE logs from Visual Studio &amp; crash logs from the devices that had crashed.
+
+---Build Information---
+Microsoft Visual Studio 2010
+Version 10.0.40219.1 SP1Rel
+Microsoft .NET Framework
+Version 4.5.50938 SP1Rel
+
+Installed Version: Ultimate
+
+Microsoft Office Developer Tools 01019-532-2002102-70099
+Microsoft Office Developer Tools
+
+Microsoft Visual Basic 2010 01019-532-2002102-70099
+Microsoft Visual Basic 2010
+
+Microsoft Visual C# 2010 01019-532-2002102-70099
+Microsoft Visual C# 2010
+
+Microsoft Visual C++ 2010 01019-532-2002102-70099
+Microsoft Visual C++ 2010
+
+Microsoft Visual F# 2010 01019-532-2002102-70099
+Microsoft Visual F# 2010
+
+Microsoft Visual Studio 2010 Architecture and Modeling Tools 01019-532-2002102-70099
+Microsoft Visual Studio 2010 Architecture and Modeling Tools
+
+UML® and Unified Modeling Language™ are trademarks or registered trademarks of the Object Management Group, Inc. in the United States and other countries.
+
+Microsoft Visual Studio 2010 Code Analysis Spell Checker 01019-532-2002102-70099
+Microsoft Visual Studio 2010 Code Analysis Spell Checker
+
+Portions of International CorrectSpell™ spelling correction system © 1993 by Lernout &amp; Hauspie Speech Products N.V. All rights reserved.
+
+The American Heritage® Dictionary of the English Language, Third Edition Copyright © 1992 Houghton Mifflin Company. Electronic version licensed from Lernout &amp; Hauspie Speech Products N.V. All rights reserved.
+
+Microsoft Visual Studio 2010 Team Explorer 01019-532-2002102-70099
+Microsoft Visual Studio 2010 Team Explorer
+
+Microsoft Visual Web Developer 2010 01019-532-2002102-70099
+Microsoft Visual Web Developer 2010
+
+Critical Update for Microsoft Visual Studio 2010 Ultimate - ENU (KB2938807) KB2938807
+This critical update is for Microsoft Visual Studio 2010 Ultimate - ENU.
+If you later install a more recent service pack, this critical update will be uninstalled automatically.
+For more information, visit <a href="http://support.microsoft.com/kb/2938807">http://support.microsoft.com/kb/2938807</a>.
+
+Crystal Reports Templates for Microsoft Visual Studio 2010
+Crystal Reports Templates for Microsoft Visual Studio 2010
+
+Hotfix for Microsoft Visual Studio 2010 Ultimate - ENU (KB2529927) KB2529927
+This hotfix is for Microsoft Visual Studio 2010 Ultimate - ENU.
+If you later install a more recent service pack, this hotfix will be uninstalled automatically.
+For more information, visit <a href="http://support.microsoft.com/kb/2529927">http://support.microsoft.com/kb/2529927</a>.
+
+Hotfix for Microsoft Visual Studio 2010 Ultimate - ENU (KB2542054) KB2542054
+This hotfix is for Microsoft Visual Studio 2010 Ultimate - ENU.
+If you later install a more recent service pack, this hotfix will be uninstalled automatically.
+For more information, visit <a href="http://support.microsoft.com/kb/2542054">http://support.microsoft.com/kb/2542054</a>.
+
+Hotfix for Microsoft Visual Studio 2010 Ultimate - ENU (KB2548139) KB2548139
+This hotfix is for Microsoft Visual Studio 2010 Ultimate - ENU.
+If you later install a more recent service pack, this hotfix will be uninstalled automatically.
+For more information, visit <a href="http://support.microsoft.com/kb/2548139">http://support.microsoft.com/kb/2548139</a>.
+
+Hotfix for Microsoft Visual Studio 2010 Ultimate - ENU (KB2549864) KB2549864
+This hotfix is for Microsoft Visual Studio 2010 Ultimate - ENU.
+If you later install a more recent service pack, this hotfix will be uninstalled automatically.
+For more information, visit <a href="http://support.microsoft.com/kb/2549864">http://support.microsoft.com/kb/2549864</a>.
+
+Hotfix for Microsoft Visual Studio 2010 Ultimate - ENU (KB2635973) KB2635973
+This hotfix is for Microsoft Visual Studio 2010 Ultimate - ENU.
+If you later install a more recent service pack, this hotfix will be uninstalled automatically.
+For more information, visit <a href="http://support.microsoft.com/kb/2635973">http://support.microsoft.com/kb/2635973</a>.
+
+Hotfix for Microsoft Visual Studio 2010 Ultimate - ENU (KB2890573) KB2890573
+This hotfix is for Microsoft Visual Studio 2010 Ultimate - ENU.
+If you later install a more recent service pack, this hotfix will be uninstalled automatically.
+For more information, visit <a href="http://support.microsoft.com/kb/2890573">http://support.microsoft.com/kb/2890573</a>.
+
+Hotfix for Microsoft Visual Studio 2010 Ultimate - ENU (KB3002340) KB3002340
+This hotfix is for Microsoft Visual Studio 2010 Ultimate - ENU.
+If you later install a more recent service pack, this hotfix will be uninstalled automatically.
+For more information, visit <a href="http://support.microsoft.com/kb/3002340">http://support.microsoft.com/kb/3002340</a>.
+
+Microsoft Visual Studio 2010 SharePoint Developer Tools 10.0.40219
+Microsoft Visual Studio 2010 SharePoint Developer Tools
+
+Microsoft Visual Studio 2010 Ultimate - ENU Service Pack 1 (KB983509) KB983509
+This service pack is for Microsoft Visual Studio 2010 Ultimate - ENU.
+If you later install a more recent service pack, this service pack will be uninstalled automatically.
+For more information, visit <a href="http://support.microsoft.com/kb/983509">http://support.microsoft.com/kb/983509</a>.
+
+NuGet Package Manager 2.2.31210.9045
+NuGet Package Manager in Visual Studio. For more information about NuGet, visit <a href="http://docs.nuget.org/">http://docs.nuget.org/</a>.
+
+Security Update for Microsoft Visual Studio 2010 Ultimate - ENU (KB2644980) KB2644980
+This security update is for Microsoft Visual Studio 2010 Ultimate - ENU.
+If you later install a more recent service pack, this security update will be uninstalled automatically.
+For more information, visit <a href="http://support.microsoft.com/kb/2644980">http://support.microsoft.com/kb/2644980</a>.
+
+Security Update for Microsoft Visual Studio 2010 Ultimate - ENU (KB2645410) KB2645410
+This security update is for Microsoft Visual Studio 2010 Ultimate - ENU.
+If you later install a more recent service pack, this security update will be uninstalled automatically.
+For more information, visit <a href="http://support.microsoft.com/kb/2645410">http://support.microsoft.com/kb/2645410</a>.
+
+Xamarin 3.8.150.0 (10cfd178d55287f09c85f5a1e604dfe20889a40f)
+Visual Studio extension to enable development for Xamarin.iOS and Xamarin.Android.
+
+Xamarin.Android 4.20.0.28 (ba9bbbdd44cfdc4bf485e8885bd2ad24fba525f7)
+Visual Studio plugin to enable development for Xamarin.Android.
+
+Xamarin.iOS 8.4.0.0 (840a925103a0bf4a856507f13d5eaee3c1579c2f)
+Visual Studio extension to enable development for Xamarin.iOS.</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-17 15:19:16 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Unfortunately, we need more information, like a complete repro, which doesn't exist. :-(
+
+What devices is this observed on?
+
+<span class="quote">&gt; 12-16 14:44:39.762: E/art(1962): JNI ERROR (app bug): accessed deleted global reference 0xc4013b2</span>
+
+That's not a good sign; it implies something broke somewhere.
+
+<span class="quote">&gt; 12-16 08:44:23.658: I/MonoDroid(31916): UNHANDLED EXCEPTION:
+&gt; 12-16 08:44:23.675: I/MonoDroid(31916): System.InvalidOperationException: Trying to dispose handle of type 'Invalid' which is not supported.
+&gt; 12-16 08:44:23.675: I/MonoDroid(31916):   at Java.Lang.Object.Dispose (System.Object instance, System.IntPtr&amp; handle, IntPtr key_handle, JObjectRefType handle_type) [0x00000] in &lt;filename unknown&gt;:0 
+&gt; 12-16 08:44:23.675: I/MonoDroid(31916):   at Java.Lang.Object.Dispose () [0x00000] in &lt;filename unknown&gt;:0 </span>
+
+That's *really* not a good sign; I have no idea how Object.handle_type is being set to JObjectRefType.Invalid (0).
+
+We need to be able to reproduce this locally. :-(</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-17 16:09:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hello Jon, the good news is this should be fairly easy for you to reproduce. Just download our app. It's called SkyDemon and it's in the Play Store. Run it, create a free trial and log in, download the UK chart then press Simulate to start a simulated flight. After a while, it will crash.
+
+This seems to happen on all sorts of devices but anecdotally, I think it's not-current-generation devices running Lollipop.</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-18 16:04:20 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Tim: How long does it normally take to see the crash? I'm running it on a Nexus 5 for the past hour, and it hasn't crashed yet.
+
+I've also enabled GREF logging, and it's currently 6252 GREFs...</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-18 17:16:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">2+ hours in, the app hasn't crashed yet, there are currently 15384 GREFs, and the app isn't working quite right.
+
+Specifically, the screen has turned off, and when I hit the Power button then unlock the screen, the screen promptly locks itself again.
+
+If I start the Phone app, I'm able to return to the Home screen, and then switch back to SkyDemon through the multitasking button. (Now at 16237 GREFs.)</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-18 17:33:02 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Judging from the customer feedback I'd expect a crash after an hour or two.
+
+Having just reviewed the reports so far, it seems the Nexus 7 (2013) is the most prolific offender running Android 5.0.1. I hope you see the crash on your Nexus 5 but if not, and you have a Nexus 7 handy, it might be useful to try that for attempt two. Also, just to make absolutely sure, install the latest beta from the link below. It actually crashes less than the latest public version (the one I pointed to you) but the latest beta is the one which produced the logs in my original report.
+
+<a href="http://www.skydemon.aero/start/android.aspx">http://www.skydemon.aero/start/android.aspx</a>
+
+We've had some reports of the screen-sleep-prevention not working under Lollipop but haven't followed those up yet; the instability is much more of a concern. We just set that property on View which is supposed to prevent the screen turning off, and that has always worked for us.
+
+Do you now have decent tooling available for tracking potential objects that are being kept around? Your messages seem to indicate you think the number of GREFs is unusual (and climbing).
+
+Tim</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-19 12:06:18 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><span class="quote">&gt; Judging from the customer feedback I'd expect a crash after an hour or two.</span>
+
+I let it run overnight. It didn't crash, last least not as described in <a href="bug.html">Comment #1</a>.
+
+It did *exit*:
+
+<span class="quote">&gt; I/ActivityManager(  749): Killing 11718:aero.skydemon.skydemonandroid/u0a910 (adj 15): empty for 2117s</span>
+
+I have no idea what that means. :-(
+
+I also ran this on Android 5.0, not 5.0.1. I'll need to upgrade and try again.
+
+<span class="quote">&gt; Do you now have decent tooling available for tracking potential objects that
+&gt; are being kept around?</span>
+
+The no-longer-available Xamarin.Android 4.99 alpha contained a tool named logcat-parse which can help with this. I described it at Evolve:
+
+<a href="https://www.youtube.com/watch?v=Gpqc2XZIQfU#t=1870">https://www.youtube.com/watch?v=Gpqc2XZIQfU#t=1870</a>
+
+I threw logs from ~1-2 hours of GREF execution at it consisting of 1.1G of data; it took an eternity to load, and is now consuming 1.78GB of RAM, and is probably wrong:
+
+<span class="quote">&gt; csharp&gt; grefs.AlivePeers.Count();
+&gt; 531754</span>
+
+There should be 18k, not 53k... :-/
+
+Those "53k" GREFs are from 44 types:
+
+<span class="quote">&gt; csharp&gt; grefs.GetAliveJniTypeCounts().Count();
+&gt; 44</span>
+
+<span class="quote">&gt; csharp&gt; foreach (var info in grefs.GetAliveJniTypeCounts().OrderByDescending (e =&gt; e.Value)) Console.WriteLine ("{0}: {1}", info.Value, info.Key);
+&gt; 531353: 
+&gt; 128: android/graphics/Path
+&gt; 120: android/graphics/Rect
+&gt; ...</span>
+
+...at which point this becomes useless, because most of the types have no type information.
+
+#facepalm
+
+Looks like I have more bugs to fix... :-(</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-19 12:59:19 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks, I appreciate your investigations so far. I have no idea why Path/Rect instances could be hanging around so long, though we do cache a few for performance reasons. Those could potentially build up if you never zoomed in or out but just flew on forever, but I can't see how you'd end up with THAT many.
+
+If you do have access to a Nexus 7 (older model) with 5.0.1 on it and can install the SkyDemon beta I pointed to you before, that does sound like the most sure-fire way of getting this to happen.
+
+I imagine these sort of bugs are a nightmare to fix, but once fixed are an instant stability win for everybody.
+
+Cheers
+
+Tim</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-19 14:55:35 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Tim: Good news: The beta on my Nexus 5 with Android 5.0.1 crashed!
+
+<span class="quote">&gt; F/art     ( 6004): art/runtime/check_jni.cc:65] JNI DETECTED ERROR IN APPLICATION: java_object == null
+&gt; F/art     ( 6004): art/runtime/check_jni.cc:65]     in call to GetObjectRefType</span>
+
+We're somehow calling JNIEnv::GetObjectRefType() with a null value, and ART is aborting. Unfortunately, that's an ART bug; NULL is *explicitly° called out as a "valid" value in the docs!
+
+<a href="http://docs.oracle.com/javase/8/docs/technotes/guides/jni/spec/functions.html#GetObjectRefType">http://docs.oracle.com/javase/8/docs/technotes/guides/jni/spec/functions.html#GetObjectRefType</a>
+
+I've filed this with Google as: <a href="https://code.google.com/p/android/issues/detail?id=83194">https://code.google.com/p/android/issues/detail?id=83194</a>
+
+In the meantime, a question arises: why/how are we passing NULL to JNIEnv::GetObjectRefType()?
+
+(Un)fortunately, that's easier to answer: we invoke JNIEnv::GetObjectRefType() as part of GREF logging (oof) to determine the type of JNI handle that was returned from a previous JNI call, and NULL is a perfectly valid value for other JNI calls to return...
+
+The Bad news (as if the above weren't bad enough?) is that the crash I'm seeing is *not* the error reported in <a href="bug.html">Comment #1</a>, meaning while I'm seeing a crash I'm not seeing the *right* crash. :-(</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-23 05:58:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks Jon. What's the next step here? This is obviously not only something that's beyond my expertise but something over which I have little if any control. Any suggestions for us, any debugging code I can add to help you, or do we need to leave this entirely to you?
+
+Tim</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-01-06 06:05:44 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Could we have a status update on this please? This is affecting a larger and larger cross-section of our customers who are understandably upset that the app is crashing at random times during flight.
+
+Tim</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-01-13 07:19:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Another week has slipped by without input from you. Can we have a status update please?
+
+Tim</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-01-28 05:41:47 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">You should be ashamed of yourselves. This is a massive issue well beyond our control, significantly affecting the stability of our app and no doubt many others. And you can't even be bothered to keep us posted on progress.
+
+Tim</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-01-28 05:46:45 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">For clarify, we are seeing more and more customers getting the app aborting with the following dumped to logcat:
+
+JNI ERROR (app bug): accessed deleted global reference 0x600d82
+
+Now. You need to help us with this, because it's clearly a platform issue. I can provide you with debug builds of the app if you like, with stuff to help you trace it. But we won't get anywhere if you keep ignoring it.
+
+Tim</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-01-29 16:02:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hello Tim,
+
+It would be very helpful to have the source code.
+
+We can arrange for an NDA to be put in place.</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-01-30 07:44:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I agree it would, but as in previous occasions, that just isn't possible I'm afraid.
+
+As I have done in the past in this situation, I would like to offer to fly myself, at my expense, to any city in the world to meet with a Xamarin engineer (with my source code) and mutually debug the issue. Unfortunately my partner is ill at the moment and I can't leave the country, so perhaps we could fly a Xamarin engineer to the UK instead.
+
+Or perhaps we make a deal that whoever the bug turns out to belong to pays.
+
+Alternatively, I can attempt to help your engineers reproduce the problem with some guidance. I'm sure someone would succeed with a couple of hours trying on a suite of appropriate devices with Lollipop. The issue is critical because a LOT of people are experiencing these crashes (while flying their aircraft) and for hopefully obvious reasons that is unacceptable. It's the weeks without any of your attention whatsoever to this obviously critical bug which is completely unacceptable.
+
+Please; get in touch. You know my email address, I am responsive and I want to help you fix this. We will not be the only complex and memory-intensive app which is suffering here.
+
+Tim</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-02 10:05:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Our own development Nexus 7 has now been upgraded to Lollipop and we are now experiencing massive instability ourselves. This is a good thing (kind of) because previously we were relying on customer reports.
+
+So, I can insert whatever debugging information you may deem appropriate.
+
+I also reiterate that it should be quite easy for you to reproduce this on any older Nexus device which has been upgraded. This one is running 5.0.2. So far I have tried only debug builds, though further up this thread you can see the instructions for reproducing the crash on release (beta) builds.
+
+The output I get in DDMS is confusing; I haven't seen anything like it. Here's some below. At the beginning of this short excerpt everything is fine, but then the process terminates without apparent explanation.
+
+02-02 14:58:18.060: I/mono-stdout(23071): whole render: 884
+02-02 14:58:18.778: I/mono-stdout(23071): whole render: 380
+02-02 14:58:19.700: E/WifiStateMachine(527): WifiStateMachine CMD_START_SCAN source -2 txSuccessRate=6.69 rxSuccessRate=10.44 targetRoamBSSID=00:50:7f:5e:ff:88 RSSI=-55
+02-02 14:58:19.708: I/wpa_supplicant(1660): wlan0: CTRL-EVENT-SCAN-STARTED 
+02-02 14:58:19.867: W/SoundPool(23071):   sample 0 not READY
+02-02 14:58:19.892: W/art(23071): JNI RegisterNativeMethods: attempt to register 0 native methods for divelements.skydemon.mapping.NavigationVirtualRadar
+02-02 14:58:20.382: W/InputMethodManagerService(527): Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@2a7db242 attribute=android.view.inputmethod.EditorInfo@4e13253, token = android.os.BinderProxy@502660
+02-02 14:58:20.636: I/mono-stdout(23071): whole render: 458
+02-02 14:58:21.019: I/WindowState(527): WIN DEATH: Window{1c11c719 u0 aero.skydemon.skydemonandroid/divelements.skydemon.Activity1}
+02-02 14:58:21.136: I/Zygote(142): Process 23071 exited due to signal (11)
+02-02 14:58:21.305: I/ActivityManager(527): Process aero.skydemon.skydemonandroid (pid 23071) has died
+02-02 14:58:21.306: W/ActivityManager(527): Force removing ActivityRecord{12a14a06 u0 aero.skydemon.skydemonandroid/divelements.skydemon.Activity1 t9}: app died, no saved state
+02-02 14:58:21.312: D/AndroidRuntime(23295): &gt;&gt;&gt;&gt;&gt;&gt; AndroidRuntime START com.android.internal.os.RuntimeInit &lt;&lt;&lt;&lt;&lt;&lt;
+02-02 14:58:21.317: D/AndroidRuntime(23295): CheckJNI is OFF
+02-02 14:58:21.365: W/InputMethodManagerService(527): Got RemoteException sending setActive(false) notification to pid 23071 uid 10161
+02-02 14:58:21.506: E/memtrack(23295): Couldn't load memtrack module (No such file or directory)
+02-02 14:58:21.506: E/android.os.Debug(23295): failed to load memtrack module: -2
+02-02 14:58:21.569: D/AndroidRuntime(23295): Calling main entry com.android.commands.am.Am
+02-02 14:58:21.576: I/ActivityManager(527): Force stopping aero.skydemon.skydemonandroid appid=10161 user=0: from pid 23295
+02-02 14:58:21.577: D/AndroidRuntime(23295): Shutting down VM
+02-02 14:58:21.579: I/art(23295): Debugger is no longer active
+02-02 14:58:21.891: W/OpenGLRenderer(2201): Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+02-02 14:58:21.891: W/OpenGLRenderer(2201): Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-02 12:03:08 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I don't actually know whether the two are related, but the debug build (as mentioned above) crashes almost immediately and the crash is very easy to reproduce. The release (beta) build crashes much less often but still frequently enough to be a huge nuisance to our pilots.
+
+If you can give me instructions as to how to produce a debug build for you (I've only ever packaged up a Release build for distribution) I am happy to send it to you.
+
+Tim</pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-03 19:29:17 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">By any chance can you please try one of the following:
+
+1. Build with Xamarin.Android 5.0, or
+2. Run the following adb command against your Android 5.0 target:
+
+    adb shell setprop debug.mono.wref jni
+
+I think this is an Android bug with java.lang.ref.WeakReference and JNI Global References...
+
+Because ART had issues with JNI Weak References [0], we changed the default behavior when running under ART to use the same GC bridge mechanism as was used prior to Android v2.2: java.lang.ref.WeakReference instances. That appeared to work for out tests.
+
+Xamarin.Android 5.0 has an improved check, and will use JNIEnv::NewWeakGlobalRef() instead of java.lang.ref.WeakReference instances on Android 5.0 (because ART fixed the weak reference bug).
+
+Alternatively, setting the debug.mono.wref system property will allow explicitly overriding the default value, which should cause your app to opt-in to using JNIEnv::NewWeakGlobalRef() on Android 5.0.
+
+Do either of these allow your app to run more stably?
+
+---
+
+Discussion:
+
+<a href="bug.html">Comment #6</a> mentioned logcat-parse seeing over 53000 "unknown" references -- handles for which no JNI type information could be found. So I worked on improving logcat-parse, on the assumption that surely these handles have some type information, and I just need to improve deduction from the available information.
+
+While deduction can be improved, I don't think that this is the problem here.
+
+From my 1G+ logcat run, let's grab a handle at random:
+
+<span class="quote">&gt; csharp&gt; var u = grefs.AlivePeers.Where(p =&gt; p.JniType=="").ElementAt(50000);
+&gt; csharp&gt; u.Handles;
+&gt; { "0x64028b6", "0x460301e" }</span>
+
+So, where does the first handle come from?
+
+<span class="quote">&gt; $ grep 0x64028b6 skydemon.txt 
+&gt; I/monodroid-gref(11718): +w+ grefc 2887 gwrefc 2977 obj-handle 0x64028b6/G -&gt; new-handle 0x460301e/G from thread 'finalizer'(12906)
+&gt; I/monodroid-gref(11718): -g- grefc 2887 gwrefc 2977 handle 0x64028b6/G from thread 'finalizer'(12906)</span>
+
+In English, the first +w+ line means "we're creating a JNI global reference from JNI handle 0x64028b6, and creating a new weak global reference with value 0x460301e."
+
+But where did 0x64028b6 come from? Uh....I don't know.
+
+Worse, as per our logging code there *should* be a corresponding "*take_weak_2_1" message with the same handle values (there's some duplication in our logging).
+
+Except there isn't such a take_weak_2_1 message. It's "missing".
+
+For example, the immediately preceding log is:
+
+<span class="quote">&gt; I/monodroid-gref(11718): *take_weak_2_1 obj=0x9ab75410 -&gt; wref=0x18052d6 handle=0x450301e
+&gt; I/monodroid-gref(11718): take_weak_global_ref_2_1_compat
+&gt; I/monodroid-gref(11718): -g- grefc 2888 gwrefc 2976 handle 0x450301e/G from thread 'finalizer'(12906)</span>
+
+We have a take_weak_2_1 message for 0x450301e being referenced by 0x18052d6, and then 0x450301e is deleted.
+
+The greater context, merging things together:
+
+<span class="quote">&gt; I/monodroid-gref(11718): *take_weak_2_1 obj=0x9ab75410 -&gt; wref=0x18052d6 handle=0x450301e
+&gt; I/monodroid-gref(11718): take_weak_global_ref_2_1_compat
+&gt; I/monodroid-gref(11718): -g- grefc 2888 gwrefc 2976 handle 0x450301e/G from thread 'finalizer'(12906)
+&gt; I/monodroid-gref(11718): +w+ grefc 2887 gwrefc 2977 obj-handle 0x64028b6/G -&gt; new-handle 0x460301e/G from thread 'finalizer'(12906)
+&gt; I/monodroid-gref(11718): -g- grefc 2887 gwrefc 2977 handle 0x64028b6/G from thread 'finalizer'(12906)</span>
+
+Now, the scary bit: remember way back when ART first came out, and everything broke? <a href="http://forums.xamarin.com/discussion/comment/38456/#Comment_38456">http://forums.xamarin.com/discussion/comment/38456/#Comment_38456</a>
+
+Useful quote:
+
+<span class="quote">&gt; within ART, a JNI handle is a 32-bit value which contains three parts: 
+&gt; a serial number, a table index, and the handle type (see ToIndirectRef()
+&gt; on indirect_reference_table.h line 337). This means there's structure to the handle</span>
+
+Looking at the last 6 digits of the handle values, what do we get? 50301e, which appears multiple times!
+
+<span class="quote">&gt; I/monodroid-gref(11718): -g- grefc 2888 gwrefc 2976 handle 0x450301e/G from thread 'finalizer'(12906)
+&gt; I/monodroid-gref(11718): +w+ grefc 2887 gwrefc 2977 obj-handle 0x64028b6/G -&gt; new-handle 0x460301e/G from thread 'finalizer'(12906)</span>
+
+0x450301e and 0x460301e should be the *same* JNI handle value, yet we're seeing it in two different places.
+
+How does that happen?! What does it mean?
+
+Building upon that observation, while there is no preceding use of handle value 0x64028b6, there are several uses of the same JNI handle index 4028b6 [1]. The initial +g+, Dispose, and -g- makes sense. After that, it doesn't make sense.
+
+In theory, for every +g+ with a new-handle HANDLE value, there should be a corresponding -g- for the same handle value. +w+ and -w- should behave the same way. Yet this isn't what we see, because we see plenty of +w+'s, but no -w-s; instead, they're -g-s. Similarly, after the initial creation, there are more -g-s than +g+s. 
+
+Things are mismatched; things are inconsistent.
+
+[0]: <a href="https://code.google.com/p/android/issues/detail?id=63929">https://code.google.com/p/android/issues/detail?id=63929</a>
+
+[1]: $ grep 4028b6 skydemon.txt 
+<span class="quote">&gt; I/monodroid-gref(11718): +g+ grefc 2316 gwrefc 0 obj-handle 0xff50001d/L -&gt; new-handle 0x4028b6/G from thread '(null)'(1)
+&gt; I/monodroid-gref(11718): handle 0x4028b6; key_handle 0x34f94457: Java Type: `android/graphics/DashPathEffect`; MCW type: `Android.Graphics.DashPathEffect`
+&gt; I/monodroid-gref(11718): Disposing handle 0x4028b6
+&gt; I/monodroid-gref(11718): -g- grefc 2316 gwrefc 0 handle 0x4028b6/G from thread '(null)'(1)
+&gt; I/monodroid-gref(11718): *take_weak_2_1 obj=0x9ab6f288 -&gt; wref=0x1c01426 handle=0x14028b6
+&gt; I/monodroid-gref(11718): +w+ grefc 680 gwrefc 1775 obj-handle 0x14028b6/G -&gt; new-handle 0x1c01426/G from thread 'finalizer'(11718)
+&gt; I/monodroid-gref(11718): -g- grefc 680 gwrefc 1775 handle 0x14028b6/G from thread 'finalizer'(11718)
+&gt; I/monodroid-gref(11718): +w+ grefc 509 gwrefc 2591 obj-handle 0x34028b6/G -&gt; new-handle 0x8c01c3e/G from thread 'finalizer'(11718)
+&gt; I/monodroid-gref(11718): -g- grefc 509 gwrefc 2591 handle 0x34028b6/G from thread 'finalizer'(11718)
+&gt; I/monodroid-gref(11718): +w+ grefc 581 gwrefc 4207 obj-handle 0x54028b6/G -&gt; new-handle 0xac01c3e/G from thread 'finalizer'(11718)
+&gt; I/monodroid-gref(11718): -g- grefc 581 gwrefc 4207 handle 0x54028b6/G from thread 'finalizer'(11718)
+&gt; I/monodroid-gref(11718): +w+ grefc 2887 gwrefc 2977 obj-handle 0x64028b6/G -&gt; new-handle 0x460301e/G from thread 'finalizer'(12906)
+&gt; I/monodroid-gref(11718): -g- grefc 2887 gwrefc 2977 handle 0x64028b6/G from thread 'finalizer'(12906)
+&gt; I/monodroid-gref(11718): +g+ grefc 6271 gwrefc 4356 obj-handle 0xd09ce2/G -&gt; new-handle 0xd4028b6/G from thread 'finalizer'(11718)
+&gt; I/monodroid-gref(11718): *take_weak_2_1 obj=0x9b0ca5b8 -&gt; wref=0x1a0a8f2 handle=0xe4028b6
+&gt; I/monodroid-gref(11718): +w+ grefc 5592 gwrefc 6108 obj-handle 0xe4028b6/G -&gt; new-handle 0x1a0a8f2/G from thread 'finalizer'(11718)
+&gt; I/monodroid-gref(11718): -g- grefc 5592 gwrefc 6108 handle 0xe4028b6/G from thread 'finalizer'(11718)
+&gt; I/monodroid-gref(11718): *take_weak_2_1 obj=0x9b0e9d98 -&gt; wref=0x2a0a8f2 handle=0xf4028b6
+&gt; I/monodroid-gref(11718): +w+ grefc 6057 gwrefc 6656 obj-handle 0xf4028b6/G -&gt; new-handle 0x2a0a8f2/G from thread 'finalizer'(11718)
+&gt; I/monodroid-gref(11718): *take_weak_2_1 obj=0x9c3799d8 -&gt; wref=0x12d00852 handle=0x114028b6
+&gt; I/monodroid-gref(11718): +w+ grefc 8643 gwrefc 6027 obj-handle 0x114028b6/G -&gt; new-handle 0x12d00852/G from thread 'finalizer'(11718)
+&gt; I/monodroid-gref(11718): -g- grefc 8643 gwrefc 6027 handle 0x114028b6/G from thread 'finalizer'(11718)
+&gt; I/monodroid-gref(11718): *take_weak_2_1 obj=0x9de30a60 -&gt; wref=0x13d00852 handle=0x124028b6
+&gt; I/monodroid-gref(11718): +w+ grefc 9047 gwrefc 6315 obj-handle 0x124028b6/G -&gt; new-handle 0x13d00852/G from thread 'finalizer'(11718)
+&gt; I/monodroid-gref(11718): -g- grefc 9047 gwrefc 6315 handle 0x124028b6/G from thread 'finalizer'(11718)</span></pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-04 05:49:10 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'd like to try setting the environment variable on a device but since our own device isn't experiencing the same crashes as our users are reporting (yet) I can't do it. I will try again later because it was crashing a lot with debug builds, but that may be unrelated.
+
+I wasn't aware there was a Xamarin.Android 5.0. I haven't been offered it. I just tried changing to Beta/Alpha in Visual Studio and checking for updates and I'm offered "Xamarin 3.9" and I've no idea whether that includes the "Xamarin.Android 5.0" you're talking about. As an aside, your versioning system is rather confusing.
+
+I'd like to be able to send a build to our testers using the tools you mentioned but you'll need to please tell me where I download them, and how I can revert to stable tools afterwards.
+
+-
+
+To continue your discussion. The beta I asked you to try before had a caching mechanism which saved instances of drawing primitives (mainly Paths) until a set point in the future to avoid recreating them, for performance reasons. This probably explains the many thousands of them you were seeing stick around. Since then I've determined the performance benefit was pretty small compared to the obvious risk of keeping the things around (I'm just not convinced mono is good at long-lived objects) so I've removed the caching mechanism. All drawing objects used in map rendering (the vast majority of work in our app) are now created and destroyed during the paint cycle.
+
+If you therefore do another test using the latest beta (same URL) you should no longer see as many references building up. When I made this change our testers reported an increase in stability. They're still seeing the same crashes, but fewer of them. It seems like the more objects you have sitting around in memory, the more chance that one of them will be silently boobytrapped by ART/mono/whatever.</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-04 05:56:40 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Alternatively, is there any way we can produce a build from our current tools which forces the new weak reference behaviour?</pre>
+    </div>
+
+    <div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-04 09:03:19 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Regarding Xamarin.Android 5.0, it's not a "stable" release; it's a preview-only release:
+
+<a href="http://developer.xamarin.com/guides/android/wear/installation/">http://developer.xamarin.com/guides/android/wear/installation/</a>
+<a href="http://developer.xamarin.com/releases/android/xamarin.android_5/xamarin.android_5.0/">http://developer.xamarin.com/releases/android/xamarin.android_5/xamarin.android_5.0/</a>
+
+<span class="quote">&gt; Alternatively, is there any way we can produce a build from our current tools
+&gt; which forces the new weak reference behaviour?</span>
+
+Yes:
+
+<a href="http://developer.xamarin.com/guides/android/advanced_topics/environment/">http://developer.xamarin.com/guides/android/advanced_topics/environment/</a>
+
+You can add a file to your project with a Build action of AndroidEnvironment, with the contents:
+
+debug.mono.wref=jni
+
+This will force just of JNIEnv::NewWeakGlobalRef() everywhere. Unfortunately, this means it'll be used on Android 4.4 w/ ART enabled, where it's known to not work (see previously mentioned Android bug), so you wouldn't want to push this to the Play Store, but for one-off testing builds it should be fine.</pre>
+    </div>
+
+    <div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-04 12:31:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">That's great, thanks. This will only be used by beta testers running Lollipop so I will get that produced and sent to them tomorrow and get back to you.</pre>
+    </div>
+
+    <div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-04 21:18:34 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">More investigation, and I have a possible explanation for the bizarro things I saw in <a href="bug.html">Comment #18</a>:
+
+`adb logcat` appears to be unreliable, e.g.:
+
+<a href="https://gist.github.com/jonpryor/d59a0fc24c812249168d">https://gist.github.com/jonpryor/d59a0fc24c812249168d</a>
+
+TL;DR: while trying to create a repro ("surely this is an Android bug, right?"), I found that if I dump "too much" data to `adb logcat` on my Nexus 5 with Android 5.0.2, not everything that my app writes to logcat is visible in logcat. Messages are "lost", undelivered.
+
+Which could explain why JNI handle values would "come out of nowhere" (e.g. 0x64028b6) -- where they came from was skipped, lost in the aether.
+
+Unfortunately, if this is actually the case -- and current signs suggest it is -- then the current GREF logging code is also unreliable, as it is built upon logcat, which in turn means I need to fix GREF logging. :-/</pre>
+    </div>
+
+    <div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-05 06:35:07 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have created a build with the debug.mono.wref=jni environment variable set. I note that we are already setting MONO_GC_PARAMS=bridge-implementation=tarjan in the same file; please let me know if that will cause any conflicts.
+
+I will report back with what our testers say. Hopefully they'll say it improves matters.</pre>
+    </div>
+
+    <div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-05 12:25:17 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Unfortunately it appears that even with the environment variable set, the app still crashes. Here's the logcat output:
+
+[ 02-05 13:38:29.133  3276: 3276 E/art      ]
+
+JNI ERROR (app bug): accessed deleted global reference 0xb01432
+
+
+
+[ 02-05 13:38:29.133  3276: 3276 F/art      ]
+
+art/runtime/indirect_reference_table.cc:61] JNI ERROR (app bug): see above.</pre>
+    </div>
+
+    <div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-05 12:47:42 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'd ask for GREF logs, but there's no point when `adb logcat` won't log everything...
+
+I need to implement an alternate handle logging mechanism, something that will log to a file instead of logcat. That should be more reliable, and allow me to figure out what's going on.</pre>
+    </div>
+
+    <div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-05 14:28:00 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Does it log everything when it's started before the app is started?
+
+We have at least one customers with the debugging tools installed and for whom the crash invariably happens very soon after launching the app. So if I can produce a build with GREF logging on and give it to him, and you think it would be helpful, I can certainly do that.</pre>
+    </div>
+
+    <div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-05 14:40:57 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><span class="quote">&gt; Does it log everything when it's started before the app is started?</span>
+
+I don't understand the question.
+
+<span class="quote">&gt; So if I can produce a build with GREF logging on and give it to him,
+&gt; and you think it would be helpful, I can certainly do that.</span>
+
+It might be helpful. It might not be.
+
+As per <a href="bug.html">Comment #23</a>, `adb logcat` is unreliable on Android 5.0, and "skips" messages if there are lots of them generated...like there are during a GC, which is when we most need them.
+
+If his crash happens soon after the app starts, them presumably there will be fewer GREFs in use, and thus presumably -- *hopefully*! -- logcat won't lose anything, and things will make sense.
+
+But if logcat skips anything...it won't help.
+
+I'm working on revamping the GREF logging code to write to a file instead of logcat. I think it may be saner to wait until that's complete, provide you a build of that, and rebuild with it. That should provide a more reliable logging mechanism.</pre>
+    </div>
+
+    <div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-06 06:02:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">My question was whether logcat only "misses" log entries if you start logcat after your app has run (so it's reaching back in time for past log entries) or if it misses them even if it's already running before you start your app. It sounds like this is a detail that isn't very relevant anyway.
+
+If you're already working on that logging mechanism and can have a build to me sometime in the next few days then I'm happy to await that as it sounds like it'll be the most robust method of testing. Otherwise I'm happy to have my tester produce a build with logcat GREF output and we can hope for the best.</pre>
+    </div>
+
+    <div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-12 07:08:29 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Can I have an update on this please? We are obviously keen to press ahead with any diagnostics we can do to help you get to the bottom of this bug.</pre>
+    </div>
+
+    <div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-13 05:31:37 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks for the email with the hotfix build. I am currently downloading it and will produce a build for our testers right away (assuming it works).
+
+And not to worry, the output files shouldn't get too large. Perhaps I haven't stated the seriousness of this issue sufficiently: our app crashes within minutes or seconds, for many of our customers. We'll get the log in no time.</pre>
+    </div>
+
+    <div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-13 06:27:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Tim: I forgot to mention, we'll still need the `adb logcat` output so that we get the error message about which invalid JNI handle was accessed. We don't need all output, just the end with the ART crash information and debuggerd output.</pre>
+    </div>
+
+    <div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-13 07:02:17 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">After installing your hotfix I couldn't build; it said I needed Android NDK installed. I found out what that was and installed it, and managed to get the project to build (I tried a Release build). I then did a Start without Debugging from Visual Studio, but the app will no longer start on our device (Nexus 7 1st gen). Here's the logcat output when trying to start it:
+
+02-13 11:59:18.794: I/ActivityManager(479): START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=aero.skydemon.skydemonandroid/md5ad594e2b1091d5d0d7f032db3667fc81.SplashActivity (has extras)} from uid 10031 on display 0
+02-13 11:59:18.871: I/ActivityManager(479): Start proc aero.skydemon.skydemonandroid for activity aero.skydemon.skydemonandroid/md5ad594e2b1091d5d0d7f032db3667fc81.SplashActivity: pid=23761 uid=10165 gids={50165, 9997, 1028, 1015, 3003} abi=armeabi-v7a
+02-13 11:59:19.012: W/monodroid-gref(23761): *jonp* open_file: path=/data/data/aero.skydemon.skydemonandroid/files/.__override__/grefs.txt
+02-13 11:59:19.014: W/monodroid-gref(23761): *jonp* open_file: f=0x40177688
+02-13 11:59:19.016: W/monodroid(23761): Trying to load sgen from: /data/app/aero.skydemon.skydemonandroid-1/lib/arm/libmonosgen-2.0.so
+02-13 11:59:19.018: W/(23761): counters not enabled
+02-13 11:59:19.018: W/(23761): counters not enabled
+02-13 11:59:19.018: W/(23761): counters not enabled
+02-13 11:59:19.018: W/(23761): counters not enabled
+02-13 11:59:19.089: W/monodroid-gc(23761): GREF GC Threshold: 46080
+02-13 11:59:19.241: I/monodroid-gref(23761): +g+ grefc 1 gwrefc 0 obj-handle 0x400055/L -&gt; new-handle 0x1003de/G from thread '(null)'(1)
+02-13 11:59:19.385: I/monodroid-gref(23761): +g+ grefc 2 gwrefc 0 obj-handle 0x500059/L -&gt; new-handle 0x1003e2/G from thread '(null)'(1)
+02-13 11:59:19.393: I/monodroid-gref(23761): +g+ grefc 3 gwrefc 0 obj-handle 0x600051/L -&gt; new-handle 0x1003e6/G from thread '(null)'(1)
+02-13 11:59:19.420: I/monodroid-gref(23761): +g+ grefc 4 gwrefc 0 obj-handle 0x800051/L -&gt; new-handle 0x1003ea/G from thread '(null)'(1)
+02-13 11:59:19.585: I/monodroid-gref(23761): +g+ grefc 5 gwrefc 0 obj-handle 0xa00055/L -&gt; new-handle 0x1003ee/G from thread '(null)'(1)
+02-13 11:59:19.707: I/monodroid-gref(23761): -g- grefc 5 gwrefc 0 handle 0x1003ee/G from thread '(null)'(1)
+02-13 11:59:19.708: I/monodroid-gref(23761): +g+ grefc 5 gwrefc 0 obj-handle 0xc00051/L -&gt; new-handle 0x2003ee/G from thread '(null)'(1)
+02-13 11:59:19.735: A/monodroid-assembly(23761): Could not load assembly 'SkyDemon' during startup registration.
+02-13 11:59:19.735: A/monodroid-assembly(23761): This might be due to an invalid debug instalation.
+02-13 11:59:19.735: A/monodroid-assembly(23761): A common cause is to 'adb install' the app directly instead of doing from the IDE.
+02-13 11:59:19.844: I/Zygote(142): Process 23761 exited cleanly (13)
+02-13 11:59:19.913: I/ActivityManager(479): Process aero.skydemon.skydemonandroid (pid 23761) has died
+02-13 11:59:19.944: I/ActivityManager(479): Start proc aero.skydemon.skydemonandroid for activity aero.skydemon.skydemonandroid/md5ad594e2b1091d5d0d7f032db3667fc81.SplashActivity: pid=23780 uid=10165 gids={50165, 9997, 1028, 1015, 3003} abi=armeabi-v7a
+02-13 11:59:20.022: W/monodroid-gref(23780): *jonp* open_file: path=/data/data/aero.skydemon.skydemonandroid/files/.__override__/grefs.txt
+02-13 11:59:20.022: W/monodroid-gref(23780): *jonp* open_file: f=0x40177688
+02-13 11:59:20.022: W/monodroid(23780): Trying to load sgen from: /data/app/aero.skydemon.skydemonandroid-1/lib/arm/libmonosgen-2.0.so
+02-13 11:59:20.025: W/(23780): counters not enabled
+02-13 11:59:20.025: W/(23780): counters not enabled
+02-13 11:59:20.025: W/(23780): counters not enabled
+02-13 11:59:20.025: W/(23780): counters not enabled
+02-13 11:59:20.068: W/monodroid-gc(23780): GREF GC Threshold: 46080
+02-13 11:59:20.148: I/monodroid-gref(23780): +g+ grefc 1 gwrefc 0 obj-handle 0x400055/L -&gt; new-handle 0x1003de/G from thread '(null)'(1)
+02-13 11:59:20.260: I/monodroid-gref(23780): +g+ grefc 2 gwrefc 0 obj-handle 0x500059/L -&gt; new-handle 0x1003e2/G from thread '(null)'(1)
+02-13 11:59:20.269: I/monodroid-gref(23780): +g+ grefc 3 gwrefc 0 obj-handle 0x600051/L -&gt; new-handle 0x1003e6/G from thread '(null)'(1)
+02-13 11:59:20.296: I/monodroid-gref(23780): +g+ grefc 4 gwrefc 0 obj-handle 0x800051/L -&gt; new-handle 0x1003ea/G from thread '(null)'(1)
+02-13 11:59:20.458: I/monodroid-gref(23780): +g+ grefc 5 gwrefc 0 obj-handle 0xa00055/L -&gt; new-handle 0x1003ee/G from thread '(null)'(1)
+02-13 11:59:20.576: I/monodroid-gref(23780): -g- grefc 5 gwrefc 0 handle 0x1003ee/G from thread '(null)'(1)
+02-13 11:59:20.578: I/monodroid-gref(23780): +g+ grefc 5 gwrefc 0 obj-handle 0xc00051/L -&gt; new-handle 0x2003ee/G from thread '(null)'(1)
+02-13 11:59:20.603: A/monodroid-assembly(23780): Could not load assembly 'SkyDemon' during startup registration.
+02-13 11:59:20.603: A/monodroid-assembly(23780): This might be due to an invalid debug instalation.
+02-13 11:59:20.603: A/monodroid-assembly(23780): A common cause is to 'adb install' the app directly instead of doing from the IDE.
+02-13 11:59:20.664: I/Zygote(142): Process 23780 exited cleanly (13)
+02-13 11:59:20.773: I/ActivityManager(479): Process aero.skydemon.skydemonandroid (pid 23780) has died
+02-13 11:59:20.803: I/ActivityManager(479): Start proc aero.skydemon.skydemonandroid for activity aero.skydemon.skydemonandroid/md5ad594e2b1091d5d0d7f032db3667fc81.SplashActivity: pid=23798 uid=10165 gids={50165, 9997, 1028, 1015, 3003} abi=armeabi-v7a
+02-13 11:59:20.900: W/monodroid-gref(23798): *jonp* open_file: path=/data/data/aero.skydemon.skydemonandroid/files/.__override__/grefs.txt
+02-13 11:59:20.900: W/monodroid-gref(23798): *jonp* open_file: f=0x40177688
+02-13 11:59:20.900: W/monodroid(23798): Trying to load sgen from: /data/app/aero.skydemon.skydemonandroid-1/lib/arm/libmonosgen-2.0.so
+02-13 11:59:20.902: W/(23798): counters not enabled
+02-13 11:59:20.902: W/(23798): counters not enabled
+02-13 11:59:20.902: W/(23798): counters not enabled
+02-13 11:59:20.902: W/(23798): counters not enabled
+02-13 11:59:20.944: W/monodroid-gc(23798): GREF GC Threshold: 46080
+02-13 11:59:21.022: I/monodroid-gref(23798): +g+ grefc 1 gwrefc 0 obj-handle 0x400055/L -&gt; new-handle 0x1003de/G from thread '(null)'(1)
+02-13 11:59:21.134: I/monodroid-gref(23798): +g+ grefc 2 gwrefc 0 obj-handle 0x500059/L -&gt; new-handle 0x1003e2/G from thread '(null)'(1)
+02-13 11:59:21.142: I/monodroid-gref(23798): +g+ grefc 3 gwrefc 0 obj-handle 0x600051/L -&gt; new-handle 0x1003e6/G from thread '(null)'(1)
+02-13 11:59:21.167: I/monodroid-gref(23798): +g+ grefc 4 gwrefc 0 obj-handle 0x800051/L -&gt; new-handle 0x1003ea/G from thread '(null)'(1)
+02-13 11:59:21.328: I/monodroid-gref(23798): +g+ grefc 5 gwrefc 0 obj-handle 0xa00055/L -&gt; new-handle 0x1003ee/G from thread '(null)'(1)
+02-13 11:59:21.444: I/monodroid-gref(23798): -g- grefc 5 gwrefc 0 handle 0x1003ee/G from thread '(null)'(1)
+02-13 11:59:21.446: I/monodroid-gref(23798): +g+ grefc 5 gwrefc 0 obj-handle 0xc00051/L -&gt; new-handle 0x2003ee/G from thread '(null)'(1)
+02-13 11:59:21.471: A/monodroid-assembly(23798): Could not load assembly 'SkyDemon' during startup registration.
+02-13 11:59:21.471: A/monodroid-assembly(23798): This might be due to an invalid debug instalation.
+02-13 11:59:21.471: A/monodroid-assembly(23798): A common cause is to 'adb install' the app directly instead of doing from the IDE.
+02-13 11:59:21.514: I/Zygote(142): Process 23798 exited cleanly (13)
+02-13 11:59:21.563: I/ActivityManager(479): Process aero.skydemon.skydemonandroid (pid 23798) has died
+02-13 11:59:21.564: W/ActivityManager(479): Force removing ActivityRecord{5068053 u0 aero.skydemon.skydemonandroid/md5ad594e2b1091d5d0d7f032db3667fc81.SplashActivity t33}: app died, no saved state
+02-13 11:59:21.575: W/WindowManager(479): Failed looking up window
+02-13 11:59:21.575: W/WindowManager(479): java.lang.IllegalArgumentException: Requested window android.view.ViewRootImpl$W@2360d68e does not exist
+02-13 11:59:21.575: W/WindowManager(479): 	at com.android.server.wm.WindowManagerService.windowForClientLocked(WindowManagerService.java:8412)
+02-13 11:59:21.575: W/WindowManager(479): 	at com.android.server.wm.WindowManagerService.windowForClientLocked(WindowManagerService.java:8403)
+02-13 11:59:21.575: W/WindowManager(479): 	at com.android.server.wm.WindowManagerService.removeWindow(WindowManagerService.java:2558)
+02-13 11:59:21.575: W/WindowManager(479): 	at com.android.server.wm.Session.remove(Session.java:186)
+02-13 11:59:21.575: W/WindowManager(479): 	at android.view.ViewRootImpl.dispatchDetachedFromWindow(ViewRootImpl.java:2920)
+02-13 11:59:21.575: W/WindowManager(479): 	at android.view.ViewRootImpl.doDie(ViewRootImpl.java:5390)
+02-13 11:59:21.575: W/WindowManager(479): 	at android.view.ViewRootImpl$ViewRootHandler.handleMessage(ViewRootImpl.java:3223)
+02-13 11:59:21.575: W/WindowManager(479): 	at android.os.Handler.dispatchMessage(Handler.java:102)
+02-13 11:59:21.575: W/WindowManager(479): 	at android.os.Looper.loop(Looper.java:135)
+02-13 11:59:21.575: W/WindowManager(479): 	at android.os.HandlerThread.run(HandlerThread.java:61)
+02-13 11:59:21.575: W/WindowManager(479): 	at com.android.server.ServiceThread.run(ServiceThread.java:46)
+02-13 11:59:21.647: W/InputMethodManagerService(479): Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@b622245 attribute=null, token = android.os.BinderProxy@3c693b7b
+02-13 11:59:22.168: W/OpenGLRenderer(1114): Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...
+02-13 11:59:26.625: E/WifiStateMachine(479): WifiStateMachine CMD_START_SCAN source -2 txSuccessRate=0.00 rxSuccessRate=0.01 targetRoamBSSID=00:50:7f:5e:ff:88 RSSI=-58
+02-13 11:59:26.626: E/WifiStateMachine(479): WifiStateMachine starting scan for "SkyDemon-DrayTek"WPA_PSK with 2437
+02-13 11:59:26.634: I/wpa_supplicant(707): wlan0: CTRL-EVENT-SCAN-STARTED</pre>
+    </div>
+
+    <div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-13 08:44:00 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Tim:
+
+<span class="quote">&gt; it said I needed Android NDK installed. </span>
+
+That's odd; the NDK shouldn't be needed unless it's actually used. :-(
+
+<span class="quote">&gt; [I] managed to get the project to build (I tried a Release build)...</span>
+
+The cause of death is:
+
+<span class="quote">&gt; 02-13 11:59:19.735: A/monodroid-assembly(23761): Could not load assembly 'SkyDemon' during startup registration.
+&gt; 02-13 11:59:19.735: A/monodroid-assembly(23761): This might be due to an invalid debug instalation.
+&gt; 02-13 11:59:19.735: A/monodroid-assembly(23761): A common cause is to 'adb install' the app directly instead of doing from the IDE.</span>
+
+That looks like it's not a Release build, or -- somehow -- the Use shared Mono runtime and Fast assembly deployment options were enabled for your Release build.
+
+In short, something is screwy (The joys of alpha software, though I haven't seen this before...). :-(
+
+Could you please try this command from a Visual Studio command prompt?
+
+    MSBuild /t:Install /p:Configuration=Release /v:diag &gt; build.txt
+
+then attach build.txt?</pre>
+    </div>
+
+    <div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-13 11:56:48 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><span class="quote">&gt; Was I supposed to specify our Android app on the command line? If so, this happens</span>
+
+My apologies; I should have been more specific. MSBuild requires that a solution or project file be specified on the command line, and the Install target requires a .csproj, not a .sln:
+
+
+<span class="quote">&gt; MSBuild /t:Install /p:Configuration=Release /v:diag Path\To\Your\App.csproj &gt; build.txt</span></pre>
+    </div>
+
+    <div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-14 12:18:34 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have run that as requested and uploaded the result as an attachment (private).</pre>
+    </div>
+
+    <div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-15 21:13:44 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Does the installed app work?
+
+The build log shows:
+
+<span class="quote">&gt;  InstallPackageAssemblies Task (TaskId:318)</span>
+...
+<span class="quote">&gt;     EmbedAssemblies: True (TaskId:318)</span>
+...
+<span class="quote">&gt;     UseSharedRuntime: False (TaskId:318)</span>
+
+so the assemblies *should* be embedded into the .apk. (For example, if you rename the .apk to a .zip, you should be able to use Windows Explorer to view within the .apk, and there should be an "assemblies" folder which contains the assemblies.)
+
+Furthermore, installation succeeded:
+
+<span class="quote">&gt;   TASK: InstallPackage pm install "/data/local/tmp/aero.skydemon.skydemonandroid-Signed.apk" completed?:        pkg: /data/local/tmp/aero.skydemon.skydemonandroid-Signed.apk
+&gt;   Success</span>
+
+so as far as I can tell, the app should work. :-(</pre>
+    </div>
+
+    <div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-16 11:33:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">No, nothing built with the hotfix version you made available to me will run. The app begins to launch but immediately dies before any managed code is run. It's pretty much the same output in logcat:
+
+02-16 16:31:45.810: I/art(1114): Background sticky concurrent mark sweep GC freed 46893(2MB) AllocSpace objects, 10(265KB) LOS objects, 4% free, 16MB/17MB, paused 1.914ms total 108.067ms
+02-16 16:31:45.928: I/art(1114): Background partial concurrent mark sweep GC freed 25145(1840KB) AllocSpace objects, 9(392KB) LOS objects, 40% free, 15MB/25MB, paused 5.617ms total 77.006ms
+02-16 16:31:48.631: I/ActivityManager(479): START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=aero.skydemon.skydemonandroid/md5c98e1e2f620028c1a15b809310f1310a.SplashActivity (has extras)} from uid 10031 on display 0
+02-16 16:31:48.720: I/ActivityManager(479): Start proc aero.skydemon.skydemonandroid for activity aero.skydemon.skydemonandroid/md5c98e1e2f620028c1a15b809310f1310a.SplashActivity: pid=28372 uid=10165 gids={50165, 9997, 1028, 1015, 3003} abi=armeabi-v7a
+02-16 16:31:48.754: I/art(142): Explicit concurrent mark sweep GC freed 707(30KB) AllocSpace objects, 0(0B) LOS objects, 40% free, 5MB/8MB, paused 344us total 36.235ms
+02-16 16:31:48.778: I/art(142): Explicit concurrent mark sweep GC freed 7(240B) AllocSpace objects, 0(0B) LOS objects, 39% free, 5MB/8MB, paused 260us total 17.064ms
+02-16 16:31:48.805: I/art(142): Explicit concurrent mark sweep GC freed 5(160B) AllocSpace objects, 0(0B) LOS objects, 39% free, 5MB/8MB, paused 266us total 20.218ms
+02-16 16:31:48.914: W/monodroid-gref(28372): *jonp* open_file: path=/data/data/aero.skydemon.skydemonandroid/files/.__override__/grefs.txt
+02-16 16:31:48.915: W/monodroid-gref(28372): *jonp* open_file: f=0x40177688
+02-16 16:31:48.915: W/monodroid(28372): Trying to load sgen from: /data/app/aero.skydemon.skydemonandroid-1/lib/arm/libmonosgen-2.0.so
+02-16 16:31:48.917: W/(28372): counters not enabled
+02-16 16:31:48.917: W/(28372): counters not enabled
+02-16 16:31:48.917: W/(28372): counters not enabled
+02-16 16:31:48.917: W/(28372): counters not enabled
+02-16 16:31:48.970: W/monodroid-gc(28372): GREF GC Threshold: 46080
+02-16 16:31:49.133: I/monodroid-gref(28372): +g+ grefc 1 gwrefc 0 obj-handle 0x400055/L -&gt; new-handle 0x1003de/G from thread '(null)'(1)
+02-16 16:31:49.274: I/monodroid-gref(28372): +g+ grefc 2 gwrefc 0 obj-handle 0x500059/L -&gt; new-handle 0x1003e2/G from thread '(null)'(1)
+02-16 16:31:49.282: I/monodroid-gref(28372): +g+ grefc 3 gwrefc 0 obj-handle 0x600051/L -&gt; new-handle 0x1003e6/G from thread '(null)'(1)
+02-16 16:31:49.310: I/monodroid-gref(28372): +g+ grefc 4 gwrefc 0 obj-handle 0x800051/L -&gt; new-handle 0x1003ea/G from thread '(null)'(1)
+02-16 16:31:49.474: I/monodroid-gref(28372): +g+ grefc 5 gwrefc 0 obj-handle 0xa00055/L -&gt; new-handle 0x1003ee/G from thread '(null)'(1)
+02-16 16:31:49.598: I/monodroid-gref(28372): -g- grefc 5 gwrefc 0 handle 0x1003ee/G from thread '(null)'(1)
+02-16 16:31:49.600: I/monodroid-gref(28372): +g+ grefc 5 gwrefc 0 obj-handle 0xc00051/L -&gt; new-handle 0x2003ee/G from thread '(null)'(1)
+02-16 16:31:49.630: A/monodroid-assembly(28372): Could not load assembly 'SkyDemon' during startup registration.
+02-16 16:31:49.630: A/monodroid-assembly(28372): This might be due to an invalid debug instalation.
+02-16 16:31:49.630: A/monodroid-assembly(28372): A common cause is to 'adb install' the app directly instead of doing from the IDE.
+02-16 16:31:49.690: I/Zygote(142): Process 28372 exited cleanly (13)
+02-16 16:31:49.730: I/ActivityManager(479): Process aero.skydemon.skydemonandroid (pid 28372) has died
+02-16 16:31:49.758: I/ActivityManager(479): Start proc aero.skydemon.skydemonandroid for activity aero.skydemon.skydemonandroid/md5c98e1e2f620028c1a15b809310f1310a.SplashActivity: pid=28390 uid=10165 gids={50165, 9997, 1028, 1015, 3003} abi=armeabi-v7a
+02-16 16:31:49.843: E/WifiStateMachine(479): WifiStateMachine CMD_START_SCAN source -2 txSuccessRate=0.06 rxSuccessRate=0.68 targetRoamBSSID=00:50:7f:5e:ff:88 RSSI=-52
+02-16 16:31:49.843: E/WifiStateMachine(479): WifiStateMachine starting scan for "SkyDemon-DrayTek"WPA_PSK with 2437
+02-16 16:31:49.851: I/wpa_supplicant(707): wlan0: CTRL-EVENT-SCAN-STARTED 
+02-16 16:31:49.863: W/monodroid-gref(28390): *jonp* open_file: path=/data/data/aero.skydemon.skydemonandroid/files/.__override__/grefs.txt
+02-16 16:31:49.863: W/monodroid-gref(28390): *jonp* open_file: f=0x40177688
+02-16 16:31:49.863: W/monodroid(28390): Trying to load sgen from: /data/app/aero.skydemon.skydemonandroid-1/lib/arm/libmonosgen-2.0.so
+02-16 16:31:49.865: W/(28390): counters not enabled
+02-16 16:31:49.865: W/(28390): counters not enabled
+02-16 16:31:49.865: W/(28390): counters not enabled
+02-16 16:31:49.865: W/(28390): counters not enabled
+02-16 16:31:49.913: W/monodroid-gc(28390): GREF GC Threshold: 46080
+02-16 16:31:49.993: I/monodroid-gref(28390): +g+ grefc 1 gwrefc 0 obj-handle 0x400055/L -&gt; new-handle 0x1003de/G from thread '(null)'(1)
+02-16 16:31:50.105: I/monodroid-gref(28390): +g+ grefc 2 gwrefc 0 obj-handle 0x500059/L -&gt; new-handle 0x1003e2/G from thread '(null)'(1)
+02-16 16:31:50.113: I/monodroid-gref(28390): +g+ grefc 3 gwrefc 0 obj-handle 0x600051/L -&gt; new-handle 0x1003e6/G from thread '(null)'(1)
+02-16 16:31:50.141: I/monodroid-gref(28390): +g+ grefc 4 gwrefc 0 obj-handle 0x800051/L -&gt; new-handle 0x1003ea/G from thread '(null)'(1)
+02-16 16:31:50.304: I/monodroid-gref(28390): +g+ grefc 5 gwrefc 0 obj-handle 0xa00055/L -&gt; new-handle 0x1003ee/G from thread '(null)'(1)
+02-16 16:31:50.424: I/monodroid-gref(28390): -g- grefc 5 gwrefc 0 handle 0x1003ee/G from thread '(null)'(1)
+02-16 16:31:50.425: I/monodroid-gref(28390): +g+ grefc 5 gwrefc 0 obj-handle 0xc00051/L -&gt; new-handle 0x2003ee/G from thread '(null)'(1)
+02-16 16:31:50.452: A/monodroid-assembly(28390): Could not load assembly 'SkyDemon' during startup registration.
+02-16 16:31:50.453: A/monodroid-assembly(28390): This might be due to an invalid debug instalation.
+02-16 16:31:50.453: A/monodroid-assembly(28390): A common cause is to 'adb install' the app directly instead of doing from the IDE.
+02-16 16:31:50.490: I/Zygote(142): Process 28390 exited cleanly (13)
+02-16 16:31:50.560: I/ActivityManager(479): Process aero.skydemon.skydemonandroid (pid 28390) has died
+02-16 16:31:50.598: I/ActivityManager(479): Start proc aero.skydemon.skydemonandroid for activity aero.skydemon.skydemonandroid/md5c98e1e2f620028c1a15b809310f1310a.SplashActivity: pid=28408 uid=10165 gids={50165, 9997, 1028, 1015, 3003} abi=armeabi-v7a
+02-16 16:31:50.684: W/monodroid-gref(28408): *jonp* open_file: path=/data/data/aero.skydemon.skydemonandroid/files/.__override__/grefs.txt
+02-16 16:31:50.684: W/monodroid-gref(28408): *jonp* open_file: f=0x40177688
+02-16 16:31:50.684: W/monodroid(28408): Trying to load sgen from: /data/app/aero.skydemon.skydemonandroid-1/lib/arm/libmonosgen-2.0.so
+02-16 16:31:50.686: W/(28408): counters not enabled
+02-16 16:31:50.686: W/(28408): counters not enabled
+02-16 16:31:50.686: W/(28408): counters not enabled
+02-16 16:31:50.686: W/(28408): counters not enabled
+02-16 16:31:50.731: W/monodroid-gc(28408): GREF GC Threshold: 46080
+02-16 16:31:50.811: I/monodroid-gref(28408): +g+ grefc 1 gwrefc 0 obj-handle 0x400055/L -&gt; new-handle 0x1003de/G from thread '(null)'(1)
+02-16 16:31:50.926: I/monodroid-gref(28408): +g+ grefc 2 gwrefc 0 obj-handle 0x500059/L -&gt; new-handle 0x1003e2/G from thread '(null)'(1)
+02-16 16:31:50.934: I/monodroid-gref(28408): +g+ grefc 3 gwrefc 0 obj-handle 0x600051/L -&gt; new-handle 0x1003e6/G from thread '(null)'(1)
+02-16 16:31:50.962: I/monodroid-gref(28408): +g+ grefc 4 gwrefc 0 obj-handle 0x800051/L -&gt; new-handle 0x1003ea/G from thread '(null)'(1)
+02-16 16:31:51.127: I/monodroid-gref(28408): +g+ grefc 5 gwrefc 0 obj-handle 0xa00055/L -&gt; new-handle 0x1003ee/G from thread '(null)'(1)
+02-16 16:31:51.251: I/monodroid-gref(28408): -g- grefc 5 gwrefc 0 handle 0x1003ee/G from thread '(null)'(1)
+02-16 16:31:51.253: I/monodroid-gref(28408): +g+ grefc 5 gwrefc 0 obj-handle 0xc00051/L -&gt; new-handle 0x2003ee/G from thread '(null)'(1)
+02-16 16:31:51.282: A/monodroid-assembly(28408): Could not load assembly 'SkyDemon' during startup registration.
+02-16 16:31:51.282: A/monodroid-assembly(28408): This might be due to an invalid debug instalation.
+02-16 16:31:51.282: A/monodroid-assembly(28408): A common cause is to 'adb install' the app directly instead of doing from the IDE.
+02-16 16:31:51.410: I/Zygote(142): Process 28408 exited cleanly (13)
+02-16 16:31:51.460: I/ActivityManager(479): Process aero.skydemon.skydemonandroid (pid 28408) has died
+02-16 16:31:51.460: W/ActivityManager(479): Force removing ActivityRecord{1c0dd20e u0 aero.skydemon.skydemonandroid/md5c98e1e2f620028c1a15b809310f1310a.SplashActivity t41}: app died, no saved state
+02-16 16:31:51.468: W/WindowManager(479): Failed looking up window
+02-16 16:31:51.468: W/WindowManager(479): java.lang.IllegalArgumentException: Requested window android.view.ViewRootImpl$W@2ebfaa3c does not exist
+02-16 16:31:51.468: W/WindowManager(479): 	at com.android.server.wm.WindowManagerService.windowForClientLocked(WindowManagerService.java:8412)
+02-16 16:31:51.468: W/WindowManager(479): 	at com.android.server.wm.WindowManagerService.windowForClientLocked(WindowManagerService.java:8403)
+02-16 16:31:51.468: W/WindowManager(479): 	at com.android.server.wm.WindowManagerService.removeWindow(WindowManagerService.java:2558)
+02-16 16:31:51.468: W/WindowManager(479): 	at com.android.server.wm.Session.remove(Session.java:186)
+02-16 16:31:51.468: W/WindowManager(479): 	at android.view.ViewRootImpl.dispatchDetachedFromWindow(ViewRootImpl.java:2920)
+02-16 16:31:51.468: W/WindowManager(479): 	at android.view.ViewRootImpl.doDie(ViewRootImpl.java:5390)
+02-16 16:31:51.468: W/WindowManager(479): 	at android.view.ViewRootImpl$ViewRootHandler.handleMessage(ViewRootImpl.java:3223)
+02-16 16:31:51.468: W/WindowManager(479): 	at android.os.Handler.dispatchMessage(Handler.java:102)
+02-16 16:31:51.468: W/WindowManager(479): 	at android.os.Looper.loop(Looper.java:135)
+02-16 16:31:51.468: W/WindowManager(479): 	at android.os.HandlerThread.run(HandlerThread.java:61)
+02-16 16:31:51.468: W/WindowManager(479): 	at com.android.server.ServiceThread.run(ServiceThread.java:46)
+02-16 16:31:51.533: W/InputMethodManagerService(479): Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@bfb2e28 attribute=null, token = android.os.BinderProxy@3c693b7b
+02-16 16:32:00.054: W/OpenGLRenderer(1114): Incorrectly called buildLayer on View: ShortcutAndWidgetContainer, destroying layer...</pre>
+    </div>
+
+    <div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-18 06:14:00 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I've uploaded an APK for you, so you can take a look.</pre>
+    </div>
+
+    <div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-18 06:14:06 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><a href="http://www.skydemon.aero/extras/android/aero.skydemon.skydemonandroid-Aligned.xa5.apk">http://www.skydemon.aero/extras/android/aero.skydemon.skydemonandroid-Aligned.xa5.apk</a></pre>
+    </div>
+
+    <div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-18 10:40:06 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Tim: Thank you for uploading the .apk.
+
+It *does* contain assemblies:
+
+<span class="quote">&gt; $ unzip -l aero.skydemon.skydemonandroid-Aligned.xa5.apk  | grep assemblies
+&gt;   2105856  02-18-15 10:48   assemblies/SkyDemon.dll
+&gt; ...</span>
+
+Furthermore, when I install and run it on my Nexus 5, it starts without error.
+
+Unfortunately I'm not able to run the app, as my trial has expired.</pre>
+    </div>
+
+    <div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-19 04:34:34 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">How very strange. I've deleted your trial so you can create another one if you like.</pre>
+    </div>
+
+    <div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-19 14:14:44 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Tim:
+
+<span class="quote">&gt; $ adb shell run-as aero.skydemon.skydemonandroid ls
+&gt; run-as: Package 'aero.skydemon.skydemonandroid' is not debuggable</span>
+
+Translation: remember those instructions I provided to get grefs.txt off the device? Well, uh, they require that the app have /manifest/application/@android:debuggable=true within AndroidManifest.xml.
+
+Which isn't the case for the file in <a href="bug.html">Comment #42</a>.
+
+/me cries.
+
+Setting android:debuggable=true does *not* require a Debug build. It "just" requires explicitly providing it within your AndroidManifest.xml:
+
+    &lt;manifest
+        ...
+     &gt;
+	&lt;application
+                android:label="SkyDemon"
+                android:debuggable="true"
+            &gt;
+            ...
+
+Alternatively, within AssemblyInfo.cs add:
+
+    [assembly:Application (Debuggable=true)]
+
+The resulting .apk should contain a debuggable app.
+
+Also, were you able to install and run the file from <a href="bug.html">Comment #42</a>? It sounded like it didn't work for you in <a href="bug.html">Comment #40</a>...</pre>
+    </div>
+
+    <div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-20 05:46:00 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Ok, I had no idea the build had to be debuggable. You can't rely on me knowing all this stuff; if I did, I probably wouldn't be using Xamarin.
+
+I had to roll back to a stable build but this morning I will go back to the hotfix and try another build. I never did get anything built with your hotfix to run on our development device (2012 Nexus 7). It occurs to me, though, that it might be a long-standing problem with Xamarin we've had (but not reported) where (particularly when switching from Debug to Release) the app simply will not start until it's completely uninstalled THEN re-deployed. I will try this to see if it helps, but the symptoms are slightly different so I suspect it will not.
+
+Hopefully I'll report back in a few minutes.</pre>
+    </div>
+
+    <div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-20 06:00:27 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Interesting. The splash screen does now appear (after doing a full uninstall of the other build) but I can proceed no further. But it's a different apparent error, though, which I will paste below. I will create an APK from this and upload it for you.
+
+02-20 10:58:49.593: A/(4757): * Assertion: should not be reached at /Users/builder/data/lanes/monodroid-mavericks-master/58d28ca9/source/mono/mono/metadata/sgen-scan-object.h:101
+02-20 10:58:49.593: A/libc(4757): Fatal signal 6 (SIGABRT), code -6 in tid 4757 (skydemonandroid)
+02-20 10:58:49.695: I/DEBUG(133): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+02-20 10:58:49.695: I/DEBUG(133): Build fingerprint: 'google/nakasi/grouper:5.0.2/LRX22G/1649326:user/release-keys'
+02-20 10:58:49.695: I/DEBUG(133): Revision: '0'
+02-20 10:58:49.695: I/DEBUG(133): ABI: 'arm'
+02-20 10:58:49.695: I/DEBUG(133): pid: 4757, tid: 4757, name: skydemonandroid  &gt;&gt;&gt; aero.skydemon.skydemonandroid &lt;&lt;&lt;
+02-20 10:58:49.695: I/DEBUG(133): signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr --------
+02-20 10:58:49.715: I/DEBUG(133): Abort message: '* Assertion: should not be reached at /Users/builder/data/lanes/monodroid-mavericks-master/58d28ca9/source/mono/mono/metadata/sgen-scan-object.h:101
+02-20 10:58:49.715: I/DEBUG(133): '
+02-20 10:58:49.715: I/DEBUG(133):     r0 00000000  r1 00001295  r2 00000006  r3 00000000
+02-20 10:58:49.715: I/DEBUG(133):     r4 40191114  r5 00000006  r6 00000016  r7 0000010c
+02-20 10:58:49.715: I/DEBUG(133):     r8 ffffffff  r9 6919acd0  sl 00000001  fp 6919acd0
+02-20 10:58:49.715: I/DEBUG(133):     ip 00001295  sp bef46140  lr 400fc3c5  pc 40122648  cpsr 600f0010
+02-20 10:58:49.715: I/DEBUG(133): backtrace:
+02-20 10:58:49.715: I/DEBUG(133):     #00 pc 0003c648  /system/lib/libc.so (tgkill+12)
+02-20 10:58:49.715: I/DEBUG(133):     #01 pc 000163c1  /system/lib/libc.so (pthread_kill+52)
+02-20 10:58:49.715: I/DEBUG(133):     #02 pc 00016fdf  /system/lib/libc.so (raise+10)
+02-20 10:58:49.715: I/DEBUG(133):     #03 pc 00013819  /system/lib/libc.so
+02-20 10:58:49.715: I/DEBUG(133):     #04 pc 00011fe8  /system/lib/libc.so (abort+4)
+02-20 10:58:49.715: I/DEBUG(133):     #05 pc 001fbca4  /data/app/aero.skydemon.skydemonandroid-1/lib/arm/libmonosgen-2.0.so
+02-20 10:58:50.212: I/DEBUG(133): Tombstone written to: /data/tombstones/tombstone_00</pre>
+    </div>
+
+    <div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-20 06:12:03 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Here's the build.
+
+<a href="http://www.skydemon.aero/extras/android/aero.skydemon.skydemonandroid-Aligned.xa5_2.apk">http://www.skydemon.aero/extras/android/aero.skydemon.skydemonandroid-Aligned.xa5_2.apk</a></pre>
+    </div>
+
+    <div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-20 16:27:35 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><span class="quote">&gt; Ok, I had no idea the build had to be debuggable.</span>
+
+I didn't either until I tried to extract files. :-(
+
+Which brings us to the new .apk in <a href="bug.html">Comment #48</a>: it "works" for me on a Nexus 5, in that it doesn't crash. It also doesn't actually work: I hit the "Welcome to SkyDemon" splash screen, tap I Agree, then a Charts "dialog" appears with a Continue button and a spinning logo.
+
+...and it never progresses. I've left the spinning logo spinning for over an hour, and it never stopped spinning. Tapping Continue while the logo is spinning results in the message:
+
+<span class="quote">&gt; The Charts window cannot be shown at the moment because another window is open.</span>
+
+Uh...okay?
+
+Fortunately, QA has a 2012 Nexus 7. Doubly fortunately, it also crashes. Unfortunately, it crashes with a *different* message: <a href="https://gist.github.com/pjcollins/90aeae493fb8fd7a5572">https://gist.github.com/pjcollins/90aeae493fb8fd7a5572</a>
+
+<span class="quote">&gt; I/DEBUG   (  135): Abort message: '* Assertion at /Users/builder/data/lanes/monodroid-mavericks-master/58d28ca9/source/mono/mono/metadata/class.c:8474, condition `ac-&gt;rank' not met</span>
+
+We are investigating...</pre>
+    </div>
+
+    <div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-23 09:38:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Since that build runs for you (it still doesn't for me) I will send it to one tester and ask if he can make it crash right away. If he can, I will send you the relevant log(s).
+
+How are your investigations going?</pre>
+    </div>
+
+    <div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-02-23 12:16:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">My tester is encountering the same assertion failure as you pasted above. They encounter it after pressing the Agree button before the map has had a chance to be drawn.
+
+I'm glad that you're able to reproduce this one, and look forward to hearing your diagnosis.</pre>
+    </div>
+
+    <div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-03 13:02:58 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Ok, you've been reproducing the crash for 10 days now... are you any closer to a fix?
+
+Tim</pre>
+    </div>
+
+    <div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-11 12:59:46 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thank you for your email with an updated hotfix build. I have built a beta version of our app with it, and observe no crash myself (not that I have tried particularly hard) and will send it out for our testers who have been experiencing the worst stability problems to have a play with. I will report back.
+
+Your problem with the Charts window is very strange. We've literally never seen anyone have that problem before, and we have tens of thousands of subscribers. I wonder if a network issue could be preventing the window from populating itself, but you'd think it would time out eventually.</pre>
+    </div>
+
+    <div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-12 07:40:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Our testers are still playing with the build from yesterday.
+
+In the meantime I am attempting to debug the issue in the Charts window, which I have now reproduced. The problem is, I am unable to actually run a build under the debugger. When I do, as soon as I attempt to proceed past the disclaimer screen VS breaks with no source available, and the stack trace below. No other information is actually given.
+
+<span class="quote">&gt;	0x0 in Android.Runtime.JNIEnv.WaitForBridgeProcessing at /Users/builder/data/lanes/monodroid-mavericks-monodroid-5.1-series/60a61668/source/monodroid/src/Mono.Android/src/Runtime/JNIEnv.cs:256,4	C#</span>
+ 	0x0 in object.2a24b6ac-f51c-4a2f-9d2a-2cdc692e1ec8	C#
+
+The DDMS output around the time of the break is below, but it doesn't seem very helpful. Any ideas?
+
+03-12 11:37:13.271: W/chromium(29229): [WARNING:data_reduction_proxy_settings.cc(328)] SPDY proxy OFF at startup
+03-12 11:37:13.290: W/art(29229): Attempt to remove local handle scope entry from IRT, ignoring
+03-12 11:37:13.295: W/AwContents(29229): onDetachedFromWindow called when already detached. Ignoring
+03-12 11:37:13.355: W/art(29229): JNI RegisterNativeMethods: attempt to register 0 native methods for md5f803af79f8a44689edc26e40cb6e2efe.PlateListScreen
+03-12 11:37:13.414: W/art(29229): JNI RegisterNativeMethods: attempt to register 0 native methods for md56af54d060a53300a2fcdb80eed01d519.FlightDetailsScreen
+03-12 11:37:13.494: E/chromium(29229): ### WebView Version 40 (1779353-arm) (code 422101)
+03-12 11:37:18.425: E/WifiStateMachine(481): WifiStateMachine CMD_START_SCAN source -2 txSuccessRate=0.01 rxSuccessRate=0.07 targetRoamBSSID=00:50:7f:5e:ff:88 RSSI=-48
+03-12 11:37:18.426: E/WifiStateMachine(481): WifiStateMachine starting scan for "SkyDemon-DrayTek"WPA_PSK with 2437
+03-12 11:37:18.431: I/wpa_supplicant(707): wlan0: CTRL-EVENT-SCAN-STARTED 
+03-12 11:37:18.442: D/WifiService(481): acquireWifiLockLocked: WifiLock{NlpWifiLock type=2 binder=android.os.BinderProxy@3fa68d33}
+03-12 11:37:18.445: E/WifiStateMachine(481): WifiStateMachine CMD_START_SCAN source 10019 txSuccessRate=0.01 rxSuccessRate=0.07 targetRoamBSSID=00:50:7f:5e:ff:88 RSSI=-48
+03-12 11:37:18.491: E/WifiStateMachine(481): WifiStateMachine CMD_START_SCAN source 10019 txSuccessRate=0.01 rxSuccessRate=0.07 targetRoamBSSID=00:50:7f:5e:ff:88 RSSI=-48
+03-12 11:37:18.493: I/wpa_supplicant(707): wlan0: CTRL-EVENT-SCAN-STARTED 
+03-12 11:37:19.756: D/WifiService(481): releaseWifiLockLocked: WifiLock{NlpWifiLock type=2 binder=android.os.BinderProxy@3fa68d33}
+03-12 11:37:19.766: D/libgps(481): proxy_gps_inject_location()
+03-12 11:37:19.901: W/ActivityManager(481): Launch timeout has expired, giving up wake lock!</pre>
+    </div>
+
+    <div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-16 06:24:40 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">One of our testers has had a chance to try the new build and he reports it is still crashing frequently. Here's some sample logcat output:
+
+[ 03-13 07:51:43.455 16343:16343 E/art      ]
+JNI ERROR (app bug): accessed deleted global reference 0xa00b3e
+
+[ 03-13 07:51:43.456 16343:16343 F/art      ]
+art/runtime/indirect_reference_table.cc:61] JNI ERROR (app bug): see above.
+
+[ 03-13 07:51:44.911 16343:16343 F/art      ]
+art/runtime/runtime.cc:284] Runtime aborting...
+
+[ 03-13 07:51:44.911 16343:16343 F/art      ]
+art/runtime/runtime.cc:284] Aborting thread:
+
+So it looks like the original bug that we are familiar with.</pre>
+    </div>
+
+    <div id="c56" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 56</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-16 09:58:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Yay!
+
+Now, can we get the grefs.txt file? :-)
+
+<span class="quote">&gt; adb shell run-as aero.skydemon.skydemonandroid cat files/.__override__/grefs.txt &gt; grefs.txt</span></pre>
+    </div>
+
+    <div id="c57" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 57</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-17 11:40:34 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'm working on it, but hampered by the issue in <a href="bug.html">comment #54</a>. Can you shed any light on that? Is this hotfix build broken for debugging by design?
+
+I've been trying to debug the issue which you have seen, and we are also now seeing on our development device, where the Charts window appears but then nothing happens. Debugging is tricky because of the issue above but by resorting to dumping output to logcat, I have determined that our call to WebClient.OpenReadAsync never triggers the WebClient.OpenReadCompleted event which it should.
+
+Did you break WebClient in this build?</pre>
+    </div>
+
+    <div id="c58" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 58</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-17 13:54:26 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Success! I've emailed crash log and gref dump to you. Hopefully this will tell you what's going wrong.</pre>
+    </div>
+
+    <div id="c59" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 59</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-17 14:47:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I've been looking at this a little myself. I'm no expert at this gref stuff but I can see the relevant part of the log, where things go wrong. What's worrying is that several of the stack traces shown for the creation and deletion of references are impossible.
+
+I can see that the problematic object is disposed twice, the first time not from my method. The stack trace shows this:
+
+   at Java.Lang.Object.Dispose()
+   at Divelements.SkyDemon.Drawing.IndependentText.MeasureText(DrawingContext context, System.String text, Divelements.SkyDemon.Drawing.Font font, SizeF constraints)
+
+But that is very suspicious as there should be an intermediate frame in there with the actual .net Dispose method. The gref log shows the object in question is a Typeface instance, and there is no Dispose called from the MeasureText method which could possibly end up Disposing a Typeface.
+
+A little further down is this:
+
+   at Java.Lang.Object.Dispose()
+   at Divelements.SkyDemon.Drawing.DrawingContext.Dispose()
+   at Divelements.SkyDemon.Drawing.IndependentText.MeasureText(System.String text, Divelements.SkyDemon.Drawing.Font font, SizeF constraint)
+
+But again, there is no call to DrawingContext.Dispose in MeasureText (not even with a using).
+
+Further on we have this:
+
+   at Android.Graphics.Paint..ctor()
+   at Divelements.SkyDemon.Drawing.DrawingContext..ctor(Android.Graphics.Canvas canvas)
+   at Divelements.SkyDemon.Drawing.IndependentText.MeasureText(System.String text, Divelements.SkyDemon.Drawing.Font font, SizeF constraint)
+
+But there is no creation of a DrawingContext from within the MeasureText method. These stack traces are impossible.
+
+This looks to me like it's happening because two threads are calling into the same code at the same time, but everything is properly synchronised, or at least it should be. Because I suspect it will be of interest to you, here's the source for the MeasureText method which is surfacing itself so heavily in this log:
+
+public static System.Drawing.Size MeasureText(DrawingContext context, string text, Font font, System.Drawing.SizeF constraints)
+{
+	lock (sync)
+	//using (TextPaint textPaint = new TextPaint(context.Paint))
+	{
+		textPaint.SetTypeface(font.Typeface);
+		textPaint.TextSize = font.ScaledSize;
+		using (StaticLayout layout = new StaticLayout(text, textPaint, (int)constraints.Width, Layout.Alignment.AlignNormal, 1, 0, false))
+		{
+			int width = 0;
+			for (int i = 0; i &lt; layout.LineCount; i++)
+				width = Math.Max(width, (int)Math.Ceiling(layout.GetLineWidth(i)));
+			return new System.Drawing.Size(width, Math.Min(layout.Height, (int)constraints.Height));
+		}
+	}
+}
+
+We use a shared synchronised TextPaint in this method because it prevents us from having hundreds of TextPaint allocations during a paint cycle.</pre>
+    </div>
+
+    <div id="c60" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 60</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-23 06:23:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">It's frustrating that you've gone quiet on this again, now that we've got into a situation where we've given you the data you've been asking for. It's required quite a bit of work on my part to get you that data.
+
+This issue was reported to you in December. Since then, although I've been chasing you every few weeks, the clamouring of our customers has not stopped, and nor would I expect it to. Can you make this a priority please?</pre>
+    </div>
+
+    <div id="c61" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 61</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-23 16:56:57 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The problem is figuring out what the problem is. We know what it is -- an invalid handle value is used -- but we don't know *why* that is, especially when all available evidence suggests that it shouldn't be happening.
+
+Which is aggravating for all parties involved. (It's hard to ask for more details when I can't even think of what more to ask for, yet things are still failing. I'm obviously overlooking *something*, but I don't know what.)
+
+Thank you for <a href="bug.html">Comment #59</a>.
+
+<span class="quote">&gt; What's worrying is that several of the stack traces shown for the
+&gt; creation and deletion of references are impossible.</span>
+
+There are three possible reasons for this:
+
+1. Interface method invocation; or
+2. Method inlining; or
+3. The methods in the stack trace aren't what you think they are.
+
+When an interface method is invoked, the interface method doesn't show up in the stack trace. Instead, the implementing method is shown.
+
+When methods are inlined, they may not be reliably "un-inlined" when producing the stack trace. This can explain some missing methods. (None here, but theoretically speaking that can explain some missing methods...)
+
+Finally, when reading stack traces, some care needs to be taken to ensure we're thinking about the right method overload.
+
+Consider:
+
+<span class="quote">&gt;   at Java.Lang.Object.Dispose()
+&gt;   at Divelements.SkyDemon.Drawing.IndependentText.MeasureText(DrawingContext context, System.String text, Divelements.SkyDemon.Drawing.Font font, SizeF constraints)</span>
+
+This is the method you provided in <a href="bug.html">Comment #59</a>, which contains:
+
+    using (var layout = new StaticLayout (...))
+    {
+        ...
+    }
+
+At the end of the `using` block, layout.Dispose() is invoked, which is implemented as Java.Lang.Object.Dispose(). There isn't a "missing" method in the above stack trace; it is correct and complete.
+
+<span class="quote">&gt; A little further down is this:
+&gt; 
+&gt;    at Java.Lang.Object.Dispose()
+&gt;    at Divelements.SkyDemon.Drawing.DrawingContext.Dispose()
+&gt;    at Divelements.SkyDemon.Drawing.IndependentText.MeasureText(System.String text, Divelements.SkyDemon.Drawing.Font font, SizeF constraint)
+&gt; 
+&gt; But again, there is no call to DrawingContext.Dispose in MeasureText (not even
+&gt; with a using).</span>
+
+What we have here is an *overload* of the MeasureText() provided in <a href="bug.html">Comment #59</a>: it's not MeasureText(DrawingContext, System.String, Font, SizeF), this is instead MeasureText(string, Font, SizeF) (note the different parameter list). This overload *does* create and Dispose() of a DrawingContext instance; the stack trace is not only not impossible; it is correct and expected.
+
+Finally,
+
+<span class="quote">&gt;    at Android.Graphics.Paint..ctor()
+&gt;    at Divelements.SkyDemon.Drawing.DrawingContext..ctor(Android.Graphics.Canvas canvas)
+&gt;    at Divelements.SkyDemon.Drawing.IndependentText.MeasureText(System.String text, Divelements.SkyDemon.Drawing.Font font, SizeF constraint)
+&gt; 
+&gt; But there is no creation of a DrawingContext from within the MeasureText
+&gt; method. These stack traces are impossible.</span>
+
+Again, this is a different MeasureText(string, Font, SizeF) overload, which does create a DrawingContext instance. The stack trace is correct and expected.</pre>
+    </div>
+
+    <div id="c62" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 62</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-24 06:25:42 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I see what you mean about the MeasureText overload. You're right, it does create a dummy DrawingContext which itself creates a dummy Paint which is then Disposed.
+
+The question is, why the Typeface object is being disposed twice. That's why I claimed the first stack trace above was impossible. This one:
+
+   at Java.Lang.Object.Dispose()
+   at Divelements.SkyDemon.Drawing.IndependentText.MeasureText(DrawingContext context, System.String text, Divelements.SkyDemon.Drawing.Font font, SizeF constraints)
+
+Is from the GREF log output. It's from the first time the object with ref 0x5800a02 is disposed. Since I can scroll up and observe 0x5800a02 is a Typeface, that made me assume that the object whose Dispose method was being called was the Typeface. Is that wrong? The stack trace suggests that it must actually be a TextPaint or a StaticLayout that is being disposed. And yet your GREF output tells us that object 0x5800a02 is being cleaned up.
+
+Further down, there's the stack trace where the Typeface SHOULD be being cleaned up:
+
+   at Java.Lang.Object.Dispose()
+   at Divelements.SkyDemon.Drawing.Font.Dispose()
+   at Divelements.SkyDemon.Drawing.IndependentText.CreateFontToFitHeight(DrawingContext context, System.String fontFamily, TypefaceStyle style, Single height, System.String text)
+
+Which is presumably where things are crashing and burning because it's already been cleaned up.
+
+It's obvious that something to do with threading and fonts is going wrong here. We need to be rendering stuff on multiple threads, and inevitably that's going to involve fonts, and that in itself can't be so unusual. I can try scattering lots of synchronisation code around to ensure nothing with fonts happens at the same time, but there must be a better way to solve the actual problem.
+
+Is there no debugging code we can insert which will actually tell us why the object in question is being disposed twice? Or can't you check before you dispose whether it would result in this exception?</pre>
+    </div>
+
+    <div id="c63" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 63</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-27 14:34:18 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">(Hopefully) "Fixed"/addressed in documentation/25831c6a:
+
+<a href="http://developer.xamarin.com/guides/android/advanced_topics/garbage_collection/#Disposing_of_Peer_instances">http://developer.xamarin.com/guides/android/advanced_topics/garbage_collection/#Disposing_of_Peer_instances</a>
+
+After additional private email, we think we've figured out the issue. (I hope.)
+
+Background: Xamarin.Android supports referential equality: if you call two Java methods and those return the same Java instance (as determined by `a == b` in Java), then calling the bindings of those same Java methods from e.g. C# should return the same wrapper instance. (We felt it would be very confusing if different instances were returned.) This is done by maintaining a mapping between Java instances and their corresponding managed wrapper instances, with a 1:1 mapping between them.
+
+Furthermore, since each wrapper instance consumes a GREF, and GREFs have a cost associated with them, our wrapper types implement IDisposable.Dispose() to free the GREF, deleting the mapping between between the Java instance and the wrapper instance.
+
+The problem with this is that referential equality support introduces "shared state" between threads -- by design! If two Java methods return the same instance (even across threads), and the bindings of those Java methods return the same wrapper instance (even across threads), then changes to the instance from one thread will be visible from the other thread.
+
+...which sounds obvious, but isn't always.
+
+Which brings us to Typeface.create(), which doesn't create new instances. Instead, it maintains a cache of previously created Typeface instances, and may return one of those previously created instances:
+
+<a href="https://github.com/android/platform_frameworks_base/blob/117cbebe/graphics/java/android/graphics/Typeface.java#L133-165">https://github.com/android/platform_frameworks_base/blob/117cbebe/graphics/java/android/graphics/Typeface.java#L133-165</a>
+
+Tim's app would call Typeface.Create(), store the Typeface, use it, then Dispose() of the instance, from multiple threads.
+
+Since Typeface.create() didn't always create new instances, this resulted in "unintentional sharing" between those threads, and Dispose()ing of the shared Typeface instance from one thread would invalidate that instance from other threads referencing the same instance.
+
+The "fix" (at least for now)? Don't Do That™. Specifically, don't call Dispose() on Typeface instances returned from Typeface.Create(). This advice is likely true for other methods as well, thus making things somewhat more confusing.
+
+I've updated the documentation to hopefully make it clearer when Dispose() can be called on instances.</pre>
+    </div>
+
+    <div id="c64" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 64</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Dawson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-27 14:59:29 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Isn't this bug the "accessed deleted global reference" issue though, which is different?</pre>
+    </div>
+
+    <div id="c65" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 65</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-27 15:08:47 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><span class="quote">&gt; Isn't this bug the "accessed deleted global reference" issue though, which is different?</span>
+
+I don't think so; as per the March 17 2015 email:
+
+<span class="quote">&gt; &gt; [ 03-17 17:39:51.928 27676:27676 E/art      ]
+&gt; &gt; JNI ERROR (app bug): accessed deleted global reference 0x5800a02
+&gt; 
+&gt; So we head over to grefs.txt, looking for handle value 0x5800a02, and find:</span>
+...
+<span class="quote">&gt; ..but why is 0x5800a02 being used?
+&gt; 
+&gt; Is there *any* possibility that the Typeface created here could be shared with another thread?
+&gt; Can you please review your source code to check that?
+&gt; 
+&gt; My only guess is that there's a "timing bug", in which one thread creates the
+&gt; Typeface instance, another thread invokes a method on that instance, and *right after*
+&gt; the handle value has been looked up but *before* JNIEnv.Call*Method() has been
+&gt; invoked the first thread Dispose()s of the Typeface instance.</span>
+
+As per the followup emails, I believe the above guess has been verified, at least in theory: Typeface.create() returns cached instances, and thus we can have two threads inadvertently sharing that instance, so depending on the hardware (multi-core?), it is plausible (if rare) that the Handle value would be looked up *right before* the instance is disposed on another thread, then the (CPU register cached and now invalid) handle is used.
+
+It's the same "bug" -- inadvertent sharing between threads -- that spawns multiple failure modes: invalid JNI handles, or ArgumentExceptions, or JNIEnv::GetObjectRefType() errors, or...</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

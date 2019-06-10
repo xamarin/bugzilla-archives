@@ -1,0 +1,2369 @@
+<html lang="en"><head>
+    <title>2509 – MD Hangs</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Xamarin_Studio
+                 bz_component_General
+                 bz_bug_2509 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;2509</span>
+
+        <span id="subtitle" class="subheader">MD Hangs</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2012-05-22 07:29:48 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2012-05-22 07:29:48">
+  <input type="hidden" name="id" value="2509">
+  <input type="hidden" name="token" value="1559146492-I6JImcXVJIf-9eWZVYvTxsEbvck-JTcY3DAmq8bbP1c">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;2509</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">MD Hangs</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>MD Hangs
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Xamarin Studio
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Desktop
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">General
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>unspecified
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Linux
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>---
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Bugzilla</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2011-12-14 19:06 UTC by <span class="vcard"><span class="fn">Gary____</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2012-05-22 07:29 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>1
+          user
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="mono-bugs+monodevelop">mono-bugs+monodevelop</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_x-gettext-translation">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1056&amp;file=de.po" title="View the content of the attachment">
+          <b>de.po</b></a>
+
+          <span class="bz_attach_extra_info">
+              (829.24 KB,
+                text/x-gettext-translation)
+
+            <br>
+            <a href="#attach_1056" title="Go to the comment associated with the attachment">2011-12-16 00:11 UTC</a>,
+
+            <span class="vcard"><span class="fn">Gary____</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1056&amp;file=de.po">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_application_octet-stream">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1382&amp;file=String.Split%20too%20slow" title="View the content of the attachment">
+          <b>String.Split too slow console program</b></a>
+
+          <span class="bz_attach_extra_info">
+              (990 bytes,
+                application/octet-stream)
+
+            <br>
+            <a href="#attach_1382" title="Go to the comment associated with the attachment">2012-02-18 22:58 UTC</a>,
+
+            <span class="vcard"><span class="fn">Gary____</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1382&amp;file=String.Split%20too%20slow">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_application_octet-stream">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1383&amp;file=String.Split%20works" title="View the content of the attachment">
+          <b>String Split Works Console Program</b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.05 KB,
+                application/octet-stream)
+
+            <br>
+            <a href="#attach_1383" title="Go to the comment associated with the attachment">2012-02-18 22:59 UTC</a>,
+
+            <span class="vcard"><span class="fn">Gary____</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1383&amp;file=String.Split%20works">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/mono/monodevelop/issues">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-14 19:06:42 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I built MD from source, loaded the MD solution up inside itself and noticed launching a language file from  the OP project freezes the app. 
+
+I've since executed the MD source from within MD in debug mode and replicated the issue. On pausing during the freeze I get this stack dump on the thread that isn't sleeping / calling the WaitOne function.
+
+Mono.Globalization.Unicode.MSCompatUnicodeTable.IsIgnorable (cp=, flag=) in 
+Mono.Globalization.Unicode.SimpleCollator.IsIgnorable (i=, opt=) in 
+Mono.Globalization.Unicode.SimpleCollator.CompareInternal (s1=, idx1=, len1=, s2=, idx2=, len2=, targetConsumed=, sourceConsumed=, skipHeadingExtenders=, immediateBreakup=, ctx=) in 
+Mono.Globalization.Unicode.SimpleCollator.IsPrefix (s=, target=, start=, length=, skipHeadingExtenders=, ctx=) in 
+Mono.Globalization.Unicode.SimpleCollator.IndexOf (s=, target=, start=, length=, targetSortKey=, ctx=) in 
+Mono.Globalization.Unicode.SimpleCollator.IndexOf (s=, target=, start=, length=, opt=) in 
+System.Globalization.CompareInfo.internal_index_managed (s1=, sindex=, count=, s2=, opt=, first=) in 
+System.Globalization.CompareInfo.internal_index_switch (s1=, sindex=, count=, s2=, opt=, first=) in 
+System.Globalization.CompareInfo.IndexOf (source=, value=, startIndex=, count=, options=) in 
+System.Globalization.CompareInfo.IndexOf (source=, value=, startIndex=, count=) in 
+System.String.IndexOf (value=, startIndex=, count=) in 
+System.String.IndexOf (value=, startIndex=) in 
+System.String.Split (separator=, count=, options=) in 
+System.String.Split (separator=, options=) in 
+MonoDevelop.Gettext.CatalogParser.GetLines (fileStr=, newLine=) in /home/garyb/mono/monodevelop/main/src/addins/MonoDevelop.Gettext/MonoDevelop.Gettext/CatalogParser.cs:76
+MonoDevelop.Gettext.CatalogParser..ctor (fileName=, encoding=) in /home/garyb/mono/monodevelop/main/src/addins/MonoDevelop.Gettext/MonoDevelop.Gettext/CatalogParser.cs:52
+MonoDevelop.Gettext.CharsetInfoFinder..ctor (project=, poFile=) in /home/garyb/mono/monodevelop/main/src/addins/MonoDevelop.Gettext/MonoDevelop.Gettext/CatalogParser.cs
+MonoDevelop.Gettext.Catalog.Load (monitor=, poFile=) in /home/garyb/mono/monodevelop/main/src/addins/MonoDevelop.Gettext/MonoDevelop.Gettext/Catalog.cs:213
+MonoDevelop.Gettext.Editor.CatalogEditorView.Load (fileName=) in /home/garyb/mono/monodevelop/main/src/addins/MonoDevelop.Gettext/MonoDevelop.Gettext.Editor/CatalogEditorView.cs:58
+MonoDevelop.Ide.Gui.LoadFileWrapper.Invoke (fileName=) in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide.Gui/Workbench.cs:1066
+MonoDevelop.Ide.Gui.Workbench.RealOpenFile (openFileInfo=) in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide.Gui/Workbench.cs:763
+MonoDevelop.Ide.Gui.Workbench.OpenDocument (fileName=, line=, column=, options=, encoding=, binding=) in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide.Gui/Workbench.cs:393
+MonoDevelop.Ide.Gui.Workbench.OpenDocument (fileName=, options=) in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide.Gui/Workbench.cs:324
+MonoDevelop.Gettext.NodeBuilders.TranslationNodeBuilder+TranslationNodeCommandHandler.ActivateItem () in /home/garyb/mono/monodevelop/main/src/addins/MonoDevelop.Gettext/MonoDevelop.Gettext.NodeBuilders/TranslationNodeBuilder.cs:94
+MonoDevelop.Ide.Gui.Components.NodeCommandHandler.ActivateMultipleItems () in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide.Gui.Components/NodeCommandHandler.cs:104
+MonoDevelop.Ide.Gui.Components.ExtensibleTreeView.ActivateCurrentItem () in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide.Gui.Components/ExtensibleTreeView.cs:837
+MonoDevelop.Ide.Gui.Components.ExtensibleTreeView.OnNodeActivated (sender=, args=) in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide.Gui.Components/ExtensibleTreeView.cs:1942
+System.Reflection.MonoMethod.Invoke (obj=, invokeAttr=, binder=, parameters=, culture=) in 
+System.Reflection.MethodBase.Invoke (obj=, parameters=) in 
+System.Delegate.DynamicInvokeImpl (args=) in 
+System.MulticastDelegate.DynamicInvokeImpl (args=) in 
+System.Delegate.DynamicInvoke (args=) in 
+GLib.Signal.ClosureInvokedCB (o=, args=) in 
+GLib.SignalClosure.Invoke (args=) in 
+GLib.SignalClosure.MarshalCallback (raw_closure=, return_val=, n_param_vals=, param_values=, invocation_hint=, marshal_data=) in 
+Gtk.Widget.OnButtonPressEvent (evnt=) in 
+MonoDevelop.Components.ContextMenuTreeView.OnButtonPressEvent (evnt=) in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Components/ContextMenuTreeView.cs:60
+Gtk.Widget.buttonpressevent_cb (widget=, evnt=) in 
+Gtk.Application.Run () in 
+MonoDevelop.Ide.IdeApp.Run () in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/Ide.cs:384
+MonoDevelop.Ide.IdeStartup.Run (options=) in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/IdeStartup.cs:272
+MonoDevelop.Ide.IdeStartup.Main (args=) in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/IdeStartup.cs:521
+MonoDevelop.Startup.MonoDevelopMain.Main (args=) in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Startup/MonoDevelop.Startup/MonoDevelopMain.cs:16
+
+On Linux Mint 10 with MonoDevelop 2.8.5 from github (Gettext Version 0.18.1.1-1ubuntu2).</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-14 20:20:59 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The about box says its version 2.8.5, i pulled from git://github.com/mono/monodevelop.git a few days ago.</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-14 23:12:15 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Another hang:
+
+By the 2nd or 3rd time i build a simple 1 file C or .NET program MD freezes. Building MD inside itself in debug mode and pausing execution during the freeze reveals the following stack trace.
+
+Gdk.Window.GetOrigin (x=0, y=0) in 
+MonoDevelop.Components.Docking.ShadedContainer.DrawBackground (w={MonoDevelop.Ide.Gui.SdiDragNotebook}, allocation=The vm is not suspended.) in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Components.Docking/ShadedContainer.cs:205
+MonoDevelop.Components.Docking.ShadedContainer.DrawBackground (w={MonoDevelop.Ide.Gui.SdiDragNotebook}) in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Components.Docking/ShadedContainer.cs:184
+MonoDevelop.Ide.Gui.SdiDragNotebook.OnExposeEvent (evnt={Gdk.EventExpose}) in /home/garyb/mono/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide.Gui/DefaultWorkbench.cs:1396
+Gtk.Widget.exposeevent_cb (widget=0x91d3848, evnt=0xa304378) in 
+
+I am completely new to mono / linux, so the issue may be me :-)</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-15 01:34:52 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Looks like it might be a runtime issue.
+
+When MD hangs, could you please get a native backtrace from gdb? See <a href="http://monodevelop.com/Developers/Reporting_Bugs#Native_Hangs">http://monodevelop.com/Developers/Reporting_Bugs#Native_Hangs</a> for instructions.</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-15 17:10:20 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Gdb output: On opening translation file hang:
+
+Thread 1 (process 2428):
+#0  0x004fa416 in __kernel_vsyscall ()
+#1  0x00340c53 in waitpid () from /lib/libc.so.6
+#2  0x08084462 in ?? ()
+#3  0x080856ce in wait_for ()
+#4  0x0807431a in execute_command_internal ()
+#5  0x08072cea in ?? ()
+#6  0x080741c2 in execute_command_internal ()
+#7  0x08074094 in execute_command_internal ()
+#8  0x08074513 in execute_command ()
+#9  0x08075387 in ?? ()
+#10 0x080737f0 in execute_command_internal ()
+#11 0x08074513 in execute_command ()
+#12 0x08060b3f in reader_loop ()
+#13 0x080601b3 in main ()
+
+Gdb output: On building program hang
+
+Thread 1 (process 2181):
+#0  0x003bf416 in __kernel_vsyscall ()
+#1  0x00231c53 in waitpid () from /lib/libc.so.6
+#2  0x08084462 in ?? ()
+#3  0x080856ce in wait_for ()
+#4  0x0807431a in execute_command_internal ()
+#5  0x08072cea in ?? ()
+#6  0x080741c2 in execute_command_internal ()
+#7  0x08074094 in execute_command_internal ()
+#8  0x08074513 in execute_command ()
+#9  0x08075387 in ?? ()
+#10 0x080737f0 in execute_command_internal ()
+#11 0x08074513 in execute_command ()
+#12 0x08060b3f in reader_loop ()
+#13 0x080601b3 in main ()
+
+It doesn't seem very detailed, setting MONO_OPTIONS="--debug" seemed to have no effect on this.</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-15 18:24:26 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">That doesn't look like the right process. If I had to guess, I'd say it was bash?</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-15 19:38:16 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Possibly, heres the full terminal dump of what im doing. Ive installed a few debug symbol files since. This is for the hang opening translation files:
+
+
+garyb@system1 ~ $ ps
+  PID TTY          TIME CMD
+ 2117 pts/0    00:00:00 bash
+ 2398 pts/0    00:00:00 ps
+garyb@system1 ~ $ ps -A | grep monodevelop
+ 2371 ?        00:00:00 monodevelop
+garyb@system1 ~ $ gdb attach 2371
+GNU gdb (GDB) 7.2-ubuntu
+Copyright (C) 2010 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;<a href="http://gnu.org/licenses/gpl.html">http://gnu.org/licenses/gpl.html</a>&gt;
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i686-linux-gnu".
+For bug reporting instructions, please see:
+&lt;<a href="http://www.gnu.org/software/gdb/bugs/">http://www.gnu.org/software/gdb/bugs/</a>&gt;...
+attach: No such file or directory.
+Attaching to process 2371
+Reading symbols from /bin/bash...(no debugging symbols found)...done.
+Reading symbols from /lib/libncurses.so.5...Reading symbols from /usr/lib/debug/lib/libncurses.so.5.7...done.
+done.
+Loaded symbols for /lib/libncurses.so.5
+Reading symbols from /lib/libdl.so.2...Reading symbols from /usr/lib/debug/lib/libdl-2.12.1.so...done.
+done.
+Loaded symbols for /lib/libdl.so.2
+Reading symbols from /lib/libc.so.6...Reading symbols from /usr/lib/debug/lib/libc-2.12.1.so...done.
+done.
+Loaded symbols for /lib/libc.so.6
+Reading symbols from /lib/ld-linux.so.2...Reading symbols from /usr/lib/debug/lib/ld-2.12.1.so...done.
+done.
+Loaded symbols for /lib/ld-linux.so.2
+0x00528416 in __kernel_vsyscall ()
+(gdb) t a a bt
+
+Thread 1 (process 2371):
+#0  0x00528416 in __kernel_vsyscall ()
+#1  0x001a8c53 in __waitpid_nocancel ()
+    at ../sysdeps/unix/syscall-template.S:82
+#2  0x08084462 in ?? ()
+#3  0x080856ce in wait_for ()
+#4  0x0807431a in execute_command_internal ()
+#5  0x08072cea in ?? ()
+#6  0x080741c2 in execute_command_internal ()
+#7  0x08074094 in execute_command_internal ()
+#8  0x08074513 in execute_command ()
+#9  0x08075387 in ?? ()
+#10 0x080737f0 in execute_command_internal ()
+#11 0x08074513 in execute_command ()
+#12 0x08060b3f in reader_loop ()
+#13 0x080601b3 in main ()
+(gdb)</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-15 19:44:56 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">It gives the same output when MD isn't hanging actually, but if i attach gdb to the bash process, it's quite different.</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-15 22:46:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">That is a bash process, see 
+Attaching to process 2371
+Reading symbols from /bin/bash...(no debugging symbols found)...done.
+
+It's probably the MonoDevelop launch script, though I'm not sure why it's still running after exec'ng Mono - how did you start MD?
+
+Take a look though ps -A and look for processes with "mono", "MonoDevelop or "mono" in the name.</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-15 23:44:28 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Indeed your right Michael, there are processes called MonoDevelop and monodevelop running, the former being the one I need it seems.
+
+I make installed the source to a /home/... folder. I double click the monodevelop file to run.
+
+Thanks for bearing with me.
+
+hang on opening translation file:
+
+Thread 12 (Thread 0xb721ab70 (LWP 4213)):
+#0  0x00252416 in __kernel_vsyscall ()
+#1  0x009cc895 in sem_wait@@GLIBC_2.1 ()
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/sem_wait.S:80
+#2  0x08213dd0 in mono_sem_wait (sem=0x82f27a4, alertable=1)
+    at mono-semaphore.c:113
+#3  0x081c3f9e in finalizer_thread (unused=0x0) at gc.c:1066
+#4  0x081bd2e6 in start_wrapper_internal (data=0x8a9a8b0) at threads.c:783
+#5  start_wrapper (data=0x8a9a8b0) at threads.c:831
+#6  0x082042cf in thread_start_routine (args=0x8a89964) at wthreads.c:287
+#7  0x0822aed5 in GC_start_routine (arg=0x61fe0) at pthread_support.c:1468
+#8  0x009c5cc9 in start_thread (arg=0xb721ab70) at pthread_create.c:304
+#9  0x0032369e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 11 (Thread 0xb629bb70 (LWP 4214)):
+#0  0x00252416 in __kernel_vsyscall ()
+#1  0x009ca4dc in pthread_cond_wait@@GLIBC_2.3.2 ()
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/pthread_cond_wait.S:169
+#2  0x082013c1 in _wapi_handle_timedwait_signal_handle (handle=0x408, timeout=
+    0x0, alertable=1, poll=0) at handles.c:1654
+#3  0x08201434 in _wapi_handle_wait_signal_handle (handle=0x408, alertable=1)
+    at handles.c:1597
+#4  0x08205777 in WaitForSingleObjectEx (handle=0x408, timeout=4294967295, 
+    alertable=1) at wait.c:203
+#5  0x081b9be3 in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=
+    0x7a9d8, handle=0x408, ms=-1, exitContext=0) at threads.c:1664
+#6  0x00d8c82c in ?? ()
+#7  0x00d8c670 in ?? ()
+#8  0x00d8c383 in ?? ()
+#9  0x00d8c280 in ?? ()
+#10 0x00d8c211 in ?? ()
+#11 0x08062b78 in mono_jit_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0x5c9d8, params=0xb629b2b8, 
+    exc=0x0) at mini.c:5764
+#12 0x081948a0 in mono_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0x5c9d8, params=0xb629b2b8, 
+    exc=0x0) at object.c:2755
+#13 0x08194b04 in mono_runtime_delegate_invoke (delegate=0x5c9d8, params=
+    0xb629b2b8, exc=0x0) at object.c:3420
+#14 0x081bd3b7 in start_wrapper_internal (data=0x8c88e20) at threads.c:789
+#15 start_wrapper (data=0x8c88e20) at threads.c:831
+#16 0x082042cf in thread_start_routine (args=0x8a89afc) at wthreads.c:287
+#17 0x0822aed5 in GC_start_routine (arg=0x61ee0) at pthread_support.c:1468
+#18 0x009c5cc9 in start_thread (arg=0xb629bb70) at pthread_create.c:304
+#19 0x0032369e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 10 (Thread 0xb5c84b70 (LWP 4216)):
+#0  0x00252416 in __kernel_vsyscall ()
+#1  0x00314df6 in __poll (fds=0x3abff4, nfds=1, timeout=-1)
+    at ../sysdeps/unix/sysv/linux/poll.c:87
+#2  0x00166a1b in g_poll (fds=0x8fd4d58, nfds=1, timeout=-1)
+    at /build/buildd/glib2.0-2.26.1/glib/gpoll.c:132
+#3  0x0015943c in g_main_context_poll (context=0x8fcfd28, 
+    block=&lt;value optimised out&gt;, dispatch=1, self=0x8fcfdb8)
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:3093
+#4  g_main_context_iterate (context=0x8fcfd28, block=&lt;value optimised out&gt;, 
+    dispatch=1, self=0x8fcfdb8)
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:2775
+#5  0x00159ba7 in g_main_loop_run (loop=0x8fcfda8)
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:2988
+#6  0x0628b9c4 in gdbus_shared_thread_func (data=0x0)
+    at /build/buildd/glib2.0-2.26.1/gio/gdbusprivate.c:277
+#7  0x0018048f in g_thread_create_proxy (data=0x8fcfdb8)
+    at /build/buildd/glib2.0-2.26.1/glib/gthread.c:1897
+#8  0x009c5cc9 in start_thread (arg=0xb5c84b70) at pthread_create.c:304
+#9  0x0032369e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 9 (Thread 0xb5e70b70 (LWP 4218)):
+#0  0x00252416 in __kernel_vsyscall ()
+#1  0x009ca884 in pthread_cond_timedwait@@GLIBC_2.3.2 ()
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/pthread_cond_timedwait.S:236
+#2  0x082012ec in _wapi_handle_timedwait_signal_handle (handle=0x4b4, timeout=
+    0xb5e70088, alertable=1, poll=0) at handles.c:1652
+#3  0x08205676 in WaitForSingleObjectEx (handle=0x4b4, timeout=5000, alertable=
+    1) at wait.c:205
+#4  0x081b9be3 in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=
+    0xb5158468, handle=0x4b4, ms=5000, exitContext=1) at threads.c:1664
+#5  0x00d8c82c in ?? ()
+#6  0x031adb00 in ?? ()
+#7  0x031ada74 in ?? ()
+#8  0x031ad968 in ?? ()
+#9  0x00d8c280 in ?? ()
+#10 0x00d8c211 in ?? ()
+#11 0x08062b78 in mono_jit_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xb50c9150, params=
+    0xb5e702b8, exc=0x0) at mini.c:5764
+#12 0x081948a0 in mono_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xb50c9150, params=
+    0xb5e702b8, exc=0x0) at object.c:2755
+#13 0x08194b04 in mono_runtime_delegate_invoke (delegate=0xb50c9150, params=
+    0xb5e702b8, exc=0x0) at object.c:3420
+#14 0x081bd3b7 in start_wrapper_internal (data=0x94d9940) at threads.c:789
+#15 start_wrapper (data=0x94d9940) at threads.c:831
+#16 0x082042cf in thread_start_routine (args=0x8a8f65c) at wthreads.c:287
+#17 0x0822aed5 in GC_start_routine (arg=0xb5075fe0) at pthread_support.c:1468
+#18 0x009c5cc9 in start_thread (arg=0xb5e70b70) at pthread_create.c:304
+#19 0x0032369e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 8 (Thread 0xb1a06b70 (LWP 4220)):
+#0  0x00252416 in __kernel_vsyscall ()
+#1  0x009cdde6 in nanosleep () at ../sysdeps/unix/syscall-template.S:82
+#2  0x082030b0 in SleepEx (ms=500, alertable=1) at wthreads.c:1027
+#3  0x08236c1f in monitor_thread (unused=0x0) at threadpool.c:771
+#4  0x081bd2e6 in start_wrapper_internal (data=0x9526be0) at threads.c:783
+#5  start_wrapper (data=0x9526be0) at threads.c:831
+#6  0x082042cf in thread_start_routine (args=0x8a8f7f4) at wthreads.c:287
+#7  0x0822aed5 in GC_start_routine (arg=0xb512fdc0) at pthread_support.c:1468
+#8  0x009c5cc9 in start_thread (arg=0xb1a06b70) at pthread_create.c:304
+#9  0x0032369e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+Thread 7 (Thread 0xb19e1b70 (LWP 4221)):
+#0  0x00252416 in __kernel_vsyscall ()
+#1  0x009cdde6 in nanosleep () at ../sysdeps/unix/syscall-template.S:82
+#2  0x082030b0 in SleepEx (ms=750, alertable=1) at wthreads.c:1027
+#3  0x081be890 in ves_icall_System_Threading_Thread_Sleep_internal (ms=750)
+    at threads.c:1319
+#4  0x065c008c in ?? ()
+#5  0x065c0008 in ?? ()
+#6  0x065bfcc0 in ?? ()
+#7  0x00d8c280 in ?? ()
+#8  0x00d8c211 in ?? ()
+#9  0x08062b78 in mono_jit_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xb5010d20, params=
+    0xb19e12b8, exc=0x0) at mini.c:5764
+#10 0x081948a0 in mono_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xb5010d20, params=
+    0xb19e12b8, exc=0x0) at object.c:2755
+#11 0x08194b04 in mono_runtime_delegate_invoke (delegate=0xb5010d20, params=
+    0xb19e12b8, exc=0x0) at object.c:3420
+#12 0x081bd3b7 in start_wrapper_internal (data=0x91d29b0) at threads.c:789
+#13 start_wrapper (data=0x91d29b0) at threads.c:831
+#14 0x082042cf in thread_start_routine (args=0x8a8f98c) at wthreads.c:287
+#15 0x0822aed5 in GC_start_routine (arg=0xb512fdc0) at pthread_support.c:1468
+#16 0x009c5cc9 in start_thread (arg=0xb19e1b70) at pthread_create.c:304
+#17 0x0032369e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 6 (Thread 0xb6196b70 (LWP 4222)):
+#0  0x00252416 in __kernel_vsyscall ()
+#1  0x00323fd6 in epoll_wait () at ../sysdeps/unix/syscall-template.S:82
+#2  0x08237878 in tp_epoll_wait (p=0x82f3d40)
+    at ../../mono/metadata/tpool-epoll.c:91
+#3  0x081bd2e6 in start_wrapper_internal (data=0x8d5dad8) at threads.c:783
+#4  start_wrapper (data=0x8d5dad8) at threads.c:831
+#5  0x082042cf in thread_start_routine (args=0x8a8fa14) at wthreads.c:287
+#6  0x0822aed5 in GC_start_routine (arg=0xb5085fe0) at pthread_support.c:1468
+#7  0x009c5cc9 in start_thread (arg=0xb6196b70) at pthread_create.c:304
+#8  0x0032369e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 5 (Thread 0xb6175b70 (LWP 4223)):
+#0  0x00252416 in __kernel_vsyscall ()
+#1  0x009cca48 in sem_timedwait ()
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/sem_timedwait.S:111
+#2  0x08213ec2 in mono_sem_timedwait (sem=0x82f3e14, timeout_ms=2000, 
+    alertable=1) at mono-semaphore.c:76
+#3  0x0823864f in async_invoke_thread (data=0x0) at threadpool.c:1477
+#4  0x081bd2e6 in start_wrapper_internal (data=0x92b31a8) at threads.c:783
+#5  start_wrapper (data=0x92b31a8) at threads.c:831
+#6  0x082042cf in thread_start_routine (args=0x8a8fa9c) at wthreads.c:287
+#7  0x0822aed5 in GC_start_routine (arg=0xb5085fe0) at pthread_support.c:1468
+#8  0x009c5cc9 in start_thread (arg=0xb6175b70) at pthread_create.c:304
+#9  0x0032369e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 4 (Thread 0xb1753b70 (LWP 4224)):
+#0  0x00252416 in __kernel_vsyscall ()
+#1  0x009cca48 in sem_timedwait ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/sem_timedwait.S:111
+#2  0x08213ec2 in mono_sem_timedwait (sem=0x82f3d94, timeout_ms=2000, 
+    alertable=1) at mono-semaphore.c:76
+#3  0x0823864f in async_invoke_thread (data=0x0) at threadpool.c:1477
+#4  0x081bd2e6 in start_wrapper_internal (data=0x9617c10) at threads.c:783
+#5  start_wrapper (data=0x9617c10) at threads.c:831
+#6  0x082042cf in thread_start_routine (args=0x8a8fb24) at wthreads.c:287
+#7  0x0822aed5 in GC_start_routine (arg=0xb5085fe0) at pthread_support.c:1468
+#8  0x009c5cc9 in start_thread (arg=0xb1753b70) at pthread_create.c:304
+#9  0x0032369e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 3 (Thread 0xb15e5b70 (LWP 4225)):
+#0  0x00252416 in __kernel_vsyscall ()
+#1  0x009cca48 in sem_timedwait ()
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/sem_timedwait.S:111
+#2  0x08213ec2 in mono_sem_timedwait (sem=0x82f3d94, timeout_ms=2000, 
+    alertable=1) at mono-semaphore.c:76
+#3  0x0823864f in async_invoke_thread (data=0x0) at threadpool.c:1477
+#4  0x081bd2e6 in start_wrapper_internal (data=0x92cc978) at threads.c:783
+#5  start_wrapper (data=0x92cc978) at threads.c:831
+#6  0x082042cf in thread_start_routine (args=0x8a8fbac) at wthreads.c:287
+#7  0x0822aed5 in GC_start_routine (arg=0xb5085d00) at pthread_support.c:1468
+#8  0x009c5cc9 in start_thread (arg=0xb15e5b70) at pthread_create.c:304
+#9  0x0032369e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 2 (Thread 0xb1bc6b70 (LWP 4277)):
+#0  0x00252416 in __kernel_vsyscall ()
+#1  0x009ca4dc in pthread_cond_wait@@GLIBC_2.3.2 ()
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/pthread_cond_wait.S:169
+#2  0x082013c1 in _wapi_handle_timedwait_signal_handle (handle=0x4f2, timeout=
+    0x0, alertable=1, poll=0) at handles.c:1654
+#3  0x08201434 in _wapi_handle_wait_signal_handle (handle=0x4f2, alertable=1)
+    at handles.c:1597
+#4  0x08205777 in WaitForSingleObjectEx (handle=0x4f2, timeout=4294967295, 
+    alertable=1) at wait.c:203
+#5  0x081b9be3 in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=
+    0xada55c00, handle=0x4f2, ms=-1, exitContext=0) at threads.c:1664
+#6  0x00d8c82c in ?? ()
+#7  0x00d8c670 in ?? ()
+#8  0x067ef377 in ?? ()
+#9  0x00d8c280 in ?? ()
+#10 0x00d8c211 in ?? ()
+#11 0x08062b78 in mono_jit_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xaee2abd0, params=
+    0xb1bc62b8, exc=0x0) at mini.c:5764
+#12 0x081948a0 in mono_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xaee2abd0, params=
+    0xb1bc62b8, exc=0x0) at object.c:2755
+#13 0x08194b04 in mono_runtime_delegate_invoke (delegate=0xaee2abd0, params=
+    0xb1bc62b8, exc=0x0) at object.c:3420
+#14 0x081bd3b7 in start_wrapper_internal (data=0x9e166c0) at threads.c:789
+#15 start_wrapper (data=0x9e166c0) at threads.c:831
+#16 0x082042cf in thread_start_routine (args=0x8a9174c) at wthreads.c:287
+#17 0x0822aed5 in GC_start_routine (arg=0xaee75fe0) at pthread_support.c:1468
+#18 0x009c5cc9 in start_thread (arg=0xb1bc6b70) at pthread_create.c:304
+#19 0x0032369e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 1 (Thread 0xb783d8f0 (LWP 4211)):
+#0  0x0068dec9 in ?? ()
+#1  0x0068de20 in ?? ()
+#2  0x0068c55c in ?? ()
+#3  0x0068bdd0 in ?? ()
+#4  0x05235cdc in ?? ()
+#5  0x00ab6288 in ?? ()
+#6  0x00ab5ec8 in ?? ()
+#7  0x00ab5e48 in ?? ()
+#8  0x00ab5d04 in ?? ()
+#9  0x00addc82 in ?? ()
+#10 0x00addb9c in ?? ()
+#11 0x012a1e84 in ?? ()
+#12 0x05235744 in ?? ()
+#13 0x052355c4 in ?? ()
+#14 0x05235590 in ?? ()
+#15 0x00ad5fd4 in ?? ()
+#16 0x065cdfe8 in ?? ()
+#17 0x08450dd8 in ?? ()
+#18 0x08450cd0 in ?? ()
+#19 0x05411fac in ?? ()
+#20 0x067ed63c in ?? ()
+#21 0x067ec640 in ?? ()
+#22 0x067ec1d8 in ?? ()
+#23 0x067ec13c in ?? ()
+#24 0x067ebf64 in ?? ()
+#25 0x067ebabb in ?? ()
+#26 0x067eb9df in ?? ()
+#27 0x065fc2a7 in ?? ()
+#28 0x08062b78 in mono_jit_runtime_invoke (method=
+    "MonoDevelop.Ide.Gui.Components.ExtensibleTreeView:OnNodeActivated ()", 
+    obj=0xaeb44f20, params=0xbf864460, exc=0x0) at mini.c:5764
+#29 0x081948a0 in mono_runtime_invoke (method=
+    "MonoDevelop.Ide.Gui.Components.ExtensibleTreeView:OnNodeActivated ()", 
+    obj=0xaeb44f20, params=0xbf864460, exc=0x0) at object.c:2755
+#30 0x0819a521 in mono_runtime_invoke_array (method=
+    "MonoDevelop.Ide.Gui.Components.ExtensibleTreeView:OnNodeActivated ()", 
+    obj=0xaeb44f20, params=0xaf125ca8, exc=0x0) at object.c:4142
+#31 0x0814fda0 in ves_icall_InternalInvoke (method=0xaebfda68, this=
+    0xaeb44f20, params=0xaf125ca8, exc=0xbf8645a0) at icall.c:2860
+#32 0x007de048 in ?? ()
+#33 0x007ddd50 in ?? ()
+#34 0x007ddc0b in ?? ()
+#35 0x065fc170 in ?? ()
+#36 0x065fbf9c in ?? ()
+#37 0x065fbf5f in ?? ()
+#38 0x065fbf30 in ?? ()
+#39 0x065fbdf4 in ?? ()
+#40 0x065fa810 in ?? ()
+#41 0x007e0038 in ?? ()
+#42 0x001f3412 in g_closure_invoke (closure=0xaf125ca8, return_value=0x0, 
+    n_param_values=3, param_values=0x9427520, invocation_hint=0xbf864910)
+    at /build/buildd/glib2.0-2.26.1/gobject/gclosure.c:766
+#43 0x00209f78 in signal_emit_unlocked_R (node=&lt;value optimised out&gt;, 
+    detail=&lt;value optimised out&gt;, instance=0x9b261b0, emission_return=0x0, 
+    instance_and_params=0x9427520)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3322
+#44 0x0020afac in g_signal_emit_valist (instance=0x9b261b0, signal_id=121, 
+    detail=0, var_args=
+    0xbf864ae4 "DM#\001\bK\206\277\364/'\001\364/'\001\220\200\245\t\310K\206\277df\017\001\260a\262\t\300,\322\t\220\200\245\tZm#\001\224K\206\277")
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:2983
+#45 0x0020b452 in g_signal_emit (instance=0x9b261b0, signal_id=121, detail=0)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3040
+#46 0x010e2ef8 in gtk_tree_view_row_activated ()
+   from /usr/lib/libgtk-x11-2.0.so.0
+#47 0x010f6664 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#48 0x007a8aa7 in gtksharp_widget_base_button_press_event ()
+   from /usr/lib/cli/gtk-sharp-2.0/libgtksharpglue-2.so
+#49 0x059b26f0 in ?? ()
+#50 0x059b26a4 in ?? ()
+#51 0x067e014c in ?? ()
+#52 0x059b2582 in ?? ()
+#53 0x00e0e7c4 in ?? ()
+#54 0x00fdc284 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#55 0x001f1a87 in g_type_class_meta_marshal (closure=0x9d22cc0, return_value=
+    0xbf864e94, n_param_values=2, param_values=0x9b261b0, invocation_hint=
+    0xbf864e80, marshal_data=0xb0)
+    at /build/buildd/glib2.0-2.26.1/gobject/gclosure.c:877
+#56 0x001f3412 in g_closure_invoke (closure=0x8c22268, return_value=
+    0xbf864e94, n_param_values=2, param_values=0x960f0f0, invocation_hint=
+    0xbf864e80) at /build/buildd/glib2.0-2.26.1/gobject/gclosure.c:766
+#57 0x002097d6 in signal_emit_unlocked_R (node=&lt;value optimised out&gt;, 
+    detail=&lt;value optimised out&gt;, instance=0x9b261b0, emission_return=
+    0xbf864fec, instance_and_params=0x960f0f0)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3290
+#58 0x0020ae2b in g_signal_emit_valist (instance=0x9b261b0, signal_id=33, 
+    detail=0, var_args=
+    0xbf865050 "|P\206\277\020b\305\bxP\206\277:\251\020\001\364/'\001\260a\262\t\230P\206\277\260a\262\t\260a\262\t\020b\305\b\230P\206\277")
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:2993
+#59 0x0020b452 in g_signal_emit (instance=0x9b261b0, signal_id=33, detail=0)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3040
+#60 0x0110ab96 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#61 0x00fd485d in gtk_propagate_event () from /usr/lib/libgtk-x11-2.0.so.0
+#62 0x00fd5ed7 in gtk_main_do_event () from /usr/lib/libgtk-x11-2.0.so.0
+#63 0x0040636a in ?? () from /usr/lib/libgdk-x11-2.0.so.0
+#64 0x00155855 in g_main_dispatch (context=0x8c3df88)
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:2149
+#65 g_main_context_dispatch (context=0x8c3df88)
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:2702
+#66 0x00159668 in g_main_context_iterate (context=0x8c3df88, 
+    block=&lt;value optimised out&gt;, dispatch=1, self=0x8bc47b0)
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:2780
+#67 0x00159ba7 in g_main_loop_run (loop=0x92f4b48)
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:2988
+#68 0x00fd61d9 in gtk_main () from /usr/lib/libgtk-x11-2.0.so.0
+#69 0x04b71f08 in ?? ()
+#70 0x04b71ecc in ?? ()
+#71 0x04b71eac in ?? ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#72 0x00d85e50 in ?? ()
+#73 0x00ac6f90 in ?? ()
+#74 0x00ac6d9c in ?? ()
+#75 0x00ac6e46 in ?? ()
+#76 0x08062b78 in mono_jit_runtime_invoke (method=
+    "MonoDevelop.Startup.MonoDevelopMain:Main ()", obj=0x0, params=0xbf8656dc, 
+    exc=0x0) at mini.c:5764
+#77 0x081948a0 in mono_runtime_invoke (method=
+    "MonoDevelop.Startup.MonoDevelopMain:Main ()", obj=0x0, params=0xbf8656dc, 
+    exc=0x0) at object.c:2755
+#78 0x081985f3 in mono_runtime_exec_main (method=
+    "MonoDevelop.Startup.MonoDevelopMain:Main ()", args=0x3be00, exc=0x0)
+    at object.c:3930
+#79 0x080bb2c5 in main_thread_handler (argc=3, argv=0xbf8658c4)
+    at driver.c:1003
+#80 mono_main (argc=3, argv=0xbf8658c4) at driver.c:1855
+#81 0x080592ca in mono_main_with_options (argc=3, argv=0xbf8658c4) at main.c:66
+#82 main (argc=3, argv=0xbf8658c4) at main.c:97
+
+hang on building:
+
+Thread 13 (Thread 0xb718bb70 (LWP 4382)):
+#0  0x00f38416 in __kernel_vsyscall ()
+#1  0x006b5895 in sem_wait@@GLIBC_2.1 ()
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/sem_wait.S:80
+#2  0x08213dd0 in mono_sem_wait (sem=0x82f27a4, alertable=1)
+    at mono-semaphore.c:113
+#3  0x081c3f9e in finalizer_thread (unused=0x0) at gc.c:1066
+#4  0x081bd2e6 in start_wrapper_internal (data=0x8a978b0) at threads.c:783
+#5  start_wrapper (data=0x8a978b0) at threads.c:831
+#6  0x082042cf in thread_start_routine (args=0x8a86964) at wthreads.c:287
+#7  0x0822aed5 in GC_start_routine (arg=0x61fe0) at pthread_support.c:1468
+#8  0x006aecc9 in start_thread (arg=0xb718bb70) at pthread_create.c:304
+#9  0x001e069e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 12 (Thread 0xb620cb70 (LWP 4383)):
+#0  0x00f38416 in __kernel_vsyscall ()
+#1  0x006b34dc in pthread_cond_wait@@GLIBC_2.3.2 ()
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/pthread_cond_wait.S:169
+#2  0x082013c1 in _wapi_handle_timedwait_signal_handle (handle=0x408, timeout=
+    0x0, alertable=1, poll=0) at handles.c:1654
+#3  0x08201434 in _wapi_handle_wait_signal_handle (handle=0x408, alertable=1)
+    at handles.c:1597
+#4  0x08205777 in WaitForSingleObjectEx (handle=0x408, timeout=4294967295, 
+    alertable=1) at wait.c:203
+#5  0x081b9be3 in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=
+    0x7a9d8, handle=0x408, ms=-1, exitContext=0) at threads.c:1664
+#6  0x0079963c in ?? ()
+#7  0x00799480 in ?? ()
+#8  0x00798d03 in ?? ()
+#9  0x00798c00 in ?? ()
+#10 0x00798b91 in ?? ()
+#11 0x08062b78 in mono_jit_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0x5c9d8, params=0xb620c2b8, 
+    exc=0x0) at mini.c:5764
+#12 0x081948a0 in mono_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0x5c9d8, params=0xb620c2b8, 
+    exc=0x0) at object.c:2755
+#13 0x08194b04 in mono_runtime_delegate_invoke (delegate=0x5c9d8, params=
+    0xb620c2b8, exc=0x0) at object.c:3420
+#14 0x081bd3b7 in start_wrapper_internal (data=0x8c85e50) at threads.c:789
+#15 start_wrapper (data=0x8c85e50) at threads.c:831
+#16 0x082042cf in thread_start_routine (args=0x8a86afc) at wthreads.c:287
+#17 0x0822aed5 in GC_start_routine (arg=0x61ee0) at pthread_support.c:1468
+#18 0x006aecc9 in start_thread (arg=0xb620cb70) at pthread_create.c:304
+#19 0x001e069e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 11 (Thread 0xb5bf4b70 (LWP 4385)):
+#0  0x00f38416 in __kernel_vsyscall ()
+#1  0x001d1df6 in __poll (fds=0x268ff4, nfds=1, timeout=-1)
+    at ../sysdeps/unix/sysv/linux/poll.c:87
+#2  0x002f9a1b in g_poll (fds=0x8fd22d8, nfds=1, timeout=-1)
+    at /build/buildd/glib2.0-2.26.1/glib/gpoll.c:132
+#3  0x002ec43c in g_main_context_poll (context=0x8fbc0d8, 
+    block=&lt;value optimised out&gt;, dispatch=1, self=0x8fbc168)
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:3093
+#4  g_main_context_iterate (context=0x8fbc0d8, block=&lt;value optimised out&gt;, 
+    dispatch=1, self=0x8fbc168)
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:2775
+#5  0x002ecba7 in g_main_loop_run (loop=0x8fbc158)
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:2988
+#6  0x00da29c4 in gdbus_shared_thread_func (data=0x0)
+    at /build/buildd/glib2.0-2.26.1/gio/gdbusprivate.c:277
+#7  0x0031348f in g_thread_create_proxy (data=0x8fbc168)
+    at /build/buildd/glib2.0-2.26.1/glib/gthread.c:1897
+#8  0x006aecc9 in start_thread (arg=0xb5bf4b70) at pthread_create.c:304
+#9  0x001e069e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 10 (Thread 0xb5de0b70 (LWP 4386)):
+#0  0x00f38416 in __kernel_vsyscall ()
+#1  0x006b3884 in pthread_cond_timedwait@@GLIBC_2.3.2 ()
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/pthread_cond_timedwait.S:236
+#2  0x082012ec in _wapi_handle_timedwait_signal_handle (handle=0x4b4, timeout=
+    0xb5de0088, alertable=1, poll=0) at handles.c:1652
+#3  0x08205676 in WaitForSingleObjectEx (handle=0x4b4, timeout=5000, alertable=
+    1) at wait.c:205
+#4  0x081b9be3 in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=
+    0xb4c6bdb0, handle=0x4b4, ms=5000, exitContext=1) at threads.c:1664
+#5  0x0079963c in ?? ()
+#6  0x04fa7850 in ?? ()
+#7  0x04fa77c4 in ?? ()
+#8  0x04fa76b8 in ?? ()
+#9  0x00798c00 in ?? ()
+#10 0x00798b91 in ?? ()
+#11 0x08062b78 in mono_jit_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xb53cdd58, params=
+    0xb5de02b8, exc=0x0) at mini.c:5764
+#12 0x081948a0 in mono_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xb53cdd58, params=
+    0xb5de02b8, exc=0x0) at object.c:2755
+#13 0x08194b04 in mono_runtime_delegate_invoke (delegate=0xb53cdd58, params=
+    0xb5de02b8, exc=0x0) at object.c:3420
+#14 0x081bd3b7 in start_wrapper_internal (data=0x9537cf8) at threads.c:789
+#15 start_wrapper (data=0x9537cf8) at threads.c:831
+#16 0x082042cf in thread_start_routine (args=0x8a8c65c) at wthreads.c:287
+#17 0x0822aed5 in GC_start_routine (arg=0xb5356fc0) at pthread_support.c:1468
+#18 0x006aecc9 in start_thread (arg=0xb5de0b70) at pthread_create.c:304
+#19 0x001e069e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 9 (Thread 0xb0c71b70 (LWP 4388)):
+#0  0x00f38416 in __kernel_vsyscall ()
+#1  0x006b6de6 in nanosleep () at ../sysdeps/unix/syscall-template.S:82
+#2  0x082030b0 in SleepEx (ms=500, alertable=1) at wthreads.c:1027
+#3  0x08236c1f in monitor_thread (unused=0x0) at threadpool.c:771
+#4  0x081bd2e6 in start_wrapper_internal (data=0x95b3888) at threads.c:783
+#5  start_wrapper (data=0x95b3888) at threads.c:831
+#6  0x082042cf in thread_start_routine (args=0x8a8c7f4) at wthreads.c:287
+#7  0x0822aed5 in GC_start_routine (arg=0xb5356180) at pthread_support.c:1468
+#8  0x006aecc9 in start_thread (arg=0xb0c71b70) at pthread_create.c:304
+#9  0x001e069e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+Thread 8 (Thread 0xb0c4cb70 (LWP 4389)):
+#0  0x00f38416 in __kernel_vsyscall ()
+#1  0x006b6de6 in nanosleep () at ../sysdeps/unix/syscall-template.S:82
+#2  0x082030b0 in SleepEx (ms=750, alertable=1) at wthreads.c:1027
+#3  0x081be890 in ves_icall_System_Threading_Thread_Sleep_internal (ms=750)
+    at threads.c:1319
+#4  0x0596a08c in ?? ()
+#5  0x0596a008 in ?? ()
+#6  0x05969cc0 in ?? ()
+#7  0x00798c00 in ?? ()
+#8  0x00798b91 in ?? ()
+#9  0x08062b78 in mono_jit_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xb38dd930, params=
+    0xb0c4c2b8, exc=0x0) at mini.c:5764
+#10 0x081948a0 in mono_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xb38dd930, params=
+    0xb0c4c2b8, exc=0x0) at object.c:2755
+#11 0x08194b04 in mono_runtime_delegate_invoke (delegate=0xb38dd930, params=
+    0xb0c4c2b8, exc=0x0) at object.c:3420
+#12 0x081bd3b7 in start_wrapper_internal (data=0x95d20c8) at threads.c:789
+#13 start_wrapper (data=0x95d20c8) at threads.c:831
+#14 0x082042cf in thread_start_routine (args=0x8a8c98c) at wthreads.c:287
+#15 0x0822aed5 in GC_start_routine (arg=0xb5356180) at pthread_support.c:1468
+#16 0x006aecc9 in start_thread (arg=0xb0c4cb70) at pthread_create.c:304
+#17 0x001e069e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 7 (Thread 0xb09ceb70 (LWP 4390)):
+#0  0x00f38416 in __kernel_vsyscall ()
+#1  0x006b5a48 in sem_timedwait ()
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/sem_timedwait.S:111
+#2  0x08213ec2 in mono_sem_timedwait (sem=0x82f3d94, timeout_ms=2000, 
+    alertable=1) at mono-semaphore.c:76
+#3  0x0823864f in async_invoke_thread (data=0x0) at threadpool.c:1477
+#4  0x081bd2e6 in start_wrapper_internal (data=0x967f5a0) at threads.c:783
+#5  start_wrapper (data=0x967f5a0) at threads.c:831
+#6  0x082042cf in thread_start_routine (args=0x8a8ca14) at wthreads.c:287
+#7  0x0822aed5 in GC_start_routine (arg=0xb4bddfe0) at pthread_support.c:1468
+#8  0x006aecc9 in start_thread (arg=0xb09ceb70) at pthread_create.c:304
+#9  0x001e069e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 6 (Thread 0xb0885b70 (LWP 4391)):
+#0  0x00f38416 in __kernel_vsyscall ()
+#1  0x001e0fd6 in epoll_wait () at ../sysdeps/unix/syscall-template.S:82
+#2  0x08237878 in tp_epoll_wait (p=0x82f3d40)
+    at ../../mono/metadata/tpool-epoll.c:91
+#3  0x081bd2e6 in start_wrapper_internal (data=0x9698da0) at threads.c:783
+#4  start_wrapper (data=0x9698da0) at threads.c:831
+#5  0x082042cf in thread_start_routine (args=0x8a8ca9c) at wthreads.c:287
+#6  0x0822aed5 in GC_start_routine (arg=0xb4bebf20) at pthread_support.c:1468
+#7  0x006aecc9 in start_thread (arg=0xb0885b70) at pthread_create.c:304
+#8  0x001e069e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 5 (Thread 0xb0864b70 (LWP 4392)):
+#0  0x00f38416 in __kernel_vsyscall ()
+#1  0x006b5a48 in sem_timedwait ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/sem_timedwait.S:111
+#2  0x08213ec2 in mono_sem_timedwait (sem=0x82f3e14, timeout_ms=2000, 
+    alertable=1) at mono-semaphore.c:76
+#3  0x0823864f in async_invoke_thread (data=0x0) at threadpool.c:1477
+#4  0x081bd2e6 in start_wrapper_internal (data=0x96865b0) at threads.c:783
+#5  start_wrapper (data=0x96865b0) at threads.c:831
+#6  0x082042cf in thread_start_routine (args=0x8a8cb24) at wthreads.c:287
+#7  0x0822aed5 in GC_start_routine (arg=0xb4bebf20) at pthread_support.c:1468
+#8  0x006aecc9 in start_thread (arg=0xb0864b70) at pthread_create.c:304
+#9  0x001e069e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 4 (Thread 0xb0843b70 (LWP 4393)):
+#0  0x00f38416 in __kernel_vsyscall ()
+#1  0x006b5a48 in sem_timedwait ()
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/sem_timedwait.S:111
+#2  0x08213ec2 in mono_sem_timedwait (sem=0x82f3d94, timeout_ms=2000, 
+    alertable=1) at mono-semaphore.c:76
+#3  0x0823864f in async_invoke_thread (data=0x0) at threadpool.c:1477
+#4  0x081bd2e6 in start_wrapper_internal (data=0x96a7668) at threads.c:783
+#5  start_wrapper (data=0x96a7668) at threads.c:831
+#6  0x082042cf in thread_start_routine (args=0x8a8cbac) at wthreads.c:287
+#7  0x0822aed5 in GC_start_routine (arg=0xb4bebde0) at pthread_support.c:1468
+#8  0x006aecc9 in start_thread (arg=0xb0843b70) at pthread_create.c:304
+#9  0x001e069e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 3 (Thread 0xb0e31b70 (LWP 4394)):
+#0  0x00f38416 in __kernel_vsyscall ()
+#1  0x006b34dc in pthread_cond_wait@@GLIBC_2.3.2 ()
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/pthread_cond_wait.S:169
+#2  0x082013c1 in _wapi_handle_timedwait_signal_handle (handle=0x4cd, timeout=
+    0x0, alertable=1, poll=0) at handles.c:1654
+#3  0x08201434 in _wapi_handle_wait_signal_handle (handle=0x4cd, alertable=1)
+    at handles.c:1597
+#4  0x08205777 in WaitForSingleObjectEx (handle=0x4cd, timeout=4294967295, 
+    alertable=1) at wait.c:203
+#5  0x081b9be3 in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=
+    0xb51f2b58, handle=0x4cd, ms=-1, exitContext=0) at threads.c:1664
+#6  0x0079963c in ?? ()
+#7  0x00799480 in ?? ()
+#8  0x07aec5e7 in ?? ()
+#9  0x00798c00 in ?? ()
+#10 0x00798b91 in ?? ()
+#11 0x08062b78 in mono_jit_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xb51f3a10, params=
+    0xb0e312b8, exc=0x0) at mini.c:5764
+#12 0x081948a0 in mono_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xb51f3a10, params=
+    0xb0e312b8, exc=0x0) at object.c:2755
+#13 0x08194b04 in mono_runtime_delegate_invoke (delegate=0xb51f3a10, params=
+    0xb0e312b8, exc=0x0) at object.c:3420
+#14 0x081bd3b7 in start_wrapper_internal (data=0x9935020) at threads.c:789
+#15 start_wrapper (data=0x9935020) at threads.c:831
+#16 0x082042cf in thread_start_routine (args=0x8a8d3a4) at wthreads.c:287
+#17 0x0822aed5 in GC_start_routine (arg=0xb5e7ffe0) at pthread_support.c:1468
+#18 0x006aecc9 in start_thread (arg=0xb0e31b70) at pthread_create.c:304
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#19 0x001e069e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 2 (Thread 0xb006cb70 (LWP 4395)):
+#0  0x00f38416 in __kernel_vsyscall ()
+#1  0x006b34dc in pthread_cond_wait@@GLIBC_2.3.2 ()
+    at ../nptl/sysdeps/unix/sysv/linux/i386/i686/../i486/pthread_cond_wait.S:169
+#2  0x082013c1 in _wapi_handle_timedwait_signal_handle (handle=0x4d1, timeout=
+    0x0, alertable=1, poll=0) at handles.c:1654
+#3  0x08201434 in _wapi_handle_wait_signal_handle (handle=0x4d1, alertable=1)
+    at handles.c:1597
+#4  0x08205777 in WaitForSingleObjectEx (handle=0x4d1, timeout=4294967295, 
+    alertable=1) at wait.c:203
+#5  0x081b9be3 in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=
+    0xb39469d8, handle=0x4d1, ms=-1, exitContext=0) at threads.c:1664
+#6  0x0079963c in ?? ()
+#7  0x00799480 in ?? ()
+#8  0x0404fb1f in ?? ()
+#9  0x00798c00 in ?? ()
+#10 0x00798b91 in ?? ()
+#11 0x08062b78 in mono_jit_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xb4fd5f18, params=
+    0xb006c2b8, exc=0x0) at mini.c:5764
+#12 0x081948a0 in mono_runtime_invoke (method=
+    "System.Threading.ThreadStart:Invoke ()", obj=0xb4fd5f18, params=
+    0xb006c2b8, exc=0x0) at object.c:2755
+#13 0x08194b04 in mono_runtime_delegate_invoke (delegate=0xb4fd5f18, params=
+    0xb006c2b8, exc=0x0) at object.c:3420
+#14 0x081bd3b7 in start_wrapper_internal (data=0x9ad0ba8) at threads.c:789
+#15 start_wrapper (data=0x9ad0ba8) at threads.c:831
+#16 0x082042cf in thread_start_routine (args=0x8a8d5c4) at wthreads.c:287
+#17 0x0822aed5 in GC_start_routine (arg=0xb5e7ffe0) at pthread_support.c:1468
+#18 0x006aecc9 in start_thread (arg=0xb006cb70) at pthread_create.c:304
+#19 0x001e069e in clone () at ../sysdeps/unix/sysv/linux/i386/clone.S:130
+
+Thread 1 (Thread 0xb77ae8f0 (LWP 4380)):
+#0  0x00f38416 in __kernel_vsyscall ()
+#1  0x001d1df6 in __poll (fds=0x268ff4, nfds=1, timeout=-1)
+    at ../sysdeps/unix/sysv/linux/poll.c:87
+#2  0x00618d90 in ?? () from /usr/lib/libxcb.so.1
+#3  0x0061aca2 in xcb_wait_for_reply () from /usr/lib/libxcb.so.1
+#4  0x0099a016 in _XReply () from /usr/lib/libX11.so.6
+#5  0x0098f231 in XTranslateCoordinates () from /usr/lib/libX11.so.6
+#6  0x00817cfb in ?? () from /usr/lib/libgdk-x11-2.0.so.0
+#7  0x007e6255 in gdk_window_get_origin () from /usr/lib/libgdk-x11-2.0.so.0
+#8  0x05e2adbc in ?? ()
+#9  0x05e2ad70 in ?? ()
+#10 0x05e2a648 in ?? ()
+#11 0x05e2a23c in ?? ()
+#12 0x05e2a1c8 in ?? ()
+#13 0x0069a32a in ?? ()
+#14 0x0069127c in ?? ()
+#15 0x0106e284 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#16 0x005c9a87 in g_type_class_meta_marshal (closure=0xbfe0dd04, return_value=
+    0xbfe0e0d4, n_param_values=2, param_values=0xbfe0dd00, invocation_hint=
+    0xbfe0e0c0, marshal_data=0xc8)
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    at /build/buildd/glib2.0-2.26.1/gobject/gclosure.c:877
+#17 0x005cb340 in g_closure_invoke (closure=0x8c46090, return_value=
+    0xbfe0e0d4, n_param_values=2, param_values=0x9eec628, invocation_hint=
+    0xbfe0e0c0) at /build/buildd/glib2.0-2.26.1/gobject/gclosure.c:766
+#18 0x005e17d6 in signal_emit_unlocked_R (node=&lt;value optimised out&gt;, 
+    detail=&lt;value optimised out&gt;, instance=0x9352838, emission_return=
+    0xbfe0e22c, instance_and_params=0x9eec628)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3290
+#19 0x005e2e2b in g_signal_emit_valist (instance=0x9352838, signal_id=41, 
+    detail=0, var_args=
+    0xbfe0e290 "\274\342࿀\251\305\b\330\342\340\277:\311\031\001\364O0\001\070(5\t\330\342\340\277\070(5\t8(5\t\200\251\305\b\226\003")
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:2993
+#20 0x005e3452 in g_signal_emit (instance=0x9352838, signal_id=41, detail=0)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3040
+#21 0x0119cb96 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#22 0x00fdbe83 in gtk_container_propagate_expose ()
+   from /usr/lib/libgtk-x11-2.0.so.0
+#23 0x00fdbeb1 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#24 0x00fa8325 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#25 0x00fdca14 in gtk_container_forall () from /usr/lib/libgtk-x11-2.0.so.0
+#26 0x00fde197 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#27 0x0106e284 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#28 0x005c9a87 in g_type_class_meta_marshal (closure=0xbfe0e3c8, return_value=
+    0xbfe0e584, n_param_values=2, param_values=0xfdbe90, invocation_hint=
+    0xbfe0e570, marshal_data=0xc8)
+    at /build/buildd/glib2.0-2.26.1/gobject/gclosure.c:877
+#29 0x005cb340 in g_closure_invoke (closure=0x8c46090, return_value=
+    0xbfe0e584, n_param_values=2, param_values=0x9e73e50, invocation_hint=
+    0xbfe0e570) at /build/buildd/glib2.0-2.26.1/gobject/gclosure.c:766
+#30 0x005e17d6 in signal_emit_unlocked_R (node=&lt;value optimised out&gt;, 
+    detail=&lt;value optimised out&gt;, instance=0x8d56620, emission_return=
+    0xbfe0e6dc, instance_and_params=0x9e73e50)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3290
+#31 0x005e2e2b in g_signal_emit_valist (instance=0x8d56620, signal_id=41, 
+    detail=0, var_args=
+    0xbfe0e740 "l\347࿀\251\305\b\210\347\340\277:\311\031\001\364O0\001 f\325\b\210\347\340\277 f\325\b f\325\b\200\251\305\b\226\003")
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:2993
+#32 0x005e3452 in g_signal_emit (instance=0x8d56620, signal_id=41, detail=0)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3040
+#33 0x0119cb96 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#34 0x00fdbe83 in gtk_container_propagate_expose ()
+   from /usr/lib/libgtk-x11-2.0.so.0
+#35 0x00fdbeb1 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#36 0x00fa8325 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#37 0x00fdca14 in gtk_container_forall () from /usr/lib/libgtk-x11-2.0.so.0
+#38 0x00fde197 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#39 0x0106e284 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#40 0x005c9a87 in g_type_class_meta_marshal (closure=0xbfe0e878, return_value=
+    0xbfe0ea34, n_param_values=2, param_values=0xfdbe90, invocation_hint=
+    0xbfe0ea20, marshal_data=0xc8)
+    at /build/buildd/glib2.0-2.26.1/gobject/gclosure.c:877
+#41 0x005cb340 in g_closure_invoke (closure=0x8c46090, return_value=
+    0xbfe0ea34, n_param_values=2, param_values=0x9e74540, invocation_hint=
+    0xbfe0ea20) at /build/buildd/glib2.0-2.26.1/gobject/gclosure.c:766
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#42 0x005e17d6 in signal_emit_unlocked_R (node=&lt;value optimised out&gt;, 
+    detail=&lt;value optimised out&gt;, instance=0x8d56518, emission_return=
+    0xbfe0eb8c, instance_and_params=0x9e74540)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3290
+#43 0x005e2e2b in g_signal_emit_valist (instance=0x8d56518, signal_id=41, 
+    detail=0, var_args=
+    0xbfe0ebf0 "\034\354࿀\251\305\b8\354\340\277:\311\031\001\364O0\001\030e\325\b8\354\340\277\030e\325\b\030e\325\b\200\251\305\b\226\003")
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:2993
+#44 0x005e3452 in g_signal_emit (instance=0x8d56518, signal_id=41, detail=0)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3040
+#45 0x0119cb96 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#46 0x00fdbe83 in gtk_container_propagate_expose ()
+   from /usr/lib/libgtk-x11-2.0.so.0
+#47 0x00fdbeb1 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#48 0x00fa8325 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#49 0x00fdca14 in gtk_container_forall () from /usr/lib/libgtk-x11-2.0.so.0
+#50 0x00fde197 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#51 0x0106e284 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#52 0x005c9a87 in g_type_class_meta_marshal (closure=0xbfe0ed28, return_value=
+    0xbfe0eee4, n_param_values=2, param_values=0xfdbe90, invocation_hint=
+    0xbfe0eed0, marshal_data=0xc8)
+    at /build/buildd/glib2.0-2.26.1/gobject/gclosure.c:877
+#53 0x005cb340 in g_closure_invoke (closure=0x8c46090, return_value=
+    0xbfe0eee4, n_param_values=2, param_values=0x9eec4c8, invocation_hint=
+    0xbfe0eed0) at /build/buildd/glib2.0-2.26.1/gobject/gclosure.c:766
+#54 0x005e17d6 in signal_emit_unlocked_R (node=&lt;value optimised out&gt;, 
+    detail=&lt;value optimised out&gt;, instance=0x8fd7a10, emission_return=
+    0xbfe0f03c, instance_and_params=0x9eec4c8)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3290
+#55 0x005e2e2b in g_signal_emit_valist (instance=0x8fd7a10, signal_id=41, 
+    detail=0, var_args=
+    0xbfe0f0a0 "\314\360࿀\251\305\b\350\360\340\277:\311\031\001\364O0\001\020z\375\b\350\360\340\277\020z\375\b\020z\375\b\200\251\305\b\226\003")
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:2993
+#56 0x005e3452 in g_signal_emit (instance=0x8fd7a10, signal_id=41, detail=0)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3040
+#57 0x0119cb96 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#58 0x00fdbe83 in gtk_container_propagate_expose ()
+   from /usr/lib/libgtk-x11-2.0.so.0
+#59 0x00fdbeb1 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#60 0x00b8e976 in gtksharp_container_invoke_gtk_callback ()
+   from /usr/lib/cli/gtk-sharp-2.0/libgtksharpglue-2.so
+#61 0x087d5edc in ?? ()
+#62 0x087d5e94 in ?? ()
+#63 0x087d5e5c in ?? ()
+#64 0x087d43d8 in ?? ()
+#65 0x087d14a8 in ?? ()
+#66 0x0130e2bc in ?? ()
+#67 0x00fdca14 in gtk_container_forall () from /usr/lib/libgtk-x11-2.0.so.0
+#68 0x00fde197 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#69 0x00b911b7 in gtksharp_widget_base_expose_event ()
+   from /usr/lib/cli/gtk-sharp-2.0/libgtksharpglue-2.so
+#70 0x05e2a170 in ?? ()
+#71 0x05e2a124 in ?? ()
+#72 0x05e2a060 in ?? ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#73 0x0069a32a in ?? ()
+#74 0x0069127c in ?? ()
+#75 0x0106e284 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#76 0x005c9a87 in g_type_class_meta_marshal (closure=0xb4c297e0, return_value=
+    0xbfe0f644, n_param_values=2, param_values=0xb52df000, invocation_hint=
+    0xbfe0f630, marshal_data=0xc8)
+    at /build/buildd/glib2.0-2.26.1/gobject/gclosure.c:877
+#77 0x005cb412 in g_closure_invoke (closure=0x8c46090, return_value=
+    0xbfe0f644, n_param_values=2, param_values=0x9eec568, invocation_hint=
+    0xbfe0f630) at /build/buildd/glib2.0-2.26.1/gobject/gclosure.c:766
+#78 0x005e17d6 in signal_emit_unlocked_R (node=&lt;value optimised out&gt;, 
+    detail=&lt;value optimised out&gt;, instance=0x8c32ad0, emission_return=
+    0xbfe0f79c, instance_and_params=0x9eec568)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3290
+#79 0x005e2e2b in g_signal_emit_valist (instance=0x8c32ad0, signal_id=41, 
+    detail=0, var_args=
+    0xbfe0f800 ",\370࿀\251\305\b(\361\366\t:\311\031\001\364O0\001\320*\303\bH\370\340\277\320*\303\b\320*\303\b\200\251\305\b\037")
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:2993
+#80 0x005e3452 in g_signal_emit (instance=0x8c32ad0, signal_id=41, detail=0)
+    at /build/buildd/glib2.0-2.26.1/gobject/gsignal.c:3040
+#81 0x0119cb96 in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#82 0x01067f2b in gtk_main_do_event () from /usr/lib/libgtk-x11-2.0.so.0
+#83 0x007eb7bb in ?? () from /usr/lib/libgdk-x11-2.0.so.0
+#84 0x007eb76a in ?? () from /usr/lib/libgdk-x11-2.0.so.0
+#85 0x007eb76a in ?? () from /usr/lib/libgdk-x11-2.0.so.0
+#86 0x00814e24 in ?? () from /usr/lib/libgdk-x11-2.0.so.0
+#87 0x007e7f24 in ?? () from /usr/lib/libgdk-x11-2.0.so.0
+#88 0x007e9f2f in gdk_window_process_all_updates ()
+   from /usr/lib/libgdk-x11-2.0.so.0
+#89 0x00fdcb9f in ?? () from /usr/lib/libgtk-x11-2.0.so.0
+#90 0x007c4998 in ?? () from /usr/lib/libgdk-x11-2.0.so.0
+#91 0x002e6841 in g_idle_dispatch (source=0x9beaf10, callback=0xfffffdfc, 
+    user_data=0x98f54b0) at /build/buildd/glib2.0-2.26.1/glib/gmain.c:4254
+#92 0x002e8855 in g_main_dispatch (context=0x8c3af78)
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:2149
+#93 g_main_context_dispatch (context=0x8c3af78)
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:2702
+#94 0x002ec668 in g_main_context_iterate (context=0x8c3af78, 
+    block=&lt;value optimised out&gt;, dispatch=1, self=0x8bcbe58)
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:2780
+#95 0x002ecba7 in g_main_loop_run (loop=0x967f660)
+    at /build/buildd/glib2.0-2.26.1/glib/gmain.c:2988
+#96 0x010681d9 in gtk_main () from /usr/lib/libgtk-x11-2.0.so.0
+#97 0x01330c10 in ?? ()
+#98 0x01330bd4 in ?? ()
+#99 0x01330bb4 in ?? ()
+#100 0x00792e50 in ?? ()
+#101 0x00524f90 in ?? ()
+#102 0x00524d9c in ?? ()
+#103 0x00524e46 in ?? ()
+#104 0x08062b78 in mono_jit_runtime_invoke (method=
+    "MonoDevelop.Startup.MonoDevelopMain:Main ()", obj=0x0, params=0xbfe1018c, 
+    exc=0x0) at mini.c:5764
+#105 0x081948a0 in mono_runtime_invoke (method=
+    "MonoDevelop.Startup.MonoDevelopMain:Main ()", obj=0x0, params=0xbfe1018c, 
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    exc=0x0) at object.c:2755
+#106 0x081985f3 in mono_runtime_exec_main (method=
+    "MonoDevelop.Startup.MonoDevelopMain:Main ()", args=0x3be00, exc=0x0)
+    at object.c:3930
+#107 0x080bb2c5 in main_thread_handler (argc=3, argv=0xbfe10374)
+    at driver.c:1003
+#108 mono_main (argc=3, argv=0xbfe10374) at driver.c:1855
+#109 0x080592ca in mono_main_with_options (argc=3, argv=0xbfe10374)
+    at main.c:66
+#110 main (argc=3, argv=0xbfe10374) at main.c:97</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-16 00:01:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">In the first case it appears to be hung in managed code. I suppose it could be an infinite loop in the po parsing code - can you share the po file with us?
+
+In the second case it looks like waiting for a reply from your X server, maybe there's something wrong with the X server?</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-16 00:11:19 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=1056&amp;file=de.po" name="attach_1056" title="de.po">attachment 1056</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1056&amp;file=de.po" title="de.po">[details]</a></span>
+de.po</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-16 00:15:44 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">It happens with any of the POs in the monodevelop source but ive attached one anyway.
+
+X Windows seems to be working otherwise, i wouldn't know how to troubleshoot it really. The packaged MD 2.6 seemed to work when i had it installed previously. Perhaps i should try installing it from the package manager again. Would this be likely to cause issues?</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-17 17:57:43 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I can't see why MD master would have problems like this. Did you build and install anything else from source?
+
+FWIW, if building software from source I always keep it in a separated environment to avoid messing with packages.</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-17 22:58:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Installed Linux Mint 12 on another partition and get the same 2 issues. All dependencies came from synaptic packages. When you say you keep it in a separate environment, do you avoid packages for the mono dependencies as well?</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-18 00:09:40 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Tried pulling the zipped tag releases; 2.6 works, here's the results for the others I tested.
+
+2.8.5  
+open translation files - no
+intermittent freezing on building bug - yes
+
+2.8.1
+open translation files - no
+intermittent freezing on build bug - didnt occur
+
+2.7.2
+
+Database addin fails to load (i enable db and debug addins using --select)
+
+open translation files - yes but error thrown on closing po editor: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&gt; System.NullReferenceException)
+
+intermittent freezing on build bug - didnt occur
+
+2.6
+open translation files - yes
+intermittent freezing on build bug - didnt occur</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-23 17:34:24 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Update on PO Hang.
+
+replacing master's CatalogParser.cs
+
+static string[] GetLines (string fileStr, out string newLine)
+
+function with the version in 2.6 tag lets the PO editor open without hanging (havnt tested past this).
+
+Update on Build Hang.
+
+After Reading <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Build an unsaved file hangs the MonoDevelop" href="show_bug.cgi?id=2605">Bug 2605</a> I checked and it seems I only get the hang when building from an unsaved file as well....</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-13 12:43:18 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hanging portion of bug report seems same as <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Build an unsaved file hangs the MonoDevelop" href="show_bug.cgi?id=2605">Bug 2605</a> RE the posted stack trace there</pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-02-18 20:18:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Build an unsaved file hangs the MonoDevelop" href="show_bug.cgi?id=2605">Bug 2605</a> should be fixed by a recent commit, pretty sure's the fix is in MD 2.8.6.x.
+
+I guess the first part is sorta a dup of <a class="bz_bug_link 
+          bz_status_CONFIRMED " title="CONFIRMED - gettext reader/write is inconsistent, incomprehensible and inefficient" href="show_bug.cgi?id=856">bug 856</a>. Does it completely hang, or is it just very slow?
+
+Part of the reason for the slowness I guess would be <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - string.Split should use ordinal comparison" href="show_bug.cgi?id=3534">bug 3534</a>, since the trace in in the culture string handling code.</pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-02-18 22:55:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">2605 looks sorted. RE the other bug where it freezes on string split,
+
+When only the valid separator for the string is passed in to string.Split (string[], ...) the function returns in good time, but when multiple separators { "\n\r", "\r\n", "\r", "\n" } are passed in it takes indefinite time. The previous implementation of GetLines() tracked the actual seperator avoiding running into the issue.
+
+Attached are 2 console programs which demonstrate the issue with String.Split (using the standard de.po monodevelop file). 
+
+The de.po file is 849kB, cutting it down in size does allow the split function to return in the following times:
+
+Cut to 103kB  
+{ "\n\r", "\r\n", "\r", "\n" }: up to 40 seconds 
+{ "\n" } up to 0.157 secs
+
+Cut to 197.7kB 
+{ "\n\r", "\r\n", "\r", "\n" }: 2:34 minutes
+{ "\n" } 0.158 secs
+
+Looks like a straight forward enough patch to get MD po files opening again, im a little unsure why "\n\r" is included in the separator list though?</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-02-18 22:58:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=1382&amp;file=String.Split%20too%20slow" name="attach_1382" title="String.Split too slow console program">attachment 1382</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1382&amp;file=String.Split%20too%20slow" title="String.Split too slow console program">[details]</a></span>
+String.Split too slow console program</pre>
+    </div>
+
+    <div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-02-18 22:59:29 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=1383&amp;file=String.Split%20works" name="attach_1383" title="String Split Works Console Program">attachment 1383</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1383&amp;file=String.Split%20works" title="String Split Works Console Program">[details]</a></span>
+String Split Works Console Program</pre>
+    </div>
+
+    <div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gary____</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-05-22 07:29:48 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">issue resolved, see pull request 188</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

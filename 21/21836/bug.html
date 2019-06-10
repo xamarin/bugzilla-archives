@@ -1,0 +1,1546 @@
+<html lang="en"><head>
+    <title>21836 – Storyboard designer refusing to start with latest Yosemite preview</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Xamarin_Studio
+                 bz_component_iOS_Designer
+                 bz_bug_21836 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;21836</span>
+
+        <span id="subtitle" class="subheader">Storyboard designer refusing to start with latest Yosemite preview</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2014-10-15 14:48:21 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-10-15 14:48:21">
+  <input type="hidden" name="id" value="21836">
+  <input type="hidden" name="token" value="1559151762-ouv-TWKKyPstD0oIUILa4XUP-j56nekigw5sB0QDdGQ">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;21836</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">Storyboard designer refusing to start with latest Yosemite preview</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>Storyboard designer refusing to start with latest Yosemite preview
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Xamarin Studio
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Desktop
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">iOS Designer
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>5.2
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>master
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2014-08-05 13:34 UTC by <span class="vcard"><span class="fn">Paul Johnson</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-10-15 14:48 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>5
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="alan">alan</option>
+                <option value="alexc">alexc</option>
+                <option value="jeremie.laval">jeremie.laval</option>
+                <option value="mono-bugs+monodevelop">mono-bugs+monodevelop</option>
+                <option value="waldemar.cichon.de">waldemar.cichon.de</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=7689&amp;file=storyboard.txt" title="View the content of the attachment">
+          <b>Throwback from storyboard crash</b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.64 MB,
+                text/plain)
+
+            <br>
+            <a href="#attach_7689" title="Go to the comment associated with the attachment">2014-08-14 06:26 UTC</a>,
+
+            <span class="vcard"><span class="fn">Paul Johnson</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=7689&amp;file=storyboard.txt">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=7708&amp;file=springboard.txt" title="View the content of the attachment">
+          <b>Springboard throwback</b></a>
+
+          <span class="bz_attach_extra_info">
+              (196.31 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_7708" title="Go to the comment associated with the attachment">2014-08-18 08:21 UTC</a>,
+
+            <span class="vcard"><span class="fn">Paul Johnson</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=7708&amp;file=springboard.txt">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/mono/monodevelop/issues">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Paul Johnson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-08-05 13:34:52 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I've created a simple storyboard test application as shown on the walkthrough. When I try to edit the storyboard within XS, I'm getting the following thrownback
+
+System.AggregateException: One or more errors occured ---&gt; System.SystemException: RegisterServicePort(com.xamarin.MTHosting.d34292, com.apple.PowerManagement.control): Kernel returned: -308 (-308): (ipc/mig) server died
+  at MonoTouch.Hosting.CheckReturnExtensions.Check (kern_return_t result, System.String message) [0x0003c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/MachPort.cs:435 
+  at MonoTouch.Hosting.LibLaunchSim.RegisterServicePort (System.String sessionName, System.String serviceName, MonoTouch.Hosting.MachPort port) [0x00020] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/Bindings/LibLaunchSim.cs:54 
+  at MonoTouch.Hosting.HostingIosSession.StartImpl () [0x00188] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/HostingIosSession.cs:91 
+  at MonoTouch.Hosting.IosSession.Start () [0x0005f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/IosSession.cs:89 
+  at MonoTouch.Design.Client.Mac.MacServerProcessConnection.EnsureServerRunning (Boolean throwIfNotRunning) [0x0010c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client.Mac/MacServerProcessConnection.cs:153 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (System.Action`1 send, System.Action`1 recv, Boolean throwIfNotRunning) [0x00007] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:213 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x0002f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:182 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest[DesignSession] (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x00004] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:202 
+  at MonoTouch.Design.Client.ServerProcessConnection.CreateSession () [0x00022] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:96 
+  at System.Threading.Tasks.TaskActionInvoker+FuncInvoke`1[MonoTouch.Design.DesignSession].Invoke (System.Threading.Tasks.Task owner, System.Object state, System.Threading.Tasks.Task context) [0x00000] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/TaskActionInvoker.cs:242 
+  at System.Threading.Tasks.Task.InnerInvoke () [0x00031] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:548 
+  at System.Threading.Tasks.Task.ThreadStart () [0x000d0] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:438 
+  --- End of inner exception stack trace ---
+ --&gt; (Inner exception 0) System.SystemException: RegisterServicePort(com.xamarin.MTHosting.d34292, com.apple.PowerManagement.control): Kernel returned: -308 (-308): (ipc/mig) server died
+  at MonoTouch.Hosting.CheckReturnExtensions.Check (kern_return_t result, System.String message) [0x0003c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/MachPort.cs:435 
+  at MonoTouch.Hosting.LibLaunchSim.RegisterServicePort (System.String sessionName, System.String serviceName, MonoTouch.Hosting.MachPort port) [0x00020] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/Bindings/LibLaunchSim.cs:54 
+  at MonoTouch.Hosting.HostingIosSession.StartImpl () [0x00188] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/HostingIosSession.cs:91 
+  at MonoTouch.Hosting.IosSession.Start () [0x0005f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/IosSession.cs:89 
+  at MonoTouch.Design.Client.Mac.MacServerProcessConnection.EnsureServerRunning (Boolean throwIfNotRunning) [0x0010c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client.Mac/MacServerProcessConnection.cs:153 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (System.Action`1 send, System.Action`1 recv, Boolean throwIfNotRunning) [0x00007] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:213 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x0002f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:182 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest[DesignSession] (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x00004] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:202 
+  at MonoTouch.Design.Client.ServerProcessConnection.CreateSession () [0x00022] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:96 
+  at System.Threading.Tasks.TaskActionInvoker+FuncInvoke`1[MonoTouch.Design.DesignSession].Invoke (System.Threading.Tasks.Task owner, System.Object state, System.Threading.Tasks.Task context) [0x00000] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/TaskActionInvoker.cs:242 
+  at System.Threading.Tasks.Task.InnerInvoke () [0x00031] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:548 
+  at System.Threading.Tasks.Task.ThreadStart () [0x000d0] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:438 
+
+
+Contents of /Users/PFJ/Library/Logs/XamarinStudio-5.0/iOSDesigner.2014-08-05__18-30-23.log:
+[2014-08-05 18:30:29.7] INFO: ENTERING sandbox: com.xamarin.MTHosting.d33c31
+[2014-08-05 18:30:29.7] INFO: Starting hosted simulator at: '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk'
+[2014-08-05 18:30:32.1] INFO: Starting full reload...
+[2014-08-05 18:30:32.7] INFO: LEAVING sandbox: com.xamarin.MTHosting.d33c31
+[2014-08-05 18:30:32.7] INFO: ENTERING sandbox: com.xamarin.MTHosting.d33c31
+[2014-08-05 18:30:32.7] INFO: LEAVING sandbox: com.xamarin.MTHosting.d33c31
+[2014-08-05 18:30:32.7] INFO: ENTERING sandbox: com.xamarin.MTHosting.d34292
+[2014-08-05 18:30:32.7] INFO: Starting hosted simulator at: '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk'
+[2014-08-05 18:30:32.8] INFO: Registering host service 'com.apple.PowerManagement.control'
+[2014-08-05 18:30:33.7] INFO: LEAVING sandbox: com.xamarin.MTHosting.d34292
+[2014-08-05 18:30:33.7] INFO: ENTERING sandbox: com.xamarin.MTHosting.d33c31
+[2014-08-05 18:30:33.7] INFO: LEAVING sandbox: com.xamarin.MTHosting.d33c31
+[2014-08-05 18:30:33.7] INFO: ENTERING sandbox: com.xamarin.MTHosting.d34292
+[2014-08-05 18:30:33.7] INFO: Starting hosted simulator at: '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk'
+[2014-08-05 18:30:33.7] INFO: Registering host service 'com.apple.PowerManagement.control'
+[2014-08-05 18:30:33.9] INFO: LEAVING sandbox: com.xamarin.MTHosting.d34292
+[2014-08-05 18:30:33.9] INFO: ENTERING sandbox: com.xamarin.MTHosting.d33c31
+[2014-08-05 18:30:33.9] INFO: LEAVING sandbox: com.xamarin.MTHosting.d33c31
+[2014-08-05 18:30:33.9] ERROR: EnsureSession (counter 0): System.AggregateException: One or more errors occured ---&gt; System.AggregateException:  ---&gt; System.SystemException: RegisterServicePort(com.xamarin.MTHosting.d34292, com.apple.PowerManagement.control): Kernel returned: -308 (-308): (ipc/mig) server died
+  at MonoTouch.Hosting.CheckReturnExtensions.Check (kern_return_t result, System.String message) [0x0003c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/MachPort.cs:435 
+  at MonoTouch.Hosting.LibLaunchSim.RegisterServicePort (System.String sessionName, System.String serviceName, MonoTouch.Hosting.MachPort port) [0x00020] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/Bindings/LibLaunchSim.cs:54 
+  at MonoTouch.Hosting.HostingIosSession.StartImpl () [0x00188] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/HostingIosSession.cs:91 
+  at MonoTouch.Hosting.IosSession.Start () [0x0005f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/IosSession.cs:89 
+  at MonoTouch.Design.Client.Mac.MacServerProcessConnection.EnsureServerRunning (Boolean throwIfNotRunning) [0x0010c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client.Mac/MacServerProcessConnection.cs:153 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (System.Action`1 send, System.Action`1 recv, Boolean throwIfNotRunning) [0x00007] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:213 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x0002f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:182 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest[DesignSession] (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x00004] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:202 
+  at MonoTouch.Design.Client.ServerProcessConnection.CreateSession () [0x00022] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:96 
+  at System.Threading.Tasks.TaskActionInvoker+FuncInvoke`1[MonoTouch.Design.DesignSession].Invoke (System.Threading.Tasks.Task owner, System.Object state, System.Threading.Tasks.Task context) [0x00000] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/TaskActionInvoker.cs:242 
+  at System.Threading.Tasks.Task.InnerInvoke () [0x00031] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:548 
+  at System.Threading.Tasks.Task.ThreadStart () [0x000d0] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:438 
+  --- End of inner exception stack trace ---
+  at System.Threading.Tasks.Task`1[MonoTouch.Design.DesignSession].get_Result () [0x00043] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task_T.cs:53 
+  at MonoTouch.Design.Client.IPhoneDesignerSession+&lt;EnsureSession&gt;c__AnonStorey17`1[System.Object[]].&lt;&gt;m__1 (System.Threading.Tasks.Task`1 t) [0x00007] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/IPhoneDesignerSession.cs:1662 
+  at System.Threading.Tasks.TaskActionInvoker+FuncTaskInvoke`2[MonoTouch.Design.DesignSession,System.Threading.Tasks.Task].Invoke (System.Threading.Tasks.Task owner, System.Object state, System.Threading.Tasks.Task context) [0x00000] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/TaskActionInvoker.cs:330 
+  at System.Threading.Tasks.Task.InnerInvoke () [0x00019] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:546 
+  at System.Threading.Tasks.Task.ThreadStart () [0x000d0] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:438 
+ --&gt; (Inner exception 0) System.SystemException: RegisterServicePort(com.xamarin.MTHosting.d34292, com.apple.PowerManagement.control): Kernel returned: -308 (-308): (ipc/mig) server died
+  at MonoTouch.Hosting.CheckReturnExtensions.Check (kern_return_t result, System.String message) [0x0003c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/MachPort.cs:435 
+  at MonoTouch.Hosting.LibLaunchSim.RegisterServicePort (System.String sessionName, System.String serviceName, MonoTouch.Hosting.MachPort port) [0x00020] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/Bindings/LibLaunchSim.cs:54 
+  at MonoTouch.Hosting.HostingIosSession.StartImpl () [0x00188] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/HostingIosSession.cs:91 
+  at MonoTouch.Hosting.IosSession.Start () [0x0005f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/IosSession.cs:89 
+  at MonoTouch.Design.Client.Mac.MacServerProcessConnection.EnsureServerRunning (Boolean throwIfNotRunning) [0x0010c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client.Mac/MacServerProcessConnection.cs:153 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (System.Action`1 send, System.Action`1 recv, Boolean throwIfNotRunning) [0x00007] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:213 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x0002f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:182 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest[DesignSession] (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x00004] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:202 
+  at MonoTouch.Design.Client.ServerProcessConnection.CreateSession () [0x00022] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:96 
+  at System.Threading.Tasks.TaskActionInvoker+FuncInvoke`1[MonoTouch.Design.DesignSession].Invoke (System.Threading.Tasks.Task owner, System.Object state, System.Threading.Tasks.Task context) [0x00000] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/TaskActionInvoker.cs:242 
+  at System.Threading.Tasks.Task.InnerInvoke () [0x00031] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:548 
+  at System.Threading.Tasks.Task.ThreadStart () [0x000d0] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:438 
+
+  --- End of inner exception stack trace ---
+  at System.Threading.Tasks.Task.Wait (Int32 millisecondsTimeout, CancellationToken cancellationToken) [0x0004b] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:708 
+  at System.Threading.Tasks.Task.Wait () [0x00000] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:676 
+  at MonoTouch.Design.Client.IPhoneDesignerSession+&lt;EnsureSession&gt;c__AnonStorey17`1[System.Object[]].&lt;&gt;m__0 () [0x00071] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/IPhoneDesignerSession.cs:1664 
+ --&gt; (Inner exception 0) System.AggregateException:  ---&gt; System.SystemException: RegisterServicePort(com.xamarin.MTHosting.d34292, com.apple.PowerManagement.control): Kernel returned: -308 (-308): (ipc/mig) server died
+  at MonoTouch.Hosting.CheckReturnExtensions.Check (kern_return_t result, System.String message) [0x0003c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/MachPort.cs:435 
+  at MonoTouch.Hosting.LibLaunchSim.RegisterServicePort (System.String sessionName, System.String serviceName, MonoTouch.Hosting.MachPort port) [0x00020] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/Bindings/LibLaunchSim.cs:54 
+  at MonoTouch.Hosting.HostingIosSession.StartImpl () [0x00188] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/HostingIosSession.cs:91 
+  at MonoTouch.Hosting.IosSession.Start () [0x0005f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/IosSession.cs:89 
+  at MonoTouch.Design.Client.Mac.MacServerProcessConnection.EnsureServerRunning (Boolean throwIfNotRunning) [0x0010c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client.Mac/MacServerProcessConnection.cs:153 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (System.Action`1 send, System.Action`1 recv, Boolean throwIfNotRunning) [0x00007] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:213 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x0002f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:182 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest[DesignSession] (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x00004] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:202 
+  at MonoTouch.Design.Client.ServerProcessConnection.CreateSession () [0x00022] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:96 
+  at System.Threading.Tasks.TaskActionInvoker+FuncInvoke`1[MonoTouch.Design.DesignSession].Invoke (System.Threading.Tasks.Task owner, System.Object state, System.Threading.Tasks.Task context) [0x00000] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/TaskActionInvoker.cs:242 
+  at System.Threading.Tasks.Task.InnerInvoke () [0x00031] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:548 
+  at System.Threading.Tasks.Task.ThreadStart () [0x000d0] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:438 
+  --- End of inner exception stack trace ---
+  at System.Threading.Tasks.Task`1[MonoTouch.Design.DesignSession].get_Result () [0x00043] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task_T.cs:53 
+  at MonoTouch.Design.Client.IPhoneDesignerSession+&lt;EnsureSession&gt;c__AnonStorey17`1[System.Object[]].&lt;&gt;m__1 (System.Threading.Tasks.Task`1 t) [0x00007] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/IPhoneDesignerSession.cs:1662 
+  at System.Threading.Tasks.TaskActionInvoker+FuncTaskInvoke`2[MonoTouch.Design.DesignSession,System.Threading.Tasks.Task].Invoke (System.Threading.Tasks.Task owner, System.Object state, System.Threading.Tasks.Task context) [0x00000] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/TaskActionInvoker.cs:330 
+  at System.Threading.Tasks.Task.InnerInvoke () [0x00019] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:546 
+  at System.Threading.Tasks.Task.ThreadStart () [0x000d0] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:438 
+ --&gt; (Inner exception 0) System.SystemException: RegisterServicePort(com.xamarin.MTHosting.d34292, com.apple.PowerManagement.control): Kernel returned: -308 (-308): (ipc/mig) server died
+  at MonoTouch.Hosting.CheckReturnExtensions.Check (kern_return_t result, System.String message) [0x0003c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/MachPort.cs:435 
+  at MonoTouch.Hosting.LibLaunchSim.RegisterServicePort (System.String sessionName, System.String serviceName, MonoTouch.Hosting.MachPort port) [0x00020] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/Bindings/LibLaunchSim.cs:54 
+  at MonoTouch.Hosting.HostingIosSession.StartImpl () [0x00188] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/HostingIosSession.cs:91 
+  at MonoTouch.Hosting.IosSession.Start () [0x0005f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/IosSession.cs:89 
+  at MonoTouch.Design.Client.Mac.MacServerProcessConnection.EnsureServerRunning (Boolean throwIfNotRunning) [0x0010c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client.Mac/MacServerProcessConnection.cs:153 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (System.Action`1 send, System.Action`1 recv, Boolean throwIfNotRunning) [0x00007] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:213 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x0002f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:182 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest[DesignSession] (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x00004] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:202 
+  at MonoTouch.Design.Client.ServerProcessConnection.CreateSession () [0x00022] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:96 
+  at System.Threading.Tasks.TaskActionInvoker+FuncInvoke`1[MonoTouch.Design.DesignSession].Invoke (System.Threading.Tasks.Task owner, System.Object state, System.Threading.Tasks.Task context) [0x00000] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/TaskActionInvoker.cs:242 
+  at System.Threading.Tasks.Task.InnerInvoke () [0x00031] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:548 
+  at System.Threading.Tasks.Task.ThreadStart () [0x000d0] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:438 
+
+
+[2014-08-05 18:30:33.9] ERROR: Unexpected exception while reloading XML for MonoTouch.Design.Client.IPhoneDesignerItem[]
+System.AggregateException: One or more errors occured ---&gt; System.SystemException: RegisterServicePort(com.xamarin.MTHosting.d34292, com.apple.PowerManagement.control): Kernel returned: -308 (-308): (ipc/mig) server died
+  at MonoTouch.Hosting.CheckReturnExtensions.Check (kern_return_t result, System.String message) [0x0003c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/MachPort.cs:435 
+  at MonoTouch.Hosting.LibLaunchSim.RegisterServicePort (System.String sessionName, System.String serviceName, MonoTouch.Hosting.MachPort port) [0x00020] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/Bindings/LibLaunchSim.cs:54 
+  at MonoTouch.Hosting.HostingIosSession.StartImpl () [0x00188] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/HostingIosSession.cs:91 
+  at MonoTouch.Hosting.IosSession.Start () [0x0005f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/IosSession.cs:89 
+  at MonoTouch.Design.Client.Mac.MacServerProcessConnection.EnsureServerRunning (Boolean throwIfNotRunning) [0x0010c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client.Mac/MacServerProcessConnection.cs:153 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (System.Action`1 send, System.Action`1 recv, Boolean throwIfNotRunning) [0x00007] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:213 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x0002f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:182 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest[DesignSession] (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x00004] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:202 
+  at MonoTouch.Design.Client.ServerProcessConnection.CreateSession () [0x00022] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:96 
+  at System.Threading.Tasks.TaskActionInvoker+FuncInvoke`1[MonoTouch.Design.DesignSession].Invoke (System.Threading.Tasks.Task owner, System.Object state, System.Threading.Tasks.Task context) [0x00000] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/TaskActionInvoker.cs:242 
+  at System.Threading.Tasks.Task.InnerInvoke () [0x00031] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:548 
+  at System.Threading.Tasks.Task.ThreadStart () [0x000d0] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:438 
+  --- End of inner exception stack trace ---
+ --&gt; (Inner exception 0) System.SystemException: RegisterServicePort(com.xamarin.MTHosting.d34292, com.apple.PowerManagement.control): Kernel returned: -308 (-308): (ipc/mig) server died
+  at MonoTouch.Hosting.CheckReturnExtensions.Check (kern_return_t result, System.String message) [0x0003c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/MachPort.cs:435 
+  at MonoTouch.Hosting.LibLaunchSim.RegisterServicePort (System.String sessionName, System.String serviceName, MonoTouch.Hosting.MachPort port) [0x00020] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/Bindings/LibLaunchSim.cs:54 
+  at MonoTouch.Hosting.HostingIosSession.StartImpl () [0x00188] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/HostingIosSession.cs:91 
+  at MonoTouch.Hosting.IosSession.Start () [0x0005f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Hosting/IosSession.cs:89 
+  at MonoTouch.Design.Client.Mac.MacServerProcessConnection.EnsureServerRunning (Boolean throwIfNotRunning) [0x0010c] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client.Mac/MacServerProcessConnection.cs:153 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (System.Action`1 send, System.Action`1 recv, Boolean throwIfNotRunning) [0x00007] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:213 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x0002f] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:182 
+  at MonoTouch.Design.Client.ServerProcessConnection.SendRequest[DesignSession] (MonoTouch.Design.CommandRequest req, Boolean throwIfNotRunning) [0x00004] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:202 
+  at MonoTouch.Design.Client.ServerProcessConnection.CreateSession () [0x00022] in /Users/builder/data/lanes/1063/e6a54dee/source/md-addins/Xamarin.Designer.iOS/MonoTouch.Design.Client/Connection/ServerProcessConnection.cs:96 
+  at System.Threading.Tasks.TaskActionInvoker+FuncInvoke`1[MonoTouch.Design.DesignSession].Invoke (System.Threading.Tasks.Task owner, System.Object state, System.Threading.Tasks.Task context) [0x00000] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/TaskActionInvoker.cs:242 
+  at System.Threading.Tasks.Task.InnerInvoke () [0x00031] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:548 
+  at System.Threading.Tasks.Task.ThreadStart () [0x000d0] in /Volumes/build-root-ramdisk/mono-3.6.0/mcs/class/corlib/System.Threading.Tasks/Task.cs:438 
+
+It doesn't matter if I use the alpha or beta channel, the result is the same.
+
+My set up, Yosemite X.X preview 5, Xcode 6beta5 (again, doesn't matter if this is set in the XS configuration)
+
+=== Xamarin Studio ===
+
+Version 5.2 (build 386)
+Installation UUID: f3d1a29c-1ba2-4a83-a193-1087efe91a85
+Runtime:
+	Mono 3.6.0 ((no/f540f8a)
+	GTK+ 2.24.23 (Raleigh theme)
+
+	Package version: 306000039
+
+=== Apple Developer Tools ===
+
+Xcode 5.1.1 (5085)
+Build 5B1008
+
+=== Xamarin.iOS ===
+
+Version: 7.2.6.28 (Business Edition)
+Hash: 606f31a
+Branch: 
+Build date: 2014-08-01 15:27:48-0400
+
+=== Xamarin.Android ===
+
+Version: 4.14.0 (Business Edition)
+Android SDK: /Users/PFJ/Library/Developer/Xamarin/android-sdk-mac_x86
+	Supported Android versions:
+		1.6   (API level 4)
+		2.1   (API level 7)
+		2.2   (API level 8)
+		2.3   (API level 10)
+		3.1   (API level 12)
+		3.2   (API level 13)
+		4.0   (API level 14)
+		4.0.3 (API level 15)
+		4.1   (API level 16)
+		4.2   (API level 17)
+		4.3   (API level 18)
+		4.4   (API level 19)
+Java SDK: /usr
+java version "1.6.0_65"
+Java(TM) SE Runtime Environment (build 1.6.0_65-b14-466.1-11M4716)
+Java HotSpot(TM) 64-Bit Server VM (build 20.65-b04-466.1, mixed mode)
+
+=== Xamarin.Mac ===
+
+Version:
+
+=== Build Information ===
+
+Release ID: 502000386
+Git revision: e6a54dee5376e6e7a2d9982695b060fddc09e65d
+Build date: 2014-08-04 14:03:28-04
+Xamarin addins: 2b5a5c26ac2ee74c6e91a8d24ef44d0ca9cb74d0
+
+=== Operating System ===
+
+Mac OS X 10.10.0
+Darwin Pauls-iMac.local 14.0.0 Darwin Kernel Version 14.0.0
+    Tue Jul 29 16:22:25 PDT 2014
+    root:xnu-2782.1.62~4/RELEASE_X86_64 x86_64</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-08-08 12:18:48 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">We recently diagnosed this issue as being caused by malware/spyware on some systems.
+
+Can you read the following apple forum thread and see if it applies to your system? <a href="https://discussions.apple.com/thread/5596008">https://discussions.apple.com/thread/5596008</a>
+
+If you have /usr/lib/libimckit.dylib then it is likely the malware causing the issue. If you do not, can you open the 'Console' application and in the 'User Diagnostic Reports' section see if there are any crashes for 'launchd_sim_trampoline'. If there are, can you attach a copy of the crash report? It might help to delete the contents of that section and then try to open a storyboard in Xamarin Studio. That way any crashes trigged by the designer will be easily visible.</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Paul Johnson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-08-08 14:49:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I've done as the link suggested and tried all of the tests, happily (for me), they are all negative.
+
+I have 8 sim_trampoline crashes, the most recent is this
+
+Process:               launchd_sim_trampoline [7545]
+Path:                  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/sbin/launchd_sim_trampoline
+Identifier:            launchd_sim_trampoline
+Version:               330.10.5
+Code Type:             X86 (Native)
+Parent Process:        ??? [1]
+Responsible:           launchd_sim_trampoline [7545]
+User ID:               501
+
+Date/Time:             2014-08-07 03:16:07.239 +0100
+OS Version:            Mac OS X 10.10 (14A314h)
+Report Version:        11
+Anonymous UUID:        F1FD5EDA-00F6-2264-B179-13A456771EE6
+
+
+Time Awake Since Boot: 10000 seconds
+
+Crashed Thread:        0  Dispatch queue: com.apple.main-thread
+
+Exception Type:        EXC_BREAKPOINT (SIGTRAP)
+Exception Codes:       0x0000000000000002, 0x0000000000000000
+
+Application Specific Information:
+The iOS Simulator libSystem was initialized out of order.  This is most often caused by running host executables or inserting host dylibs.  In the future, this will cause an abort.
+ 
+
+Dyld Error Message:
+  Symbol not found: _voucher_get_activities
+  Referenced from: /usr/lib/system/libsystem_trace.dylib
+  Expected in: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libdispatch.dylib
+
+Thread 0 Crashed:: Dispatch queue: com.apple.main-thread
+0   dyld                          	0x8fe1d085 dyld_fatal_error + 1
+1   dyld                          	0x8fe20111 dyld::fastBindLazySymbol(ImageLoader**, unsigned long) + 184
+2   libdyld.dylib                 	0x0019946c dyld_stub_binder_ + 20
+3   libsystem_asl.dylib           	0x001d4ec1 asl_base_msg + 662
+4   libsystem_asl.dylib           	0x001d529f _asl_send_message + 424
+5   libsystem_asl.dylib           	0x001d4961 _asl_lib_vlog + 483
+6   libsystem_asl.dylib           	0x001d4771 asl_vlog + 65
+7   libsystem_asl.dylib           	0x001e8548 vsyslog + 211
+8   libsystem_asl.dylib           	0x001e8470 syslog + 34
+9   launchd_sim_trampoline        	0x000715ea 0x70000 + 5610
+10  libdyld.dylib                 	0x0019b6d9 start + 1
+
+Thread 0 crashed with X86 Thread State (32-bit):
+  eax: 0x8fe5152c  ebx: 0x001993cd  ecx: 0x00000000  edx: 0x8fe794c0
+  edi: 0x8fe794c0  esi: 0x8fe1ff70  ebp: 0xbff8f598  esp: 0xbff8f57c
+   ss: 0x00000023  efl: 0x00000246  eip: 0x8fe1d085   cs: 0x0000001b
+   ds: 0x00000023   es: 0x00000023   fs: 0x00000000   gs: 0x0000000f
+  cr2: 0x8fe4b0c0
+  
+Logical CPU:     1
+Error Code:      0x00000000
+Trap Number:     3
+
+
+Binary Images:
+   0x70000 -    0x71fff +launchd_sim_trampoline (330.10.5) &lt;539B771F-5EAD-3A47-B11D-400A6A8BBBA2&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/sbin/launchd_sim_trampoline
+   0x78000 -    0x79fff  libSystem.B.dylib (1213) &lt;16321DA6-870F-3A78-B552-E302BE414041&gt; /usr/lib/libSystem.B.dylib
+   0x80000 -    0x84ffb  libcache.dylib (69) &lt;7978D854-7D38-33C6-ABB1-E468FA17610F&gt; /usr/lib/system/libcache.dylib
+   0x89000 -    0x95ff3  libcommonCrypto.dylib (60061) &lt;801BA2DE-5616-35AF-B105-C8264076B60E&gt; /usr/lib/system/libcommonCrypto.dylib
+   0xa4000 -    0xa9ff7  libcompiler_rt.dylib (35) &lt;90E24260-D468-35F1-A850-AAC748FF9605&gt; /usr/lib/system/libcompiler_rt.dylib
+   0xb6000 -    0xbffff  libcopyfile.dylib (118) &lt;7CB970C5-95FB-39AD-A94A-0C951655B059&gt; /usr/lib/system/libcopyfile.dylib
+   0xc6000 -   0x12fff7  libcorecrypto.dylib (233.1.1) &lt;EF1337C4-8813-3734-A8F7-C602DEBB82C8&gt; /usr/lib/system/libcorecrypto.dylib
+  0x163000 -   0x180ff7 +libdispatch.dylib (354.10.5) &lt;4DE063E1-5BE0-3375-A32A-9E0426945BD6&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libdispatch.dylib
+  0x198000 -   0x19bfff  libdyld.dylib (353.2.1) &lt;4927D174-A80D-351D-9031-7094C8C5F07C&gt; /usr/lib/system/libdyld.dylib
+  0x1a4000 -   0x1a4fff  libkeymgr.dylib (28) &lt;C0F1CE8D-89DE-303A-84C4-0CA65E60111F&gt; /usr/lib/system/libkeymgr.dylib
+  0x1a9000 -   0x1a9fff  liblaunch.dylib (557.0.0.0.1) &lt;368E14A3-D94E-3F15-98D8-DC0B106465E4&gt; /usr/lib/system/liblaunch.dylib
+  0x1b3000 -   0x1b8ff7  libmacho.dylib (862) &lt;7753CBC8-7AA0-3CF8-9CC4-BFF0CFCCBC6A&gt; /usr/lib/system/libmacho.dylib
+  0x1c0000 -   0x1c2fff  libquarantine.dylib (76) &lt;985EFBBF-524C-34A4-9433-3BE5BBBD64A8&gt; /usr/lib/system/libquarantine.dylib
+  0x1c8000 -   0x1c9fff  libremovefile.dylib (35) &lt;8F6EAEF2-CC23-3E95-AC04-D7F5F0794DA7&gt; /usr/lib/system/libremovefile.dylib
+  0x1d2000 -   0x1e9fff  libsystem_asl.dylib (267) &lt;76DE5B88-B889-3B27-A38F-F51209FFA76A&gt; /usr/lib/system/libsystem_asl.dylib
+  0x1f7000 -   0x1f8fff  libsystem_blocks.dylib (65) &lt;4EADAA33-46FC-3A88-949F-406F7095DD4C&gt; /usr/lib/system/libsystem_blocks.dylib
+  0x1fd000 -   0x292ff7  libsystem_c.dylib (1044) &lt;55278CAD-7042-34F2-9322-17567A969A53&gt; /usr/lib/system/libsystem_c.dylib
+  0x2bb000 -   0x2bdfff  libsystem_configuration.dylib (698) &lt;68F63823-5AB7-3665-A1D5-87A9768140E0&gt; /usr/lib/system/libsystem_configuration.dylib
+  0x2c3000 -   0x2c5fff  libsystem_coreservices.dylib (8) &lt;3FB56D35-96B2-3F20-B67E-11AD5AAB412C&gt; /usr/lib/system/libsystem_coreservices.dylib
+  0x2ca000 -   0x2dbffb  libsystem_coretls.dylib (34) &lt;5D45DDB5-DC41-31C3-B48D-73FEC045ED95&gt; /usr/lib/system/libsystem_coretls.dylib
+  0x2ea000 -   0x2f2fff  libsystem_dnssd.dylib (561) &lt;461B4E13-A515-394C-8105-BE8ED6988898&gt; /usr/lib/system/libsystem_dnssd.dylib
+  0x2fb000 -   0x324ff7  libsystem_info.dylib (459) &lt;9EC87920-DB9A-3AC0-A61A-B317737497AF&gt; /usr/lib/system/libsystem_info.dylib
+  0x33a000 -   0x359fff  libsystem_kernel.dylib (2782.1.62) &lt;C2CD2870-F7A0-3222-9F65-6E14FAE9647F&gt; /usr/lib/system/libsystem_kernel.dylib
+  0x370000 -   0x3a3fe3  libsystem_m.dylib (3086.1) &lt;219B16A8-B07A-396D-9437-6B8B4D125C0F&gt; /usr/lib/system/libsystem_m.dylib
+  0x3b0000 -   0x3c9ffb  libsystem_malloc.dylib (53) &lt;B641A871-612F-3036-A800-47F685980958&gt; /usr/lib/system/libsystem_malloc.dylib
+  0x3d2000 -   0x3fffff +libsystem_network.dylib (268.3) &lt;62F57433-F067-3266-8AF1-1312BBBA8CB3&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_network.dylib
+  0x417000 -   0x41dff7  libsystem_networkextension.dylib (164) &lt;CC447E7E-85EF-3891-9DCE-598D9D5A0B5E&gt; /usr/lib/system/libsystem_networkextension.dylib
+  0x426000 -   0x42ffff  libsystem_notify.dylib (131) &lt;8CACC187-2264-38E8-86D9-7D27468A46D5&gt; /usr/lib/system/libsystem_notify.dylib
+  0x43a000 -   0x440ff3  libsystem_platform.dylib (63) &lt;9C8845AB-86B5-35D0-B1EF-73D53EEE8FFE&gt; /usr/lib/system/libsystem_platform.dylib
+  0x44b000 -   0x453fff  libsystem_pthread.dylib (105) &lt;4BEDF9E5-5408-314A-A26E-C3659B70E85C&gt; /usr/lib/system/libsystem_pthread.dylib
+  0x45f000 -   0x461ff7  libsystem_sandbox.dylib (358) &lt;9C24372B-F153-34C6-A905-BD9EC6880972&gt; /usr/lib/system/libsystem_sandbox.dylib
+  0x468000 -   0x46affb  libsystem_secinit.dylib (18) &lt;FEB3BF1A-C722-35E7-BD1E-EB99AC18A400&gt; /usr/lib/system/libsystem_secinit.dylib
+  0x471000 -   0x477fff  libsystem_trace.dylib (71) &lt;725A8FE4-A53B-3EE0-9480-CABA4899CB02&gt; /usr/lib/system/libsystem_trace.dylib
+  0x481000 -   0x482fff  libunc.dylib (28) &lt;3F7124C3-F0F7-3D6D-9C5D-1C7EC3E4593B&gt; /usr/lib/system/libunc.dylib
+  0x488000 -   0x48fff3  libunwind.dylib (35.3) &lt;B7E7203E-0703-38BA-B38A-451EF16BBF30&gt; /usr/lib/system/libunwind.dylib
+  0x499000 -   0x4c2fff +libxpc.dylib (330.10.5) &lt;81ED694C-488A-3466-8AA2-7E0518B10AED&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libxpc.dylib
+  0x4db000 -   0x4dbfff +libdyld_sim.dylib (324.1) &lt;43A82553-2CD3-338B-A2FB-D3B3DF869C10&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libdyld_sim.dylib
+  0x4e0000 -   0x4e5ff2 +libcompiler_rt_sim.dylib (57) &lt;DA0A65B6-AC07-3C98-A612-4BA59FAC83A5&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcompiler_rt_sim.dylib
+  0x4ee000 -   0x57aff7 +libsystem_sim_c.dylib (1002.10.1) &lt;785B9921-E6E0-3FB4-8CAC-E207FF22F087&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_c.dylib
+  0x5a0000 -   0x5a1fff +libsystem_sim_blocks.dylib (64) &lt;C89A714B-EB1D-39D7-A3CB-D643B3AC4692&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_blocks.dylib
+  0x5a8000 -   0x5afffb +libunwind_sim.dylib (59.3) &lt;B7DF590E-E733-317A-BB84-0D61F6F66EC9&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libunwind_sim.dylib
+  0x5b9000 -   0x5dafff +libSystem.dylib (111.10.5) &lt;19EA26D9-875D-3179-B1F1-66D1D12CBB12&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/libSystem.dylib
+  0x5f2000 -   0x79aed7 +libobjc.A.dylib (627.6) &lt;8FB21547-B475-3D3E-9C64-1EEF47A0FD18&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/libobjc.A.dylib
+  0x7bb000 -   0x7ebfff +libsystem_sim_m.dylib (3061) &lt;53131E41-B52A-3C45-82B3-32985E09BC7A&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_m.dylib
+  0x7f3000 -   0x7f7ff7 +libmacho_sim.dylib (846.2.4) &lt;A18E662F-6A24-3930-B283-720BDA503B38&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libmacho_sim.dylib
+  0x7fd000 -   0x825ff3 +libsystem_sim_info.dylib (452) &lt;481EC5F2-E56F-3D12-9362-ED378895AF50&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_info.dylib
+  0x836000 -   0x83ffff +libnotify_sim.dylib (121) &lt;0AC6CC08-25EB-3749-B5F4-5FA06DC86DFC&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libnotify_sim.dylib
+  0x846000 -   0x84bfff +libsystem_override.dylib (111.10.5) &lt;1FA1122D-2C29-3F06-973E-41E376F911FC&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_override.dylib
+  0x851000 -   0x856fff +libcache_sim.dylib (65) &lt;4F98980D-EA09-3465-97A2-28F61D7A2FD3&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcache_sim.dylib
+  0x85b000 -   0x868ff3 +libcommonCrypto_sim.dylib (60049) &lt;688BFF67-1F7C-38A1-8669-190828FEAC09&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcommonCrypto_sim.dylib
+  0x877000 -   0x8ccff7 +libcorecrypto_sim.dylib (170.2) &lt;B1A240B4-AAE6-3EE0-BA57-AC355292FCB9&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcorecrypto_sim.dylib
+  0x8dd000 -   0x8e5ffb +libcopyfile_sim.dylib (103) &lt;155C0F1D-257F-33CE-9FAC-45DB18C35404&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libcopyfile_sim.dylib
+  0x8ed000 -   0x8effff +libremovefile_sim.dylib (33) &lt;36E0F857-21BA-33C9-BB8C-666C92EF4331&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libremovefile_sim.dylib
+  0x8f6000 -   0x8feff7 +libsystem_sim_dnssd.dylib (539.10.1) &lt;D44EE83B-AB0B-315F-A975-61743788B225&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_dnssd.dylib
+  0x906000 -   0x908fff +libsystem_sim_configuration.dylib (615.1) &lt;2BBC9E19-08DE-3F2C-B299-A95C72E53015&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_configuration.dylib
+  0x910000 -   0x924ff3 +libsystem_sim_asl.dylib (224.10.2) &lt;3773B273-EBB2-3779-BCAA-A9643026FDE7&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/system/libsystem_sim_asl.dylib
+  0x92e000 -   0x952fff +libc++abi.dylib (114) &lt;BBE91325-8091-3744-8FCD-58499F8B5D55&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/libc++abi.dylib
+  0x95f000 -   0x9c5ff7 +libc++.1.dylib (230) &lt;4A4D0260-22BD-340B-A60E-6CF67582F10F&gt; /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk/usr/lib/libc++.1.dylib
+0x8fe1c000 - 0x8fe4fb33  dyld (353.2.1) &lt;46FDEE48-1F6A-344E-8F96-1B27C2B4569F&gt; /usr/lib/dyld
+
+External Modification Summary:
+  Calls made by other processes targeting this process:
+    task_for_pid: 1
+    thread_create: 0
+    thread_set_state: 0
+  Calls made by this process:
+    task_for_pid: 0
+    thread_create: 0
+    thread_set_state: 0
+  Calls made by all processes on this machine:
+    task_for_pid: 644500
+    thread_create: 0
+    thread_set_state: 0
+
+VM Region Summary:
+ReadOnly portion of Libraries: Total=9344K resident=3536K(38%) swapped_out_or_unallocated=5808K(62%)
+Writable regions: Total=20.7M written=160K(1%) resident=556K(3%) swapped_out=0K(0%) unallocated=20.2M(97%)
+ 
+REGION TYPE                      VIRTUAL
+===========                      =======
+Kernel Alloc Once                     4K
+MALLOC                             12.1M
+MALLOC (admin)                       16K
+Stack                              64.0M
+VM_ALLOCATE                           8K
+__DATA                              588K
+__LINKEDIT                         2344K
+__TEXT                             7068K
+mapped file                       253.1M
+shared memory                         4K
+===========                      =======
+TOTAL                             339.0M
+
+
+System Profile:
+AirPort: spairport_wireless_card_type_airport_extreme (0x14E4, 0x111), Broadcom BCM43xx 1.0 (7.15.117.1.4)
+Bluetooth: Version 4.3.0b8 14558, 3 services, 25 devices, 1 incoming serial ports
+Thunderbolt Bus: iMac, Apple Inc., 23.10
+Memory Module: BANK 0/DIMM0, 4 GB, DDR3, 1600 MHz, 0x802C, 0x384B54463531323634485A2D314736453220
+Memory Module: BANK 1/DIMM0, 4 GB, DDR3, 1600 MHz, 0x802C, 0x384B54463531323634485A2D314736453220
+USB Device: D3 Station
+USB Device: BRCM20702 Hub
+USB Device: Bluetooth USB Host Controller
+USB Device: FaceTime HD Camera (Built-in)
+USB Device: USB2.0 Hub
+USB Device: USB PnP Audio Device
+USB Device: USB 2.0 Hub
+USB Device: USB2.0 Device
+USB Device: USB2.0 Hub
+USB Device: USB 2.0 Hub [MTT]
+USB Device: External
+Serial ATA Device: APPLE HDD ST1000DM003, 1 TB
+Model: iMac14,2, BootROM IM142.0118.B00, 4 processors, Intel Core i5, 3.2 GHz, 8 GB, SMC 2.15f5
+Network Service: Wi-Fi, AirPort, en1
+Graphics: NVIDIA GeForce GT 755M, NVIDIA GeForce GT 755M, PCIe, 1024 MB</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-08-08 15:43:53 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Perfect, thanks. This is a known issue a few people are encountering with the latest Yosemite preview. At the moment we suspect it's a regression in Yosemite. The issue might just&nbsp;go away when apple release the next preview. In the meantime we will continue looking into it and see if we can find a workaround.</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-08-11 10:56:14 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I just installed Yosemite preview 5 along with Xcode6 preview 5 and everything works as expected.
+
+I just reviewed the log files you attached and it looks like you've configured Xamarin Studio to use Xcode 5.1.1, not Xcode6-Beta5 as you initially said. The current selected xcode can be seen in the 'Apple Developer Tools' section of the output:
+
+=== Apple Developer Tools ===
+
+Xcode 5.1.1 (5085)
+Build 5B1008
+
+Xcode 5 is not functional on yosemite, so I think this is why the designer is failing. If you change Xamarin Studio to use Xcode6, or if you put Xcode6-Beta5.app as your /Applications/Xcode.app, then everything should work as expected.</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-08-12 12:20:08 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Marking as resolved as we have several verifications that everything works with the latest Xcode 6 and Yosemite previews and your logs do say that you had selected Xcode 5.1.1 which is known to not work.</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Paul Johnson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-08-14 06:25:40 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Using XC6b5 with the latest everything from the alpha channel.
+
+I have created a fresh project, double clicked on the storyboard and was given a pile of feed back (attached file) and the choice to edit in Xcode
+
+Here is the versions of what I'm using
+
+=== Xamarin Studio ===
+
+Version 5.3 (build 423)
+Installation UUID: f3d1a29c-1ba2-4a83-a193-1087efe91a85
+Runtime:
+	Mono 3.8.0 ((no/62a857e)
+	GTK+ 2.24.23 (Raleigh theme)
+
+	Package version: 308000007
+
+=== Apple Developer Tools ===
+
+Xcode 6.0 (6256.8)
+Build 6A279r
+
+=== Xamarin.Mac ===
+
+Version:
+
+=== Xamarin.iOS ===
+
+Version: 7.9.3.52 (Business Edition)
+Hash: 1686c40
+Branch: 
+Build date: 2014-08-11 15:30:23-0400
+
+=== Xamarin.Android ===
+
+Version: 4.17.0 (Business Edition)
+Android SDK: /Users/PFJ/Library/Developer/Xamarin/android-sdk-mac_x86
+	Supported Android versions:
+		1.6    (API level 4)
+		2.1    (API level 7)
+		2.2    (API level 8)
+		2.3    (API level 10)
+		3.0    (API level 11)
+		3.1    (API level 12)
+		3.2    (API level 13)
+		4.0    (API level 14)
+		4.0.3  (API level 15)
+		4.1    (API level 16)
+		4.2    (API level 17)
+		4.3    (API level 18)
+		4.4    (API level 19)
+		4.4.87 (API level 20)
+		4.5    (API level 21)
+Java SDK: /usr
+java version "1.6.0_65"
+Java(TM) SE Runtime Environment (build 1.6.0_65-b14-466.1-11M4716)
+Java HotSpot(TM) 64-Bit Server VM (build 20.65-b04-466.1, mixed mode)
+
+=== Build Information ===
+
+Release ID: 503000423
+Git revision: f4bb573b38a18c9f5400d8734eada2d5610deae4
+Build date: 2014-08-12 17:26:33-04
+Xamarin addins: 0961e1860cd1dcb4e47062f25c40d224979a02fb
+
+=== Operating System ===
+
+Mac OS X 10.10.0
+Darwin Pauls-iMac.local 14.0.0 Darwin Kernel Version 14.0.0
+    Tue Jul 29 16:22:25 PDT 2014
+    root:xnu-2782.1.62~4/RELEASE_X86_64 x86_64</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Paul Johnson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-08-14 06:26:56 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=7689&amp;file=storyboard.txt" name="attach_7689" title="Throwback from storyboard crash">attachment 7689</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=7689&amp;file=storyboard.txt" title="Throwback from storyboard crash">[details]</a></span>
+Throwback from storyboard crash</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-08-14 09:17:01 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Perfect, thank you. From those log files I can see that 'springboard' is crashing constantly. In the 'User Diagnostics' section of the 'Console' application can you see crash reports from the springboard process? If so, can you send us a couple of those so we can see exactly what caused springboard to crash?
+
+I'll set up a fresh mac mini later today and try to reproduce the problem on a clean machine. I think I did experience this before but can't remember what fixed it.</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Paul Johnson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-08-14 09:38:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Springboard didn't generate an error log for the crash above. There are a number though for XS if they are any good</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Paul Johnson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-08-18 08:21:07 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=7708&amp;file=springboard.txt" name="attach_7708" title="Springboard throwback">attachment 7708</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=7708&amp;file=springboard.txt" title="Springboard throwback">[details]</a></span>
+Springboard throwback
+
+Throwback finally occurred today from Springboard</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-09-12 13:36:37 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Our internal testing makes it seem like everything is working ok with the latest Xcode6 GM and Yosemite preview. I don't want to just close this bug as the last time you were still affected by the problem.
+
+Could you test with the latest Xcode6, Yosemite and Xamarin Studio 5.4.x and see if everything is working as expected. If not, can you follow the instructions in this knowledgebase article. We're trying to gather as much information as we can to track down exactly what is going wrong. This seems to be happening on a very small minority of machines which is making it very tricky to track down.
+
+<a href="http://kb.xamarin.com/customer/portal/articles/1684218-ios-designer-error-with-%22registerserviceport%22">http://kb.xamarin.com/customer/portal/articles/1684218-ios-designer-error-with-%22registerserviceport%22</a>
+
+Thanks</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-09-16 10:19:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">As the latest XS builds, Yosemite builds and Xcode builds are working for us I think it should be safe to close this bug.
+
+The kb article has been recently updated with additional information to help us diagnose the root cause of issues like this so please do re-read it if you're still affected by this problem.</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Waldemar Cichon</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-15 14:48:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have also the same problems. Before update to Yosemite the IOS-Interface builder was working fine, but now crashes. I didn´t found any malware on my mac. It'a a Mac mini with some Xcode's installed. There is a 5.1, which is opened after saying "Open in Xcode), one 6.01 and the current GM 2 of 6.1.
+
+Should I open a new issue or will be this reopened. What more on information do you need from me?
+
+Regards
+
+Waldemar</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

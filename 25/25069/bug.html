@@ -1,0 +1,2016 @@
+<html lang="en"><head>
+    <title>25069 – SGEN causes SIGSEGV after not accounting for offset in pointer to nursery</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Runtime
+                 bz_component_GC
+                 bz_bug_25069 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;25069</span>
+
+        <span id="subtitle" class="subheader">SGEN causes SIGSEGV after not accounting for offset in pointer to nursery</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2017-07-12 23:06:33 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2017-07-12 23:06:33">
+  <input type="hidden" name="id" value="25069">
+  <input type="hidden" name="token" value="1559187808-FrrsZ6Pk0QiZ6kISySVScPO2Y2uYaOqcv69GVmhk5L0">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;25069</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">SGEN causes SIGSEGV after not accounting for offset in pointer to nursery</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>SGEN causes SIGSEGV after not accounting for offset in pointer to nursery
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          NOT_REPRODUCIBLE
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Runtime
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Mono
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">GC
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>unspecified
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Linux
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>---
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Bugzilla</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2014-12-04 08:48 UTC by <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2017-07-12 23:06 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>6
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="alexander.kyte">alexander.kyte</option>
+                <option value="daniel.bason">daniel.bason</option>
+                <option value="ludovic">ludovic</option>
+                <option value="mark">mark</option>
+                <option value="mono-bugs+mono">mono-bugs+mono</option>
+                <option value="mono-bugs+runtime">mono-bugs+runtime</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+            <a href="https://github.com/mono">GitHub</a> or <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">NOT_REPRODUCIBLE
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-04 08:48:27 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">My program is dying frequently after running into all kinds of trouble it seems after dereferencing a pointer from the gray queue to the nursery thinking it is something it is not.  Below is the stack trace and GDB info.
+
+
+#0  0x00007fe5994059bd in nanosleep () at ../sysdeps/unix/syscall-template.S:81
+#1  0x00007fe599405854 in __sleep (seconds=0, seconds@entry=1) at ../sysdeps/unix/sysv/linux/sleep.c:137
+#2  0x0000000000505b2a in mono_handle_native_sigsegv (signal=6, ctx=&lt;optimized out&gt;) at mini-exceptions.c:2284
+#3  &lt;signal handler called&gt;
+#4  0x00007fe59937abb9 in __GI_raise (sig=sig@entry=6) at ../nptl/sysdeps/unix/sysv/linux/raise.c:56
+#5  0x00007fe59937dfc8 in __GI_abort () at abort.c:89
+#6  0x0000000000687ef9 in monoeg_log_default_handler (log_domain=&lt;optimized out&gt;, log_level=G_LOG_LEVEL_ERROR, message=&lt;optimized out&gt;, 
+    unused_data=&lt;optimized out&gt;) at goutput.c:232
+#7  0x00000000006880ff in monoeg_g_logv (log_domain=0x0, log_level=G_LOG_LEVEL_ERROR, format=&lt;optimized out&gt;, args=args@entry=0x7fe57cffe038) at goutput.c:113
+#8  0x00000000006881a2 in monoeg_g_log (log_domain=log_domain@entry=0x0, log_level=log_level@entry=G_LOG_LEVEL_ERROR, 
+    format=format@entry=0x1190131 "no object of size %d\n") at goutput.c:123
+#9  0x00000000006302e6 in ms_find_block_obj_size_index (size=&lt;optimized out&gt;) at sgen-marksweep.c:218
+#10 0x0000000000631ae8 in alloc_obj (vtable=0x7fe58af85310, size=&lt;optimized out&gt;, pinned=0, has_references=1) at sgen-marksweep.c:501
+#11 0x000000000064cc7f in alloc_for_promotion (has_references=1, objsize=2721382008, obj=0x7fe598ec0998 "\020S\370\212\345\177", vtable=0x7fe58af85310)
+    at sgen-simple-nursery.c:35
+#12 copy_object_no_checks (obj=obj@entry=0x7fe598ec0998, queue=queue@entry=0x1a5f320 &lt;gray_queue&gt;) at sgen-copy-object.h:83
+#13 0x000000000064da71 in simple_nursery_serial_copy_object_from_obj (queue=0x1a5f320 &lt;gray_queue&gt;, obj_slot=0x7fe598ffc710) at sgen-minor-copy-object.h:201
+#14 simple_nursery_serial_scan_object (start=&lt;optimized out&gt;, desc=&lt;optimized out&gt;, queue=0x1a5f320 &lt;gray_queue&gt;) at sgen-scan-object.h:74
+#15 0x000000000062933a in sgen_drain_gray_stack (max_objs=max_objs@entry=-1, ctx=...) at sgen-gc.c:902
+#16 0x000000000062de0c in collect_nursery (unpin_queue=unpin_queue@entry=0x0, finish_up_concurrent_mark=finish_up_concurrent_mark@entry=0) at sgen-gc.c:2325
+#17 0x000000000062e7c9 in collect_nursery (finish_up_concurrent_mark=0, unpin_queue=0x0) at sgen-gc.c:3213
+#18 sgen_perform_collection (requested_size=4096, generation_to_collect=0, reason=0x118fb17 "Nursery full", wait_to_finish=0) at sgen-gc.c:3239
+#19 0x000000000064582b in mono_gc_alloc_obj_nolock (vtable=0x260dd58, size=88) at sgen-alloc.c:328
+#20 0x0000000000645913 in mono_gc_alloc_obj (vtable=0x260dd58, size=88) at sgen-alloc.c:504
+
+
+I ran this through GDB and it appears to me that the problem is that the copy_object_no_checks is not accounting for the fact that this obj appears to be a pointer to a list, which is at an offset of +3g relative to the actual object start.
+
+To elaborate on why I think this, here is the run down of the call stack.
+
+Stack Frame #13 - Passes in an object
+copy = copy_object_no_checks (obj, queue);
+(gdb) p obj
+<span class="quote">&gt; obj = 0x7fe598ec0998 </span>
+
+Stack Frame #12 - Tries to grab the MonoVTable for this object with the code below, but the result appears to be nonsense.
+MonoVTable *vt = ((MonoObject*)obj)-&gt;vtable;
+
+(gdb) info locals
+<span class="quote">&gt; vt = 0x7fe58af85310
+&gt; objsize = 2721382008</span>
+
+I can tell by examining the variable for the vtable that it is totally bogus.  Additionally, if I call the debugger function sgen-debug.c:describe_ptr(obj) it gives me a totally different value for the vtable
+
+VTable: 0x7fe570328b98
+Class: List`1
+Descriptor: a
+Descriptor type: 2 (small_bitmap)
+Size: 32
+
+
+Examining the memory, it appears that the debugger function found this value by scanning the nursery and accounting for an offset.
+
+(gdb) x/5g obj-8
+<span class="quote">&gt; 0x7fe598ec0990: 0x00007fe58d140240      0x00007fe58af85310 &lt;- what copy function thinks is vtable, corresponds to nonsense
+&gt; 0x7fe598ec09a0: 0xc00000003fffffff      0xffffffff00000001
+&gt; 0x7fe598ec09b0: 0x00007fe570328b98 &lt;- what the debugger function thinks is vtable, corresponds to list class vtable</span>
+
+It seems to me the current behavior can't be right, and the 3 long offset seems right for a 64 bit process, but I am not sure which way it should grow or how offsets are determined when copying.
+
+If it's relevant, the object on the other side of this in the nursery is an Iterator described below.
+
+VTable: 0x7fe5703dd420
+Class: &lt;CreateSelectIterator&gt;c__Iterator10`2
+Descriptor: 7a
+Descriptor type: 2 (small_bitmap)
+Size: 64
+
+I am trying to make a test case of this, but the code is called from a large library that does a lot of pinning to pass arrays to native code.  This SIGSEGV happens when it is running in parallel and very frequently doing GCs.</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-04 08:49:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Forgot to mention, was a git build from todays master branch.</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-04 14:18:45 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Could you check whether the bug is also present in the 3.12 branch?  We just pushed a lot of changes to the GC after 3.12 was branched.</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-04 17:28:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I just ran it with the 3.12 branch and got a SIGSEGV with the same type of error one time, but a repeat trial gave a SIGSEGV with a slightly different error, suggesting the corruption might be elsewhere (but I don't really know).
+
+The version I used is described as follows 
+
+
+<span class="quote">&gt; Mono JIT compiler version 3.12.0 (mono-3.12.0-branch/3016bd7 Thu Dec  4 12:26:05 PST 2014)
+&gt; Copyright (C) 2002-2014 Novell, Inc, Xamarin Inc and Contributors. www.mono-project.com
+&gt;        TLS:           __thread
+&gt;        SIGSEGV:       altstack
+&gt;        Notifications: epoll
+&gt;        Architecture:  amd64
+&gt;        Disabled:      none
+&gt;        Misc:          softdebug 
+&gt;        LLVM:          supported, not enabled.
+&gt;        GC:            sgen</span>
+
+
+Running it the first time, I got a similar stack trace as in the initial report, but slightly different vtable values from the debugger functions versus the code execution path.
+
+From debugger function:
+
+	VTable: 0x7fe91c06dea0
+	Class: Func`2
+	Descriptor: 7c4006a
+	Descriptor type: 2 (small_bitmap)
+	Size: 104
+
+From stack:
+
+	vt = 0x1
+
+The stack trace was similar, throwing an error due to the bad vt variable.
+
+However, the second time the stack trace was quite different, which is below.  It seems to be in some trampoline stuff when it is fired, and I had a very difficult time working through the debugger.  It seems that the SIGSEGV fires either with a strack trace like above, or in one of these mini methods.  As before, lots of signals and GCs seem to be thrown around the runtime when this happens.
+
+I still haven't reduced to small test case, but can easily reproduce with the larger program if there are other things that would be useful to know.
+
+Stack trace error different version.
+
+#0  0x00007f51b27ff9bd in nanosleep () at ../sysdeps/unix/syscall-template.S:81
+#1  0x00007f51b27ff854 in __sleep (seconds=0, seconds@entry=1) at ../sysdeps/unix/sysv/linux/sleep.c:137
+#2  0x00000000004b381a in mono_handle_native_sigsegv (signal=signal@entry=11, ctx=ctx@entry=0x7f51aa841c40) at mini-exceptions.c:2269
+#3  0x000000000050aa73 in mono_arch_handle_altstack_exception (sigctx=sigctx@entry=0x7f51aa841c40, fault_addr=&lt;optimized out&gt;, stack_ovf=stack_ovf@entry=0) at exceptions-amd64.c:861
+#4  0x000000000042ac12 in mono_sigsegv_signal_handler (_dummy=11, _info=0x7f51aa841d70, context=0x7f51aa841c40) at mini.c:6858
+#5  &lt;signal handler called&gt;
+#6  __GI___pthread_mutex_lock (mutex=0x92) at ../nptl/pthread_mutex_lock.c:66
+#7  0x00000000004bd77d in mono_class_fill_runtime_generic_context (class_vtable=0x973480 &lt;vtable&gt;, caller=0x40e35380 "L\213\320H\213\205x\377\377\377H\213\370H\213", slot=0)
+    at mini-generic-sharing.c:1922
+#8  0x00000000414eeae6 in ?? ()
+#9  0x00007f51b20e10b8 in ?? ()
+#10 0x00007f51b2108030 in ?? ()
+#11 0x00007f51b2107ff0 in ?? ()
+#12 0x00007f51b2108030 in ?? ()
+#13 0x00007f51b2107fa8 in ?? ()
+#14 0x00007f51b20e10b8 in ?? ()
+#15 0x00007f51b2107ff0 in ?? ()
+#16 0x0000000040e34c3c in ?? ()
+#17 0x00007f51b20e10b8 in ?? ()
+#18 0x00007f518806c1f8 in ?? ()
+#19 0x00007f51b2108030 in ?? ()
+#20 0x0000000040e50c54 in ?? ()
+#21 0x00007f51b20b84c8 in ?? ()
+#22 0x00007f51a78bc780 in ?? ()
+#23 0x00007f51a78bce00 in ?? ()
+#24 0x00007f51b20b5a30 in ?? ()
+#25 0x00007f51b2344820 in ?? ()
+#26 0x00007f51a50b5960 in ?? ()
+#27 0x00007f51b22d21d8 in ?? ()
+#28 0x00007f51b20cf020 in ?? ()
+#29 0x00007f51b22e81c8 in ?? ()
+#30 0x00007f51b21028f8 in ?? ()
+#31 0x00007f51b20b8401 in ?? ()
+#32 0x0000000040e4fc01 in ?? ()
+#33 0x00007f51b2107c50 in ?? ()
+#34 0x00007f51b2107c50 in ?? ()
+#35 0x000000000000002d in ?? ()
+#36 0x00007f51b2107c70 in ?? ()
+#37 0x00007f51b2107dd0 in ?? ()
+#38 0x00007f51a78bc708 in ?? ()
+#39 0x00007f51a78bc718 in ?? ()
+#40 0x0000000000000008 in ?? ()
+#41 0x00007f51a42a82e0 in ?? ()
+#42 0x00007f51b2108030 in ?? ()
+#43 0x00007f51b22e81c8 in ?? ()
+#44 0x00007f51b21592e0 in ?? ()
+#45 0x00007f51b2016020 in ?? ()
+#46 0x00007f51b22e7d10 in ?? ()
+#47 0x00007f51b20b84c8 in ?? ()
+#48 0x0000000040e3832c in ?? ()
+#49 0x00007f5190002650 in ?? ()
+#50 0x0000000000000000 in ?? ()</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-04 18:08:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I think this is unrelated but just some more information.  As this code works on the Mac but not on the Ubuntu server, I tried running it with the GC_PARAMS set to both conservative and precise.
+
+The error is thrown with conservative, but with precise it dies quickly with the following message:
+
+
+	* Assertion at mini-gc.c:2036, condition `cfg-&gt;frame_reg == cfg-&gt;cfa_reg' not met
+
+	Received SIGSEGV, suspending...
+
+And attaching GDB shows the following:
+
+	(gdb) info threads
+	  Id   Target Id         Frame 
+	* 1    Thread 0x7f02f0f3c7c0 (LWP 39800) "mono" 0x00007f02f00fa9a0 in __nanosleep_nocancel () at ../sysdeps/unix/syscall-template.S:81
+	(gdb) bt
+	#0  0x00007f02f00fa9a0 in __nanosleep_nocancel ()
+	    at ../sysdeps/unix/syscall-template.S:81
+	#1  0x00007f02f00fa854 in __sleep (seconds=0, seconds@entry=1)
+	    at ../sysdeps/unix/sysv/linux/sleep.c:137
+	#2  0x00000000004b381a in mono_handle_native_sigsegv (signal=6, 
+	    ctx=&lt;optimized out&gt;) at mini-exceptions.c:2269
+	#3  &lt;signal handler called&gt;
+	#4  0x00007f02f006fbb9 in __GI_raise (sig=sig@entry=6)
+	    at ../nptl/sysdeps/unix/sysv/linux/raise.c:56
+	#5  0x00007f02f0072fc8 in __GI_abort () at abort.c:89
+	#6  0x0000000000627799 in monoeg_log_default_handler (
+	    log_domain=&lt;optimized out&gt;, log_level=G_LOG_LEVEL_ERROR, 
+	    message=&lt;optimized out&gt;, unused_data=&lt;optimized out&gt;) at goutput.c:232
+	#7  0x000000000062799f in monoeg_g_logv (log_domain=log_domain@entry=0x0, 
+	    log_level=log_level@entry=G_LOG_LEVEL_ERROR, 
+	    format=format@entry=0x630560 "* Assertion at %s:%d, condition `%s' not met\n", args=args@entry=0x7fff38e99b98) at goutput.c:113
+	#8  0x0000000000627ae6 in monoeg_assertion_message (
+	    format=format@entry=0x630560 "* Assertion at %s:%d, condition `%s' not met\n") at goutput.c:133
+	#9  0x00000000004cdea8 in compute_frame_size (cfg=0xf4f3f0) at mini-gc.c:2036
+	#10 mini_gc_create_gc_map (cfg=cfg@entry=0xf4f3f0) at mini-gc.c:2443
+	---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+	#11 0x0000000000429117 in mini_method_compile (method=0xf4cc10, 
+	    opts=opts@entry=370239999, domain=domain@entry=0xef9310, 
+	    flags=flags@entry=JIT_FLAG_RUN_CCTORS, parts=parts@entry=0) at mini.c:5730
+	#12 0x000000000042c4fd in mono_jit_compile_method_inner (
+	    jit_ex=0x7fff38e99f68, opt=370239999, target_domain=0xef9310, 
+	    method=0xf4cc10) at mini.c:6024
+	#13 mono_jit_compile_method_with_opt (method=method@entry=0xf4cc10, 
+	    opt=370239999, ex=ex@entry=0x7fff38e99f68) at mini.c:6296
+	#14 0x000000000042ce8b in mono_jit_compile_method (method=0xf4cc10)
+	    at mini.c:6333
+	#15 0x000000000042d49c in mono_jit_runtime_invoke (method=0xf4c9d0, 
+	    obj=0x7f02ef800818, params=0x7fff38e9a170, exc=0x0) at mini.c:6662
+	#16 0x00000000005aa3dd in mono_runtime_invoke (method=method@entry=0xf4c9d0, 
+	    obj=obj@entry=0x7f02ef800818, params=params@entry=0x7fff38e9a170, 
+	    exc=exc@entry=0x0) at object.c:2842
+	#17 0x0000000000531241 in create_exception_two_strings (klass=0xf4c428, 
+	    a1=0x7f02ef8007e0, a2=a2@entry=0x0) at exception.c:141
+	#18 0x0000000000531485 in mono_exception_from_name_two_strings (
+	    image=&lt;optimized out&gt;, name_space=name_space@entry=0x63186e "System", 
+	    name=name@entry=0x643f27 "OutOfMemoryException", a1=&lt;optimized out&gt;, 
+	    a2=a2@entry=0x0) at exception.c:164
+	#19 0x000000000059c311 in create_domain_objects (domain=domain@entry=0xef9310)
+	---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+	    at appdomain.c:180
+	#20 0x000000000059d3d1 in mono_runtime_init (domain=domain@entry=0xef9310, 
+	    start_cb=start_cb@entry=0x4225c0 &lt;mono_thread_start_cb&gt;, 
+	    attach_cb=attach_cb@entry=0x422560 &lt;mono_thread_attach_cb&gt;)
+	    at appdomain.c:264
+	#21 0x000000000042bafc in mini_init (
+	    filename=0x7fff38e9b6c1 "PacBio.ConsensusTools.exe", 
+	    runtime_version=runtime_version@entry=0x0) at mini.c:7526
+	#22 0x0000000000488422 in mono_main (argc=3, argv=&lt;optimized out&gt;)
+	    at driver.c:1914
+	#23 0x00007f02f005aec5 in __libc_start_main (main=0x420de0 &lt;main&gt;, argc=3, 
+	    argv=0x7fff38e9a4a8, init=&lt;optimized out&gt;, fini=&lt;optimized out&gt;, 
+	    rtld_fini=&lt;optimized out&gt;, stack_end=0x7fff38e9a498) at libc-start.c:287
+	#24 0x0000000000421084 in _start ()</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-05 16:39:47 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Could you please try the latest master (at least 6c60288739dd5a6606569dc2866226ac91ff594a) with `MONO_GC_DEBUG=nursery-canaries`?  That option adds an 8 byte canary after each object in the nursery, to detect overwrites (which usually happen with unsafe array code).
+
+Precise stack scanning isn't currently working.</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-05 19:21:55 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">With that flag and the latest master (master/b5ed5a3) it fails repeatedly on startup with: 
+
+* Assertion at aot-runtime.c:854, condition `ref-&gt;method' not met
+
+Received SIGSEGV, suspending...
+
+
+<span class="quote">&gt; (gdb) info threads
+&gt;  Id   Target Id         Frame 
+&gt;  2    Thread 0x7fca6b854700 (LWP 32425) "Finalizer" sem_wait () at ../nptl/sysdeps/unix/sysv/linux/x86_64/sem_wait.S:85
+&gt; * 1    Thread 0x7fca6f2fb7c0 (LWP 32424) "mono" 0x00007fca6db619bd in nanosleep () at ../sysdeps/unix/syscall-template.S:81</span>
+
+
+(gdb) bt
+#0  0x00007fca6db619bd in nanosleep () at ../sysdeps/unix/syscall-template.S:81
+#1  0x00007fca6db61854 in __sleep (seconds=0, seconds@entry=1) at ../sysdeps/unix/sysv/linux/sleep.c:137
+#2  0x0000000000505b2a in mono_handle_native_sigsegv (signal=6, ctx=&lt;optimized out&gt;) at mini-exceptions.c:2284
+#3  &lt;signal handler called&gt;
+#4  0x00007fca6dad6bb9 in __GI_raise (sig=sig@entry=6) at ../nptl/sysdeps/unix/sysv/linux/raise.c:56
+#5  0x00007fca6dad9fc8 in __GI_abort () at abort.c:89
+#6  0x0000000000687f19 in monoeg_log_default_handler (log_domain=&lt;optimized out&gt;, log_level=G_LOG_LEVEL_ERROR, message=&lt;optimized out&gt;, unused_data=&lt;optimized out&gt;) at goutput.c:232
+#7  0x000000000068811f in monoeg_g_logv (log_domain=log_domain@entry=0x0, log_level=log_level@entry=G_LOG_LEVEL_ERROR, format=format@entry=0x10bfea0 "* Assertion at %s:%d, condition `%s' not met\n", args=args@entry=0x7fff86d71a98)
+    at goutput.c:113
+#8  0x0000000000688266 in monoeg_assertion_message (format=format@entry=0x10bfea0 "* Assertion at %s:%d, condition `%s' not met\n") at goutput.c:133
+#9  0x00000000004f1cfb in decode_method_ref_with_target (module=module@entry=0x2331830, ref=ref@entry=0x7fff86d71c00, target=target@entry=0x0, buf=&lt;optimized out&gt;, endbuf=endbuf@entry=0x7fff86d71bf8) at aot-runtime.c:854
+#10 0x00000000004f5094 in decode_method_ref (endbuf=0x7fff86d71bf8, buf=&lt;optimized out&gt;, ref=0x7fff86d71c00, module=0x2331830) at aot-runtime.c:1241
+#11 decode_patch (aot_module=aot_module@entry=0x2331830, mp=mp@entry=0x23a2040, ji=ji@entry=0x7fff86d71c70, buf=&lt;optimized out&gt;, endbuf=endbuf@entry=0x7fff86d71c68) at aot-runtime.c:3127
+#12 0x00000000004fa7c0 in mono_aot_plt_resolve (aot_module=aot_module@entry=0x2331830, plt_info_offset=&lt;optimized out&gt;, code=code@entry=0x7fca6b9c0ac0 &lt;System.IO.Path:GetInvalidPathChars+48&gt; "H\203\304", &lt;incomplete sequence \303&gt;)
+    at aot-runtime.c:4102
+#13 0x0000000000506205 in mono_aot_plt_trampoline (regs=&lt;optimized out&gt;, code=0x7fca6b9c0ac0 &lt;System.IO.Path:GetInvalidPathChars+48&gt; "H\203\304", &lt;incomplete sequence \303&gt;, aot_module=0x2331830 "P\367\062\002", tramp=&lt;optimized out&gt;)
+    at mini-trampolines.c:872
+#14 0x00000000402a8fa6 in ?? ()
+#15 0x0000000000000000 in ?? ()</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-05 19:29:32 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Sorry.  Please also use `-O=-aot`.</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-05 19:40:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Trying that now, as some more information, I seem to be having a lot of difficulty (or am perhaps unable) to recreate the bug if I use the flag:
+
+ MONO_GC_DEBUG=verify-before-collections</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-05 19:49:19 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The -O=aot command doesn't seem to change the behavior, I am running it as
+
+mono -O=aot myprogram.exe
+
+
+The stack trace is the same and I am not sure if the option does anything, as running it with or without the -O=aot option appears to produce the same output if I also add the -v flag (last bit before sigsegv shown below).
+
+Method (wrapper managed-to-native) string:GetLOSLimit () emitted at 0x40b8f5f0 to 0x40b8f66e (code length 126) [PacBio.ConsensusTools.exe]
+converting method (wrapper managed-to-native) System.IO.MonoIO:get_VolumeSeparatorChar ()
+Method (wrapper managed-to-native) System.IO.MonoIO:get_VolumeSeparatorChar () emitted at 0x40b8f680 to 0x40b8f702 (code length 130) [PacBio.ConsensusTools.exe]
+converting method (wrapper managed-to-native) System.IO.MonoIO:get_DirectorySeparatorChar ()
+Method (wrapper managed-to-native) System.IO.MonoIO:get_DirectorySeparatorChar () emitted at 0x40b8f710 to 0x40b8f792 (code length 130) [PacBio.ConsensusTools.exe]
+converting method (wrapper managed-to-native) System.IO.MonoIO:get_AltDirectorySeparatorChar ()
+Method (wrapper managed-to-native) System.IO.MonoIO:get_AltDirectorySeparatorChar () emitted at 0x40b8f7a0 to 0x40b8f822 (code length 130) [PacBio.ConsensusTools.exe]
+converting method (wrapper managed-to-native) System.IO.MonoIO:get_PathSeparator ()
+Method (wrapper managed-to-native) System.IO.MonoIO:get_PathSeparator () emitted at 0x40b8f830 to 0x40b8f8b2 (code length 130) [PacBio.ConsensusTools.exe]
+* Assertion at aot-runtime.c:854, condition `ref-&gt;method' not met
+
+Received SIGSEGV, suspending...</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-05 19:56:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Ah, ignore last comment about the -O=aot option not working, just saw the "-" there.</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-05 21:43:20 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Used the latest commit (master/b5ed5a3) and with the canary flag, the memory in the nursery appears to be laid out correctly, but that obj pointer is still wonky and leads to the crash.  I obtained a similar stack trace as before, with the vt pointer = 0.  Here's a breakdown of things I observed
+
+Here the object is at:
+<span class="quote">&gt; obj = 0x7f3031fad5a8</span>
+
+Examining the object:
+<span class="quote">&gt; (gdb) call describe_ptr(obj) (@0x7f3031fad5a8)
+&gt; nursery-ptr (interior-ptr offset -48)
+&gt; VTable: 0x7f30083ad0c0
+&gt; Class: &lt;CreateSelectIterator&gt;c__Iterator10`2
+&gt; Descriptor: 7a
+&gt; Descriptor type: 2 (small_bitmap)
+&gt; Size: 64 </span>
+
+And its first neighbor (@0x7f3031fad568)
+<span class="quote">&gt; nursery-ptr
+&gt; VTable: 0x7f30082f8ca8
+&gt; Class: Func`2
+&gt; Descriptor: 3e22
+&gt; Descriptor type: 2 (small_bitmap)
+&gt; Size: 104</span>
+
+And its second neighbor (@0x7f3031fad620)
+<span class="quote">&gt; (gdb) call describe_ptr(obj+120)
+&gt; nursery-ptr
+&gt; VTable: 0x7f30081e7528
+&gt; Class: Enumerator
+&gt; Descriptor: 2a
+&gt; Descriptor type: 2 (small_bitmap)
+&gt; Size: 40</span>
+
+And looking at memory (I am assuming the canary means I should see the "koupepia" bytes in memory after each object [107,111,117,112,101,172,105,97].  The canaries seem to be in roughly the right place, the objects appear to be of the same size, However, the obj* is sitting in what appears to be the middle of other objects.
+
+<span class="quote">&gt; (gdb) x/192ub obj-72
+&gt; 0x7f3031fad560: 107     111     117     112     101     112     105     97
+&gt; 0x7f3031fad568: 168     140     47      8       48      127     0       0  &lt;- BEGIN SIZE 104 Func`2
+&gt; 0x7f3031fad570: 0       0       0       0       0       0       0       0
+&gt; 0x7f3031fad578: 48      148     215     64      0       0       0       0
+&gt; 0x7f3031fad580: 224     148     215     64      0       0       0       0
+&gt; 0x7f3031fad588: 64      73      245     49      48      127     0       0
+&gt; 0x7f3031fad590: 72      131     49      8       48      127     0       0
+&gt; 0x7f3031fad598: 0       0       0       0       0       0       0       0
+&gt; 0x7f3031fad5a0: 96      141     47      8       48      127     0       0
+&gt; 0x7f3031fad5a8*: 0       0       0       0       0       0       0       0 * this line is the memory location pointed to by obj
+&gt; 0x7f3031fad5b0: 0       0       0       0       0       0       0       0
+&gt; 0x7f3031fad5b8: 0       0       0       0       0       0       0       0
+&gt; 0x7f3031fad5c0: 0       0       0       0       0       0       0       0
+&gt; 0x7f3031fad5c8: 0       0       0       0       0       0       0       0 &lt;- END SIZE 104 Func`2
+&gt; 0x7f3031fad5d0: 107     111     117     112     101     112     105     97
+&gt; *0x7f3031fad5d8*: 192     208     58      8       48      127     0       0 &lt;- BEGIN SIZE 64 &lt;CreateSelectIterator&gt;c__Iterator10`2
+&gt; 0x7f3031fad5e0: 0       0       0       0       0       0       0       0
+&gt; 0x7f3031fad5e8: 160     66      207     38      48      127     0       0
+&gt; 0x7f3031fad5f0: 32      214     250     49      48      127     0       0
+&gt; 0x7f3031fad5f8: 160     206     40      39      48      127     0       0
+&gt; 0x7f3031fad600: 104     213     250     49      48      127     0       0
+&gt; 0x7f3031fad608: 10      0       0       0       59      0       0       0
+&gt; 0x7f3031fad610: 1       0       0       0       255     255     255     255 &lt;- END OF SIZE 64 &lt;CreateSelectIterator&gt;c__Iterator10`2
+&gt; 0x7f3031fad618: 107     111     117     112     101     112     105     97
+&gt; 0x7f3031fad620: &lt;- BEGIN size 40 enumerator</span>
+
+
+Note that obj points to inside the Func`2, but describe_ptr assigns it to the CreateSelectIterator.
+
+Also shown below is the address space as longs, with the vtable pointers surrounded by **
+
+
+<span class="quote">&gt; (gdb) x/20ag 0x7f3031fad568
+&gt; 0x7f3031fad568: *0x7f30082f8ca8*  0x0
+&gt; 0x7f3031fad578: 0x40d79430      0x40d794e0
+&gt; 0x7f3031fad588: 0x7f3031f54940  0x7f3008318348
+&gt; 0x7f3031fad598: 0x0     0x7f30082f8d60
+&gt; 0x7f3031fad5a8: 0x0     0x0
+&gt; 0x7f3031fad5b8: 0x0     0x0
+&gt; 0x7f3031fad5c8: 0x0     0x6169706570756f6b
+&gt; 0x7f3031fad5d8: *0x7f30083ad0c0*  0x0
+&gt; 0x7f3031fad5e8: 0x7f3026cf42a0  0x7f3031fad620
+&gt; 0x7f3031fad5f8: 0x7f302728cea0  0x7f3031fad568
+&gt; 0x7f3031fad608: 0x3b0000000a    0xffffffff00000001
+&gt; 0x7f3031fad618: 0x6169706570756f6b      *0x7f30081e7528*</span>
+
+
+And the stack trace 
+
+<span class="quote">&gt; #0  0x00007f30325f39bd in nanosleep () at ../sysdeps/unix/syscall-template.S:81
+&gt; #1  0x00007f30325f3854 in __sleep (seconds=0, seconds@entry=1) at ../sysdeps/unix/sysv/linux/sleep.c:137
+&gt; #2  0x0000000000505b2a in mono_handle_native_sigsegv (signal=signal@entry=11, ctx=ctx@entry=0x7f303205fc40) at mini-exceptions.c:2284
+&gt; #3  0x00000000005671d3 in mono_arch_handle_altstack_exception (sigctx=sigctx@entry=0x7f303205fc40, fault_addr=&lt;optimized out&gt;, stack_ovf=stack_ovf@entry=0) at exceptions-amd64.c:849
+&gt; #4  0x0000000000478172 in mono_sigsegv_signal_handler (_dummy=11, _info=0x7f303205fd70, context=0x7f303205fc40) at mini.c:6718
+&gt; #5  &lt;signal handler called&gt;
+&gt; #6  copy_object_no_checks (obj=obj@entry=0x7f3031fad5a8, queue=queue@entry=0x1a5f320 &lt;gray_queue&gt;) at sgen-copy-object.h:80
+&gt; #7  0x000000000064dd60 in simple_nursery_serial_copy_object_from_obj (queue=0x1a5f320 &lt;gray_queue&gt;, obj_slot=0x7f3031d38130) at sgen-minor-copy-object.h:201
+&gt; #8  simple_nursery_serial_scan_object (start=&lt;optimized out&gt;, desc=&lt;optimized out&gt;, queue=0x1a5f320 &lt;gray_queue&gt;) at sgen-scan-object.h:67
+&gt; #9  0x000000000062935a in sgen_drain_gray_stack (max_objs=max_objs@entry=-1, ctx=...) at sgen-gc.c:902
+&gt; #10 0x000000000062de2c in collect_nursery (unpin_queue=unpin_queue@entry=0x0, finish_up_concurrent_mark=finish_up_concurrent_mark@entry=0) at sgen-gc.c:2330
+&gt; #11 0x000000000062e7e9 in collect_nursery (finish_up_concurrent_mark=0, unpin_queue=0x0) at sgen-gc.c:3218
+&gt; #12 sgen_perform_collection (requested_size=4096, generation_to_collect=0, reason=0x118fb37 "Nursery full", wait_to_finish=0) at sgen-gc.c:3244
+&gt; #13 0x000000000064584b in mono_gc_alloc_obj_nolock (vtable=0x7f3008205ab8, size=112) at sgen-alloc.c:328
+&gt; #14 0x0000000000645933 in mono_gc_alloc_obj (vtable=0x7f3008205ab8, size=104) at sgen-alloc.c:504
+&gt; #15 0x0000000040c9cfad in ?? ()
+&gt; #16 0x00007f3031fa3c68 in ?? ()
+&gt; #17 0x00007f3031f45378 in ?? ()
+&gt; #18 0x00007f3031fbbc48 in ?? ()
+&gt; #19 0x00000000000000a5 in ?? ()
+&gt; #20 0x00007f3031c26158 in ?? ()
+&gt; #21 0x0000000041ce3000 in ?? ()
+&gt; #22 0x00007f300c000bd0 in ?? ()
+&gt; #23 0x00007f3025337020 in ?? ()
+&gt; #24 0x00007f30264fe370 in ?? ()
+&gt; #25 0x00007f30264fe180 in ?? ()
+&gt; #26 0x00007f30264fe370 in ?? ()
+&gt; #27 0x0000000040d607f8 in ?? ()
+&gt; #28 0x00007f3031f45378 in ?? ()
+&gt; #29 0x00007f3031f9c918 in ?? ()
+&gt; #30 0x00007f3031f45378 in ?? ()
+&gt; #31 0x00007f3031fc64c8 in ?? ()
+&gt; #32 0x00007f3031f45378 in ?? ()
+&gt; #33 0x00007f3031fc77e0 in ?? ()
+&gt; #34 0x00007f3031f45378 in ?? ()
+&gt; #35 0x00007f3031fae540 in ?? ()
+&gt; #36 0x00007f3031f45378 in ?? ()
+&gt; #37 0x00007f3026eb1020 in ?? ()
+&gt; #38 0x00007f3031c26940 in ?? ()
+&gt; #39 0x00007f3031fa3c68 in ?? ()
+&gt; #40 0x0000000000000000 in ?? ()</span></pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-05 22:50:10 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">After additional testing, it seems setting
+
+   MONO_GC_DEBUG=verify-before-collections
+
+means the bug takes longer to appear, but can still happen.</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-08 14:37:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Here are things you can try:
+
+`mono_gc_scan_for_specific_ref()` scans the heap and roots for a given pointer.  That should give you a hint as to where that stray pointer comes from.
+
+You can enable `SGEN_HEAVY_BINARY_PROTOCOL` in `sgen-conf.h` and use `MONO_GC_DEBUG=binary-protocol=/tmp/binprot` to make SGen write a fine-grained protocol of its work to a file.  It'll slow everything down, and the file grow large fast, but if you can still replicate the bug then this is the best tool for finding the bug.  Use `sgen-grep-binprot` in `tools/sgen/` to search the protocol for one or more pointers.  Before you search the file you should do
+
+    p binary_protocol_flush_buffers(1)
+
+in GDB.</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-08 20:27:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks Mark,
+
+I may be having some success with mono_gc_scan_for_specific_ref.  It tells me it is at:
+
+<span class="quote">&gt; found possible ref to 0x7fc5c6f018d8 in object 0x7fc5b8cda560 (Tuple`2) at offset 16
+&gt; Pointer is the start of object 0x7fc5b8cda560 in oldspace.
+&gt; major-ptr (block 0x7fc5b8cd8000 sz 32 pin 0 ref 1)&gt; </span>
+
+<span class="quote">&gt;         (
+&gt; object
+&gt;  marked 0)&gt; </span>
+
+<span class="quote">&gt; VTable: 0x7fc59c022d70
+&gt; Class: Tuple`2
+&gt; Descriptor: a
+&gt; Descriptor type: 2 (small_bitmap)
+&gt; Size: 32</span>
+
+
+But since Tuple`2 is a generic type, I am a bit stuck here.  Do you know how I can print type information for this generic (e.g. Tuple`2 -&gt; Tuple&lt;int,float&gt;) or some such thing?</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-08 20:31:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">p mono_type_full_name (&amp;((MonoObject*)ptr)-&gt;vtable-&gt;class-&gt;byval_arg)</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-08 21:29:17 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks!  
+
+Moving backwards through the pointers, one thing that struck me as perhaps unusual, is that for the original ptr leading to the sigsegv, a call to mono_gc_scan_for_specific_ref prints the same possible reference for the object twice, whereas every other time I called it with a different pointer, it only printed each possible reference once.  Or more exactly, the first call leads to:
+
+<span class="quote">&gt; (gdb) p mono_gc_scan_for_specific_ref(0x7fc5c6f018d8,0)
+&gt; found possible ref to 0x7fc5c6f018d8 in object 0x7fc5b8cda560 (Tuple`2) at offset 16
+&gt; found possible ref to 0x7fc5c6f018d8 in object 0x7fc5b8cda560 (Tuple`2) at offset 16</span>
+
+I am not sure if there is any significance to the double printing, but thought it might mean something, so am mentioning it.
+
+Otherwise, backtracing further, it looks like it is originally referenced from a tuple that contains an interface type (renamed IT here for simplicity) and this in turn goes up to several PLINK tasks/action arrays.  
+
+found possible ref to 0x7fc5c6f018d8 in object 0x7fc5b8cda560 (Tuple`2) at offset 16  - Referenced twice here
+found possible ref to 0x7fc5c6f018d8 in object 0x7fc5b8cda560 (Tuple`2) at offset 16 "System.Tuple`2&lt;PacBio.IO.IZmwBases, bool&gt;"
+
+Moving Backwards 
+<span class="quote">&gt; found possible ref to 0x7fc5c6f018d8 in object 0x7fc5b8cda560 (System.Tuple`2&lt;IT, bool&gt;) at offset 16 &lt;- only showing once, line appeared twice
+&gt; found possible ref to 0x7fc5b8cda560 in object 0x7fc5bc07d540 (System.Tuple`2&lt;IT, bool&gt;[]) at offset 120
+&gt; found possible ref to 0x7fc5bc07d540 in object 0x7fc5bfbaee40 (System.Linq.Parallel.AsynchronousChannel`1&lt;System.Tuple`2&lt;IT, bool&gt;&gt;) at offset 24 
+&gt; found possible ref to 0x7fc5bfbaee40 in object 0x7fc5bfb94410 (System.Linq.Parallel.PipelineSpoolingTask`2&lt;System.Tuple`2&lt;IT, bool&gt;, int&gt;) at offset 40</span>
+	&gt; found possible ref to 0x7fc5bfb94410 in object 0x7fc5bcddbe80 (Task) at offset 72
+	&gt; found possible ref to 0x7fc5bcddbe80 in object 0x7fc5bc044488 (AsyncResult) at offset 16
+	&gt; *Nothing printed by function call for  0x7fc5bc044488 *
+<span class="quote">&gt; found possible ref to 0x7fc5bfbaee40 in object 0x7fc5ba2c7e40 (AsynchronousChannel`1[]) at offset 40</span>
+	 &gt; found possible ref to 0x7fc5ba2c7e40 in object 0x7fc5bfb94290 (System.Linq.Parallel.SpoolingTask/&lt;SpoolPipeline&gt;c__AnonStorey1`2&lt;System.Tuple`2&lt;PacBio.IO.IZmwBases, bool&gt;, int&gt;)
+	 &gt; found possible ref to 0x7fc5bfb94290 in object 0x7fc5bfbaed50 (Action) at offset 32
+	 &gt; found possible ref to 0x7fc5bfbaed50 in object 0x7fc5bfb88200 (ActionInvoke) at offset 16
+	 &gt; found possible ref to 0x7fc5bfb88200 in object 0x7fc5bcddbd40 (Task) at offset 64
+	 &gt; found possible ref to 0x7fc5bcddbd40 in object 0x7fc5bc060550 (QueryTaskGroupState) at offset 16
+	 	&gt; found possible ref to 0x7fc5bc060550 in object 0x7fc5c6f485d8 (AsynchronousChannelMergeEnumerator`1) at offset 16
+	 	&gt; found possible ref to 0x7fc5bc060550 in object 0x7fc5c6f51860 (PipelineSpoolingTask`2) at offset 16
+	 	&gt; found possible ref to 0x7fc5bc060550 in object 0x7fc5bfb94290 (&lt;SpoolPipeline&gt;c__AnonStorey1`2) at offset 24
+	 	&gt; found possible ref to 0x7fc5bc060550 in object 0x7fc5bfb943e0 (PipelineSpoolingTask`2) at offset 16
+	 	&gt; found possible ref to 0x7fc5bc060550 in object 0x7fc5bfb94410 (PipelineSpoolingTask`2) at offset 16
+	 	&gt; found possible ref to 0x7fc5bc060550 in object 0x7fc5bfb94440 (PipelineSpoolingTask`2) at offset 16
+
+I didn't follow anymore after this point, I will try again to see if this looks like a pattern, but this is the result so far.</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-08 21:30:56 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Reprinting that backwards trace in the hopes of better formatting on bugzilla...
+
+<span class="quote">&gt; &gt; found possible ref to 0x7fc5c6f018d8 in object 0x7fc5b8cda560 (System.Tuple`2&lt;IT, bool&gt;) at offset 16 &lt;- only showing once, line appeared twice
+&gt; &gt; found possible ref to 0x7fc5b8cda560 in object 0x7fc5bc07d540 (System.Tuple`2&lt;IT, bool&gt;[]) at offset 120
+&gt; &gt; found possible ref to 0x7fc5bc07d540 in object 0x7fc5bfbaee40 (System.Linq.Parallel.AsynchronousChannel`1&lt;System.Tuple`2&lt;IT, bool&gt;&gt;) at offset 24 
+&gt; &gt; found possible ref to 0x7fc5bfbaee40 in object 0x7fc5bfb94410 (System.Linq.Parallel.PipelineSpoolingTask`2&lt;System.Tuple`2&lt;IT, bool&gt;, int&gt;) at offset 40
+&gt; 	&gt; found possible ref to 0x7fc5bfb94410 in object 0x7fc5bcddbe80 (Task) at offset 72
+&gt; 	&gt; found possible ref to 0x7fc5bcddbe80 in object 0x7fc5bc044488 (AsyncResult) at offset 16
+&gt; 	&gt; *Nothing printed by function call for  0x7fc5bc044488 *
+&gt; &gt; found possible ref to 0x7fc5bfbaee40 in object 0x7fc5ba2c7e40 (AsynchronousChannel`1[]) at offset 40
+&gt; 	 &gt; found possible ref to 0x7fc5ba2c7e40 in object 0x7fc5bfb94290 (System.Linq.Parallel.SpoolingTask/&lt;SpoolPipeline&gt;c__AnonStorey1`2&lt;System.Tuple`2&lt;PacBio.IO.IZmwBases, bool&gt;, int&gt;)
+&gt; 	 &gt; found possible ref to 0x7fc5bfb94290 in object 0x7fc5bfbaed50 (Action) at offset 32
+&gt; 	 &gt; found possible ref to 0x7fc5bfbaed50 in object 0x7fc5bfb88200 (ActionInvoke) at offset 16
+&gt; 	 &gt; found possible ref to 0x7fc5bfb88200 in object 0x7fc5bcddbd40 (Task) at offset 64
+&gt; 	 &gt; found possible ref to 0x7fc5bcddbd40 in object 0x7fc5bc060550 (QueryTaskGroupState) at offset 16
+&gt; 	 	&gt; found possible ref to 0x7fc5bc060550 in object 0x7fc5c6f485d8 (AsynchronousChannelMergeEnumerator`1) at offset 16
+&gt; 	 	&gt; found possible ref to 0x7fc5bc060550 in object 0x7fc5c6f51860 (PipelineSpoolingTask`2) at offset 16
+&gt; 	 	&gt; found possible ref to 0x7fc5bc060550 in object 0x7fc5bfb94290 (&lt;SpoolPipeline&gt;c__AnonStorey1`2) at offset 24
+&gt; 	 	&gt; found possible ref to 0x7fc5bc060550 in object 0x7fc5bfb943e0 (PipelineSpoolingTask`2) at offset 16
+&gt; 	 	&gt; found possible ref to 0x7fc5bc060550 in object 0x7fc5bfb94410 (PipelineSpoolingTask`2) at offset 16
+&gt; 	 	&gt; found possible ref to 0x7fc5bc060550 in object 0x7fc5bfb94440 (PipelineSpoolingTask`2) at offset 16</span></pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-12-09 13:10:36 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'm not sure going backward through the chain will help you much.  I suggest using the binary protocol to see what it can tell you about the failing pointer and the object containing it.</pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexander Kyte</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-17 12:46:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'm pretty sure that I just started running into this myself:
+
+akyte@Alexanders-MacBook-Air ~/xunit (master*) $ MONO_GC_DEBUG=verify-before-collections mono --debug ./src/xunit.console/bin/Debug/xunit.console.exe test/test.xunit.assert/bin/Debug/test.xunit.assert.dll 
+xUnit.net console test runner (64-bit .NET 4.0.30319.17020)
+Copyright (C) 2015 Outercurve Foundation.
+
+Discovering: test.xunit.assert (method display = ClassAndMethod, parallel test collections = True, max threads = 4)
+Before getdiscoverer
+   at System.Environment.get_StackTrace() in /Users/akyte/mono-perf-remoting/mcs/class/corlib/System/Environment.cs:line 321
+   at Xunit.Xunit2Discoverer..ctor(ISourceInformationProvider sourceInformationProvider, IAssemblyInfo assemblyInfo, System.String assemblyFileName, System.String xunitExecutionAssemblyPath, System.String configFileName, Boolean shadowCopy, System.String shadowCopyFolder, IMessageSink diagnosticMessageSink) in /Users/akyte/xunit/src/xunit.runner.utility/Frameworks/v2/Xunit2Discoverer.cs:line 70
+   at Xunit.Xunit2Discoverer..ctor(ISourceInformationProvider sourceInformationProvider, System.String assemblyFileName, System.String configFileName, Boolean shadowCopy, System.String shadowCopyFolder, IMessageSink diagnosticMessageSink) in /Users/akyte/xunit/src/xunit.runner.utility/Frameworks/v2/Xunit2Discoverer.cs:line 44
+   at Xunit.Xunit2..ctor(ISourceInformationProvider sourceInformationProvider, System.String assemblyFileName, System.String configFileName, Boolean shadowCopy, System.String shadowCopyFolder, IMessageSink diagnosticMessageSink) in /Users/akyte/xunit/src/xunit.runner.utility/Frameworks/v2/Xunit2.cs:line 34
+   at Xunit.XunitFrontController.CreateInnerController() in /Users/akyte/xunit/src/xunit.runner.utility/Frameworks/XunitFrontController.cs:line 108
+   at Xunit.XunitFrontController.get_InnerController() in /Users/akyte/xunit/src/xunit.runner.utility/Frameworks/XunitFrontController.cs:line 73
+   at Xunit.XunitFrontController.Find(Boolean includeSourceInformation, IMessageSink messageSink, ITestFrameworkDiscoveryOptions discoveryOptions) in /Users/akyte/xunit/src/xunit.runner.utility/Frameworks/XunitFrontController.cs:line 137
+   at Xunit.ConsoleClient.Program.ExecuteAssembly(System.Object consoleLock, System.String defaultDirectory, Xunit.XunitProjectAssembly assembly, Boolean quiet, Boolean needsXml, Boolean teamCity, Boolean appVeyor, Nullable`1 parallelizeTestCollections, Nullable`1 maxThreadCount, Xunit.XunitFilters filters) in /Users/akyte/xunit/src/xunit.console/Program.cs:line 305
+   at Xunit.ConsoleClient.Program.RunProject(System.String defaultDirectory, Xunit.XunitProject project, Boolean quiet, Boolean teamcity, Boolean appVeyor, Nullable`1 parallelizeAssemblies, Nullable`1 parallelizeTestCollections, Nullable`1 maxThreadCount) in /Users/akyte/xunit/src/xunit.console/Program.cs:line 180
+   at Xunit.ConsoleClient.Program.Main(System.String[] args) in /Users/akyte/xunit/src/xunit.console/Program.cs:line 57
+After getdiscoverer
+Returning from Xunit2 constructor
+Returning inner controller
+Canceling... (Press Ctrl+C again to terminate)
+akyte@Alexanders-MacBook-Air ~/xunit (master*) $ mono --debug ./src/xunit.console/bin/Debug/xunit.console.exe test/test.xunit.assert/bin/Debug/test.xunit.assert.dll 
+* Assertion at aot-runtime.c:862, condition `ref-&gt;method' not met
+
+Stacktrace:
+
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at System.__Filters..cctor () [0x00000] in /Users/akyte/mono-perf-remoting/external/referencesource/mscorlib/system/__filters.cs:29
+  at (wrapper runtime-invoke) object.runtime_invoke_void (object,intptr,intptr,intptr) &lt;IL 0x0005c, 0xffffffff&gt;
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at System.RuntimeType.GetBaseType () [0x00000] in /Users/akyte/mono-perf-remoting/external/referencesource/mscorlib/system/rttype.cs:3821
+  at System.RuntimeType.IsSubclassOf (System.Type) [0x00026] in /Users/akyte/mono-perf-remoting/external/referencesource/mscorlib/system/rttype.cs:3727
+  at System.RuntimeType.IsValueTypeImpl () [0x0002c] in /Users/akyte/mono-perf-remoting/external/referencesource/mscorlib/system/rttype.cs:4057
+  at System.Type.get_IsValueType () [0x00000] in /Users/akyte/mono-perf-remoting/external/referencesource/mscorlib/system/type.cs:1131
+  at System.Type.get_IsClass () [0x00000] in /Users/akyte/mono-perf-remoting/external/referencesource/mscorlib/system/type.cs:1113
+  at System.Collections.Concurrent.ConcurrentDictionary`2.IsValueWriteAtomic () &lt;0x0002e&gt;
+  at System.Collections.Concurrent.ConcurrentDictionary`2..cctor () &lt;0x00018&gt;
+  at (wrapper runtime-invoke) object.runtime_invoke_void (object,intptr,intptr,intptr) &lt;IL 0x0005c, 0xffffffff&gt;
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at Xunit.ConsoleClient.Program..cctor () [0x00000] in /Users/akyte/xunit/src/xunit.console/Program.cs:15
+  at (wrapper runtime-invoke) object.runtime_invoke_void (object,intptr,intptr,intptr) &lt;IL 0x0005c, 0xffffffff&gt;
+
+Native stacktrace:
+
+        0   mono                                0x000000010a44a9aa mono_handle_native_sigsegv + 282
+        1   libsystem_platform.dylib            0x00007fff8d788f1a _sigtramp + 26
+        2   ???                                 0x0000000000000003 0x0 + 3
+        3   libsystem_c.dylib                   0x00007fff892a0b73 abort + 129
+        4   mono                                0x000000010a5e5fdd monoeg_log_default_handler + 125
+        5   mono                                0x000000010a5e61a0 monoeg_assertion_message + 192
+        6   mono                                0x000000010a43effb decode_method_ref_with_target + 7147
+        7   mono                                0x000000010a438f7a decode_patch + 90
+        8   mono                                0x000000010a438df3 mono_aot_plt_resolve + 211
+        9   mono                                0x000000010a44c7e5 mono_aot_plt_trampoline + 37
+        10  ???                                 0x000000010a818fb2 0x0 + 4471230386
+        11  mscorlib.dll.dylib                  0x000000010c003855 System___Filters__cctor + 21
+        12  mono                                0x000000010a3ad539 mono_jit_runtime_invoke + 1641
+        13  mono                                0x000000010a55ba2e mono_runtime_invoke + 110
+        14  mono                                0x000000010a55bf2e mono_runtime_class_init_full + 798
+        15  mono                                0x000000010a3a9f63 mono_resolve_patch_target + 1923
+        16  mono                                0x000000010a4387f0 load_method + 1728
+        17  mono                                0x000000010a437fc1 mono_aot_get_method + 2113
+        18  mono                                0x000000010a3aa995 mono_jit_compile_method_with_opt + 629
+        19  mono                                0x000000010a3ad04a mono_jit_runtime_invoke + 378
+        20  mono                                0x000000010a55ba2e mono_runtime_invoke + 110
+        21  mono                                0x000000010a55bf2e mono_runtime_class_init_full + 798
+        22  mono                                0x000000010a438b66 load_method + 2614
+        23  mono                                0x000000010a44c6f4 mono_aot_trampoline + 52
+        24  ???                                 0x000000010a818d52 0x0 + 4471229778
+        25  mscorlib.dll.dylib                  0x000000010c0b9cc9 System_RuntimeType_GetBaseType + 41
+        26  mono                                0x000000010a3ad539 mono_jit_runtime_invoke + 1641
+        27  mono                                0x000000010a55ba2e mono_runtime_invoke + 110
+        28  mono                                0x000000010a55bf2e mono_runtime_class_init_full + 798
+        29  mono                                0x000000010a3aa9bd mono_jit_compile_method_with_opt + 669
+        30  mono                                0x000000010a3aa6ca mono_jit_compile_method + 42
+        31  mono                                0x000000010a44c01f common_call_trampoline + 1263
+        32  ???                                 0x000000010a818172 0x0 + 4471226738
+        33  ???                                 0x000000010cfe1d40 0x0 + 4512947520
+        34  mono                                0x000000010a3ad539 mono_jit_runtime_invoke + 1641
+        35  mono                                0x000000010a55ba2e mono_runtime_invoke + 110
+        36  mono                                0x000000010a55bf2e mono_runtime_class_init_full + 798
+        37  mono                                0x000000010a3d7a70 mono_method_to_ir + 145760
+        38  mono                                0x000000010a3a5bf6 mini_method_compile + 2998
+        39  mono                                0x000000010a3a7cb3 mono_jit_compile_method_inner + 675
+        40  mono                                0x000000010a3aa9d1 mono_jit_compile_method_with_opt + 689
+        41  mono                                0x000000010a3ad04a mono_jit_runtime_invoke + 378
+        42  mono                                0x000000010a55ba2e mono_runtime_invoke + 110
+        43  mono                                0x000000010a5612db mono_runtime_exec_main + 379
+        44  mono                                0x000000010a41aed0 mono_main + 7808
+        45  libdyld.dylib                       0x00007fff8da3e5c9 start + 1
+
+Debug info from gdb:
+
+[New Thread 0x1103 of process 50972]
+[New Thread 0x1203 of process 50972]
+Mono support loaded.
+^C^C^Cwarning: Could not open OSO archive file "/BinaryCache/corecrypto/corecrypto-233.1.2~26/Symbols/BuiltProducts/libcorecrypto_static.a"
+warning: `/BinaryCache/coreTLS/coreTLS-35.1.2~1/Objects/coretls.build/coretls.build/Objects-normal/x86_64/system_coretls_vers.o': can't open to read symbols: No such file or directory.
+warning: Could not open OSO archive file "/BinaryCache/coreTLS/coreTLS-35.1.2~1/Symbols/BuiltProducts/libcoretls_ciphersuites.a"
+warning: Could not open OSO archive file "/BinaryCache/coreTLS/coreTLS-35.1.2~1/Symbols/BuiltProducts/libcoretls_handshake.a"
+warning: Could not open OSO archive file "/BinaryCache/coreTLS/coreTLS-35.1.2~1/Symbols/BuiltProducts/libcoretls_record.a"
+warning: Could not open OSO archive file "/BinaryCache/coreTLS/coreTLS-35.1.2~1/Symbols/BuiltProducts/libcoretls_stream_parser.a"
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/bdz.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/bdz_ph.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/bmz.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/bmz8.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/brz.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/buffer_entry.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/buffer_manager.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/chd.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/chd_ph.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/chm.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/cmph.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/cmph_structs.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/compressed_rank.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/compressed_seq.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/fch.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/fch_buckets.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/graph.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/hash.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/jenkins_hash.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/linear_string_map.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/miller_rabin.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/select.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/vqueue.o': can't open to read symbols: No such file or directory.
+warning: `/BinaryCache/cmph/cmph-1~1091/Objects/cmph.build/cmph.build/Objects-normal/x86_64/vstack.o': can't open to read symbols: No such file or directory.
+warning: `/var/folders/9n/mdh_qr_11ql3r03sxtd91yz80000gn/T/mono_aot_CkUp4M.o': can't open to read symbols: No such file or directory.
+0x00007fff8fb328fe in __wait4 () from /usr/lib/system/libsystem_kernel.dylib
+  Id   Target Id         Frame 
+  3    Thread 0x1203 of process 50972 0x00007fff8fb3322e in kevent64 () from /usr/lib/system/libsystem_kernel.dylib
+  2    Thread 0x1103 of process 50972 0x00007fff8fb2d56a in semaphore_wait_trap () from /usr/lib/system/libsystem_kernel.dylib
+* 1    Thread 0x1003 of process 50972 0x00007fff8fb328fe in __wait4 () from /usr/lib/system/libsystem_kernel.dylib
+
+Thread 3 (Thread 0x1203 of process 50972):
+#0  0x00007fff8fb3322e in kevent64 () from /usr/lib/system/libsystem_kernel.dylib
+#1  0x00007fff8dffdd91 in quote_attrs () from /usr/lib/system/libdispatch.dylib
+#2  0x0000000000000000 in ?? ()
+
+Thread 2 (Thread 0x1103 of process 50972):
+#0  0x00007fff8fb2d56a in semaphore_wait_trap () from /usr/lib/system/libsystem_kernel.dylib
+#1  0x000000010a5d92e7 in mono_sem_wait (sem=&lt;optimized out&gt;, alertable=&lt;optimized out&gt;, sem=&lt;optimized out&gt;, alertable=&lt;optimized out&gt;) at mono-semaphore.c:103
+#2  0x000000010a5599b2 in finalizer_thread (unused=&lt;optimized out&gt;) at gc.c:1093
+#3  0x000000010a53854b in start_wrapper_internal (data=&lt;optimized out&gt;) at threads.c:664
+#4  start_wrapper (data=&lt;optimized out&gt;) at threads.c:711
+#5  0x000000010a5dfe0e in inner_start_thread (arg=&lt;optimized out&gt;) at mono-threads-posix.c:93
+#6  0x00007fff8e9d62fc in ?? () from /usr/lib/system/libsystem_pthread.dylib
+#7  0x0000000000001803 in ?? ()
+#8  0x000000010d2df000 in ?? ()
+#9  0x000000010d2def50 in ?? ()
+#10 0x00007fff8e9d6279 in ?? () from /usr/lib/system/libsystem_pthread.dylib
+#11 0x0000000000000000 in ?? ()
+
+Thread 1 (Thread 0x1003 of process 50972):
+#0  0x00007fff8fb328fe in __wait4 () from /usr/lib/system/libsystem_kernel.dylib
+#1  0x000000010a44aa41 in mono_handle_native_sigsegv (signal=&lt;optimized out&gt;, ctx=&lt;optimized out&gt;, info=&lt;optimized out&gt;) at mini-exceptions.c:2346
+Backtrace stopped: Cannot access memory at address 0xc74d</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexander Kyte</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-17 13:36:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I can track it down to the presence of the nursery-canaries variable in the environment. I'm not sure if I have the same bug as the filer.</pre>
+    </div>
+
+    <div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">evolvedmicrobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-03-17 15:03:17 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">For what it's worth, I was unable to get this bug to show up when tracking the GC using the binary protocol, so didn't have much more success tracking it down.  I am not sure if this bug is the same.</pre>
+    </div>
+
+    <div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">danb</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-19 21:51:08 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I believe we are seeing a very similar bug from copy_object_no_checks:
+#0  0x0000003cebc0f2ad in waitpid () from /lib64/libpthread.so.0
+#1  0x00000000004a45c8 in mono_handle_native_sigsegv (signal=&lt;value optimized out&gt;, ctx=&lt;value optimized out&gt;) at mini-exceptions.c:2323
+#2  0x00000000004ff9bf in mono_arch_handle_altstack_exception (sigctx=0x7fda10764c40, fault_addr=&lt;value optimized out&gt;, stack_ovf=0) at exceptions-amd64.c:861
+#3  0x0000000000416099 in mono_sigsegv_signal_handler (_dummy=11, _info=0x7fda10764d70, context=0x7fda10764c40) at mini.c:6858
+#4  &lt;signal handler called&gt;
+#5  copy_object_no_checks (obj=0x7fda15d14458, queue=0x963a60) at sgen-copy-object.h:78
+#6  0x00000000005e76b4 in simple_nursery_serial_copy_object_from_obj (start=&lt;value optimized out&gt;, desc=&lt;value optimized out&gt;, queue=0x963a60) at sgen-minor-copy-object.h:199
+#7  simple_nursery_serial_scan_object (start=&lt;value optimized out&gt;, desc=&lt;value optimized out&gt;, queue=0x963a60) at sgen-scan-object.h:60
+#8  0x00000000005d0878 in major_scan_card_table (mod_union=0, queue=0x963a60) at sgen-marksweep.c:1929
+#9  0x00000000005da82f in sgen_card_table_finish_scan_remsets (start_nursery=&lt;value optimized out&gt;, end_nursery=&lt;value optimized out&gt;, queue=0x963a60) at sgen-cardtable.c:445
+#10 0x00000000005c5e31 in job_finish_remembered_set_scan (worker_data=&lt;value optimized out&gt;, job_data_untyped=0x7fd965192c80) at sgen-gc.c:2039
+#11 0x00000000005cbd96 in collect_nursery (unpin_queue=0x0, finish_up_concurrent_mark=0) at sgen-gc.c:2319
+#12 0x00000000005cc670 in sgen_perform_collection (requested_size=4096, generation_to_collect=0, reason=&lt;value optimized out&gt;, wait_to_finish=&lt;value optimized out&gt;) at sgen-gc.c:3195
+#13 0x00000000005e0834 in mono_gc_alloc_obj_nolock (vtable=0x1ec82d0, size=&lt;value optimized out&gt;) at sgen-alloc.c:319
+#14 0x00000000005e0c44 in mono_gc_alloc_obj (vtable=0x1ec82d0, size=16) at sgen-alloc.c:500
+
+We have increased the SGEN_MAX_SMALL_OBJ_SIZE to 64000 and MS_BLOCK_SHIFT to 17 (also changed MS_BLOCKSIZE to be 1 &lt;&lt; MS_BLOCK_SHIFT which wasn't in the 3.12.0 branch).  I don't think this is causing our issue though, merely making it show up more quickly.  Unfortunately reducing the SG_MAX_SMALL_OBJ_SIZE isn't an option in our application.</pre>
+    </div>
+
+    <div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">danb</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-20 18:29:18 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Also fwiw we also see the original stack trace you reported but this happens when the heap runs out of space (we have a max heap size set).</pre>
+    </div>
+
+    <div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-21 13:43:08 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Another thing to try - we've had trouble with the recently:
+
+  MONO_GC_DEBUG=xdomain-checks</pre>
+    </div>
+
+    <div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ludovic Henry</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-07-12 23:06:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Can you still reproduce with latest version of mono? Thank you</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>
