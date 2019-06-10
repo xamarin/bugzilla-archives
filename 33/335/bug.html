@@ -1,0 +1,2575 @@
+<html lang="en"><head>
+    <title>335 – System.ExecutionEngineException: Attempting to JIT compile method LineaPro SDK</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_iOS
+                 bz_component_XI_runtime
+                 bz_bug_335 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;335</span>
+
+        <span id="subtitle" class="subheader">System.ExecutionEngineException: Attempting to JIT compile method LineaPro SDK</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2012-03-14 18:45:28 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2012-03-14 18:45:28">
+  <input type="hidden" name="id" value="335">
+  <input type="hidden" name="token" value="1559138598-VFjIoO2UMKk8jBQcY1o6YuPTOg30TYKHKheE_ZZLdD0">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;335</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">System.ExecutionEngineException: Attempting to JIT compile method LineaPro SDK</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>System.ExecutionEngineException: Attempting to JIT compile method LineaPro SDK
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">iOS
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Xamarin
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">XI runtime
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>4.x
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">Macintosh
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>---
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>Untriaged
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Bugzilla</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2011-08-19 11:18 UTC by <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2012-03-14 18:45 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>3
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="markvillahermosa">markvillahermosa</option>
+                <option value="mono-bugs+monotouch">mono-bugs+monotouch</option>
+                <option value="sebastien">sebastien</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_application_octet-stream">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=167&amp;file=MTBarcodeExample.app.dSYM.zip" title="View the content of the attachment">
+          <b>MTExample.app.dSYM</b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.24 MB,
+                application/octet-stream)
+
+            <br>
+            <a href="#attach_167" title="Go to the comment associated with the attachment">2011-08-23 06:30 UTC</a>,
+
+            <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=167&amp;file=MTBarcodeExample.app.dSYM.zip">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_application_octet-stream">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=168&amp;file=MTBarcodeExample_2011%2008%2023%20111224_Gala%20Corals%20iPod.crash" title="View the content of the attachment">
+          <b>crash log</b></a>
+
+          <span class="bz_attach_extra_info">
+              (54.98 KB,
+                application/octet-stream)
+
+            <br>
+            <a href="#attach_168" title="Go to the comment associated with the attachment">2011-08-23 06:33 UTC</a>,
+
+            <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=168&amp;file=MTBarcodeExample_2011%2008%2023%20111224_Gala%20Corals%20iPod.crash">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/xamarin">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-19 11:18:18 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I am receiving the following error when I am trying to communicate with the LineaPro SDK
+
+"System.ExecutionEngineException: Attempting to JIT compile method
+'LineaSDK.Linea:set_Delegate (LineaSDK.LineaDelegate)' while running with
+--aot-only"
+
+I am using the following arguments to link to the SDK
+
+-v -cxx -gcc_flags "-L${ProjectDir} -lLineaSDK -framework AudioToolbox
+-framework CoreGraphics -framework ExternalAccessory
+${projectdir}/liblineaSDK.a"
+
+The following tutorial is what I am using to communicate with the LineaPro case.
+
+<a href="http://blog.davidsandor.com/post/2011/01/05/iPhone-iTouch-barcode-scanning-Hello-World-application-with-MonoTouch-and-LineaSDK.aspx">http://blog.davidsandor.com/post/2011/01/05/iPhone-iTouch-barcode-scanning-Hello-World-application-with-MonoTouch-and-LineaSDK.aspx</a>
+
+I am getting the error when calling the following method
+
+private void initHardware()
+{
+    Linea             = new LineaSDK.Linea();
+    LineaDelegate     = new MyLineaDelegate();
+    Linea.Delegate     = LineaDelegate;
+    
+    LineaDelegate.GotBarcode += HandleLineaDelegateGotBarcode;
+    
+    Linea.Connect();
+}
+
+Linea.Delegate = LineaDelegate; is the line that appears to generating the error.
+
+All the code I am using is the same as in the example on the tutorial page.</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-19 15:42:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I can get the same error with the solution attached to the blog (even without the static library).
+
+Aug 19 15:46:05 unknown UIKitApplication:mtbarcodeexample[0xad6e][7040] &lt;Notice&gt;: [ERROR] FATAL UNHANDLED EXCEPTION: System.ExecutionEngineException: Attempting to JIT compile method 'LineaSDK.Linea:set_Delegate (LineaSDK.LineaDelegate)' while running with --aot-only.
+Aug 19 15:46:05 unknown UIKitApplication:mtbarcodeexample[0xad6e][7040] &lt;Notice&gt;:   at MTBarcodeExample.MyBarcodeDialog.initHardware () [0x00016] in /Users/sebastienpouliot/Downloads/MTBarcodeExample/MTBarcodeExample/MyBarcodeDialog.cs:35
+Aug 19 15:46:05 unknown UIKitApplication:mtbarcodeexample[0xad6e][7040] &lt;Notice&gt;:   at MTBarcodeExample.MyBarcodeDialog..ctor () [0x0000d] in /Users/sebastienpouliot/Downloads/MTBarcodeExample/MTBarcodeExample/MyBarcodeDialog.cs:11
+Aug 19 15:46:05 unknown UIKitApplication:mtbarcodeexample[0xad6e][7040] &lt;Notice&gt;:   at MTBarcodeExample.AppDelegate.FinishedLaunching (MonoTouch.UIKit.UIApplication app, MonoTouch.Foundation.NSDictionary options) [0x00016] in /Users/sebastienpouliot/Downloads/MTBarcodeExample/MTBarcodeExample/Main.cs:27
+Aug 19 15:46:05 unknown UIKitApplication:mtbarcodeexample[0xad6e][7040] &lt;Notice&gt;:   at MonoTouch.UIKit.UIApplication.Main (System.String[] args, System.String principalClassName, System.String delegateClassName) [0x00000] in &lt;filename unknown&gt;:0
+Aug 19 15:46:05 unknown UIKitApplication:mtbarcodeexample[0xad6e][7040] &lt;Notice&gt;:   at MonoTouch.UIKit.UIApplication.Main (System.String[] args) [0x00000] in &lt;filename unknown&gt;:0
+Aug 19 15:46:05 unknown UIKitApplication:mtbarcodeexample[0xad6e][7040] &lt;Notice&gt;:   at MTBarcodeExample.Application.Main (
+Aug 19 15:46:05 unknown UIKitApplication:mtbarcodeexample[0xad6e][7040] &lt;Notice&gt;: System.String[] args) [0x00000] in /Users/sebastienpouliot/Downloads/MTBarcodeExample/MTBarcodeExample/Main.cs:14</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-20 11:22:40 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The error from the logs is misleading - since it's commonly associated with full-AOT limitations with generics which is not the case here.
+
+While rebuilding the solution from the blog entry I got (took me a while to notice it):
+
+Missing method MonoTouch.ObjCRuntime.Messaging::void_objc_msgSend_int_Boolean(intptr,intptr,int,bool) in assembly /Users/sebastienpouliot/Downloads/MTBarcodeExample/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/monotouch.dll, referenced in assembly /Users/sebastienpouliot/Downloads/MTBarcodeExample/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/LineaSDK.dll
+
+That happened to me (and I guess it's the same for you) since I re-used the LineaSDK.dll from the .zip file. That .dll was generated with an old version of 'btouch'. I regenerated this library and
+* the missing method (above) is gone while building the solution
+* the System.ExecutionEngineException is gone from the device logs
+
+The application still crash for me. However I don't have the libLineaSDK.a static library nor the hardware so that's likely the cause for my crash.
+
+To regenerate the .dll simply
+* download LineaSDK_4.cs form the blog article
+* run "/Developer/MonoTouch/usr/bin/btouch ~/Downloads/LineaSDK_4.cs" from a terminal
+* remove LineaSDK.dll from the project references
+* add LineaSDK_4.dll to the project references
+
+Please let me know if this solved your issue. I'm keeping this bug open until we fix the build process so the "missing method" is not so easy to miss.</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-21 05:14:57 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have rebuilt the .dll and replaced it in the project but it still crashes at the same point when launching the app although it is no longer catching any errors.
+
+are there any logs I can check or provided you with to help?</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-21 10:04:19 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">First add "-v -v -v" (at least 3) to your project options. Rebuild everything and attach the complete build log to this bug report.
+
+Next start the following command from a terminal window:
+
+/Developer/MonoTouch/usr/bin/mtouch --logdev
+
+then startup your application on the device and wait for it to crash. Back to the terminal window copy/paste the last lines (it could be a few or a lot) that contains references to your applications. Attach that log on this bug report.
+
+Finally, from the terminal window (you can stop mtouch), do a
+
+file [your-path-to]/liblineaSDK.a
+
+and paste the results here. Thanks!</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-21 10:35:35 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Below is with "-v -v -v"
+
+
+
+Building: MTBarcodeExample (Debug|iPhone)
+
+Building Solution MTBarcodeExample
+
+Building: MTBarcodeExample (Debug|iPhone)
+
+Detecting signing identity...
+Provisioning profile: "Swipe IT" (B137C7FF-0535-46AD-9827-2EAC98CA961C)
+Signing Identity: "iPhone Developer: jonathon bullock (2BKPY26L95)"
+App ID: "ME9J88RV47.com.galacoral.swipeit"
+
+Performing main compilation...
+
+Updating CodeBehind files
+Updated MainWindow.xib.designer.cs
+/Developer/MonoTouch/usr/bin/smcs /noconfig "/out:/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.exe" "/r:/Developer/MonoTouch/usr/lib/mono/2.1/System.dll" "/r:/Developer/MonoTouch/usr/lib/mono/2.1/System.Xml.dll" "/r:/Developer/MonoTouch/usr/lib/mono/2.1/System.Core.dll" "/r:/Developer/MonoTouch/usr/lib/mono/2.1/monotouch.dll" "/r:/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/MonoTouch.Dialog.dll" "/r:/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/LineaSDK_4.dll" /nologo /warn:4 /debug:+ /debug:full /optimize- /codepage:utf8 "/define:DEBUG"  /t:exe "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/MainWindow.xib.designer.cs" "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/Main.cs" "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/MyBarcodeDialog.cs" "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/BarcodeMessageEventArgs.cs" "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/MyLineaDelegate.cs" 
+Build complete -- 0 errors, 0 warnings
+
+Compiling to native code
+/Developer/MonoTouch/usr/bin/mtouch -v --nomanifest --nosign -dev "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app" "-r=/Developer/MonoTouch/usr/lib/mono/2.1/System.dll" "-r=/Developer/MonoTouch/usr/lib/mono/2.1/System.Xml.dll" "-r=/Developer/MonoTouch/usr/lib/mono/2.1/System.Core.dll" "-r=/Developer/MonoTouch/usr/lib/mono/2.1/monotouch.dll" "-r=/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/MonoTouch.Dialog.dll" "-r=/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/LineaSDK_4.dll" -debug -nolink "-sdk=4.3" -v -v -v -cxx -gcc_flags "-L/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample -lLineaSDK -framework AudioToolbox
+-framework CoreGraphics -framework ExternalAccessory /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/libLineaSDK.a" "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.exe"
+Framework is: /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk
+Copied /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.exe to /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/MTBarcodeExample.exe
+MONO_PATH=/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app /Developer/MonoTouch/usr/bin/arm-darwin-mono --debug --aot=full,static,asmonly,nodebug,iphone-abi,outfile=/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/System.dll.6.s "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/System.dll"
+MONO_PATH=/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app /Developer/MonoTouch/usr/bin/arm-darwin-mono --debug --aot=full,static,asmonly,soft-debug,iphone-abi,outfile=/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/LineaSDK_4.dll.6.s "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/LineaSDK_4.dll"
+Mono Ahead of Time compiler - compiling assembly /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/LineaSDK_4.dll
+Code: 61612 Info: 1051 Ex Info: 14996 Unwind Info: 882 Class Info: 748 PLT: 95 GOT Info: 1340 GOT: 1496 Offsets: 1535
+Output file: '/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/LineaSDK_4.dll.6.s'.
+Linking symbol: '_mono_aot_module_LineaSDK_4_info'.
+Compiled 139 out of 139 methods (100%)
+Methods without GOT slots: 0 (0%)
+Direct calls: 0 (0%)
+JIT time: 38 ms, Generation time: 55 ms, Assembly+Link time: 0 ms.
+MONO_PATH=/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app /Developer/MonoTouch/usr/bin/arm-darwin-mono --debug --aot=full,static,asmonly,soft-debug,iphone-abi,outfile=/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/MonoTouch.Dialog.dll.6.s "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/MonoTouch.Dialog.dll"
+Mono Ahead of Time compiler - compiling assembly /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/MonoTouch.Dialog.dll
+Code: 231204 Info: 2546 Ex Info: 55141 Unwind Info: 2734 Class Info: 7326 PLT: 376 GOT Info: 3526 GOT: 4024 Offsets: 4199
+Output file: '/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/MonoTouch.Dialog.dll.6.s'.
+Linking symbol: '_mono_aot_module_MonoTouch_Dialog_info'.
+Compiled 409 out of 409 methods (100%)
+Methods without GOT slots: 0 (0%)
+Direct calls: 0 (0%)
+JIT time: 78 ms, Generation time: 201 ms, Assembly+Link time: 0 ms.
+MONO_PATH=/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app /Developer/MonoTouch/usr/bin/arm-darwin-mono --debug --aot=full,static,asmonly,nodebug,iphone-abi,outfile=/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/System.Core.dll.6.s "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/System.Core.dll"
+Mono Ahead of Time compiler - compiling assembly /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/System.Core.dll
+Code: 445872 Info: 9619 Ex Info: 35129 Unwind Info: 5178 Class Info: 3172 PLT: 1924 GOT Info: 96601 GOT: 10616 Offsets: 17949
+Output file: '/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/System.Core.dll.6.s'.
+Linking symbol: '_mono_aot_module_System_Core_info'.
+Compiled 2051 out of 2051 methods (100%)
+Methods without GOT slots: 1216 (59%)
+Direct calls: 949 (50%)
+JIT time: 418 ms, Generation time: 319 ms, Assembly+Link time: 0 ms.
+MONO_PATH=/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app /Developer/MonoTouch/usr/bin/arm-darwin-mono --debug --aot=full,static,asmonly,nodebug,iphone-abi,outfile=/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/Mono.Security.dll.6.s "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/Mono.Security.dll"
+Mono Ahead of Time compiler - compiling assembly /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/System.dll
+Could not load signature of System.Text.RegularExpressions.Regex:CompileToAssembly due to: 
+Could not load signature of System.Text.RegularExpressions.Regex:CompileToAssembly due to: 
+Could not load signature of System.Text.RegularExpressions.Regex:CompileToAssembly due to: 
+Could not load signature of System.Text.RegularExpressions.Regex:CompileToAssembly due to: 
+Code: 1362748 Info: 39383 Ex Info: 46308 Unwind Info: 9843 Class Info: 37005 PLT: 2841 GOT Info: 59608 GOT: 26136 Offsets: 67172
+Output file: '/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/System.dll.6.s'.
+Linking symbol: '_mono_aot_module_System_info'.
+Compiled 7185 out of 7189 methods (99%)
+1 methods have other problems (0%)
+Methods without GOT slots: 4422 (61%)
+Direct calls: 2746 (43%)
+JIT time: 1290 ms, Generation time: 780 ms, Assembly+Link time: 0 ms.
+MONO_PATH=/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app /Developer/MonoTouch/usr/bin/arm-darwin-mono --debug --aot=full,static,asmonly,nodebug,iphone-abi,outfile=/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/mscorlib.dll.6.s "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/mscorlib.dll"
+Mono Ahead of Time compiler - compiling assembly /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/Mono.Security.dll
+Code: 450208 Info: 9346 Ex Info: 8911 Unwind Info: 6115 Class Info: 11357 PLT: 779 GOT Info: 9991 GOT: 6528 Offsets: 16897
+Output file: '/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/Mono.Security.dll.6.s'.
+Linking symbol: '_mono_aot_module_Mono_Security_info'.
+Compiled 1961 out of 1961 methods (100%)
+Methods without GOT slots: 1121 (57%)
+Direct calls: 1343 (38%)
+JIT time: 273 ms, Generation time: 235 ms, Assembly+Link time: 0 ms.
+Mono Ahead of Time compiler - compiling assembly /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/mscorlib.dll
+Code: 3361224 Info: 90722 Ex Info: 116874 Unwind Info: 13853 Class Info: 61687 PLT: 5345 GOT Info: 156940 GOT: 59664 Offsets: 163385
+Output file: '/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/mscorlib.dll.6.s'.
+Linking symbol: '_mono_aot_module_mscorlib_info'.
+Compiled 17933 out of 17933 methods (100%)
+Methods without GOT slots: 11781 (65%)
+Direct calls: 11587 (46%)
+JIT time: 2198 ms, Generation time: 1568 ms, Assembly+Link time: 0 ms.
+MONO_PATH=/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app /Developer/MonoTouch/usr/bin/arm-darwin-mono --debug --aot=full,static,asmonly,nodebug,iphone-abi,outfile=/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/monotouch.dll.6.s "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/monotouch.dll"
+Mono Ahead of Time compiler - compiling assembly /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/monotouch.dll
+Code: 2628564 Info: 121641 Ex Info: 64678 Unwind Info: 10634 Class Info: 127382 PLT: 4657 GOT Info: 109613 GOT: 70264 Offsets: 169796
+Output file: '/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/monotouch.dll.6.s'.
+Linking symbol: '_mono_aot_module_monotouch_info'.
+Compiled 16013 out of 16013 methods (100%)
+Methods without GOT slots: 4252 (26%)
+Direct calls: 7024 (19%)
+JIT time: 2338 ms, Generation time: 1369 ms, Assembly+Link time: 0 ms.
+MONO_PATH=/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app /Developer/MonoTouch/usr/bin/arm-darwin-mono --debug --aot=full,static,asmonly,soft-debug,iphone-abi,outfile=/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/MTBarcodeExample.exe.6.s "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/MTBarcodeExample.exe"
+Mono Ahead of Time compiler - compiling assembly /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/MTBarcodeExample.exe
+Code: 9608 Info: 120 Ex Info: 2269 Unwind Info: 242 Class Info: 1095 PLT: 46 GOT Info: 551 GOT: 440 Offsets: 316
+Output file: '/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/MTBarcodeExample.exe.6.s'.
+Linking symbol: '_mono_aot_module_MTBarcodeExample_info'.
+Compiled 26 out of 26 methods (100%)
+Methods without GOT slots: 0 (0%)
+Direct calls: 0 (0%)
+JIT time: 7 ms, Generation time: 17 ms, Assembly+Link time: 0 ms.
+Generated /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/main.m
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/g++-4.2 -gdwarf-2 -miphoneos-version-min=3.0 -arch armv6  -std=c99 -I/Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/include -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -c /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/System.Core.dll.6.s -o /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/System.Core.dll.6.o -DDEBUG
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/g++-4.2 -gdwarf-2 -miphoneos-version-min=3.0 -arch armv6  -std=c99 -I/Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/include -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -c /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/MTBarcodeExample.exe.6.s -o /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/MTBarcodeExample.exe.6.o -DDEBUG
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/g++-4.2 -gdwarf-2 -miphoneos-version-min=3.0 -arch armv6  -std=c99 -I/Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/include -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -c /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/monotouch.dll.6.s -o /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/monotouch.dll.6.o -DDEBUG
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/g++-4.2 -gdwarf-2 -miphoneos-version-min=3.0 -arch armv6  -std=c99 -I/Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/include -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -c /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/MonoTouch.Dialog.dll.6.s -o /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/MonoTouch.Dialog.dll.6.o -DDEBUG
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/g++-4.2 -gdwarf-2 -miphoneos-version-min=3.0 -arch armv6  -std=c99 -I/Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/include -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -c /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/LineaSDK_4.dll.6.s -o /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/LineaSDK_4.dll.6.o -DDEBUG
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/g++-4.2 -gdwarf-2 -miphoneos-version-min=3.0 -arch armv6  -std=c99 -I/Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/include -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -c /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/System.dll.6.s -o /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/System.dll.6.o -DDEBUG
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/g++-4.2 -gdwarf-2 -miphoneos-version-min=3.0 -arch armv6  -std=c99 -I/Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/include -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -c /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/mscorlib.dll.6.s -o /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/mscorlib.dll.6.o -DDEBUG
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/g++-4.2 -gdwarf-2 -miphoneos-version-min=3.0 -arch armv6  -std=c99 -I/Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/include -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -c /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/Mono.Security.dll.6.s -o /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/Mono.Security.dll.6.o -DDEBUG
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/g++-4.2 -gdwarf-2 -miphoneos-version-min=3.0 -arch armv6  -std=c99 -I/Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/include -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -c /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/registrar.m -o /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/registrar.6.o -DDEBUG
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/g++-4.2 -gdwarf-2 -miphoneos-version-min=3.0 -arch armv6  -std=c99 -I/Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/include -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -c /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/main.m -o /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/main.6.o -DDEBUG
+
+In file included from /Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/include/monotouch/monotouch.h:16,
+                 from /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/main.m:14:
+/Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/include/glib.h:117:1: warning: "ABS" redefined
+In file included from /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h:8,
+                 from /Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/include/monotouch/gc.h:1,
+                 from /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/main.m:13:
+/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSObjCRuntime.h:325:1: warning: this is the location of the previous definition
+/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/main.m: In function 'main':
+/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/main.m:1827: warning: implicit declaration of function 'mono_path_resolve_symlinks'
+/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/main.m:1827: warning: assignment makes pointer from integer without a cast
+/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/main.m:1959: warning: implicit declaration of function 'mini_get_debug_options'
+/var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/main.m:1963: warning: implicit declaration of function 'mono_debugger_agent_parse_options'
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/g++-4.2 -gdwarf-2 -miphoneos-version-min=3.0 -arch armv6  -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/MTBarcodeExample.exe.6.o  /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/System.Core.dll.6.o  /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/MonoTouch.Dialog.dll.6.o  /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/LineaSDK_4.dll.6.o  /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/System.dll.6.o  /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/monotouch.dll.6.o  /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/mscorlib.dll.6.o  /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/Mono.Security.dll.6.o  /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/registrar.6.o /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/main.6.o -o /var/folders/2w/ym144cgx4j11ynb17dbq6cx00000gn/T/tmp776b726f.tmp/MTBarcodeExample -framework CFNetwork -framework AssetsLibrary -framework CoreTelephony -framework EventKit -framework Foundation -framework CoreMotion -framework GameKit -framework MapKit -framework MediaPlayer -framework MessageUI -framework OpenGLES -framework StoreKit -framework UIKit -framework AddressBookUI -framework iAd -framework SystemConfiguration -framework AddressBook -framework AudioToolbox -framework AVFoundation -framework QuartzCore -framework CoreFoundation -framework CoreGraphics -framework CoreLocation -framework ImageIO -framework Security -framework CoreMedia -framework CoreVideo -framework ExternalAccessory -framework EventKitUI -framework QuickLook -framework AudioToolbox -lz -u _mono_pmip -u _CreateZStream -u _CloseZStream -u _Flush -u _ReadZStream -u _WriteZStream -liconv -lmono-2.0 -lmonotouch -L/Developer/MonoTouch/SDKs/MonoTouch.iphoneos.sdk/usr/lib -L/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample -lLineaSDK -framework AudioToolbox
+-framework CoreGraphics -framework ExternalAccessory /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/libLineaSDK.a
+/Developer/usr/bin/dsymutil "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/MTBarcodeExample" -o "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app.dSYM"
+
+Extracting embedded content
+
+Updating application manifest
+
+Updating debug settings manifest
+
+Compressing resources
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/iphoneos-optimize "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app"
+iphoneos-optimize: Converting plists to binary in /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app
+iphoneos-optimize: Converted to binary plist: /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/Info.plist
+iphoneos-optimize: Converted to binary plist: /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/ResourceRules.plist
+iphoneos-optimize: Converted to binary plist: /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/Settings.bundle/Root.plist
+iphoneos-optimize: Optimizing PNGs in /Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app
+
+Embedding provisioning profile
+
+Processing entitlements file
+
+Preparing resources rules
+
+Signing application
+codesign -v -f -s "iPhone Developer: jonathon bullock (2BKPY26L95)" "--resource-rules=/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app/ResourceRules.plist" --entitlements "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.xcent" "/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app"
+/Users/jonathonbullock/Downloads/MTBarcodeExample_2/MTBarcodeExample/bin/iPhone/Debug/MTBarcodeExample.app: signed bundle with Mach-O thin (armv6) [com.galacoral.swipeit]
+
+---------------------- Done ----------------------
+
+Build: 0 errors, 2 warnings</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-21 10:42:22 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">below ia from /Developer/MonoTouch/usr/bin/mtouch --logdev
+
+
+
+========================
+ASL is here to serve you
+<span class="quote">&gt; </span>
+
+Aug 21 11:08:38 unknown lockdownd[17] &lt;Error&gt;: 00261000 handle_connection: Could not receive USB message #8 from mtouch. Killing connection
+Aug 21 11:08:38 unknown SpringBoard[27] &lt;Warning&gt;: Reloading and rendering all application icons.
+Aug 21 11:08:41 unknown amfid[3307] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:08:41 unknown amfid[3307] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:08:42 unknown kernel[0] &lt;Debug&gt;: launchd[3306] Builtin profile: container (sandbox)
+Aug 21 11:08:42 unknown kernel[0] &lt;Debug&gt;: launchd[3306] Container: /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD [69] (sandbox)
+Aug 21 11:08:47 unknown ReportCrash[3308] &lt;Notice&gt;: Formulating crash report for process MTBarcodeExample[3306]
+Aug 21 11:08:47 unknown com.apple.launchd[1] &lt;Warning&gt;: (UIKitApplication:com.galacoral.swipeit[0xcf50]) Job appears to have crashed: Segmentation fault: 11
+Aug 21 11:08:47 unknown SpringBoard[27] &lt;Warning&gt;: Application 'MTBarcodeExample' exited abnormally with signal 11: Segmentation fault: 11
+Aug 21 11:08:47 unknown ReportCrash[3308] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:08:47 unknown ReportCrash[3308] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:08:47 unknown ReportCrash[3308] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:08:47 unknown ReportCrash[3308] &lt;Error&gt;: Saved crashreport to /var/mobile/Library/Logs/CrashReporter/MTBarcodeExample_2011-08-21-110847_Gala-Corals-iPod.plist using uid: 0 gid: 0, synthetic_euid: 501 egid: 0
+Aug 21 11:09:47 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 0 -&gt; 1
+Aug 21 11:10:14 unknown installd[3314] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:10:14 unknown installd[3314] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:10:15 unknown installd[3314] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:10:15 unknown SpringBoard[27] &lt;Warning&gt;: Killing &lt;SBApplication: 0x20662640&gt; com.galacoral.swipeit  activate:  deactivate:  for app installation
+Aug 21 11:10:16 unknown installd[3314] &lt;Error&gt;: 2ff7b000 verify_signer_identity: Could not copy validate signature: -402620393
+Aug 21 11:10:16 unknown installd[3314] &lt;Error&gt;: 2ff7b000 load_application_info: Could not load signer identity from /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD/MTBarcodeExample.app/MTBarcodeExample
+Aug 21 11:10:16 unknown SpringBoard[27] &lt;Warning&gt;: Reloading application state for 'com.galacoral.swipeit' as its modification date has changed
+Aug 21 11:10:16 unknown lockdownd[17] &lt;Error&gt;: 2ff80000 handle_connection: Could not receive USB message #11 from mtouch. Killing connection
+Aug 21 11:10:16 unknown lockdownd[17] &lt;Error&gt;: 00261000 handle_connection: Could not receive USB message #8 from mtouch. Killing connection
+Aug 21 11:10:16 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: Could not receive size of messageCould not receive size of message
+Aug 21 11:10:16 unknown SpringBoard[27] &lt;Warning&gt;: Reloading and rendering all application icons.
+Aug 21 11:10:21 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 1 -&gt; 0
+Aug 21 11:10:21 unknown kernel[0] &lt;Debug&gt;: set_crc_notification_state 0
+Aug 21 11:10:22 unknown amfid[3316] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:10:22 unknown amfid[3316] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:10:23 unknown kernel[0] &lt;Debug&gt;: launchd[3315] Builtin profile: container (sandbox)
+Aug 21 11:10:23 unknown kernel[0] &lt;Debug&gt;: launchd[3315] Container: /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD [69] (sandbox)
+Aug 21 11:10:28 unknown ReportCrash[3317] &lt;Notice&gt;: Formulating crash report for process MTBarcodeExample[3315]
+Aug 21 11:10:28 unknown ReportCrash[3317] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:10:28 unknown ReportCrash[3317] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:10:28 unknown ReportCrash[3317] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:10:28 unknown com.apple.launchd[1] &lt;Warning&gt;: (UIKitApplication:com.galacoral.swipeit[0xa3db]) Job appears to have crashed: Segmentation fault: 11
+Aug 21 11:10:28 unknown SpringBoard[27] &lt;Warning&gt;: Application 'MTBarcodeExample' exited abnormally with signal 11: Segmentation fault: 11
+Aug 21 11:10:28 unknown ReportCrash[3317] &lt;Error&gt;: Saved crashreport to /var/mobile/Library/Logs/CrashReporter/MTBarcodeExample_2011-08-21-111028_Gala-Corals-iPod.plist using uid: 0 gid: 0, synthetic_euid: 501 egid: 0
+Aug 21 11:11:28 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 0 -&gt; 1
+Aug 21 11:11:30 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 1 -&gt; 0
+Aug 21 11:11:31 unknown kernel[0] &lt;Debug&gt;: set_crc_notification_state 0
+Aug 21 11:11:37 unknown installd[3323] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:11:37 unknown installd[3323] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:11:38 unknown installd[3323] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:11:38 unknown SpringBoard[27] &lt;Warning&gt;: Killing &lt;SBApplication: 0x20664940&gt; com.galacoral.swipeit  activate:  deactivate:  for app installation
+Aug 21 11:11:39 unknown installd[3323] &lt;Error&gt;: 2fefb000 verify_signer_identity: Could not copy validate signature: -402620393
+Aug 21 11:11:39 unknown installd[3323] &lt;Error&gt;: 2fefb000 load_application_info: Could not load signer identity from /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD/MTBarcodeExample.app/MTBarcodeExample
+Aug 21 11:11:39 unknown lockdownd[17] &lt;Error&gt;: 00261000 handle_connection: Could not receive USB message #8 from mtouch. Killing connection
+Aug 21 11:11:39 unknown lockdownd[17] &lt;Error&gt;: 2ff80000 handle_connection: Could not receive USB message #11 from mtouch. Killing connection
+Aug 21 11:11:39 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: Could not receive size of messageCould not receive size of message
+Aug 21 11:11:39 unknown SpringBoard[27] &lt;Warning&gt;: Reloading application state for 'com.galacoral.swipeit' as its modification date has changed
+Aug 21 11:11:39 unknown SpringBoard[27] &lt;Warning&gt;: Reloading and rendering all application icons.
+Aug 21 11:11:43 unknown amfid[3325] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:11:43 unknown amfid[3325] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:11:43 unknown kernel[0] &lt;Debug&gt;: launchd[3324] Builtin profile: container (sandbox)
+Aug 21 11:11:43 unknown kernel[0] &lt;Debug&gt;: launchd[3324] Container: /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD [69] (sandbox)
+Aug 21 11:12:03 unknown SpringBoard[27] &lt;Warning&gt;: MTBarcodeExample failed to launch in time
+Aug 21 11:12:03 unknown SpringBoard[27] &lt;Warning&gt;: Forcing crash report of MTBarcodeExampl[3324]...
+Aug 21 11:12:03 unknown SpringBoard[27] &lt;Warning&gt;: Finished crash reporting.
+Aug 21 11:12:03 unknown com.apple.launchd[1] &lt;Notice&gt;: (UIKitApplication:com.galacoral.swipeit[0x753c]) Exited: Killed: 9
+Aug 21 11:12:03 unknown SpringBoard[27] &lt;Warning&gt;: Application 'MTBarcodeExample' exited abnormally with signal 9: Killed: 9
+Aug 21 11:12:03 unknown ReportCrash[3326] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:12:03 unknown ReportCrash[3326] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:12:03 unknown ReportCrash[3326] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:12:03 unknown ReportCrash[3326] &lt;Error&gt;: Saved crashreport to /var/mobile/Library/Logs/CrashReporter/MTBarcodeExample_2011-08-21-111203_Gala-Corals-iPod.plist using uid: 0 gid: 0, synthetic_euid: 501 egid: 0
+Aug 21 11:12:21 unknown kernel[0] &lt;Debug&gt;: launchd[3327] Builtin profile: container (sandbox)
+Aug 21 11:12:21 unknown kernel[0] &lt;Debug&gt;: launchd[3327] Container: /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD [69] (sandbox)
+Aug 21 11:12:31 unknown ReportCrash[3328] &lt;Notice&gt;: Formulating crash report for process MTBarcodeExample[3327]
+Aug 21 11:12:31 unknown com.apple.launchd[1] &lt;Warning&gt;: (UIKitApplication:com.galacoral.swipeit[0x68a4]) Job appears to have crashed: Segmentation fault: 11
+Aug 21 11:12:31 unknown SpringBoard[27] &lt;Warning&gt;: Application 'MTBarcodeExample' exited abnormally with signal 11: Segmentation fault: 11
+Aug 21 11:12:32 unknown ReportCrash[3328] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:12:32 unknown ReportCrash[3328] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:12:32 unknown ReportCrash[3328] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:12:32 unknown ReportCrash[3328] &lt;Error&gt;: Saved crashreport to /var/mobile/Library/Logs/CrashReporter/MTBarcodeExample_2011-08-21-111231_Gala-Corals-iPod.plist using uid: 0 gid: 0, synthetic_euid: 501 egid: 0
+Aug 21 11:13:32 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 0 -&gt; 1
+Aug 21 11:15:46 unknown installd[3334] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:15:46 unknown installd[3334] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:15:47 unknown installd[3334] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:15:47 unknown SpringBoard[27] &lt;Warning&gt;: Killing &lt;SBApplication: 0x20233290&gt; com.galacoral.swipeit  activate:  deactivate:  for app installation
+Aug 21 11:15:48 unknown installd[3334] &lt;Error&gt;: 2ff6b000 verify_signer_identity: Could not copy validate signature: -402620393
+Aug 21 11:15:48 unknown installd[3334] &lt;Error&gt;: 2ff6b000 load_application_info: Could not load signer identity from /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD/MTBarcodeExample.app/MTBarcodeExample
+Aug 21 11:15:48 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: Could not receive size of message
+Aug 21 11:15:48 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: Could not receive size of message
+Aug 21 11:15:48 unknown lockdownd[17] &lt;Error&gt;: 2ff80000 handle_connection: Could not receive USB message #11 from mtouch. Killing connection
+Aug 21 11:15:48 unknown lockdownd[17] &lt;Error&gt;: 00261000 handle_connection: Could not receive USB message #8 from mtouch. Killing connection
+Aug 21 11:15:48 unknown SpringBoard[27] &lt;Warning&gt;: Reloading application state for 'com.galacoral.swipeit' as its modification date has changed
+Aug 21 11:15:48 unknown SpringBoard[27] &lt;Warning&gt;: Reloading and rendering all application icons.
+Aug 21 11:16:11 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 1 -&gt; 0
+Aug 21 11:16:11 unknown kernel[0] &lt;Debug&gt;: set_crc_notification_state 0
+Aug 21 11:16:13 unknown amfid[3336] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:16:13 unknown amfid[3336] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:16:13 unknown kernel[0] &lt;Debug&gt;: launchd[3335] Builtin profile: container (sandbox)
+Aug 21 11:16:13 unknown kernel[0] &lt;Debug&gt;: launchd[3335] Container: /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD [69] (sandbox)
+Aug 21 11:17:17 unknown installd[3343] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:17:17 unknown installd[3343] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:17:18 unknown installd[3343] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:17:18 unknown SpringBoard[27] &lt;Warning&gt;: Killing &lt;SBApplication: 0x2066acb0&gt; com.galacoral.swipeit userLaunch statusBarWindowContextId = -1959834630  activate:  deactivate:  for app installation
+Aug 21 11:17:19 unknown com.apple.launchd[1] &lt;Notice&gt;: (UIKitApplication:com.galacoral.swipeit[0xd842]) Exited: Killed: 9
+Aug 21 11:17:19 unknown SpringBoard[27] &lt;Warning&gt;: Application 'MTBarcodeExample' exited abnormally with signal 9: Killed: 9
+Aug 21 11:17:19 unknown installd[3343] &lt;Error&gt;: 2ff6a000 verify_signer_identity: Could not copy validate signature: -402620393
+Aug 21 11:17:19 unknown installd[3343] &lt;Error&gt;: 2ff6a000 load_application_info: Could not load signer identity from /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD/MTBarcodeExample.app/MTBarcodeExample
+Aug 21 11:17:19 unknown SpringBoard[27] &lt;Warning&gt;: Reloading application state for 'com.galacoral.swipeit' as its modification date has changed
+Aug 21 11:17:19 unknown lockdownd[17] &lt;Error&gt;: 00261000 handle_connection: Could not receive USB message #8 from mtouch. Killing connection
+Aug 21 11:17:19 unknown lockdownd[17] &lt;Error&gt;: 2ff80000 handle_connection: Could not receive USB message #11 from mtouch. Killing connection
+Aug 21 11:17:19 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: Could not receive size of messageCould not receive size of message
+Aug 21 11:17:20 unknown SpringBoard[27] &lt;Warning&gt;: Reloading and rendering all application icons.
+Aug 21 11:17:36 unknown amfid[3345] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:17:36 unknown amfid[3345] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:17:37 unknown kernel[0] &lt;Debug&gt;: launchd[3344] Builtin profile: container (sandbox)
+Aug 21 11:17:37 unknown kernel[0] &lt;Debug&gt;: launchd[3344] Container: /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD [69] (sandbox)
+Aug 21 11:17:53 unknown ReportCrash[3347] &lt;Notice&gt;: Formulating crash report for process MTBarcodeExample[3344]
+Aug 21 11:17:53 unknown com.apple.launchd[1] &lt;Warning&gt;: (UIKitApplication:com.galacoral.swipeit[0xecfc]) Job appears to have crashed: Segmentation fault: 11
+Aug 21 11:17:53 unknown SpringBoard[27] &lt;Warning&gt;: Application 'MTBarcodeExample' exited abnormally with signal 11: Segmentation fault: 11
+Aug 21 11:17:53 unknown ReportCrash[3347] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:17:53 unknown ReportCrash[3347] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:17:53 unknown ReportCrash[3347] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:17:53 unknown ReportCrash[3347] &lt;Error&gt;: Saved crashreport to /var/mobile/Library/Logs/CrashReporter/MTBarcodeExample_2011-08-21-111752_Gala-Corals-iPod.plist using uid: 0 gid: 0, synthetic_euid: 501 egid: 0
+Aug 21 11:18:49 unknown kernel[0] &lt;Debug&gt;: launchd[3348] Builtin profile: container (sandbox)
+Aug 21 11:18:49 unknown kernel[0] &lt;Debug&gt;: launchd[3348] Container: /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD [69] (sandbox)
+Aug 21 11:19:07 unknown ReportCrash[3349] &lt;Notice&gt;: Formulating crash report for process MTBarcodeExample[3348]
+Aug 21 11:19:07 unknown com.apple.launchd[1] &lt;Warning&gt;: (UIKitApplication:com.galacoral.swipeit[0x27b8]) Job appears to have crashed: Segmentation fault: 11
+Aug 21 11:19:07 unknown SpringBoard[27] &lt;Warning&gt;: Application 'MTBarcodeExample' exited abnormally with signal 11: Segmentation fault: 11
+Aug 21 11:19:07 unknown ReportCrash[3349] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:19:07 unknown ReportCrash[3349] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:19:07 unknown ReportCrash[3349] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:19:07 unknown ReportCrash[3349] &lt;Error&gt;: Saved crashreport to /var/mobile/Library/Logs/CrashReporter/MTBarcodeExample_2011-08-21-111907_Gala-Corals-iPod.plist using uid: 0 gid: 0, synthetic_euid: 501 egid: 0
+Aug 21 11:19:47 unknown lockdownd[17] &lt;Error&gt;: 2ff80000 handle_connection: Could not receive USB message #6 from mtouch. Killing connection
+Aug 21 11:19:47 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: receive secure message timeout!
+Aug 21 11:20:07 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 0 -&gt; 1
+Aug 21 11:20:51 unknown SCHelper[527] &lt;Notice&gt;: active (but IDLE) sessions
+Aug 21 11:20:51 unknown SCHelper[527] &lt;Notice&gt;:   0x1c550f00 {port = 0x1d03, caller = Preferences(518):MobileVPN, path = /Library/Preferences/SystemConfiguration/preferences.plist}
+Aug 21 11:21:29 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 1 -&gt; 0
+Aug 21 11:21:29 unknown kernel[0] &lt;Debug&gt;: set_crc_notification_state 0
+Aug 21 11:21:35 unknown installd[3358] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:21:35 unknown installd[3358] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:21:36 unknown installd[3358] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:21:36 unknown SpringBoard[27] &lt;Warning&gt;: Killing &lt;SBApplication: 0x206600c0&gt; com.galacoral.swipeit  activate:  deactivate:  for app installation
+Aug 21 11:21:37 unknown installd[3358] &lt;Error&gt;: 2ff7e000 verify_signer_identity: Could not copy validate signature: -402620393
+Aug 21 11:21:37 unknown installd[3358] &lt;Error&gt;: 2ff7e000 load_application_info: Could not load signer identity from /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD/MTBarcodeExample.app/MTBarcodeExample
+Aug 21 11:21:37 unknown lockdownd[17] &lt;Error&gt;: 00261000 handle_connection: Could not receive USB message #8 from mtouch. Killing connection
+Aug 21 11:21:37 unknown lockdownd[17] &lt;Error&gt;: 2ff80000 handle_connection: Could not receive USB message #11 from mtouch. Killing connection
+Aug 21 11:21:37 unknown SpringBoard[27] &lt;Warning&gt;: Reloading application state for 'com.galacoral.swipeit' as its modification date has changed
+Aug 21 11:21:37 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: Could not receive size of messageCould not receive size of message
+Aug 21 11:21:38 unknown SpringBoard[27] &lt;Warning&gt;: Reloading and rendering all application icons.
+Aug 21 11:21:39 unknown amfid[3360] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:21:39 unknown amfid[3360] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:21:39 unknown kernel[0] &lt;Debug&gt;: launchd[3359] Builtin profile: container (sandbox)
+Aug 21 11:21:39 unknown kernel[0] &lt;Debug&gt;: launchd[3359] Container: /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD [69] (sandbox)
+Aug 21 11:21:51 unknown ReportCrash[3361] &lt;Notice&gt;: Formulating crash report for process MTBarcodeExample[3359]
+Aug 21 11:21:51 unknown com.apple.launchd[1] &lt;Warning&gt;: (UIKitApplication:com.galacoral.swipeit[0x9692]) Job appears to have crashed: Segmentation fault: 11
+Aug 21 11:21:51 unknown SpringBoard[27] &lt;Warning&gt;: Application 'MTBarcodeExample' exited abnormally with signal 11: Segmentation fault: 11
+Aug 21 11:21:51 unknown ReportCrash[3361] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 11:21:51 unknown ReportCrash[3361] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:21:51 unknown ReportCrash[3361] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 11:21:51 unknown ReportCrash[3361] &lt;Error&gt;: Saved crashreport to /var/mobile/Library/Logs/CrashReporter/MTBarcodeExample_2011-08-21-112151_Gala-Corals-iPod.plist using uid: 0 gid: 0, synthetic_euid: 501 egid: 0
+Aug 21 11:22:51 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 0 -&gt; 1
+Aug 21 11:46:23 unknown SCHelper[527] &lt;Notice&gt;: active (but IDLE) sessions
+Aug 21 11:46:23 unknown SCHelper[527] &lt;Notice&gt;:   0x1c550f00 {port = 0x1d03, caller = Preferences(518):MobileVPN, path = /Library/Preferences/SystemConfiguration/preferences.plist}
+Aug 21 12:01:19 unknown installd[3369] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 12:01:19 unknown installd[3369] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 12:01:22 unknown installd[3369] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 12:01:22 unknown SpringBoard[27] &lt;Warning&gt;: Killing &lt;SBApplication: 0x2022f630&gt; com.galacoral.swipeit  activate:  deactivate:  for app installation
+Aug 21 12:01:24 unknown installd[3369] &lt;Error&gt;: 2ff9f000 verify_signer_identity: Could not copy validate signature: -402620393
+Aug 21 12:01:24 unknown installd[3369] &lt;Error&gt;: 2ff9f000 load_application_info: Could not load signer identity from /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD/MTBarcodeExample.app/MTBarcodeExample
+Aug 21 12:01:24 unknown SpringBoard[27] &lt;Warning&gt;: Reloading application state for 'com.galacoral.swipeit' as its modification date has changed
+Aug 21 12:01:24 unknown lockdownd[17] &lt;Error&gt;: 00261000 handle_connection: Could not receive USB message #8 from mtouch. Killing connection
+Aug 21 12:01:24 unknown lockdownd[17] &lt;Error&gt;: 2ff80000 handle_connection: Could not receive USB message #11 from mtouch. Killing connection
+Aug 21 12:01:24 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: Could not receive size of messageCould not receive size of message
+Aug 21 12:01:24 unknown SpringBoard[27] &lt;Warning&gt;: Reloading and rendering all application icons.
+Aug 21 12:02:41 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 1 -&gt; 0
+Aug 21 12:02:42 unknown kernel[0] &lt;Debug&gt;: set_crc_notification_state 0
+Aug 21 12:02:46 unknown amfid[3371] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 12:02:46 unknown amfid[3371] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 12:02:47 unknown kernel[0] &lt;Debug&gt;: launchd[3370] Builtin profile: container (sandbox)
+Aug 21 12:02:47 unknown kernel[0] &lt;Debug&gt;: launchd[3370] Container: /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD [69] (sandbox)
+Aug 21 12:02:57 unknown ReportCrash[3373] &lt;Notice&gt;: Formulating crash report for process MTBarcodeExample[3370]
+Aug 21 12:02:57 unknown com.apple.launchd[1] &lt;Warning&gt;: (UIKitApplication:com.galacoral.swipeit[0xb49]) Job appears to have crashed: Segmentation fault: 11
+Aug 21 12:02:57 unknown SpringBoard[27] &lt;Warning&gt;: Application 'MTBarcodeExample' exited abnormally with signal 11: Segmentation fault: 11
+Aug 21 12:02:58 unknown ReportCrash[3373] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 12:02:58 unknown ReportCrash[3373] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 12:02:58 unknown ReportCrash[3373] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 12:02:58 unknown ReportCrash[3373] &lt;Error&gt;: Saved crashreport to /var/mobile/Library/Logs/CrashReporter/MTBarcodeExample_2011-08-21-120257_Gala-Corals-iPod.plist using uid: 0 gid: 0, synthetic_euid: 501 egid: 0
+Aug 21 12:03:03 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 0 -&gt; 1
+Aug 21 12:03:09 unknown kernel[0] &lt;Debug&gt;: AppleSynopsysOTGDevice::handleUSBSuspend
+Aug 21 12:13:43 unknown SCHelper[527] &lt;Notice&gt;: active (but IDLE) sessions
+Aug 21 12:13:43 unknown SCHelper[527] &lt;Notice&gt;:   0x1c550f00 {port = 0x1d03, caller = Preferences(518):MobileVPN, path = /Library/Preferences/SystemConfiguration/preferences.plist}
+Aug 21 12:43:23 unknown SCHelper[527] &lt;Notice&gt;: active (but IDLE) sessions
+Aug 21 12:43:23 unknown SCHelper[527] &lt;Notice&gt;:   0x1c550f00 {port = 0x1d03, caller = Preferences(518):MobileVPN, path = /Library/Preferences/SystemConfiguration/preferences.plist}
+Aug 21 13:13:23 unknown SCHelper[527] &lt;Notice&gt;: active (but IDLE) sessions
+Aug 21 13:13:23 unknown SCHelper[527] &lt;Notice&gt;:   0x1c550f00 {port = 0x1d03, caller = Preferences(518):MobileVPN, path = /Library/Preferences/SystemConfiguration/preferences.plist}
+Aug 21 13:43:23 unknown SCHelper[527] &lt;Notice&gt;: active (but IDLE) sessions
+Aug 21 13:43:23 unknown SCHelper[527] &lt;Notice&gt;:   0x1c550f00 {port = 0x1d03, caller = Preferences(518):MobileVPN, path = /Library/Preferences/SystemConfiguration/preferences.plist}
+Aug 21 14:13:24 unknown SCHelper[527] &lt;Notice&gt;: active (but IDLE) sessions
+Aug 21 14:13:24 unknown SCHelper[527] &lt;Notice&gt;:   0x1c550f00 {port = 0x1d03, caller = Preferences(518):MobileVPN, path = /Library/Preferences/SystemConfiguration/preferences.plist}
+Aug 21 14:43:24 unknown SCHelper[527] &lt;Notice&gt;: active (but IDLE) sessions
+Aug 21 14:43:24 unknown SCHelper[527] &lt;Notice&gt;:   0x1c550f00 {port = 0x1d03, caller = Preferences(518):MobileVPN, path = /Library/Preferences/SystemConfiguration/preferences.plist}
+Aug 21 15:13:24 unknown SCHelper[527] &lt;Notice&gt;: active (but IDLE) sessions
+Aug 21 15:13:24 unknown SCHelper[527] &lt;Notice&gt;:   0x1c550f00 {port = 0x1d03, caller = Preferences(518):MobileVPN, path = /Library/Preferences/SystemConfiguration/preferences.plist}
+Aug 21 15:22:43 unknown kernel[0] &lt;Debug&gt;: AppleSynopsysOTGDevice::handleUSBResume
+Aug 21 15:23:41 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 1 -&gt; 0
+Aug 21 15:23:42 unknown kernel[0] &lt;Debug&gt;: set_crc_notification_state 0
+Aug 21 15:24:42 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 0 -&gt; 1
+Aug 21 15:33:33 unknown installd[3379] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 15:33:33 unknown installd[3379] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 15:33:36 unknown installd[3379] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 15:33:36 unknown SpringBoard[27] &lt;Warning&gt;: Killing &lt;SBApplication: 0x20660930&gt; com.galacoral.swipeit  activate:  deactivate:  for app installation
+Aug 21 15:33:38 unknown installd[3379] &lt;Error&gt;: 2ff70000 verify_signer_identity: Could not copy validate signature: -402620393
+Aug 21 15:33:38 unknown installd[3379] &lt;Error&gt;: 2ff70000 load_application_info: Could not load signer identity from /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD/MTBarcodeExample.app/MTBarcodeExample
+Aug 21 15:33:38 unknown SpringBoard[27] &lt;Warning&gt;: Reloading application state for 'com.galacoral.swipeit' as its modification date has changed
+Aug 21 15:33:38 unknown lockdownd[17] &lt;Error&gt;: 00261000 handle_connection: Could not receive USB message #8 from mtouch. Killing connection
+Aug 21 15:33:38 unknown lockdownd[17] &lt;Error&gt;: 2ff80000 handle_connection: Could not receive USB message #11 from mtouch. Killing connection
+Aug 21 15:33:38 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: Could not receive size of messageCould not receive size of message
+Aug 21 15:33:38 unknown SpringBoard[27] &lt;Warning&gt;: Reloading and rendering all application icons.
+Aug 21 15:33:44 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 1 -&gt; 0
+Aug 21 15:33:44 unknown kernel[0] &lt;Debug&gt;: set_crc_notification_state 0
+Aug 21 15:34:45 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 0 -&gt; 1
+Aug 21 15:35:59 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 1 -&gt; 0
+Aug 21 15:35:59 unknown kernel[0] &lt;Debug&gt;: set_crc_notification_state 0
+Aug 21 15:36:03 unknown amfid[3384] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 15:36:03 unknown amfid[3384] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 15:36:04 unknown kernel[0] &lt;Debug&gt;: launchd[3383] Builtin profile: container (sandbox)
+Aug 21 15:36:04 unknown kernel[0] &lt;Debug&gt;: launchd[3383] Container: /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD [69] (sandbox)
+Aug 21 15:36:16 unknown lockdownd[17] &lt;Error&gt;: 2ff80000 handle_connection: Could not receive USB message #6 from mtouch. Killing connection
+Aug 21 15:36:16 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: receive secure message timeout!
+Aug 21 15:36:17 unknown ReportCrash[3385] &lt;Notice&gt;: Formulating crash report for process MTBarcodeExample[3383]
+Aug 21 15:36:17 unknown com.apple.launchd[1] &lt;Warning&gt;: (UIKitApplication:com.galacoral.swipeit[0xdc37]) Job appears to have crashed: Segmentation fault: 11
+Aug 21 15:36:17 unknown SpringBoard[27] &lt;Warning&gt;: Application 'MTBarcodeExample' exited abnormally with signal 11: Segmentation fault: 11
+Aug 21 15:36:17 unknown ReportCrash[3385] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 15:36:17 unknown ReportCrash[3385] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 15:36:17 unknown ReportCrash[3385] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 15:36:17 unknown ReportCrash[3385] &lt;Error&gt;: Saved crashreport to /var/mobile/Library/Logs/CrashReporter/MTBarcodeExample_2011-08-21-153617_Gala-Corals-iPod.plist using uid: 0 gid: 0, synthetic_euid: 501 egid: 0
+Aug 21 15:37:17 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 0 -&gt; 1
+Aug 21 15:38:38 unknown SpringBoard[27] &lt;Notice&gt;: MultitouchHID(1f557a10) uilock state: 1 -&gt; 0
+Aug 21 15:38:38 unknown lockdownd[17] &lt;Error&gt;: 2ff80000 handle_connection: Could not receive USB message #6 from mtouch. Killing connection
+Aug 21 15:38:38 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: receive secure message timeout!
+Aug 21 15:38:38 unknown kernel[0] &lt;Debug&gt;: set_crc_notification_state 0
+Aug 21 15:38:44 unknown kernel[0] &lt;Debug&gt;: launchd[3389] Builtin profile: container (sandbox)
+Aug 21 15:38:44 unknown kernel[0] &lt;Debug&gt;: launchd[3389] Container: /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD [69] (sandbox)
+Aug 21 15:38:53 unknown ReportCrash[3390] &lt;Notice&gt;: Formulating crash report for process MTBarcodeExample[3389]
+Aug 21 15:38:53 unknown com.apple.launchd[1] &lt;Warning&gt;: (UIKitApplication:com.galacoral.swipeit[0x47bc]) Job appears to have crashed: Segmentation fault: 11
+Aug 21 15:38:53 unknown SpringBoard[27] &lt;Warning&gt;: Application 'MTBarcodeExample' exited abnormally with signal 11: Segmentation fault: 11
+Aug 21 15:38:53 unknown ReportCrash[3390] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 15:38:53 unknown ReportCrash[3390] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 15:38:53 unknown ReportCrash[3390] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 15:38:53 unknown ReportCrash[3390] &lt;Error&gt;: Saved crashreport to /var/mobile/Library/Logs/CrashReporter/MTBarcodeExample_2011-08-21-153853_Gala-Corals-iPod.plist using uid: 0 gid: 0, synthetic_euid: 501 egid: 0
+Aug 21 15:39:47 unknown installd[3396] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 15:39:47 unknown installd[3396] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 15:39:49 unknown installd[3396] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 15:39:49 unknown SpringBoard[27] &lt;Warning&gt;: Killing &lt;SBApplication: 0x2022b490&gt; com.galacoral.swipeit  activate:  deactivate:  for app installation
+Aug 21 15:39:52 unknown installd[3396] &lt;Error&gt;: 2ff25000 verify_signer_identity: Could not copy validate signature: -402620393
+Aug 21 15:39:52 unknown installd[3396] &lt;Error&gt;: 2ff25000 load_application_info: Could not load signer identity from /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD/MTBarcodeExample.app/MTBarcodeExample
+Aug 21 15:39:52 unknown lockdownd[17] &lt;Error&gt;: 00261000 handle_connection: Could not receive USB message #8 from mtouch. Killing connection
+Aug 21 15:39:52 unknown lockdownd[17] &lt;Error&gt;: 2ff80000 handle_connection: Could not receive USB message #11 from mtouch. Killing connection
+Aug 21 15:39:52 unknown SpringBoard[27] &lt;Warning&gt;: Reloading application state for 'com.galacoral.swipeit' as its modification date has changed
+Aug 21 15:39:52 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: Could not receive size of messageCould not receive size of message
+Aug 21 15:39:52 unknown SpringBoard[27] &lt;Warning&gt;: Reloading and rendering all application icons.
+<span class="quote">&gt; </span>
+Aug 21 15:40:12 unknown amfid[3400] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 15:40:12 unknown amfid[3400] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 15:40:12 unknown kernel[0] &lt;Debug&gt;: launchd[3399] Builtin profile: container (sandbox)
+Aug 21 15:40:12 unknown kernel[0] &lt;Debug&gt;: launchd[3399] Container: /private/var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD [69] (sandbox)
+<span class="quote">&gt; </span>
+Aug 21 15:40:18 unknown ReportCrash[3401] &lt;Notice&gt;: Formulating crash report for process MTBarcodeExample[3399]
+Aug 21 15:40:18 unknown com.apple.launchd[1] &lt;Warning&gt;: (UIKitApplication:com.galacoral.swipeit[0x7962]) Job appears to have crashed: Segmentation fault: 11
+Aug 21 15:40:18 unknown SpringBoard[27] &lt;Warning&gt;: Application 'MTBarcodeExample' exited abnormally with signal 11: Segmentation fault: 11
+Aug 21 15:40:18 unknown ReportCrash[3401] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 21 15:40:18 unknown ReportCrash[3401] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 15:40:18 unknown ReportCrash[3401] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 21 15:40:19 unknown ReportCrash[3401] &lt;Error&gt;: Saved crashreport to /var/mobile/Library/Logs/CrashReporter/MTBarcodeExample_2011-08-21-154018_Gala-Corals-iPod.plist using uid: 0 gid: 0, synthetic_euid: 501 egid: 0
+<span class="quote">&gt; </span>
+Aug 21 15:40:29 unknown lockdownd[17] &lt;Error&gt;: 01287000 handle_connection: Could not receive USB message #6 from mtouch. Killing connection
+Aug 21 15:40:29 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: receive secure message timeout!</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-21 10:45:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">below is from "file [your-path-to]/liblineaSDK.a"
+
+
+downloads/mtbarcodeexample_2/mtbarcodeexample/liblineaSDK.a: Mach-O universal binary with 3 architectures
+downloads/mtbarcodeexample_2/mtbarcodeexample/liblineaSDK.a (for architecture armv6):	current ar archive random library
+downloads/mtbarcodeexample_2/mtbarcodeexample/liblineaSDK.a (for architecture armv7):	current ar archive random library
+downloads/mtbarcodeexample_2/mtbarcodeexample/liblineaSDK.a (for architecture i386):	current ar archive random library</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-22 10:00:24 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The build (<a href="bug.html">comment #6</a>) looks fine and the native library is available for 'armv6' (<a href="bug.html">comment #8</a>). The crash (<a href="bug.html">comment #7</a>) is likely to come from the use of the library itself.
+
+Two things to try:
+
+1) Comment all use of LineaSDK code and see if your application starts correctly (without crashing). This will confirm the location of the issue.
+
+2) Use XCode organizer to retreive the "crash log" generated, then symbolicate it [1], and attach it to this bug report. That *might* give us a clue about where's the issue comes from.
+
+
+
+[1] <a href="http://stackoverflow.com/questions/5398986/unable-to-symbolicate-crash-log-from-a-monotouch-program">http://stackoverflow.com/questions/5398986/unable-to-symbolicate-crash-log-from-a-monotouch-program</a></pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-22 10:09:16 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have commented out the usage of the LineaSDK and if fails when setting the Linea.Delegate
+
+Linea.Delegate     = LineaDelegate;
+
+which is part of the below method. If I comment out this like and Linea.Connect()
+The app launches fine.
+
+private void initHardware()
+{
+    Linea             = new LineaSDK.Linea();
+    LineaDelegate     = new MyLineaDelegate();
+    Linea.Delegate     = LineaDelegate;
+
+    LineaDelegate.GotBarcode += HandleLineaDelegateGotBarcode;
+
+    Linea.Connect();
+} 
+
+I will do step 2 now.</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-22 10:42:10 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">is this what you are looking for? I don't really understand that link
+
+
+
+Incident Identifier: 357054A0-5CFD-409A-BE1A-22A8B451DC72
+CrashReporter Key:   c83982a888138f66f4c87cfe7fd6b12a1c9592e2
+Hardware Model:      iPod4,1
+Process:         MTBarcodeExample [246]
+Path:            /var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD/MTBarcodeExample.app/MTBarcodeExample
+Identifier:      MTBarcodeExample
+Version:         ??? (???)
+Code Type:       ARM (Native)
+Parent Process:  launchd [1]
+
+Date/Time:       2011-08-22 15:26:30.221 +0100
+OS Version:      iPhone OS 4.3.3 (8J2)
+Report Version:  104
+
+Exception Type:  EXC_BAD_ACCESS (SIGSEGV)
+Exception Codes: KERN_PROTECTION_FAILURE at 0x2fd00ffc
+Crashed Thread:  0
+
+Thread 0 name:  Dispatch queue: com.apple.main-thread
+Thread 0 Crashed:
+0   CoreFoundation                	0x364f09a0 0x364d8000 + 100768
+1   CoreFoundation                	0x364f0998 0x364d8000 + 100760
+2   CoreFoundation                	0x3653f160 0x364d8000 + 422240
+3   CoreFoundation                	0x365896cc 0x364d8000 + 726732
+4   CoreFoundation                	0x364dc64c 0x364d8000 + 17996
+5   CoreFoundation                	0x364de49a 0x364d8000 + 25754
+6   CoreFoundation                	0x364f0244 0x364d8000 + 98884
+7   CoreFoundation                	0x364f934e 0x364d8000 + 136014
+8   MTBarcodeExample              	0x00c8723c 0x1000 + 13132348
+9   MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+10  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+11  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+12  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+13  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+14  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+15  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+16  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+17  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+18  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+19  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+20  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+21  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+22  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+23  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+24  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+25  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+26  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+27  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+28  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+29  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+30  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+31  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+32  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+33  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+34  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+35  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+36  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+37  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+38  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+39  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+40  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+41  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+42  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+43  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+44  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+45  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+46  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+47  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+48  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+49  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+50  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+51  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+52  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+53  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+54  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+55  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+56  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+57  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+58  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+59  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+60  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+61  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+62  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+63  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+64  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+65  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+66  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+67  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+68  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+69  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+70  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+71  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+72  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+73  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+74  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+75  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+76  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+77  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+78  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+79  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+80  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+81  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+82  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+83  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+84  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+85  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+86  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+87  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+88  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+89  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+90  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+91  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+92  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+93  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+94  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+95  MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+96  MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+97  MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+98  MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+99  MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+100 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+101 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+102 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+103 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+104 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+105 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+106 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+107 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+108 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+109 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+110 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+111 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+112 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+113 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+114 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+115 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+116 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+117 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+118 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+119 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+120 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+121 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+122 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+123 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+124 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+125 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+126 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+127 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+128 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+129 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+130 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+131 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+132 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+133 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+134 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+135 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+136 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+137 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+138 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+139 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+140 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+141 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+142 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+143 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+144 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+145 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+146 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+147 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+148 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+149 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+150 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+151 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+152 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+153 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+154 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+155 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+156 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+157 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+158 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+159 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+160 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+161 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+162 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+163 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+164 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+165 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+166 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+167 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+168 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+169 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+170 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+171 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+172 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+173 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+174 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+175 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+176 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+177 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+178 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+179 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+180 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+181 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+182 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+183 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+184 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+185 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+186 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+187 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+188 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+189 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+190 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+191 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+192 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+193 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+194 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+195 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+196 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+197 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+198 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+199 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+200 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+201 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+202 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+203 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+204 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+205 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+206 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+207 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+208 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+209 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+210 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+211 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+212 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+213 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+214 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+215 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+216 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+217 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+218 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+219 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+220 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+221 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+222 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+223 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+224 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+225 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+226 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+227 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+228 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+229 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+230 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+231 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+232 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+233 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+234 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+235 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+236 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+237 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+238 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+239 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+240 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+241 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+242 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+243 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+244 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+245 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+246 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+247 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+248 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+249 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+250 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+251 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+252 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+253 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+254 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+255 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+256 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+257 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+258 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+259 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+260 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+261 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+262 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+263 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+264 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+265 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+266 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+267 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+268 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+269 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+270 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+271 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+272 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+273 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+274 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+275 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+276 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+277 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+278 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+279 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+280 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+281 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+282 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+283 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+284 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+285 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+286 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+287 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+288 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+289 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+290 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+291 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+292 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+293 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+294 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+295 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+296 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+297 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+298 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+299 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+300 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+301 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+302 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+303 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+304 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+305 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+306 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+307 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+308 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+309 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+310 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+311 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+312 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+313 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+314 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+315 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+316 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+317 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+318 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+319 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+320 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+321 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+322 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+323 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+324 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+325 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+326 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+327 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+328 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+329 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+330 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+331 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+332 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+333 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+334 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+335 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+336 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+337 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+338 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+339 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+340 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+341 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+342 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+343 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+344 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+345 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+346 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+347 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+348 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+349 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+350 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+351 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+352 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+353 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+354 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+355 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+356 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+357 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+358 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+359 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+360 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+361 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+362 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+363 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+364 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+365 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+366 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+367 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+368 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+369 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+370 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+371 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+372 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+373 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+374 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+375 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+376 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+377 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+378 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+379 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+380 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+381 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+382 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+383 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+384 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+385 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+386 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+387 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+388 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+389 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+390 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+391 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+392 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+393 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+394 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+395 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+396 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+397 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+398 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+399 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+400 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+401 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+402 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+403 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+404 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+405 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+406 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+407 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+408 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+409 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+410 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+411 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+412 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+413 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+414 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+415 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+416 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+417 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+418 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+419 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+420 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+421 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+422 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+423 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+424 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+425 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+426 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+427 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+428 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+429 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+430 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+431 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+432 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+433 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+434 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+435 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+436 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+437 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+438 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+439 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+440 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+441 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+442 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+443 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+444 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+445 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+446 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+447 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+448 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+449 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+450 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+451 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+452 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+453 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+454 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+455 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+456 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+457 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+458 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+459 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+460 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+461 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+462 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+463 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+464 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+465 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+466 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+467 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+468 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+469 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+470 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+471 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+472 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+473 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+474 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+475 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+476 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+477 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+478 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+479 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+480 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+481 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+482 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+483 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+484 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+485 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+486 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+487 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+488 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+489 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+490 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+491 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+492 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+493 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+494 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+495 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+496 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+497 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+498 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+499 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+500 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+501 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+502 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+503 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+504 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+505 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+506 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+507 MTBarcodeExample              	0x00bde968 0x1000 + 12441960
+508 MTBarcodeExample              	0x00c87d18 0x1000 + 13135128
+509 MTBarcodeExample              	0x0099695c 0x1000 + 10049884
+510 MTBarcodeExample              	0x0062a95c 0x1000 + 6461788
+511 MTBarcodeExample              	0x00ad73d8 0x1000 + 11363288
+
+Thread 1:
+0   libsystem_kernel.dylib        	0x325a03ec 0x3258e000 + 74732
+1   libsystem_c.dylib             	0x3671a6d8 0x366e6000 + 214744
+2   libsystem_c.dylib             	0x3671abbc 0x366e6000 + 215996
+
+Thread 2 name:  Dispatch queue: com.apple.libdispatch-manager
+Thread 2:
+0   libsystem_kernel.dylib        	0x325a0fbc 0x3258e000 + 77756
+1   libdispatch.dylib             	0x32767032 0x32761000 + 24626
+2   libdispatch.dylib             	0x3276803a 0x32761000 + 28730
+3   libdispatch.dylib             	0x327675ea 0x32761000 + 26090
+4   libsystem_c.dylib             	0x3671a58a 0x366e6000 + 214410
+5   libsystem_c.dylib             	0x3671abbc 0x366e6000 + 215996
+
+Thread 3:
+0   libsystem_kernel.dylib        	0x3259dc50 0x3258e000 + 64592
+1   libsystem_kernel.dylib        	0x3259df6e 0x3258e000 + 65390
+2   MTBarcodeExample              	0x00c54324 0x1000 + 12923684
+3   MTBarcodeExample              	0x00b6e6dc 0x1000 + 11982556
+4   MTBarcodeExample              	0x00c17450 0x1000 + 12674128
+5   MTBarcodeExample              	0x00c17544 0x1000 + 12674372
+6   MTBarcodeExample              	0x00c42eec 0x1000 + 12852972
+7   MTBarcodeExample              	0x00c80d60 0x1000 + 13106528
+8   libsystem_c.dylib             	0x3671930a 0x366e6000 + 209674
+9   libsystem_c.dylib             	0x3671abb4 0x366e6000 + 215988
+
+Thread 4 name:  WebThread
+Thread 4:
+0   libsystem_kernel.dylib        	0x3259dc00 0x3258e000 + 64512
+1   libsystem_kernel.dylib        	0x3259d758 0x3258e000 + 63320
+2   CoreFoundation                	0x3654e2b8 0x364d8000 + 484024
+3   CoreFoundation                	0x36550562 0x364d8000 + 492898
+4   CoreFoundation                	0x364e0ebc 0x364d8000 + 36540
+5   CoreFoundation                	0x364e0dc4 0x364d8000 + 36292
+6   WebCore                       	0x367b127e 0x367ab000 + 25214
+7   libsystem_c.dylib             	0x3671930a 0x366e6000 + 209674
+8   libsystem_c.dylib             	0x3671abb4 0x366e6000 + 215988
+
+Thread 0 crashed with ARM Thread State:
+    r0: 0x01649da0    r1: 0x00000004      r2: 0xe0000000      r3: 0x1efefeff
+    r4: 0x01649da0    r5: 0x01697850      r6: 0x00000003      r7: 0x2fd01014
+    r8: 0x00000000    r9: 0x2fd010a8     r10: 0x01697850     r11: 0x2fd0141c
+    ip: 0x01649da0    sp: 0x2fd01010      lr: 0x364f099f      pc: 0x364f09a0
+  cpsr: 0x40000030
+
+Binary Images:
+    0x1000 -   0xd1dfff +MTBarcodeExample armv6  &lt;621823be368934a29ed1322bad7d6043&gt; /var/mobile/Applications/C9A12517-E777-4B70-92EF-6DE5A1861EDD/MTBarcodeExample.app/MTBarcodeExample
+0x2fe00000 - 0x2fe25fff  dyld armv7  &lt;bb9bfc7d242331d29a79adf7ef7aaa18&gt; /usr/lib/dyld
+0x30a33000 - 0x30a38fff  MobileKeyBag armv7  &lt;8c35c090bc373cb181fc26b961b8dba5&gt; /System/Library/PrivateFrameworks/MobileKeyBag.framework/MobileKeyBag
+0x30a4b000 - 0x30a7efff  QuickLook armv7  &lt;29d2d981d1d6358381f5716ee37314b4&gt; /System/Library/Frameworks/QuickLook.framework/QuickLook
+0x30a7f000 - 0x30a89fff  ExternalAccessory armv7  &lt;eebb4bdbbefb37419b884ffa011e1dc5&gt; /System/Library/Frameworks/ExternalAccessory.framework/ExternalAccessory
+0x30a8a000 - 0x30a8dfff  ApplePushService armv7  &lt;015c68c15621348db9f6a012499170e1&gt; /System/Library/PrivateFrameworks/ApplePushService.framework/ApplePushService
+0x30a90000 - 0x30b54fff  libobjc.A.dylib armv7  &lt;6b51e76fde9f381bb7b3bc5badbfee3a&gt; /usr/lib/libobjc.A.dylib
+0x30b58000 - 0x30b5bfff  IOSurface armv7  &lt;ad50e71624583d06b891344d832f9b08&gt; /System/Library/PrivateFrameworks/IOSurface.framework/IOSurface
+0x30b5c000 - 0x30c64fff  CoreData armv7  &lt;9843a401dd1d322383e3e40021cc8b95&gt; /System/Library/Frameworks/CoreData.framework/CoreData
+0x30ca1000 - 0x30cc1fff  MobileSync armv7  &lt;4df400c4559435889eccd88db77a110c&gt; /System/Library/PrivateFrameworks/MobileSync.framework/MobileSync
+0x30cc2000 - 0x30cc5fff  ActorKit armv7  &lt;f7aa6cdd654231988aafcf448978f450&gt; /System/Library/PrivateFrameworks/ActorKit.framework/ActorKit
+0x30cc6000 - 0x30ccbfff  liblaunch.dylib armv7  &lt;f5ccc8234aea3ebd9a88bd37f0fa23ae&gt; /usr/lib/system/liblaunch.dylib
+0x30cfa000 - 0x30d2dfff  StoreServices armv7  &lt;d526715648f435c3aac4c42953e76d20&gt; /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
+0x30d4a000 - 0x30e5cfff  MediaPlayer armv7  &lt;da848c0745a637af81d7edd962a09324&gt; /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
+0x30f04000 - 0x30f3bfff  Security armv7  &lt;6599f42a910b3b31a0e1d98c883d61cb&gt; /System/Library/Frameworks/Security.framework/Security
+0x30f66000 - 0x30f8ffff  MobileCoreServices armv7  &lt;57fef84bdc17301d8bf53ba0fb967fe6&gt; /System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices
+0x30fb4000 - 0x30fbafff  StoreKit armv7  &lt;0deee3e11c7632aab98ab3c026d41e41&gt; /System/Library/Frameworks/StoreKit.framework/StoreKit
+0x3101f000 - 0x31022fff  CertUI armv7  &lt;9060fe03a4943ef295531feced9a17dd&gt; /System/Library/PrivateFrameworks/CertUI.framework/CertUI
+0x31078000 - 0x3107afff  Camera armv7  &lt;fd4d53b318ab35ce9bb89db3879120f0&gt; /System/Library/PrivateFrameworks/Camera.framework/Camera
+0x3107b000 - 0x310c5fff  libstdc++.6.dylib armv7  &lt;b2cac408951c3f3c9ba3cf563e54ce81&gt; /usr/lib/libstdc++.6.dylib
+0x310c6000 - 0x310c9fff  MobileIcons armv7  &lt;08e426f8a707388d8adda670bfed0c2e&gt; /System/Library/PrivateFrameworks/MobileIcons.framework/MobileIcons
+0x310ca000 - 0x310e7fff  libsystem_info.dylib armv7  &lt;48016be86e3f3cd9aeee1c6590e1ac6f&gt; /usr/lib/system/libsystem_info.dylib
+0x310e8000 - 0x311aefff  MusicLibrary armv7  &lt;71a09022bd8b3b6a90a250199d190f10&gt; /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
+0x311af000 - 0x311ddfff  DataAccess armv7  &lt;3a2e67aa1d8834b7a8fc2fbb56654b15&gt; /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
+0x311de000 - 0x311e8fff  AccountSettings armv7  &lt;d083fb384dc7311eb6766b9b2d2dd9c8&gt; /System/Library/PrivateFrameworks/AccountSettings.framework/AccountSettings
+0x311e9000 - 0x311f8fff  MobileDeviceLink armv7  &lt;563a09bcdb2f32369b1e22f53f58273a&gt; /System/Library/PrivateFrameworks/MobileDeviceLink.framework/MobileDeviceLink
+0x311f9000 - 0x312a2fff  libxml2.2.dylib armv7  &lt;5538d3f2c7d83b88b06168488fe6326b&gt; /usr/lib/libxml2.2.dylib
+0x312cb000 - 0x312d0fff  libsystem_dnssd.dylib armv7  &lt;c7cfe523e2d73521abc01587313ef730&gt; /usr/lib/system/libsystem_dnssd.dylib
+0x312d1000 - 0x312ddfff  GraphicsServices armv7  &lt;ff78a9636e933f0dbd222f8d26209788&gt; /System/Library/PrivateFrameworks/GraphicsServices.framework/GraphicsServices
+0x312de000 - 0x312e4fff  ProtocolBuffer armv7  &lt;f9277ee9b85b3722975ad319a323aca0&gt; /System/Library/PrivateFrameworks/ProtocolBuffer.framework/ProtocolBuffer
+0x312eb000 - 0x312ecfff  libdyld.dylib armv7  &lt;41a7b5e5d9983449ab33affed0f635ad&gt; /usr/lib/system/libdyld.dylib
+0x312f6000 - 0x31410fff  libicucore.A.dylib armv7  &lt;bada0c2725bb31a483d5adf9aaf1f8df&gt; /usr/lib/libicucore.A.dylib
+0x31411000 - 0x3142afff  libRIP.A.dylib armv7  &lt;4825c3e392983aba947eca06555e4480&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libRIP.A.dylib
+0x3142b000 - 0x314dafff  QuartzCore armv7  &lt;ef9632c9781f3101916b65e9faae1579&gt; /System/Library/Frameworks/QuartzCore.framework/QuartzCore
+0x314e6000 - 0x314e9fff  libmacho.dylib armv7  &lt;43311c113a9d3182b7d007129819f029&gt; /usr/lib/system/libmacho.dylib
+0x314ea000 - 0x314effff  libcopyfile.dylib armv7  &lt;e57c2b9054b831d9a37119baaa4947cb&gt; /usr/lib/system/libcopyfile.dylib
+0x314f0000 - 0x314f9fff  CoreVideo armv7  &lt;ea847e6dba2d36b1826b255c73b39539&gt; /System/Library/Frameworks/CoreVideo.framework/CoreVideo
+0x314fa000 - 0x3153cfff  CoreAudio armv7  &lt;c972fd5f8e89333ca680b9a33587f896&gt; /System/Library/Frameworks/CoreAudio.framework/CoreAudio
+0x31605000 - 0x31633fff  MIME armv7  &lt;60de1fe0bbb134d788c09f7c34b1caa4&gt; /System/Library/PrivateFrameworks/MIME.framework/MIME
+0x31697000 - 0x3169efff  libMobileGestalt.dylib armv7  &lt;55f29184efcc3046bb833dd72a4487e1&gt; /usr/lib/libMobileGestalt.dylib
+0x316a4000 - 0x316cffff  IMFoundation armv7  &lt;f1f21bedbf2e3ea38f692abef0005d76&gt; /System/Library/PrivateFrameworks/IMCore.framework/Frameworks/IMFoundation.framework/IMFoundation
+0x317e0000 - 0x317e7fff  libbz2.1.0.dylib armv7  &lt;0a082e1d475432959ba93aa3dbf7fb31&gt; /usr/lib/libbz2.1.0.dylib
+0x317ec000 - 0x318d9fff  libiconv.2.dylib armv7  &lt;f4146ce07e3031ea8a81fa5516fd77d0&gt; /usr/lib/libiconv.2.dylib
+0x318da000 - 0x3191dfff  ManagedConfiguration armv7  &lt;f790c26852cb3cf298abe56bc9a3940b&gt; /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
+0x31e04000 - 0x31e04fff  libCVMSPluginSupport.dylib armv7  &lt;42d8aa2a31843a6e8bfff745644a7ba5&gt; /System/Library/Frameworks/OpenGLES.framework/libCVMSPluginSupport.dylib
+0x31ed1000 - 0x31ed5fff  libGFXShared.dylib armv7  &lt;a0772a32cd8b3b9194bb0c29807c1c5b&gt; /System/Library/Frameworks/OpenGLES.framework/libGFXShared.dylib
+0x31ed6000 - 0x31efafff  MediaControl armv7  &lt;1cfc7d79f554357ab59eb69f9efebf07&gt; /System/Library/PrivateFrameworks/MediaControl.framework/MediaControl
+0x3203f000 - 0x32048fff  MobileWiFi armv7  &lt;03d98d5cf6383695aa7d8a88da52f410&gt; /System/Library/PrivateFrameworks/MobileWiFi.framework/MobileWiFi
+0x32068000 - 0x321b4fff  MediaToolbox armv7  &lt;482b13059e8a329fa5d832baede25103&gt; /System/Library/PrivateFrameworks/MediaToolbox.framework/MediaToolbox
+0x321b5000 - 0x321fafff  IMAVCore armv7  &lt;a4dbb6f1203e3f569080707b3a388573&gt; /System/Library/PrivateFrameworks/IMAVCore.framework/IMAVCore
+0x321fb000 - 0x321fefff  CaptiveNetwork armv7  &lt;fc834fd33a18341ea7506587ad895703&gt; /System/Library/PrivateFrameworks/CaptiveNetwork.framework/CaptiveNetwork
+0x3224e000 - 0x322d2fff  AVFoundation armv7  &lt;eeaf5f4f822436a5bd1655f536e69879&gt; /System/Library/Frameworks/AVFoundation.framework/AVFoundation
+0x322ed000 - 0x32305fff  iAd armv7  &lt;4a54026f52883c0fa28bf7e78fc12f44&gt; /System/Library/Frameworks/iAd.framework/iAd
+0x32306000 - 0x32354fff  CoreMotion armv7  &lt;58c353bb7e33361f881da07c72f4cdfb&gt; /System/Library/Frameworks/CoreMotion.framework/CoreMotion
+0x32376000 - 0x3239ffff  ContentIndex armv7  &lt;ecd71782cd833360872b943ecc65d203&gt; /System/Library/PrivateFrameworks/ContentIndex.framework/ContentIndex
+0x323a0000 - 0x323a1fff  CoreSurface armv7  &lt;7b83cd757da73e6e826693c29296d3fa&gt; /System/Library/PrivateFrameworks/CoreSurface.framework/CoreSurface
+0x323bd000 - 0x3241cfff  libBLAS.dylib armv7  &lt;0b36b2272aa33a8c9aa22d99c89d7189&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libBLAS.dylib
+0x3241d000 - 0x3253efff  CoreGraphics armv7  &lt;65f6c8701b563542820a26b0dfc4f6a4&gt; /System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+0x32558000 - 0x3258dfff  ImageCapture armv7  &lt;2c474beec10f3791ac8a1d37df04600f&gt; /System/Library/PrivateFrameworks/ImageCapture.framework/ImageCapture
+0x3258e000 - 0x325a5fff  libsystem_kernel.dylib armv7  &lt;a06ec84e53bf32098b63c0caebdb45b6&gt; /usr/lib/system/libsystem_kernel.dylib
+0x325f0000 - 0x3260ffff  Bom armv7  &lt;b178e3efb4d733c694bd5a55e57a314f&gt; /System/Library/PrivateFrameworks/Bom.framework/Bom
+0x32687000 - 0x326d5fff  GMM armv7  &lt;049361f664eb3f30b0d25cd56ffc1f0f&gt; /System/Library/PrivateFrameworks/GMM.framework/GMM
+0x326d6000 - 0x3270afff  VideoToolbox armv7  &lt;570c63dc3a273a5a8c9072fd5567f5c1&gt; /System/Library/PrivateFrameworks/VideoToolbox.framework/VideoToolbox
+0x32717000 - 0x3274ffff  libCGFreetype.A.dylib armv7  &lt;ccea634795153164a681f0f311f4461d&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libCGFreetype.A.dylib
+0x3275e000 - 0x32760fff  IOMobileFramebuffer armv7  &lt;683f321680763e519d61541170ba2133&gt; /System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer
+0x32761000 - 0x3276efff  libdispatch.dylib armv7  &lt;9a0511ad5ebc3db898f1f49ed1a73d34&gt; /usr/lib/system/libdispatch.dylib
+0x32778000 - 0x32779fff  libsystem_blocks.dylib armv7  &lt;ccc041df3de73eafb7a59e74cdb1702b&gt; /usr/lib/system/libsystem_blocks.dylib
+0x3278b000 - 0x32791fff  IAP armv7  &lt;c0f4c99a1b493e489948f231ad9238e2&gt; /System/Library/PrivateFrameworks/IAP.framework/IAP
+0x32797000 - 0x327d7fff  CoreMedia armv7  &lt;8e0570582ba535bfa74f1f00eef64376&gt; /System/Library/Frameworks/CoreMedia.framework/CoreMedia
+0x327dc000 - 0x328d6fff  GameKitServices armv7  &lt;fb4ddfc376d23d33ab748bec92b4beab&gt; /System/Library/PrivateFrameworks/GameKitServices.framework/GameKitServices
+0x328d7000 - 0x328d9fff  CrashReporterSupport armv7  &lt;9e7efa009730322f84bbc5d8bf1ded94&gt; /System/Library/PrivateFrameworks/CrashReporterSupport.framework/CrashReporterSupport
+0x32902000 - 0x32904fff  libgcc_s.1.dylib armv7  &lt;a2631ac302f4310dae8367939e16b7c2&gt; /usr/lib/libgcc_s.1.dylib
+0x32905000 - 0x32909fff  libcache.dylib armv7  &lt;d2f7fd2a352b3cd59c564be34b53cf80&gt; /usr/lib/system/libcache.dylib
+0x3291d000 - 0x3291dfff  vecLib armv7  &lt;0c60cd0a60f43d2791d36cb357d30e3c&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/vecLib
+0x3295b000 - 0x32c6efff  GeoServices armv7  &lt;88616f3deada3bb495fc15e3ba58dc83&gt; /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+0x32ca0000 - 0x32ce7fff  MessageUI armv7  &lt;35a81f5d4eb03467a1447db80337e570&gt; /System/Library/Frameworks/MessageUI.framework/MessageUI
+0x32cea000 - 0x32cedfff  ArtworkCache armv7  &lt;4863e321afee3ac5a3749e50cd926597&gt; /System/Library/PrivateFrameworks/ArtworkCache.framework/ArtworkCache
+0x32d74000 - 0x32d75fff  libremovefile.dylib armv7  &lt;e8858a499d663e6a9e3c188521273cc1&gt; /usr/lib/system/libremovefile.dylib
+0x32d98000 - 0x32d98fff  Accelerate armv7  &lt;7d5ad465049136afaa1f0d89aac600bc&gt; /System/Library/Frameworks/Accelerate.framework/Accelerate
+0x32ff5000 - 0x3309bfff  GameKit armv7  &lt;844f6d90111f3e81961a723f557dd2a1&gt; /System/Library/Frameworks/GameKit.framework/GameKit
+0x3309c000 - 0x3309ffff  MediaRemote armv7  &lt;0804293b2774359189f3a67e2c81558d&gt; /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
+0x330a0000 - 0x330d3fff  AppSupport armv7  &lt;0217468bd9f839229a47910b7816b3d5&gt; /System/Library/PrivateFrameworks/AppSupport.framework/AppSupport
+0x330fe000 - 0x33153fff  libvDSP.dylib armv7  &lt;0221caba81a235c5a896a835e2aac047&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libvDSP.dylib
+0x33170000 - 0x33274fff  JavaScriptCore armv7  &lt;61a94142e2d23dafa2964190dd46e9e3&gt; /System/Library/PrivateFrameworks/JavaScriptCore.framework/JavaScriptCore
+0x33276000 - 0x33603fff  UIKit armv7  &lt;c271b78464d93cb7bf28c6e49df293ba&gt; /System/Library/Frameworks/UIKit.framework/UIKit
+0x33605000 - 0x33620fff  FTServices armv7  &lt;e23c3572bf3a36a3a99364d18c484f1e&gt; /System/Library/PrivateFrameworks/FTServices.framework/FTServices
+0x33621000 - 0x33627fff  AssetsLibrary armv7  &lt;d3c790f8e6503207a7aa2d8d9395cba1&gt; /System/Library/Frameworks/AssetsLibrary.framework/AssetsLibrary
+0x33628000 - 0x3362afff  SpringBoardUI armv7  &lt;90ba5da3e3e337e0a83e2c2589d951a8&gt; /System/Library/PrivateFrameworks/SpringBoardUI.framework/SpringBoardUI
+0x33642000 - 0x33648fff  BluetoothManager armv7  &lt;7861bc6128d93f72877df2f234434a47&gt; /System/Library/PrivateFrameworks/BluetoothManager.framework/BluetoothManager
+0x3365c000 - 0x336c2fff  EventKitUI armv7  &lt;b3b568df80863f2e9374054bab335bf3&gt; /System/Library/Frameworks/EventKitUI.framework/EventKitUI
+0x336c3000 - 0x33758fff  ImageIO armv7  &lt;d520e3241d1130e8ac1375ee0f2c1095&gt; /System/Library/Frameworks/ImageIO.framework/ImageIO
+0x33759000 - 0x3376bfff  PersistentConnection armv7  &lt;659ea9d5b13d3fefb37acff09016a69c&gt; /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
+0x3376c000 - 0x3379bfff  SystemConfiguration armv7  &lt;1d73b8a159363f96bb9c039655c5eae6&gt; /System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration
+0x3379c000 - 0x337dbfff  libSystem.B.dylib armv7  &lt;33dcf9a403ae3fd5971d6030ada2fcab&gt; /usr/lib/libSystem.B.dylib
+0x337ec000 - 0x337f1fff  libnotify.dylib armv7  &lt;9d7198e91de9386a9e5ea43608a66a57&gt; /usr/lib/system/libnotify.dylib
+0x337f2000 - 0x3382afff  IOKit armv7  &lt;80ae313ad69d3363935c88e51a11862d&gt; /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit
+0x3382c000 - 0x33842fff  EAP8021X armv7  &lt;9fefc0ada30435fbb3b51818c74f6cb8&gt; /System/Library/PrivateFrameworks/EAP8021X.framework/EAP8021X
+0x3385f000 - 0x33867fff  MobileBluetooth armv7  &lt;63f11756c4aa3262b2317ff3b8e2a977&gt; /System/Library/PrivateFrameworks/MobileBluetooth.framework/MobileBluetooth
+0x3399c000 - 0x339aafff  OpenGLES armv7  &lt;5a76beaeaa013f0cbf16e5cb154598ab&gt; /System/Library/Frameworks/OpenGLES.framework/OpenGLES
+0x339ef000 - 0x339fbfff  SpringBoardServices armv7  &lt;c68262667ac8397a949ce4e92dfec7db&gt; /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
+0x339fc000 - 0x33a0cfff  WebBookmarks armv7  &lt;6956561235333e74b8ff316cb2edc93e&gt; /System/Library/PrivateFrameworks/WebBookmarks.framework/WebBookmarks
+0x33a0d000 - 0x33a53fff  CoreTelephony armv7  &lt;af7d1e770e5a3ffd8834a57fb5d40557&gt; /System/Library/Frameworks/CoreTelephony.framework/CoreTelephony
+0x33a56000 - 0x33a56fff  libsystem_sandbox.dylib armv7  &lt;f47c01d627853b328e088b3fdd08e87d&gt; /usr/lib/system/libsystem_sandbox.dylib
+0x33a5c000 - 0x33b02fff  Celestial armv7  &lt;7fbd02fa664b33babaf0327c320d1491&gt; /System/Library/PrivateFrameworks/Celestial.framework/Celestial
+0x33b07000 - 0x33b4dfff  CoreLocation armv7  &lt;c1924042951e3df98515c7bf36093c1c&gt; /System/Library/Frameworks/CoreLocation.framework/CoreLocation
+0x33b65000 - 0x33e52fff  libLAPACK.dylib armv7  &lt;b855d60dac01310495453bddfd004f0d&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libLAPACK.dylib
+0x33e6a000 - 0x33e79fff  Notes armv7  &lt;d9c976ca976e3d029f69febd48f17601&gt; /System/Library/PrivateFrameworks/Notes.framework/Notes
+0x33e7a000 - 0x33e81fff  AggregateDictionary armv7  &lt;ab9777b39e8e3026ad64dc90323cad7e&gt; /System/Library/PrivateFrameworks/AggregateDictionary.framework/AggregateDictionary
+0x33e82000 - 0x33e8ffff  libbsm.0.dylib armv7  &lt;0a1e2bb78d5138419ecad8ba0fe42fdd&gt; /usr/lib/libbsm.0.dylib
+0x33e90000 - 0x33e96fff  liblockdown.dylib armv7  &lt;14c89b7346433c1f8675f454531f6ca3&gt; /usr/lib/liblockdown.dylib
+0x33e97000 - 0x33fb6fff  Foundation armv7  &lt;09ff368178c5321c9715b9c8d491d53f&gt; /System/Library/Frameworks/Foundation.framework/Foundation
+0x35ad8000 - 0x35bd7fff  PhotoLibrary armv7  &lt;c1e3cd36fb03398ca0c4482b073cc55e&gt; /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
+0x35bda000 - 0x35bdafff  libdnsinfo.dylib armv7  &lt;21415179ffa03f949fa8cc851c6c31c7&gt; /usr/lib/system/libdnsinfo.dylib
+0x35ce1000 - 0x35d01fff  PrintKit armv7  &lt;e5a01ca9083a36afacc08611a398e2ad&gt; /System/Library/PrivateFrameworks/PrintKit.framework/PrintKit
+0x35d02000 - 0x35d8cfff  Message armv7  &lt;2cce1aa95a493906bb0227197f9e4b96&gt; /System/Library/PrivateFrameworks/Message.framework/Message
+0x35db4000 - 0x35e23fff  ProofReader armv7  &lt;6d843c6aecdd37ae84baa40af8ad7e65&gt; /System/Library/PrivateFrameworks/ProofReader.framework/ProofReader
+0x35e24000 - 0x35ed5fff  WebKit armv7  &lt;eb9a0d69c64b3127b2bffd71641add3b&gt; /System/Library/PrivateFrameworks/WebKit.framework/WebKit
+0x35ed8000 - 0x35f75fff  AddressBookUI armv7  &lt;e354aeb3d96e30338e90cc3638ffe81b&gt; /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
+0x35f76000 - 0x35f81fff  libz.1.dylib armv7  &lt;ac706bee36593dc683fd5a96a389d72e&gt; /usr/lib/libz.1.dylib
+0x36069000 - 0x3606afff  libsystem_network.dylib armv7  &lt;39bf0f48bd8539169a77f8f61cdcd4c9&gt; /usr/lib/system/libsystem_network.dylib
+0x3606b000 - 0x3606dfff  libAccessibility.dylib armv7  &lt;d55f1553d14831a2a5435ae27ef75ef4&gt; /usr/lib/libAccessibility.dylib
+0x36074000 - 0x36130fff  MapKit armv7  &lt;9a7a16643a573b18adecdb56fa879f93&gt; /System/Library/Frameworks/MapKit.framework/MapKit
+0x36131000 - 0x361f0fff  CFNetwork armv7  &lt;b09e0d53de9f3bc8bde494780f3cdd4f&gt; /System/Library/Frameworks/CFNetwork.framework/CFNetwork
+0x361fe000 - 0x36200fff  MobileInstallation armv7  &lt;94b6d6c5d9883175af26764567528127&gt; /System/Library/PrivateFrameworks/MobileInstallation.framework/MobileInstallation
+0x36202000 - 0x3625bfff  EventKit armv7  &lt;0d4e597ee229337183e96e921a72e30a&gt; /System/Library/Frameworks/EventKit.framework/EventKit
+0x36264000 - 0x362a1fff  CoreText armv7  &lt;fb6a72faec2330c4b2cd33c2e9c59588&gt; /System/Library/Frameworks/CoreText.framework/CoreText
+0x362a4000 - 0x363f8fff  AudioToolbox armv7  &lt;6619c8c13f8d328e923e797fa8d0df23&gt; /System/Library/Frameworks/AudioToolbox.framework/AudioToolbox
+0x363f9000 - 0x3644afff  libsqlite3.dylib armv7  &lt;8a41cc6a6d9332308bc415d27577fd24&gt; /usr/lib/libsqlite3.dylib
+0x364ab000 - 0x364d5fff  libtidy.A.dylib armv7  &lt;c525f00262b133848a3742b2c6ed0e87&gt; /usr/lib/libtidy.A.dylib
+0x364d8000 - 0x365bdfff  CoreFoundation armv7  &lt;a8444f997111304c9571b3ff974b769c&gt; /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+0x365c3000 - 0x365d3fff  DataAccessExpress armv7  &lt;66d9047da79a31daa887e6d84c42ecb2&gt; /System/Library/PrivateFrameworks/DataAccessExpress.framework/DataAccessExpress
+0x365dd000 - 0x365f2fff  libresolv.9.dylib armv7  &lt;e92cfbb83f7b330db19181e797bb3f7b&gt; /usr/lib/libresolv.9.dylib
+0x365fc000 - 0x36631fff  AddressBook armv7  &lt;3f2071a77bc134cd82065eef90d4082f&gt; /System/Library/Frameworks/AddressBook.framework/AddressBook
+0x36635000 - 0x3667efff  IMCore armv7  &lt;9c1e280e1fa33fa784cad479b9cbd941&gt; /System/Library/PrivateFrameworks/IMCore.framework/IMCore
+0x36680000 - 0x36693fff  libmis.dylib armv7  &lt;529ea6e3a87230ce9f6cf3285c22429c&gt; /usr/lib/libmis.dylib
+0x36694000 - 0x36696fff  MailServices armv7  &lt;74ae0145ef713c6d91fd8f68885b0a61&gt; /System/Library/PrivateFrameworks/MailServices.framework/MailServices
+0x3669b000 - 0x366cefff  iCalendar armv7  &lt;34ce1957082f3518b5740ac33cfc92eb&gt; /System/Library/PrivateFrameworks/iCalendar.framework/iCalendar
+0x366e6000 - 0x36767fff  libsystem_c.dylib armv7  &lt;a7077267b6743ed3bbdd86d4380c75d9&gt; /usr/lib/system/libsystem_c.dylib
+0x36788000 - 0x3679afff  TelephonyUI armv7  &lt;e2c34b9a391e3384875ac552dbca0ad4&gt; /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
+0x3679c000 - 0x367a5fff  ITSync armv7  &lt;ba8b48d061903e4096774344448776d0&gt; /System/Library/PrivateFrameworks/ITSync.framework/ITSync
+0x367a6000 - 0x367aafff  AssetsLibraryServices armv7  &lt;e1cbfe599c96369ca4bdb0dd99d3cd9f&gt; /System/Library/PrivateFrameworks/AssetsLibraryServices.framework/AssetsLibraryServices
+0x367ab000 - 0x36db6fff  WebCore armv7  &lt;07941e59d0a33f94802c16c76238fddf&gt; /System/Library/PrivateFrameworks/WebCore.framework/WebCore
+0x36e69000 - 0x36e6bfff  Marco armv7  &lt;53203fa831ab34f894f3a3811bf3917c&gt; /System/Library/PrivateFrameworks/Marco.framework/Marco
+0x36e6f000 - 0x36eabfff  libGLImage.dylib armv7  &lt;9d97699e44ee3651ba4ac37e5adec35b&gt; /System/Library/Frameworks/OpenGLES.framework/libGLImage.dylib
+0x36f4e000 - 0x36f6efff  AppleAccount armv7  &lt;4e0ac5cf93b338ab8c5f34ba3c5e2ee4&gt; /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
+0x36f8b000 - 0x36f97fff  HomeSharing armv7  &lt;2df6957cdfea31aea12eebf27ca1691c&gt; /System/Library/PrivateFrameworks/HomeSharing.framework/HomeSharing
+0x36f9e000 - 0x36f9ffff  DataMigration armv7  &lt;42e9e87a4e0735c3837e27d4f2adcf55&gt; /System/Library/PrivateFrameworks/DataMigration.framework/DataMigration</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-22 19:51:47 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Almost, the above log only provides addresses. Symbolicate turns all addresses into meaningful function names.
+
+The process is described in this note:
+<a href="http://developer.apple.com/library/ios/#technotes/tn2151/_index.html">http://developer.apple.com/library/ios/#technotes/tn2151/_index.html</a>
+
+The previous (stackoverflow) link can be helpful if you cannot get the symbols using the instructions.
+
+You can also try to add some 
+
+Console.WriteLine ("step #1...x");
+
+between the lines of the "initHardware" method. That will give a hint if it occurs from there (and where inside it). The output should be visible using --logdev</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-23 06:30:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=167&amp;file=MTBarcodeExample.app.dSYM.zip" name="attach_167" title="MTExample.app.dSYM">attachment 167</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=167&amp;file=MTBarcodeExample.app.dSYM.zip" title="MTExample.app.dSYM">[details]</a></span>
+MTExample.app.dSYM</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-23 06:33:54 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=168&amp;file=MTBarcodeExample_2011%2008%2023%20111224_Gala%20Corals%20iPod.crash" name="attach_168" title="crash log">attachment 168</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=168&amp;file=MTBarcodeExample_2011%2008%2023%20111224_Gala%20Corals%20iPod.crash" title="crash log">[details]</a></span>
+crash log</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-23 06:34:53 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Im having trouble getting the Symbolicate to work. when i run
+
+symbolicatecrash MTexample.crash MTexample.dSYM &gt; crashreport.crash
+
+I get Warnings like the following
+
+## Warning: Unable to symbolicate from required binary: /Developer/Platforms/iPhoneOS.platform/DeviceSupport/4.3.3 (8J2)/Symbols/usr/lib/system/libdispatch.dylib
+
+and the output is unreadable. I have tried by rebuilding and using another crash report. I have attached the 2 files incase they help you in anyway?
+
+
+I have commented the code as suggested
+
+private void initHardware()
+		{
+			Console.WriteLine("Step 1");
+			try{
+			Console.WriteLine("Step 2");
+			Linea 			= new LineaSDK.Linea();
+			Console.WriteLine("Step 3");
+			LineaDelegate 	= new MyLineaDelegate();
+			Console.WriteLine("Step 4");	
+			Linea.Delegate 	= LineaDelegate;
+			Console.WriteLine("Step 5");
+			LineaDelegate.GotBarcode += HandleLineaDelegateGotBarcode;
+			Console.WriteLine("Step 6");
+			Linea.Connect();
+			}
+			catch(Exception ex)
+			{
+				UIAlertView alert = new UIAlertView("hello",ex.ToString(),null,"OK");
+				alert.Show();
+			}
+		}
+
+Below is from --logdev and it is reaching step 4 before crashing which is when it is setting the Linea.delegate
+
+Aug 23 11:23:21 unknown kernel[0] &lt;Debug&gt;: launchd[879] Builtin profile: container (sandbox)
+Aug 23 11:23:21 unknown kernel[0] &lt;Debug&gt;: launchd[879] Container: /private/var/mobile/Applications/774E84A9-BE63-449E-881B-FA65E2A457F2 [69] (sandbox)
+Aug 23 11:23:22 unknown UIKitApplication:com.galacoral.swipeit[0x94f4][879] &lt;Notice&gt;: Step 1
+Aug 23 11:23:22 unknown UIKitApplication:com.galacoral.swipeit[0x94f4][879] &lt;Notice&gt;: Step 2
+Aug 23 11:23:22 unknown UIKitApplication:com.galacoral.swipeit[0x94f4][879] &lt;Notice&gt;: Step 3
+Aug 23 11:23:22 unknown UIKitApplication:com.galacoral.swipeit[0x94f4][879] &lt;Notice&gt;: Step 4
+<span class="quote">&gt; </span>
+Aug 23 11:23:22 unknown ReportCrash[880] &lt;Notice&gt;: Formulating crash report for process MTBarcodeExample[879]
+Aug 23 11:23:22 unknown ReportCrash[880] &lt;Error&gt;: libMobileGestalt loadBasebandMobileEquipmentInfo: CommCenter error: 1:45
+Aug 23 11:23:22 unknown ReportCrash[880] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 23 11:23:22 unknown ReportCrash[880] &lt;Error&gt;: libMobileGestalt copyInternationalMobileEquipmentIdentity: Could not get mobile equipment info dictionary
+Aug 23 11:23:22 unknown com.apple.launchd[1] &lt;Warning&gt;: (UIKitApplication:com.galacoral.swipeit[0x94f4]) Job appears to have crashed: Segmentation fault: 11
+Aug 23 11:23:22 unknown SpringBoard[28] &lt;Warning&gt;: Application 'MTBarcodeExample' exited abnormally with signal 11: Segmentation fault: 11
+Aug 23 11:23:22 unknown ReportCrash[880] &lt;Error&gt;: Saved crashreport to /var/mobile/Library/Logs/CrashReporter/MTBarcodeExample_2011-08-23-112322_Gala-Corals-iPod.plist using uid: 0 gid: 0, synthetic_euid: 501 egid: 0
+<span class="quote">&gt; </span>
+Aug 23 11:24:11 unknown lockdownd[17] &lt;Error&gt;: 2feeb000 handle_connection: Could not receive USB message #6 from iTunes. Killing connection
+Aug 23 11:24:11 unknown com.apple.mobile.lockdown[17] &lt;Notice&gt;: Could not receive size of message
+<span class="quote">&gt; </span>
+Aug 23 11:24:22 unknown SpringBoard[28] &lt;Notice&gt;: MultitouchHID(1e50ea00) uilock state: 0 -&gt; 1</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-23 11:12:53 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The crash log repeats it's addresses so it looks like some recursion is happenning. The problem occurs inside the bindings, which we cannot validate as there's not public documentation for them.
+
+Please check the LineaSDK_4.cs against the documentation provided by the product. They could be wrong and/or you could be using a newer (and not fully backward compatible) version of the library.</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-09-09 13:39:08 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Just found out someone else is providing bindings for the LineaSDK. Look at:
+<a href="https://github.com/chrisbranson/monotouch-bindings/tree/master/LineaPro">https://github.com/chrisbranson/monotouch-bindings/tree/master/LineaPro</a>
+and let us know if this solved your issue.</pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathon bullock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-09-13 12:32:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">yes these new bindings have resolved the issue. Thank you for your help</pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-09-13 13:32:06 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Great, I'm glad this worked out :-)</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark V</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-03-14 18:45:28 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">hi,
+
+im fairly new to Mono development and C#. i have the same problem as you have upon looking into the bindings. i dont see anything related to lineaPro. can you help me out on what to do next?
+
+MarkV</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>
