@@ -1,0 +1,1492 @@
+<html lang="en"><head>
+    <title>57416 – Assertion at mini-exceptions.c:2085, condition `tls-&gt;signal_stack' not met</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Runtime
+                 bz_component_General
+                 bz_bug_57416 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;57416</span>
+
+        <span id="subtitle" class="subheader">Assertion at mini-exceptions.c:2085, condition `tls-&gt;signal_stack' not met</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2017-07-07 14:35:28 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2017-07-07 14:35:28">
+  <input type="hidden" name="id" value="57416">
+  <input type="hidden" name="token" value="1559215343-LrR3OBAhM2N4Ow8OA3JuKbsC3ngBpsab9hJiCrwtlyQ">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;57416</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">Assertion at mini-exceptions.c:2085, condition `tls-&gt;signal_stack' not met</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>Assertion at mini-exceptions.c:2085, condition `tls-&gt;signal_stack' not met
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          NOT_REPRODUCIBLE
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Runtime
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Mono
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">General
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>4.8.0 (C9)
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Linux
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>---
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>Future Cycle (TBD)
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Bugzilla</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2017-06-12 22:53 UTC by <span class="vcard"><span class="fn">Albert</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2017-07-07 14:35 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>3
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="ludovic">ludovic</option>
+                <option value="mono-bugs+mono">mono-bugs+mono</option>
+                <option value="mono-bugs+runtime">mono-bugs+runtime</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+            <a href="https://github.com/mono">GitHub</a> or <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">NOT_REPRODUCIBLE
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Albert</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-06-12 22:53:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I got this crash core dump randomly. Any idea what is wrong?
+
+* Assertion at mini-exceptions.c:2085, condition `tls-&gt;signal_stack' not met
+
+Stacktrace:
+
+/proc/self/maps:
+00400000-00783000 r-xp 00000000 08:05 9628                               /usr/bin/mono-sgen
+00982000-0098d000 rw-p 00382000 08:05 9628                               /usr/bin/mono-sgen
+0098d000-032ad000 rw-p 00000000 00:00 0                                  [heap]
+40000000-404f0000 rwxp 00000000 00:00 0
+7fffa8000000-7fffa80a0000 rw-p 00000000 00:00 0
+7fffa80a0000-7fffac000000 ---p 00000000 00:00 0
+7fffac614000-7fffac618000 rw-p 00000000 00:00 0
+7fffac880000-7fffac88c000 rw-p 00000000 00:00 0
+7fffac890000-7fffac8a0000 rw-p 00000000 00:00 0
+7fffac8a4000-7fffac8c4000 rw-p 00000000 00:00 0
+7fffac8f0000-7fffac8f4000 rw-p 00000000 00:00 0
+7fffaca5c000-7fffaca60000 rw-p 00000000 00:00 0
+7fffaca94000-7fffaca98000 rw-p 00000000 00:00 0
+7fffaca9c000-7fffacaa0000 rw-p 00000000 00:00 0
+7fffacaf4000-7fffacb00000 rw-p 00000000 00:00 0
+7fffacb04000-7fffacb0c000 rw-p 00000000 00:00 0
+7fffacb10000-7fffacb14000 rw-p 00000000 00:00 0
+7fffacb18000-7fffacb1c000 rw-p 00000000 00:00 0
+7fffacb28000-7fffacb2c000 rw-p 00000000 00:00 0
+7fffacb48000-7fffacb4c000 rw-p 00000000 00:00 0
+7fffacb58000-7fffacb5c000 rw-p 00000000 00:00 0
+7fffacb60000-7fffacb6c000 rw-p 00000000 00:00 0
+7fffacb70000-7fffacb74000 rw-p 00000000 00:00 0
+7fffacb78000-7fffacb7c000 rw-p 00000000 00:00 0
+7fffacbac000-7fffacbb8000 rw-p 00000000 00:00 0
+7fffacbc0000-7fffacbc8000 rw-p 00000000 00:00 0
+7fffacbcc000-7fffacbd4000 rw-p 00000000 00:00 0
+7fffacbd8000-7fffacbdc000 rw-p 00000000 00:00 0
+7fffacc0c000-7fffacc14000 rw-p 00000000 00:00 0
+7fffacc2c000-7fffacc30000 rw-p 00000000 00:00 0
+7fffacc34000-7fffacc3c000 rw-p 00000000 00:00 0
+7fffacc40000-7fffacc48000 rw-p 00000000 00:00 0
+7fffacc4c000-7fffacc50000 rw-p 00000000 00:00 0
+7fffacc6c000-7fffacc78000 rw-p 00000000 00:00 0
+7fffaccb4000-7fffaccb8000 rw-p 00000000 00:00 0
+7fffaccd4000-7fffaccdc000 rw-p 00000000 00:00 0
+7fffacd18000-7fffacd1c000 rw-p 00000000 00:00 0
+7fffacd20000-7fffacd2c000 rw-p 00000000 00:00 0
+7fffacd38000-7fffacd58000 rw-p 00000000 00:00 0
+7ffface04000-7ffface08000 rw-p 00000000 00:00 0
+7ffface0c000-7ffface14000 rw-p 00000000 00:00 0
+7ffface30000-7ffface34000 rw-p 00000000 00:00 0
+7ffface38000-7ffface3c000 rw-p 00000000 00:00 0
+7fffacea4000-7fffacea8000 rw-p 00000000 00:00 0
+7fffacf34000-7fffacf38000 rw-p 00000000 00:00 0
+7fffacf48000-7fffacf4c000 rw-p 00000000 00:00 0
+7fffacf9c000-7fffacfa0000 rw-p 00000000 00:00 0
+7fffacfa8000-7fffacfb4000 rw-p 00000000 00:00 0
+7fffacfbc000-7fffacfc4000 rw-p 00000000 00:00 0
+7fffacfe0000-7fffacfe8000 rw-p 00000000 00:00 0
+7fffacff0000-7fffacff4000 rw-p 00000000 00:00 0
+7fffad00c000-7fffad010000 rw-p 00000000 00:00 0
+7fffad08c000-7fffad090000 rw-p 00000000 00:00 0
+7fffad0b4000-7fffad0b8000 rw-p 00000000 00:00 0
+7fffad0c8000-7fffad0cc000 rw-p 00000000 00:00 0
+7fffad0e0000-7fffad0e4000 rw-p 00000000 00:00 0
+7fffad0f4000-7fffad0fc000 rw-p 00000000 00:00 0
+7fffad11c000-7fffad120000 rw-p 00000000 00:00 0
+7fffad124000-7fffad128000 rw-p 00000000 00:00 0
+7fffad13c000-7fffad140000 rw-p 00000000 00:00 0
+7fffad148000-7fffad14c000 rw-p 00000000 00:00 0
+7fffad160000-7fffad164000 rw-p 00000000 00:00 0
+7fffad168000-7fffad16c000 rw-p 00000000 00:00 0
+7fffad170000-7fffad174000 rw-p 00000000 00:00 0
+7fffad190000-7fffad198000 rw-p 00000000 00:00 0
+7fffad1b8000-7fffad1bc000 rw-p 00000000 00:00 0
+7fffad258000-7fffad25c000 rw-p 00000000 00:00 0
+7fffad280000-7fffad284000 rw-p 00000000 00:00 0
+7fffad294000-7fffad29c000 rw-p 00000000 00:00 0
+7fffad2a0000-7fffad2a8000 rw-p 00000000 00:00 0
+7fffad2ac000-7fffad2b0000 rw-p 00000000 00:00 0
+7fffad2bc000-7fffad2c0000 rw-p 00000000 00:00 0
+7fffad2c8000-7fffad2d0000 rw-p 00000000 00:00 0
+7fffad2d4000-7fffad2d8000 rw-p 00000000 00:00 0
+7fffad2e4000-7fffad2e8000 rw-p 00000000 00:00 0
+7fffad2ec000-7fffad2f4000 rw-p 00000000 00:00 0
+7fffad2f8000-7fffad300000 rw-p 00000000 00:00 0
+7fffad308000-7fffad30c000 rw-p 00000000 00:00 0
+7fffad318000-7fffad340000 rw-p 00000000 00:00 0
+7fffad348000-7fffad34c000 rw-p 00000000 00:00 0
+7fffad354000-7fffad36c000 rw-p 00000000 00:00 0
+7fffad370000-7fffad374000 rw-p 00000000 00:00 0
+7fffad378000-7fffad37c000 rw-p 00000000 00:00 0
+7fffad388000-7fffad394000 rw-p 00000000 00:00 0
+7fffad398000-7fffad3cc000 rw-p 00000000 00:00 0
+7fffad3d0000-7fffad3e8000 rw-p 00000000 00:00 0
+7fffad3ec000-7fffad3f4000 rw-p 00000000 00:00 0
+7fffad404000-7fffad408000 rw-p 00000000 00:00 0
+7fffad40c000-7fffad410000 rw-p 00000000 00:00 0
+7fffad440000-7fffad444000 rw-p 00000000 00:00 0
+7fffad448000-7fffad468000 rw-p 00000000 00:00 0
+7fffad490000-7fffad494000 rw-p 00000000 00:00 0
+7fffad498000-7fffad49c000 rw-p 00000000 00:00 0
+7fffad4c0000-7fffad4c4000 rw-p 00000000 00:00 0
+7fffad4cc000-7fffad4d0000 rw-p 00000000 00:00 0
+7fffad4d4000-7fffad4d8000 rw-p 00000000 00:00 0
+7fffad500000-7fffad504000 rw-p 00000000 00:00 0
+7fffad508000-7fffad50c000 rw-p 00000000 00:00 0
+7fffad51c000-7fffad524000 rw-p 00000000 00:00 0
+7fffad544000-7fffad548000 rw-p 00000000 00:00 0
+7fffad558000-7fffad55c000 rw-p 00000000 00:00 0
+7fffad564000-7fffad568000 rw-p 00000000 00:00 0
+7fffad56c000-7fffad570000 rw-p 00000000 00:00 0
+7fffad574000-7fffad594000 rw-p 00000000 00:00 0
+7fffad5b0000-7fffad5c4000 rw-p 00000000 00:00 0
+7fffad5e8000-7fffad5ec000 rw-p 00000000 00:00 0
+7fffad5f0000-7fffad5f4000 rw-p 00000000 00:00 0
+7fffad614000-7fffad618000 rw-p 00000000 00:00 0
+7fffad624000-7fffad628000 rw-p 00000000 00:00 0
+7fffad62c000-7fffad630000 rw-p 00000000 00:00 0
+7fffad670000-7fffad678000 rw-p 00000000 00:00 0
+7fffad67c000-7fffad684000 rw-p 00000000 00:00 0
+7fffad690000-7fffad6ac000 rw-p 00000000 00:00 0
+7fffad6b0000-7fffad6b4000 rw-p 00000000 00:00 0
+7fffad6f0000-7fffad6f4000 rw-p 00000000 00:00 0
+7fffad6ff000-7fffad700000 ---p 00000000 00:00 0
+7fffad700000-7fffad904000 rw-p 00000000 00:00 0
+7fffad908000-7fffad90c000 rw-p 00000000 00:00 0
+7fffad91c000-7fffad928000 rw-p 00000000 00:00 0
+7fffad92c000-7fffad930000 rw-p 00000000 00:00 0
+7fffad934000-7fffad948000 rw-p 00000000 00:00 0
+7fffada1c000-7fffada20000 rw-p 00000000 00:00 0
+7fffada28000-7fffada2c000 rw-p 00000000 00:00 0
+7fffada30000-7fffada40000 rw-p 00000000 00:00 0
+7fffada48000-7fffada54000 rw-p 00000000 00:00 0
+7fffada64000-7fffada68000 rw-p 00000000 00:00 0
+7fffadb40000-7fffadb44000 rw-p 00000000 00:00 0
+7fffadb6c000-7fffadb70000 rw-p 00000000 00:00 0
+7fffadb74000-7fffadb80000 rw-p 00000000 00:00 0
+7fffadbb0000-7fffadbb4000 rw-p 00000000 00:00 0
+7fffadbb8000-7fffadbcc000 rw-p 00000000 00:00 0
+7fffadbe8000-7fffadbf4000 rw-p 00000000 00:00 0
+7fffadbfc000-7fffadc08000 rw-p 00000000 00:00 0
+7fffadc14000-7fffadc18000 rw-p 00000000 00:00 0
+7fffadc20000-7fffadc24000 rw-p 00000000 00:00 0
+7fffadc7c000-7fffadc80000 rw-p 00000000 00:00 0
+7fffadc90000-7fffadc94000 rw-p 00000000 00:00 0
+7fffadcb4000-7fffadcb8000 rw-p 00000000 00:00 0
+7fffadcbc000-7fffadcc0000 rw-p 00000000 00:00 0
+7fffadd0c000-7fffadd10000 rw-p 00000000 00:00 0
+7fffadddc000-7fffadde0000 rw-p 00000000 00:00 0
+7fffaddf0000-7fffade04000 rw-p 00000000 00:00 0
+7fffade10000-7fffade14000 rw-p 00000000 00:00 0
+7fffade3c000-7fffade40000 rw-p 00000000 00:00 0
+7fffadeac000-7fffadeb0000 rw-p 00000000 00:00 0
+7fffadef8000-7fffadf08000 rw-p 00000000 00:00 0
+7fffadf0c000-7fffadf10000 rw-p 00000000 00:00 0
+7fffadf40000-7fffadf44000 rw-p 00000000 00:00 0
+7fffadf68000-7fffadf6c000 rw-p 00000000 00:00 0
+7fffadfac000-7fffadfb0000 rw-p 00000000 00:00 0
+7fffadfc4000-7fffadfcc000 rw-p 00000000 00:00 0
+7fffadfd0000-7fffadfd8000 rw-p 00000000 00:00 0
+7fffadfdc000-7fffadfe4000 rw-p 00000000 00:00 0
+7fffae018000-7fffae024000 rw-p 00000000 00:00 0
+7fffae030000-7fffae03c000 rw-p 00000000 00:00 0
+7fffae058000-7fffae060000 rw-p 00000000 00:00 0
+7fffae074000-7fffae078000 rw-p 00000000 00:00 0
+7fffae088000-7fffae08c000 rw-p 00000000 00:00 0
+7fffae094000-7fffae0ac000 rw-p 00000000 00:00 0
+7fffae0b0000-7fffae0b4000 rw-p 00000000 00:00 0
+7fffae0b8000-7fffae0bc000 rw-p 00000000 00:00 0
+7fffae0c0000-7fffae0c8000 rw-p 00000000 00:00 0
+7fffae0d0000-7fffae0dc000 rw-p 00000000 00:00 0
+7fffae0e0000-7fffae0f0000 rw-p 00000000 00:00 0
+7fffae114000-7fffae118000 rw-p 00000000 00:00 0
+7fffae148000-7fffae14c000 rw-p 00000000 00:00 0
+7fffae180000-7fffae184000 rw-p 00000000 00:00 0
+7fffae188000-7fffae18c000 rw-p 00000000 00:00 0
+7fffae1ac000-7fffae1b0000 rw-p 00000000 00:00 0
+7fffae1b4000-7fffae1b8000 rw-p 00000000 00:00 0
+7fffae1c0000-7fffae1c4000 rw-p 00000000 00:00 0
+7fffae1c8000-7fffae1d8000 rw-p 00000000 00:00 0
+7fffae1dc000-7fffae1e0000 rw-p 00000000 00:00 0
+7fffae1f0000-7fffae210000 rw-p 00000000 00:00 0
+7fffae228000-7fffae22c000 rw-p 00000000 00:00 0
+7fffae238000-7fffae240000 rw-p 00000000 00:00 0
+7fffae244000-7fffae24c000 rw-p 00000000 00:00 0
+7fffae268000-7fffae270000 rw-p 00000000 00:00 0
+7fffae280000-7fffae284000 rw-p 00000000 00:00 0
+7fffae288000-7fffae2a0000 rw-p 00000000 00:00 0
+7fffae2ac000-7fffae2b0000 rw-p 00000000 00:00 0
+7fffae2b4000-7fffae2c0000 rw-p 00000000 00:00 0
+7fffae348000-7fffae34c000 rw-p 00000000 00:00 0
+7fffae3e0000-7fffae3e4000 rw-p 00000000 00:00 0
+7fffae434000-7fffae438000 rw-p 00000000 00:00 0
+7fffae43c000-7fffae440000 rw-p 00000000 00:00 0
+7fffae444000-7fffae44c000 rw-p 00000000 00:00 0
+7fffae460000-7fffae474000 rw-p 00000000 00:00 0
+7fffae480000-7fffae48c000 rw-p 00000000 00:00 0
+7fffae494000-7fffae498000 rw-p 00000000 00:00 0
+7fffae49c000-7fffae4a0000 rw-p 00000000 00:00 0
+7fffae4a4000-7fffae4b0000 rw-p 00000000 00:00 0
+7fffae51c000-7fffae520000 rw-p 00000000 00:00 0
+7fffae558000-7fffae55c000 rw-p 00000000 00:00 0
+7fffae5b4000-7fffae5b8000 rw-p 00000000 00:00 0
+7fffae6a0000-7fffae6a4000 rw-p 00000000 00:00 0
+7fffae704000-7fffae708000 rw-p 00000000 00:00 0
+7fffae73c000-7fffae740000 rw-p 00000000 00:00 0
+7fffae748000-7fffae74c000 rw-p 00000000 00:00 0
+7fffae784000-7fffae794000 rw-p 00000000 00:00 0
+7fffae7c8000-7fffae7cc000 rw-p 00000000 00:00 0
+7fffae7dc000-7fffae7e8000 rw-p 00000000 00:00 0
+7fffae7fc000-7fffae804000 rw-p 00000000 00:00 0
+7fffae810000-7fffae814000 rw-p 00000000 00:00 0
+7fffae840000-7fffae844000 rw-p 00000000 00:00 0
+7fffae848000-7fffae858000 rw-p 00000000 00:00 0
+7fffae8f0000-7fffae8f4000 rw-p 00000000 00:00 0
+7fffae920000-7fffae924000 rw-p 00000000 00:00 0
+7fffae978000-7fffae97c000 rw-p 00000000 00:00 0
+7fffae9e8000-7fffae9ec000 rw-p 00000000 00:00 0
+7fffaea5c000-7fffaea60000 rw-p 00000000 00:00 0
+7fffaead0000-7fffaead4000 rw-p 00000000 00:00 0
+7fffaeaf4000-7fffaeaf8000 rw-p 00000000 00:00 0
+7fffaeb38000-7fffaeb3c000 rw-p 00000000 00:00 0
+7fffaeb70000-7fffaeb74000 rw-p 00000000 00:00 0
+7fffaec38000-7fffaec3c000 rw-p 00000000 00:00 0
+7fffaecf8000-7fffaecfc000 rw-p 00000000 00:00 0
+7fffaed28000-7fffaed2c000 rw-p 00000000 00:00 0
+7fffaed98000-7fffaed9c000 rw-p 00000000 00:00 0
+7fffaeda4000-7fffaeda8000 rw-p 00000000 00:00 0
+7fffaee24000-7fffaee28000 rw-p 00000000 00:00 0
+7fffaee44000-7fffaee48000 rw-p 00000000 00:00 0
+7fffaee4c000-7fffaee50000 rw-p 00000000 00:00 0
+7fffaee54000-7fffaee58000 rw-p 00000000 00:00 0
+7fffaee60000-7fffaee68000 rw-p 00000000 00:00 0
+7fffaee90000-7fffaee98000 rw-p 00000000 00:00 0
+7fffaee9c000-7fffaeea4000 rw-p 00000000 00:00 0
+7fffaef20000-7fffaef24000 rw-p 00000000 00:00 0
+7fffaef70000-7fffaef74000 rw-p 00000000 00:00 0
+7fffaef78000-7fffaef7c000 rw-p 00000000 00:00 0
+7fffaef80000-7fffaef88000 rw-p 00000000 00:00 0
+7fffaef8c000-7fffaef90000 rw-p 00000000 00:00 0
+7fffaefa0000-7fffaefa4000 rw-p 00000000 00:00 0
+7fffaefe4000-7fffaefec000 rw-p 00000000 00:00 0
+7fffaeff0000-7fffaf000000 rw-p 00000000 00:00 0
+7fffaf004000-7fffaf008000 rw-p 00000000 00:00 0
+7fffaf014000-7fffaf01c000 rw-p 00000000 00:00 0
+7fffaf020000-7fffaf024000 rw-p 00000000 00:00 0
+7fffaf030000-7fffaf034000 rw-p 00000000 00:00 0
+7fffaf038000-7fffaf03c000 rw-p 00000000 00:00 0
+7fffaf040000-7fffaf044000 rw-p 00000000 00:00 0
+7fffaf048000-7fffaf05c000 rw-p 00000000 00:00 0
+7fffaf060000-7fffaf064000 rw-p 00000000 00:00 0
+7fffaf06c000-7fffaf074000 rw-p 00000000 00:00 0
+7fffaf07c000-7fffaf088000 rw-p 00000000 00:00 0
+7fffaf0a4000-7fffaf0a8000 rw-p 00000000 00:00 0
+7fffaf0bc000-7fffaf0c0000 rw-p 00000000 00:00 0
+7fffaf0d0000-7fffaf0d4000 rw-p 00000000 00:00 0
+7fffaf0dc000-7fffaf0e0000 rw-p 00000000 00:00 0
+7fffaf0e4000-7fffaf0ec000 rw-p 00000000 00:00 0
+7fffaf0f8000-7fffaf0fc000 rw-p 00000000 00:00 0
+7fffaf100000-7fffaf110000 rw-p 00000000 00:00 0
+7fffaf114000-7fffaf124000 rw-p 00000000 00:00 0
+7fffaf128000-7fffaf12c000 rw-p 00000000 00:00 0
+7fffaf184000-7fffaf188000 rw-p 00000000 00:00 0
+7fffaf18c000-7fffaf190000 rw-p 00000000 00:00 0
+7fffaf1b8000-7fffaf1bc000 rw-p 00000000 00:00 0
+7fffaf1c0000-7fffaf1c4000 rw-p 00000000 00:00 0
+7fffaf21c000-7fffaf220000 rw-p 00000000 00:00 0
+7fffaf228000-7fffaf22c000 rw-p 00000000 00:00 0
+7fffaf234000-7fffaf238000 rw-p 00000000 00:00 0
+7fffaf294000-7fffaf298000 rw-p 00000000 00:00 0
+7fffaf2c0000-7fffaf2c4000 rw-p 00000000 00:00 0
+7fffaf34c000-7fffaf350000 rw-p 00000000 00:00 0
+7fffaf378000-7fffaf37c000 rw-p 00000000 00:00 0
+7fffaf388000-7fffaf394000 rw-p 00000000 00:00 0
+7fffaf398000-7fffaf3a0000 rw-p 00000000 00:00 0
+7fffaf3ec000-7fffaf3f0000 rw-p 00000000 00:00 0
+7fffaf3f4000-7fffaf3fc000 rw-p 00000000 00:00 0
+7fffaf478000-7fffaf47c000 rw-p 00000000 00:00 0
+7fffaf4bc000-7fffaf4c0000 rw-p 00000000 00:00 0
+7fffaf4c8000-7fffaf4cc000 rw-p 00000000 00:00 0
+7fffaf4e8000-7fffaf510000 rw-p 00000000 00:00 0
+7fffaf514000-7fffaf534000 rw-p 00000000 00:00 0
+7fffaf53c000-7fffaf55c000 rw-p 00000000 00:00 0
+7fffaf5dc000-7fffaf5e0000 rw-p 00000000 00:00 0
+7fffaf5e4000-7fffaf5f4000 rw-p 00000000 00:00 0
+7fffaf600000-7fffaf608000 rw-p 00000000 00:00 0
+7fffaf60c000-7fffaf618000 rw-p 00000000 00:00 0
+7fffaf61c000-7fffaf62c000 rw-p 00000000 00:00 0
+7fffaf638000-7fffaf63c000 rw-p 00000000 00:00 0
+7fffaf640000-7fffaf644000 rw-p 00000000 00:00 0
+7fffaf64c000-7fffaf654000 rw-p 00000000 00:00 0
+7fffaf668000-7fffaf678000 rw-p 00000000 00:00 0
+7fffaf67c000-7fffaf680000 rw-p 00000000 00:00 0
+7fffaf684000-7fffaf688000 rw-p 00000000 00:00 0
+7fffaf68c000-7fffaf6d4000 rw-p 00000000 00:00 0
+7fffaf6d8000-7fffaf6fc000 rw-p 00000000 00:00 0
+7fffaf700000-7fffaf704000 rw-p 00000000 00:00 0
+7fffaf770000-7fffaf774000 rw-p 00000000 00:00 0
+7fffaf784000-7fffaf79c000 rw-p 00000000 00:00 0
+7fffaf7b0000-7fffaf7b4000 rw-p 00000000 00:00 0
+7fffaf7bc000-7fffaf7c0000 rw-p 00000000 00:00 0
+7fffaf7c4000-7fffaf7c8000 rw-p 00000000 00:00 0
+7fffaf7cc000-7fffaf7d4000 rw-p 00000000 00:00 0
+7fffaf7d8000-7fffaf7e0000 rw-p 00000000 00:00 0
+7fffaf7e4000-7fffaf7f4000 rw-p 00000000 00:00 0
+7fffaf7f8000-7fffaf7fc000 rw-p 00000000 00:00 0
+7fffaf828000-7fffaf844000 rw-p 00000000 00:00 0
+7fffaf854000-7fffaf858000 rw-p 00000000 00:00 0
+7fffaf85c000-7fffaf864000 rw-p 00000000 00:00 0
+7fffaf868000-7fffaf87c000 rw-p 00000000 00:00 0
+7fffaf880000-7fffaf8a8000 rw-p 00000000 00:00 0
+7fffaf8ac000-7fffaf8b4000 rw-p 00000000 00:00 0
+7fffaf8c0000-7fffaf8c4000 rw-p 00000000 00:00 0
+7fffaf924000-7fffaf928000 rw-p 00000000 00:00 0
+7fffaf96b000-7fffaf96c000 ---p 00000000 00:00 0
+7fffaf96c000-7fffafb6c000 rw-p 00000000 00:00 0
+7fffafba8000-7fffafbac000 rw-p 00000000 00:00 0
+7fffafbb4000-7fffafbb8000 rw-p 00000000 00:00 0
+7fffafbf0000-7fffafbf4000 rw-p 00000000 00:00 0
+7fffafbf8000-7fffafbfc000 rw-p 00000000 00:00 0
+7fffafc00000-7fffafc08000 rw-p 00000000 00:00 0
+7fffafc18000-7fffafc1c000 rw-p 00000000 00:00 0
+7fffafc28000-7fffafc2c000 rw-p 00000000 00:00 0
+7fffafc34000-7fffafc3c000 rw-p 00000000 00:00 0
+7fffafc44000-7fffafc48000 rw-p 00000000 00:00 0
+7fffafc4c000-7fffafc54000 rw-p 00000000 00:00 0
+7fffafc68000-7fffafc6c000 rw-p 00000000 00:00 0
+7fffafc98000-7fffafc9c000 rw-p 00000000 00:00 0
+7fffafcc8000-7fffafccc000 rw-p 00000000 00:00 0
+7fffafcfc000-7fffafd00000 rw-p 00000000 00:00 0
+7fffafd08000-7fffafd0c000 rw-p 00000000 00:00 0
+7fffafd14000-7fffafd18000 rw-p 00000000 00:00 0
+7fffafd1c000-7fffafd20000 rw-p 00000000 00:00 0
+7fffafd24000-7fffafd28000 rw-p 00000000 00:00 0
+7fffafd2c000-7fffafd40000 rw-p 00000000 00:00 0
+7fffafd44000-7fffafd48000 rw-p 00000000 00:00 0
+7fffafd4c000-7fffafd50000 rw-p 00000000 00:00 0
+7fffafd54000-7fffafd58000 rw-p 00000000 00:00 0
+7fffafd64000-7fffafd70000 rw-p 00000000 00:00 0
+7fffafda0000-7fffafda4000 rw-p 00000000 00:00 0
+7fffafda8000-7fffafdac000 rw-p 00000000 00:00 0
+7fffafdc4000-7fffafdc8000 rw-p 00000000 00:00 0
+7fffafdd0000-7fffafdd8000 rw-p 00000000 00:00 0
+7fffafe00000-7fffafe04000 rw-p 00000000 00:00 0
+7fffafe44000-7fffafe48000 rw-p 00000000 00:00 0
+7fffafe7c000-7fffafe80000 rw-p 00000000 00:00 0
+7fffaff10000-7fffaff14000 rw-p 00000000 00:00 0
+7fffaff34000-7fffaff38000 rw-p 00000000 00:00 0
+7fffaff50000-7fffaff54000 rw-p 00000000 00:00 0
+7fffaffb4000-7fffaffb8000 rw-p 00000000 00:00 0
+7fffb0000000-7fffb021a000 rw-p 00000000 00:00 0
+7fffb021a000-7fffb4000000 ---p 00000000 00:00 0
+7fffb4000000-7fffb40a0000 rw-p 00000000 00:00 0
+7fffb40a0000-7fffb8000000 ---p 00000000 00:00 0
+7fffb8000000-7fffb804f000 rw-p 00000000 00:00 0
+7fffb804f000-7fffbc000000 ---p 00000000 00:00 0
+7fffbc004000-7fffbc034000 rw-p 00000000 00:00 0
+7fffbc038000-7fffbc03c000 rw-p 00000000 00:00 0
+7fffbc040000-7fffbc05c000 rw-p 00000000 00:00 0
+7fffbc064000-7fffbc084000 rw-p 00000000 00:00 0
+7fffbc088000-7fffbc090000 rw-p 00000000 00:00 0
+7fffbc0c4000-7fffbc0c8000 rw-p 00000000 00:00 0
+7fffbc108000-7fffbc10c000 rw-p 00000000 00:00 0
+7fffbc130000-7fffbc134000 rw-p 00000000 00:00 0
+7fffbc1b8000-7fffbc1bc000 rw-p 00000000 00:00 0
+7fffbc1f0000-7fffbc204000 rw-p 00000000 00:00 0
+7fffbc208000-7fffbc220000 rw-p 00000000 00:00 0
+7fffbc224000-7fffbc270000 rw-p 00000000 00:00 0
+7fffbc273000-7fffbc274000 ---p 00000000 00:00 0
+7fffbc274000-7fffbc474000 rw-p 00000000 00:00 0
+7fffbc4f0000-7fffbc4f4000 rw-p 00000000 00:00 0
+7fffbc564000-7fffbc568000 rw-p 00000000 00:00 0
+7fffbc56c000-7fffbc578000 rw-p 00000000 00:00 0
+7fffbc57c000-7fffbc590000 rw-p 00000000 00:00 0
+7fffbc594000-7fffbc5bc000 rw-p 00000000 00:00 0
+7fffbc5c0000-7fffbc5e4000 rw-p 00000000 00:00 0
+7fffbc698000-7fffbc69c000 rw-p 00000000 00:00 0
+7fffbc6d0000-7fffbc6d4000 rw-p 00000000 00:00 0
+7fffbc6e8000-7fffbc6ec000 rw-p 00000000 00:00 0
+7fffbc740000-7fffbc744000 rw-p 00000000 00:00 0
+7fffbc790000-7fffbc810000 rw-p 00000000 00:00 0
+7fffbc814000-7fffbc818000 rw-p 00000000 00:00 0
+7fffbc868000-7fffbc86c000 rw-p 00000000 00:00 0
+7fffbc878000-7fffbc8a4000 rw-p 00000000 00:00 0
+7fffbc8a8000-7fffbc8b8000 rw-p 00000000 00:00 0
+7fffbc8bc000-7fffbc8c0000 rw-p 00000000 00:00 0
+7fffbc8d0000-7fffbc8d4000 rw-p 00000000 00:00 0
+7fffbc8dc000-7fffbc8f0000 rw-p 00000000 00:00 0
+7fffbc8f8000-7fffbc8fc000 rw-p 00000000 00:00 0
+7fffbc95c000-7fffbc960000 rw-p 00000000 00:00 0
+7fffbc9e0000-7fffbc9e4000 rw-p 00000000 00:00 0
+7fffbca0c000-7fffbca14000 rw-p 00000000 00:00 0
+7fffbca20000-7fffbca24000 rw-p 00000000 00:00 0
+7fffbca40000-7fffbca44000 rw-p 00000000 00:00 0
+7fffbca8c000-7fffbca90000 rw-p 00000000 00:00 0
+7fffbcafc000-7fffbcb00000 rw-p 00000000 00:00 0
+7fffbcb64000-7fffbcb68000 rw-p 00000000 00:00 0
+7fffbcbc4000-7fffbcc00000 rw-p 00000000 00:00 0
+7fffbcc0c000-7fffbcc10000 rw-p 00000000 00:00 0
+7fffbcc14000-7fffbcc1c000 rw-p 00000000 00:00 0
+7fffbcc20000-7fffbcc24000 rw-p 00000000 00:00 0
+7fffbcc2c000-7fffbcc44000 rw-p 00000000 00:00 0
+7fffbcc48000-7fffbcc50000 rw-p 00000000 00:00 0
+7fffbcc54000-7fffbcc58000 rw-p 00000000 00:00 0
+7fffbcc64000-7fffbcc68000 rw-p 00000000 00:00 0
+7fffbccd0000-7fffbccd4000 rw-p 00000000 00:00 0
+7fffbccf4000-7fffbccf8000 rw-p 00000000 00:00 0
+7fffbcd18000-7fffbcd20000 rw-p 00000000 00:00 0
+7fffbcd74000-7fffbcd78000 rw-p 00000000 00:00 0
+7fffbcd94000-7fffbcd98000 rw-p 00000000 00:00 0
+7fffbcd9c000-7fffbcda4000 rw-p 00000000 00:00 0
+7fffbcda8000-7fffbcdb0000 rw-p 00000000 00:00 0
+7fffbcdb8000-7fffbcdbc000 rw-p 00000000 00:00 0
+7fffbcdd4000-7fffbcde0000 rw-p 00000000 00:00 0
+7fffbcde8000-7fffbcdf0000 rw-p 00000000 00:00 0
+7fffbce14000-7fffbce18000 rw-p 00000000 00:00 0
+7fffbce74000-7fffbce78000 rw-p 00000000 00:00 0
+7fffbcec8000-7fffbced0000 rw-p 00000000 00:00 0
+7fffbced4000-7fffbced8000 rw-p 00000000 00:00 0
+7fffbcf00000-7fffbcf04000 rw-p 00000000 00:00 0
+7fffbcf0c000-7fffbcf20000 rw-p 00000000 00:00 0
+7fffbcf24000-7fffbcf44000 rw-p 00000000 00:00 0
+7fffbcf48000-7fffbcf4c000 rw-p 00000000 00:00 0
+7fffbcf6e000-7fffbcf6f000 ---p 00000000 00:00 0
+7fffbcf6f000-7fffbd16f000 rw-p 00000000 00:00 0
+7fffbd16f000-7fffbd170000 ---p 00000000 00:00 0
+7fffbd170000-7fffbd370000 rw-p 00000000 00:00 0
+7fffbd3ac000-7fffbd3b4000 rw-p 00000000 00:00 0
+7fffbd3e8000-7fffbd3ec000 rw-p 00000000 00:00 0
+7fffbd3f0000-7fffbd3f4000 rw-p 00000000 00:00 0
+7fffbd41c000-7fffbd420000 rw-p 00000000 00:00 0
+7fffbd434000-7fffbd438000 rw-p 00000000 00:00 0
+7fffbd4b0000-7fffbd4b4000 rw-p 00000000 00:00 0
+7fffbd4e8000-7fffbd4ec000 rw-p 00000000 00:00 0
+7fffbd540000-7fffbd544000 rw-p 00000000 00:00 0
+7fffbd550000-7fffbd554000 rw-p 00000000 00:00 0
+7fffbd560000-7fffbd568000 rw-p 00000000 00:00 0
+7fffbd588000-7fffbd58c000 rw-p 00000000 00:00 0
+7fffbd5a8000-7fffbd5ac000 rw-p 00000000 00:00 0
+7fffbd5b0000-7fffbd5b8000 rw-p 00000000 00:00 0
+7fffbd5c0000-7fffbd5c4000 rw-p 00000000 00:00 0
+7fffbd5d0000-7fffbd5d4000 rw-p 00000000 00:00 0
+7fffbd5f4000-7fffbd5f8000 rw-p 00000000 00:00 0
+7fffbd608000-7fffbd620000 rw-p 00000000 00:00 0
+7fffbd624000-7fffbd638000 rw-p 00000000 00:00 0
+7fffbd640000-7fffbd654000 rw-p 00000000 00:00 0
+7fffbd660000-7fffbd664000 rw-p 00000000 00:00 0
+7fffbd674000-7fffbd678000 rw-p 00000000 00:00 0
+7fffbd684000-7fffbd688000 rw-p 00000000 00:00 0
+7fffbd68c000-7fffbd690000 rw-p 00000000 00:00 0
+7fffbd700000-7fffbd70c000 rw-p 00000000 00:00 0
+7fffbd720000-7fffbd724000 rw-p 00000000 00:00 0
+7fffbd734000-7fffbd73c000 rw-p 00000000 00:00 0
+7fffbd740000-7fffbd74c000 rw-p 00000000 00:00 0
+7fffbd750000-7fffbd758000 rw-p 00000000 00:00 0
+7fffbd75c000-7fffbd760000 rw-p 00000000 00:00 0
+7fffbd784000-7fffbd788000 rw-p 00000000 00:00 0
+7fffbd7b4000-7fffbd7b8000 rw-p 00000000 00:00 0
+7fffbd7c0000-7fffbd7c8000 rw-p 00000000 00:00 0
+7fffbd7f8000-7fffbd7fc000 rw-p 00000000 00:00 0
+7fffbd870000-7fffbd874000 rw-p 00000000 00:00 0
+7fffbd884000-7fffbd888000 rw-p 00000000 00:00 0
+7fffbd8c8000-7fffbd8e4000 rw-p 00000000 00:00 0
+7fffbd8ec000-7fffbd8f0000 rw-p 00000000 00:00 0
+7fffbd8f4000-7fffbd914000 rw-p 00000000 00:00 0
+7fffbd918000-7fffbd940000 rw-p 00000000 00:00 0
+7fffbd944000-7fffbd948000 rw-p 00000000 00:00 0
+7fffbd94c000-7fffbd950000 rw-p 00000000 00:00 0
+7fffbd9ac000-7fffbd9b0000 rw-p 00000000 00:00 0
+7fffbd9b4000-7fffbd9bc000 rw-p 00000000 00:00 0
+7fffbd9c0000-7fffbd9c4000 rw-p 00000000 00:00 0
+7fffbda1c000-7fffbda9c000 rw-p 00000000 00:00 0
+7fffbdaa0000-7fffbdb24000 rw-p 00000000 00:00 0
+7fffbdb28000-7fffbdb2c000 rw-p 00000000 00:00 0
+7fffbdb30000-7fffbdb44000 rw-p 00000000 00:00 0
+7fffbdb4c000-7fffbdb50000 rw-p 00000000 00:00 0
+7fffbdb6c000-7fffbdb70000 rw-p 00000000 00:00 0
+7fffbdb88000-7fffbdb8c000 rw-p 00000000 00:00 0
+7fffbdb90000-7fffbdba8000 rw-p 00000000 00:00 0
+7fffbdbac000-7fffbdbb0000 rw-p 00000000 00:00 0
+7fffbdbc0000-7fffbdbc4000 rw-p 00000000 00:00 0
+7fffbdbc8000-7fffbdbd0000 rw-p 00000000 00:00 0
+7fffbdc3c000-7fffbdc40000 rw-p 00000000 00:00 0
+7fffbdc58000-7fffbdc5c000 rw-p 00000000 00:00 0
+7fffbdc60000-7fffbdc64000 rw-p 00000000 00:00 0
+7fffbdc68000-7fffbdc6c000 rw-p 00000000 00:00 0
+7fffbdc70000-7fffbdc78000 rw-p 00000000 00:00 0
+7fffbdc7c000-7fffbdc88000 rw-p 00000000 00:00 0
+7fffbdc90000-7fffbdc94000 rw-p 00000000 00:00 0
+7fffbdca0000-7fffbdcc8000 rw-p 00000000 00:00 0
+7fffbdcd4000-7fffbdcd8000 rw-p 00000000 00:00 0
+7fffbdcdc000-7fffbdce8000 rw-p 00000000 00:00 0
+7fffbdcec000-7fffbdd20000 rw-p 00000000 00:00 0
+7fffbdd24000-7fffbdd28000 rw-p 00000000 00:00 0
+7fffbdd44000-7fffbdd48000 rw-p 00000000 00:00 0
+7fffbddb8000-7fffbddbc000 rw-p 00000000 00:00 0
+7fffbde0c000-7fffbde10000 rw-p 00000000 00:00 0
+7fffbde50000-7fffbde54000 rw-p 00000000 00:00 0
+7fffbde74000-7fffbdef4000 rw-p 00000000 00:00 0
+7fffbdef8000-7fffbdefc000 rw-p 00000000 00:00 0
+7fffbdf04000-7fffbdf14000 rw-p 00000000 00:00 0
+7fffbdf18000-7fffbdf24000 rw-p 00000000 00:00 0
+7fffbdf2c000-7fffbdf30000 rw-p 00000000 00:00 0
+7fffbdf38000-7fffbdf40000 rw-p 00000000 00:00 0
+7fffbdf44000-7fffbdf48000 rw-p 00000000 00:00 0
+7fffbdf4c000-7fffbdf54000 rw-p 00000000 00:00 0
+7fffbdf58000-7fffbdf60000 rw-p 00000000 00:00 0
+7fffbdfa0000-7fffbe01c000 rw-p 00000000 00:00 0
+7fffbe020000-7fffbe024000 rw-p 00000000 00:00 0
+7fffbe078000-7fffbe084000 rw-p 00000000 00:00 0
+7fffbe0cc000-7fffbe0d0000 rw-p 00000000 00:00 0
+7fffbe114000-7fffbe118000 rw-p 00000000 00:00 0
+7fffbe160000-7fffbe168000 rw-p 00000000 00:00 0
+7fffbe190000-7fffbe194000 rw-p 00000000 00:00 0
+7fffbe1a0000-7fffbe1a8000 rw-p 00000000 00:00 0
+7fffbe1b4000-7fffbe1b8000 rw-p 00000000 00:00 0
+7fffbe1c4000-7fffbe1c8000 rw-p 00000000 00:00 0
+7fffbe1cc000-7fffbe1d0000 rw-p 00000000 00:00 0
+7fffbe1e8000-7fffbe1ec000 rw-p 00000000 00:00 0
+7fffbe1f0000-7fffbe1f4000 rw-p 00000000 00:00 0
+7fffbe220000-7fffbe224000 rw-p 00000000 00:00 0
+7fffbe244000-7fffbe24c000 rw-p 00000000 00:00 0
+7fffbe278000-7fffbe27c000 rw-p 00000000 00:00 0
+7fffbe280000-7fffbe284000 rw-p 00000000 00:00 0
+7fffbe298000-7fffbe29c000 rw-p 00000000 00:00 0
+7fffbe2a8000-7fffbe2b4000 rw-p 00000000 00:00 0
+7fffbe314000-7fffbe33c000 rw-p 00000000 00:00 0
+7fffbe340000-7fffbe388000 rw-p 00000000 00:00 0
+7fffbe38c000-7fffbe394000 rw-p 00000000 00:00 0
+7fffbe395000-7fffbe3b8000 rw-p 00000000 00:00 0
+7fffbe3ee000-7fffbe3ef000 ---p 00000000 00:00 0
+7fffbe3ef000-7fffbe5ef000 rw-p 00000000 00:00 0
+7fffbe5ef000-7fffbe5f0000 ---p 00000000 00:00 0
+7fffbe5f0000-7fffbe7f0000 rw-p 00000000 00:00 0
+7fffbe7f4000-7fffbe818000 rw-p 00000000 00:00 0
+7fffbe81c000-7fffbe820000 rw-p 00000000 00:00 0
+7fffbe824000-7fffbe870000 rw-p 00000000 00:00 0
+7fffbe874000-7fffbe8f4000 rw-p 00000000 00:00 0
+7fffbe8f8000-7fffbe978000 rw-p 00000000 00:00 0
+7fffbe97c000-7fffbe9fc000 rw-p 00000000 00:00 0
+7fffbea1e000-7fffbea27000 ---p 00000000 00:00 0
+7fffbea27000-7fffbea5f000 rw-p 00000000 00:00 0
+7fffbea7c000-7fffbea98000 rw-p 00000000 00:00 0
+7fffbeaa5000-7fffbeabc000 rw-p 00000000 00:00 0
+7fffbeac4000-7fffbeac5000 rw-p 00000000 00:00 0
+7fffbeac7000-7fffbead4000 rw-p 00000000 00:00 0
+7fffbead6000-7fffbeb06000 rwxp 00000000 00:00 0
+7fffbeb06000-7fffbeb08000 rw-p 00000000 00:00 0
+7fffbeb08000-7fffbeb0f000 rw-p 00000000 00:00 0
+7fffbeb10000-7fffbeb1a000 r--p 00000000 08:03 2621592                    /usr/bp/bin/rdr/unitrends.rdr.ueb.dll
+7fffbeb39000-7fffbeba8000 r--p 00000000 08:05 132692                     /usr/lib/mono/gac/System.Drawing/4.0.0.0__b03f5f7f11d50a3a/System.Drawing.dll
+7fffbeba8000-7fffbec28000 rw-p 00000000 00:00 0
+7fffbec2c000-7fffbec35000 r--p 00000000 08:05 132546                     /usr/lib/mono/gac/System.Web.ApplicationServices/4.0.0.0__31bf3856ad364e35/System.Web.ApplicationServices.dll
+7fffbec35000-7fffbec6c000 r--p 00000000 08:05 9527                       /usr/lib/mono/gac/System.ServiceModel.Internals/0.0.0.0__b77a5c561934e089/System.ServiceModel.Internals.dll
+7fffbec6c000-7fffbed70000 rw-p 00000000 00:00 0
+7fffbed72000-7fffbedf4000 rw-p 00000000 00:00 0
+7fffbedf8000-7fffbee78000 rw-p 00000000 00:00 0
+7fffbee7c000-7fffbeefc000 rw-p 00000000 00:00 0
+7fffbef00000-7fffbf000000 rw-p 00000000 00:00 0
+7fffbf008000-7fffbf009000 rw-p 00000000 00:00 0
+7fffbf00a000-7fffbf00f000 rw-p 00000000 00:00 0
+7fffbf010000-7fffbf012000 rw-p 00000000 00:00 0
+7fffbf012000-7fffbf02c000 r--p 00000000 08:05 9852                       /usr/lib/mono/gac/Mono.Data.Tds/4.0.0.0__0738eb9f132ed756/Mono.Data.Tds.dll
+7fffbf02c000-7fffbf0ad000 rw-p 00000000 00:00 0
+7fffbf0ad000-7fffbf1f9000 r--p 00000000 08:05 132624                     /usr/lib/mono/gac/Mono.CSharp/4.0.0.0__0738eb9f132ed756/Mono.CSharp.dll
+7fffbf1f9000-7fffbf1fa000 ---p 00000000 00:00 0
+7fffbf1fa000-7fffbf3fa000 rw-p 00000000 00:00 0
+7fffbf3fa000-7fffbf403000 ---p 00000000 00:00 0
+7fffbf403000-7fffbf5fb000 rw-p 00000000 00:00 0
+7fffbf5fb000-7fffbf604000 ---p 00000000 00:00 0
+7fffbf604000-7fffbf7fc000 rw-p 00000000 00:00 0
+7fffbf7fc000-7fffbf805000 ---p 00000000 00:00 0
+7fffbf805000-7fffbf9fd000 rw-p 00000000 00:00 0
+7fffbf9fd000-7fffbfa06000 ---p 00000000 00:00 0
+7fffbfa06000-7fffbfbfe000 rw-p 00000000 00:00 0
+7fffbfbfe000-7fffbfc07000 ---p 00000000 00:00 0
+7fffbfc07000-7fffbfdff000 rw-p 00000000 00:00 0
+7fffbfdff000-7fffbfe08000 ---p 00000000 00:00 0
+7fffbfe08000-7fffc004b000 rw-p 00000000 00:00 0
+7fffc004b000-7fffc4000000 ---p 00000000 00:00 0
+7fffc4000000-7fffc4050000 rw-p 00000000 00:00 0
+7fffc4050000-7fffc8000000 ---p 00000000 00:00 0
+7fffc8000000-7fffc82f0000 rw-p 00000000 00:00 0
+7fffc82f0000-7fffcc000000 ---p 00000000 00:00 0
+7fffcc000000-7fffcc021000 rw-p 00000000 00:00 0
+7fffcc021000-7fffd0000000 ---p 00000000 00:00 0
+7fffd0000000-7fffd0021000 rw-p 00000000 00:00 0
+7fffd0021000-7fffd4000000 ---p 00000000 00:00 0
+7fffd4000000-7fffd4070000 rw-p 00000000 00:00 0
+7fffd4070000-7fffd8000000 ---p 00000000 00:00 0
+7fffd8000000-7fffd8a11000 rw-p 00000000 00:00 0
+7fffd8a11000-7fffdc000000 ---p 00000000 00:00 0
+7fffdc000000-7fffdc04a000 rw-p 00000000 00:00 0
+7fffdc04a000-7fffe0000000 ---p 00000000 00:00 0
+7fffe0000000-7fffe0036000 rw-p 00000000 00:00 0
+7fffe0036000-7fffe4000000 ---p 00000000 00:00 0
+7fffe4000000-7fffe426a000 rw-p 00000000 00:00 0
+7fffe426a000-7fffe8000000 ---p 00000000 00:00 0
+7fffe8000000-7fffe8030000 rw-p 00000000 00:00 0
+7fffe8030000-7fffec000000 ---p 00000000 00:00 0
+7fffec002000-7fffec003000 rw-p 00000000 00:00 0
+7fffec004000-7fffec006000 rw-p 00000000 00:00 0
+7fffec006000-7fffec013000 r--p 00000000 08:05 9381                       /usr/lib/mono/gac/System.Management/4.0.0.0__b03f5f7f11d50a3a/System.Management.dll
+7fffec013000-7fffec022000 rw-p 00000000 00:00 0
+7fffec022000-7fffec024000 r--p 00000000 08:05 9662                       /usr/lib/mono/4.5/Facades/System.Diagnostics.Debug.dll
+7fffec024000-7fffec129000 rw-p 00000000 00:00 0
+7fffec129000-7fffec12c000 rw-p 00000000 00:00 0
+7fffec12c000-7fffec134000 r--p 00000000 08:05 132616                     /usr/lib/mono/gac/Microsoft.CSharp/4.0.0.0__b03f5f7f11d50a3a/Microsoft.CSharp.dll
+7fffec134000-7fffec144000 rwxp 00000000 00:00 0
+7fffec144000-7fffec145000 rw-p 00000000 00:00 0
+7fffec145000-7fffec14d000 r--p 00000000 08:03 2622355                    /usr/bp/bin/rdr/Microsoft.Extensions.Primitives.dll
+7fffec14d000-7fffec15d000 rwxp 00000000 00:00 0
+7fffec15d000-7fffec17e000 rw-p 00000000 00:00 0
+7fffec17e000-7fffec187000 ---p 00000000 00:00 0
+7fffec187000-7fffec383000 rw-p 00000000 00:00 0
+7fffec383000-7fffec38c000 ---p 00000000 00:00 0
+7fffec38c000-7fffec588000 rw-p 00000000 00:00 0
+7fffec588000-7fffec591000 ---p 00000000 00:00 0
+7fffec591000-7fffec78d000 rw-p 00000000 00:00 0
+7fffec78d000-7fffec796000 ---p 00000000 00:00 0
+7fffec796000-7fffec992000 rw-p 00000000 00:00 0
+7fffec992000-7fffec99b000 ---p 00000000 00:00 0
+7fffec99b000-7fffecb93000 rw-p 00000000 00:00 0
+7fffecb93000-7fffece98000 r--p 00000000 08:05 9608                       /usr/lib/mono/gac/System.Web/4.0.0.0__b03f5f7f11d50a3a/System.Web.dll
+7fffece98000-7fffece9d000 r--p 00000000 08:03 2622327                    /usr/bp/bin/rdr/Common.Logging.Serilog.dll
+7fffece9d000-7fffecea8000 r--p 00000000 08:03 2622329                    /usr/bp/bin/rdr/Common.Logging.dll
+7fffecea8000-7fffeceab000 r--p 00000000 08:03 2621493                    /usr/bp/bin/rdr/Common.Logging.Core.dll
+7fffeceab000-7fffeceaf000 rw-p 00000000 00:00 0
+7fffeceaf000-7fffeceb8000 ---p 00000000 00:00 0
+7fffeceb8000-7fffecf71000 rw-p 00000000 00:00 0
+7fffecf72000-7fffecf78000 rw-p 00000000 00:00 0
+7fffecf79000-7fffecf89000 r--p 00000000 08:03 2622417                    /usr/bp/bin/rdr/System.Web.Http.Owin.dll
+7fffecf89000-7fffecfa7000 r--p 00000000 08:05 132721                     /usr/lib/mono/gac/System.Net.Http/4.0.0.0__b03f5f7f11d50a3a/System.Net.Http.dll
+7fffecfa7000-7fffecfd5000 r--p 00000000 08:03 2622410                    /usr/bp/bin/rdr/System.Net.Http.Formatting.dll
+7fffecfd5000-7fffed371000 r--p 00000000 08:03 2622400                    /usr/bp/bin/rdr/Swashbuckle.Core.dll
+7fffed371000-7fffed387000 r--p 00000000 08:03 2622357                    /usr/bp/bin/rdr/Microsoft.Owin.Host.HttpListener.dll
+7fffed387000-7fffed388000 rw-p 00000000 00:00 0
+7fffed388000-7fffed3a1000 r--p 00000000 08:03 2622361                    /usr/bp/bin/rdr/Microsoft.Owin.dll
+7fffed3a1000-7fffed3c2000 r--p 00000000 08:05 132769                     /usr/lib/mono/gac/System.Xml.Linq/4.0.0.0__b77a5c561934e089/System.Xml.Linq.dll
+7fffed3c2000-7fffed4b4000 r--p 00000000 08:05 9470                       /usr/lib/mono/gac/System.Runtime.Serialization/4.0.0.0__b77a5c561934e089/System.Runtime.Serialization.dll
+7fffed4b4000-7fffed4cf000 r--p 00000000 08:05 132732                     /usr/lib/mono/gac/System.Numerics/4.0.0.0__b77a5c561934e089/System.Numerics.dll
+7fffed4cf000-7fffed550000 r--p 00000000 08:03 2621507                    /usr/bp/bin/rdr/Newtonsoft.Json.dll
+7fffed550000-7fffed5d1000 rw-p 00000000 00:00 0
+7fffed5d1000-7fffed5d2000 rw-p 00000000 00:00 0
+7fffed5d2000-7fffed646000 r--p 00000000 08:03 2622421                    /usr/bp/bin/rdr/System.Web.Http.dll
+7fffed646000-7fffed64a000 rw-p 00000000 00:00 0
+7fffed64a000-7fffed653000 ---p 00000000 00:00 0
+7fffed653000-7fffed84c000 rw-p 00000000 00:00 0
+7fffed84c000-7fffed853000 r--p 00000000 08:03 2621543                    /usr/bp/bin/rdr/System.Threading.Tasks.Extensions.dll
+7fffed853000-7fffed95b000 rw-p 00000000 00:00 0
+7fffed95b000-7fffed95d000 r--p 00000000 08:05 9678                       /usr/lib/mono/4.5/Facades/System.Globalization.dll
+7fffed95d000-7fffed98a000 r--p 00000000 08:03 2622401                    /usr/bp/bin/rdr/System.Collections.Immutable.dll
+7fffed98a000-7fffed9a0000 r--p 00000000 08:05 9592                       /usr/lib/mono/gac/System.ComponentModel.DataAnnotations/4.0.0.0__31bf3856ad364e35/System.ComponentModel.DataAnnotations.dll
+7fffed9a0000-7fffed9a2000 r--p 00000000 08:05 9671                       /usr/lib/mono/4.5/Facades/System.Diagnostics.Tracing.dll
+7fffed9a2000-7fffed9ab000 r--p 00000000 08:05 9390                       /usr/lib/mono/gac/System.Transactions/4.0.0.0__b77a5c561934e089/System.Transactions.dll
+7fffed9ab000-7fffed9ac000 rw-p 00000000 00:00 0
+7fffed9ac000-7fffeda45000 r--p 00000000 08:03 2622369                    /usr/bp/bin/rdr/Npgsql.dll
+7fffeda45000-7fffeda47000 r--p 00000000 08:05 9691                       /usr/lib/mono/4.5/Facades/System.Linq.Expressions.dll
+7fffeda47000-7fffeda4b000 rw-p 00000000 00:00 0
+7fffeda4b000-7fffeda4c000 ---p 00000000 00:00 0
+7fffeda4c000-7fffedc4d000 rw-p 00000000 00:00 0
+7fffedc4f000-7fffedc50000 rw-p 00000000 00:00 0
+7fffedc50000-7fffedc51000 ---p 00000000 00:00 0
+7fffedc51000-7fffede51000 rw-p 00000000 00:00 0
+7fffede51000-7fffede52000 ---p 00000000 00:00 0
+7fffede52000-7fffede92000 rw-p 00000000 00:00 0
+7fffede92000-7fffee0a0000 r--p 00000000 08:05 9427                       /usr/lib/mono/gac/System.Data/4.0.0.0__b77a5c561934e089/System.Data.dll
+7fffee0a0000-7fffee0f2000 r--p 00000000 08:05 132663                     /usr/lib/mono/gac/Mono.Security/4.0.0.0__0738eb9f132ed756/Mono.Security.dll
+7fffee0f2000-7fffee10c000 r--p 00000000 08:03 2622367                    /usr/bp/bin/rdr/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+7fffee10c000-7fffee43c000 r--p 00000000 08:05 132772                     /usr/lib/mono/gac/System.Xml/4.0.0.0__b77a5c561934e089/System.Xml.dll
+7fffee43c000-7fffee43d000 rw-p 00000000 00:00 0
+7fffee43d000-7fffee477000 r--p 00000000 08:03 2622407                    /usr/bp/bin/rdr/System.Interactive.Async.dll
+7fffee477000-7fffee500000 r--p 00000000 08:03 2621470                    /usr/bp/bin/rdr/Microsoft.EntityFrameworkCore.Relational.dll
+7fffee500000-7fffee601000 rw-p 00000000 00:00 0
+7fffee601000-7fffee621000 r--p 00000000 08:05 132680                     /usr/lib/mono/gac/System.Configuration/4.0.0.0__b03f5f7f11d50a3a/System.Configuration.dll
+7fffee621000-7fffee6ff000 r--p 00000000 08:03 2621474                    /usr/bp/bin/rdr/Microsoft.EntityFrameworkCore.dll
+7fffee6ff000-7fffee971000 r--p 00000000 08:05 132775                     /usr/lib/mono/gac/System/4.0.0.0__b77a5c561934e089/System.dll
+7fffee971000-7fffeea5a000 r--p 00000000 08:05 132684                     /usr/lib/mono/gac/System.Core/4.0.0.0__b77a5c561934e089/System.Core.dll
+7fffeea5a000-7fffeedff000 r--p 00000000 08:05 9844                       /usr/lib/mono/4.5/mscorlib.dll
+7fffeedff000-7fffefdff000 rw-p 00000000 00:00 0
+7fffefdff000-7fffefe00000 ---p 00000000 00:00 0
+7fffefe00000-7ffff0c01000 rw-p 00000000 00:00 0
+7ffff0c01000-7ffff0c03000 rw-p 00000000 00:00 0
+7ffff0c03000-7ffff0c0c000 r--p 00000000 08:03 2622403                    /usr/bp/bin/rdr/System.Diagnostics.DiagnosticSource.dll
+7ffff0c0c000-7ffff0ce6000 r--p 00000000 08:03 2622374                    /usr/bp/bin/rdr/Quartz.dll
+7ffff0ce6000-7ffff0cef000 ---p 00000000 00:00 0
+7ffff0cef000-7ffff0ee7000 rw-p 00000000 00:00 0
+7ffff0ee7000-7ffff0ef3000 r-xp 00000000 08:02 418                        /lib64/libnss_files-2.12.so
+7ffff0ef3000-7ffff10f3000 ---p 0000c000 08:02 418                        /lib64/libnss_files-2.12.so
+7ffff10f3000-7ffff10f4000 r--p 0000c000 08:02 418                        /lib64/libnss_files-2.12.so
+7ffff10f4000-7ffff10f5000 rw-p 0000d000 08:02 418                        /lib64/libnss_files-2.12.so
+7ffff10f5000-7ffff6f86000 r--p 00000000 08:05 472                        /usr/lib/locale/locale-archive
+7ffff6f86000-7ffff7110000 r-xp 00000000 08:02 402                        /lib64/libc-2.12.so
+7ffff7110000-7ffff7310000 ---p 0018a000 08:02 402                        /lib64/libc-2.12.so
+7ffff7310000-7ffff7314000 r--p 0018a000 08:02 402                        /lib64/libc-2.12.so
+7ffff7314000-7ffff7315000 rw-p 0018e000 08:02 402                        /lib64/libc-2.12.so
+7ffff7315000-7ffff731a000 rw-p 00000000 00:00 0
+7ffff731a000-7ffff7330000 r-xp 00000000 08:02 32                         /lib64/libgcc_s-4.4.7-20120601.so.1
+7ffff7330000-7ffff752f000 ---p 00016000 08:02 32                         /lib64/libgcc_s-4.4.7-20120601.so.1
+7ffff752f000-7ffff7530000 rw-p 00015000 08:02 32                         /lib64/libgcc_s-4.4.7-20120601.so.1
+7ffff7530000-7ffff7547000 r-xp 00000000 08:02 426                        /lib64/libpthread-2.12.so
+7ffff7547000-7ffff7747000 ---p 00017000 08:02 426                        /lib64/libpthread-2.12.so
+7ffff7747000-7ffff7748000 r--p 00017000 08:02 426                        /lib64/libpthread-2.12.so
+7ffff7748000-7ffff7749000 rw-p 00018000 08:02 426                        /lib64/libpthread-2.12.so
+7ffff7749000-7ffff774d000 rw-p 00000000 00:00 0
+7ffff774d000-7ffff774f000 r-xp 00000000 08:02 408                        /lib64/libdl-2.12.so
+7ffff774f000-7ffff794f000 ---p 00002000 08:02 408                        /lib64/libdl-2.12.so
+7ffff794f000-7ffff7950000 r--p 00002000 08:02 408                        /lib64/libdl-2.12.so
+7ffff7950000-7ffff7951000 rw-p 00003000 08:02 408                        /lib64/libdl-2.12.so
+7ffff7951000-7ffff7958000 r-xp 00000000 08:02 430                        /lib64/librt-2.12.so
+7ffff7958000-7ffff7b57000 ---p 00007000 08:02 430                        /lib64/librt-2.12.so
+7ffff7b57000-7ffff7b58000 r--p 00006000 08:02 430                        /lib64/librt-2.12.so
+7ffff7b58000-7ffff7b59000 rw-p 00007000 08:02 430                        /lib64/librt-2.12.so
+7ffff7b59000-7ffff7bdc000 r-xp 00000000 08:02 410                        /lib64/libm-2.12.so
+7ffff7bdc000-7ffff7ddb000 ---p 00083000 08:02 410                        /lib64/libm-2.12.so
+7ffff7ddb000-7ffff7ddc000 r--p 00082000 08:02 410                        /lib64/libm-2.12.so
+7ffff7ddc000-7ffff7ddd000 rw-p 00083000 08:02 410                        /lib64/libm-2.12.so
+7ffff7ddd000-7ffff7dfd000 r-xp 00000000 08:02 395                        /lib64/ld-2.12.so
+7ffff7dfd000-7ffff7dfe000 rw-p 00000000 00:00 0
+7ffff7e02000-7ffff7e12000 rwxp 00000000 00:00 0
+7ffff7e12000-7ffff7e14000 r--p 00000000 08:05 9770                       /usr/lib/mono/4.5/Facades/System.Threading.Tasks.dll
+7ffff7e14000-7ffff7e16000 r--p 00000000 08:05 9723                       /usr/lib/mono/4.5/Facades/System.Runtime.Extensions.dll
+7ffff7e16000-7ffff7e18000 r--p 00000000 08:05 9774                       /usr/lib/mono/4.5/Facades/System.Threading.dll
+7ffff7e18000-7ffff7e1a000 r--p 00000000 08:05 9719                       /usr/lib/mono/4.5/Facades/System.Reflection.dll
+7ffff7e1a000-7ffff7e1c000 r--p 00000000 08:05 9648                       /usr/lib/mono/4.5/Facades/System.Collections.Concurrent.dll
+7ffff7e1c000-7ffff7e22000 r--p 00000000 08:03 2622353                    /usr/bp/bin/rdr/Microsoft.Extensions.Options.dll
+7ffff7e22000-7ffff7e2a000 r--p 00000000 08:03 2622340                    /usr/bp/bin/rdr/Microsoft.Extensions.Caching.Memory.dll
+7ffff7e2a000-7ffff7e2b000 r--p 00000000 08:05 9694                       /usr/lib/mono/4.5/Facades/System.Linq.dll
+7ffff7e2b000-7ffff7e30000 r--p 00000000 08:03 2622351                    /usr/bp/bin/rdr/Microsoft.Extensions.Logging.dll
+7ffff7e30000-7ffff7e5d000 r--p 00000000 08:03 2622378                    /usr/bp/bin/rdr/Remotion.Linq.dll
+7ffff7e5d000-7ffff7e5f000 r--p 00000000 08:05 9721                       /usr/lib/mono/4.5/Facades/System.Resources.ResourceManager.dll
+7ffff7e5f000-7ffff7e61000 r--p 00000000 08:05 9651                       /usr/lib/mono/4.5/Facades/System.Collections.dll
+7ffff7e61000-7ffff7e6c000 r--p 00000000 08:03 2622346                    /usr/bp/bin/rdr/Microsoft.Extensions.DependencyInjection.dll
+7ffff7e6c000-7ffff7e73000 r--p 00000000 08:03 2622338                    /usr/bp/bin/rdr/Microsoft.Extensions.Caching.Abstractions.dll
+7ffff7e73000-7ffff7e75000 r--p 00000000 08:05 9656                       /usr/lib/mono/4.5/Facades/System.ComponentModel.dll
+7ffff7e75000-7ffff7e79000 r--p 00000000 08:05 9733                       /usr/lib/mono/4.5/Facades/System.Runtime.dll
+7ffff7e79000-7ffff7e82000 r--p 00000000 08:03 2621484                    /usr/bp/bin/rdr/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+7ffff7e82000-7ffff7e8d000 r--p 00000000 08:03 2621490                    /usr/bp/bin/rdr/Microsoft.Extensions.Logging.Abstractions.dll
+7ffff7e8d000-7ffff7e91000 r--p 00000000 08:03 2622386                    /usr/bp/bin/rdr/Serilog.Sinks.File.dll
+7ffff7e91000-7ffff7e96000 r--p 00000000 08:03 2622390                    /usr/bp/bin/rdr/Serilog.Sinks.RollingFile.dll
+7ffff7e96000-7ffff7e98000 r--p 00000000 08:03 2622373                    /usr/bp/bin/rdr/Owin.dll
+7ffff7e98000-7ffff7ea8000 r--p 00000000 08:03 2622359                    /usr/bp/bin/rdr/Microsoft.Owin.Hosting.dll
+7ffff7ea8000-7ffff7ec2000 r--p 00000000 08:03 2622393                    /usr/bp/bin/rdr/Serilog.dll
+7ffff7ec2000-7ffff7ec7000 r--p 00000000 08:03 2621586                    /usr/bp/bin/rdr/unitrends.rdr.common.dll
+7ffff7ec7000-7ffff7ed2000 r--p 00000000 08:03 2622433                    /usr/bp/bin/rdr/unitrends.rdr.domain.dll
+7ffff7ed2000-7ffff7efc000 r--p 00000000 08:03 2621580                    /usr/bp/bin/rdr/rdrd.exe
+7ffff7efc000-7ffff7f8b000 rw-p 00000000 00:00 0
+7ffff7f8b000-7ffff7fea000 ---p 00000000 00:00 0
+7ffff7fea000-7ffff7fef000 rw-p 00000000 00:00 0
+7ffff7fef000-7ffff7ff2000 r--p 00000000 08:03 2621521                    /usr/bp/bin/rdr/Serilog.Sinks.ColoredConsole.dll
+7ffff7ff2000-7ffff7ff9000 rw-p 00000000 00:00 0
+7ffff7ff9000-7ffff7ffa000 rw-s 00000000 00:10 15484989                   /dev/shm/mono.3065
+7ffff7ffa000-7ffff7ffb000 rw-p 00000000 00:00 0
+7ffff7ffb000-7ffff7ffc000 r-xp 00000000 00:00 0                          [vdso]
+7ffff7ffc000-7ffff7ffd000 r--p 0001f000 08:02 395                        /lib64/ld-2.12.so
+7ffff7ffd000-7ffff7ffe000 rw-p 00020000 08:02 395                        /lib64/ld-2.12.so
+7ffff7ffe000-7ffff7fff000 rw-p 00000000 00:00 0
+7fffff600000-7fffff608000 ---p 00000000 00:00 0
+7ffffffea000-7ffffffff000 rw-p 00000000 00:00 0                          [stack]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+Native stacktrace:
+
+        /usr/bin/mono() [0x4a7bd3]
+        /lib64/libpthread.so.0(+0xf7e0) [0x7ffff753f7e0]
+        /lib64/libc.so.6(gsignal+0x35) [0x7ffff6fb8625]
+        /lib64/libc.so.6(abort+0x175) [0x7ffff6fb9e05]
+        /usr/bin/mono() [0x654399]
+        /usr/bin/mono() [0x66b338]
+        /usr/bin/mono() [0x66b407]
+        /usr/bin/mono() [0x4a5c94]
+        /usr/bin/mono() [0x414d0f]
+        /usr/bin/mono() [0x414d5e]
+        /usr/bin/mono() [0x5a5c29]
+        /usr/bin/mono() [0x65f813]
+        /lib64/libpthread.so.0(+0x7aa1) [0x7ffff7537aa1]
+        /lib64/libc.so.6(clone+0x6d) [0x7ffff706e93d]
+
+Debug info from gdb:
+
+
+=================================================================
+Got a SIGABRT while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries
+used by your application.
+=================================================================</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ludovic Henry</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-07-03 21:45:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hello,
+
+It is very hard to say what's going wrong from the information you provided us. Could you please provide a repro case, so we can try to reproduce it on our end?
+
+Thank you,
+Ludovic</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Albert</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-07-03 23:14:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I cant reproduce, this was a random crash i got once, but dont know how to reproduce.</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ludovic Henry</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-07-07 14:35:28 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Unfortunately, it's impossible to say what's going wrong solely from the stack trace. If you can find a way to reproduce, please provide us with it, and feel free to reopen this bug. Thank you!</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

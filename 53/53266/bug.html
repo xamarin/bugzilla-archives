@@ -1,0 +1,1173 @@
+<html lang="en"><head>
+    <title>53266 – malloc: *** error for object 0xa5029c: pointer being freed was not allocated</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_NEW
+                 bz_product_Runtime
+                 bz_component_Debugger
+                 bz_bug_53266 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;53266</span>
+
+        <span id="subtitle" class="subheader">malloc: *** error for object 0xa5029c: pointer being freed was not allocated</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2017-03-12 06:05:29 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2017-03-12 06:05:29">
+  <input type="hidden" name="id" value="53266">
+  <input type="hidden" name="token" value="1559165453-csZPT7FzWIKWsJo8qQCWs9HJKndaDrK--Cv4jan7IhM">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;53266</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">malloc: *** error for object 0xa5029c: pointer being freed was not allocated</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>malloc: *** error for object 0xa5029c: pointer being freed was not allocated
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">NEW
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Runtime
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Mono
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">Debugger
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>4.8.0 (C9)
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">Macintosh
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>---
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2017-03-12 05:46 UTC by <span class="vcard"><span class="fn">RobertN</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2017-03-12 06:05 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>3
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="mono-bugs+mono">mono-bugs+mono</option>
+                <option value="mono-bugs+runtime">mono-bugs+runtime</option>
+                <option value="niteware">niteware</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report for Bug&nbsp;53266</strong> on 
+            <a href="https://github.com/mono">GitHub</a> or <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> if you have new
+        information to add and do not yet see a matching new report. </p>
+    <p>
+        If the latest results still closely match this report, you can use the
+        original description:
+    </p>
+    <ul>
+        <li>
+            Export the original title and description:
+            <span class="bz_comment_tag" style="display:inline-block">
+                <a href="bug.html">GitHub Markdown</a>
+            </span> or
+            <span class="bz_comment_tag" style="display:inline-block">
+                <a href="bug.html">Developer Community HTML</a>
+            </span>
+        </li>
+        <li>
+            Copy the title and description into the new report. Adjust them
+            to be up-to-date if needed.
+        </li>
+        <li>Add your new information.</li>
+    </ul>
+    <p>In special cases on GitHub you might also want the comments:
+        <span class="bz_comment_tag" style="display:inline-block">
+            <a href="bug.html">GitHub Markdown with public comments</a>
+        </span>
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">NEW
+
+
+  <span id="resolution_settings">
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">RobertN</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-03-12 05:46:07 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mono JIT compiler version 4.8.0 (mono-4.8.0-branch/0494d70 Thu Mar  2 21:19:48 EST 2017)
+
+Debugging an Unit-Based test that (includes FakeItEasy).
+
+	[Test]
+	public void DidRetrieveContactsAllContacts()
+	{
+		var interactor = new ContactListInteractor();
+		var localDataManager = A.Fake&lt;Interfaces.IContactListLocalDataManagerInput&gt;();
+		interactor.LocalDatamanager = localDataManager;
+		var contactList = A.CollectionOfFake&lt;Interfaces.IContact&gt;(10) as IQueryable&lt;Interfaces.IContact&gt;;
+		A.CallTo(() =&gt; localDataManager.RetrieveContactList()).Returns(contactList);
+		var presenter = A.Fake&lt;IContactListPresenter&gt;();
+		interactor.Presenter = (ContactList.Common.IContactListInteractorOutput)presenter;
+        }
+
+Debugger Crash:
+
+   (lldb) command source -s 0 '/tmp/mono-gdb-commands.Yu0JUg'
+	Executing commands in '/tmp/mono-gdb-commands.Yu0JUg'.
+	(lldb) process attach --pid 22547
+	Process 22547 stopped
+	* thread #1: tid = 0x2dc8220, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'tid_50b', queue = 'com.apple.main-thread', stop reason = signal SIGSTOP
+	    frame #0: 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10
+	libsystem_kernel.dylib`__psynch_cvwait:
+	-&gt;  0x96cba3ea &lt;+10&gt;: jae    0x96cba3fa                ; &lt;+26&gt;
+	    0x96cba3ec &lt;+12&gt;: calll  0x96cba3f1                ; &lt;+17&gt;
+	    0x96cba3f1 &lt;+17&gt;: popl   %edx
+	    0x96cba3f2 &lt;+18&gt;: movl   0xc791c2f(%edx), %edx
+
+
+Full Application Output:
+
+        Loaded assembly: /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.UnitTesting/NUnit2/NUnitRunner.exe
+	Loaded assembly: /Library/Frameworks/Mono.framework/Versions/4.8.0/lib/mono/gac/System/4.0.0.0__b77a5c561934e089/System.dll
+	Loaded assembly: /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.UnitTesting/NUnit2/nunit.core.interfaces.dll
+	Loaded assembly: /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.UnitTesting/NUnit2/nunit.core.dll
+	Loaded assembly: /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.UnitTesting/NUnit2/nunit.framework.dll
+	Loaded assembly: /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.UnitTesting/NUnit2/nunit.util.dll
+	Loaded assembly: /Library/Frameworks/Mono.framework/Versions/4.8.0/lib/mono/gac/System.Runtime.Remoting/4.0.0.0__b77a5c561934e089/System.Runtime.Remoting.dll
+	Loaded assembly: /Library/Frameworks/Mono.framework/Versions/4.8.0/lib/mono/gac/System.Configuration/4.0.0.0__b03f5f7f11d50a3a/System.Configuration.dll
+	Loaded assembly: /Library/Frameworks/Mono.framework/Versions/4.8.0/lib/mono/gac/System.Xml/4.0.0.0__b77a5c561934e089/System.Xml.dll
+	Loaded assembly: /Library/Frameworks/Mono.framework/Versions/4.8.0/lib/mono/gac/Mono.Security/4.0.0.0__0738eb9f132ed756/Mono.Security.dll
+	Thread started:  #2
+	Loaded assembly: /Library/Frameworks/Mono.framework/Versions/4.8.0/lib/mono/gac/System.Core/4.0.0.0__b77a5c561934e089/System.Core.dll
+	Thread started:  #3
+	Thread started: &lt;Thread Pool&gt; #4
+	Thread started: &lt;Thread Pool&gt; #5
+	Thread started: &lt;Thread Pool&gt; #6
+	Loaded assembly: /Library/Frameworks/Mono.framework/Versions/4.8.0/lib/mono/gac/System.Drawing/4.0.0.0__b03f5f7f11d50a3a/System.Drawing.dll
+	Loaded assembly: /Library/Frameworks/Mono.framework/Versions/4.8.0/lib/mono/gac/nunit.util/2.4.8.0__96d09a1eb7f44a77/nunit.util.dll
+	Loaded assembly: /Library/Frameworks/Mono.framework/Versions/4.8.0/lib/mono/gac/nunit.core.interfaces/2.4.8.0__96d09a1eb7f44a77/nunit.core.interfaces.dll
+	Thread started:  #7
+	Loaded assembly: /Users/sushi/Projects/TodoViper/ContactList.Common.Tests/bin/Debug/ContactList.Common.Tests.dll
+	Loaded assembly: /Users/sushi/Projects/TodoViper/ContactList.Common.Tests/bin/Debug/ContactList.Common.dll
+	Loaded assembly: /Users/sushi/Projects/TodoViper/ContactList.Common.Tests/bin/Debug/ContactList.Common.DataManager.Interfaces.dll
+	Loaded assembly: /Library/Frameworks/Mono.framework/Versions/4.8.0/lib/mono/4.5/Facades/System.Linq.Expressions.dll
+	Thread started: EventPumpThread #8
+	Thread started: TestRunnerThread #9
+	Resolved pending breakpoint at 'ContactListInteractorTest.cs:65,81' to void ContactList.Common.Tests.ContactListInteractorTest.DidRetrieveContactsAllContacts () [0x0008d].
+	Resolved pending breakpoint at 'ContactListInteractorTest.cs:59,1' to void ContactList.Common.Tests.ContactListInteractorTest.DidRetrieveContactsAllContacts () [0x00007].
+	Loaded assembly: /Library/Frameworks/Mono.framework/Versions/4.8.0/lib/mono/4.5/Facades/System.Runtime.dll
+	Loaded assembly: /Users/sushi/Projects/TodoViper/ContactList.Common.Tests/bin/Debug/FakeItEasy.dll
+	Loaded assembly: DynamicProxyGenAssembly2
+	Loaded assembly: DynamicProxyGenAssembly2
+	mono(22547,0xb039b000) malloc: *** error for object 0xa5029c: pointer being freed was not allocated
+	*** set a breakpoint in malloc_error_break to debug
+	Stacktrace:
+
+
+	Native stacktrace:
+
+		0   mono                                0x001aaa66 mono_handle_native_sigsegv + 342
+		1   mono                                0x00201561 sigabrt_signal_handler + 145
+		2   libsystem_platform.dylib            0x9ebdd79b _sigtramp + 43
+		3   ???                                 0xffffffff 0x0 + 4294967295
+		4   libsystem_c.dylib                   0x94016c38 abort + 156
+		5   libsystem_malloc.dylib              0x9ba0d292 free + 433
+		6   mono                                0x00430536 mono_error_cleanup + 102
+		7   mono                                0x001e2e22 type_commands_internal + 4978
+		8   mono                                0x001d5b17 debugger_thread + 4583
+		9   mono                                0x0043756d inner_start_thread + 413
+		10  libsystem_pthread.dylib             0x94644780 _pthread_body + 138
+		11  libsystem_pthread.dylib             0x946446f6 _pthread_body + 0
+		12  libsystem_pthread.dylib             0x94641f7a thread_start + 34
+
+	Debug info from gdb:
+
+	(lldb) command source -s 0 '/tmp/mono-gdb-commands.Yu0JUg'
+	Executing commands in '/tmp/mono-gdb-commands.Yu0JUg'.
+	(lldb) process attach --pid 22547
+	Process 22547 stopped
+	* thread #1: tid = 0x2dc8220, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'tid_50b', queue = 'com.apple.main-thread', stop reason = signal SIGSTOP
+	    frame #0: 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10
+	libsystem_kernel.dylib`__psynch_cvwait:
+	-&gt;  0x96cba3ea &lt;+10&gt;: jae    0x96cba3fa                ; &lt;+26&gt;
+	    0x96cba3ec &lt;+12&gt;: calll  0x96cba3f1                ; &lt;+17&gt;
+	    0x96cba3f1 &lt;+17&gt;: popl   %edx
+	    0x96cba3f2 &lt;+18&gt;: movl   0xc791c2f(%edx), %edx
+
+	Executable module set to "/Library/Frameworks/Mono.framework/Versions/4.8.0/bin/mono".
+	Architecture set to: i386-apple-macosx.
+	(lldb) thread list
+	Process 22547 stopped
+	* thread #1: tid = 0x2dc8220, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'tid_50b', queue = 'com.apple.main-thread', stop reason = signal SIGSTOP
+	  thread #2: tid = 0x2dc8221, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'SGen worker'
+	  thread #3: tid = 0x2dc8223, 0x96cb34d6 libsystem_kernel.dylib`semaphore_wait_trap + 10, name = 'Finalizer'
+	  thread #4: tid = 0x2dc8225, 0x96cbb7fa libsystem_kernel.dylib`kevent_qos + 10, queue = 'com.apple.libdispatch-manager'
+	  thread #5: tid = 0x2dc8227, 0x96cbacee libsystem_kernel.dylib`__wait4 + 10, name = 'Debugger agent'
+	  thread #6: tid = 0x2dc823c, 0x96cb9852 libsystem_kernel.dylib`__accept + 10, name = 'tid_320b'
+	  thread #7: tid = 0x2dc823d, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'tid_3503'
+	  thread #8: tid = 0x2dc823e, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'tid_3803'
+	  thread #9: tid = 0x2dc823f, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'Threadpool worker'
+	  thread #10: tid = 0x2dc8240, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'Threadpool worker'
+	  thread #11: tid = 0x2dc824c, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'Timer-Scheduler'
+	  thread #12: tid = 0x2dc824d, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'EventPumpThread'
+	  thread #13: tid = 0x2dc824e, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'TestRunnerThread'
+	(lldb) thread backtrace all
+	* thread #1: tid = 0x2dc8220, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'tid_50b', queue = 'com.apple.main-thread', stop reason = signal SIGSTOP
+	  * frame #0: 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10
+	    frame #1: 0x94645538 libsystem_pthread.dylib`_pthread_cond_wait + 757
+	    frame #2: 0x94647276 libsystem_pthread.dylib`pthread_cond_wait$UNIX2003 + 71
+	    frame #3: 0x00441428 mono`mono_os_cond_timedwait [inlined] mono_os_cond_wait(cond=0x0053ed0c, mutex=0x0053ece0) + 12 at mono-os-mutex.h:150 [opt]
+	    frame #4: 0x0044141c mono`mono_os_cond_timedwait(cond=&lt;unavailable&gt;, mutex=&lt;unavailable&gt;, timeout_ms=&lt;unavailable&gt;) + 156 at mono-os-mutex.h:164 [opt]
+	    frame #5: 0x00440db7 mono`mono_w32handle_timedwait_signal [inlined] mono_w32handle_timedwait_signal_naked(cond=&lt;unavailable&gt;, mutex=&lt;unavailable&gt;, timeout=&lt;unavailable&gt;, poll=&lt;unavailable&gt;, alerted=0xbff2a27c) + 75 at w32handle.c:987 [opt]
+	    frame #6: 0x00440d6c mono`mono_w32handle_timedwait_signal(timeout=&lt;unavailable&gt;, poll=&lt;unavailable&gt;, alerted=0xbff2a27c) + 92 at w32handle.c:1036 [opt]
+	    frame #7: 0x00440a9e mono`mono_w32handle_wait_multiple(handles=&lt;unavailable&gt;, nhandles=&lt;unavailable&gt;, waitall=&lt;unavailable&gt;, timeout=&lt;unavailable&gt;, alertable=&lt;unavailable&gt;) + 2494 at w32handle.c:1408 [opt]
+	    frame #8: 0x00423ea6 mono`wapi_WaitForMultipleObjectsEx(numobjects=3, handles=0xbff2a300, waitall=0, timeout=4294967295, alertable=1) + 54 at wait.c:145 [opt]
+	    frame #9: 0x002aad91 mono`mono_thread_manage [inlined] wait_for_tids_or_state_change(timeout=4294967295) + 76 at threads.c:3027 [opt]
+	    frame #10: 0x002aad45 mono`mono_thread_manage + 213 at threads.c:3232 [opt]
+	    frame #11: 0x0016f02d mono`mono_main(argc=&lt;unavailable&gt;, argv=&lt;unavailable&gt;) + 9005 at driver.g.c:2172 [opt]
+	    frame #12: 0x000d8cfb mono`main [inlined] mono_main_with_options(argc=6, argc=6, argc=6, argv=0xbff2a8d4, argv=0xbff2a8d4, argv=0xbff2a8d4) + 33 at main.c:45 [opt]
+	    frame #13: 0x000d8cda mono`main(argc=6, argv=0xbff2a8d4) + 1946 at main.c:338 [opt]
+	    frame #14: 0x000d8535 mono`start + 53
+
+	  thread #2: tid = 0x2dc8221, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'SGen worker'
+	    frame #0: 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10
+	    frame #1: 0x94645538 libsystem_pthread.dylib`_pthread_cond_wait + 757
+	    frame #2: 0x94647276 libsystem_pthread.dylib`pthread_cond_wait$UNIX2003 + 71
+	    frame #3: 0x0041000f mono`thread_func [inlined] mono_os_cond_wait(mutex=0x0053e428) + 18 at mono-os-mutex.h:150 [opt]
+	    frame #4: 0x0040fffd mono`thread_func(thread_data=&lt;unavailable&gt;) + 189 at sgen-thread-pool.c:110 [opt]
+	    frame #5: 0x94644780 libsystem_pthread.dylib`_pthread_body + 138
+	    frame #6: 0x946446f6 libsystem_pthread.dylib`_pthread_start + 155
+	    frame #7: 0x94641f7a libsystem_pthread.dylib`thread_start + 34
+
+	  thread #3: tid = 0x2dc8223, 0x96cb34d6 libsystem_kernel.dylib`semaphore_wait_trap + 10, name = 'Finalizer'
+	    frame #0: 0x96cb34d6 libsystem_kernel.dylib`semaphore_wait_trap + 10
+	    frame #1: 0x002d80fe mono`finalizer_thread [inlined] mono_os_sem_wait(flags=MONO_SEM_FLAGS_ALERTABLE) + 14 at mono-os-semaphore.h:90 [opt]
+	    frame #2: 0x002d80f0 mono`finalizer_thread [inlined] mono_coop_sem_wait(flags=MONO_SEM_FLAGS_ALERTABLE) + 10 at mono-coop-semaphore.h:40 [opt]
+	    frame #3: 0x002d80e6 mono`finalizer_thread(unused=0x00000000) + 214 at gc.c:905 [opt]
+	    frame #4: 0x002ae447 mono`start_wrapper [inlined] start_wrapper_internal + 327 at threads.c:760 [opt]
+	    frame #5: 0x002ae300 mono`start_wrapper(data=&lt;unavailable&gt;) + 32 at threads.c:824 [opt]
+	    frame #6: 0x0043756d mono`inner_start_thread(data=&lt;unavailable&gt;) + 413 at mono-threads.c:1181 [opt]
+	    frame #7: 0x94644780 libsystem_pthread.dylib`_pthread_body + 138
+	    frame #8: 0x946446f6 libsystem_pthread.dylib`_pthread_start + 155
+	    frame #9: 0x94641f7a libsystem_pthread.dylib`thread_start + 34
+
+	  thread #4: tid = 0x2dc8225, 0x96cbb7fa libsystem_kernel.dylib`kevent_qos + 10, queue = 'com.apple.libdispatch-manager'
+	    frame #0: 0x96cbb7fa libsystem_kernel.dylib`kevent_qos + 10
+	    frame #1: 0x946517ea libdispatch.dylib`_dispatch_mgr_invoke + 234
+	    frame #2: 0x946513be libdispatch.dylib`_dispatch_mgr_thread + 52
+
+	  thread #5: tid = 0x2dc8227, 0x96cbacee libsystem_kernel.dylib`__wait4 + 10, name = 'Debugger agent'
+	    frame #0: 0x96cbacee libsystem_kernel.dylib`__wait4 + 10
+	    frame #1: 0x940367e0 libsystem_c.dylib`waitpid$UNIX2003 + 48
+	    frame #2: 0x001aab2d mono`mono_handle_native_sigsegv(signal=6, ctx=0xb039a72c, info=0xb039a6ec) + 541 at mini-exceptions.c:2469 [opt]
+	    frame #3: 0x00201561 mono`sigabrt_signal_handler(_dummy=&lt;unavailable&gt;, _info=&lt;unavailable&gt;, context=&lt;unavailable&gt;) + 145 at mini-posix.c:224 [opt]
+	    frame #4: 0x9ebdd79b libsystem_platform.dylib`_sigtramp + 43
+
+	  thread #6: tid = 0x2dc823c, 0x96cb9852 libsystem_kernel.dylib`__accept + 10, name = 'tid_320b'
+	    frame #0: 0x96cb9852 libsystem_kernel.dylib`__accept + 10
+	    frame #1: 0x0041fce3 mono`_wapi_accept(fd=6, addr=0x00000000, addrlen=&lt;unavailable&gt;) + 147 at sockets.c:200 [opt]
+	    frame #2: 0x00295186 mono`ves_icall_System_Net_Sockets_Socket_Accept_internal(sock=&lt;unavailable&gt;, werror=0xb051eb50, blocking=1) + 102 at socket-io.c:772 [opt]
+	    frame #3: 0x025c344c
+	    frame #4: 0x025c2ed0
+	    frame #5: 0x025c2c08
+	    frame #6: 0x025c2b4c
+	    frame #7: 0x025c2898
+	    frame #8: 0x025c2797
+	    frame #9: 0x025c2190
+	    frame #10: 0x025c1db4
+	    frame #11: 0x025c1cc4
+	    frame #12: 0x025c1b04
+	    frame #13: 0x0251fab7
+	    frame #14: 0x000e9950 mono`mono_jit_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 1536 at mini-runtime.c:2575 [opt]
+	    frame #15: 0x002df7c0 mono`do_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 96 at object.c:2820 [opt]
+	    frame #16: 0x002e1489 mono`mono_runtime_delegate_try_invoke [inlined] mono_runtime_invoke_checked(method=&lt;unavailable&gt;, params=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 329 at object.c:2978 [opt]
+	    frame #17: 0x002e1438 mono`mono_runtime_delegate_try_invoke(delegate=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 248 at object.c:3923 [opt]
+	    frame #18: 0x002e14f2 mono`mono_runtime_delegate_invoke_checked(delegate=0x00c73e48, params=0xb051ef04, error=0xb051ef08) + 50 at object.c:3944 [opt]
+	    frame #19: 0x002ae546 mono`start_wrapper [inlined] start_wrapper_internal + 582 at threads.c:768 [opt]
+	    frame #20: 0x002ae300 mono`start_wrapper(data=&lt;unavailable&gt;) + 32 at threads.c:824 [opt]
+	    frame #21: 0x0043756d mono`inner_start_thread(data=&lt;unavailable&gt;) + 413 at mono-threads.c:1181 [opt]
+	    frame #22: 0x94644780 libsystem_pthread.dylib`_pthread_body + 138
+	    frame #23: 0x946446f6 libsystem_pthread.dylib`_pthread_start + 155
+	    frame #24: 0x94641f7a libsystem_pthread.dylib`thread_start + 34
+
+	  thread #7: tid = 0x2dc823d, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'tid_3503'
+	    frame #0: 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10
+	    frame #1: 0x94645538 libsystem_pthread.dylib`_pthread_cond_wait + 757
+	    frame #2: 0x94647276 libsystem_pthread.dylib`pthread_cond_wait$UNIX2003 + 71
+	    frame #3: 0x001d021a mono`suspend_current [inlined] mono_os_cond_wait(cond=0x005351a0, mutex=0x00535170) + 24 at mono-os-mutex.h:150 [opt]
+	    frame #4: 0x001d0202 mono`suspend_current [inlined] mono_coop_cond_wait(cond=0x005351a0, mutex=0x00535170) + 41 at mono-coop-mutex.h:87 [opt]
+	    frame #5: 0x001d01d9 mono`suspend_current + 297 at debugger-agent.c:2929 [opt]
+	    frame #6: 0x001cd423 mono`process_single_step_inner [inlined] process_suspend(tls=&lt;unavailable&gt;, ctx=&lt;unavailable&gt;) + 1075 at debugger-agent.c:2751 [opt]
+	    frame #7: 0x001cd399 mono`process_single_step_inner(tls=&lt;unavailable&gt;, from_signal=&lt;unavailable&gt;) + 937 at debugger-agent.c:4913 [opt]
+	    frame #8: 0x001ccf8c mono`debugger_agent_single_step_from_context(ctx=0xb0620878) + 188 at debugger-agent.c:5057 [opt]
+	    frame #9: 0x007e70c6
+	    frame #10: 0x025d98eb
+	    frame #11: 0x025d977c
+	    frame #12: 0x025d95fc
+	    frame #13: 0x025d9118
+	    frame #14: 0x025d8dc0
+	    frame #15: 0x025d890a
+	    frame #16: 0x025d80cc
+	    frame #17: 0x025c2797
+	    frame #18: 0x025c2190
+	    frame #19: 0x025c1db4
+	    frame #20: 0x025c1cc4
+	    frame #21: 0x025c1b04
+	    frame #22: 0x0251fab7
+	    frame #23: 0x000e9950 mono`mono_jit_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 1536 at mini-runtime.c:2575 [opt]
+	    frame #24: 0x002df7c0 mono`do_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 96 at object.c:2820 [opt]
+	    frame #25: 0x002e1489 mono`mono_runtime_delegate_try_invoke [inlined] mono_runtime_invoke_checked(method=&lt;unavailable&gt;, params=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 329 at object.c:2978 [opt]
+	    frame #26: 0x002e1438 mono`mono_runtime_delegate_try_invoke(delegate=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 248 at object.c:3923 [opt]
+	    frame #27: 0x002e14f2 mono`mono_runtime_delegate_invoke_checked(delegate=0x00c76930, params=0xb0620f04, error=0xb0620f08) + 50 at object.c:3944 [opt]
+	    frame #28: 0x002ae546 mono`start_wrapper [inlined] start_wrapper_internal + 582 at threads.c:768 [opt]
+	    frame #29: 0x002ae300 mono`start_wrapper(data=&lt;unavailable&gt;) + 32 at threads.c:824 [opt]
+	    frame #30: 0x0043756d mono`inner_start_thread(data=&lt;unavailable&gt;) + 413 at mono-threads.c:1181 [opt]
+	    frame #31: 0x94644780 libsystem_pthread.dylib`_pthread_body + 138
+	    frame #32: 0x946446f6 libsystem_pthread.dylib`_pthread_start + 155
+	    frame #33: 0x94641f7a libsystem_pthread.dylib`thread_start + 34
+
+	  thread #8: tid = 0x2dc823e, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'tid_3803'
+	    frame #0: 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10
+	    frame #1: 0x94645538 libsystem_pthread.dylib`_pthread_cond_wait + 757
+	    frame #2: 0x94648d0b libsystem_pthread.dylib`pthread_cond_timedwait$UNIX2003 + 71
+	    frame #3: 0x004379b3 mono`mono_thread_info_sleep [inlined] mono_os_cond_timedwait(cond=0x0053ec24, mutex=0x0053ebf8) + 112 at mono-os-mutex.h:183 [opt]
+	    frame #4: 0x00437943 mono`mono_thread_info_sleep [inlined] mono_coop_cond_timedwait(cond=0x0053ec24, mutex=0x0053ebf8) at mono-coop-mutex.h:99 [opt]
+	    frame #5: 0x00437943 mono`mono_thread_info_sleep [inlined] sleep_interruptable(ms=&lt;unavailable&gt;, alerted=&lt;unavailable&gt;) + 527 at mono-threads.c:1307 [opt]
+	    frame #6: 0x00437734 mono`mono_thread_info_sleep(ms=&lt;unavailable&gt;, alerted=&lt;unavailable&gt;) + 260 at mono-threads.c:1339 [opt]
+	    frame #7: 0x002b2a16 mono`monitor_thread + 182 at threadpool-ms.c:938 [opt]
+	    frame #8: 0x002ae447 mono`start_wrapper [inlined] start_wrapper_internal + 327 at threads.c:760 [opt]
+	    frame #9: 0x002ae300 mono`start_wrapper(data=&lt;unavailable&gt;) + 32 at threads.c:824 [opt]
+	    frame #10: 0x0043756d mono`inner_start_thread(data=&lt;unavailable&gt;) + 413 at mono-threads.c:1181 [opt]
+	    frame #11: 0x94644780 libsystem_pthread.dylib`_pthread_body + 138
+	    frame #12: 0x946446f6 libsystem_pthread.dylib`_pthread_start + 155
+	    frame #13: 0x94641f7a libsystem_pthread.dylib`thread_start + 34
+
+	  thread #9: tid = 0x2dc823f, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'Threadpool worker'
+	    frame #0: 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10
+	    frame #1: 0x94645538 libsystem_pthread.dylib`_pthread_cond_wait + 757
+	    frame #2: 0x94647276 libsystem_pthread.dylib`pthread_cond_wait$UNIX2003 + 71
+	    frame #3: 0x00441428 mono`mono_os_cond_timedwait [inlined] mono_os_cond_wait(cond=0x7aa417b8, mutex=0x7aa4178c) + 12 at mono-os-mutex.h:150 [opt]
+	    frame #4: 0x0044141c mono`mono_os_cond_timedwait(cond=&lt;unavailable&gt;, mutex=&lt;unavailable&gt;, timeout_ms=&lt;unavailable&gt;) + 156 at mono-os-mutex.h:164 [opt]
+	    frame #5: 0x00440063 mono`mono_w32handle_timedwait_signal_handle [inlined] mono_w32handle_timedwait_signal_naked(cond=&lt;unavailable&gt;, mutex=&lt;unavailable&gt;, timeout=4294967295, poll=0, alerted=&lt;unavailable&gt;) + 11 at w32handle.c:976 [opt]
+	    frame #6: 0x00440058 mono`mono_w32handle_timedwait_signal_handle(poll=0, handle=&lt;unavailable&gt;, timeout=&lt;unavailable&gt;, alerted=&lt;unavailable&gt;) + 328 at w32handle.c:1091 [opt]
+	    frame #7: 0x0043fe07 mono`mono_w32handle_wait_one(handle=0x00001610, timeout=2072086480, alertable=&lt;unavailable&gt;) + 951 at w32handle.c:1238 [opt]
+	    frame #8: 0x00423d46 mono`wapi_WaitForSingleObjectEx(handle=0x00001610, timeout=4294967295, alertable=1) + 38 at wait.c:42 [opt]
+	    frame #9: 0x002a7603 mono`ves_icall_System_Threading_Thread_Join_internal(this_obj=0x00d4c498, ms=&lt;unavailable&gt;) + 275 at threads.c:1544 [opt]
+	    frame #10: 0x02a2b9ac
+	    frame #11: 0x02a2b8d8
+	    frame #12: 0x02a2b640
+	    frame #13: 0x02a2b550
+	    frame #14: 0x02a2b42d
+	    frame #15: 0x02a1599c
+	    frame #16: 0x02a14927
+	    frame #17: 0x02a0fc60
+	    frame #18: 0x029d1472
+	    frame #19: 0x029d0c9c
+	    frame #20: 0x029cdf64
+	    frame #21: 0x0297c1d6
+	    frame #22: 0x0297bd64
+	    frame #23: 0x027434dc
+	    frame #24: 0x02742d88
+	    frame #25: 0x0274307c
+	    frame #26: 0x000e9950 mono`mono_jit_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 1536 at mini-runtime.c:2575 [opt]
+	    frame #27: 0x002df7c0 mono`do_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 96 at object.c:2820 [opt]
+	    frame #28: 0x002e3787 mono`mono_runtime_try_invoke_array [inlined] mono_runtime_invoke_checked(method=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 96 at object.c:2978 [opt]
+	    frame #29: 0x002e3727 mono`mono_runtime_try_invoke_array(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 1287 at object.c:5080 [opt]
+	    frame #30: 0x002e3df9 mono`mono_runtime_invoke_array_checked(method=0x7a248748, obj=0x00c00f50, params=0x00c7d9d8, error=0xb0744860) + 57 at object.c:4958 [opt]
+	    frame #31: 0x0023c787 mono`ves_icall_InternalInvoke(method=&lt;unavailable&gt;, this_arg=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;) + 759 at icall.c:3263 [opt]
+	    frame #32: 0x01eda8e8
+	    frame #33: 0x01ed9610
+	    frame #34: 0x02742c24
+	    frame #35: 0x02742ab8
+	    frame #36: 0x02741ea0
+	    frame #37: 0x02741a4c
+	    frame #38: 0x02741874
+	    frame #39: 0x025c2190
+	    frame #40: 0x025c1db4
+	    frame #41: 0x027417c4
+	    frame #42: 0x0273f9e6
+	    frame #43: 0x0273f634
+	    frame #44: 0x0239b0a5
+	    frame #45: 0x000e9950 mono`mono_jit_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 1536 at mini-runtime.c:2575 [opt]
+	    frame #46: 0x002df7c0 mono`do_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 96 at object.c:2820 [opt]
+	    frame #47: 0x002dcaff mono`mono_runtime_try_invoke(method=0x7aa54a90, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=0x002df772, error=&lt;unavailable&gt;) + 111 at object.c:2931 [opt]
+	    frame #48: 0x002b1efb mono`worker_thread(data=0x00000000) + 1275 at threadpool-ms.c:677 [opt]
+	    frame #49: 0x002ae447 mono`start_wrapper [inlined] start_wrapper_internal + 327 at threads.c:760 [opt]
+	    frame #50: 0x002ae300 mono`start_wrapper(data=&lt;unavailable&gt;) + 32 at threads.c:824 [opt]
+	    frame #51: 0x0043756d mono`inner_start_thread(data=&lt;unavailable&gt;) + 413 at mono-threads.c:1181 [opt]
+	    frame #52: 0x94644780 libsystem_pthread.dylib`_pthread_body + 138
+	    frame #53: 0x946446f6 libsystem_pthread.dylib`_pthread_start + 155
+	    frame #54: 0x94641f7a libsystem_pthread.dylib`thread_start + 34
+
+	  thread #10: tid = 0x2dc8240, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'Threadpool worker'
+	    frame #0: 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10
+	    frame #1: 0x94645538 libsystem_pthread.dylib`_pthread_cond_wait + 757
+	    frame #2: 0x94648d0b libsystem_pthread.dylib`pthread_cond_timedwait$UNIX2003 + 71
+	    frame #3: 0x002afa09 mono`mono_coop_cond_timedwait [inlined] mono_os_cond_timedwait(timeout_ms=&lt;unavailable&gt;) + 106 at mono-os-mutex.h:183 [opt]
+	    frame #4: 0x002af99f mono`mono_coop_cond_timedwait(cond=&lt;unavailable&gt;, mutex=&lt;unavailable&gt;, timeout_ms=&lt;unavailable&gt;) + 47 at mono-coop-mutex.h:99 [opt]
+	    frame #5: 0x002b1cbf mono`worker_thread [inlined] worker_park + 418 at threadpool-ms.c:549 [opt]
+	    frame #6: 0x002b1b1d mono`worker_thread(data=0x00000000) + 285 at threadpool-ms.c:641 [opt]
+	    frame #7: 0x002ae447 mono`start_wrapper [inlined] start_wrapper_internal + 327 at threads.c:760 [opt]
+	    frame #8: 0x002ae300 mono`start_wrapper(data=&lt;unavailable&gt;) + 32 at threads.c:824 [opt]
+	    frame #9: 0x0043756d mono`inner_start_thread(data=&lt;unavailable&gt;) + 413 at mono-threads.c:1181 [opt]
+	    frame #10: 0x94644780 libsystem_pthread.dylib`_pthread_body + 138
+	    frame #11: 0x946446f6 libsystem_pthread.dylib`_pthread_start + 155
+	    frame #12: 0x94641f7a libsystem_pthread.dylib`thread_start + 34
+
+	  thread #11: tid = 0x2dc824c, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'Timer-Scheduler'
+	    frame #0: 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10
+	    frame #1: 0x94645538 libsystem_pthread.dylib`_pthread_cond_wait + 757
+	    frame #2: 0x94647276 libsystem_pthread.dylib`pthread_cond_wait$UNIX2003 + 71
+	    frame #3: 0x001d021a mono`suspend_current [inlined] mono_os_cond_wait(cond=0x005351a0, mutex=0x00535170) + 24 at mono-os-mutex.h:150 [opt]
+	    frame #4: 0x001d0202 mono`suspend_current [inlined] mono_coop_cond_wait(cond=0x005351a0, mutex=0x00535170) + 41 at mono-coop-mutex.h:87 [opt]
+	    frame #5: 0x001d01d9 mono`suspend_current + 297 at debugger-agent.c:2929 [opt]
+	    frame #6: 0x001cd423 mono`process_single_step_inner [inlined] process_suspend(tls=&lt;unavailable&gt;, ctx=&lt;unavailable&gt;) + 1075 at debugger-agent.c:2751 [opt]
+	    frame #7: 0x001cd399 mono`process_single_step_inner(tls=&lt;unavailable&gt;, from_signal=&lt;unavailable&gt;) + 937 at debugger-agent.c:4913 [opt]
+	    frame #8: 0x001ccf8c mono`debugger_agent_single_step_from_context(ctx=0xb0948888) + 188 at debugger-agent.c:5057 [opt]
+	    frame #9: 0x007e70c6
+	    frame #10: 0x029a031c
+	    frame #11: 0x029a0164
+	    frame #12: 0x0299ffdc
+	    frame #13: 0x0299fed8
+	    frame #14: 0x0299fe38
+	    frame #15: 0x0299fd34
+	    frame #16: 0x0299f2f5
+	    frame #17: 0x0299e40f
+	    frame #18: 0x0299ded0
+	    frame #19: 0x0299daf4
+	    frame #20: 0x0299da04
+	    frame #21: 0x0299d844
+	    frame #22: 0x027c80af
+	    frame #23: 0x000e9950 mono`mono_jit_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 1536 at mini-runtime.c:2575 [opt]
+	    frame #24: 0x002df7c0 mono`do_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 96 at object.c:2820 [opt]
+	    frame #25: 0x002e1489 mono`mono_runtime_delegate_try_invoke [inlined] mono_runtime_invoke_checked(method=&lt;unavailable&gt;, params=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 329 at object.c:2978 [opt]
+	    frame #26: 0x002e1438 mono`mono_runtime_delegate_try_invoke(delegate=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 248 at object.c:3923 [opt]
+	    frame #27: 0x002e14f2 mono`mono_runtime_delegate_invoke_checked(delegate=0x00cfc3c8, params=0xb0948f04, error=0xb0948f08) + 50 at object.c:3944 [opt]
+	    frame #28: 0x002ae546 mono`start_wrapper [inlined] start_wrapper_internal + 582 at threads.c:768 [opt]
+	    frame #29: 0x002ae300 mono`start_wrapper(data=&lt;unavailable&gt;) + 32 at threads.c:824 [opt]
+	    frame #30: 0x0043756d mono`inner_start_thread(data=&lt;unavailable&gt;) + 413 at mono-threads.c:1181 [opt]
+	    frame #31: 0x94644780 libsystem_pthread.dylib`_pthread_body + 138
+	    frame #32: 0x946446f6 libsystem_pthread.dylib`_pthread_start + 155
+	    frame #33: 0x94641f7a libsystem_pthread.dylib`thread_start + 34
+
+	  thread #12: tid = 0x2dc824d, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'EventPumpThread'
+	    frame #0: 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10
+	    frame #1: 0x94645538 libsystem_pthread.dylib`_pthread_cond_wait + 757
+	    frame #2: 0x94647276 libsystem_pthread.dylib`pthread_cond_wait$UNIX2003 + 71
+	    frame #3: 0x00441428 mono`mono_os_cond_timedwait [inlined] mono_os_cond_wait(cond=0x7aa41a20, mutex=0x7aa419f4) + 12 at mono-os-mutex.h:150 [opt]
+	    frame #4: 0x0044141c mono`mono_os_cond_timedwait(cond=&lt;unavailable&gt;, mutex=&lt;unavailable&gt;, timeout_ms=&lt;unavailable&gt;) + 156 at mono-os-mutex.h:164 [opt]
+	    frame #5: 0x00440063 mono`mono_w32handle_timedwait_signal_handle [inlined] mono_w32handle_timedwait_signal_naked(cond=&lt;unavailable&gt;, mutex=&lt;unavailable&gt;, timeout=4294967295, poll=0, alerted=&lt;unavailable&gt;) + 11 at w32handle.c:976 [opt]
+	    frame #6: 0x00440058 mono`mono_w32handle_timedwait_signal_handle(poll=0, handle=&lt;unavailable&gt;, timeout=&lt;unavailable&gt;, alerted=&lt;unavailable&gt;) + 328 at w32handle.c:1091 [opt]
+	    frame #7: 0x0043fe07 mono`mono_w32handle_wait_one(handle=0x00001617, timeout=1, alertable=&lt;unavailable&gt;) + 951 at w32handle.c:1238 [opt]
+	    frame #8: 0x00423d46 mono`wapi_WaitForSingleObjectEx(handle=0x00001617, timeout=4294967295, alertable=1) + 38 at wait.c:42 [opt]
+	    frame #9: 0x002d955e mono`ves_icall_System_Threading_Monitor_Monitor_wait(obj=0x00001100, ms=&lt;unavailable&gt;) + 494 at monitor.c:1305 [opt]
+	    frame #10: 0x02a15874
+	    frame #11: 0x02a15670
+	    frame #12: 0x02a154c8
+	    frame #13: 0x02a15400
+	    frame #14: 0x02a151c8
+	    frame #15: 0x02a14a9c
+	    frame #16: 0x0299e40f
+	    frame #17: 0x0299ded0
+	    frame #18: 0x0299daf4
+	    frame #19: 0x0299da04
+	    frame #20: 0x0299d844
+	    frame #21: 0x027c80af
+	    frame #22: 0x000e9950 mono`mono_jit_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 1536 at mini-runtime.c:2575 [opt]
+	    frame #23: 0x002df7c0 mono`do_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 96 at object.c:2820 [opt]
+	    frame #24: 0x002e1489 mono`mono_runtime_delegate_try_invoke [inlined] mono_runtime_invoke_checked(method=&lt;unavailable&gt;, params=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 329 at object.c:2978 [opt]
+	    frame #25: 0x002e1438 mono`mono_runtime_delegate_try_invoke(delegate=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 248 at object.c:3923 [opt]
+	    frame #26: 0x002e14f2 mono`mono_runtime_delegate_invoke_checked(delegate=0x00d4c388, params=0xb0a4af04, error=0xb0a4af08) + 50 at object.c:3944 [opt]
+	    frame #27: 0x002ae546 mono`start_wrapper [inlined] start_wrapper_internal + 582 at threads.c:768 [opt]
+	    frame #28: 0x002ae300 mono`start_wrapper(data=&lt;unavailable&gt;) + 32 at threads.c:824 [opt]
+	    frame #29: 0x0043756d mono`inner_start_thread(data=&lt;unavailable&gt;) + 413 at mono-threads.c:1181 [opt]
+	    frame #30: 0x94644780 libsystem_pthread.dylib`_pthread_body + 138
+	    frame #31: 0x946446f6 libsystem_pthread.dylib`_pthread_start + 155
+	    frame #32: 0x94641f7a libsystem_pthread.dylib`thread_start + 34
+
+	  thread #13: tid = 0x2dc824e, 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10, name = 'TestRunnerThread'
+	    frame #0: 0x96cba3ea libsystem_kernel.dylib`__psynch_cvwait + 10
+	    frame #1: 0x94645538 libsystem_pthread.dylib`_pthread_cond_wait + 757
+	    frame #2: 0x94647276 libsystem_pthread.dylib`pthread_cond_wait$UNIX2003 + 71
+	    frame #3: 0x001d021a mono`suspend_current [inlined] mono_os_cond_wait(cond=0x005351a0, mutex=0x00535170) + 24 at mono-os-mutex.h:150 [opt]
+	    frame #4: 0x001d0202 mono`suspend_current [inlined] mono_coop_cond_wait(cond=0x005351a0, mutex=0x00535170) + 41 at mono-coop-mutex.h:87 [opt]
+	    frame #5: 0x001d01d9 mono`suspend_current + 297 at debugger-agent.c:2929 [opt]
+	    frame #6: 0x001cc681 mono`process_event(event=&lt;unavailable&gt;, arg=&lt;unavailable&gt;, il_offset=&lt;unavailable&gt;, ctx=&lt;unavailable&gt;, events=&lt;unavailable&gt;, suspend_policy=0) + 3489 at debugger-agent.c:3764 [opt]
+	    frame #7: 0x001cda8a mono`process_breakpoint_inner(tls=&lt;unavailable&gt;, from_signal=&lt;unavailable&gt;) + 858 at debugger-agent.c:4758 [opt]
+	    frame #8: 0x001cd6b7 mono`debugger_agent_breakpoint_from_context(ctx=0xb0b4b878) + 183 at debugger-agent.c:5082 [opt]
+	    frame #9: 0x007e6046
+	    frame #10: 0x02a3b092
+	    frame #11: 0x02a34cff
+	    frame #12: 0x000e9950 mono`mono_jit_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 1536 at mini-runtime.c:2575 [opt]
+	    frame #13: 0x002df7c0 mono`do_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 96 at object.c:2820 [opt]
+	    frame #14: 0x002e3787 mono`mono_runtime_try_invoke_array [inlined] mono_runtime_invoke_checked(method=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 96 at object.c:2978 [opt]
+	    frame #15: 0x002e3727 mono`mono_runtime_try_invoke_array(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 1287 at object.c:5080 [opt]
+	    frame #16: 0x002e3df9 mono`mono_runtime_invoke_array_checked(method=0x7a544d58, obj=0x00d61758, params=0x00000000, error=0xb0b4bbb0) + 57 at object.c:4958 [opt]
+	    frame #17: 0x0023c787 mono`ves_icall_InternalInvoke(method=&lt;unavailable&gt;, this_arg=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;) + 759 at icall.c:3263 [opt]
+	    frame #18: 0x0278eb78
+	    frame #19: 0x02a39fa8
+	    frame #20: 0x028743ec
+	    frame #21: 0x02a39c98
+	    frame #22: 0x02a3ac30
+	    frame #23: 0x02a3a765
+	    frame #24: 0x02a38e98
+	    frame #25: 0x02a38c00
+	    frame #26: 0x02a385e5
+	    frame #27: 0x02a37a48
+	    frame #28: 0x02a36824
+	    frame #29: 0x02a31b34
+	    frame #30: 0x02a2efc4
+	    frame #31: 0x02a2cc74
+	    frame #32: 0x02a2bfb0
+	    frame #33: 0x02a326b0
+	    frame #34: 0x02a31b34
+	    frame #35: 0x02a2efc4
+	    frame #36: 0x02a2cc74
+	    frame #37: 0x02a2bfb0
+	    frame #38: 0x02a31b34
+	    frame #39: 0x02a2efc4
+	    frame #40: 0x02a2cc74
+	    frame #41: 0x02a2bfb0
+	    frame #42: 0x02a31b34
+	    frame #43: 0x02a2efc4
+	    frame #44: 0x02a2cc74
+	    frame #45: 0x02a2bfb0
+	    frame #46: 0x02a31b34
+	    frame #47: 0x02a2efc4
+	    frame #48: 0x02a2cc74
+	    frame #49: 0x02a2bfb0
+	    frame #50: 0x02a1642d
+	    frame #51: 0x02a160a9
+	    frame #52: 0x0299e40f
+	    frame #53: 0x0299ded0
+	    frame #54: 0x0299daf4
+	    frame #55: 0x0299da04
+	    frame #56: 0x0299d844
+	    frame #57: 0x027c80af
+	    frame #58: 0x000e9950 mono`mono_jit_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 1536 at mini-runtime.c:2575 [opt]
+	    frame #59: 0x002df7c0 mono`do_runtime_invoke(method=&lt;unavailable&gt;, obj=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 96 at object.c:2820 [opt]
+	    frame #60: 0x002e1489 mono`mono_runtime_delegate_try_invoke [inlined] mono_runtime_invoke_checked(method=&lt;unavailable&gt;, params=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 329 at object.c:2978 [opt]
+	    frame #61: 0x002e1438 mono`mono_runtime_delegate_try_invoke(delegate=&lt;unavailable&gt;, params=&lt;unavailable&gt;, exc=&lt;unavailable&gt;, error=&lt;unavailable&gt;) + 248 at object.c:3923 [opt]
+	    frame #62: 0x002e14f2 mono`mono_runtime_delegate_invoke_checked(delegate=0x00d4c4e0, params=0xb0b4cf04, error=0xb0b4cf08) + 50 at object.c:3944 [opt]
+	    frame #63: 0x002ae546 mono`start_wrapper [inlined] start_wrapper_internal + 582 at threads.c:768 [opt]
+	    frame #64: 0x002ae300 mono`start_wrapper(data=&lt;unavailable&gt;) + 32 at threads.c:824 [opt]
+	    frame #65: 0x0043756d mono`inner_start_thread(data=&lt;unavailable&gt;) + 413 at mono-threads.c:1181 [opt]
+	    frame #66: 0x94644780 libsystem_pthread.dylib`_pthread_body + 138
+	    frame #67: 0x946446f6 libsystem_pthread.dylib`_pthread_start + 155
+	    frame #68: 0x94641f7a libsystem_pthread.dylib`thread_start + 34
+	(lldb) detach
+	Process 22547 detached
+	(lldb) (lldb) quit
+
+	=================================================================
+	Got a SIGABRT while executing native code. This usually indicates
+	a fatal error in the mono runtime or one of the native libraries 
+	used by your application.
+	=================================================================
+
+	Mono.Debugger.Soft.VMDisconnectedException: Exception of type 'Mono.Debugger.Soft.VMDisconnectedException' was thrown.
+	  at Mono.Debugger.Soft.Connection.SendReceive (Mono.Debugger.Soft.Connection+CommandSet command_set, System.Int32 command, Mono.Debugger.Soft.Connection+PacketWriter packet) [0x00132] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugger.Soft/Mono.Debugger.Soft/Connection.cs:1552 
+	  at Mono.Debugger.Soft.Connection.Type_GetPropertyCustomAttributes (System.Int64 id, System.Int64 field_id, System.Int64 attr_type_id, System.Boolean inherit) [0x00000] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugger.Soft/Mono.Debugger.Soft/Connection.cs:2239 
+	  at Mono.Debugger.Soft.PropertyInfoMirror.GetCAttrs (Mono.Debugger.Soft.TypeMirror type, System.Boolean inherit) [0x0003d] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugger.Soft/Mono.Debugger.Soft/PropertyInfoMirror.cs:128 
+	  at Mono.Debugger.Soft.PropertyInfoMirror.GetCustomAttributes (System.Boolean inherit) [0x00000] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugger.Soft/Mono.Debugger.Soft/PropertyInfoMirror.cs:113 
+	  at Mono.Debugging.Soft.SoftDebuggerAdaptor.OnGetTypeDisplayData (Mono.Debugging.Evaluation.EvaluationContext ctx, System.Object type) [0x00190] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugging.Soft/SoftDebuggerAdaptor.cs:1626 Mono.Debugger.Soft.VMDisconnectedException: Exception of type 'Mono.Debugger.Soft.VMDisconnectedException' was thrown.
+	  at Mono.Debugger.Soft.Connection.SendReceive (Mono.Debugger.Soft.Connection+CommandSet command_set, System.Int32 command, Mono.Debugger.Soft.Connection+PacketWriter packet) [0x00138] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugger.Soft/Mono.Debugger.Soft/Connection.cs:1553 
+	  at Mono.Debugger.Soft.Connection.Type_GetMethodsByNameFlags (System.Int64 id, System.String name, System.Int32 flags, System.Boolean ignoreCase) [0x00016] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugger.Soft/Mono.Debugger.Soft/Connection.cs:2245 
+	  at Mono.Debugger.Soft.TypeMirror.GetMethodsByNameFlags (System.String name, System.Reflection.BindingFlags flags, System.Boolean ignoreCase) [0x0001c] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugger.Soft/Mono.Debugger.Soft/TypeMirror.cs:731 
+	  at Mono.Debugging.Soft.SoftDebuggerAdaptor.OverloadResolve (Mono.Debugging.Soft.SoftEvaluationContext ctx, Mono.Debugger.Soft.TypeMirror type, System.String methodName, Mono.Debugger.Soft.TypeMirror[] genericTypeArgs, Mono.Debugger.Soft.TypeMirror returnType, Mono.Debugger.Soft.TypeMirror[] argTypes, System.Boolean allowInstance, System.Boolean allowStatic, System.Boolean throwIfNotFound, System.Boolean tryCasting) [0x00073] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugging.Soft/SoftDebuggerAdaptor.cs:1872 
+	  at Mono.Debugging.Soft.SoftDebuggerAdaptor.OverloadResolve (Mono.Debugging.Soft.SoftEvaluationContext ctx, Mono.Debugger.Soft.TypeMirror type, System.String methodName, Mono.Debugger.Soft.TypeMirror[] genericTypeArgs, Mono.Debugger.Soft.TypeMirror[] argTypes, System.Boolean allowInstance, System.Boolean allowStatic, System.Boolean throwIfNotFound, System.Boolean tryCasting) [0x00000] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugging.Soft/SoftDebuggerAdaptor.cs:1851 
+	  at Mono.Debugging.Soft.SoftDebuggerAdaptor.CallToString (Mono.Debugging.Evaluation.EvaluationContext ctx, System.Object obj) [0x000f4] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugging.Soft/SoftDebuggerAdaptor.cs:161 
+	  at Mono.Debugging.Evaluation.ObjectValueAdaptor.TargetObjectToObject (Mono.Debugging.Evaluation.EvaluationContext ctx, System.Object obj) [0x0035b] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugging/Mono.Debugging.Evaluation/ObjectValueAdaptor.cs:1111 
+	  at Mono.Debugging.Soft.SoftDebuggerAdaptor.TargetObjectToObject (Mono.Debugging.Evaluation.EvaluationContext ctx, System.Object obj) [0x00212] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugging.Soft/SoftDebuggerAdaptor.cs:2120 
+	  at Mono.Debugging.Evaluation.ExpressionEvaluator.TargetObjectToExpression (Mono.Debugging.Evaluation.EvaluationContext ctx, System.Object obj) [0x00000] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugging/Mono.Debugging.Evaluation/ExpressionEvaluator.cs:86 
+	  at Mono.Debugging.Evaluation.ObjectValueAdaptor.CreateObjectValueImpl (Mono.Debugging.Evaluation.EvaluationContext ctx, Mono.Debugging.Backend.IObjectValueSource source, Mono.Debugging.Client.ObjectPath path, System.Object obj, Mono.Debugging.Client.ObjectValueFlags flags) [0x001e0] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugging/Mono.Debugging.Evaluation/ObjectValueAdaptor.cs:488 
+	  at Mono.Debugging.Soft.SoftDebuggerAdaptor.CreateObjectValueImpl (Mono.Debugging.Evaluation.EvaluationContext ctx, Mono.Debugging.Backend.IObjectValueSource source, Mono.Debugging.Client.ObjectPath path, System.Object obj, Mono.Debugging.Client.ObjectValueFlags flags) [0x00000] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugging.Soft/SoftDebuggerAdaptor.cs:1216 
+	  at Mono.Debugging.Evaluation.ObjectValueAdaptor.CreateObjectValue (Mono.Debugging.Evaluation.EvaluationContext ctx, Mono.Debugging.Backend.IObjectValueSource source, Mono.Debugging.Client.ObjectPath path, System.Object obj, Mono.Debugging.Client.ObjectValueFlags flags) [0x00000] in /Users/builder/data/lanes/4533/2f11ef3c/source/monodevelop/main/external/debugger-libs/Mono.Debugging/Mono.Debugging.Evaluation/ObjectValueAdaptor.cs:91</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">RobertN</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-03-12 06:05:29 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Simple Testcase:
+
+	public interface IContact
+	{
+		string Foo { get; set; }
+	}
+
+	[Test]
+	public void MonoCrash()
+	{
+		var contact = A.Fake&lt;Interfaces.IContact&gt;();
+	}
+
+        &lt;packages&gt;
+	  &lt;package id="FakeItEasy" version="3.1.0" targetFramework="net45" /&gt;
+	  &lt;package id="NUnit" version="2.6.4" targetFramework="net45" /&gt;
+	&lt;/packages&gt;
+
+Inspection of "contact" after assignment via A.Fake&lt;... results in the debugger crash.
+
+Non-inspection of a debug session of [Test]MonoCrash method results in internal XS (or VS4M) error: "Debugger operation failed"</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

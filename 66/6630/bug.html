@@ -1,0 +1,2208 @@
+<html lang="en"><head>
+    <title>6630 – Crash in GdkQuartzWindow when showing code completion dialog</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Xamarin_Studio
+                 bz_component_Text_Editor
+                 bz_bug_6630 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;6630</span>
+
+        <span id="subtitle" class="subheader">Crash in GdkQuartzWindow when showing code completion dialog</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2013-04-03 18:16:55 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2013-04-03 18:16:55">
+  <input type="hidden" name="id" value="6630">
+  <input type="hidden" name="token" value="1559143399-lzpVOtsnELYOo9iadZQP0HB6sdJhXBm-8lbE3s7aNTo">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;6630</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">Crash in GdkQuartzWindow when showing code completion dialog</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>Crash in GdkQuartzWindow when showing code completion dialog
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Xamarin Studio
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Desktop
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">Text Editor
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>unspecified
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Mike Krüger</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label>Duplicates (4)</label>:
+    </th>
+    <td class="field_value">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=7205">7205</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=8011">8011</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - MonoDevelop crashes when using mono 3.x and dual monitor setup" href="show_bug.cgi?id=8647">8647</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Crash whenever I right-click" href="show_bug.cgi?id=8751">8751</a> 
+      </span>
+      ()
+    </td>
+  </tr>
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2012-08-21 13:23 UTC by <span class="vcard"><span class="fn">Bojan Rajkovic [MSFT]</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2013-04-03 18:16 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>13
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="andrei.baskov">andrei.baskov</option>
+                <option value="anuj.bhatia">anuj.bhatia</option>
+                <option value="curtis.wensley">curtis.wensley</option>
+                <option value="duncan.mak">duncan.mak</option>
+                <option value="fak">fak</option>
+                <option value="justin">justin</option>
+                <option value="kris">kris</option>
+                <option value="lluis">lluis</option>
+                <option value="luketheobscure">luketheobscure</option>
+                <option value="meister.fuchs">meister.fuchs</option>
+                <option value="mhutch">mhutch</option>
+                <option value="mitch">mitch</option>
+                <option value="mono-bugs+monodevelop">mono-bugs+monodevelop</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">gtk
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_application_octet-stream">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=3247&amp;file=get%20monitor%20config.c" title="View the content of the attachment">
+          <b>C code to display monitor configuration</b></a>
+
+          <span class="bz_attach_extra_info">
+              (589 bytes,
+                application/octet-stream)
+
+            <br>
+            <a href="#attach_3247" title="Go to the comment associated with the attachment">2013-01-20 15:00 UTC</a>,
+
+            <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=3247&amp;file=get%20monitor%20config.c">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/mono/monodevelop/issues">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bojan Rajkovic [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-08-21 13:23:34 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mono version: 2.10-series build from Wrench, or master build from Wrench.
+MonoDevelop version: Any
+
+A consistently reproducible crash occurs when showing the code completion window on any Mono version newer than the released Mono 2.10.9. The crash happens every time inside GdkQuartzWindow, and is sometimes preceded by the following message:
+
+8/21/12 12:37:56.070 PM MonoDevelop[38605]: CGSNewWindowWithOpaqueShape: Malformed reigon
+
+The crash itself always takes form with the following native stack trace:
+
+Application Specific Information:
+*** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Error (1007) creating CGSWindow'
+
+Application Specific Backtrace 1:
+0   CoreFoundation                      0x971c47ab __raiseError + 219
+1   libobjc.A.dylib                     0x9728d602 objc_exception_throw + 230
+2   CoreFoundation                      0x9712423b +[NSException raise:format:] + 139
+3   AppKit                              0x9590545c _NXCreateWindowWithStyleMask + 302
+4   AppKit                              0x9599bf35 _NSCreateWindow + 57
+5   AppKit                              0x95819f73 -[NSWindow _commonAwake] + 2066
+6   AppKit                              0x957d6c77 -[NSWindow _commonInitFrame:styleMask:backing:defer:] + 1652
+7   AppKit                              0x957d5d3f -[NSWindow _initContent:styleMask:backing:defer:contentView:] + 1063
+8   AppKit                              0x957d5904 -[NSWindow initWithContentRect:styleMask:backing:defer:] + 70
+9   AppKit                              0x95e4e24c -[NSWindow initWithContentRect:styleMask:backing:defer:screen:] + 79
+10  libgdk-quartz-2.0.0.dylib           0x02dda060 -[GdkQuartzWindow initWithContentRect:styleMask:backing:defer:screen:] + 144
+11  libgdk-quartz-2.0.0.dylib           0x02df391f _gdk_window_impl_new + 1359
+12  libgdk-quartz-2.0.0.dylib           0x02dc3e69 gdk_window_new + 1369
+13  libgtk-quartz-2.0.0.dylib           0x02b4f092 gtk_window_realize + 962
+14  libgobject-2.0.0.dylib              0x027ed9df g_cclosure_marshal_VOID__VOID + 223
+15  libgobject-2.0.0.dylib              0x027eb9ce g_type_class_meta_marshal + 142
+16  libgobject-2.0.0.dylib              0x027eb5bf g_closure_invoke + 511
+17  libgobject-2.0.0.dylib              0x0280b620 signal_emit_unlocked_R + 1616
+18  libgobject-2.0.0.dylib              0x0280a8e6 g_signal_emit_valist + 2662
+19  libgobject-2.0.0.dylib              0x0280adb1 g_signal_emit + 65
+20  libgtk-quartz-2.0.0.dylib           0x02b32dcf gtk_widget_realize + 495
+21  libgtk-quartz-2.0.0.dylib           0x02b32da5 gtk_widget_realize + 453
+22  libgtk-quartz-2.0.0.dylib           0x0299201b gtk_menu_popup + 1147
+23  ???                                 0x06d8a934 0x0 + 114862388
+24  ???                                 0x06d8a7d8 0x0 + 114862040
+25  ???                                 0x06d8a728 0x0 + 114861864
+26  ???                                 0x06d8a584 0x0 + 114861444
+27  ???                                 0x06d8a504 0x0 + 114861316
+28  ???                                 0x06d89880 0x0 + 114858112
+29  ???                                 0x06d89834 0x0 + 114858036
+30  ???                                 0x06d8975c 0x0 + 114857820
+31  ???                                 0x10ee9124 0x0 + 284070180
+32  ???                                 0x10c247a2 0x0 + 281167778
+33  ???                                 0x069859b0 0x0 + 110647728
+34  libgtk-quartz-2.0.0.dylib           0x0298923e _gtk_marshal_BOOLEAN__BOXED + 286
+35  libgobject-2.0.0.dylib              0x027eb9ce g_type_class_meta_marshal + 142
+36  libgobject-2.0.0.dylib              0x027eb5bf g_closure_invoke + 511
+37  libgobject-2.0.0.dylib              0x0280be94 signal_emit_unlocked_R + 3780
+38  libgobject-2.0.0.dylib              0x0280a98c g_signal_emit_valist + 2828
+39  libgobject-2.0.0.dylib              0x0280adb1 g_signal_emit + 65
+40  libgtk-quartz-2.0.0.dylib           0x02b35efd gtk_widget_event_internal + 749
+41  libgtk-quartz-2.0.0.dylib           0x02b3596f gtk_widget_event + 319
+42  libgtk-quartz-2.0.0.dylib           0x0298702e gtk_propagate_event + 654
+43  libgtk-quartz-2.0.0.dylib           0x02985416 gtk_main_do_event + 694
+44  libgdk-quartz-2.0.0.dylib           0x02de6319 gdk_event_dispatch + 153
+45  libglib-2.0.0.dylib                 0x026b1d61 g_main_dispatch + 513
+46  libglib-2.0.0.dylib                 0x026b365b g_main_context_dispatch + 155
+47  libglib-2.0.0.dylib                 0x026b3c8a g_main_context_iterate + 1466
+48  libglib-2.0.0.dylib                 0x026b45cd g_main_loop_run + 1037
+49  libgtk-quartz-2.0.0.dylib           0x02984a50 gtk_main + 240
+50  ???                                 0x07ba37e4 0x0 + 129644516
+51  ???                                 0x07ba37ac 0x0 + 129644460
+52  ???                                 0x07ba378c 0x0 + 129644428
+53  ???                                 0x02319534 0x0 + 36803892
+54  ???                                 0x00758fe8 0x0 + 7704552
+55  ???                                 0x00758de4 0x0 + 7704036
+56  ???                                 0x00758eaa 0x0 + 7704234
+57  libmonosgen-2.0.dylib               0x0015e672 mono_jit_runtime_invoke + 722
+58  libmonosgen-2.0.dylib               0x002fae6a mono_runtime_invoke + 170
+59  libmonosgen-2.0.dylib               0x002fd98c mono_runtime_exec_main + 620
+60  libmonosgen-2.0.dylib               0x002fcbf1 mono_runtime_run_main + 929
+61  libmonosgen-2.0.dylib               0x001ba3a5 mono_jit_exec + 149
+62  libmonosgen-2.0.dylib               0x001bc939 mono_main + 9609
+63  MonoDevelop                         0x000f7870 main + 2032
+64  MonoDevelop                         0x000f60d5 start + 53</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Anuj Bhatia</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-08-30 17:46:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mono version: MonoFramework-MDK-2.10.10.macos10.xamarin.x86.dmg
+MonoDevelop version: MonoDevelop-6a7c26c5fdb119dbad9bad7dea4e7165e5f751f7.dmg
+
+Consistently re-produceable crash when launching auto-updater:
+
+Process:         MonoDevelop [24538]
+Path:            /Applications/MonoDevelop_Alpha/MonoDevelop.app/Contents/MacOS/MonoDevelop
+Identifier:      com.xamarin.monodevelop
+Version:         3.1.0 (3.1.0)
+Code Type:       X86 (Native)
+Parent Process:  launchd [261]
+User ID:         501
+
+Date/Time:       2012-08-30 14:27:57.374 -0700
+OS Version:      Mac OS X 10.8.1 (12B19)
+Report Version:  10
+
+Interval Since Last Report:          357341 sec
+Crashes Since Last Report:           4
+Per-App Interval Since Last Report:  486 sec
+Per-App Crashes Since Last Report:   1
+Anonymous UUID:                      FD243C4E-F15F-4FBF-B1CF-49E355F3B9D3
+
+Crashed Thread:  0  Dispatch queue: com.apple.main-thread
+
+Exception Type:  EXC_BREAKPOINT (SIGTRAP)
+Exception Codes: 0x0000000000000002, 0x0000000000000000
+
+Application Specific Information:
+*** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Error (1007) creating CGSWindow'
+
+Application Specific Backtrace 1:
+0   CoreFoundation                      0x9a5917ab __raiseError + 219
+1   libobjc.A.dylib                     0x9330b602 objc_exception_throw + 230
+2   CoreFoundation                      0x9a4f123b +[NSException raise:format:] + 139
+3   AppKit                              0x95bd845c _NXCreateWindowWithStyleMask + 302
+4   AppKit                              0x95c6ef35 _NSCreateWindow + 57
+5   AppKit                              0x95aecf73 -[NSWindow _commonAwake] + 2066
+6   AppKit                              0x95aa9c77 -[NSWindow _commonInitFrame:styleMask:backing:defer:] + 1652
+7   AppKit                              0x95aa8d3f -[NSWindow _initContent:styleMask:backing:defer:contentView:] + 1063
+8   AppKit                              0x95aa8904 -[NSWindow initWithContentRect:styleMask:backing:defer:] + 70
+9   AppKit                              0x9612124c -[NSWindow initWithContentRect:styleMask:backing:defer:screen:] + 79
+10  libgdk-quartz-2.0.0.dylib           0x02181d40 -[GdkQuartzWindow initWithContentRect:styleMask:backing:defer:screen:] + 144
+11  libgdk-quartz-2.0.0.dylib           0x0219b84f _gdk_window_impl_new + 1359
+12  libgdk-quartz-2.0.0.dylib           0x0216bb49 gdk_window_new + 1369
+13  libgtk-quartz-2.0.0.dylib           0x01ef5942 gtk_window_realize + 962
+14  libgobject-2.0.0.dylib              0x029a29df g_cclosure_marshal_VOID__VOID + 223
+15  libgobject-2.0.0.dylib              0x029a09ce g_type_class_meta_marshal + 142
+16  libgobject-2.0.0.dylib              0x029a05bf g_closure_invoke + 511
+17  libgobject-2.0.0.dylib              0x029c0620 signal_emit_unlocked_R + 1616
+18  libgobject-2.0.0.dylib              0x029bf8e6 g_signal_emit_valist + 2662
+19  libgobject-2.0.0.dylib              0x029bfdb1 g_signal_emit + 65
+20  libgtk-quartz-2.0.0.dylib           0x01ed93ff gtk_widget_realize + 495
+21  libgtk-quartz-2.0.0.dylib           0x01ed93d5 gtk_widget_realize + 453
+22  libgtk-quartz-2.0.0.dylib           0x01d3385b gtk_menu_popup + 1147
+23  libgtk-quartz-2.0.0.dylib           0x01c58e9a gtk_combo_box_menu_popup + 362
+24  libgtk-quartz-2.0.0.dylib           0x01c5be75 gtk_combo_box_menu_button_press + 245
+25  libgtk-quartz-2.0.0.dylib           0x01d2aa7e _gtk_marshal_BOOLEAN__BOXED + 286
+26  libgobject-2.0.0.dylib              0x029a05bf g_closure_invoke + 511
+27  libgobject-2.0.0.dylib              0x029c0bbe signal_emit_unlocked_R + 3054
+28  libgobject-2.0.0.dylib              0x029bf98c g_signal_emit_valist + 2828
+29  libgobject-2.0.0.dylib              0x029bfdb1 g_signal_emit + 65
+30  libgtk-quartz-2.0.0.dylib           0x01edc7ad gtk_widget_event_internal + 749
+31  libgtk-quartz-2.0.0.dylib           0x01edbf9f gtk_widget_event + 319
+32  libgtk-quartz-2.0.0.dylib           0x01d283a1 propagate_event_up + 97
+33  libgtk-quartz-2.0.0.dylib           0x01d28757 propagate_event + 535
+34  libgtk-quartz-2.0.0.dylib           0x01d28867 gtk_propagate_event + 247
+35  libgtk-quartz-2.0.0.dylib           0x01d2695f gtk_main_do_event + 767
+36  libgdk-quartz-2.0.0.dylib           0x0218e279 gdk_event_dispatch + 153
+37  libglib-2.0.0.dylib                 0x01abed61 g_main_dispatch + 513
+38  libglib-2.0.0.dylib                 0x01ac065b g_main_context_dispatch + 155
+39  libglib-2.0.0.dylib                 0x01ac0c8a g_main_context_iterate + 1466
+40  libglib-2.0.0.dylib                 0x01ac15cd g_main_loop_run + 1037
+41  libgtk-quartz-2.0.0.dylib           0x01c6f8f5 gtk_dialog_run + 597
+42  ???                                 0x11b55644 0x0 + 297096772
+43  ???                                 0x11b55600 0x0 + 297096704
+44  ???                                 0x11b55518 0x0 + 297096472
+45  ???                                 0x11b54a98 0x0 + 297093784
+46  ???                                 0x11b549d0 0x0 + 297093584
+47  ???                                 0x11b549a4 0x0 + 297093540
+48  ???                                 0x11b4f10c 0x0 + 297070860
+49  ???                                 0x0ce3c51e 0x0 + 216253726
+50  ???                                 0x0cd205ea 0x0 + 215090666
+51  ???                                 0x02dc357c 0x0 + 47986044
+52  libglib-2.0.0.dylib                 0x01ac2fa6 g_timeout_dispatch + 102
+53  libglib-2.0.0.dylib                 0x01abed61 g_main_dispatch + 513
+54  libglib-2.0.0.dylib                 0x01ac065b g_main_context_dispatch + 155
+55  libglib-2.0.0.dylib                 0x01ac0c8a g_main_context_iterate + 1466
+56  libglib-2.0.0.dylib                 0x01ac15cd g_main_loop_run + 1037
+57  libgtk-quartz-2.0.0.dylib           0x01d25f50 gtk_main + 240
+58  ???                                 0x0ce2ed34 0x0 + 216198452
+59  ???                                 0x0ce2ebcc 0x0 + 216198092
+60  ???                                 0x0ce2ebac 0x0 + 216198060
+61  ???                                 0x019e2374 0x0 + 27140980
+62  ???                                 0x009c0f90 0x0 + 10227600
+63  ???                                 0x009c0d9c 0x0 + 10227100
+64  ???                                 0x009c0e56 0x0 + 10227286
+65  libmono-2.0.dylib                   0x0010d252 mono_jit_runtime_invoke + 722
+66  libmono-2.0.dylib                   0x002a7c7a mono_runtime_invoke + 170
+67  libmono-2.0.dylib                   0x002aa79c mono_runtime_exec_main + 620
+68  libmono-2.0.dylib                   0x002a9a01 mono_runtime_run_main + 929
+69  libmono-2.0.dylib                   0x0016a755 mono_jit_exec + 149
+70  libmono-2.0.dylib                   0x0016cce9 mono_main + 9609
+71  MonoDevelop                         0x000a6870 main + 2032
+72  MonoDevelop                         0x000a50d5 start + 53</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-09-01 04:33:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><span class="quote">&gt; A consistently reproducible crash occurs when showing the code completion
+&gt; window on any Mono version newer than the released Mono 2.10.9. The crash
+&gt; happens every time inside GdkQuartzWindow, and is sometimes preceded by the</span>
+
+Does this happen for everybody?  Does this happen with every project/solution or only certain solutions?
+
+I cannot reproduce it. My impression from the trace and debug message is that a window with invalid size is created. If this is true, this is something GTK+ would have to guard for.</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bojan Rajkovic [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-09-01 10:51:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Two notes:
+
+Kristian, it was constistently reproducible for me, and I presume it is for Anuj with his crash as well. However, in the meantime, I wiped my machine and installed a fresh OS X Mountain Lion and then installed Mono and MonoDevelop, and I've had no issues. This was on my MacBook Pro. I haven't tried on my iMac yet, but I will try sometime over the weekend and hope that I can reproduce it with a symbolicated build. 
+
+I'm wondering if maybe something I installed didn't ship a bad GTK/Quartz? I can't think of any good reason. I didn't have GTK+ debug symbols due to a packaging issue with Mono, but if Anuj can still reproduce it, maybe he can install a symbolicated build (I think we have some now) and see what's going on in GTK+.</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bojan Rajkovic [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-09-18 16:15:50 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I can, again, reproduce this crash. I haven't installed any GTK/Quartz using apps, though I did update my Mono and MonoDevelop builds recently. 
+
+The weirdest thing is, this bug goes away when running under GDB. Running gdb /Applications/MonoDevelop.app/Contents/MacOS/MonoDevelop leads to the crash not happening.
+
+I can reproduce it with gdb --attach, but I still don't get symbols, which leads me to believe syms are still screwed up.</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-10-26 13:29:16 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=8011">Bug 8011</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-10-26 13:32:07 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=7205">Bug 7205</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Frank A. Krueger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-10-31 16:00:54 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I can confirm that running 
+
+$ gdb /Applications/Xamarin\ Studio.app/Contents/MacOS/MonoDevelop
+
+makes the problem go away. Otherwise it is reliably reproduced.</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Frank A. Krueger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-11-01 14:50:32 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I just bought a new computer, did a clean install of Mono 3.0 and MD (wrench), and the problem persists.</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Justin Ferrell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-11-05 09:35:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Same issue. 'gdb' didn't fix. Acts fine opening and closing solutions/files, selecting text. Crashes as soon as I try to enter a character into the source editor.</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bojan Rajkovic [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-11-26 00:55:23 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'm not able to see this anymore—is anyone else seeing it still?</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-11-29 19:12:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - MonoDevelop crashes when using mono 3.x and dual monitor setup" href="show_bug.cgi?id=8647">Bug 8647</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-04 20:10:53 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Crash whenever I right-click" href="show_bug.cgi?id=8751">Bug 8751</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-05 04:42:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Some googling on "Error (1007) creating CGSWindow" gives that this exception is apparently thrown when communication with the window server and indicates either:
+
+ - The system being out of resources (<a href="http://lists.apple.com/archives/cocoa-dev/2009/Jan/msg01086.html">http://lists.apple.com/archives/cocoa-dev/2009/Jan/msg01086.html</a>)
+
+ - Creating an NSWindow with invalid frame rect (<a href="http://stackoverflow.com/questions/4043371/create-nswindow-from-worker-thread-crash">http://stackoverflow.com/questions/4043371/create-nswindow-from-worker-thread-crash</a>  and  <a href="http://www.cocoabuilder.com/archive/cocoa/96194-creating-window-without-ib.html#96193">http://www.cocoabuilder.com/archive/cocoa/96194-creating-window-without-ib.html#96193</a>)
+
+
+This likely confirms my suspicion of a window with invalid size in <a href="bug.html">comment 2</a>, I think we should figure a way to artificially raise this condition so we can put guards in place. Though, secondly we would have to figure out when exactly this is caused on MonoDevelop.</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthias Fuchs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-11 02:49:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I tried the trick with gdb and it works. There is no crash.
+For now this is short-time solution for me, but this bug has to be fixed!</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-15 06:05:16 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The crash can occur if a GdkWindow is created with attributes-&gt;height or attributes-&gt;width being an extremely large value (or uninitialized garbage which is a positive number). GDK already guards for width, height being smaller than 1. Because _NXCreateWindowWithStyleMask is present in the trace, the window being created has window type GDK_WINDOW_TEMP, which likely is a GTK_WINDOW_POPUP.
+
+Now the question is when these invalid parameters are passed in exactly.</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-15 06:33:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">In the traces related to this bug I have seen, the GdkWindow is created from gtk_window_realize. gtk_window_realize always sets the width and height attributes to widget-&gt;allocation.{width,height}. It ensures a size request/allocate is done before the window is created. All widgets have their allocations properly initialized in gtk_widget_init().
+
+So, the most probable cause is likely a size request routine returning a very large value. This is either due to a bug, or due to the size request depending on user data (i.e. very large text strings).
+[Of course, there's still the option that something else is causing window creation to fail, for example the system being out of resources].
+
+
+In GDK, we can either:
+
+   * Apply a maximum bound to window width, height and create the window anyway (which will give you a big useless window).
+
+   * Guard for very large window width, height values and refuse the create the window.
+
+   * Actually catch and handle NSExceptions created by window creation.
+
+In the last two cases the window is not created, which will likely leave the program in a troublesome state.
+And, neither of these will fix the actual problem.</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-15 06:34:10 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Is there the possibility that MonoDevelop creates popup windows, either from a menu or the code completion window that will contain very large text strings that could cause this problem?</pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-15 06:49:14 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">For the record, on my machine window creation starts to occur if width * height comes close to 0x10000000.  0x4000 * 0x4000 does NOT work, 0x3900 * 0x4000 does work.  (I guess values are being rounded up for texture creation).
+
+Your mileage may vary, something like 589824 * 100 also seems an upper bound though it does not come near 0x10000000.</pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Lluis Sanchez</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-17 06:56:14 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I don't think MD creates such a big popup windows.</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthias Fuchs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-17 10:08:01 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Since a few days I have a third monitor (USB-VGA) connected to my macbook pro.
+
+Everytime I startup MD, the main windows has the full width of all 3 monitors combined (~4400px). I have to resize the window to fit the main monitor. This setting gets lost if I close MD.
+
+I will try to disconnect my usb vga and see if the problem still occurs.</pre>
+    </div>
+
+    <div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-17 13:33:42 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Note that this has also been reported with context menus. Maybe it has something to do with our GetUsableMonitorGeometry logic?</pre>
+    </div>
+
+    <div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthias Fuchs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-18 01:29:07 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">With the usb vga disconnected MD works correctly!
+How can I check what resolution ist being reported with GetUsableMonitorGeometry?
+Is there any way to debug this.
+
+Btw, there are many issues with usb vga adapters and Mountain Lion. The performance is poor and there are quite many bugs (like wrong mouse cursors, screen parts that are not redrawn etc).</pre>
+    </div>
+
+    <div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Curtis Wensley</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-18 01:41:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have the issue when connecting a monitor via display port-&gt;dvi as well, so might not be due to issues with usb vga adapters per se, just external monitors?</pre>
+    </div>
+
+    <div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthias Fuchs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-18 02:51:26 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">My main monitor is also connected via display port adapter (to hdmi) and I don't have any problems with that.
+
+I will play around with the code from here: <a href="https://groups.google.com/forum/?fromgroups=#!topic/mono-svn-patches/MxqqIE33cbs">https://groups.google.com/forum/?fromgroups=#!topic/mono-svn-patches/MxqqIE33cbs</a>
+Maybe I can find a solution.</pre>
+    </div>
+
+    <div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-13 14:34:44 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">From what I can see, in most cases data from GetUsableMonitorGeometry is only used to determine the (x, y) coordinates. My assumption is that very large values of (x, y) coordinates (either positive or negative) cannot cause the crash. Neither can negative width, height, but very large positive width and height can trigger the exception.
+
+If the width, height of a screen are always positive, I don't think GetUsableMonitorGeometry can cause trouble in the two cases the width/height returned are used in determining the width/height of a popup window.
+
+Bojan indicated that the problems are sometimes preceded by 
+
+8/21/12 12:37:56.070 PM MonoDevelop[38605]: CGSNewWindowWithOpaqueShape:
+Malformed reigon
+
+(the typo actually does exist in the CoreGraphics code, which is useful to find the exact place where this error is emitted :) ).
+
+This error is emitted before attempting to create the window, so, before problems would arise because of very large window width/height. It is thus possible that something else can be wrong in the given input data.
+
+I am currently in the process of trying to figure out the exact conditions under which these exceptions occur. This is a long and slow process unfortunately. Hopefully it will give us some more hints. Also, I will be double checking that the GDK code will never create a screen structure with negative or very large width/height values.
+
+
+
+If anybody finds a reliable way to reproduce this crash, I would still be very much interested in that!</pre>
+    </div>
+
+    <div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthias Fuchs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-13 15:55:15 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">For me this is reproducible to 100% by using my displaylink usb vga adapter. When there is this usb display is set up MD always crashes as described above. Maybe there is a chance for you to grab such a usb device or you can tell me what to do and I will try to find out more about his bug.</pre>
+    </div>
+
+    <div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-13 16:18:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Matthias: good to know you have a 100% reproducibility success rate.  I am interesting in the exact arrangements of monitors you are using.  During the week, I will try to create a small program you can run that will give the exact coordinates of the monitor arrangement you are using. I hope this will then give us a hint whether these coordinates can result in "wrong" window widths and heights somewhere in GTK+/GDK.  Or maybe it will help me arrange my external monitor such that I can reproduce the problem as well.</pre>
+    </div>
+
+    <div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-20 15:00:54 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=3247&amp;file=get%20monitor%20config.c" name="attach_3247" title="C code to display monitor configuration">attachment 3247</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=3247&amp;file=get%20monitor%20config.c" title="C code to display monitor configuration">[details]</a></span>
+C code to display monitor configuration
+
+Matthias: Could you please compile and run the attachment C program with the monitor configuration that crashes MonoDevelop?</pre>
+    </div>
+
+    <div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthias Fuchs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-23 06:03:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This is what i get without the third monitor attached:
+Monitor 0: (0.000000, 0.000000)  1920.000000x1080.000000
+Monitor 1: (1920.000000, 180.000000)  1440.000000x900.000000
+
+This is the 3rd monitor connected (monitor 2)
+Monitor 0: (0.000000, 0.000000)  1920.000000x1080.000000
+Monitor 1: (3000.000000, 180.000000)  1440.000000x900.000000
+Monitor 2: (1920.000000, -451.000000)  1080.000000x1920.000000</pre>
+    </div>
+
+    <div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthias Fuchs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-23 06:15:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I moved around my screes (in the system settings) and now monodevelop doesn't crash anymore (mono 3.0.2 and MD 3.1.1).
+
+But I'm pretty sure I didn't upgrade any of these 2 components.
+I didn't use the third monitor for a while now, because of the constant crashing, only to find it working now ...</pre>
+    </div>
+
+    <div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-23 06:18:56 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks Matthias.  The printed configuration, is that from before or after moving around the screens?</pre>
+    </div>
+
+    <div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthias Fuchs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-23 06:32:52 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">fom before. i didn't try MD thought because I expected it not to work ... sorry my fault.</pre>
+    </div>
+
+    <div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-27 10:29:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">According to my pen and paper calculations, GDK correctly translates the given monitor configuration into a GDK monitor configuration. Also GetUsableMonitorGeometry in MonoDevelop should not be at fault.
+
+Will need to think about where else things could go wrong.</pre>
+    </div>
+
+    <div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">luketheobscure
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-13 16:53:28 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'm also getting this error. It is 100% reproducible. I'm running two monitors, one off of my thunderbolt connection.</pre>
+    </div>
+
+    <div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-13 16:54:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Luke: could you run the code posted in <a href="bug.html">comment 28</a> with your dual monitor configuration active?</pre>
+    </div>
+
+    <div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">luketheobscure
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-13 17:01:18 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Monitor 0: (0.000000, 0.000000)  1920.000000x1080.000000
+Monitor 1: (-1440.000000, 0.000000)  1440.000000x900.000000</pre>
+    </div>
+
+    <div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">luketheobscure
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-13 17:03:22 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">MonoDevelop 3.0.6
+OSX 10.8.2
+MacBook Pro Retina, Mid 2012</pre>
+    </div>
+
+    <div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-13 17:08:07 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The monitor configuration is nothing out of the ordinary.  Could you perhaps check in Console.app if you can see any error message/diagnostic that could be related to MonoDevelop around the time you triggered the problem?  It might be worth checking windowserver.log in Console.app as well.  Thanks!</pre>
+    </div>
+
+    <div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">luketheobscure
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-13 17:12:53 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Nothing substantially different than what's in the crash logs.
+
+Crash log excerpt:
+"*** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Error (1007) creating CGSWindow'"
+
+Console excerpt:
+2/13/13 2:08:54.727 PM MonoDevelop[3204]: CGSNewWindowWithOpaqueShape: Malformed reigon</pre>
+    </div>
+
+    <div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">luketheobscure
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-14 12:56:08 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Just tested on the beta version 3.1.1 and it didn't crash (yet).</pre>
+    </div>
+
+    <div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-17 11:53:36 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">So if I understand correctly, both Matthias and Luke are not seeing the problem anymore on MD 3.1.1?</pre>
+    </div>
+
+    <div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-17 18:21:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Might have been stack corruption from another since-fixed bug, I suppose.
+
+Let's needinfo this for a while, to find out whether anyone gets it with 3.1.1+.</pre>
+    </div>
+
+    <div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bojan Rajkovic [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-03 18:16:55 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I haven't seen this in months and months now. Marking as resolved fixed (in agreement with <a href="bug.html">comment 42</a>) until someone reports it again.</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>
