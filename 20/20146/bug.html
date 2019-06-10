@@ -1,0 +1,1042 @@
+<html lang="en"><head>
+    <title>20146 – AudioUnit callback works on simulator, but fails on iPhone device</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_iOS
+                 bz_component_XI_runtime
+                 bz_bug_20146 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;20146</span>
+
+        <span id="subtitle" class="subheader">AudioUnit callback works on simulator, but fails on iPhone device</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2014-06-05 05:43:46 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-06-05 05:43:46">
+  <input type="hidden" name="id" value="20146">
+  <input type="hidden" name="token" value="1559203620-lVYkeHWjcvk5PZZowM7dDkbLT9jArwBgWPWwEYk4dX0">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;20146</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">AudioUnit callback works on simulator, but fails on iPhone device</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>AudioUnit callback works on simulator, but fails on iPhone device
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          NOT_ON_ROADMAP
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">iOS
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Xamarin
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">XI runtime
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>7.0.0.x
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>Untriaged
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Bugzilla</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2014-05-29 12:08 UTC by <span class="vcard"><span class="fn">Mike James</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-06-05 05:43 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>3
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="masafa">masafa</option>
+                <option value="mono-bugs+monotouch">mono-bugs+monotouch</option>
+                <option value="sunilk">sunilk</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/xamarin">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">NOT_ON_ROADMAP
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mike James</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-29 12:08:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Initially believed to be the same as #5034 but I'm unable to get a stack trace. You can use the sample app attached to the other bug to reproduce. 
+
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - AudioUnit callback works on simulator, but fails on iPhone device" href="show_bug.cgi?id=5034">https://bugzilla.xamarin.com/show_bug.cgi?id=5034</a>
+
+Xcode crash log: 
+
+Incident Identifier: 000EC53B-8FB5-4807-B01F-941885FC58D9
+CrashReporter Key:   934c2162c3b4e52a6b92239ee2a688bcfe685f68
+Hardware Model:      iPhone6,2
+Process:             AudioUnitTest [23174]
+Path:                /var/mobile/Applications/13133E51-C25F-45BA-B71D-6CFD54DD0EB6/AudioTest.app/AudioUnitTest
+Identifier:          audiotest
+Version:             1.0
+Code Type:           ARM (Native)
+Parent Process:      launchd [1]
+
+Date/Time:           2014-05-29 16:59:01.807 +0100
+OS Version:          iOS 7.1.1 (11D201)
+Report Version:      104
+
+Exception Type:  EXC_BAD_ACCESS (SIGABRT)
+Exception Subtype: KERN_INVALID_ADDRESS at 0x0000000000000004
+Triggered by Thread:  7
+
+Thread 0:
+0   libsystem_kernel.dylib        	0x389bfa50 mach_msg_trap + 20
+1   libsystem_kernel.dylib        	0x389bf8e5 mach_msg + 193
+2   CoreFoundation                	0x2dc55625 __CFRunLoopServiceMachPort + 153
+3   CoreFoundation                	0x2dc53d8b __CFRunLoopRun + 859
+4   CoreFoundation                	0x2dbbe765 CFRunLoopRunSpecific + 521
+5   CoreFoundation                	0x2dbbe547 CFRunLoopRunInMode + 103
+6   GraphicsServices              	0x32b1b6cf GSEventRunModal + 135
+7   UIKit                         	0x3051d88d UIApplicationMain + 1133
+8   AudioUnitTest                 	0x0003547c 0x4000 + 201852
+9   AudioUnitTest                 	0x0001fbc0 0x4000 + 113600
+10  AudioUnitTest                 	0x0000a174 0x4000 + 24948
+11  AudioUnitTest                 	0x000d0f00 0x4000 + 839424
+12  AudioUnitTest                 	0x0012b17f 0x4000 + 1208703
+13  AudioUnitTest                 	0x001665e3 0x4000 + 1451491
+14  AudioUnitTest                 	0x0016a26b 0x4000 + 1466987
+15  AudioUnitTest                 	0x0016a0b3 0x4000 + 1466547
+16  AudioUnitTest                 	0x00119161 0x4000 + 1134945
+17  AudioUnitTest                 	0x00198cec 0x4000 + 1658092
+18  AudioUnitTest                 	0x0000a024 0x4000 + 24612
+
+Thread 1:
+0   libsystem_kernel.dylib        	0x389bf804 kevent64 + 24
+1   libdispatch.dylib             	0x3890e051 _dispatch_mgr_invoke + 229
+2   libdispatch.dylib             	0x389082df _dispatch_mgr_thread + 35
+
+Thread 2:
+0   libsystem_kernel.dylib        	0x389d2c70 __workq_kernreturn + 8
+1   libsystem_pthread.dylib       	0x38a37c1f _pthread_wqthread + 307
+2   libsystem_pthread.dylib       	0x38a37ad8 start_wqthread + 4
+
+Thread 3:
+0   libsystem_kernel.dylib        	0x389d2334 __recvfrom + 20
+1   libsystem_c.dylib             	0x3893f98b recv + 19
+2   AudioUnitTest                 	0x0019aee0 0x4000 + 1666784
+3   AudioUnitTest                 	0x0019b0d0 0x4000 + 1667280
+4   AudioUnitTest                 	0x0019bfc0 0x4000 + 1671104
+5   AudioUnitTest                 	0x00199cec 0x4000 + 1662188
+6   AudioUnitTest                 	0x00197ab4 0x4000 + 1653428
+7   Foundation                    	0x2e673a0b __NSThread__main__ + 1059
+8   libsystem_pthread.dylib       	0x38a39957 _pthread_body + 139
+9   libsystem_pthread.dylib       	0x38a398c7 _pthread_start + 99
+10  libsystem_pthread.dylib       	0x38a37ae4 thread_start + 4
+
+Thread 4:
+0   libsystem_kernel.dylib        	0x389d2334 __recvfrom + 20
+1   libsystem_c.dylib             	0x3893f98b recv + 19
+2   AudioUnitTest                 	0x0019aee0 0x4000 + 1666784
+3   AudioUnitTest                 	0x0019afdc 0x4000 + 1667036
+4   AudioUnitTest                 	0x0011014b 0x4000 + 1098059
+5   AudioUnitTest                 	0x0018860d 0x4000 + 1590797
+6   AudioUnitTest                 	0x0019638d 0x4000 + 1647501
+7   libsystem_pthread.dylib       	0x38a39957 _pthread_body + 139
+8   libsystem_pthread.dylib       	0x38a398c7 _pthread_start + 99
+9   libsystem_pthread.dylib       	0x38a37ae4 thread_start + 4
+
+Thread 5:
+0   libsystem_kernel.dylib        	0x389bfaa0 semaphore_wait_trap + 8
+1   AudioUnitTest                 	0x00187fd3 0x4000 + 1589203
+2   AudioUnitTest                 	0x00148655 0x4000 + 1328725
+3   AudioUnitTest                 	0x001785e3 0x4000 + 1525219
+4   AudioUnitTest                 	0x0018860d 0x4000 + 1590797
+5   AudioUnitTest                 	0x0019638d 0x4000 + 1647501
+6   libsystem_pthread.dylib       	0x38a39957 _pthread_body + 139
+7   libsystem_pthread.dylib       	0x38a398c7 _pthread_start + 99
+8   libsystem_pthread.dylib       	0x38a37ae4 thread_start + 4
+
+Thread 6:
+0   libsystem_kernel.dylib        	0x389d2c70 __workq_kernreturn + 8
+1   libsystem_pthread.dylib       	0x38a37c1f _pthread_wqthread + 307
+2   libsystem_pthread.dylib       	0x38a37ad8 start_wqthread + 4
+
+Thread 7 Crashed:
+0   libsystem_kernel.dylib        	0x389d21f0 __pthread_kill + 8
+1   libsystem_pthread.dylib       	0x38a3a7b3 pthread_kill + 55
+2   libsystem_c.dylib             	0x38982ff5 abort + 73
+3   AudioUnitTest                 	0x0011fd49 0x4000 + 1162569
+4   AudioUnitTest                 	0x00129025 0x4000 + 1200165
+5   libsystem_platform.dylib      	0x38a35721 _sigtramp + 41
+6   AudioUnitTest                 	0x00166e0f 0x4000 + 1453583
+7   AudioUnitTest                 	0x00166e0f 0x4000 + 1453583
+8   AudioUnitTest                 	0x00169925 0x4000 + 1464613
+9   AudioUnitTest                 	0x000d2324 0x4000 + 844580
+10  AudioUnitTest                 	0x00035588 0x4000 + 202120
+11  AudioToolbox                  	0x2d64a43b AUInputElement::PullInput(unsigned long&amp;, AudioTimeStamp const&amp;, unsigned long, unsigned long) + 123
+12  AudioToolbox                  	0x2d646fed AUInputFormatConverter2::InputProc(OpaqueAudioConverter*, unsigned long*, AudioBufferList*, AudioStreamPacketDescription**, void*) + 209
+13  AudioToolbox                  	0x2d578e73 AudioConverterChain::CallInputProc(unsigned long) + 327
+14  AudioToolbox                  	0x2d578be7 AudioConverterChain::FillBufferFromInputProc(unsigned long*, CABufferList*) + 95
+15  AudioToolbox                  	0x2d578b7b BufferedAudioConverter::GetInputBytes(unsigned long, unsigned long&amp;, CABufferList const*&amp;) + 111
+16  AudioToolbox                  	0x2d578a89 CBRConverter::RenderOutput(CABufferList*, unsigned long, unsigned long&amp;, AudioStreamPacketDescription*) + 73
+17  AudioToolbox                  	0x2d57892b BufferedAudioConverter::FillBuffer(unsigned long&amp;, AudioBufferList&amp;, AudioStreamPacketDescription*) + 295
+18  AudioToolbox                  	0x2d578b61 BufferedAudioConverter::GetInputBytes(unsigned long, unsigned long&amp;, CABufferList const*&amp;) + 85
+19  AudioToolbox                  	0x2d578a89 CBRConverter::RenderOutput(CABufferList*, unsigned long, unsigned long&amp;, AudioStreamPacketDescription*) + 73
+20  AudioToolbox                  	0x2d57892b BufferedAudioConverter::FillBuffer(unsigned long&amp;, AudioBufferList&amp;, AudioStreamPacketDescription*) + 295
+21  AudioToolbox                  	0x2d578b61 BufferedAudioConverter::GetInputBytes(unsigned long, unsigned long&amp;, CABufferList const*&amp;) + 85
+22  AudioToolbox                  	0x2d587b97 Resampler2Wrapper::RenderOutput(CABufferList*, unsigned long, unsigned long&amp;) + 127
+23  AudioToolbox                  	0x2d57892b BufferedAudioConverter::FillBuffer(unsigned long&amp;, AudioBufferList&amp;, AudioStreamPacketDescription*) + 295
+24  AudioToolbox                  	0x2d5789ff AudioConverterChain::RenderOutput(CABufferList*, unsigned long, unsigned long&amp;, AudioStreamPacketDescription*) + 91
+25  AudioToolbox                  	0x2d57892b BufferedAudioConverter::FillBuffer(unsigned long&amp;, AudioBufferList&amp;, AudioStreamPacketDescription*) + 295
+26  AudioToolbox                  	0x2d58723f AudioConverterFillComplexBuffer + 355
+27  AudioToolbox                  	0x2d646ecd AUInputFormatConverter2::PullAndConvertInput(AudioTimeStamp const&amp;, unsigned long&amp;, AudioBufferList&amp;, AudioStreamPacketDescription*, bool&amp;) + 97
+28  AudioToolbox                  	0x2d646a75 AUConverterBase::RenderBus(unsigned long&amp;, AudioTimeStamp const&amp;, unsigned long, unsigned long) + 213
+29  AudioToolbox                  	0x2d57a8f5 AUBase::DoRenderBus(unsigned long&amp;, AudioTimeStamp const&amp;, unsigned long, AUOutputElement*, unsigned long, AudioBufferList&amp;) + 145
+30  AudioToolbox                  	0x2d57a745 AUBase::DoRender(unsigned long&amp;, AudioTimeStamp const&amp;, unsigned long, unsigned long, AudioBufferList&amp;) + 529
+31  AudioToolbox                  	0x2d63696d AURemoteIO::PerformIO(unsigned long, unsigned int, unsigned int, AudioTimeStamp const&amp;, AudioTimeStamp const&amp;, AudioBufferList const*, AudioBufferList*, int&amp;) + 485
+32  AudioToolbox                  	0x2d6379b9 AURIOCallbackReceiver_PerformIO + 393
+33  AudioToolbox                  	0x2d62e0b3 _XPerformIO + 175
+34  AudioToolbox                  	0x2d59b64b mshMIGPerform + 123
+35  AudioToolbox                  	0x2d60ab29 MSHMIGDispatchMessage + 29
+36  AudioToolbox                  	0x2d636be5 AURemoteIO::IOThread::Run() + 117
+37  AudioToolbox                  	0x2d639cc5 AURemoteIO::IOThread::Entry(void*) + 5
+38  AudioToolbox                  	0x2d576b39 CAPThread::Entry(CAPThread*) + 209
+39  libsystem_pthread.dylib       	0x38a39957 _pthread_body + 139
+40  libsystem_pthread.dylib       	0x38a398c7 _pthread_start + 99
+41  libsystem_pthread.dylib       	0x38a37ae4 thread_start + 4
+
+Thread 7 crashed with ARM Thread State (32-bit):
+    r0: 0x00000000    r1: 0x00000000      r2: 0x00000000      r3: 0x044aed40
+    r4: 0x00000006    r5: 0x044b0000      r6: 0x00bcf49c      r7: 0x044aed38
+    r8: 0x00bcf400    r9: 0x3a674e30     r10: 0x002b0a9c     r11: 0x002b0a94
+    ip: 0x00000148    sp: 0x044aed2c      lr: 0x38a3a7b7      pc: 0x389d21f0
+  cpsr: 0x00000010
+
+Binary Images:
+0x4000 - 0x2c3fff AudioUnitTest armv7  &lt;bdb6d85b25b93a30bc457029feb95b51&gt; /var/mobile/Applications/13133E51-C25F-45BA-B71D-6CFD54DD0EB6/AudioTest.app/AudioUnitTest
+0x2beb4000 - 0x2bed7fff dyld armv7s  &lt;4d05d388718832c99cdd4e74aeb07d51&gt; /usr/lib/dyld
+0x2cc3b000 - 0x2cc3bfff Accelerate armv7s  &lt;58ca068138d93e988a34a0c8c34b0b11&gt; /System/Library/Frameworks/Accelerate.framework/Accelerate
+0x2cc45000 - 0x2ce12fff vImage armv7s  &lt;9923548d8ed23bb1b1020130b5d38dab&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vImage.framework/vImage
+0x2ce13000 - 0x2cef5fff libBLAS.dylib armv7s  &lt;48f7680a8fd83251ad8415bb090408c3&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libBLAS.dylib
+0x2cef6000 - 0x2d1aefff libLAPACK.dylib armv7s  &lt;2547383dc88d3329827b4d76768915ee&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libLAPACK.dylib
+0x2d1af000 - 0x2d21dfff libvDSP.dylib armv7s  &lt;83036da6f5d9308bb5fad06b2d29bac9&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libvDSP.dylib
+0x2d21e000 - 0x2d230fff libvMisc.dylib armv7s  &lt;addc52a9647f3269965a750366ebed70&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libvMisc.dylib
+0x2d231000 - 0x2d231fff vecLib armv7s  &lt;4a647b20c3f03490aae530226350a4cd&gt; /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/vecLib
+0x2d232000 - 0x2d252fff Accounts armv7s  &lt;73b0639b81fe30d5b2b13628d3df2273&gt; /System/Library/Frameworks/Accounts.framework/Accounts
+0x2d254000 - 0x2d2bbfff AddressBook armv7s  &lt;e0051f44c0d0377da85049ff86fbc890&gt; /System/Library/Frameworks/AddressBook.framework/AddressBook
+0x2d529000 - 0x2d845fff AudioToolbox armv7s  &lt;42ef392f2082317cbd3857838ab97aaf&gt; /System/Library/Frameworks/AudioToolbox.framework/AudioToolbox
+0x2d846000 - 0x2d94cfff CFNetwork armv7s  &lt;7f8df6965c623f8d9913dee8c8c9c7b6&gt; /System/Library/Frameworks/CFNetwork.framework/CFNetwork
+0x2d94d000 - 0x2d9a8fff CoreAudio armv7s  &lt;34a6461e9ad3380ea9e0405f81aad500&gt; /System/Library/Frameworks/CoreAudio.framework/CoreAudio
+0x2d9c1000 - 0x2dbb5fff CoreData armv7s  &lt;23650924fc293fdf994419f6894720a9&gt; /System/Library/Frameworks/CoreData.framework/CoreData
+0x2dbb6000 - 0x2dcf9ff0 CoreFoundation armv7s  &lt;747c88b531d53bcbadfbcc953a429ea0&gt; /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+0x2dcfa000 - 0x2de1efff CoreGraphics armv7s  &lt;182ccc3a111d360eb5c1e58b4289afb3&gt; /System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+0x2de20000 - 0x2de5bfff libCGFreetype.A.dylib armv7s  &lt;1d9c402cc18433db9a72d349876b2fea&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libCGFreetype.A.dylib
+0x2de5d000 - 0x2de67fff libCMSBuiltin.A.dylib armv7s  &lt;1efb72c2985332c485d07c5a3784f93b&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libCMSBuiltin.A.dylib
+0x2e04c000 - 0x2e066fff libRIP.A.dylib armv7s  &lt;23b82f0d28e238938519439e243ae7a7&gt; /System/Library/Frameworks/CoreGraphics.framework/Resources/libRIP.A.dylib
+0x2e067000 - 0x2e140fff CoreImage armv7s  &lt;1eedb55ace133e10bb629fa881c45542&gt; /System/Library/Frameworks/CoreImage.framework/CoreImage
+0x2e1c8000 - 0x2e243fff CoreMedia armv7s  &lt;d68d0cf856f13ff7ab9418ccd671cd65&gt; /System/Library/Frameworks/CoreMedia.framework/CoreMedia
+0x2e2ed000 - 0x2e345fff CoreTelephony armv7s  &lt;711db5ac808937b09143f43f11f06422&gt; /System/Library/Frameworks/CoreTelephony.framework/CoreTelephony
+0x2e346000 - 0x2e3d6fff CoreText armv7s  &lt;43e84c5a90fc36a984363965f2d8029b&gt; /System/Library/Frameworks/CoreText.framework/CoreText
+0x2e3d7000 - 0x2e3e6fff CoreVideo armv7s  &lt;b114a9e05c08366b8735a2911defa97b&gt; /System/Library/Frameworks/CoreVideo.framework/CoreVideo
+0x2e5a6000 - 0x2e790fff Foundation armv7s  &lt;b75ca4f9d9b739ef9b16e482db277849&gt; /System/Library/Frameworks/Foundation.framework/Foundation
+0x2e972000 - 0x2e9c8fff IOKit armv7s  &lt;1acd39a2052f36cebb9b68f9f1448619&gt; /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit
+0x2e9c9000 - 0x2ebd9fff ImageIO armv7s  &lt;3234150da2d13945a33c98335e53db80&gt; /System/Library/Frameworks/ImageIO.framework/ImageIO
+0x2ebda000 - 0x2ee25fff JavaScriptCore armv7s  &lt;3d942899969b3c41aa764b228ec6cc65&gt; /System/Library/Frameworks/JavaScriptCore.framework/JavaScriptCore
+0x2eed6000 - 0x2eedafff MediaAccessibility armv7s  &lt;c87f228e5b18380d837ed901196705c1&gt; /System/Library/Frameworks/MediaAccessibility.framework/MediaAccessibility
+0x2f48c000 - 0x2f4effff MobileCoreServices armv7s  &lt;1a736ebbc93431c8943cdd93a0a0fdcb&gt; /System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices
+0x2ff37000 - 0x2ff3ffff OpenGLES armv7s  &lt;1c3e551d0a923b86940ad36a6e682463&gt; /System/Library/Frameworks/OpenGLES.framework/OpenGLES
+0x2ff41000 - 0x2ff41fff libCVMSPluginSupport.dylib armv7s  &lt;ba661b77360f360b88c3163a02538376&gt; /System/Library/Frameworks/OpenGLES.framework/libCVMSPluginSupport.dylib
+0x2ff46000 - 0x2ff49fff libCoreVMClient.dylib armv7s  &lt;38ff1c7f12f83f8bac062e8daf9d4c10&gt; /System/Library/Frameworks/OpenGLES.framework/libCoreVMClient.dylib
+0x2ff4a000 - 0x2ff51fff libGFXShared.dylib armv7s  &lt;2406a4e5c5b437dbb0a3553655ac4951&gt; /System/Library/Frameworks/OpenGLES.framework/libGFXShared.dylib
+0x2ff52000 - 0x2ff92fff libGLImage.dylib armv7s  &lt;7d912d8e3a453456a6e2d806b59aa448&gt; /System/Library/Frameworks/OpenGLES.framework/libGLImage.dylib
+0x3012a000 - 0x30271fff QuartzCore armv7s  &lt;741ee0338b1235aab1550f91a3956041&gt; /System/Library/Frameworks/QuartzCore.framework/QuartzCore
+0x302cb000 - 0x3030dfff Security armv7s  &lt;cd7187d315eb301e845cfae580ca905f&gt; /System/Library/Frameworks/Security.framework/Security
+0x3045d000 - 0x304acfff SystemConfiguration armv7s  &lt;82758c34b29a333bbdfe73e78361e0e1&gt; /System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration
+0x304af000 - 0x30c22fff UIKit armv7s  &lt;f725ad0982673286911bff834295ec99&gt; /System/Library/Frameworks/UIKit.framework/UIKit
+0x30c23000 - 0x30c71fff VideoToolbox armv7s  &lt;052e071cd44b3d33abdb0761635ba4be&gt; /System/Library/Frameworks/VideoToolbox.framework/VideoToolbox
+0x31009000 - 0x3100dfff AggregateDictionary armv7s  &lt;b4e58fe6256136749b7d54bf07bcbc51&gt; /System/Library/PrivateFrameworks/AggregateDictionary.framework/AggregateDictionary
+0x31669000 - 0x316a7fff AppSupport armv7s  &lt;0cb23d5c42d530cfa7e43605cf368293&gt; /System/Library/PrivateFrameworks/AppSupport.framework/AppSupport
+0x317d1000 - 0x317ddfff AssetsLibraryServices armv7s  &lt;05cf849c0bab37698f93ce58e0cabe0f&gt; /System/Library/PrivateFrameworks/AssetsLibraryServices.framework/AssetsLibraryServices
+0x3182b000 - 0x31850fff BackBoardServices armv7s  &lt;eef3e744484a386ca351b8feb000eb37&gt; /System/Library/PrivateFrameworks/BackBoardServices.framework/BackBoardServices
+0x31859000 - 0x3187dfff Bom armv7s  &lt;af79573fee7d364da59eed3fabe2f645&gt; /System/Library/PrivateFrameworks/Bom.framework/Bom
+0x31a10000 - 0x31a15fff CertUI armv7s  &lt;68968485501f35c09203bd9e045bbcd0&gt; /System/Library/PrivateFrameworks/CertUI.framework/CertUI
+0x31b52000 - 0x31b5dfff CommonUtilities armv7s  &lt;f477748e4ac03e91b3a2769b59dc0dc0&gt; /System/Library/PrivateFrameworks/CommonUtilities.framework/CommonUtilities
+0x31b5e000 - 0x31b62fff CommunicationsFilter armv7s  &lt;87e7685b12ac375aa482a7a31cd28517&gt; /System/Library/PrivateFrameworks/CommunicationsFilter.framework/CommunicationsFilter
+0x31bf3000 - 0x31bf5fff ConstantClasses armv7s  &lt;aab583ee29ff3ed7a9ad2bddfbc9bcde&gt; /System/Library/PrivateFrameworks/ConstantClasses.framework/ConstantClasses
+0x31eeb000 - 0x31eecfff CoreSurface armv7s  &lt;3445b07c2bca372cbe202fec0a9aa86f&gt; /System/Library/PrivateFrameworks/CoreSurface.framework/CoreSurface
+0x31f93000 - 0x31feffff CoreUI armv7s  &lt;3fdd5b6ee0b03774a8a67554e8a3c3ff&gt; /System/Library/PrivateFrameworks/CoreUI.framework/CoreUI
+0x32045000 - 0x3204afff CrashReporterSupport armv7s  &lt;d3f693f332fe3f46bd3b9f582a3e6ba0&gt; /System/Library/PrivateFrameworks/CrashReporterSupport.framework/CrashReporterSupport
+0x32216000 - 0x3222cfff DataAccessExpress armv7s  &lt;d267039af5923039bb15d53806a16edc&gt; /System/Library/PrivateFrameworks/DataAccessExpress.framework/DataAccessExpress
+0x32272000 - 0x3228bfff DictionaryServices armv7s  &lt;b32f1de0807532e2944c9365d543b542&gt; /System/Library/PrivateFrameworks/DictionaryServices.framework/DictionaryServices
+0x322d0000 - 0x322dbfff ExFAT armv7s  &lt;a50c8c49cc703ad59b3caff9dfe105e9&gt; /System/Library/PrivateFrameworks/ExFAT.framework/ExFAT
+0x3231b000 - 0x32736fff FaceCore armv7s  &lt;72642f324b7639faa8206f00a953a573&gt; /System/Library/PrivateFrameworks/FaceCore.framework/FaceCore
+0x32b12000 - 0x32b28fff GraphicsServices armv7s  &lt;3b6c1bed029a36809c005aded6358ae2&gt; /System/Library/PrivateFrameworks/GraphicsServices.framework/GraphicsServices
+0x32eda000 - 0x32f34fff IMFoundation armv7s  &lt;1fe1f17117fd346e872606e1fbaf958f&gt; /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
+0x32f3e000 - 0x32f45fff IOMobileFramebuffer armv7s  &lt;3ab45fc088e63f2583325fb2a3d793ac&gt; /System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer
+0x32f46000 - 0x32f4bfff IOSurface armv7s  &lt;231684abf3443db1b2dde09b82f5bdba&gt; /System/Library/PrivateFrameworks/IOSurface.framework/IOSurface
+0x33331000 - 0x3333dfff MobileAsset armv7s  &lt;40c56824686c35c9bc6a53e48696e8ce&gt; /System/Library/PrivateFrameworks/MobileAsset.framework/MobileAsset
+0x33388000 - 0x33392fff MobileKeyBag armv7s  &lt;e94a6746becd36ef89f18d8f62e3ef80&gt; /System/Library/PrivateFrameworks/MobileKeyBag.framework/MobileKeyBag
+0x333ba000 - 0x333bdfff MobileSystemServices armv7s  &lt;1bc1a98c34d5398ca9ff7d2a6cd65243&gt; /System/Library/PrivateFrameworks/MobileSystemServices.framework/MobileSystemServices
+0x336b4000 - 0x336b6fff OAuth armv7s  &lt;e5d7ef5ec520310187365df875a549ec&gt; /System/Library/PrivateFrameworks/OAuth.framework/OAuth
+0x33e0d000 - 0x33e48fff OpenCL armv7s  &lt;b6fbdfb3287d3fbfb5286db2871e20f1&gt; /System/Library/PrivateFrameworks/OpenCL.framework/OpenCL
+0x34831000 - 0x34864fff PhysicsKit armv7s  &lt;eabb43d582b434e7a07113dc75526237&gt; /System/Library/PrivateFrameworks/PhysicsKit.framework/PhysicsKit
+0x3495b000 - 0x34992fff PrintKit armv7s  &lt;07cdb8fa73f638878da43cb85ecc6525&gt; /System/Library/PrivateFrameworks/PrintKit.framework/PrintKit
+0x34996000 - 0x34a1cfff ProofReader armv7s  &lt;c51b02fd95b5374a92d5f442914fd833&gt; /System/Library/PrivateFrameworks/ProofReader.framework/ProofReader
+0x34dc0000 - 0x34dd5fff SpringBoardServices armv7s  &lt;c57673fe5697361292f6d98f0e42b43a&gt; /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
+0x351eb000 - 0x351edfff TCC armv7s  &lt;c954ee084fc138cd9e1efd673fcc1db6&gt; /System/Library/PrivateFrameworks/TCC.framework/TCC
+0x35241000 - 0x35262fff TelephonyUtilities armv7s  &lt;89a81f2b2d00390f94886d091df8c370&gt; /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
+0x355ed000 - 0x35620fff TextInput armv7s  &lt;aa0e49d7392f391184c9eeb39a4d3bf0&gt; /System/Library/PrivateFrameworks/TextInput.framework/TextInput
+0x358a3000 - 0x35963fff UIFoundation armv7s  &lt;c451f67b37fe34b1837080f77df2c608&gt; /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
+0x3597b000 - 0x3597efff UserFS armv7s  &lt;8c69a37146f53c20b27515d9081b585e&gt; /System/Library/PrivateFrameworks/UserFS.framework/UserFS
+0x35e23000 - 0x368d2fff WebCore armv7s  &lt;62a2855ff9ba3663a05c495a1e6083a3&gt; /System/Library/PrivateFrameworks/WebCore.framework/WebCore
+0x368d3000 - 0x36993fff WebKit armv7s  &lt;4679be02e7e63e5697b74338046f39c3&gt; /System/Library/PrivateFrameworks/WebKit.framework/WebKit
+0x36ade000 - 0x36ae6fff XPCObjects armv7s  &lt;bd5f2f198bfc300886e389b6504c3d24&gt; /System/Library/PrivateFrameworks/XPCObjects.framework/XPCObjects
+0x3791e000 - 0x37925fff libAccessibility.dylib armv7s  &lt;6783339bc8c0357a88c9f342125cfd4f&gt; /usr/lib/libAccessibility.dylib
+0x37b22000 - 0x37b38fff libCRFSuite.dylib armv7s  &lt;1b03911a248832d5b24075ac2a3edfe3&gt; /usr/lib/libCRFSuite.dylib
+0x37b4e000 - 0x37b63fff libMobileGestalt.dylib armv7s  &lt;47eca5e4f72f38459912efd50f7560a9&gt; /usr/lib/libMobileGestalt.dylib
+0x37b81000 - 0x37b82fff libSystem.B.dylib armv7s  &lt;eabeb73e81a8362d8e62af1bd466b876&gt; /usr/lib/libSystem.B.dylib
+0x37bf1000 - 0x37c1ffff libTelephonyUtilDynamic.dylib armv7s  &lt;a0a1a8c4002a3b3095de44ab6ef68876&gt; /usr/lib/libTelephonyUtilDynamic.dylib
+0x37d6e000 - 0x37d7afff libbsm.0.dylib armv7s  &lt;fc1cbfcbdd563d02a601aabed2bd7d15&gt; /usr/lib/libbsm.0.dylib
+0x37d7b000 - 0x37d84fff libbz2.1.0.dylib armv7s  &lt;20bf7a7ab7e73d4c8453b1c86a7c5e3d&gt; /usr/lib/libbz2.1.0.dylib
+0x37d85000 - 0x37dd0fff libc++.1.dylib armv7s  &lt;72615c78ae5f39dcbafa740d87035caf&gt; /usr/lib/libc++.1.dylib
+0x37dd1000 - 0x37debfff libc++abi.dylib armv7s  &lt;b20ecbadceba32fe8f990af252b6abba&gt; /usr/lib/libc++abi.dylib
+0x37e2e000 - 0x37e2efff libgcc_s.1.dylib armv7s  &lt;6a1193cb6ccd3e5a8c9b7bb8f65022ce&gt; /usr/lib/libgcc_s.1.dylib
+0x37e49000 - 0x37f36fff libiconv.2.dylib armv7s  &lt;cd99d67497e23173bfaf7eac2409774a&gt; /usr/lib/libiconv.2.dylib
+0x37f37000 - 0x38088fff libicucore.A.dylib armv7s  &lt;9e6bead09e6e3f6284775099f2af03e2&gt; /usr/lib/libicucore.A.dylib
+0x38090000 - 0x38090fff liblangid.dylib armv7s  &lt;3cca7b6ef834379b82d4a032f99cdfc8&gt; /usr/lib/liblangid.dylib
+0x38091000 - 0x3809bfff liblockdown.dylib armv7s  &lt;de62a6a0b6ef33b59d9c53d4eaeb4013&gt; /usr/lib/liblockdown.dylib
+0x3841a000 - 0x385b9fff libobjc.A.dylib armv7s  &lt;bf3e22d3067133989a99a9bf07c4e8f8&gt; /usr/lib/libobjc.A.dylib
+0x38681000 - 0x38696fff libresolv.9.dylib armv7s  &lt;880b294be76f3f9989247ca125ad3550&gt; /usr/lib/libresolv.9.dylib
+0x386bf000 - 0x38756fff libsqlite3.dylib armv7s  &lt;584eaf4090783a64b8a33125a6a976bd&gt; /usr/lib/libsqlite3.dylib
+0x38757000 - 0x387a4fff libstdc++.6.dylib armv7s  &lt;6428df9b541c3ffbb23c393b3b1280e9&gt; /usr/lib/libstdc++.6.dylib
+0x387a5000 - 0x387cbfff libtidy.A.dylib armv7s  &lt;40c283e2258a330d9ff9799da0a1d2bb&gt; /usr/lib/libtidy.A.dylib
+0x387cf000 - 0x38882fff libxml2.2.dylib armv7s  &lt;1a18ebeae7253959b9cfe286550809a8&gt; /usr/lib/libxml2.2.dylib
+0x38883000 - 0x388a4fff libxslt.1.dylib armv7s  &lt;cf7ad714d218330087df8422a129e027&gt; /usr/lib/libxslt.1.dylib
+0x388a5000 - 0x388b1fff libz.1.dylib armv7s  &lt;578def3dfb6e3180b5f9d0cdacfea7ab&gt; /usr/lib/libz.1.dylib
+0x388b2000 - 0x388b6fff libcache.dylib armv7s  &lt;5552b722402630c39069717fce563238&gt; /usr/lib/system/libcache.dylib
+0x388b7000 - 0x388bffff libcommonCrypto.dylib armv7s  &lt;a6695b43e12f338c9dc0906d8bfed65e&gt; /usr/lib/system/libcommonCrypto.dylib
+0x388c0000 - 0x388c4fff libcompiler_rt.dylib armv7s  &lt;cfdcad14d51d30a9a511af272ba560ac&gt; /usr/lib/system/libcompiler_rt.dylib
+0x388c5000 - 0x388cbfff libcopyfile.dylib armv7s  &lt;553c4af79d1e30bdafc06af9cf757caf&gt; /usr/lib/system/libcopyfile.dylib
+0x388cc000 - 0x38905fff libcorecrypto.dylib armv7s  &lt;3078b6192ac6371eb233dfa9b483728b&gt; /usr/lib/system/libcorecrypto.dylib
+0x38906000 - 0x38919fff libdispatch.dylib armv7s  &lt;724a779782af35d5b686b90ae55712be&gt; /usr/lib/system/libdispatch.dylib
+0x3891a000 - 0x3891bfff libdyld.dylib armv7s  &lt;1e6f4480b0cc3b288ca16260858dd0be&gt; /usr/lib/system/libdyld.dylib
+0x3891c000 - 0x3891cfff libkeymgr.dylib armv7s  &lt;cd6879d7aab538188885a690d4867364&gt; /usr/lib/system/libkeymgr.dylib
+0x3891d000 - 0x38923fff liblaunch.dylib armv7s  &lt;e2ecc7065f99385486a316b484915504&gt; /usr/lib/system/liblaunch.dylib
+0x38924000 - 0x38927fff libmacho.dylib armv7s  &lt;af571f784f753dc883752ab57de8d850&gt; /usr/lib/system/libmacho.dylib
+0x38928000 - 0x38929fff libremovefile.dylib armv7s  &lt;470ebd7c55de3e19b1ba2f540fb555b8&gt; /usr/lib/system/libremovefile.dylib
+0x3892a000 - 0x38937fff libsystem_asl.dylib armv7s  &lt;667d4520d8863f96930caf3caed29585&gt; /usr/lib/system/libsystem_asl.dylib
+0x38938000 - 0x38938fff libsystem_blocks.dylib armv7s  &lt;7df185e5c3423b2b827bbb017ae0d23a&gt; /usr/lib/system/libsystem_blocks.dylib
+0x38939000 - 0x3899bfff libsystem_c.dylib armv7s  &lt;b1076755d7863093b9b541dade51b7a4&gt; /usr/lib/system/libsystem_c.dylib
+0x3899c000 - 0x3899efff libsystem_configuration.dylib armv7s  &lt;6077b6a8819033b1a5da6eeb65667ac5&gt; /usr/lib/system/libsystem_configuration.dylib
+0x3899f000 - 0x389a5fff libsystem_dnssd.dylib armv7s  &lt;61754fc466d73885939c421a54b10ad7&gt; /usr/lib/system/libsystem_dnssd.dylib
+0x389a6000 - 0x389befff libsystem_info.dylib armv7s  &lt;dc3f914b8fad3e599e661aae25a82944&gt; /usr/lib/system/libsystem_info.dylib
+0x389bf000 - 0x389d7fff libsystem_kernel.dylib armv7s  &lt;5f80574971783517b904e68e867db35a&gt; /usr/lib/system/libsystem_kernel.dylib
+0x389d8000 - 0x389f6fff libsystem_m.dylib armv7s  &lt;071ecf3760083b3bafcfa3d7a2cb03e0&gt; /usr/lib/system/libsystem_m.dylib
+0x389f7000 - 0x38a08fff libsystem_malloc.dylib armv7s  &lt;c9bd1c9bb83f334583f177b6f4f60d04&gt; /usr/lib/system/libsystem_malloc.dylib
+0x38a09000 - 0x38a29fff libsystem_network.dylib armv7s  &lt;e74b7953f36834f8ae85db60af9e03f8&gt; /usr/lib/system/libsystem_network.dylib
+0x38a2a000 - 0x38a31fff libsystem_notify.dylib armv7s  &lt;3e3abecaad193941a8ff25146c014ccb&gt; /usr/lib/system/libsystem_notify.dylib
+0x38a32000 - 0x38a36fff libsystem_platform.dylib armv7s  &lt;2b5893167164377d8bf61d6bac6d76b0&gt; /usr/lib/system/libsystem_platform.dylib
+0x38a37000 - 0x38a3cfff libsystem_pthread.dylib armv7s  &lt;eaf423e9b7c532208a7b2f544c7cd2fe&gt; /usr/lib/system/libsystem_pthread.dylib
+0x38a3d000 - 0x38a3efff libsystem_sandbox.dylib armv7s  &lt;bae12b6c89593266b826e4c04decd867&gt; /usr/lib/system/libsystem_sandbox.dylib
+0x38a3f000 - 0x38a41fff libsystem_stats.dylib armv7s  &lt;b42bfc3e6cc932358e7d75aa993c662f&gt; /usr/lib/system/libsystem_stats.dylib
+0x38a42000 - 0x38a42fff libunwind.dylib armv7s  &lt;4b9e9973ab72392485a03ed5821f40a4&gt; /usr/lib/system/libunwind.dylib
+0x38a43000 - 0x38a5dfff libxpc.dylib armv7s  &lt;9b5096abbc8c3fd79550880a8ba59d62&gt; /usr/lib/system/libxpc.dylib</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sunil Kumar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-06-03 10:07:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">We have tried to reproduce this issue and we are also getting same behavior. AudioUnit callback works on simulator and fails on device.
+
+Symbolicated Log: <a href="https://gist.github.com/anonymous/4c93b3dfc3b3251d4e42">https://gist.github.com/anonymous/4c93b3dfc3b3251d4e42</a>
+
+Environment info: 
+=== Xamarin Studio ===
+
+Version 5.0 (build 878)
+Installation UUID: 2939b8b4-8977-42bd-82d6-100275ccd9cd
+Runtime:
+	Mono 3.4.0 ((no/c3fc3ba)
+	GTK+ 2.24.23 (Raleigh theme)
+
+	Package version: 304000204
+
+=== Apple Developer Tools ===
+
+Xcode 5.0 (3332.22)
+Build 5A1412
+
+=== Xamarin.iOS ===
+
+Version: 7.0.0.11 (Enterprise Edition)
+Hash: aa35ba3
+Branch: 
+Build date: 2013-18-09 16:42:48-0400
+
+=== Xamarin.Android ===
+
+Version: 4.12.4 (Enterprise Edition)
+Android SDK: /Users/360_macmini/Library/Developer/Xamarin/android-sdk-mac_x86
+	Supported Android versions:
+		2.1   (API level 7)
+		2.2   (API level 8)
+		2.3   (API level 10)
+		3.1   (API level 12)
+		4.0   (API level 14)
+		4.0.3 (API level 15)
+		4.1   (API level 16)
+		4.2   (API level 17)
+		4.3   (API level 18)
+		4.4   (API level 19)
+Java SDK: /usr
+java version "1.6.0_65"
+Java(TM) SE Runtime Environment (build 1.6.0_65-b14-462-11M4609)
+Java HotSpot(TM) 64-Bit Server VM (build 20.65-b04-462, mixed mode)
+
+=== Xamarin.Mac ===
+
+Xamarin.Mac: 1.8.0.8
+
+=== Build Information ===
+
+Release ID: 500000878
+Git revision: bcd66920d963483e7d638a2339c4022fe035b529
+Build date: 2014-05-27 17:36:26-04
+Xamarin addins: da9064ce55b0fa90930a7c437a4cc1ae0e5c778c
+
+=== Operating System ===
+
+Mac OS X 10.9.0
+Darwin 360-MACMINIs-Mac-mini.local 13.0.0 Darwin Kernel Version 13.0.0
+    Thu Sep 19 22:22:27 PDT 2013
+    root:xnu-2422.1.72~6/RELEASE_X86_64 x86_64</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-06-05 05:43:46 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Using RenderCallback event is not recommended (due to issues like this one) and the event is marked obsolete. Use SetRenderCallback method call instead.
+
+When the sample code is modified to use SetRenderCallback with following method as argument all works for me
+
+		AudioUnitStatus FillData (AudioUnitRenderActionFlags actionFlags, AudioTimeStamp timeStamp, uint busNumber, uint numberFrames, AudioBuffers data)
+		{
+			// Getting a pointer to a buffer to be filled
+			IntPtr outL = data[0].Data;
+
+			if(numberFrames == 0)
+			{
+				return AudioUnitStatus.OK;
+			}
+
+			if(numberFrames + _playPosition &gt; _audio.Length)
+			{
+				//Start playing from beginning
+				_playPosition = 0;
+			}
+
+			//Fill audio buffers
+			Marshal.Copy(_audio, _playPosition, outL, (int) numberFrames);
+			//if(outR.ToInt32() &gt; 0)
+			//{   
+			//Marshal.Copy(_audio, _playPosition, outR, e.NumberFrames);
+			//}
+			_playPosition += (int) numberFrames;
+
+			return AudioUnitStatus.OK;
+		}</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

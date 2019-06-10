@@ -1,0 +1,1312 @@
+<html lang="en"><head>
+    <title>17541 – Debugger does not Attach</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_iOS
+                 bz_component_Debugger
+                 bz_bug_17541 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;17541</span>
+
+        <span id="subtitle" class="subheader">Debugger does not Attach</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2016-09-14 00:32:00 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2016-09-14 00:32:00">
+  <input type="hidden" name="id" value="17541">
+  <input type="hidden" name="token" value="1559160108-T7vuU5vxOV7u-PCvj-ILqtn_x3fgtUudcr3N56WlyrE">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;17541</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">Debugger does not Attach</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>Debugger does not Attach
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          NORESPONSE
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">iOS
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Xamarin
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">Debugger
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>7.0.5.x
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">Macintosh
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>---
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>Untriaged
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Bugzilla</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2014-01-31 15:45 UTC by <span class="vcard"><span class="fn">Carlo Wahlstedt</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2016-09-14 00:32 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>5
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="allie.miller">allie.miller</option>
+                <option value="mono-bugs+monodevelop">mono-bugs+monodevelop</option>
+                <option value="mono-bugs+monotouch">mono-bugs+monotouch</option>
+                <option value="rolf">rolf</option>
+                <option value="sebastien">sebastien</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/xamarin">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">NORESPONSE
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carlo Wahlstedt</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-31 15:45:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">When attempting to deploy an application from Xamarin Studio to an iPad the debugger does not always attach.
+
+
+Steps to reproduce:
+1. Make sure that you are using a multiple Desktop setup in OS X where Xamarin Studio is using it's own desktop.
+2. Press Command + Enter to start debugging
+3. Immediately press Control + Arrow key to switch to another desktop.
+4. Stay on that desktop until you can tell, via the iPad, that the application has been deployed
+5. Switch back to the desktop with Xamarin Studio
+
+
+Result:
+The application is running, but the debugger is not connected. The status window in Xamarin Studio says "Wait for debugger to connect (with nice animated icon). The Application Output window says:
+
+Please ensure your device is connected...
+Connected to: iPad
+Launching /private/var/mobile/Applications/B3337048-8536-4E4D-8606-F21A4B272B3E/XamarinContainer.app -debugtrack -monodevelop-port 10000 -connection-mode usb
+
+
+Expected Result:
+The application should be running on the iPad with the debugger attached and outputting to the Application Output window.
+
+
+Version:
+Xamarin Studio
+Version 4.2.2 (build 2)
+Runtime:
+	Mono 3.2.5 ((no/964e8f0)
+	GTK+ 2.24.20 theme: Raleigh
+	GTK# (2.12.0.0)
+	Package version: 302050000</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jeffrey Stedfast</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-31 15:54:43 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I've seen this, and it seems the way to work "fix" this is to reboot the iPad. Not sure why.
+
+Reassigning to the iOS dev team to look at.</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carlo Wahlstedt</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-31 16:18:55 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I restarted my iPad, but the issue persists.</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-31 16:47:29 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Please add this to the additional mtouch arguments in the project's iOS Build options:
+
+    -v -v -v -v
+
+clean &amp; rebuild and try again. Then paste/attach both the Application Output and the Device log (you can find the device log in the menu View -&gt; Pads -&gt; iOS Device Log).</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carlo Wahlstedt</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-02-01 15:22:32 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Here you go.
+
+Application Output:
+
+Please ensure your device is connected...
+Connected to: iPad
+Launching /private/var/mobile/Applications/B3337048-8536-4E4D-8606-F21A4B272B3E/XamarinContainer.app -debugtrack -monodevelop-port 10000 -connection-mode usb
+
+
+
+iOS Device Log:
+
+Connecting...
+========================
+ASL is here to serve you
+&gt;
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x31c2c000 - 0x31c31fff CertUI armv7  &lt;76d4727674503a1dadbf8fd240bbd27e&gt; /System/Library/PrivateFrameworks/CertUI.framework/CertUI
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x31cfa000 - 0x31d1bfff ChunkingLibrary armv7  &lt;1437642ddd9832fca56f789bee70bf80&gt; /System/Library/PrivateFrameworks/ChunkingLibrary.framework/ChunkingLibrary
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x31d6c000 - 0x31d77fff CommonUtilities armv7  &lt;ebbad8efc40f3054a9755289d94039b4&gt; /System/Library/PrivateFrameworks/CommonUtilities.framework/CommonUtilities
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x31d78000 - 0x31d7cfff CommunicationsFilter armv7  &lt;9b8b9cb5256d336a9eb7aea07c0b060f&gt; /System/Library/PrivateFrameworks/CommunicationsFilter.framework/CommunicationsFilter
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x31e13000 - 0x31e43fff ContentIndex armv7  &lt;2527fd93d85e3047ac46b2bb2288eebf&gt; /System/Library/PrivateFrameworks/ContentIndex.framework/ContentIndex
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x31e44000 - 0x31e46fff CoreAUC armv7  &lt;8ed60ee8748d3704899f5679c9cfe533&gt; /System/Library/PrivateFrameworks/CoreAUC.framework/CoreAUC
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x31e53000 - 0x31ea7fff CoreDAV armv7  &lt;47d2ab93d0a6383082d105811d7ed5bd&gt; /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x31ee7000 - 0x31fe5fff CoreMediaStream armv7  &lt;516c6b6c379a38b29192f1ca4f0617ea&gt; /System/Library/PrivateFrameworks/CoreMediaStream.framework/CoreMediaStream
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3207f000 - 0x32089fff CoreRecents armv7  &lt;66128f56151c32f18ee23c530d92025b&gt; /System/Library/PrivateFrameworks/CoreRecents.framework/CoreRecents
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3208a000 - 0x320bdfff CoreRecognition armv7  &lt;663b59930570393593d36b8b363f8d4b&gt; /System/Library/PrivateFrameworks/CoreRecognition.framework/CoreRecognition
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x320d7000 - 0x320f5fff CoreServicesInternal armv7  &lt;7d8f51b24a0c324f902d06b3629979a4&gt; /System/Library/PrivateFrameworks/CoreServicesInternal.framework/CoreServicesInternal
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x320f6000 - 0x320f7fff CoreSurface armv7  &lt;b2dedd21bbf831909809460a6266b6f8&gt; /System/Library/PrivateFrameworks/CoreSurface.framework/CoreSurface
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32199000 - 0x3219dfff CoreTime armv7  &lt;8aff9c59dade3777a19a778e4c6f18fa&gt; /System/Library/PrivateFrameworks/CoreTime.framework/CoreTime
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3219e000 - 0x321f8fff CoreUI armv7  &lt;2574d5808ef63d9c9face798aa8b55a0&gt; /System/Library/PrivateFrameworks/CoreUI.framework/CoreUI
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x321f9000 - 0x32245fff CoreUtils armv7  &lt;fe28df82944335a1b90a81f2553119e0&gt; /System/Library/PrivateFrameworks/CoreUtils.framework/CoreUtils
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32246000 - 0x3224bfff CrashReporterSupport armv7  &lt;c1949b7c6fb93390b9f85bebb053db1c&gt; /System/Library/PrivateFrameworks/CrashReporterSupport.framework/CrashReporterSupport
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3224c000 - 0x32282fff DataAccess armv7  &lt;64379a2a39663e999bd5f69a17ed7a5b&gt; /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32414000 - 0x32429fff DataAccessExpress armv7  &lt;10ac29e41a6c3bad99266f99479f1775&gt; /System/Library/PrivateFrameworks/DataAccessExpress.framework/DataAccessExpress
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32433000 - 0x3244afff DataDetectorsCore armv7  &lt;bdf76ced65963d1897e2f63128266734&gt; /System/Library/PrivateFrameworks/DataDetectorsCore.framework/DataDetectorsCore
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32465000 - 0x32468fff DataMigration armv7  &lt;b4a8fb87486f304ea725f20b0947b1ee&gt; /System/Library/PrivateFrameworks/DataMigration.framework/DataMigration
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3246d000 - 0x3246efff DiagnosticLogCollection armv7  &lt;95153dbff320375892d7b9b64467d5a1&gt; /System/Library/PrivateFrameworks/DiagnosticLogCollection.framework/DiagnosticLogCollection
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3246f000 - 0x32489fff DictionaryServices armv7  &lt;ff36dbf9c5d032409a06e0297d0c7386&gt; /System/Library/PrivateFrameworks/DictionaryServices.framework/DictionaryServices
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x324a5000 - 0x324c2fff EAP8021X armv7  &lt;04312aceb6b7334caa95266b8494be0b&gt; /System/Library/PrivateFrameworks/EAP8021X.framework/EAP8021X
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x324cb000 - 0x324d6fff ExFAT armv7  &lt;2ea255572f5033acb31243fa9755b14d&gt; /System/Library/PrivateFrameworks/ExFAT.framework/ExFAT
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x324e8000 - 0x324eafff FTClientServices armv7  &lt;5d94664865da3751a7b0dea0a0394079&gt; /System/Library/PrivateFrameworks/FTClientServices.framework/FTClientServices
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x324eb000 - 0x32514fff FTServices armv7  &lt;a25fa809757b3c3e9988b1b35e72da73&gt; /System/Library/PrivateFrameworks/FTServices.framework/FTServices
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32515000 - 0x32930fff FaceCore armv7  &lt;681d4b06cb3230bebe94280af4249dff&gt; /System/Library/PrivateFrameworks/FaceCore.framework/FaceCore
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3296a000 - 0x32a8dfff AVConference armv7  &lt;f2011e5c7d3f36fa8807f52a93fa2231&gt; /System/Library/PrivateFrameworks/GameKitServices.framework/Frameworks/AVConference.framework/AVConference
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32a99000 - 0x32ab9fff ICE armv7  &lt;6c8fb7afa287331c95e1445af96de66d&gt; /System/Library/PrivateFrameworks/GameKitServices.framework/Frameworks/ICE.framework/ICE
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32aba000 - 0x32abafff LegacyHandle armv7  &lt;8ae533996e24354b9cf353622b4bb725&gt; /System/Library/PrivateFrameworks/GameKitServices.framework/Frameworks/LegacyHandle.framework/LegacyHandle
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32abb000 - 0x32ac3fff SimpleKeyExchange armv7  &lt;3a938a7c23093cadbd5c5634555195f7&gt; /System/Library/PrivateFrameworks/GameKitServices.framework/Frameworks/SimpleKeyExchange.framework/SimpleKeyExchange
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32ac4000 - 0x32ad6fff ViceroyTrace armv7  &lt;f5742c83b26e3b2396dd94c969d0fc39&gt; /System/Library/PrivateFrameworks/GameKitServices.framework/Frameworks/ViceroyTrace.framework/ViceroyTrace
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32ad7000 - 0x32ad8fff snatmap armv7  &lt;dcbb316ae94f30309aeb4b269296c135&gt; /System/Library/PrivateFrameworks/GameKitServices.framework/Frameworks/snatmap.framework/snatmap
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32ad9000 - 0x32b53fff GameKitServices armv7  &lt;f7bd693e3c9a3c6fa4691e34e46351fb&gt; /System/Library/PrivateFrameworks/GameKitServices.framework/GameKitServices
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32b54000 - 0x32b60fff GenerationalStorage armv7  &lt;9e20171bee1830cf90b2b36432d13436&gt; /System/Library/PrivateFrameworks/GenerationalStorage.framework/GenerationalStorage
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32b61000 - 0x32cf9fff GeoServices armv7  &lt;b24b47013d0236cd9e3537f1b074e591&gt; /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32cfa000 - 0x32d09fff GraphicsServices armv7  &lt;8a3518db41ff3ae1a32031e90dc98b74&gt; /System/Library/PrivateFrameworks/GraphicsServices.framework/GraphicsServices
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32d98000 - 0x32e1dfff HomeSharing armv7  &lt;b833ed95d1da330c904c94566035bd5c&gt; /System/Library/PrivateFrameworks/HomeSharing.framework/HomeSharing
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32e1e000 - 0x32e2afff IAP armv7  &lt;356512b3e1723321a7e586f645615634&gt; /System/Library/PrivateFrameworks/IAP.framework/IAP
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32e90000 - 0x32ec4fff IDS armv7  &lt;08fadaca6e193dc79f0b1cd36a66d95c&gt; /System/Library/PrivateFrameworks/IDS.framework/IDS
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32f31000 - 0x32f42fff IDSFoundation armv7  &lt;770da46acb843ab79ef66913e73875e3&gt; /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x32fa8000 - 0x33034fff IMCore armv7  &lt;f52bc264ac54340eb25e5f4475500b17&gt; /System/Library/PrivateFrameworks/IMCore.framework/IMCore
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x330b4000 - 0x3310efff IMFoundation armv7  &lt;738888332bb43114ae74f29dfa052489&gt; /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33118000 - 0x3311ffff IOMobileFramebuffer armv7  &lt;83c8cdf5c62f32649bb374dc32f87780&gt; /System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33120000 - 0x33125fff IOSurface armv7  &lt;26e19a815678390a9f9ae7d79c145197&gt; /System/Library/PrivateFrameworks/IOSurface.framework/IOSurface
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33172000 - 0x33177fff IncomingCallFilter armv7  &lt;1fd76dbd54333ba3bdc7fa8cb4ab6214&gt; /System/Library/PrivateFrameworks/IncomingCallFilter.framework/IncomingCallFilter
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33197000 - 0x331a3fff Librarian armv7  &lt;143ab0cb6bb73ff482149525c6c31ab4&gt; /System/Library/PrivateFrameworks/Librarian.framework/Librarian
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x331a4000 - 0x331ddfff MIME armv7  &lt;cb66a3aeb3e330ab9e104bd04efce9c9&gt; /System/Library/PrivateFrameworks/MIME.framework/MIME
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x331de000 - 0x3321bfff MMCS armv7  &lt;5a65b67918f1388db9b754ad16560450&gt; /System/Library/PrivateFrameworks/MMCS.framework/MMCS
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33224000 - 0x3322ffff MailServices armv7  &lt;6cf48511c9763aedb9a6001e5ec77e6f&gt; /System/Library/PrivateFrameworks/MailServices.framework/MailServices
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33263000 - 0x332dcfff ManagedConfiguration armv7  &lt;a1b24fbb19df348c89c999cdcf2f18b4&gt; /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x332dd000 - 0x332defff Marco armv7  &lt;79a1611257823b4394c97fb81e6dce8f&gt; /System/Library/PrivateFrameworks/Marco.framework/Marco
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x332df000 - 0x33356fff MediaControlSender armv7  &lt;c44432ae7ed03333871ca0bce7a01c0d&gt; /System/Library/PrivateFrameworks/MediaControlSender.framework/MediaControlSender
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3338e000 - 0x33398fff MediaRemote armv7  &lt;2d0e00df14af3cad8028963de552c3b2&gt; /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33399000 - 0x333b1fff MediaStream armv7  &lt;0aa96a0152793db99dfd59095ad585d1&gt; /System/Library/PrivateFrameworks/MediaStream.framework/MediaStream
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33416000 - 0x334e8fff Message armv7  &lt;521bd5e1d7a33bce868f005c93abc580&gt; /System/Library/PrivateFrameworks/Message.framework/Message
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x334ed000 - 0x334effff MessageSupport armv7  &lt;92d9d277d5b83bb988a7fa30d2933c60&gt; /System/Library/PrivateFrameworks/MessageSupport.framework/MessageSupport
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x334fb000 - 0x33506fff MobileAsset armv7  &lt;7a0819600c2732239b3c85a3579010f6&gt; /System/Library/PrivateFrameworks/MobileAsset.framework/MobileAsset
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3352a000 - 0x33532fff MobileBluetooth armv7  &lt;31c61f6872eb36cbbf1326fda503ac68&gt; /System/Library/PrivateFrameworks/MobileBluetooth.framework/MobileBluetooth
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33533000 - 0x33534fff MobileDelete armv7  &lt;efc1ee27d4ed363689305ca736e95c4e&gt; /System/Library/PrivateFrameworks/MobileDelete.framework/MobileDelete
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33545000 - 0x3354cfff MobileIcons armv7  &lt;8f84043bb7e434fcbcdf53bf5f447c12&gt; /System/Library/PrivateFrameworks/MobileIcons.framework/MobileIcons
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3354d000 - 0x33550fff MobileInstallation armv7  &lt;d3826ee0e613392fa23f27847b35f5d4&gt; /System/Library/PrivateFrameworks/MobileInstallation.framework/MobileInstallation
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33551000 - 0x33559fff MobileKeyBag armv7  &lt;f8a7ba9562ec3f2d8e844a8af6f95f2a&gt; /System/Library/PrivateFrameworks/MobileKeyBag.framework/MobileKeyBag
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33581000 - 0x33584fff MobileSystemServices armv7  &lt;b2b7f3b46c2632498ca4250e7573148f&gt; /System/Library/PrivateFrameworks/MobileSystemServices.framework/MobileSystemServices
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x335a3000 - 0x335aefff MobileWiFi armv7  &lt;a6c31c4cbb8839a985ba810970ca3a07&gt; /System/Library/PrivateFrameworks/MobileWiFi.framework/MobileWiFi
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x335e5000 - 0x33767fff MusicLibrary armv7  &lt;95f206ab876f3a3695e2beeb0522737a&gt; /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3381d000 - 0x33822fff Netrb armv7  &lt;8635c42c69713fe683115901f766d4dd&gt; /System/Library/PrivateFrameworks/Netrb.framework/Netrb
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33823000 - 0x33828fff NetworkStatistics armv7  &lt;e9bbd7a8759e3546815bf2c8dfab6fa3&gt; /System/Library/PrivateFrameworks/NetworkStatistics.framework/NetworkStatistics
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33829000 - 0x33846fff Notes armv7  &lt;f85f365db80731a4ac8784d297f83f00&gt; /System/Library/PrivateFrameworks/Notes.framework/Notes
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33847000 - 0x33849fff OAuth armv7  &lt;1cca42050333345eaafd4050f20edccc&gt; /System/Library/PrivateFrameworks/OAuth.framework/OAuth
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x33fa2000 - 0x33fddfff OpenCL armv7  &lt;1d28e3d6260b33aab426e4251eafcdf4&gt; /System/Library/PrivateFrameworks/OpenCL.framework/OpenCL
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34556000 - 0x34582fff PassKitCore armv7  &lt;a5bd319bd5b832a4b0fdbf48bbd39d3a&gt; /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34583000 - 0x345a9fff PersistentConnection armv7  &lt;f8991cf7c44c3b8996db0760b1695b46&gt; /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3470d000 - 0x34885fff PhotoLibraryServices armv7  &lt;9149c8aad8b33df2a2cd1a41d9518f7a&gt; /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x349c4000 - 0x349f1fff PhysicsKit armv7  &lt;44fae72ee79e35d5b6469575dda7b16c&gt; /System/Library/PrivateFrameworks/PhysicsKit.framework/PhysicsKit
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x349f2000 - 0x349f5fff PowerLog armv7  &lt;21422cc62627385cb60fd8d908c2edf0&gt; /System/Library/PrivateFrameworks/PowerLog.framework/PowerLog
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34a72000 - 0x34adffff Preferences armv7  &lt;be09b2bb6db7324d9aa14e6abd8efb8c&gt; /System/Library/PrivateFrameworks/Preferences.framework/Preferences
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34ae0000 - 0x34b17fff PrintKit armv7  &lt;486bef79139f3ba899cb86924fe0f4eb&gt; /System/Library/PrivateFrameworks/PrintKit.framework/PrintKit
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34b1b000 - 0x34ba2fff ProofReader armv7  &lt;c37d6d99b04e312290469c526a3c23d9&gt; /System/Library/PrivateFrameworks/ProofReader.framework/ProofReader
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34ba3000 - 0x34badfff ProtocolBuffer armv7  &lt;8d8e5b383674362d8f299d156b0a11eb&gt; /System/Library/PrivateFrameworks/ProtocolBuffer.framework/ProtocolBuffer
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34bae000 - 0x34bdefff PrototypeTools armv7  &lt;0c2ac44cb7a43a4ebb8c33026a1c2e7b&gt; /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34bdf000 - 0x34c53fff Quagga armv7  &lt;e706912affcf328bbc49304af464d717&gt; /System/Library/PrivateFrameworks/Quagga.framework/Quagga
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34c54000 - 0x34cf3fff Radio armv7  &lt;d3e312db3cd13dd4a9aede4f1884fc0f&gt; /System/Library/PrivateFrameworks/Radio.framework/Radio
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34d58000 - 0x34d7dfff RemoteUI armv7  &lt;d1e3aee6e5473368ab05db6cd34d585b&gt; /System/Library/PrivateFrameworks/RemoteUI.framework/RemoteUI
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34d7e000 - 0x34dfefff SAObjects armv7  &lt;c77a5ef091333d12ac9e0e66f006f90a&gt; /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34ea7000 - 0x34ecffff SpringBoardFoundation armv7  &lt;2a0751cb83ba39d5b7612ddeddd187dc&gt; /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34ed0000 - 0x34ee4fff SpringBoardServices armv7  &lt;6164f349bcb230dfb6d5b4645a37cf73&gt; /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34ee5000 - 0x34efefff SpringBoardUI armv7  &lt;6ab9023db7ad31d5891c4b8a6e5fc967&gt; /System/Library/PrivateFrameworks/SpringBoardUI.framework/SpringBoardUI
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34eff000 - 0x34f16fff SpringBoardUIServices armv7  &lt;cd045303852f367f93e9f13cbb68c1e8&gt; /System/Library/PrivateFrameworks/SpringBoardUIServices.framework/SpringBoardUIServices
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x34f4b000 - 0x350d2fff StoreKitUI armv7  &lt;29edd9701d503048b53bdc325c991af2&gt; /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x350d3000 - 0x351eafff StoreServices armv7  &lt;66ebcc6172f5360892f77e8252d3e824&gt; /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x351eb000 - 0x351fafff StreamingZip armv7  &lt;d1d19b43ac2a3476a7f37e1e3609ecc1&gt; /System/Library/PrivateFrameworks/StreamingZip.framework/StreamingZip
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3529a000 - 0x3529cfff TCC armv7  &lt;d20eed0febf832d3aa6ea6e16578db88&gt; /System/Library/PrivateFrameworks/TCC.framework/TCC
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3529d000 - 0x352e5fff TelephonyUI armv7  &lt;15d5c156ddde3097887fefa8f3322c58&gt; /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x352e6000 - 0x35307fff TelephonyUtilities armv7  &lt;468701bb677d38f5b8f6d99c40c18aa3&gt; /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x35308000 - 0x35908fff KBLayouts_iPad.dylib armv7  &lt;f56ae7b7adf93f9394700e0d56d63525&gt; /System/Library/PrivateFrameworks/TextInput.framework/KBLayouts_iPad.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x35909000 - 0x3592dfff TextInput armv7  &lt;65c0f11125cd33b595fd4951c9a95266&gt; /System/Library/PrivateFrameworks/TextInput.framework/TextInput
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x35b25000 - 0x35b3afff ToneLibrary armv7  &lt;5c04cc84a7f1330c91622b297ceb698c&gt; /System/Library/PrivateFrameworks/ToneLibrary.framework/ToneLibrary
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x35b88000 - 0x35c48fff UIFoundation armv7  &lt;ccac20210f953d1988aceb49ab9efc51&gt; /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x35c49000 - 0x35c5ffff Ubiquity armv7  &lt;c15f678fb5d4357a87736b9795b7d3a5&gt; /System/Library/PrivateFrameworks/Ubiquity.framework/Ubiquity
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x35c60000 - 0x35c63fff UserFS armv7  &lt;4b0250f56b933f2d88d6699498e988a8&gt; /System/Library/PrivateFrameworks/UserFS.framework/UserFS
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x35c79000 - 0x35ec3fff VectorKit armv7  &lt;6e665156536239d78b9c2d22d2d5aac7&gt; /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x35ec4000 - 0x35fb8fff VideoProcessing armv7  &lt;ffc59181873c3189bcf95611a4a7c41b&gt; /System/Library/PrivateFrameworks/VideoProcessing.framework/VideoProcessing
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x36062000 - 0x3607ffff VoiceServices armv7  &lt;f134c31ed468349082155e48d7a7e7e5&gt; /System/Library/PrivateFrameworks/VoiceServices.framework/VoiceServices
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x360a2000 - 0x360c7fff WebBookmarks armv7  &lt;4711a8f630cd30a3a9f1cd5aaf967427&gt; /System/Library/PrivateFrameworks/WebBookmarks.framework/WebBookmarks
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x360dd000 - 0x36b83fff WebCore armv7  &lt;9843d402c0f5399a997df5363bfa3f05&gt; /System/Library/PrivateFrameworks/WebCore.framework/WebCore
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x36b84000 - 0x36c44fff WebKit armv7  &lt;dbce5c2e111b35a08771774e393c7b5e&gt; /System/Library/PrivateFrameworks/WebKit.framework/WebKit
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x36cd4000 - 0x36cd4fff WirelessCoexManager armv7  &lt;32576f03638633b3973de308ef9a8392&gt; /System/Library/PrivateFrameworks/WirelessCoexManager.framework/WirelessCoexManager
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x36cd5000 - 0x36d78fff WirelessDiagnostics armv7  &lt;1c0ea848e67933d1993098040ac6a2db&gt; /System/Library/PrivateFrameworks/WirelessDiagnostics.framework/WirelessDiagnostics
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x36d84000 - 0x36d8afff XPCKit armv7  &lt;be9c6101d435332c9f39810e2d259a2b&gt; /System/Library/PrivateFrameworks/XPCKit.framework/XPCKit
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x36d8b000 - 0x36d93fff XPCObjects armv7  &lt;d92aeb310dfa30898e59afff5e3d4170&gt; /System/Library/PrivateFrameworks/XPCObjects.framework/XPCObjects
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x36f36000 - 0x36f59fff iCalendar armv7  &lt;a810ec5363573943a47334600770e38f&gt; /System/Library/PrivateFrameworks/iCalendar.framework/iCalendar
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x37135000 - 0x37176fff iTunesStore armv7  &lt;ee86a75d9ecd37a99fdd17768e3aee83&gt; /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x37177000 - 0x37318fff iTunesStoreUI armv7  &lt;ad7cb61af15435b59b66a2b231f71106&gt; /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3736d000 - 0x3737dfff Riven armv7  &lt;79d5748bc41d395eb6557268f9b99226&gt; /System/Library/TextInput/Riven.bundle/Riven
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x378fc000 - 0x37924fff libAWDProtobufFacetimeiMessage.dylib armv7  &lt;ba276126268e344688f5185d3f7fb85d&gt; /usr/lib/libAWDProtobufFacetimeiMessage.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3793c000 - 0x37961fff libAWDProtobufMMCS.dylib armv7  &lt;6686f7a08e59334a8451788590d50d56&gt; /usr/lib/libAWDProtobufMMCS.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x37b56000 - 0x37b5cfff libAWDProtobufVPN.dylib armv7  &lt;632e3640c12d349882ffa3b1422cf9ff&gt; /usr/lib/libAWDProtobufVPN.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x37b5d000 - 0x37b8afff libAWDProtobufWifi.dylib armv7  &lt;bfd336f62d8f3d85955cca313943d209&gt; /usr/lib/libAWDProtobufWifi.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x37cc7000 - 0x37ccefff libAccessibility.dylib armv7  &lt;9470af9d6a773f60a6b162d33051778e&gt; /usr/lib/libAccessibility.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x37ec7000 - 0x37eddfff libCRFSuite.dylib armv7  &lt;350876afb5af3b5785a1ccfae840a147&gt; /usr/lib/libCRFSuite.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x37ef1000 - 0x37ef2fff libMobileCheckpoint.dylib armv7  &lt;22ab2a402ce5329b9a33f57f807b2a96&gt; /usr/lib/libMobileCheckpoint.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x37ef3000 - 0x37f08fff libMobileGestalt.dylib armv7  &lt;7802ef9800993ffc9b7ce1557510d2b6&gt; /usr/lib/libMobileGestalt.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x37f26000 - 0x37f27fff libSystem.B.dylib armv7  &lt;103426dc305c304f91ef997ded8038dc&gt; /usr/lib/libSystem.B.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x37f92000 - 0x37fbefff libTelephonyUtilDynamic.dylib armv7  &lt;60f63d4c953a345fb4bcc623565c2a98&gt; /usr/lib/libTelephonyUtilDynamic.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38108000 - 0x38114fff libbsm.0.dylib armv7  &lt;4859e28b9eb33c409d1afa4ad6a3b2db&gt; /usr/lib/libbsm.0.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38115000 - 0x3811efff libbz2.1.0.dylib armv7  &lt;f8cc302c9e7e389d9811feb8312831cb&gt; /usr/lib/libbz2.1.0.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3811f000 - 0x3816afff libc++.1.dylib armv7  &lt;f3bbaff22aea3639b1b56589a9b986e8&gt; /usr/lib/libc++.1.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3816b000 - 0x38185fff libc++abi.dylib armv7  &lt;cc45ccea2e6735fa929bf818fd5fe368&gt; /usr/lib/libc++abi.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38195000 - 0x3819cfff libcupolicy.dylib armv7  &lt;320f3c34508a3d01a0b4a22765e336ad&gt; /usr/lib/libcupolicy.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x382f5000 - 0x383e2fff libiconv.2.dylib armv7  &lt;7694ca0f13523dab8d4f5b5dfec6eda8&gt; /usr/lib/libiconv.2.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x383e3000 - 0x38534fff libicucore.A.dylib armv7  &lt;88891bcb89c23978bf704b4d75df7601&gt; /usr/lib/libicucore.A.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3853c000 - 0x3853cfff liblangid.dylib armv7  &lt;d2f105737c3938c1a7afee7e7e7e4f86&gt; /usr/lib/liblangid.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x3853d000 - 0x38547fff liblockdown.dylib armv7  &lt;83a7f6b0c8463613aee7d81d3325ba21&gt; /usr/lib/liblockdown.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38548000 - 0x3855dfff liblzma.5.dylib armv7  &lt;12b1d169327130478dea3bd0ce8aff83&gt; /usr/lib/liblzma.5.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38888000 - 0x3889cfff libmis.dylib armv7  &lt;8398ac3a80e2399ba1d4f218b628269b&gt; /usr/lib/libmis.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x388c5000 - 0x38a64fff libobjc.A.dylib armv7  &lt;581c944534fc3772be4f246562cbf75d&gt; /usr/lib/libobjc.A.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38abf000 - 0x38b2bfff libprotobuf.dylib armv7  &lt;5adcdf31c09c3603bafe9e08787a6ed0&gt; /usr/lib/libprotobuf.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38b2c000 - 0x38b41fff libresolv.9.dylib armv7  &lt;f50dc125d0543dada59a21751e6857a0&gt; /usr/lib/libresolv.9.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38b6a000 - 0x38c00fff libsqlite3.dylib armv7  &lt;c650e5808f683ed49e7b87d582f510c8&gt; /usr/lib/libsqlite3.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38c01000 - 0x38c4efff libstdc++.6.dylib armv7  &lt;cc8ef865e96135f4985fcf5836e6de69&gt; /usr/lib/libstdc++.6.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38c4f000 - 0x38c75fff libtidy.A.dylib armv7  &lt;b9007164b2003c00a70e3d045bdf3081&gt; /usr/lib/libtidy.A.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38c79000 - 0x38d2cfff libxml2.2.dylib armv7  &lt;057e404ab40f37b7be1c874a0e063b42&gt; /usr/lib/libxml2.2.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38d2d000 - 0x38d4efff libxslt.1.dylib armv7  &lt;a9141d75b62b31468a1080142c27fa56&gt; /usr/lib/libxslt.1.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38d4f000 - 0x38d5bfff libz.1.dylib armv7  &lt;65bcd248b0d137e8b6bd768dec21c9d5&gt; /usr/lib/libz.1.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38d5c000 - 0x38d60fff libcache.dylib armv7  &lt;0954da4d78e2364395be033364dfc123&gt; /usr/lib/system/libcache.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38d61000 - 0x38d69fff libcommonCrypto.dylib armv7  &lt;50f1f8d9697c35d6b40fc0f0fe84c4df&gt; /usr/lib/system/libcommonCrypto.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38d6a000 - 0x38d6efff libcompiler_rt.dylib armv7  &lt;ce9f297b62fb32028e2786c2f1a19ec0&gt; /usr/lib/system/libcompiler_rt.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38d6f000 - 0x38d75fff libcopyfile.dylib armv7  &lt;ff875cb1fc6c3f389a89a3511c96c612&gt; /usr/lib/system/libcopyfile.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38d76000 - 0x38daefff libcorecrypto.dylib armv7  &lt;4184d9d49baa3abdaff0ea23e1ab88fd&gt; /usr/lib/system/libcorecrypto.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38daf000 - 0x38dd3fff libdispatch.dylib armv7  &lt;afedf6a5e8893666b849f8155d5e291f&gt; /usr/lib/system/libdispatch.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38dd4000 - 0x38dd5fff libdyld.dylib armv7  &lt;a1058ef743e1342d98a9f3e553363d68&gt; /usr/lib/system/libdyld.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38dd6000 - 0x38dd6fff libkeymgr.dylib armv7  &lt;8c692b7f082338dfa7bdf5c9678d9c6e&gt; /usr/lib/system/libkeymgr.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38dd7000 - 0x38dddfff liblaunch.dylib armv7  &lt;7a8632ac3e1937ecaff1672d2ad2a359&gt; /usr/lib/system/liblaunch.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38dde000 - 0x38de1fff libmacho.dylib armv7  &lt;e5145c68ae0a327e9ae5ff0da980adfa&gt; /usr/lib/system/libmacho.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38de2000 - 0x38de3fff libremovefile.dylib armv7  &lt;cd855c0b6ee239a58d9e356b3d9ce0d0&gt; /usr/lib/system/libremovefile.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38de4000 - 0x38df1fff libsystem_asl.dylib armv7  &lt;08cdf9e1b76230de90a3d084633917be&gt; /usr/lib/system/libsystem_asl.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38df2000 - 0x38df2fff libsystem_blocks.dylib armv7  &lt;9b849637d37d32a0a9d74468879a119b&gt; /usr/lib/system/libsystem_blocks.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38df3000 - 0x38e55fff libsystem_c.dylib armv7  &lt;f3e96b2efdf63fd6a43b5b868f390033&gt; /usr/lib/system/libsystem_c.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38e56000 - 0x38e58fff libsystem_configuration.dylib armv7  &lt;24e968e1f7023f38a90281863f7d89e9&gt; /usr/lib/system/libsystem_configuration.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38e59000 - 0x38e5ffff libsystem_dnssd.dylib armv7  &lt;e077548d679f3df78cc6b417b5201361&gt; /usr/lib/system/libsystem_dnssd.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38e60000 - 0x38e78fff libsystem_info.dylib armv7  &lt;42954830e5673e59aa96c1825153fc5a&gt; /usr/lib/system/libsystem_info.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38e79000 - 0x38e91fff libsystem_kernel.dylib armv7  &lt;5255aec9d7f1352a9732cd6a20695066&gt; /usr/lib/system/libsystem_kernel.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38e92000 - 0x38eb1fff libsystem_m.dylib armv7  &lt;c6b827386f343c20b7e8bb08318eaef2&gt; /usr/lib/system/libsystem_m.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38eb2000 - 0x38ec3fff libsystem_malloc.dylib armv7  &lt;16773e2b08913af3a280ab9cf29e0ee4&gt; /usr/lib/system/libsystem_malloc.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38ec4000 - 0x38ee3fff libsystem_network.dylib armv7  &lt;069670f7e90536449c79d188df3db434&gt; /usr/lib/system/libsystem_network.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38ee4000 - 0x38eebfff libsystem_notify.dylib armv7  &lt;9320b2c24ecf3743a259131ce3a400a3&gt; /usr/lib/system/libsystem_notify.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38eec000 - 0x38ef1fff libsystem_platform.dylib armv7  &lt;e1a6fea3c16b349f9e085bb4f044a9e8&gt; /usr/lib/system/libsystem_platform.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38ef2000 - 0x38ef7fff libsystem_pthread.dylib armv7  &lt;eda773fc6d0a34af9ab7f6aacc97acea&gt; /usr/lib/system/libsystem_pthread.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38ef8000 - 0x38ef9fff libsystem_sandbox.dylib armv7  &lt;3910c5efaed7335eb0d840f3ceff0857&gt; /usr/lib/system/libsystem_sandbox.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38efa000 - 0x38efcfff libsystem_stats.dylib armv7  &lt;a9e55b5dc6703bfab5306861ddee367e&gt; /usr/lib/system/libsystem_stats.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38efd000 - 0x38efdfff libunwind.dylib armv7  &lt;b4083a94d4f036d7a9f76d16a0eca556&gt; /usr/lib/system/libunwind.dylib
+Feb  1 14:23:28  ReportCrash[254] &lt;Error&gt;: 0x38efe000 - 0x38f18fff libxpc.dylib armv7  &lt;7954f94a2d973dcf9a9bab20ba2ad446&gt; /usr/lib/system/libxpc.dylib
+Feb  1 14:24:10  wifid[15] &lt;Notice&gt;: WiFi:[412975450.987623]: WiFiLocaleManagerCheckLocale: trying to determine locale...
+Feb  1 14:24:10  wifid[15] &lt;Notice&gt;: WiFi:[412975450.988574]: WiFiManagerCoreLocationGetCachedLocation: getting cached location...
+Feb  1 14:24:10  wifid[15] &lt;Notice&gt;: WiFi:[412975450.991714]: Starting Low Accuracy Location Monitoring, locationMonitoringTimeout=60.000000
+Feb  1 14:24:10  wifid[15] &lt;Notice&gt;: WiFi:[412975450.992280]: WiFiManagerCoreLocationStartLocationUpdates: starting location updates...
+Feb  1 14:24:10  wifid[15] &lt;Notice&gt;: WiFi:[412975450.992825]: Location Monitoring successfully started with accuracy=3000.000000meters
+Feb  1 14:24:11  wifid[15] &lt;Notice&gt;: WiFi:[412975451.004662]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority normal on en0
+Feb  1 14:24:11  wifid[15] &lt;Notice&gt;: WiFi:[412975451.005232]: Enqueuing command type: "Scan" pending commands: 0
+Feb  1 14:24:11  wifid[15] &lt;Notice&gt;: WiFi:[412975451.005672]: Dequeuing command type: "Scan" pending commands: 0
+Feb  1 14:24:11  wifid[15] &lt;Notice&gt;: WiFi:[412975451.006082]: Attempting Apple80211ScanAsync on en0
+Feb  1 14:24:11  wifid[15] &lt;Notice&gt;: WiFi:[412975451.278175]: Completed Apple80211ScanAsync on en0 (0)
+Feb  1 14:24:11  wifid[15] &lt;Notice&gt;: WiFi:[412975451.281326]: Async scan request completed for "locationd" (0)
+Feb  1 14:24:11  wifid[15] &lt;Notice&gt;: WiFi:[412975451.289987]: Async scan requested by "locationd" for 1 iterations with maxage=0 priority normal on en0
+Feb  1 14:24:11  wifid[15] &lt;Notice&gt;: WiFi:[412975451.290529]: Enqueuing command type: "Scan" pending commands: 0
+Feb  1 14:24:11  wifid[15] &lt;Notice&gt;: WiFi:[412975451.290978]: Dequeuing command type: "Scan" pending commands: 0
+Feb  1 14:24:11  wifid[15] &lt;Notice&gt;: WiFi:[412975451.291394]: Attempting Apple80211ScanAsync on en0
+Feb  1 14:24:11  timed[18] &lt;Notice&gt;: (Note ) CoreTime: Received timezone "America/New_York" from "Location"
+Feb  1 14:24:11  timed[18] &lt;Notice&gt;: (Note ) CoreTime: Current mcc: '0' simulated:'0'.
+Feb  1 14:24:11  timed[18] &lt;Notice&gt;: (Note ) CoreTime: Not setting time zone to America/New_York from Location
+Feb  1 14:24:11  wifid[15] &lt;Notice&gt;: WiFi:[412975451.861601]: Completed Apple80211ScanAsync on en0 (0)
+Feb  1 14:24:11  wifid[15] &lt;Notice&gt;: WiFi:[412975451.863194]: Async scan request completed for "locationd" (0)
+Feb  1 14:24:14  wifid[15] &lt;Notice&gt;: WiFi:[412975454.666059]: Background Network Application entered
+Feb  1 14:24:14  wifid[15] &lt;Notice&gt;: WiFi:[412975454.666729]: BG Application: Present, BG Daemon: Present. Daemons: dataaccessd apsd
+Feb  1 14:24:14  wifid[15] &lt;Notice&gt;: WiFi:[412975454.667466]: Already connected to WahlHouse.
+Feb  1 14:24:14  wifid[15] &lt;Notice&gt;: WiFi:[412975454.676658]: Background Network Application entered
+Feb  1 14:24:14  wifid[15] &lt;Notice&gt;: WiFi:[412975454.677149]: BG Application: Not Present, BG Daemon: Present. Daemons: dataaccessd apsd
+Feb  1 14:24:14  wifid[15] &lt;Notice&gt;: WiFi:[412975454.677879]: Already connected to WahlHouse.
+Feb  1 14:24:27  wifid[15] &lt;Notice&gt;: WiFi:[412975467.782428]: ManagerClient["aggregated"] setProperty["LoggingEnabled"] = FALSE
+Feb  1 14:26:10  wifid[15] &lt;Error&gt;: WiFi:[412975570.992027]: Error setting locale -536870201
+Feb  1 14:28:58  mobile_installation_proxy[125] &lt;Warning&gt;: LaunchServices: Please include the kCFBundleIdentifierKey in the options dictionary when installing an app.
+Feb  1 14:28:58  mobile_installation_proxy[125] &lt;Warning&gt;: LaunchServices: installing app for existing placeholder (null)
+Feb  1 14:28:58  installd[59] &lt;Notice&gt;: 0x2c0000 handle_install_for_ls: Install of "/var/mobile/Media/PublicStaging/XamarinContainer.app" requested by mobile_installation_proxy
+Feb  1 14:28:59  installd[59] &lt;Notice&gt;: 0x2c0000 MobileInstallationInstall_Server: Installing app com.web.xamarincontainer
+Feb  1 14:28:59  securityd[90] &lt;Error&gt;: OCSPResponse: latestNextUpdate more than 1:15 ago
+Feb  1 14:29:00  SpringBoard[33] &lt;Warning&gt;: Killing com.web.xamarincontainer for termination assertion
+Feb  1 14:29:00  installd[59] &lt;Notice&gt;: 0x2c0000 install_application: Performing developer delta patch
+Feb  1 14:29:00  installd[59] &lt;Notice&gt;: 0x2c0000 MobileInstallationInstall_Server: Staging: 0.06s; Waiting: 0.00s; Installation: 1.63s; LS Sync: 0.00s; Overall: 1.69s
+Feb  1 14:29:00  lsd[70] &lt;Warning&gt;: LaunchServices: Updating identifier store
+Feb  1 14:29:01  SpringBoard[33] &lt;Error&gt;: libMobileGestalt MobileGestalt.c:837: front-facing-camera cannot generate notifications yet
+Feb  1 14:29:01  SpringBoard[33] &lt;Error&gt;: libMobileGestalt MobileGestalt.c:835: still-camera is static and will never generate a notification
+Feb  1 14:29:01  SpringBoard[33] &lt;Error&gt;: libMobileGestalt MobileGestalt.c:835: ipad is static and will never generate a notification
+Feb  1 14:29:01  SpringBoard[33] &lt;Error&gt;: libMobileGestalt MobileGestalt.c:835: any-telephony is static and will never generate a notification
+Feb  1 14:29:01  SpringBoard[33] &lt;Error&gt;: libMobileGestalt MobileGestalt.c:835: stand-alone-contacts is static and will never generate a notification
+Feb  1 14:29:01  syncdefaultsd[257] &lt;Notice&gt;: (Note ) SYDAccount: no account
+Feb  1 14:29:02  MobileStorageMounter[259] &lt;Error&gt;: 0x3ad3918c digest_disk_image: Could not open /var/run/mobile_image_mounter/fhArR2.dmg: No such file or directory
+Feb  1 14:29:02  MobileStorageMounter[259] &lt;Error&gt;: 0x3ad3918c reload_mount_map: /Developer - could not create digest
+Feb  1 14:29:02  mobile_storage_proxy[258] &lt;Error&gt;: 0x3ad3918c handle_lookup_image: Entry 2 of 4 did not have a digest
+Feb  1 14:29:02  MobileStorageMounter[259] &lt;Error&gt;: 0x3ad3918c handle_mount_disk_image: A disk image of type Developer is already mounted
+Feb  1 14:29:02  mobile_storage_proxy[258] &lt;Error&gt;: MobileStorageMount:355 Could not extract mount path from response message
+Feb  1 14:29:02  mobile_storage_proxy[258] &lt;Error&gt;: 0x3ad3918c handle_mount_image: Could not mount the disk image
+Feb  1 14:29:02  mobile_storage_proxy[258] &lt;Error&gt;: 0x3ad3918c main: Could not mount the image
+Feb  1 14:29:03  com.apple.debugserver-300.2[260] &lt;Warning&gt;: debugserver-300.2 for armv7.
+Feb  1 14:29:03  com.apple.debugserver-300.2[260] &lt;Warning&gt;: Connecting to com.apple.debugserver service...
+Feb  1 14:29:07  com.apple.debugserver-300.2[261] &lt;Warning&gt;: debugserver-300.2 for armv7.
+Feb  1 14:29:07  com.apple.debugserver-300.2[261] &lt;Warning&gt;: Connecting to com.apple.debugserver service...
+Feb  1 14:29:07  com.apple.debugserver-300.2[261] &lt;Warning&gt;: Got a connection, waiting for process information for launching or attaching.
+Feb  1 14:29:07  com.apple.debugserver-300.2[261] &lt;Warning&gt;: About to launch process for bundle ID: com.web.xamarincontainer
+Feb  1 14:29:08  kernel[0] &lt;Debug&gt;: launchd[262] Container: /private/var/mobile/Applications/B3337048-8536-4E4D-8606-F21A4B272B3E (sandbox)
+Feb  1 14:29:08  com.apple.debugserver-300.2[261] &lt;Warning&gt;: In completion handler, got pid for bundle id, pid: 262.
+Feb  1 14:29:08  networkd[77] &lt;Warning&gt;: Analytics Engine: double ON for app: com.web.xamarincontainer
+Feb  1 14:29:08  com.apple.debugserver-300.2[261] &lt;Warning&gt;: Got a connection, launched process /Developer/usr/bin/debugserver.
+Feb  1 14:29:08  com.apple.debugserver-300.2[261] &lt;Warning&gt;: 1 +0.000000 sec [0105/060b]: error: ::ptrace (request = PT_THUPDATE, pid = 0x0106, tid = 0x2403, signal = -1) err = Invalid argument (0x00000016)
+Feb  1 14:29:08  com.apple.debugserver-300.2[260] &lt;Warning&gt;: 1 +0.000000 sec [0104/060b]: error: ::read ( 6, 0x27dd4dcc, 1024 ) =&gt; 0 err = Function not implemented (0x0000004e)
+Feb  1 14:29:08  com.apple.debugserver-300.2[260] &lt;Warning&gt;: Exiting.
+Feb  1 14:29:08  mobile_installation_proxy[125] &lt;Error&gt;: 0x1bcd000 handle_connection: Could not receive request from host.
+Feb  1 14:29:08  mobile_installation_proxy[125] &lt;Error&gt;: 0x305000 handle_connection: Could not receive request from host.
+Feb  1 14:29:08  com.apple.debugserver-300.2[261] &lt;Warning&gt;: Exiting.
+Feb  1 14:29:08  XamarinContainer[262] &lt;Warning&gt;: MonoTouch: Added IP to look for MonoDevelop: 192.168.1.104
+Feb  1 14:29:08  XamarinContainer[262] &lt;Warning&gt;: MonoTouch: MonoDevelop Port: 10000 Transport: USB
+Feb  1 14:29:10  XamarinContainer[262] &lt;Warning&gt;: MonoTouch: Listened for connections from MonoDevelop for 2 seconds, nobody connected.
+Feb  1 14:29:10  XamarinContainer[262] &lt;Warning&gt;: MonoTouch: Debugger not loaded (disabled).
+Feb  1 14:29:11  XamarinContainer[262] &lt;Warning&gt;: Creating the UsageTracker to start in 30 minutes
+Feb  1 14:29:11  XamarinContainer[262] &lt;Warning&gt;: Will Finish Launching
+Feb  1 14:29:11  syncdefaultsd[257] &lt;Warning&gt;: NSURLConnection/CFURLConnection HTTP load failed (kCFStreamErrorDomainSSL, -9813)
+Feb  1 14:29:11  XamarinContainer[262] &lt;Warning&gt;: EdgesForExtendedLayout: All
+Feb  1 14:29:11  XamarinContainer[262] &lt;Warning&gt;: EdgesForExtendedLayout: None
+Feb  1 14:29:11  XamarinContainer[262] &lt;Warning&gt;: Stopping the UsageTracker
+Feb  1 14:29:12  XamarinContainer[262] &lt;Warning&gt;: Verifying Connection
+Feb  1 14:29:17  XamarinContainer[262] &lt;Warning&gt;: This error was logged:
+Feb  1 14:29:17  XamarinContainer[262] &lt;Warning&gt;: MonoTouch.Foundation.NSErrorException: Exception of type 'MonoTouch.Foundation.NSErrorException' was thrown.
+at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Developer/MonoTouch/Source/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62
+at System.Runtime.CompilerServices.TaskAwaiter`1[MonoTouch.Foundation.NSUrlAsyncResult].GetResult () [0x00000] in &lt;filename unknown&gt;:0
+at NetworkSupport.Reachability+&lt;RemoteHostStatus&gt;c__async11.MoveNext () [0x00181] in /Users/carlo.wahlstedt/Documents/Source/Common/Xamarin.Core/NetworkSupport/Reachability.cs:148
+Feb  1 14:29:22  XamarinContainer[262] &lt;Warning&gt;: NSURLConnection/CFURLConnection HTTP load failed (kCFStreamErrorDomainSSL, -9813)
+Feb  1 14:29:22  XamarinContainer[262] &lt;Warning&gt;: This error was logged:
+Feb  1 14:29:22  XamarinContainer[262] &lt;Warning&gt;: MonoTouch.Foundation.NSErrorException: Exception of type 'MonoTouch.Foundation.NSErrorException' was thrown.
+at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000b] in /Developer/MonoTouch/Source/mono/mcs/class/corlib/System.Runtime.ExceptionServices/ExceptionDispatchInfo.cs:62
+at System.Runtime.CompilerServices.TaskAwaiter`1[MonoTouch.Foundation.NSUrlAsyncResult].GetResult () [0x00000] in &lt;filename unknown&gt;:0
+at Xamarin.Utility.NetworkSupport.Reachability+&lt;RemoteHostStatus&gt;c__async11.MoveNext () [0x00181] in /Users/carlo.wahlstedt/Documents/Source/Common/Xamarin.Core/NetworkSupport/Reachability.cs:148
+Feb  1 14:30:55 iPad lockdownd[50] &lt;Notice&gt;: 00241000 _select_socket: receive secure message timeout!
+Feb  1 14:34:12 iPad backboardd[29] &lt;Notice&gt;: Posting 'com.apple.iokit.hid.displayStatus' notifyState=0
+Feb  1 14:34:12 iPad kernel[0] &lt;Debug&gt;: ALS: AppleARMBacklight::setBacklightEnableGated 0 (set level to 0x37e)
+Feb  1 14:34:12 iPad kernel[0] &lt;Debug&gt;: AppleMultitouchZ2SPI: updating power statistics
+Feb  1 14:34:12 iPad SpringBoard[33] &lt;Warning&gt;: [MPUNowPlayingController] Not registered for now playing notifications. Ignoring call to -unregisterForNotifications.
+Feb  1 14:34:12 iPad SpringBoard[33] &lt;Notice&gt;: (Note ) MC: Locking device.
+Feb  1 14:34:12 iPad backboardd[29] &lt;Notice&gt;: MultitouchHID: detection mode: 0-&gt;255
+Feb  1 14:34:12 iPad SpringBoard[33] &lt;Error&gt;: MKBDeviceLockAssertion: MKBDeviceLockAssertion (asserttype:4)
+Feb  1 14:34:13 iPad SpringBoard[33] &lt;Error&gt;: __MKBAssertionFinalize: __MKBAssertionFinalize(0x17846ad0)
+Feb  1 14:34:13 iPad SpringBoard[33] &lt;Notice&gt;: (Note ) MC: Locking device.
+Feb  1 14:34:13 iPad XamarinContainer[262] &lt;Warning&gt;: Did Enter the Background
+Feb  1 14:34:13 iPad XamarinContainer[262] &lt;Warning&gt;: Stopping the UsageTracker
+Feb  1 14:34:13 iPad XamarinContainer[262] &lt;Warning&gt;: Start Inactivity
+Feb  1 14:34:13 iPad SpringBoard[33] &lt;Error&gt;: MKBDeviceLockAssertion: MKBDeviceLockAssertion (asserttype:4)
+Feb  1 14:34:13 iPad SpringBoard[33] &lt;Error&gt;: __MKBAssertionFinalize: __MKBAssertionFinalize(0x15de0260)
+Feb  1 14:34:13 iPad SpringBoard[33] &lt;Notice&gt;: (Note ) MC: Locking device.
+Feb  1 14:34:13 iPad kernel[0] &lt;Debug&gt;: AppleKeyStore::device_state_transition: Device Lock call: lockstate=0, locknow=0
+Feb  1 14:34:13 iPad kernel[0] &lt;Debug&gt;: ALS: AppleARMBacklight::handleMessageGated - framebufferState -&gt; 0
+Feb  1 14:34:13 iPad kernel[0] &lt;Debug&gt;: AppleKeyStore::device_state_transition: Device Lock call: lockstate=5, locknow=0
+Feb  1 14:34:13 iPad kernel[0] &lt;Debug&gt;: AppleKeyStore::device_state_transition: Device Lock call: lockstate=5, locknow=0
+Feb  1 14:35:13 iPad awdd[266] &lt;Error&gt;: CoreLocation: CLClient is deprecated. Will be obsolete soon.
+Feb  1 14:35:37 iPad locationd[51] &lt;Error&gt;: MESCAL: could not load store URL bag: Error Domain=NSURLErrorDomain Code=-1012 "Cannot connect to iTunes Store" UserInfo=0x1652a0f0 {NSErrorFailingURLKey=<a href="https://init.itunes.apple.com/bag.xml?ix=5&amp;os=7&amp;locale=en_US">https://init.itunes.apple.com/bag.xml?ix=5&amp;os=7&amp;locale=en_US</a>, NSErrorFailingURLStringKey=<a href="https://init.itunes.apple.com/bag.xml?ix=5&amp;os=7&amp;locale=en_US">https://init.itunes.apple.com/bag.xml?ix=5&amp;os=7&amp;locale=en_US</a>, NSLocalizedDescription=Cannot connect to iTunes Store}
+Feb  1 14:35:37 iPad locationd[51] &lt;Error&gt;: MESCAL: churn failure: signing disabled
+Feb  1 14:35:38 iPad locationd[51] &lt;Warning&gt;: NSURLConnection/CFURLConnection HTTP load failed (kCFStreamErrorDomainSSL, -9813)
+Feb  1 14:35:38 iPad locationd[51] &lt;Warning&gt;: PBRequester failed with Error Error Domain=NSURLErrorDomain Code=-1202 "The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gsp10-ssl.apple.com” which could put your confidential information at risk." UserInfo=0x16665920 {NSErrorFailingURLStringKey=<a href="https://gsp10-ssl.apple.com/au">https://gsp10-ssl.apple.com/au</a>, NSLocalizedRecoverySuggestion=Would you like to connect to the server anyway?, NSErrorFailingURLKey=<a href="https://gsp10-ssl.apple.com/au">https://gsp10-ssl.apple.com/au</a>, NSLocalizedDescription=The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gsp10-ssl.apple.com” which could put your confidential information at risk., NSUnderlyingError=0x1665c010 "The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gsp10-ssl.apple.com” which could put your confidential information at risk.", NSURLErrorFailingURLPeerTrustErrorKey=&lt;SecTrustRef: 0x1666e130&gt;}
+Feb  1 14:36:36 iPad locationd[51] &lt;Notice&gt;: NETWORK: requery, 0, 0, 0, 0, 16, items, fQueryRetries, 0, fLastRetryTimestamp, 412959245.8
+Feb  1 14:36:36 iPad locationd[51] &lt;Notice&gt;: NETWORK: query, cells, 0, 0, 0, 0, wifis, 16
+Feb  1 14:36:36 iPad locationd[51] &lt;Warning&gt;: NSURLConnection/CFURLConnection HTTP load failed (kCFStreamErrorDomainSSL, -9813)
+Feb  1 14:36:36 iPad locationd[51] &lt;Warning&gt;: PBRequester failed with Error Error Domain=NSURLErrorDomain Code=-1202 "The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gs-loc.apple.com” which could put your confidential information at risk." UserInfo=0x16587660 {NSErrorFailingURLStringKey=<a href="https://gs-loc.apple.com/clls/wloc">https://gs-loc.apple.com/clls/wloc</a>, NSLocalizedRecoverySuggestion=Would you like to connect to the server anyway?, NSErrorFailingURLKey=<a href="https://gs-loc.apple.com/clls/wloc">https://gs-loc.apple.com/clls/wloc</a>, NSLocalizedDescription=The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gs-loc.apple.com” which could put your confidential information at risk., NSUnderlyingError=0x165666c0 "The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gs-loc.apple.com” which could put your confidential information at risk.", NSURLErrorFailingURLPeerTrustErrorKey=&lt;SecTrustRef: 0x1657cb80&gt;}
+Feb  1 14:36:36 iPad locationd[51] &lt;Notice&gt;: NETWORK: no response from server, reachability, 2, queryRetries, 0
+Feb  1 14:36:47 iPad locationd[51] &lt;Notice&gt;: NETWORK: requery, 0, 0, 0, 0, 16, items, fQueryRetries, 1, fLastRetryTimestamp, 412976196.4
+Feb  1 14:36:47 iPad locationd[51] &lt;Notice&gt;: NETWORK: query, cells, 0, 0, 0, 0, wifis, 16
+Feb  1 14:36:47 iPad locationd[51] &lt;Warning&gt;: NSURLConnection/CFURLConnection HTTP load failed (kCFStreamErrorDomainSSL, -9813)
+Feb  1 14:36:47 iPad locationd[51] &lt;Warning&gt;: PBRequester failed with Error Error Domain=NSURLErrorDomain Code=-1202 "The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gs-loc.apple.com” which could put your confidential information at risk." UserInfo=0x16665920 {NSErrorFailingURLStringKey=<a href="https://gs-loc.apple.com/clls/wloc">https://gs-loc.apple.com/clls/wloc</a>, NSLocalizedRecoverySuggestion=Would you like to connect to the server anyway?, NSErrorFailingURLKey=<a href="https://gs-loc.apple.com/clls/wloc">https://gs-loc.apple.com/clls/wloc</a>, NSLocalizedDescription=The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gs-loc.apple.com” which could put your confidential information at risk., NSUnderlyingError=0x16591cf0 "The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gs-loc.apple.com” which could put your confidential information at risk.", NSURLErrorFailingURLPeerTrustErrorKey=&lt;SecTrustRef: 0x16585fc0&gt;}
+Feb  1 14:36:47 iPad locationd[51] &lt;Notice&gt;: NETWORK: no response from server, reachability, 2, queryRetries, 1
+Feb  1 14:38:26 iPad locationd[51] &lt;Notice&gt;: NETWORK: requery, 0, 0, 0, 0, 16, items, fQueryRetries, 2, fLastRetryTimestamp, 412976207.3
+Feb  1 14:38:26 iPad locationd[51] &lt;Notice&gt;: NETWORK: query, cells, 0, 0, 0, 0, wifis, 16
+Feb  1 14:38:26 iPad locationd[51] &lt;Warning&gt;: NSURLConnection/CFURLConnection HTTP load failed (kCFStreamErrorDomainSSL, -9813)
+Feb  1 14:38:26 iPad locationd[51] &lt;Warning&gt;: PBRequester failed with Error Error Domain=NSURLErrorDomain Code=-1202 "The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gs-loc.apple.com” which could put your confidential information at risk." UserInfo=0x1666e130 {NSErrorFailingURLStringKey=<a href="https://gs-loc.apple.com/clls/wloc">https://gs-loc.apple.com/clls/wloc</a>, NSLocalizedRecoverySuggestion=Would you like to connect to the server anyway?, NSErrorFailingURLKey=<a href="https://gs-loc.apple.com/clls/wloc">https://gs-loc.apple.com/clls/wloc</a>, NSLocalizedDescription=The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gs-loc.apple.com” which could put your confidential information at risk., NSUnderlyingError=0x166633d0 "The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gs-loc.apple.com” which could put your confidential information at risk.", NSURLErrorFailingURLPeerTrustErrorKey=&lt;SecTrustRef: 0x1652e0b0&gt;}
+Feb  1 14:38:26 iPad locationd[51] &lt;Notice&gt;: NETWORK: no response from server, reachability, 2, queryRetries, 2
+Feb  1 14:39:10 iPad aosnotifyd[42] &lt;Warning&gt;: NSURLConnection/CFURLConnection HTTP load failed (kCFStreamErrorDomainSSL, -9813)
+Feb  1 14:39:12 iPad UserEventAgent[14] &lt;Error&gt;:  LockStateNotifier aksNotificationCallback posting notification: com.apple.mobile.keybagd.lock_status
+Feb  1 14:39:12 iPad UserEventAgent[14] &lt;Error&gt;:  LockStateNotifier aksNotificationCallback posting notification: com.apple.mobile.keybagd.lock_status
+Feb  1 14:39:12 iPad kernel[0] &lt;Debug&gt;: AppleKeyStore::start_keybag_locking: Device Locking..
+Feb  1 14:39:13 iPad profiled[267] &lt;Notice&gt;: (Note ) profiled: Service starting...
+Feb  1 14:39:22 iPad UserEventAgent[14] &lt;Error&gt;:  LockStateNotifier aksNotificationCallback posting notification: com.apple.mobile.keybagd.lock_status
+Feb  1 14:39:22 iPad kernel[0] &lt;Debug&gt;: AppleKeyStore:Sending lock change 1
+Feb  1 14:39:22 iPad kernel[0] &lt;Debug&gt;: AppleKeyStore::device_state_transition: Device Locked, lockstate=1
+Feb  1 14:39:33 iPad profiled[267] &lt;Notice&gt;: (Note ) profiled: Service stopping.
+Feb  1 14:51:22 iPad locationd[51] &lt;Notice&gt;: NETWORK: requery, 0, 0, 0, 0, 16, items, fQueryRetries, 3, fLastRetryTimestamp, 412976306.4
+Feb  1 14:51:22 iPad locationd[51] &lt;Notice&gt;: NETWORK: query, cells, 0, 0, 0, 0, wifis, 16
+Feb  1 14:51:22 iPad locationd[51] &lt;Warning&gt;: NSURLConnection/CFURLConnection HTTP load failed (kCFStreamErrorDomainSSL, -9813)
+Feb  1 14:51:22 iPad locationd[51] &lt;Warning&gt;: PBRequester failed with Error Error Domain=NSURLErrorDomain Code=-1202 "The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gs-loc.apple.com” which could put your confidential information at risk." UserInfo=0x16534db0 {NSErrorFailingURLStringKey=<a href="https://gs-loc.apple.com/clls/wloc">https://gs-loc.apple.com/clls/wloc</a>, NSLocalizedRecoverySuggestion=Would you like to connect to the server anyway?, NSErrorFailingURLKey=<a href="https://gs-loc.apple.com/clls/wloc">https://gs-loc.apple.com/clls/wloc</a>, NSLocalizedDescription=The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gs-loc.apple.com” which could put your confidential information at risk., NSUnderlyingError=0x166804d0 "The certificate for this server is invalid. You might be connecting to a server that is pretending to be “gs-loc.apple.com” which could put your confidential information at risk.", NSURLErrorFailingURLPeerTrustErrorKey=&lt;SecTrustRef: 0x1652b470&gt;}
+Feb  1 14:51:22 iPad locationd[51] &lt;Notice&gt;: NETWORK: no response from server, reachability, 2, queryRetries, 3</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-02-20 20:42:36 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><span class="quote">&gt; MonoTouch: MonoDevelop Port: 10000 Transport: USB
+&gt; MonoTouch: Listened for connections from MonoDevelop for 2 seconds, nobody connected.</span>
+
+This looks fine (at least from the device side).
+
+However can you try to switch to WIFi debugging (toggle the checkbox in Xamarin Studio's preferences "Projects/Debugger/iPhone Debugger") and see if that works?</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carlo Wahlstedt</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-02-28 11:12:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Sorry to take so long to respond. I've been out of the office. It still behaves the same with WiFi debugging on.</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-02-28 19:53:43 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Can you attach both the Application Output and the Device log from the WiFi debugging session as well?</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carlo Wahlstedt</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-04 08:04:43 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Sorry, I realized in attempting to get the log again that it is working on WiFi (I didn't realize I wasn't on the same wifi). 
+
+However, I can't use WiFi debugging all the time because my iPad and Macbook aren't always on the same wifi network.</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-04 12:48:54 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Can you zip up and attach the logs from ~/Library/Logs/XamarinStudio-4.0 ? Maybe something there will give a clue as to what's happening.</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-06-07 08:22:55 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Carlo, sorry for the late response, but is this still a problem?</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-09-14 00:32:00 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">We have not received the requested information. If you are still 
+experiencing this issue please provide all the requested information 
+and re-open the bug report. Thanks!</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>
