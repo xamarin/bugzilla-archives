@@ -1,0 +1,1465 @@
+<html lang="en"><head>
+    <title>46560 – * Assertion at class.c:9954, condition `klass != NULL' not met</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Runtime
+                 bz_component_JIT
+                 bz_bug_46560 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;46560</span>
+
+        <span id="subtitle" class="subheader">* Assertion at class.c:9954, condition `klass != NULL' not met</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2016-11-11 21:09:30 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2016-11-11 21:09:30">
+  <input type="hidden" name="id" value="46560">
+  <input type="hidden" name="token" value="1559159595-I5hW3PByZTItFUku3r1dkqpE7GvqmYh817P9rm4dSOE">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;46560</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">* Assertion at class.c:9954, condition `klass != NULL' not met</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>* Assertion at class.c:9954, condition `klass != NULL' not met
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Runtime
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Mono
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">JIT
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>4.8.0 (C9)
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>---
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Bugzilla</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2016-11-08 08:48 UTC by <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2016-11-11 21:09 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>3
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="mono-bugs+mono">mono-bugs+mono</option>
+                <option value="mono-bugs+runtime">mono-bugs+runtime</option>
+                <option value="vargaz">vargaz</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+            <a href="https://github.com/mono">GitHub</a> or <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-08 08:48:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Roslyn crashes on ARM64. This is probably not ARM specific just exposed there
+
+Full log <a href="https://jenkins.mono-project.com/job/test-mono-pull-request-arm64/1930/consoleFull#592380892ae1da302-70c8-400e-9aed-bc1cd416a1c7">https://jenkins.mono-project.com/job/test-mono-pull-request-arm64/1930/consoleFull#592380892ae1da302-70c8-400e-9aed-bc1cd416a1c7</a>
+
+Relevant info
+
+* Assertion at class.c:9954, condition `klass != NULL' not met
+04:42:37 
+04:42:37 Stacktrace:
+04:42:37 
+04:42:37   at &lt;unknown&gt; &lt;0xffffffff&gt;
+04:42:37   at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.Scan (bool&amp;) &lt;0x00053&gt;
+04:42:37   at Microsoft.CodeAnalysis.CSharp.ControlFlowPass.Scan (bool&amp;) &lt;0x0005b&gt;
+04:42:37   at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.Analyze (bool&amp;) &lt;0x00103&gt;
+04:42:37   at Microsoft.CodeAnalysis.CSharp.ControlFlowPass.Analyze (bool&amp;,Microsoft.CodeAnalysis.DiagnosticBag) &lt;0x0002f&gt;
+04:42:37   at Microsoft.CodeAnalysis.CSharp.ControlFlowPass.Analyze (Microsoft.CodeAnalysis.CSharp.CSharpCompilation,Microsoft.CodeAnalysis.CSharp.Symbol,Microsoft.CodeAnalysis.CSharp.BoundBlock,Microsoft.CodeAnalysis.DiagnosticBag) &lt;0x0008b&gt;
+04:42:37   at Microsoft.CodeAnalysis.CSharp.FlowAnalysisPass.Analyze (Microsoft.CodeAnalysis.CSharp.CSharpCompilation,Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol,Microsoft.CodeAnalysis.CSharp.BoundBlock,Microsoft.CodeAnalysis.DiagnosticBag) &lt;0x00033&gt;
+04:42:37   at Microsoft.CodeAnalysis.CSharp.FlowAnalysisPass.Rewrite (Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol,Microsoft.CodeAnalysis.CSharp.BoundBlock,Microsoft.CodeAnalysis.DiagnosticBag,bool,bool) &lt;0x000f3&gt;
+04:42:37   at Microsoft.CodeAnalysis.CSharp.MethodCompiler.CompileMethod (Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol,int,Microsoft.CodeAnalysis.CSharp.Binder/ProcessedFieldInitializers&amp;,Microsoft.CodeAnalysis.CSharp.SynthesizedSubmissionFields,Microsoft.CodeAnalysis.CSharp.TypeCompilationState) &lt;0x00767&gt;
+04:42:37   at Microsoft.CodeAnalysis.CSharp.MethodCompiler.CompileNamedType (Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol) &lt;0x005b7&gt;
+04:42:37   at Microsoft.CodeAnalysis.CSharp.MethodCompiler/&lt;&gt;c__DisplayClass20_0.&lt;CompileNamedTypeAsTask&gt;b__0 () &lt;0x0001b&gt;
+04:42:37   at Roslyn.Utilities.UICultureUtilities/&lt;&gt;c__DisplayClass5_0.&lt;WithCurrentUICulture&gt;b__0 () &lt;0x000b3&gt;
+04:42:37   at System.Threading.Tasks.Task.InnerInvoke () &lt;0x0005f&gt;
+04:42:37   at System.Threading.Tasks.Task.Execute () &lt;0x0003f&gt;
+04:42:37   at System.Threading.Tasks.Task.ExecutionContextCallback (object) &lt;0x00057&gt;
+04:42:37   at System.Threading.ExecutionContext.RunInternal (System.Threading.ExecutionContext,System.Threading.ContextCallback,object,bool) &lt;0x0016f&gt;
+04:42:37   at System.Threading.ExecutionContext.Run (System.Threading.ExecutionContext,System.Threading.ContextCallback,object,bool) &lt;0x0002b&gt;
+04:42:37   at System.Threading.Tasks.Task.ExecuteWithThreadLocal (System.Threading.Tasks.Task&amp;) &lt;0x0012b&gt;
+04:42:37   at System.Threading.Tasks.Task.ExecuteEntry (bool) &lt;0x000cb&gt;
+04:42:37   at System.Threading.Tasks.Task.System.Threading.IThreadPoolWorkItem.ExecuteWorkItem () &lt;0x00017&gt;
+04:42:37   at System.Threading.ThreadPoolWorkQueue.Dispatch () &lt;0x001db&gt;
+04:42:37   at System.Threading._ThreadPoolWaitCallback.PerformWaitCallback () &lt;0x0000b&gt;
+04:42:37   at (wrapper runtime-invoke) &lt;Module&gt;.runtime_invoke_bool (object,intptr,intptr,intptr) &lt;0x00057&gt;
+04:42:37 
+04:42:37 
+Native stacktrace:
+04:42:37 
+04:42:37 	/media/ssd/jenkins/workspace/test-mono-pull-request-arm64/mono/mini/mono() [0x49de50]
+04:42:37 
+04:42:37 =================================================================
+04:42:37 Got a SIGABRT while executing native code. This usually indicates
+04:42:37 a fatal error in the mono runtime or one of the native libraries 
+04:42:37 used by your application.
+04:42:37 =================================================================</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-08 15:17:50 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Every wrench build seems to hit that at some point
+
+Next one
+
+<a href="https://jenkins.mono-project.com/job/test-mono-pull-request-arm64/1936/consoleFull#-1279890771de733c27-8bf9-43f1-b986-604599a42e3b">https://jenkins.mono-project.com/job/test-mono-pull-request-arm64/1936/consoleFull#-1279890771de733c27-8bf9-43f1-b986-604599a42e3b</a></pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-08 22:17:04 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Fixed a bunch of issues in <a href="https://github.com/mono/mono/pull/3919">https://github.com/mono/mono/pull/3919</a>, but its still fails randomly.</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-09 07:12:20 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">That pull request is now in master.</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-10 10:40:27 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Tracked down the remaining failure
+
+Here is the treads dump
+
+(gdb) T a a bt
+
+Thread 9 (Thread 0x7faefff1b0 (LWP 6948)):
+#0  0x0000007fb7eed218 in __lll_lock_wait ()
+   from /lib/aarch64-linux-gnu/libpthread.so.0
+#1  0x0000007fb7ee80a4 in pthread_mutex_lock ()
+   from /lib/aarch64-linux-gnu/libpthread.so.0
+#2  0x000000000054346c in mono_os_mutex_lock (mutex=0x746220)
+    at ../../mono/utils/mono-os-mutex.h:94
+#3  mono_image_set_lock (set=0x746150) at metadata.c:2427
+#4  mono_metadata_get_generic_inst (type_argc=128, type_argc@entry=1,
+    type_argv=type_argv@entry=0x7f90222dd0) at metadata.c:2916
+#5  0x0000000000543794 in mono_metadata_parse_generic_inst (m=m@entry=0x742f50,
+    container=container@entry=0x795c48, count=1, ptr=0x7f9020d6a8 "",
+    rptr=rptr@entry=0x7faeffc318, error=error@entry=0x7f9020d6a8) at metadata.c:3070
+#6  0x0000000000543e04 in do_mono_metadata_parse_generic_class (
+    type=&lt;optimized out&gt;, error=0x7f9020d6a8, rptr=0x7faeffc368, ptr=0x0,
+    container=0x795c48, m=0x742f50) at metadata.c:3100
+#7  do_mono_metadata_parse_type (error=0x7f9020d6a8, rptr=0x7faeffc358,
+    ptr=0x18a &lt;error: Cannot access memory at address 0x18a&gt;, transient=0,
+    container=0x795c48, m=0x742f50, type=0x7faeffc320) at metadata.c:3429
+#8  mono_metadata_parse_type_internal (m=m@entry=0x742f50,
+    container=container@entry=0x795c48, opt_attrs=&lt;optimized out&gt;,
+    transient=transient@entry=0, ptr=0x742f50 "\001", rptr=rptr@entry=0x7faeffc3b8,
+    error=error@entry=0x7f9020d6a8) at metadata.c:1688
+#9  0x00000000005442cc in mono_metadata_parse_type_checked (error=0x7f9020d6a8,
+    rptr=0x7faeffc3b8, ptr=&lt;optimized out&gt;, transient=0, opt_attrs=&lt;optimized out&gt;,
+    container=0x795c48, m=0x742f50) at metadata.c:1742
+#10 mono_metadata_parse_method_signature_full (m=m@entry=0x742f50,
+    container=container@entry=0x795c48, def=def@entry=394,
+    ptr=0x7fb5fcde2b "\025\022\207\230\001\036", rptr=rptr@entry=0x0,
+    error=error@entry=0x7f9020d6a8) at metadata.c:2081
+#11 0x0000000000526528 in mono_method_signature_checked (m=0x795c20,
+    error=0x7f9020d6a8) at loader.c:2405
+#12 0x0000000000526bf4 in find_method_in_class (klass=klass@entry=0x74a360,
+    name=name@entry=0x7fb4c051e8 "Sort", qname=qname@entry=0x0,
+    fqname=fqname@entry=0x0, sig=sig@entry=0x7fa019d620,
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    from_class=from_class@entry=0x74a360, error=error@entry=0x7f9020d6a8)
+    at loader.c:419
+#13 0x0000000000526fa0 in find_method (in_class=in_class@entry=0x74a360,
+    ic=ic@entry=0x0, name=name@entry=0x7fb4c051e8 "Sort",
+    sig=sig@entry=0x7fa019d620, from_class=from_class@entry=0x74a360,
+    error=error@entry=0x7f9020d6a8) at loader.c:465
+#14 0x00000000005274fc in method_from_memberref (image=image@entry=0x7afd00,
+    idx=127, idx@entry=4538, typespec_context=typespec_context@entry=0x0,
+    used_context=used_context@entry=0x0, error=0x7f9020d6a8) at loader.c:849
+#15 0x00000000005279b8 in method_from_methodspec (error=0x7f9020d6a8, idx=662,
+    context=0x0, image=0x7afd00) at loader.c:937
+#16 mono_get_method_from_token (image=image@entry=0x7afd00,
+    token=token@entry=721420950, klass=klass@entry=0x0, context=context@entry=0x0,
+    used_context=used_context@entry=0x7faeffc71c, error=error@entry=0x7f9020d6a8)
+    at loader.c:1613
+#17 0x0000000000527bd8 in mono_get_method_checked (image=0x7afd00,
+    token=&lt;optimized out&gt;, klass=klass@entry=0x0, context=0x0, error=0x7f9020d6a8)
+    at loader.c:1754
+#18 0x0000000000415eac in mini_get_method_allow_open (m=&lt;optimized out&gt;, token=0,
+    context=&lt;optimized out&gt;, error=&lt;optimized out&gt;, klass=0x0)
+    at method-to-ir.c:7437
+#19 0x0000000000415ee8 in mini_get_method (cfg=cfg@entry=0x7f9020d1f0,
+    m=m@entry=0x7fa019f1c0, token=token@entry=5090172, context=context@entry=0x0,
+    klass=0x0) at method-to-ir.c:7447
+#20 0x00000000004543f4 in mono_method_to_ir (cfg=cfg@entry=0x7f9020d1f0,
+    method=method@entry=0x7fa019f1c0, start_bblock=0x7f9021cbb8,
+    start_bblock@entry=0x0, end_bblock=0x7f9021ccf0, end_bblock@entry=0x0,
+    return_var=return_var@entry=0x0, inline_args=inline_args@entry=0x0,
+    inline_offset=inline_offset@entry=0, is_virtual_call=is_virtual_call@entry=0)
+    at method-to-ir.c:9254
+#21 0x00000000004daba4 in mini_method_compile (method=method@entry=0x7fa019f1c0,
+    opts=opts@entry=370223615, domain=domain@entry=0x73e680,
+    flags=flags@entry=JIT_FLAG_RUN_CCTORS, parts=parts@entry=0,
+    aot_method_index=aot_method_index@entry=-1) at mini.c:3562
+#22 0x00000000004dc76c in mono_jit_compile_method_inner (
+    method=method@entry=0x7fa019f1c0, target_domain=target_domain@entry=0x73e680,
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    opt=opt@entry=370223615, error=error@entry=0x7faeffcd88) at mini.c:4254
+#23 0x0000000000426b18 in mono_jit_compile_method_with_opt (
+    method=method@entry=0x7fa019f1c0, opt=370223615, error=0x7faeffcd88,
+    error@entry=0x0) at mini-runtime.c:1989
+#24 0x0000000000427300 in mono_jit_compile_method (
+    method=method@entry=0x7fa019f1c0, error=0x0, error@entry=0x7faeffcd88)
+    at mini-runtime.c:2033
+#25 0x000000000049f42c in common_call_trampoline (regs=regs@entry=0x7faeffce00,
+    code=0x7fad325ac8 "\240\003\003\221\035\234\377\227\340\003\025\252\263SA\251\265[B\251\267cC\251\271kD\251\277\003",
+    code@entry=0x7faeffcf70 "\340\354\234\267\177", m=0x7fa019f1c0,
+    m@entry=0x7fad325f0c, vt=vt@entry=0x0, vtable_slot=&lt;optimized out&gt;,
+    vtable_slot@entry=0x0, error=0x7faeffcd88, error@entry=0x7faeffcda8)
+    at mini-trampolines.c:698
+#26 0x000000000049fa28 in mono_magic_trampoline (regs=0x7faeffce00,
+    code=0x7faeffcf70 "\340\354\234\267\177", arg=0x7fad325f0c,
+    tramp=&lt;optimized out&gt;) at mini-trampolines.c:828
+#27 0x0000007fb7d852f4 in ?? ()
+#28 0x0000007fb79c46a8 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 8 (Thread 0x7faf39b1b0 (LWP 6947)):
+#0  0x00000000004fadd8 in setup_interface_offsets (klass=klass@entry=0x7fa01b46c8,
+    cur_slot=cur_slot@entry=0, overwrite=127, overwrite@entry=1) at class.c:3561
+#1  0x00000000004f9d78 in mono_class_init (klass=klass@entry=0x7fa01b46c8)
+    at class.c:5318
+#2  0x00000000004fade8 in setup_interface_offsets (klass=klass@entry=0x7fa01b45a0,
+    cur_slot=cur_slot@entry=0, overwrite=127, overwrite@entry=1) at class.c:3563
+#3  0x00000000004f9d78 in mono_class_init (klass=klass@entry=0x7fa01b45a0)
+    at class.c:5318
+#4  0x00000000004fade8 in setup_interface_offsets (klass=klass@entry=0x7fa01b4438,
+    cur_slot=cur_slot@entry=0, overwrite=127, overwrite@entry=1) at class.c:3563
+#5  0x00000000004f9d78 in mono_class_init (klass=klass@entry=0x7fa01b4438)
+    at class.c:5318
+#6  0x00000000004fa414 in collect_implemented_interfaces_aux (
+    klass=klass@entry=0x7fa014c780, res=0x7faf3989a8, res@entry=0x7faf3989b8,
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    error=error@entry=0x7faf398a88) at class.c:2904
+#7  0x00000000004fa484 in mono_class_get_implemented_interfaces (
+    klass=klass@entry=0x7fa014c780, error=0x7faf398a88, error@entry=0x7faf398b48)
+    at class.c:2920
+#8  0x00000000004fae0c in setup_interface_offsets (klass=klass@entry=0x7fa014c780,
+    cur_slot=cur_slot@entry=4, overwrite=0, overwrite@entry=1) at class.c:3568
+#9  0x00000000004f9d78 in mono_class_init (klass=0x7fa014c780) at class.c:5318
+#10 0x00000000004f9f04 in mono_class_init (klass=klass@entry=0x7fa00c10c0)
+    at class.c:5160
+#11 0x0000000000527320 in method_from_memberref (image=image@entry=0x7afd00,
+    idx=127, idx@entry=4572, typespec_context=typespec_context@entry=0x0,
+    used_context=used_context@entry=0x7faf398dbc, error=error@entry=0x7f9c1d86d8)
+    at loader.c:825
+#12 0x000000000052760c in mono_get_method_from_token (image=image@entry=0x7afd00,
+    token=token@entry=167776732, klass=klass@entry=0x0, context=context@entry=0x0,
+    used_context=0x7faf398dbc, used_context@entry=0x7faf398dfc,
+    error=error@entry=0x7f9c1d86d8) at loader.c:1619
+#13 0x0000000000527bd8 in mono_get_method_checked (image=0x7afd00,
+    token=&lt;optimized out&gt;, klass=klass@entry=0x0, context=0x0, error=0x7f9c1d86d8)
+    at loader.c:1754
+#14 0x0000000000415eac in mini_get_method_allow_open (m=&lt;optimized out&gt;, token=0,
+    context=&lt;optimized out&gt;, error=&lt;optimized out&gt;, klass=0x0)
+    at method-to-ir.c:7437
+#15 0x0000000000415ee8 in mini_get_method (cfg=cfg@entry=0x7f9c1d8220,
+    m=m@entry=0x7f981cafe8, token=token@entry=5090172, context=context@entry=0x0,
+    klass=0x0) at method-to-ir.c:7447
+#16 0x00000000004543f4 in mono_method_to_ir (cfg=cfg@entry=0x7f9c1d8220,
+    method=method@entry=0x7f981cafe8, start_bblock=0x7f9c1e3338,
+    start_bblock@entry=0x0, end_bblock=0x7f9c1e3470, end_bblock@entry=0x0,
+    return_var=return_var@entry=0x0, inline_args=inline_args@entry=0x0,
+    inline_offset=inline_offset@entry=0, is_virtual_call=is_virtual_call@entry=0)
+    at method-to-ir.c:9254
+#17 0x00000000004daba4 in mini_method_compile (method=method@entry=0x7f981cafe8,
+    opts=opts@entry=370223615, domain=domain@entry=0x73e680,
+    flags=flags@entry=JIT_FLAG_RUN_CCTORS, parts=parts@entry=0,
+    aot_method_index=aot_method_index@entry=-1) at mini.c:3562
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#18 0x00000000004dc76c in mono_jit_compile_method_inner (
+    method=method@entry=0x7f981cafe8, target_domain=target_domain@entry=0x73e680,
+    opt=opt@entry=370223615, error=error@entry=0x7faf399468) at mini.c:4254
+#19 0x0000000000426b18 in mono_jit_compile_method_with_opt (
+    method=method@entry=0x7f981cafe8, opt=370223615, error=0x7faf399468,
+    error@entry=0x0) at mini-runtime.c:1989
+#20 0x0000000000427300 in mono_jit_compile_method (
+    method=method@entry=0x7f981cafe8, error=0x0, error@entry=0x7faf399468)
+    at mini-runtime.c:2033
+#21 0x000000000049f42c in common_call_trampoline (regs=regs@entry=0x7faf3994e0,
+    code=0x7fad363cbc "\277\003", code@entry=0x7faf399a40 "\360\215\224\267\177",
+    m=0x7f981cafe8, m@entry=0x7faf399400, vt=vt@entry=0x0,
+    vtable_slot=&lt;optimized out&gt;, vtable_slot@entry=0x0, error=0x7faf399468,
+    error@entry=0x7faf399488) at mini-trampolines.c:698
+#22 0x000000000049fa28 in mono_magic_trampoline (regs=0x7faf3994e0,
+    code=0x7faf399a40 "\360\215\224\267\177", arg=0x7faf399400,
+    tramp=&lt;optimized out&gt;) at mini-trampolines.c:828
+#23 0x0000007fb7d852f4 in ?? ()
+#24 0x0000007fb79ba998 in ?? ()
+#25 0x0000007fa417b380 in ?? ()
+
+Thread 7 (Thread 0x7faf59b1b0 (LWP 6946)):
+#0  mono_arch_flush_icache (code=&lt;optimized out&gt;, size=&lt;optimized out&gt;)
+    at mini-arm64.c:1817
+#1  0x00000000004da054 in mono_codegen (cfg=cfg@entry=0x7f981c19d0) at mini.c:2486
+#2  0x00000000004dad00 in mini_method_compile (method=method@entry=0x180c490,
+    opts=opts@entry=370223615, domain=domain@entry=0x73e680,
+    flags=flags@entry=JIT_FLAG_RUN_CCTORS, parts=parts@entry=0,
+    aot_method_index=aot_method_index@entry=-1) at mini.c:3955
+#3  0x00000000004dc76c in mono_jit_compile_method_inner (
+    method=method@entry=0x180c490, target_domain=target_domain@entry=0x73e680,
+    opt=opt@entry=370223615, error=error@entry=0x7faf598a58) at mini.c:4254
+#4  0x0000000000426b18 in mono_jit_compile_method_with_opt (
+    method=method@entry=0x180c490, opt=370223615, error=0x7faf598a58,
+    error@entry=0x0) at mini-runtime.c:1989
+#5  0x0000000000427300 in mono_jit_compile_method (method=method@entry=0x180c490,
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    error=0x0, error@entry=0x7faf598a58) at mini-runtime.c:2033
+#6  0x000000000049f42c in common_call_trampoline (regs=regs@entry=0x7faf598ad0,
+    code=0x7fad2fcf2c "\276'@\371\300\003",
+    code@entry=0x1 &lt;error: Cannot access memory at address 0x1&gt;, m=0x180c490,
+    m@entry=0x1, vt=vt@entry=0x0, vtable_slot=&lt;optimized out&gt;,
+    vtable_slot@entry=0x0, error=0x7faf598a58, error@entry=0x7faf598a78)
+    at mini-trampolines.c:698
+#7  0x000000000049fa28 in mono_magic_trampoline (regs=0x7faf598ad0,
+    code=0x1 &lt;error: Cannot access memory at address 0x1&gt;, arg=0x1,
+    tramp=&lt;optimized out&gt;) at mini-trampolines.c:828
+#8  0x0000007fb7d852f4 in ?? ()
+#9  0x00000000017f5278 in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+Thread 6 (Thread 0x7faf79b1b0 (LWP 6945)):
+#0  0x0000007fb7ee913c in __pthread_mutex_unlock_usercnt ()
+   from /lib/aarch64-linux-gnu/libpthread.so.0
+#1  0x000000000054348c in mono_os_mutex_unlock (mutex=0x746220)
+    at ../../mono/utils/mono-os-mutex.h:116
+#2  mono_image_set_unlock (set=0x746150) at metadata.c:2433
+#3  mono_metadata_get_generic_inst (type_argc=2,
+    type_argv=type_argv@entry=0x7fa4189f90) at metadata.c:2933
+#4  0x00000000005436c0 in mono_metadata_inflate_generic_inst (ginst=0x763b00,
+    context=context@entry=0x7fa01b47c8, error=error@entry=0x7faf798828)
+    at metadata.c:3037
+#5  0x00000000004fcf10 in inflate_generic_type (image=image@entry=0x0,
+    type=type@entry=0x7656a0, context=0x7fa01b47c8, context@entry=0x0,
+    error=error@entry=0x7faf798828) at class.c:778
+#6  0x00000000004fd0c4 in mono_class_inflate_generic_type_with_mempool (image=0x0,
+    type=0x7656a0, context=0x0, error=0x7faf798828) at class.c:855
+#7  0x000000000054365c in mono_metadata_inflate_generic_inst (ginst=0x763c70,
+    context=context@entry=0x7fa01b47c8, error=error@entry=0x7faf798828)
+    at metadata.c:3031
+#8  0x00000000004fcf10 in inflate_generic_type (image=image@entry=0x0,
+    type=type@entry=0x763d70, context=0x7fa01b47c8,
+    context@entry=0x4fa3ac &lt;collect_implemented_interfaces_aux+40&gt;,
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    error=error@entry=0x7faf798828) at class.c:778
+#9  0x00000000004fd0c4 in mono_class_inflate_generic_type_with_mempool (image=0x0,
+    type=0x763d70, context=0x4fa3ac &lt;collect_implemented_interfaces_aux+40&gt;,
+    error=0x7faf798828) at class.c:855
+#10 0x00000000004fd6a0 in mono_class_inflate_generic_type_checked (
+    error=0x7faf798828, context=&lt;optimized out&gt;, type=0x763d70) at class.c:910
+#11 mono_class_inflate_generic_class_checked (gklass=gklass@entry=0x763cb0,
+    context=&lt;optimized out&gt;, error=error@entry=0x7faf798828) at class.c:948
+#12 0x00000000004f79fc in mono_class_setup_interfaces (
+    klass=klass@entry=0x7fa01b47f0, error=error@entry=0x7faf798828) at class.c:10681
+#13 0x00000000004fa3ac in collect_implemented_interfaces_aux (
+    klass=klass@entry=0x7fa01b47f0, res=0x7faf798748, res@entry=0x7faf798758,
+    error=error@entry=0x7faf798828) at class.c:2895
+#14 0x00000000004fa484 in mono_class_get_implemented_interfaces (
+    klass=klass@entry=0x7fa01b47f0, error=0x7faf798828, error@entry=0x7faf7988e8)
+    at class.c:2920
+#15 0x00000000004fae0c in setup_interface_offsets (klass=klass@entry=0x7fa01b47f0,
+    cur_slot=cur_slot@entry=0, overwrite=127, overwrite@entry=1) at class.c:3568
+#16 0x00000000004f9d78 in mono_class_init (klass=klass@entry=0x7fa01b47f0)
+    at class.c:5318
+#17 0x00000000004fa414 in collect_implemented_interfaces_aux (
+    klass=klass@entry=0x7fa014c780, res=0x7faf7989a8, res@entry=0x7faf7989b8,
+    error=error@entry=0x7faf798a88) at class.c:2904
+#18 0x00000000004fa484 in mono_class_get_implemented_interfaces (
+    klass=klass@entry=0x7fa014c780, error=0x7faf798a88, error@entry=0x7faf798b48)
+    at class.c:2920
+#19 0x00000000004fae0c in setup_interface_offsets (klass=klass@entry=0x7fa014c780,
+    cur_slot=cur_slot@entry=4, overwrite=0, overwrite@entry=1) at class.c:3568
+#20 0x00000000004f9d78 in mono_class_init (klass=0x7fa014c780) at class.c:5318
+#21 0x00000000004f9f04 in mono_class_init (klass=klass@entry=0x7fa00c10c0)
+    at class.c:5160
+#22 0x0000000000527320 in method_from_memberref (image=image@entry=0x7afd00,
+    idx=127, idx@entry=4572, typespec_context=typespec_context@entry=0x0,
+    used_context=used_context@entry=0x7faf798dbc, error=error@entry=0x7fa41558f8)
+    at loader.c:825
+#23 0x000000000052760c in mono_get_method_from_token (image=image@entry=0x7afd00,
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    token=token@entry=167776732, klass=klass@entry=0x0, context=context@entry=0x0,
+    used_context=0x7faf798dbc, used_context@entry=0x7faf798dfc,
+    error=error@entry=0x7fa41558f8) at loader.c:1619
+#24 0x0000000000527bd8 in mono_get_method_checked (image=0x7afd00,
+    token=&lt;optimized out&gt;, klass=klass@entry=0x0, context=0x0, error=0x7fa41558f8)
+    at loader.c:1754
+#25 0x0000000000415eac in mini_get_method_allow_open (m=&lt;optimized out&gt;, token=0,
+    context=&lt;optimized out&gt;, error=&lt;optimized out&gt;, klass=0x0)
+    at method-to-ir.c:7437
+#26 0x0000000000415ee8 in mini_get_method (cfg=cfg@entry=0x7fa4155440,
+    m=m@entry=0x7f981cafe8, token=token@entry=5090172, context=context@entry=0x0,
+    klass=0x0) at method-to-ir.c:7447
+#27 0x00000000004543f4 in mono_method_to_ir (cfg=cfg@entry=0x7fa4155440,
+    method=method@entry=0x7f981cafe8, start_bblock=0x7fa417e6f8,
+    start_bblock@entry=0x0, end_bblock=0x7fa417e830, end_bblock@entry=0x0,
+    return_var=return_var@entry=0x0, inline_args=inline_args@entry=0x0,
+    inline_offset=inline_offset@entry=0, is_virtual_call=is_virtual_call@entry=0)
+    at method-to-ir.c:9254
+#28 0x00000000004daba4 in mini_method_compile (method=method@entry=0x7f981cafe8,
+    opts=opts@entry=370223615, domain=domain@entry=0x73e680,
+    flags=flags@entry=JIT_FLAG_RUN_CCTORS, parts=parts@entry=0,
+    aot_method_index=aot_method_index@entry=-1) at mini.c:3562
+#29 0x00000000004dc76c in mono_jit_compile_method_inner (
+    method=method@entry=0x7f981cafe8, target_domain=target_domain@entry=0x73e680,
+    opt=opt@entry=370223615, error=error@entry=0x7faf799468) at mini.c:4254
+#30 0x0000000000426b18 in mono_jit_compile_method_with_opt (
+    method=method@entry=0x7f981cafe8, opt=370223615, error=0x7faf799468,
+    error@entry=0x0) at mini-runtime.c:1989
+#31 0x0000000000427300 in mono_jit_compile_method (
+    method=method@entry=0x7f981cafe8, error=0x0, error@entry=0x7faf799468)
+    at mini-runtime.c:2033
+#32 0x000000000049f42c in common_call_trampoline (regs=regs@entry=0x7faf7994e0,
+    code=0x7fad363cbc "\277\003", code@entry=0x7faf799a40 "\340\260\202\267\177",
+    m=0x7f981cafe8, m@entry=0x7faf799400, vt=vt@entry=0x0,
+    vtable_slot=&lt;optimized out&gt;, vtable_slot@entry=0x0, error=0x7faf799468,
+    error@entry=0x7faf799488) at mini-trampolines.c:698
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#33 0x000000000049fa28 in mono_magic_trampoline (regs=0x7faf7994e0,
+    code=0x7faf799a40 "\340\260\202\267\177", arg=0x7faf799400,
+    tramp=&lt;optimized out&gt;) at mini-trampolines.c:828
+#34 0x0000007fb7d852f4 in ?? ()
+#35 0x0000007fb79b5f68 in ?? ()
+#36 0x0000007fa417b380 in ?? ()
+
+Thread 5 (Thread 0x7faf99b1b0 (LWP 6944)):
+#0  0x0000007fb7eed254 in __lll_lock_wait ()
+   from /lib/aarch64-linux-gnu/libpthread.so.0
+#1  0x0000007fb7ee80a4 in pthread_mutex_lock ()
+   from /lib/aarch64-linux-gnu/libpthread.so.0
+#2  0x000000000054346c in mono_os_mutex_lock (mutex=0x746220)
+    at ../../mono/utils/mono-os-mutex.h:94
+#3  mono_image_set_lock (set=0x746150) at metadata.c:2427
+#4  mono_metadata_get_generic_inst (type_argc=0,
+    type_argv=type_argv@entry=0x7fa01acc40) at metadata.c:2916
+#5  0x00000000005436c0 in mono_metadata_inflate_generic_inst (ginst=0x74b8f0,
+    context=context@entry=0x7fa014c758, error=error@entry=0x7faf998a88)
+    at metadata.c:3037
+#6  0x00000000004fcf10 in inflate_generic_type (image=image@entry=0x0,
+    type=type@entry=0x763838, context=0x7fa014c758,
+    context@entry=0x4fa3ac &lt;collect_implemented_interfaces_aux+40&gt;,
+    error=error@entry=0x7faf998a88) at class.c:778
+#7  0x00000000004fd0c4 in mono_class_inflate_generic_type_with_mempool (image=0x0,
+    type=0x763838, context=0x4fa3ac &lt;collect_implemented_interfaces_aux+40&gt;,
+    error=0x7faf998a88) at class.c:855
+#8  0x00000000004fd6a0 in mono_class_inflate_generic_type_checked (
+    error=0x7faf998a88, context=&lt;optimized out&gt;, type=0x763838) at class.c:910
+#9  mono_class_inflate_generic_class_checked (gklass=gklass@entry=0x763778,
+    context=&lt;optimized out&gt;, error=error@entry=0x7faf998a88) at class.c:948
+#10 0x00000000004f79fc in mono_class_setup_interfaces (
+    klass=klass@entry=0x7fa014c780, error=error@entry=0x7faf998a88) at class.c:10681
+#11 0x00000000004fa3ac in collect_implemented_interfaces_aux (
+    klass=klass@entry=0x7fa014c780, res=0x7faf9989a8, res@entry=0x7faf9989b8,
+    error=error@entry=0x7faf998a88) at class.c:2895
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#12 0x00000000004fa484 in mono_class_get_implemented_interfaces (
+    klass=klass@entry=0x7fa014c780, error=0x7faf998a88, error@entry=0x7faf998b48)
+    at class.c:2920
+#13 0x00000000004fae0c in setup_interface_offsets (klass=klass@entry=0x7fa014c780,
+    cur_slot=cur_slot@entry=4, overwrite=0, overwrite@entry=1) at class.c:3568
+#14 0x00000000004f9d78 in mono_class_init (klass=0x7fa014c780) at class.c:5318
+#15 0x00000000004f9f04 in mono_class_init (klass=klass@entry=0x7fa00c10c0)
+    at class.c:5160
+#16 0x0000000000527320 in method_from_memberref (image=image@entry=0x7afd00,
+    idx=127, idx@entry=4572, typespec_context=typespec_context@entry=0x0,
+    used_context=used_context@entry=0x7faf998dbc, error=error@entry=0x7fa019ad18)
+    at loader.c:825
+#17 0x000000000052760c in mono_get_method_from_token (image=image@entry=0x7afd00,
+    token=token@entry=167776732, klass=klass@entry=0x0, context=context@entry=0x0,
+    used_context=0x7faf998dbc, used_context@entry=0x7faf998dfc,
+    error=error@entry=0x7fa019ad18) at loader.c:1619
+#18 0x0000000000527bd8 in mono_get_method_checked (image=0x7afd00,
+    token=&lt;optimized out&gt;, klass=klass@entry=0x0, context=0x0, error=0x7fa019ad18)
+    at loader.c:1754
+#19 0x0000000000415eac in mini_get_method_allow_open (m=&lt;optimized out&gt;, token=0,
+    context=&lt;optimized out&gt;, error=&lt;optimized out&gt;, klass=0x0)
+    at method-to-ir.c:7437
+#20 0x0000000000415ee8 in mini_get_method (cfg=cfg@entry=0x7fa019a860,
+    m=m@entry=0x7f981cafe8, token=token@entry=5090172, context=context@entry=0x0,
+    klass=0x0) at method-to-ir.c:7447
+#21 0x00000000004543f4 in mono_method_to_ir (cfg=cfg@entry=0x7fa019a860,
+    method=method@entry=0x7f981cafe8, start_bblock=0x7fa01aa968,
+    start_bblock@entry=0x0, end_bblock=0x7fa01aaaa0, end_bblock@entry=0x0,
+    return_var=return_var@entry=0x0, inline_args=inline_args@entry=0x0,
+    inline_offset=inline_offset@entry=0, is_virtual_call=is_virtual_call@entry=0)
+    at method-to-ir.c:9254
+#22 0x00000000004daba4 in mini_method_compile (method=method@entry=0x7f981cafe8,
+    opts=opts@entry=370223615, domain=domain@entry=0x73e680,
+    flags=flags@entry=JIT_FLAG_RUN_CCTORS, parts=parts@entry=0,
+    aot_method_index=aot_method_index@entry=-1) at mini.c:3562
+#23 0x00000000004dc76c in mono_jit_compile_method_inner (
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+    method=method@entry=0x7f981cafe8, target_domain=target_domain@entry=0x73e680,
+    opt=opt@entry=370223615, error=error@entry=0x7faf999468) at mini.c:4254
+#24 0x0000000000426b18 in mono_jit_compile_method_with_opt (
+    method=method@entry=0x7f981cafe8, opt=370223615, error=0x7faf999468,
+    error@entry=0x0) at mini-runtime.c:1989
+#25 0x0000000000427300 in mono_jit_compile_method (
+    method=method@entry=0x7f981cafe8, error=0x0, error@entry=0x7faf999468)
+    at mini-runtime.c:2033
+#26 0x000000000049f42c in common_call_trampoline (regs=regs@entry=0x7faf9994e0,
+    code=0x7fad363cbc "\277\003", code@entry=0x7faf999a40 " \027Y\256\177",
+    m=0x7f981cafe8, m@entry=0x7faf999490, vt=vt@entry=0x0,
+    vtable_slot=&lt;optimized out&gt;, vtable_slot@entry=0x0, error=0x7faf999468,
+    error@entry=0x7faf999488) at mini-trampolines.c:698
+#27 0x000000000049fa28 in mono_magic_trampoline (regs=0x7faf9994e0,
+    code=0x7faf999a40 " \027Y\256\177", arg=0x7faf999490, tramp=&lt;optimized out&gt;)
+    at mini-trampolines.c:828
+#28 0x0000007fb7d852f4 in ?? ()
+#29 0x0000007fb79aefa8 in ?? ()
+#30 0x0000007fa0179c68 in ?? ()
+
+Thread 4 (Thread 0x7fb42a41b0 (LWP 6943)):
+#0  0x0000007fb7eea780 in pthread_cond_timedwait@@GLIBC_2.17 ()
+   from /lib/aarch64-linux-gnu/libpthread.so.0
+#1  0x000000000061e474 in mono_os_cond_timedwait (timeout_ms=500,
+    mutex=0x732160 &lt;sleep_mutex&gt;, cond=0x732190 &lt;sleep_cond&gt;)
+    at ../../mono/utils/mono-os-mutex.h:179
+#2  mono_coop_cond_timedwait (cond=0x732190 &lt;sleep_cond&gt;,
+    mutex=0x732160 &lt;sleep_mutex&gt;, timeout_ms=500)
+    at ../../mono/utils/mono-coop-mutex.h:99
+#3  sleep_interruptable (alerted=0x7fb42a3888, ms=500) at mono-threads.c:1305
+#4  mono_thread_info_sleep (ms=ms@entry=500, alerted=0x7fb42a3888,
+    alerted@entry=0x7fb42a38e8) at mono-threads.c:1337
+#5  0x000000000057562c in monitor_thread () at threadpool-ms.c:939
+#6  0x000000000056e770 in start_wrapper_internal (stack_ptr=0x7fb42a3928,
+    start_info=0x0) at threads.c:847
+#7  start_wrapper (data=&lt;optimized out&gt;) at threads.c:898
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#8  0x000000000061dea4 in inner_start_thread (data=0xbd33c0) at mono-threads.c:1180
+#9  0x0000007fb7ee5e34 in start_thread ()
+   from /lib/aarch64-linux-gnu/libpthread.so.0
+#10 0x0000007fb7e5c4f0 in clone () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 3 (Thread 0x7fb53741b0 (LWP 6942)):
+#0  0x0000007fb7eec61c in do_futex_wait ()
+   from /lib/aarch64-linux-gnu/libpthread.so.0
+#1  0x0000007fb7eec6cc in sem_wait@@GLIBC_2.17 ()
+   from /lib/aarch64-linux-gnu/libpthread.so.0
+#2  0x0000000000593f94 in mono_os_sem_wait (flags=MONO_SEM_FLAGS_ALERTABLE,
+    sem=0x7227b8 &lt;finalizer_sem&gt;) at ../../mono/utils/mono-os-semaphore.h:209
+#3  mono_coop_sem_wait (flags=MONO_SEM_FLAGS_ALERTABLE,
+    sem=0x7227b8 &lt;finalizer_sem&gt;) at ../../mono/utils/mono-coop-semaphore.h:40
+#4  finalizer_thread (unused=&lt;optimized out&gt;) at gc.c:907
+#5  0x000000000056e770 in start_wrapper_internal (stack_ptr=0x7fb5373928,
+    start_info=0x0) at threads.c:847
+#6  start_wrapper (data=&lt;optimized out&gt;) at threads.c:898
+#7  0x000000000061dea4 in inner_start_thread (data=0x79cef0) at mono-threads.c:1180
+#8  0x0000007fb7ee5e34 in start_thread ()
+   from /lib/aarch64-linux-gnu/libpthread.so.0
+#9  0x0000007fb7e5c4f0 in clone () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 2 (Thread 0x7fb77ff1b0 (LWP 6941)):
+#0  0x0000007fb7eea3b4 in pthread_cond_wait@@GLIBC_2.17 ()
+   from /lib/aarch64-linux-gnu/libpthread.so.0
+#1  0x00000000005fb8d4 in mono_os_cond_wait (mutex=0x7316f8 &lt;lock&gt;,
+    cond=0x731758 &lt;work_cond&gt;) at ../../mono/utils/mono-os-mutex.h:146
+#2  thread_func (thread_data=0x7fb7ff0008) at sgen-thread-pool.c:110
+#3  0x0000007fb7ee5e34 in start_thread ()
+   from /lib/aarch64-linux-gnu/libpthread.so.0
+#4  0x0000007fb7e5c4f0 in clone () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 1 (Thread 0x7fb7ff2000 (LWP 6938)):
+#0  0x0000007fb7eea3b4 in pthread_cond_wait@@GLIBC_2.17 ()
+   from /lib/aarch64-linux-gnu/libpthread.so.0
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#1  0x000000000058a744 in mono_os_cond_wait (mutex=0x734588, cond=0x7345b8)
+    at ../../mono/utils/mono-os-mutex.h:146
+#2  mono_os_cond_timedwait (timeout_ms=&lt;optimized out&gt;, mutex=0x734588,
+    cond=0x7345b8) at ../../mono/utils/mono-os-mutex.h:160
+#3  mono_w32handle_timedwait_signal_naked (alerted=0x7fffffd958, poll=0,
+    timeout=&lt;optimized out&gt;, mutex=0x734588, cond=0x7345b8) at w32handle.c:999
+#4  mono_w32handle_timedwait_signal_handle (handle=handle@entry=0x409,
+    timeout=timeout@entry=4294967295, alerted=0x7fffffd958, poll=0)
+    at w32handle.c:1114
+#5  0x000000000058b22c in mono_w32handle_wait_one (handle=handle@entry=0x409,
+    timeout=timeout@entry=4294967295, alertable=alertable@entry=1)
+    at w32handle.c:1248
+#6  0x000000000060a344 in wapi_WaitForSingleObjectEx (handle=handle@entry=0x409,
+    timeout=timeout@entry=4294967295, alertable=alertable@entry=1) at wait.c:42
+#7  0x000000000059a618 in ves_icall_System_Threading_Monitor_Monitor_wait (
+    obj=0x7fb791cca8, ms=4294967295) at monitor.c:1348
+#8  0x0000007fb54956d8 in System_Threading_Monitor_ObjWait_bool_int_object (
+    exitContext=false, millisecondsTimeout=-1, obj=0xffffffffffffffff)
+   from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#9  0x0000007fb5495cbc in System_Threading_Monitor_Wait_object_int_bool (
+    obj=0x7fb791cca8, millisecondsTimeout=-1, exitContext=false)
+   from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#10 0x0000007fb5495d50 in System_Threading_Monitor_Wait_object_int (
+    obj=0x7fb791cca8, millisecondsTimeout=-1)
+   from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#11 0x0000007fb54a8820 in System_Threading_ManualResetEventSlim_Wait_int_System_Threading_CancellationToken (this=..., millisecondsTimeout=-1, cancellationToken=0)
+   from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#12 0x0000007fb54c061c in System_Threading_Tasks_Task_SpinThenBlockingWait_int_System_Threading_CancellationToken (this=..., millisecondsTimeout=-1, cancellationToken=0)
+   from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#13 0x0000007fb54c0540 in System_Threading_Tasks_Task_InternalWait_int_System_Threading_CancellationToken (this=..., millisecondsTimeout=-1, cancellationToken=0)
+   from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#14 0x0000007fb55f6f48 in System_Runtime_CompilerServices_TaskAwaiter_HandleNonSuccessAndDebuggerNotification_System_Threading_Tasks_Task (task=...)
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+   from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#15 0x0000007fb55f6ed8 in System_Runtime_CompilerServices_TaskAwaiter_ValidateEnd_System_Threading_Tasks_Task (task=...)
+   from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#16 0x0000007fb55f6e78 in System_Runtime_CompilerServices_TaskAwaiter_GetResult (
+    this=549755804944) from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#17 0x0000007fad452690 in ?? ()
+#18 0x0000007fb79271a8 in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+
+This is with new g_assert (k-&gt;interfaces) at line <a href="https://github.com/marek-safar/mono/blob/53fd2b40298a39800b20c492f213e5f172f0d9bc/mono/metadata/class.c#L3561">https://github.com/marek-safar/mono/blob/53fd2b40298a39800b20c492f213e5f172f0d9bc/mono/metadata/class.c#L3561</a>
+
+Inspecting the value in gdb shows valid value so it's probably missing or wrong memory barrier somewhere.</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-10 10:42:37 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Another thread dump now with the g_assert applied
+
+(gdb) T a a bt
+
+Thread 8 (Thread 0x7faf39b1b0 (LWP 16297)):
+#0  0x0000007fb7eea780 in pthread_cond_timedwait@@GLIBC_2.17 () from /lib/aarch64-linux-gnu/libpthread.so.0
+#1  0x0000000000574c14 in mono_os_cond_timedwait (timeout_ms=54316, mutex=0xb78890, cond=0xb78860) at ../../mono/utils/mono-os-mutex.h:179
+#2  mono_coop_cond_timedwait (timeout_ms=54316, mutex=0xb78890, cond=0xb78860) at ../../mono/utils/mono-coop-mutex.h:99
+#3  worker_park () at threadpool-ms.c:550
+#4  worker_thread (data=&lt;optimized out&gt;) at threadpool-ms.c:642
+#5  0x000000000056e7a8 in start_wrapper_internal (stack_ptr=0x7faf39a928, start_info=0x0) at threads.c:847
+#6  start_wrapper (data=&lt;optimized out&gt;) at threads.c:898
+#7  0x000000000061dedc in inner_start_thread (data=0x7fa40027d0) at mono-threads.c:1180
+#8  0x0000007fb7ee5e34 in start_thread () from /lib/aarch64-linux-gnu/libpthread.so.0
+#9  0x0000007fb7e5c4f0 in clone () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 7 (Thread 0x7faf59b1b0 (LWP 16296)):
+#0  0x0000007fb7eea780 in pthread_cond_timedwait@@GLIBC_2.17 () from /lib/aarch64-linux-gnu/libpthread.so.0
+#1  0x0000000000574c14 in mono_os_cond_timedwait (timeout_ms=38354, mutex=0xb78890, cond=0xb78860) at ../../mono/utils/mono-os-mutex.h:179
+#2  mono_coop_cond_timedwait (timeout_ms=38354, mutex=0xb78890, cond=0xb78860) at ../../mono/utils/mono-coop-mutex.h:99
+#3  worker_park () at threadpool-ms.c:550
+#4  worker_thread (data=&lt;optimized out&gt;) at threadpool-ms.c:642
+#5  0x000000000056e7a8 in start_wrapper_internal (stack_ptr=0x7faf59a928, start_info=0x0) at threads.c:847
+#6  start_wrapper (data=&lt;optimized out&gt;) at threads.c:898
+#7  0x000000000061dedc in inner_start_thread (data=0x7fa40027d0) at mono-threads.c:1180
+#8  0x0000007fb7ee5e34 in start_thread () from /lib/aarch64-linux-gnu/libpthread.so.0
+#9  0x0000007fb7e5c4f0 in clone () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 6 (Thread 0x7faf79b1b0 (LWP 16295)):
+#0  0x0000007fb7dc49e8 in raise () from /lib/aarch64-linux-gnu/libc.so.6
+#1  0x0000007fb7dc5cf0 in abort () from /lib/aarch64-linux-gnu/libc.so.6
+#2  0x0000000000613000 in mono_log_write_logfile (log_domain=&lt;optimized out&gt;, level=&lt;optimized out&gt;, hdr=&lt;optimized out&gt;, message=&lt;optimized out&gt;) at mono-log-common.c:137
+#3  0x0000000000626994 in monoeg_g_logv (log_domain=log_domain@entry=0x0, log_level=log_level@entry=G_LOG_LEVEL_ERROR, format=format@entry=0x62fd90 "* Assertion at %s:%d, condition `%s' not met\n",
+    args=&lt;error reading variable: Cannot access memory at address 0x3f9c&gt;) at goutput.c:115
+#4  0x0000000000626ac8 in monoeg_assertion_message (format=format@entry=0x62fd90 "* Assertion at %s:%d, condition `%s' not met\n") at goutput.c:135
+#5  0x00000000004fae2c in setup_interface_offsets (klass=klass@entry=0xebcad0, cur_slot=cur_slot@entry=0, overwrite=127, overwrite@entry=1) at class.c:3561
+#6  0x00000000004f9d70 in mono_class_init (klass=klass@entry=0xebcad0) at class.c:5319
+#7  0x00000000004fa40c in collect_implemented_interfaces_aux (klass=klass@entry=0xebc9a8, res=0x7faf798de8, res@entry=0x7faf798df8, error=error@entry=0x7faf798ec8) at class.c:2904
+#8  0x00000000004fa47c in mono_class_get_implemented_interfaces (klass=klass@entry=0xebc9a8, error=0x7faf798ec8, error@entry=0x7faf798f88) at class.c:2920
+#9  0x00000000004fb0d0 in setup_interface_offsets (klass=klass@entry=0xebc9a8, cur_slot=cur_slot@entry=0, overwrite=0, overwrite@entry=1) at class.c:3569
+#10 0x00000000004f9d70 in mono_class_init (klass=klass@entry=0xebc9a8) at class.c:5319
+#11 0x00000000004fadec in setup_interface_offsets (klass=klass@entry=0xeba458, cur_slot=cur_slot@entry=4, overwrite=0, overwrite@entry=1) at class.c:3564
+#12 0x00000000004f9d70 in mono_class_init (klass=0xeba458, klass@entry=0x60c) at class.c:5319
+#13 0x00000000004f9f3c in mono_class_init (klass=klass@entry=0xeb0ee8) at class.c:5153
+#14 0x0000000000527358 in method_from_memberref (image=image@entry=0x7afd00, idx=127, idx@entry=1548, typespec_context=typespec_context@entry=0x0, used_context=used_context@entry=0x7faf7993ec,
+    error=error@entry=0x7fa400de38) at loader.c:825
+#15 0x0000000000527644 in mono_get_method_from_token (image=image@entry=0x7afd00, token=token@entry=167773708, klass=klass@entry=0x0, context=context@entry=0x0, used_context=0x7faf7993ec,
+    used_context@entry=0x7faf79942c, error=error@entry=0x7fa400de38) at loader.c:1619
+#16 0x0000000000527c10 in mono_get_method_checked (image=0x7afd00, token=&lt;optimized out&gt;, klass=klass@entry=0x0, context=0x0, error=0x7fa400de38) at loader.c:1754
+#17 0x0000000000415eac in mini_get_method_allow_open (m=&lt;optimized out&gt;, token=127, context=&lt;optimized out&gt;, error=&lt;optimized out&gt;, klass=0x0) at method-to-ir.c:7437
+#18 0x0000000000415ee8 in mini_get_method (cfg=cfg@entry=0x7fa400d980, m=m@entry=0xed2b28, token=token@entry=5090276, context=context@entry=0x0, klass=0x0) at method-to-ir.c:7447
+#19 0x000000000045445c in mono_method_to_ir (cfg=cfg@entry=0x7fa400d980, method=method@entry=0xed2b28, start_bblock=0x7fa40564b0, start_bblock@entry=0x0, end_bblock=0x7fa40565e8, end_bblock@entry=0x0,
+    return_var=return_var@entry=0x0, inline_args=inline_args@entry=0x0, inline_offset=inline_offset@entry=0, is_virtual_call=is_virtual_call@entry=0) at method-to-ir.c:9254
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#20 0x00000000004dac0c in mini_method_compile (method=method@entry=0xed2b28, opts=opts@entry=370223615, domain=domain@entry=0x73e680, flags=flags@entry=JIT_FLAG_RUN_CCTORS, parts=parts@entry=0,
+    aot_method_index=aot_method_index@entry=-1) at mini.c:3562
+#21 0x00000000004dc7d4 in mono_jit_compile_method_inner (method=method@entry=0xed2b28, target_domain=target_domain@entry=0x73e680, opt=opt@entry=370223615, error=error@entry=0x7faf799a98) at mini.c:4254
+#22 0x0000000000426b80 in mono_jit_compile_method_with_opt (method=method@entry=0xed2b28, opt=370223615, error=0x7faf799a98, error@entry=0x0) at mini-runtime.c:1989
+#23 0x0000000000427368 in mono_jit_compile_method (method=method@entry=0xed2b28, error=0x0, error@entry=0x7faf799a98) at mini-runtime.c:2033
+#24 0x000000000049f494 in common_call_trampoline (regs=regs@entry=0x7faf799b10, code=0x7faedbedfc "\271\v@\371\277\003", code@entry=0x402db53d07bb6a7a &lt;error: Cannot access memory at address 0x402db53d07bb6a7a&gt;,
+    m=0xed2b28, m@entry=0x4030000000000000, vt=vt@entry=0x0, vtable_slot=&lt;optimized out&gt;, vtable_slot@entry=0x0, error=0x7faf799a98, error@entry=0x7faf799ab8) at mini-trampolines.c:698
+#25 0x000000000049fa90 in mono_magic_trampoline (regs=0x7faf799b10, code=0x402db53d07bb6a7a &lt;error: Cannot access memory at address 0x402db53d07bb6a7a&gt;, arg=0x4030000000000000, tramp=&lt;optimized out&gt;)
+    at mini-trampolines.c:828
+#26 0x0000007fb7d852f4 in ?? ()
+#27 0x0000007fb78265d8 in ?? ()
+#28 0x0000000000e0f138 in ?? ()
+
+Thread 5 (Thread 0x7faf99b1b0 (LWP 16294)):
+#0  0x0000007fb7eea780 in pthread_cond_timedwait@@GLIBC_2.17 () from /lib/aarch64-linux-gnu/libpthread.so.0
+#1  0x0000000000574c14 in mono_os_cond_timedwait (timeout_ms=59313, mutex=0xb78890, cond=0xb78860) at ../../mono/utils/mono-os-mutex.h:179
+#2  mono_coop_cond_timedwait (timeout_ms=59313, mutex=0xb78890, cond=0xb78860) at ../../mono/utils/mono-coop-mutex.h:99
+#3  worker_park () at threadpool-ms.c:550
+#4  worker_thread (data=&lt;optimized out&gt;) at threadpool-ms.c:642
+#5  0x000000000056e7a8 in start_wrapper_internal (stack_ptr=0x7faf99a928, start_info=0x0) at threads.c:847
+#6  start_wrapper (data=&lt;optimized out&gt;) at threads.c:898
+#7  0x000000000061dedc in inner_start_thread (data=0xbd33c0) at mono-threads.c:1180
+#8  0x0000007fb7ee5e34 in start_thread () from /lib/aarch64-linux-gnu/libpthread.so.0
+#9  0x0000007fb7e5c4f0 in clone () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 4 (Thread 0x7fb42a41b0 (LWP 16293)):
+#0  0x0000007fb7eea780 in pthread_cond_timedwait@@GLIBC_2.17 () from /lib/aarch64-linux-gnu/libpthread.so.0
+#1  0x000000000061e4ac in mono_os_cond_timedwait (timeout_ms=500, mutex=0x732160 &lt;sleep_mutex&gt;, cond=0x732190 &lt;sleep_cond&gt;) at ../../mono/utils/mono-os-mutex.h:179
+#2  mono_coop_cond_timedwait (cond=0x732190 &lt;sleep_cond&gt;, mutex=0x732160 &lt;sleep_mutex&gt;, timeout_ms=500) at ../../mono/utils/mono-coop-mutex.h:99
+#3  sleep_interruptable (alerted=0x7fb42a3888, ms=500) at mono-threads.c:1305
+#4  mono_thread_info_sleep (ms=ms@entry=500, alerted=0x7fb42a3888, alerted@entry=0x7fb42a38e8) at mono-threads.c:1337
+#5  0x0000000000575664 in monitor_thread () at threadpool-ms.c:939
+#6  0x000000000056e7a8 in start_wrapper_internal (stack_ptr=0x7fb42a3928, start_info=0x0) at threads.c:847
+#7  start_wrapper (data=&lt;optimized out&gt;) at threads.c:898
+#8  0x000000000061dedc in inner_start_thread (data=0xbd33c0) at mono-threads.c:1180
+#9  0x0000007fb7ee5e34 in start_thread () from /lib/aarch64-linux-gnu/libpthread.so.0
+#10 0x0000007fb7e5c4f0 in clone () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 3 (Thread 0x7fb53741b0 (LWP 16292)):
+#0  0x0000007fb7eec61c in do_futex_wait () from /lib/aarch64-linux-gnu/libpthread.so.0
+#1  0x0000007fb7eec6cc in sem_wait@@GLIBC_2.17 () from /lib/aarch64-linux-gnu/libpthread.so.0
+#2  0x0000000000593fcc in mono_os_sem_wait (flags=MONO_SEM_FLAGS_ALERTABLE, sem=0x7227b8 &lt;finalizer_sem&gt;) at ../../mono/utils/mono-os-semaphore.h:209
+#3  mono_coop_sem_wait (flags=MONO_SEM_FLAGS_ALERTABLE, sem=0x7227b8 &lt;finalizer_sem&gt;) at ../../mono/utils/mono-coop-semaphore.h:40
+#4  finalizer_thread (unused=&lt;optimized out&gt;) at gc.c:907
+#5  0x000000000056e7a8 in start_wrapper_internal (stack_ptr=0x7fb5373928, start_info=0x0) at threads.c:847
+#6  start_wrapper (data=&lt;optimized out&gt;) at threads.c:898
+#7  0x000000000061dedc in inner_start_thread (data=0x79cef0) at mono-threads.c:1180
+#8  0x0000007fb7ee5e34 in start_thread () from /lib/aarch64-linux-gnu/libpthread.so.0
+#9  0x0000007fb7e5c4f0 in clone () from /lib/aarch64-linux-gnu/libc.so.6
+
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+Thread 2 (Thread 0x7fb77ff1b0 (LWP 16287)):
+#0  0x0000007fb7eea3b4 in pthread_cond_wait@@GLIBC_2.17 () from /lib/aarch64-linux-gnu/libpthread.so.0
+#1  0x00000000005fb90c in mono_os_cond_wait (mutex=0x7316f8 &lt;lock&gt;, cond=0x731758 &lt;work_cond&gt;) at ../../mono/utils/mono-os-mutex.h:146
+#2  thread_func (thread_data=0x7fb7ff0008) at sgen-thread-pool.c:110
+#3  0x0000007fb7ee5e34 in start_thread () from /lib/aarch64-linux-gnu/libpthread.so.0
+#4  0x0000007fb7e5c4f0 in clone () from /lib/aarch64-linux-gnu/libc.so.6
+
+Thread 1 (Thread 0x7fb7ff2000 (LWP 16284)):
+#0  0x0000007fb7eea3b4 in pthread_cond_wait@@GLIBC_2.17 () from /lib/aarch64-linux-gnu/libpthread.so.0
+#1  0x000000000058a77c in mono_os_cond_wait (mutex=0x734240, cond=0x734270) at ../../mono/utils/mono-os-mutex.h:146
+#2  mono_os_cond_timedwait (timeout_ms=&lt;optimized out&gt;, mutex=0x734240, cond=0x734270) at ../../mono/utils/mono-os-mutex.h:160
+#3  mono_w32handle_timedwait_signal_naked (alerted=0x7fffffd9d8, poll=0, timeout=&lt;optimized out&gt;, mutex=0x734240, cond=0x734270) at w32handle.c:999
+#4  mono_w32handle_timedwait_signal_handle (handle=handle@entry=0x402, timeout=timeout@entry=4294967295, alerted=0x7fffffd9d8, poll=0) at w32handle.c:1114
+#5  0x000000000058b264 in mono_w32handle_wait_one (handle=handle@entry=0x402, timeout=timeout@entry=4294967295, alertable=alertable@entry=1) at w32handle.c:1248
+#6  0x000000000060a37c in wapi_WaitForSingleObjectEx (handle=handle@entry=0x402, timeout=timeout@entry=4294967295, alertable=alertable@entry=1) at wait.c:42
+#7  0x000000000059a650 in ves_icall_System_Threading_Monitor_Monitor_wait (obj=0x7fb7b095f8, ms=4294967295) at monitor.c:1348
+#8  0x0000007fb54956d8 in System_Threading_Monitor_ObjWait_bool_int_object (exitContext=false, millisecondsTimeout=-1, obj=0xffffffffffffffff) from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#9  0x0000007fb5495cbc in System_Threading_Monitor_Wait_object_int_bool (obj=0x7fb7b095f8, millisecondsTimeout=-1, exitContext=false) from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#10 0x0000007fb5495d50 in System_Threading_Monitor_Wait_object_int (obj=0x7fb7b095f8, millisecondsTimeout=-1) from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#11 0x0000007fb54a8820 in System_Threading_ManualResetEventSlim_Wait_int_System_Threading_CancellationToken (this=..., millisecondsTimeout=-1, cancellationToken=0) from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#12 0x0000007fb54c061c in System_Threading_Tasks_Task_SpinThenBlockingWait_int_System_Threading_CancellationToken (this=..., millisecondsTimeout=-1, cancellationToken=0)
+   from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#13 0x0000007fb54bd8c8 in System_Threading_Tasks_Task_InternalRunSynchronously_System_Threading_Tasks_TaskScheduler_bool (this=..., scheduler=..., waitForCompletion=true)
+   from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#14 0x0000007fb54bd738 in System_Threading_Tasks_Task_RunSynchronously_System_Threading_Tasks_TaskScheduler (this=..., scheduler=...) from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#15 0x0000007fb54cd5f4 in System_Threading_Tasks_Parallel_ForWorker_TLocal_REF_int_int_System_Threading_Tasks_ParallelOptions_System_Action_1_int_System_Action_2_int_System_Threading_Tasks_ParallelLoopState_System_Func_4_int_System_Threading_Tasks_ParallelLoopState_TLocal_REF_TLocal_REF_System_Func_1_TLocal_REF_System_Action_1_TLocal_REF (fromInclusive=0, toExclusive=8, parallelOptions=..., body=..., bodyWithState=...,
+    bodyWithLocal=..., localInit=..., localFinally=...) from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#16 0x0000007fb54cc860 in System_Threading_Tasks_Parallel_For_int_int_System_Threading_Tasks_ParallelOptions_System_Action_1_int (fromInclusive=0, toExclusive=8, parallelOptions=..., body=...)
+   from /marek/mono/mcs/class/lib/build/mscorlib.dll.so
+#17 0x0000007faf1234f8 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-11 21:09:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This should work now with mono master, had to revert some locking changes.</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

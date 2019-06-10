@@ -1,0 +1,3980 @@
+<html lang="en"><head>
+    <title>43985 – Loading images in UNNotificationServiceExtension doesn't work</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_iOS
+                 bz_component_Xamarin.iOS.dll
+                 bz_bug_43985 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;43985</span>
+
+        <span id="subtitle" class="subheader">Loading images in UNNotificationServiceExtension doesn't work</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2018-03-19 22:49:35 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2018-03-19 22:49:35">
+  <input type="hidden" name="id" value="43985">
+  <input type="hidden" name="token" value="1559181569-aVNRdDCL6uVi4YyZrWAkmRpVbWwf2QXAb_YNGLOXIIo">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;43985</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">Loading images in UNNotificationServiceExtension doesn't work</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>Loading images in UNNotificationServiceExtension doesn't work
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">iOS
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Xamarin
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">Xamarin.iOS.dll
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>XI 9.99 (iOS 10 previews)
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>Future Cycle (TBD)
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label>Duplicates (2)</label>:
+    </th>
+    <td class="field_value">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Notification Service Extension is not being triggered" href="show_bug.cgi?id=46968">46968</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Async/await crash notification extension" href="show_bug.cgi?id=58566">58566</a> 
+      </span>
+      ()
+    </td>
+  </tr>
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Improve the static registrar to generate code that does not need any reflection at runtime" href="show_bug.cgi?id=56022">56022</a> 
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+    <tr>
+      <th>&nbsp;</th>
+
+      <td id="show_dependency_tree_or_graph">
+        Show dependency <a href="showdependencytree.cgi?id=43985&amp;hide_resolved=1">tree</a>
+
+      </td>
+    </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2016-09-03 18:13 UTC by <span class="vcard"><span class="fn">Konstantin</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2018-03-19 22:49 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>17
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="barnesd">barnesd</option>
+                <option value="boblautenbach">boblautenbach</option>
+                <option value="clintoncraigsmith">clintoncraigsmith</option>
+                <option value="der.ludi">der.ludi</option>
+                <option value="immons">immons</option>
+                <option value="jellis">jellis</option>
+                <option value="jerome.laban">jerome.laban</option>
+                <option value="kolyashpotenko">kolyashpotenko</option>
+                <option value="lassana.nd">lassana.nd</option>
+                <option value="luigisag">luigisag</option>
+                <option value="mathieu.fillion">mathieu.fillion</option>
+                <option value="mono-bugs+monotouch">mono-bugs+monotouch</option>
+                <option value="rolf">rolf</option>
+                <option value="sebastien">sebastien</option>
+                <option value="shawn">shawn</option>
+                <option value="tedrog36">tedrog36</option>
+                <option value="xamarinbugzilla">xamarinbugzilla</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=21787&amp;file=logiphone.txt" title="View the content of the attachment">
+          <b>Device log iPhone 6s Plus</b></a>
+
+          <span class="bz_attach_extra_info">
+              (65.01 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_21787" title="Go to the comment associated with the attachment">2017-04-26 08:20 UTC</a>,
+
+            <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=21787&amp;file=logiphone.txt">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=21865&amp;file=verbositylog.txt" title="View the content of the attachment">
+          <b>Verbosity Log</b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.82 MB,
+                text/plain)
+
+            <br>
+            <a href="#attach_21865" title="Go to the comment associated with the attachment">2017-04-28 07:15 UTC</a>,
+
+            <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=21865&amp;file=verbositylog.txt">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_application_zip">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=21867&amp;file=Archive.zip" title="View the content of the attachment">
+          <b>Zip with extensions</b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.91 MB,
+                application/zip)
+
+            <br>
+            <a href="#attach_21867" title="Go to the comment associated with the attachment">2017-04-28 08:24 UTC</a>,
+
+            <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=21867&amp;file=Archive.zip">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/xamarin">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Async/await crash notification extension" href="show_bug.cgi?id=58566">58566</a>
+          </li></ul>
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Konstantin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-09-03 18:13:02 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hello Xamarin,
+
+ * var data = NSData.FromUrl(NSUrl.FromString("<a href="https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg">https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg</a>"));
+ * var task = NSUrlSession.SharedSession.CreateDataTask(NSUrl.FromString("<a href="https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg">https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg</a>"));
+ * var data = new WebClient().DownloadData("<a href="https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg">https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg</a>");
+
+Any of these 3 statements just kill the UNNotificationServiceExtension. I.e. execution of extension is just stopped: contentHandler(..) hasn't been called, etc. **Without loading images** service extension works fine (i.e. I can modify body &amp; title of the notification).
+
+I've already tried to wrap these statements into try-catch (with modification of the notification in case of failure, etc.) - but "catch" doesn't fire.
+
+Test project can be found here: <a href="https://www.dropbox.com/s/gyz6szbpv0ip6h0/xamarin-service-extension_images_loader.zip?dl=0">https://www.dropbox.com/s/gyz6szbpv0ip6h0/xamarin-service-extension_images_loader.zip?dl=0</a> 
+
+Best,
+Konstantin
+
+===================
+info.plist of the Service Extension:
+
+	&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+	&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "<a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</a>"&gt;
+	&lt;plist version="1.0"&gt;
+	&lt;dict&gt;
+		&lt;key&gt;CFBundleDisplayName&lt;/key&gt;
+		&lt;string&gt;ServiceExtension&lt;/string&gt;
+		&lt;key&gt;CFBundleName&lt;/key&gt;
+		&lt;string&gt;ServiceExtension&lt;/string&gt;
+		&lt;key&gt;CFBundleIdentifier&lt;/key&gt;
+		&lt;string&gt;com.mybundle.serviceextension&lt;/string&gt;
+		&lt;key&gt;CFBundleDevelopmentRegion&lt;/key&gt;
+		&lt;string&gt;en&lt;/string&gt;
+		&lt;key&gt;CFBundleInfoDictionaryVersion&lt;/key&gt;
+		&lt;string&gt;6.0&lt;/string&gt;
+		&lt;key&gt;CFBundlePackageType&lt;/key&gt;
+		&lt;string&gt;XPC!&lt;/string&gt;
+		&lt;key&gt;CFBundleShortVersionString&lt;/key&gt;
+		&lt;string&gt;42.0&lt;/string&gt;
+		&lt;key&gt;CFBundleVersion&lt;/key&gt;
+		&lt;string&gt;371&lt;/string&gt;
+		&lt;key&gt;MinimumOSVersion&lt;/key&gt;
+		&lt;string&gt;10.0&lt;/string&gt;
+		&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;
+		&lt;dict&gt;
+			&lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt;
+			&lt;true/&gt;
+		&lt;/dict&gt;
+		&lt;key&gt;NSExtension&lt;/key&gt;
+		&lt;dict&gt;
+			&lt;key&gt;NSExtensionPrincipalClass&lt;/key&gt;
+			&lt;string&gt;NotificationService&lt;/string&gt;
+			&lt;key&gt;NSExtensionPointIdentifier&lt;/key&gt;
+			&lt;string&gt;com.apple.usernotifications.service&lt;/string&gt;
+		&lt;/dict&gt;
+	&lt;/dict&gt;
+	&lt;/plist&gt;
+
+===================
+Xamarin Studio information:
+
+=== Xamarin Studio Community ===
+
+Version 6.1 (build 5383)
+Installation UUID: fb0e4a2c-12e9-4806-bfb9-5183f291bd0e
+Runtime:
+	Mono 4.6.0 (mono-4.6.0-branch/3ed2bba) (64-bit)
+	GTK+ 2.24.23 (Raleigh theme)
+
+	Package version: 406000182
+
+=== NuGet ===
+
+Version: 3.4.3.0
+
+=== Xamarin.Profiler ===
+
+Not Installed
+
+=== Apple Developer Tools ===
+
+Xcode 8.0 (11228.2)
+Build 8S193k
+
+=== Xamarin.iOS ===
+
+Version: 9.99.5.54 (Xamarin Studio Community)
+Hash: 974ea0b
+Branch: cycle8
+Build date: 2016-08-30 18:12:06-0400
+
+=== Xamarin.Android ===
+
+Not Installed
+
+=== Xamarin Android Player ===
+
+Not Installed
+
+=== Xamarin.Mac ===
+
+Not Installed
+
+=== Build Information ===
+
+Release ID: 601005383
+Git revision: 37159a7d0c1ed6c9f661210879e9e233ca92e65d
+Build date: 2016-08-30 22:07:20-04
+Xamarin addins: 00a35f60101b50c8fa28b2b8c0e5b8ade85f7083
+Build lane: monodevelop-lion-cycle8
+
+=== Operating System ===
+
+Mac OS X 10.11.6
+Darwin Konstantins-MacBook-Pro.local 15.6.0 Darwin Kernel Version 15.6.0
+    Thu Jun 23 18:25:34 PDT 2016
+    root:xnu-3248.60.10~1/RELEASE_X86_64 x86_64</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-09-05 08:59:50 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Just running the iOS app doesn't seem to trigger the extensions; is there anything else I need to do to reproduce this?</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alex Soto [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-09-05 15:13:35 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hello Konstantin
+
+I am not able to reproduce your issue, If I run your sample unchanged and trigger a remote notification I am able to see the remote image on the notification. Even I changed it to our Xamagon just to make sure it was working.
+
+<a href="http://imgur.com/9OjGLjn">http://imgur.com/9OjGLjn</a>
+<a href="http://imgur.com/xOUZ6KL">http://imgur.com/xOUZ6KL</a>
+
+My current setup is 
+
+    Xamarin.iOS: using latest xcode8 build from here <a href="https://github.com/xamarin/xamarin-macios/wiki">https://github.com/xamarin/xamarin-macios/wiki</a> [1]
+    iPhone 6 plus on iOS 10 beta 8 (14A5346a)
+    Xcode 8.0 beta 6 (8S201h)
+
+Please could you try the build mentioned above to see if it solves your issue? If it doesn't could you please check that your device is up to date with the latest beta bits and so does your Xcode? It seems you are using beta 5 from the logs you posted :)
+
+Cheers!
+
+[1]: <a href="https://bosstoragemirror.blob.core.windows.net/wrench/macios-mac-xcode8/6c/6cf2cf6c1699cab13c2af4f05d63136e3a6a7da7/xamarin.ios-9.99.5.107.pkg">https://bosstoragemirror.blob.core.windows.net/wrench/macios-mac-xcode8/6c/6cf2cf6c1699cab13c2af4f05d63136e3a6a7da7/xamarin.ios-9.99.5.107.pkg</a></pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Konstantin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-09-05 15:50:28 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Updated everything I could, still nothing:
+
+=== Xamarin Studio Community ===
+
+Version 6.1 (build 5383)
+Installation UUID: fb0e4a2c-12e9-4806-bfb9-5183f291bd0e
+Runtime:
+	Mono 4.6.0 (mono-4.6.0-branch/3ed2bba) (64-bit)
+	GTK+ 2.24.23 (Raleigh theme)
+
+	Package version: 406000182
+
+=== NuGet ===
+
+Version: 3.4.3.0
+
+=== Xamarin.Profiler ===
+
+Not Installed
+
+=== Apple Developer Tools ===
+
+Xcode 8.0 (11239.2)
+Build 8S201h
+
+=== Xamarin.iOS ===
+
+Version: 9.99.5.107 (Xamarin Studio Community)
+Hash: 6cf2cf6
+Branch: cycle8
+Build date: 2016-09-04 13:45:01-0400
+
+=== Xamarin.Android ===
+
+Not Installed
+
+=== Xamarin Android Player ===
+
+Not Installed
+
+=== Xamarin.Mac ===
+
+Not Installed
+
+=== Build Information ===
+
+Release ID: 601005383
+Git revision: 37159a7d0c1ed6c9f661210879e9e233ca92e65d
+Build date: 2016-08-30 22:07:20-04
+Xamarin addins: 00a35f60101b50c8fa28b2b8c0e5b8ade85f7083
+Build lane: monodevelop-lion-cycle8
+
+=== Operating System ===
+
+Mac OS X 10.11.6
+Darwin Konstantins-MacBook-Pro.local 15.6.0 Darwin Kernel Version 15.6.0
+    Thu Jun 23 18:25:34 PDT 2016
+    root:xnu-3248.60.10~1/RELEASE_X86_64 x86_64</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-09-06 13:44:06 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">So I think I know what's happening: the extension is running into a memory limit, and it's killed.
+ 
+In my case a JetsamEvent-* report is generated when the extension terminates, and something like this is listed:
+ 
+  {
+    "uuid" : "ba54c910-531c-32e5-878e-129865039de0",
+    "states" : [
+      "frontmost"
+    ],
+    "killDelta" : 7652,
+    "lifetimeMax" : 873,
+    "age" : 155281267,
+    "purgeable" : 1,
+    "fds" : 50,
+    "genCount" : 0,
+    "coalition" : 78,
+    "rpages" : 384,
+    "reason" : "per-process-limit",
+    "pid" : 6366,
+    "idleDelta" : 9,
+    "name" : "ServiceExtension",
+    "cpuTime" : 0.202007
+  },
+ 
+in particular, the "reason: per-process-limit" is telling that something hit a limit and the executable was terminated.
+ 
+I'm not sure why it works for Alex though.
+ 
+We're obviously working continuously to minimize the memory footprint in Xamarin apps, but at this point there won't be any fixes in this area before the final iOS 10 release in a few days. So maybe there are other approaches you can use? Maybe download and cache images from the main app, and then just load that file from the extension (or are there too many possible images)?</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-09-06 13:56:47 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Apple exact heuristics are not documented (e.g. they could vary by device types, like total memory) and also subject to change.
+
+Beside Rolf's suggestion (to delegate work to the main app) be aware that there's a huge difference between XI debug and release builds. It's worth checking if the later works for your use case.</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastien Pouliot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-10-05 14:22:00 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Under investigation</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marko</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-14 14:50:47 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The service extension doesn't even work at all on my iPhone SE, while it's working (sometimes, there's a 50:50 chance) on an iPhone 5.
+
+Here's the error:
+
+Nov 14 15:28:07 Markos-iPhone-SE SpringBoard(Foundation)[57] &lt;Notice&gt;: tearing down extension request for pid 413
+Nov 14 15:28:07 Markos-iPhone-SE SpringBoard(UserNotificationsServer)[57] &lt;Error&gt;: Extension error whilst trying to modify push notification EE0E-9BAC: Error Domain=NSCocoaErrorDomain Code=4097 "connection from pid 413" UserInfo={NSDebugDescription=connection from pid 413}
+Nov 14 15:28:07 Markos-iPhone-SE SpringBoard(Foundation)[57] &lt;Notice&gt;: extension connection was interrupted
+Nov 14 15:28:07 Markos-iPhone-SE SpringBoard(UserNotificationsServer)[57] &lt;Notice&gt;: [com.markobl.tickerfeed] Saving notification EE0E-9BAC
+Nov 14 15:28:07 Markos-iPhone-SE SpringBoard(UserNotificationsServer)[57] &lt;Notice&gt;: Saving notification list at /var/mobile/Library/SpringBoard/PushStore/com.markobl.tickerfeed.pushstore with 3 items</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-14 15:28:57 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Marko, what do you do in your service extension? Apple has set a very low memory limit for it :(</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marko</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-14 15:36:40 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'm doing nothing special, just like the sample from the first post, I download an image and save it. And the images are really small (140x140 px).
+
+...
+var data = NSData.FromUrl (url);
+if (data != null) {
+	data.Save (imageFile, true);
+	...
+}
+
+As I said: It's not working at all on my iPhone SE. On my iPhone 5, it's working with a 50:50 chance.
+
+What's really strange: I cache the images, but even than (by just using the cached file, no download involved), there's only a 50:50 change on the iPhone 5 that the extension works.</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alex Soto [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-15 06:38:45 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Notification Service Extension is not being triggered" href="show_bug.cgi?id=46968">Bug 46968</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marko</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-15 10:23:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Btw. would it be possible to embed native extensions into Xamarin? Actually, the code is ~20 lines of code (it should be the same with Objective-C or Swift) and I guess other extensions won't need much more code. Therefore, if possible, I would simply write it in Swift and embed it into the Xamarin app. Maybe hacky, but the only useful solution to the very low memory limit.</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-15 17:13:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Marko, yes, it's possible to embed extensions written in Xcode using Swift or Objective-C in Xamarin apps, but it's a cumbersome process.
+
+It boils down to this:
+
+a) Build your Xcode project.
+b) Build your Xamarin solution.
+c) Copy the Xcode extensions to the expected locations in the resulting Xamarin app bundle.
+d) Resign the app bundle (you can copy-paste the codesign statements from the Xamarin solution's build log).
+
+And when building for distribution, you'll have to unzip the .ipa after b) and re-zip it when done.
+
+If you're using Swift, you'll also have to make sure to copy the Swift libraries where the extensions expect them to be (they end up both in the .app and in the .ipa (in a different location)).</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marko</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-16 14:17:22 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks for the tip, Rolf.
+
+Is it possible to use the native extension in the debug or release mode too? 
+
+What I have done: I build the Xcode project (it's Objective-C, so no need to copy Swift libraries) in debug mode, copied the Plugins folder + all files into the "Resource" folder of the Xamarin project and resigned it (with the command from building the Xamarin extension). Then I removed the Xamarin extension.
+
+So, when I build the solution, all the files are in the correct place. But when I try to run it on the device, I get the following error: notificationextension.appex : 0xe8008019 (The application does not have a valid signature.)
+
+I triple-checked all the provision profiles and everything is correct and I resigned the extension. I also didn't see anything in the logs, when I build the Xamarin extension, that's done after the extension is signed, expect for copying it.
+
+Is there anything that I'm missing here?</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-16 14:23:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">(In reply to Marko from <a href="bug.html">comment #13</a>)
+<span class="quote">&gt; 
+&gt; What I have done: I build the Xcode project (it's Objective-C, so no need to
+&gt; copy Swift libraries) in debug mode, copied the Plugins folder + all files
+&gt; into the "Resource" folder of the Xamarin project and resigned it (with the
+&gt; command from building the Xamarin extension). Then I removed the Xamarin
+&gt; extension.</span>
+
+You have to reorder a bit: the last thing you do is to resign (removing files also means the signature is invalidated).
+
+Also the extensions have to be signed separately (and before signing the whole app, since doing any file modification in any file in the .app invalidates the signature, and this includes code signing a directory in the app).
+
+You can check a signature before uploading like this:
+
+    codesign --verify path/to/file
+
+so to check that the appex signature is valid:
+
+    codesign --verify path/to/notificationextension.appex</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marko</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-16 14:35:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Awesome, it's working now :) As you said, the signature was invalid. I just resigned the extension in the Debug folder, hit the run button and it just worked.
+
+Now, the most important question: Is there a way to automate the resign in Xamarin Studio, so I don't have to do this on my own? If it's possible, it's really a piece of cake to use a native extension (without zipping and unzipping the ipa e.g.).</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mat</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-21 20:28:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have the same issue I think. I can use the Notification service extension to change title/body and it works fine, but as soon as I call .Resume() on the NSURLSession I am using to download a very small image (9kb), the extension is killed.
+
+Logs when the extension is killed are exactly the same as Marko posted in <a href="bug.html">Comment #7</a>. <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Loading images in UNNotificationServiceExtension doesn't work" href="bug.html">https://bugzilla.xamarin.com/show_bug.cgi?id=43985#c7</a></pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jerome Laban</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-21 20:33:53 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have this issue as well.</pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-11-22 09:39:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"> (In reply to Marko from <a href="bug.html">comment #15</a>)
+<span class="quote">&gt; Awesome, it's working now :) As you said, the signature was invalid. I just
+&gt; resigned the extension in the Debug folder, hit the run button and it just
+&gt; worked.</span>
+
+Great :)
+
+<span class="quote">&gt; Now, the most important question: Is there a way to automate the resign in
+&gt; Xamarin Studio, so I don't have to do this on my own? If it's possible, it's
+&gt; really a piece of cake to use a native extension (without zipping and
+&gt; unzipping the ipa e.g.).</span>
+
+I think you can do this using custom MSBuild tasks in your project file.
+
+In particular I think you can define a "BeforeCodesign" [1] task that copies your Objective-C extensions into the app and signs them.
+
+[1] <a href="https://github.com/xamarin/xamarin-macios/blob/e84bbb9cf10a18d4d4ae36cbb99623784b5b3588/msbuild/Xamarin.iOS.Tasks.Core/Xamarin.iOS.Common.targets#L314">https://github.com/xamarin/xamarin-macios/blob/e84bbb9cf10a18d4d4ae36cbb99623784b5b3588/msbuild/Xamarin.iOS.Tasks.Core/Xamarin.iOS.Common.targets#L314</a></pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bob</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-25 16:59:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Marko...how exactly did you resign the extension? Shouldn't this be automatic via the provisioning profile setup?  Can you provide some detail as I am having the same issue.
+
+Thanks
+bob</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-25 17:03:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Bob, resigning is only required if you write the extension in Objective-C or Swift, and then want to embed that extension in the Xamarin.iOS app.
+
+If you're having the same problem, the fix is to use less memory (which can be verify difficult, since the memory limit is quite low).
+
+Alternatively you can do as others have done, and write the extension in Swift/Objective-C (please read the entire bug, the exact process is described in other comments).</pre>
+    </div>
+
+    <div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bob</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-25 17:28:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Rolf....the code for a notifcation extension is so small and it only grabs 9kb image.  What else can one do to minimize memory?</pre>
+    </div>
+
+    <div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-25 22:27:06 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Same issue here:
+
+<a href="http://stackoverflow.com/questions/41428243/xamarin-notification-service-extension-issue">http://stackoverflow.com/questions/41428243/xamarin-notification-service-extension-issue</a>
+
+Is it in roadmap to fix this issue?</pre>
+    </div>
+
+    <div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bob</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-25 23:42:00 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Luigi and I are seeing this
+
+Apr 26 00:12:57 iPhone SpringBoard(UserNotificationsServer)[53] &lt;Error&gt;: Extension error whilst trying to modify push notification E832-1C1F: Error Domain=NSCocoaErrorDomain Code=4097 "connection from pid 964" UserInfo={NSDebugDescription=connection from pid 964}
+Apr 26 00:12:57 iPhone SpringBoard(Foundation)[53] &lt;Notice&gt;: tearing down extension request for pid 0
+
+
+
+If we remove the attachment code and only modify body or title, it works on any device.  However, the attachment code is causing to stop (like Marko demonstrated).  
+
+The mystery to me is why the attachment code works on my iphone 6 but not on the SE or 7.  What are the newer devices doing in terms of MM that the 6 is not.</pre>
+    </div>
+
+    <div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-26 08:20:48 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=21787&amp;file=logiphone.txt" name="attach_21787" title="Device log iPhone 6s Plus">attachment 21787</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=21787&amp;file=logiphone.txt" title="Device log iPhone 6s Plus">[details]</a></span>
+Device log iPhone 6s Plus
+
+This is my log when i receive rich push notification</pre>
+    </div>
+
+    <div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-26 15:38:00 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Luigi, we're planning to fix this (as far as it can be fixed: as long as iOS enforces a memory limit you can always hit the limit if you so desire by just loading a bigger image), however we don't have an exact date yet.
+
+Maybe if you try building for release and test that it works (debug builds use more memory than release builds); if you're lucky you'll get below the limit.
+
+If you attach your code, I might also be able to offer suggestions what you can do to minimize memory usage.</pre>
+    </div>
+
+    <div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-26 16:30:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Rolf, my test is made on relase build and i'm not lucky (maybe in love :-P ).
+Anyway if you check my 
+
+<a href="http://stackoverflow.com/questions/41428243/xamarin-notification-service-extension-issue">http://stackoverflow.com/questions/41428243/xamarin-notification-service-extension-issue</a>
+
+Stackoverflow question, attached there is code.
+
+
+Thanks for your help.</pre>
+    </div>
+
+    <div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bob</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-26 16:32:18 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Rolf..here's my notif service code:
+
+using System;
+using Foundation;
+using UserNotifications;
+
+namespace notifications
+{
+	[Register ("NotificationService")]
+	public class NotificationService : UNNotificationServiceExtension
+	{
+		UNMutableNotificationContent BestAttemptContent { get; set; }
+		public Action&lt;UNNotificationContent&gt; ContentHandler { get; set; }
+
+		protected NotificationService (IntPtr handle) : base (handle)
+		{
+			// Note: this .ctor should not contain any initialization logic.
+		}
+
+		public override void DidReceiveNotificationRequest (UNNotificationRequest request, Action&lt;UNNotificationContent&gt; contentHandler)
+		{
+				string imageURL = null;
+				NSError err = null;
+
+				ContentHandler = contentHandler;
+				BestAttemptContent = request.Content.MutableCopy () as UNMutableNotificationContent;
+
+				if (BestAttemptContent != null) {
+					if (BestAttemptContent.UserInfo.ContainsKey (new NSString ("pushImage"))) {
+						imageURL = BestAttemptContent.UserInfo.ValueForKey (new NSString ("pushImage")).ToString ();
+					}
+
+					if (imageURL == null) {
+						contentHandler (BestAttemptContent);
+						return;
+					}
+
+					var url = new NSUrl (imageURL.ToString ());
+
+					//this works
+					//var surl = NSBundle.MainBundle.GetUrlForResource ("P", "png");
+
+					//temp path doesn't seem to want to work
+					//var tmp = System.IO.Path.GetTempPath ();
+					//var attachmentURL = NSUrl.CreateFileUrl (tmp +  url.LastPathComponent, false, null);
+
+					var cache = NSSearchPath.GetDirectories (NSSearchPathDirectory.CachesDirectory, NSSearchPathDomain.User, true);
+					var attachmentURL = NSUrl.CreateFileUrl (cache [0] + "/" + url.LastPathComponent, false, null);
+
+					NSUrlSession.SharedSession.CreateDownloadTask (url, (tempfile, response, error) =&gt; {
+
+							if (error != null) {
+								BestAttemptContent.Body = "0";
+								contentHandler (BestAttemptContent);
+								return;
+							}
+							if (tempfile == null) {
+								BestAttemptContent.Body = "1";
+								contentHandler (BestAttemptContent);
+								return;
+							}
+
+							NSFileManager.DefaultManager.Move (tempfile, attachmentURL, out err);
+							if (err != null) {
+								contentHandler (BestAttemptContent);
+								return;
+							}
+
+							// Create attachment;
+							var options = new UNNotificationAttachmentOptions ();
+							var attachment = UNNotificationAttachment.FromIdentifier ("", attachmentURL, options, out err);
+
+							if (err != null) {
+								contentHandler (BestAttemptContent);
+								return;
+							}
+							BestAttemptContent.Body = "Dasffafasdfdsfa";
+							BestAttemptContent.Attachments = new UNNotificationAttachment [] { attachment };
+				
+							contentHandler (BestAttemptContent);
+
+					}).Resume ();
+
+
+				} else {
+					// Display notification
+					contentHandler (BestAttemptContent);
+				}
+		}
+
+		public override void TimeWillExpire ()
+		{
+			// Called just before the extension will be terminated by the system.
+			// Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
+			ContentHandler (BestAttemptContent);
+		}
+	}
+}</pre>
+    </div>
+
+    <div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-27 06:00:02 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Bob, that looks about as good as it can get. My suggestion for the moment would be to write the extension in Objective-C/Swift if you want to download images (<a href="http://stackoverflow.com/a/43647608/183422">http://stackoverflow.com/a/43647608/183422</a>).</pre>
+    </div>
+
+    <div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-27 07:38:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Rolf, really thanks for your answer on stackoverflow is very detailed! Today i will test it and i let you know if all works fine.</pre>
+    </div>
+
+    <div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-27 07:47:01 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Luigi, the stack overflow answer isn't mine :) But you're right, it's a good answer.</pre>
+    </div>
+
+    <div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-27 16:51:22 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Rolf, 	
+I have archived for publish my app -&gt; Signing and distribute with same certificate used to sign Obj extension. 
+
+Now I have unzipped ipa generated and replaced appex. Compressed and renamed as ipa. Now i have used this tool to resign application (github.com/maciekish/iReSign). Maybe there are issue to resign extension because i have this error installing app
+
+Apr 27 18:42:43 iPhone installd(MobileSystemServices)[2706] &lt;Notice&gt;: 0x16e0db000 +[MICodeSigningVerifier _validateSignatureAndCopyInfoForURL:withOptions:error:]: 147: Failed to verify code signature of /private/var/installd/Library/Caches/com.apple.mobile.installd.staging/temp.lpwIoL/extracted/Payload/JRUITouch.app/PlugIns/NotificationServiceExtension.appex : 0xe8008001 (An unknown error has occurred.)
+
+
+Could you send command to execute for resigning app?</pre>
+    </div>
+
+    <div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-27 17:03:40 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">(In reply to Luigi Saggese from <a href="bug.html">comment #31</a>)
+<span class="quote">&gt; 
+&gt; Could you send command to execute for resigning app?</span>
+
+Enable diagnostic build log in Xamarin Studio's preferences (Projects -&gt; General -&gt; Log verbosity), and the exact codesign command is printed to the build log.
+
+This means that you can build the solution first with your Xamarin.iOS extension, get the codesign command from the build log, and then just re-execute that same command later.</pre>
+    </div>
+
+    <div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 07:15:00 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=21865&amp;file=verbositylog.txt" name="attach_21865" title="Verbosity Log">attachment 21865</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=21865&amp;file=verbositylog.txt" title="Verbosity Log">[details]</a></span>
+Verbosity Log</pre>
+    </div>
+
+    <div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 07:16:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have attached my verbosity log, but it's really difficult to understand between all command which one execute. Maybe be more clear with specific command to run it will help all users that have this issue and want to use this workaround (that as is it's it self a pain).
+
+Thanks for your help in advance</pre>
+    </div>
+
+    <div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 07:30:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This is the relevant line:
+
+<span class="quote">&gt; Tool /usr/bin/codesign execution started with arguments: -v --force --sign E6F0A652CC9E9AF5C3D62AE380EED1B3D2F383A5 --entitlements /Users/luigi.saggese/Projects/jrmobileapp/NotificationServiceExtension/obj/iPhone/Release/Entitlements.xcent /Users/luigi.saggese/Projects/jrmobileapp/JR.UI.Touch/bin/iPhone/Ad-Hoc/JRUITouch.app/PlugIns/NotificationServiceExtension.appex</span>
+
+so the command would be:
+
+<span class="quote">&gt; /usr/bin/codesign -v --force --sign E6F0A652CC9E9AF5C3D62AE380EED1B3D2F383A5 --entitlements /Users/luigi.saggese/Projects/jrmobileapp/NotificationServiceExtension/obj/iPhone/Release/Entitlements.xcent /Users/luigi.saggese/Projects/jrmobileapp/JR.UI.Touch/bin/iPhone/Ad-Hoc/JRUITouch.app/PlugIns/NotificationServiceExtension.appex</span></pre>
+    </div>
+
+    <div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 07:43:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This is device log when i try to install app on device
+
+Apr 28 09:41:16 iPhone installd(MobileSystemServices)[3541] &lt;Notice&gt;: 0x16dfef000 +[MICodeSigningVerifier _validateSignatureAndCopyInfoForURL:withOptions:error:]: 147: Failed to verify code signature of /private/var/installd/Library/Caches/com.apple.mobile.installd.staging/temp.QBb4HH/extracted/Payload/JRUITouch.app/PlugIns/NotificationServiceExtension.appex : 0xe8008001 (An unknown error has occurred.)</pre>
+    </div>
+
+    <div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 07:48:06 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I forgot to mention that you also have to codesign the app again after resigning the extension:
+
+<span class="quote">&gt; /usr/bin/codesign -v --force --sign E6F0A652CC9E9AF5C3D62AE380EED1B3D2F383A5 --entitlements /Users/luigi.saggese/Projects/jrmobileapp/JR.UI.Touch/obj/iPhone/Ad-Hoc/Entitlements.xcent /Users/luigi.saggese/Projects/jrmobileapp/JR.UI.Touch/bin/iPhone/Ad-Hoc/JRUITouch.app</span>
+
+However that's not why you're still getting the code signing error.
+
+Can you try verifying the signatures of the app and appex like this and see if something's reported?
+
+<span class="quote">&gt; codesign --verify --verbose --verbose /Users/luigi.saggese/Projects/jrmobileapp/JR.UI.Touch/bin/iPhone/Ad-Hoc/JRUITouch.app/PlugIns/NotificationServiceExtension.appex
+&gt; codesign --verify --verbose --verbose /Users/luigi.saggese/Projects/jrmobileapp/JR.UI.Touch/bin/iPhone/Ad-Hoc/JRUITouch.app</span>
+
+If that doesn't give any clues, please attach the entire device log with the signing error (sometimes there are more lines that can give clues).</pre>
+    </div>
+
+    <div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 07:59:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Those are my step:
+
+1. I have created a Payload directory empty and put inside my JRUITouch.app (build with Xamarin Studio with configuration Ad-Hoc)
+2. Open JRUITouch.app, replaced NotificationServiceExtension.appex with Obj-c version
+3. Execute this commands (inside Payload directory)
+
+➜  Payload codesign -v --force --sign E6F0A652CC9E9AF5C3D62AE380EED1B3D2F383A5 JRUITouch.app/Frameworks/IQKeyboardManager.framework/IQKeyboardManager
+codesign -v --force --sign E6F0A652CC9E9AF5C3D62AE380EED1B3D2F383A5 JRUITouch.app/Frameworks/Mono.framework/Mono
+codesign -v --force --sign E6F0A652CC9E9AF5C3D62AE380EED1B3D2F383A5 --entitlements /Users/luigi.saggese/Projects/jrmobileapp/NotificationServiceExtension/obj/iPhone/Release/Entitlements.xcent JRUITouch.app/PlugIns/NotificationServiceExtension.appex
+codesign -v --force --sign E6F0A652CC9E9AF5C3D62AE380EED1B3D2F383A5 --entitlements /Users/luigi.saggese/Projects/jrmobileapp/JR.UI.Touch/obj/iPhone/Ad-Hoc/Entitlements.xcent JRUITouch.app
+JRUITouch.app/Frameworks/IQKeyboardManager.framework/IQKeyboardManager: replacing existing signature
+JRUITouch.app/Frameworks/IQKeyboardManager.framework/IQKeyboardManager: signed bundle with Mach-O universal (armv7 arm64) [org.cocoapods.IQKeyboardManager]
+JRUITouch.app/Frameworks/Mono.framework/Mono: replacing existing signature
+JRUITouch.app/Frameworks/Mono.framework/Mono: signed bundle with Mach-O universal (armv7 arm64) [xamarin.ios.mono-framework]
+JRUITouch.app/PlugIns/NotificationServiceExtension.appex: replacing existing signature
+JRUITouch.app/PlugIns/NotificationServiceExtension.appex: signed bundle [com.jobrapido.mobileapp.notificationserviceextension]
+JRUITouch.app: replacing existing signature
+JRUITouch.app: signed app bundle with Mach-O universal (armv7 arm64) [com.jobrapido.mobileapp]
+➜  Payload codesign --verify --verbose --verbose JRUITouch.app/PlugIns/NotificationServiceExtension.appex
+
+JRUITouch.app/PlugIns/NotificationServiceExtension.appex: valid on disk
+JRUITouch.app/PlugIns/NotificationServiceExtension.appex: satisfies its Designated Requirement
+➜  Payload codesign --verify --verbose --verbose JRUITouch.app
+JRUITouch.app: valid on disk
+JRUITouch.app: satisfies its Designated Requirement
+
+
+After i compressed Payload directory (right click on directory -&gt;Compress). Renamed as MyApp.ipa.
+Xcode -&gt; Device -&gt; Select My Device -&gt; + (to load an ipa)
+
+When i select MyApp.ipa, Device log report again this:
+
+Apr 28 09:58:21 iPhone installd(Security)[3541] &lt;Notice&gt;: could not enable test hierarchy: ApplePinningAllowTestCertsiPhoneApplicationSigning not true
+Apr 28 09:58:21 iPhone securityd[105] &lt;Notice&gt;: cert[0]: SubjectCommonName =(leaf)[]&gt; 0
+Apr 28 09:58:21 iPhone securityd[105] &lt;Notice&gt;: cert[0]: CheckLeafMarkerOid =(leaf)[]&gt; 0
+Apr 28 09:58:21 iPhone securityd[105] &lt;Notice&gt;: cert[0]: IssuerCommonName =(path)[]&gt; 0
+Apr 28 09:58:21 iPhone installd(Security)[3541] &lt;Notice&gt;:  [leaf CheckLeafMarkerOid IssuerCommonName SubjectCommonName]
+Apr 28 09:58:21 iPhone installd(libmis.dylib)[3541] &lt;Error&gt;: unrecognized status -67049 from codesigning library
+Apr 28 09:58:21 iPhone installd(libmis.dylib)[3541] &lt;Notice&gt;: Could not copy code signature (error 0xe8008001).
+Apr 28 09:58:21 iPhone installd(MobileSystemServices)[3541] &lt;Notice&gt;: 0x16dfef000 +[MICodeSigningVerifier _validateSignatureAndCopyInfoForURL:withOptions:error:]: 147: Failed to verify code signature of /private/var/installd/Library/Caches/com.apple.mobile.installd.staging/temp.Yt5Bb8/extracted/Payload/JRUITouch.app/PlugIns/NotificationServiceExtension.appex : 0xe8008001 (An unknown error has occurred.)
+Apr 28 09:58:21 iPhone installd(MobileSystemServices)[3541] &lt;Notice&gt;: 0x16dfef000 -[MIInstaller performInstallationWithError:]: Verification stage failed
+Apr 28 09:58:22 iPhone installd(MobileInstallation)[3541] &lt;Notice&gt;: &lt;private&gt;:Install (New):0:Fail:End
+Apr 28 09:58:22 iPhone lsd(MobileInstallation)[79] &lt;Notice&gt;: _:InstallBundle:1:Fail:&lt;private&gt;
+Apr 28 09:58:22 iPhone lsd(MobileInstallation)[79] &lt;Notice&gt;: _:InstallBundle:2:Success:&lt;private&gt;
+Apr 28 09:58:22 iPhone lsd(MobileInstallation)[79] &lt;Notice&gt;: _:InstallBundle:5:Fail:&lt;private&gt;
+Apr 28 09:58:22 iPhone mobile_installation_proxy(MobileInstallation)[3540] &lt;Notice&gt;: _:_:3:Fail:&lt;private&gt;
+Apr 28 09:58:22 iPhone lsd(Foundation)[79] &lt;Notice&gt;: &lt;NSXPCConnection: 0x1018035e0&gt; connection from pid 3540: Warning: Exception caught during decoding of received message, dropping incoming message.
+Exception: Exception while decoding argument 0 (#2 of invocation):
+&lt;NSInvocation: 0x101848480&gt;
+return value: {v} void
+target: {@} 0x0
+selector: {:} sendFailedNotificationForApp:isUninstall:
+argument 2: {@} 0x0
+argument 3: {B} 0 ''
+
+Exception: Impossibile leggere i dati perch\M-C\M-) non sono presenti.
+Apr 28 09:58:22 iPhone mobile_installation_proxy(MobileInstallation)[3540] &lt;Notice&gt;: _:LSInstallNotifications:1:Success:&lt;private&gt;
+Apr 28 09:58:22 iPhone mobile_installation_proxy(MobileInstallation)[3540] &lt;Notice&gt;: _:_:4:Success:&lt;private&gt;
+Apr 28 09:58:22 iPhone mobile_installation_proxy(MobileSystemServices)[3540] &lt;Notice&gt;: 0x16defb000 handle_install: Installation failed: Error Domain=MIInstallerErrorDomain Code=13 "Failed to verify code signature of /private/var/installd/Library/Caches/com.apple.mobile.installd.staging/temp.Yt5Bb8/extracted/Payload/JRUITouch.app/PlugIns/NotificationServiceExtension.appex : 0xe8008001 (An unknown error has occurred.)" UserInfo={NSLocalizedDescription=Failed to verify code signature of /private/var/installd/Library/Caches/com.apple.mobile.installd.staging/temp.Yt5Bb8/extracted/Payload/JRUITouch.app/PlugIns/NotificationServiceExtension.appex : 0xe8008001 (An unknown error has occurred.), LegacyErrorString=ApplicationVerificationFailed, SourceFileLine=147, LibMISErrorNumber=-402620415, FunctionName=+[MICodeSigningVerifier _validateSignatureAndCopyInfoForURL:withOptions:error:]}
+Apr 28 09:58:22 iPhone mobile_installation_proxy(MobileCoreServices)[3540] &lt;Notice&gt;: interruptionHandler called, re-establishing connection to lsd
+Apr 28 09:58:22 iPhone securityd[105] &lt;Notice&gt;: cert[0]: NonEmptySubject =(leaf)[]&gt; 0
+Apr 28 09:58:22 iPhone securityd[105] &lt;Notice&gt;: cert[0]: AnchorTrusted =(leaf)[force]&gt; 0
+Apr 28 09:58:22 iPhone CommCenter(libATCommandStudioDynamic.dylib)[74] &lt;Notice&gt;: QMI: Svc=0x22(COEX) Ind MsgId=0x0021 Bin=[&lt;private&gt;]
+Apr 28 09:58:23 iPhone DuetHeuristic-BM(DuetActivitySchedulerDaemon)[124] &lt;Notice&gt;: Attempting to suspend based on triggers: &lt;private&gt;
+Apr 28 09:58:23 iPhone DuetHeuristic-BM(DuetActivitySchedulerDaemon)[124] &lt;Notice&gt;: Evaluating 123 activities based on triggers</pre>
+    </div>
+
+    <div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 08:10:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Can you zip up and attach both your original NotificationServiceExtension.appex directory and the one created by Xcode?</pre>
+    </div>
+
+    <div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 08:24:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=21867&amp;file=Archive.zip" name="attach_21867" title="Zip with extensions">attachment 21867</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=21867&amp;file=Archive.zip" title="Zip with extensions">[details]</a></span>
+Zip with extensions
+
+RichPushExtension.appex is made with Xcode (Obj-c)
+NotificationServiceExtension.appex is made with Xamarin Studio (C#)
+
+When i copy inside PlugIns i remove NotificationServiceExtension.appex and move-rename RichPushExtension.appex to NotificationServiceExtension.appex</pre>
+    </div>
+
+    <div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 08:38:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">In RichPushExtension.appex/Info.plist, you say the executable name is "NotificationServiceExtension1"
+
+	&lt;key&gt;CFBundleExecutable&lt;/key&gt;
+	&lt;string&gt;NotificationServiceExtension1&lt;/string&gt;
+
+but the executable inside the appex is named "RichPushExtension". This might be the reason for the signing failure.
+
+Also I would suggest "NotificationServiceExtension" (not "NotificationServiceExtension1"), so that it matches the directory name.
+
+You're also only building the Xcode extension for arm64, while the Xamarin Studio extension you're building for both arm64 and armv7 (but this shouldn't cause signing problems).</pre>
+    </div>
+
+    <div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 09:11:18 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks, now I changed the reference to RichPushExtension to NotificationServiceExtension and resigned application and now the app is installed correctly.
+
+I test rich push notification and it works.
+I hope that is a short temporary workaround because it's not really easy for all Xamarin developers do it (also for me :-P).</pre>
+    </div>
+
+    <div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 09:36:58 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Good to hear you made it work :) I also hope to be able to fix it soon.</pre>
+    </div>
+
+    <div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 09:40:06 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Rolf, I'm testing to use Link All Behavior and LLVM optimizing compiler to understand if *.appex reduce its size (but for the moment there are no differences into output size). Because main difference between Obj-C appex and C# it's about their sizes.
+
+OBJ-c appex is around 100Kb
+C# appex is around 6.6MB</pre>
+    </div>
+
+    <div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 09:42:29 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">appex size is something we've improved a lot on for the next release: <a href="https://developer.xamarin.com/releases/ios/xamarin.ios_10/xamarin.ios_10.10/#Code_sharing_between_Applications_and_Extensions">https://developer.xamarin.com/releases/ios/xamarin.ios_10/xamarin.ios_10.10/#Code_sharing_between_Applications_and_Extensions</a>
+
+You can try it out if you switch to the Beta channel.</pre>
+    </div>
+
+    <div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 09:44:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'm already in Beta channel, I must change something how my project reference app extension?</pre>
+    </div>
+
+    <div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 10:04:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Your build settings must be identical between the projects:
+
+<span class="quote">&gt; /Users/luigi.saggese/Projects/jrmobileapp/packages/SQLitePCL.raw_basic.0.8.6/build/Xamarin.iOS10/pinvoke_sqlite3/anycpu/SQLitePCL.raw.dll, actual path: /Users/luigi.saggese/Projects/jrmobileapp/packages/SQLitePCL.raw.0.9.2/lib/Xamarin.iOS10/SQLitePCL.raw.dll).
+&gt;	MTOUCH:  warning MT0113: Native code sharing has been disabled for the extension 'NotificationServiceExtension' because the managed linker settings are different between the container app (All) and the extension (SDKOnly).</span></pre>
+    </div>
+
+    <div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 10:32:45 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Ah perfect! 
+Now with same build settings *.appex is 2.3MB but when i test rich push notification (now with extension in C#) it do not display image with same error reported in the past.
+
+Info (118) / symptomsd(SymptomEvaluator): Entry, display name com.jobrapido.mobileapp.notificationserviceextension uuid BEE0E6F0-3E03-3F71-A2F9-CB456F8B4BBD pid 3778 isFront 1
+Info (118) / symptomsd(SymptomEvaluator): Check for bundle name com.jobrapido.mobileapp returns 0
+Info (118) / symptomsd(SymptomEvaluator): app name com.jobrapido.mobileapp isForeground 1  hasForegroundApps 1, current idea of foreground 0 disp (null)
+Info (118) / symptomsd(SymptomEvaluator): Going to Foreground, new flags 0x8028000, initial value 0x8028000, enabled 0
+Info (118) / symptomsd(SymptomEvaluator): Continue with bundle name com.jobrapido.mobileapp, is front 1
+Info (118) / symptomsd(SymptomEvaluator): com.jobrapido.mobileapp: Foreground: true
+Info (118) / symptomsd(SymptomEvaluator): Set appCompactState object 958534 for key com.jobrapido.mobileapp
+Info (118) / symptomsd(SymptomEvaluator): CFSM2 foreground (current/proposed/state) in = (1/1/3)
+Info (118) / symptomsd(SymptomEvaluator): CFSM2 foreground (current/state) out = (1/1)
+Info (53) / SpringBoard(PlugInKit): connection to plug-in &lt;private&gt;(4D715DBD-347E-4EA4-AF8F-64D0A6ED1590) lost
+Info (53) / SpringBoard(PlugInKit): connection to plug-in &lt;private&gt;(&lt;private&gt;) lost
+Error (53) / SpringBoard(UserNotificationsServer): Extension error whilst trying to modify push notification EC21-FDB4: Error Domain=NSCocoaErrorDomain Code=4097 "connection from pid 3778" UserInfo={NSDebugDescription=connection from pid 3778}
+Info (53) / SpringBoard(UserNotificationsServer): [com.jobrapido.mobileapp] Saving notification EC21-FDB4
+Error (53) / SpringBoard(UserNotificationsServer): Could not load data at /var/mobile/Library/SpringBoard/PushStore/com.jobrapido.mobileapp.pushstore
+Info (53) / SpringBoard(UserNotificationsServer): Saving notification list at /var/mobile/Library/SpringBoard/PushStore/com.jobrapido.mobileapp.pushstore with 1 items</pre>
+    </div>
+
+    <div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 10:35:03 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The physical size on disk does not reflect the memory usage at runtime. What we've reduced in the upcoming release is the physical size on disk, not the memory usage.</pre>
+    </div>
+
+    <div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-04-28 12:11:58 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Ah ok. 
+When there are some update on this fix let me know that i will test for you.
+
+Thanks for support.</pre>
+    </div>
+
+    <div id="c51" class="bz_comment bz_default_collapsed">
+
+      <div class="bz_comment_head">
+          <span class="bz_comment_actions">
+            
+          </span>
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-24 11:31:25 UTC
+        </span>
+
+          <span id="cr51" class="bz_comment_collapse_reason" title="Luigi Saggese [2017-05-24 11:31:25 UTC]">
+            Comment hidden (obsolete)
+          </span>
+      </div>
+
+
+
+
+<pre class="bz_comment_text collapsed" id="comment_text_51">@Rolf, I had an issue submitting app via Application Loader (I had no issue on HockeyApp) after resigning application.
+
+ERROR ITMS-90668: "Invalid Bundle Executable. The executable file 'JRUITouch.app/Frameworks/IQKeyboardManager.framework/IQKeyboardManager' contains incomplete bitcode. To compile binaries with complete bitcode, open Xcode and choose Archive in the Product menu."
+ERROR ITMS-90211: "Invalid Code Signing Entitlements. The signature for your app bundle contains entitlement values that are not supported. For the 'com.apple.developer.ubiquity-container-identifiers' entitlement, the values in the array must start with the prefix provided by Apple in the provisioning profile, followed by characters that are uppercase or lowercase Roman letters [A-Z, a-z], the digits 0 through 9, dot ['.'], or hyphen ['-'], and not contain any wildcard characters. Specifically, value 'P3E68946J2.*' for the key 'com.apple.developer.ubiquity-container-identifiers' in 'Payload/JRUITouch.app/JRUITouch' is not supported."</pre>
+    </div>
+
+    <div id="c52" class="bz_comment bz_default_collapsed">
+
+      <div class="bz_comment_head">
+          <span class="bz_comment_actions">
+            
+          </span>
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-24 12:04:07 UTC
+        </span>
+
+          <span id="cr52" class="bz_comment_collapse_reason" title="Luigi Saggese [2017-05-24 12:04:07 UTC]">
+            Comment hidden (obsolete)
+          </span>
+      </div>
+
+
+
+
+<pre class="bz_comment_text collapsed" id="comment_text_52">@Rolf, i have solved first issue on IQKeyboardManager (downgrade to an old version), but there is still this one
+
+ERROR ITMS-90211: "Invalid Code Signing Entitlements. The signature for your app bundle contains entitlement values that are not supported. For the 'com.apple.developer.ubiquity-container-identifiers' entitlement, the values in the array must start with the prefix provided by Apple in the provisioning profile, followed by characters that are uppercase or lowercase Roman letters [A-Z, a-z], the digits 0 through 9, dot ['.'], or hyphen ['-'], and not contain any wildcard characters. Specifically, value 'P3E68946J2.*' for the key 'com.apple.developer.ubiquity-container-identifiers' in 'Payload/JRUITouch.app/JRUITouch' is not supported."</pre>
+    </div>
+
+    <div id="c53" class="bz_comment bz_default_collapsed">
+
+      <div class="bz_comment_head">
+          <span class="bz_comment_actions">
+            
+          </span>
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-24 13:04:52 UTC
+        </span>
+
+          <span id="cr53" class="bz_comment_collapse_reason" title="Luigi Saggese [2017-05-24 13:04:52 UTC]">
+            Comment hidden (obsolete)
+          </span>
+      </div>
+
+
+
+
+<pre class="bz_comment_text collapsed" id="comment_text_53">@Rolf, sorry for comments but there was an signing AppId with iCloud enabled. I don't understand why this is issue is come out now (that is why i have associated to notification extension). You could delete my last 3 comments if you prefer.</pre>
+    </div>
+
+    <div id="c54" class="bz_comment bz_default_collapsed">
+
+      <div class="bz_comment_head">
+          <span class="bz_comment_actions">
+            
+          </span>
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-24 14:33:59 UTC
+        </span>
+
+          <span id="cr54" class="bz_comment_collapse_reason" title="Rolf Bjarne Kvinge [MSFT] [2017-05-24 14:33:59 UTC]">
+            Comment hidden (obsolete)
+          </span>
+      </div>
+
+
+
+
+<pre class="bz_comment_text collapsed" id="comment_text_54">@Luigi, I see you fixed the problem before I could help you :) I'll hide those comments so they don't clutter the history.</pre>
+    </div>
+
+    <div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luigi Saggese</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-07-13 14:22:23 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Some news on this bug?</pre>
+    </div>
+
+    <div id="c56" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 56</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-07-13 14:42:17 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Luigi, unfortunately more important tasks keep interfering, and I'm not sure when I'll get the time to fix it.</pre>
+    </div>
+
+    <div id="c57" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 57</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bob</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-07-19 17:14:59 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Rolf...can you provide any ETA.  Understand you are busy, but this is a basic feature on the iOS platform that has been avail for some time.  Clients are asking why we are even bothering with Xamarin if they can't even address core functionality issues.  Am concerned about message this sends to community.
+
+-bob</pre>
+    </div>
+
+    <div id="c58" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 58</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">jellis
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-07-28 02:34:27 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">+1 also affecting our app - just have a single line like this for image attachment download:
+
+var imageData = NSData.FromUrl(logoUrl);
+
+The image file is around 5KB. On most devices, it works approx 80% of time, but intermittently fails, assuming memory limit.  on some devices it doesn't work at all.  Have stripped down the rest of the code to the bare minimum, no other libraries included, all compiler optimizations on.</pre>
+    </div>
+
+    <div id="c59" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 59</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dave Barnes</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-07-28 08:56:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Another +1 here. My service extension is working fine, but is failing when I try to do the image download.</pre>
+    </div>
+
+    <div id="c60" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 60</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikalai Daronin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-07-28 09:10:55 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I suppose it may be very difficult (impossible?) to fix this issue; in that case I would prefer to have a convenient way to include native (ObjC/Swift) extensions to a Xamarin app. I followed this answer (<a href="http://stackoverflow.com/a/43647608/183422">http://stackoverflow.com/a/43647608/183422</a>) in order to use a native extension and everything works, but now my csproj looks like Frankenstein.</pre>
+    </div>
+
+    <div id="c61" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 61</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-08-07 11:31:36 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Async/await crash notification extension" href="show_bug.cgi?id=58566">Bug 58566</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c62" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 62</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-08-09 15:06:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">(In reply to Bob from <a href="bug.html">comment #57</a>)
+<span class="quote">&gt; Rolf...can you provide any ETA.  Understand you are busy, but this is a
+&gt; basic feature on the iOS platform that has been avail for some time. </span>
+
+I'm sorry, but unfortunately I can't provide any ETA.
+
+I completely understand your concerns, but at the moment we're working on other areas that are more urgent.</pre>
+    </div>
+
+    <div id="c63" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 63</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">xamarinbugzilla
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-09-09 04:43:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'd like to add on a "me-too" here. Rich Push is becoming more desired by clients. I can't even open a socket in there without blowing out the memory limit. The MonkeyHandler demo in the documentation website (that downloads images in push extension) seems to me it could never work. It's pseudo code anyways. Someone should flag that or something so people don't waste HOURS AND HOURS on something that cannot possibly work.</pre>
+    </div>
+
+    <div id="c64" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 64</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">clintoncraigsmith
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-10-03 18:55:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">+1 for needing this addressed:
+
+Has there been any triage to scope the effort this would take after addressing the dependency 56022?</pre>
+    </div>
+
+    <div id="c65" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 65</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-10-06 07:43:14 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">(In reply to clintoncraigsmith from <a href="bug.html">comment #64</a>)
+<span class="quote">&gt; +1 for needing this addressed:
+&gt; 
+&gt; Has there been any triage to scope the effort this would take after
+&gt; addressing the dependency 56022?</span>
+
+What needs to be done is fairly simple to explain: Xamarin.iOS' memory overhead needs to be lowered.
+
+Fixing <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Improve the static registrar to generate code that does not need any reflection at runtime" href="show_bug.cgi?id=56022">bug #56022</a> will reduce Xamarin.iOS' memory overhead (but it's unclear how much before actually completing the work); if that's enough to make the scenario described in this bug work, then there's nothing more to do.
+
+If it's not enough, then we'll have to find out what else we can do, but we won't be able to do that before <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Improve the static registrar to generate code that does not need any reflection at runtime" href="show_bug.cgi?id=56022">bug #56022</a> is actually fixed.</pre>
+    </div>
+
+    <div id="c66" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 66</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">tmrog</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-11-17 18:58:04 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Rolf - any chance of Xamarin producing a step-by-step write up of how to automate and incorporate an Xcode built app extension into a Xamarin project?
+
+This might save you some time dealing with this and really help everybody out especially considering there seems to be no ETA on reducing the Xamarin memory footprint.  
+
+Pretty please...
+
+Ted</pre>
+    </div>
+
+    <div id="c67" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 67</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-11-20 09:57:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@tmrog, have you seen this stack overflow answer: <a href="https://stackoverflow.com/a/43647608/183422">https://stackoverflow.com/a/43647608/183422</a>? It explains it pretty well. In any case I'll talk to the documentation team to see what we can do.</pre>
+    </div>
+
+    <div id="c68" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 68</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">tmrog</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-11-20 12:27:17 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Rolf - thank you.</pre>
+    </div>
+
+    <div id="c69" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 69</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">tmrog</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-11-20 12:30:53 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Rolf - what I meant to say was yes I have read that stack overflow article and thank you for talking with the doc team.</pre>
+    </div>
+
+    <div id="c70" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 70</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">tmrog</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-12-13 18:41:26 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hi Guys,
+
+I was able to rebuild my FileProvider using Swift and manually copy it and the Swift Frameworks into my main app, code sign, and run with no problems.
+
+I've been working on automating the build process today. I added a couple run scripts to Xcode to copy my FileProvider extension and Swift Frameworks to a location that I can use from within my Xamarin project.  I am having a few problems.
+
+I have created a "BeforeCodeSign" target and it seems to do exactly the right thing when I run it with msbuild from the command line and my file provider extension looks like it should.
+
+I added this to the bottom of my file provider extension project right before the closing project tag.
+
+  &lt;Target Name="BeforeCodeSign"&gt;
+    &lt;ItemGroup&gt;
+        &lt;NativeExtensionDirectory Include="..\..\Bin\Debug-iphoneos\PDMFileProvider.appex\**\*.*" /&gt;
+    &lt;/ItemGroup&gt;
+
+    &lt;Message Text="Processing BeforeCodeSign" /&gt;
+        
+    &lt;!-- cleanup the application extension built with Xamarin (too heavy in memory)--&gt;
+    &lt;RemoveDir SessionId="$(BuildSessionId)"
+               Directories="bin\iPhone\Debug\device-builds\ipad7.1-11.1.2\PDMFileProvider.appex"/&gt;
+
+    &lt;!-- copy the native one, built in obj-c --&gt;
+    &lt;Copy
+            SessionId="$(BuildSessionId)"
+            SourceFiles="@(NativeExtensionDirectory)"
+            DestinationFolder="bin\iPhone\Debug\device-builds\ipad7.1-11.1.2\PDMFileProvider.appex"
+            SkipUnchangedFiles="true"
+            OverwriteReadOnlyFiles="true"
+            Retries="3"
+            RetryDelayMilliseconds="300"/&gt;
+  &lt;/Target&gt;
+
+Output when running msbuild from command line:
+
+Project "/Users/trs2/Documents/TFS2/ePDM2019/MobileApps/PDMApp/FileProvider/FileProvider.csproj" on node 1 (BeforeCodeSign target(s)).
+BeforeCodeSign:
+  Processing BeforeCodeSign
+  Removing directory "bin/iPhone/Debug/device-builds/ipad7.1-11.1.2/PDMFileProvider.appex".
+  Creating directory "bin/iPhone/Debug/device-builds/ipad7.1-11.1.2/PDMFileProvider.appex".
+  Copying file from "../../Bin/Debug-iphoneos/PDMFileProvider.appex/embedded.mobileprovision" to "bin/iPhone/Debug/device-builds/ipad7.1-11.1.2/PDMFileProvider.appex/embedded.mobileprovision".
+  Copying file from "../../Bin/Debug-iphoneos/PDMFileProvider.appex/Info.plist" to "bin/iPhone/Debug/device-builds/ipad7.1-11.1.2/PDMFileProvider.appex/Info.plist".
+  Copying file from "../../Bin/Debug-iphoneos/PDMFileProvider.appex/PDMFileProvider" to "bin/iPhone/Debug/device-builds/ipad7.1-11.1.2/PDMFileProvider.appex/PDMFileProvider".
+Done Building Project "/Users/trs2/Documents/TFS2/ePDM2019/MobileApps/PDMApp/FileProvider/FileProvider.csproj" (BeforeCodeSign target(s)).
+
+
+ However, when I build my app project it does not seem to work.  When I do a clean all and hit run the build log appears like it did all the right thing but in the end I end up with my Xamarin File Provider.  Here is the build log output excerpt:
+
+Target "BeforeCodeSign" in file "/Users/trs2/Documents/TFS2/ePDM2019/MobileApps/PDMApp/FileProvider/FileProvider.csproj":
+  Added Item(s): 
+      NativeExtensionDirectory=
+          ../../Bin/Debug-iphoneos/PDMFileProvider.appex/embedded.mobileprovision
+          ../../Bin/Debug-iphoneos/PDMFileProvider.appex/Info.plist
+          ../../Bin/Debug-iphoneos/PDMFileProvider.appex/PDMFileProvider
+  Task "Message"
+    Task Parameter:Text=Processing BeforeCodeSign
+    Processing BeforeCodeSign
+  Done executing task "Message".
+  Task "RemoveDir"
+    Task Parameter:Directories=bin/iPhone/Debug/device-builds/ipad7.1-11.1.2/PDMFileProvider.appex
+    Removing directory "bin/iPhone/Debug/device-builds/ipad7.1-11.1.2/PDMFileProvider.appex".
+  Done executing task "RemoveDir".
+  Task "Copy"
+    Task Parameter:
+        SourceFiles=
+            ../../Bin/Debug-iphoneos/PDMFileProvider.appex/embedded.mobileprovision
+            ../../Bin/Debug-iphoneos/PDMFileProvider.appex/Info.plist
+            ../../Bin/Debug-iphoneos/PDMFileProvider.appex/PDMFileProvider
+    Task Parameter:DestinationFolder=bin/iPhone/Debug/device-builds/ipad7.1-11.1.2/PDMFileProvider.appex
+    Task Parameter:SkipUnchangedFiles=True
+    Task Parameter:OverwriteReadOnlyFiles=True
+    Task Parameter:Retries=3
+    Task Parameter:RetryDelayMilliseconds=300
+    Creating directory "bin/iPhone/Debug/device-builds/ipad7.1-11.1.2/PDMFileProvider.appex".
+    Copying file from "../../Bin/Debug-iphoneos/PDMFileProvider.appex/embedded.mobileprovision" to "bin/iPhone/Debug/device-builds/ipad7.1-11.1.2/PDMFileProvider.appex/embedded.mobileprovision".
+    Copying file from "../../Bin/Debug-iphoneos/PDMFileProvider.appex/Info.plist" to "bin/iPhone/Debug/device-builds/ipad7.1-11.1.2/PDMFileProvider.appex/Info.plist".
+    Copying file from "../../Bin/Debug-iphoneos/PDMFileProvider.appex/PDMFileProvider" to "bin/iPhone/Debug/device-builds/ipad7.1-11.1.2/PDMFileProvider.appex/PDMFileProvider".
+  Done executing task "Copy".
+Done building target "BeforeCodeSign" in project "FileProvider.csproj".
+
+I feel like maybe there is something else I need to do but just don't know what.  Also, I would like to replace the hard-coded path components used in my "BeforeCodeSign" target with symbols wherever I can but was not able to find the correct symbols.</pre>
+    </div>
+
+    <div id="c71" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 71</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">tmrog</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-12-13 20:00:43 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I think my problem is contained in the build log excerpt below.  If I build my FileProvider on its own, the appex looks good.  Once I go to build the host app, the FileProvider gets rebuilt as part of that process.
+
+Anybody know how I should go about fixing it?  
+
+	Target _CompileToNative needs to be built as input file '/Users/trs2/Documents/TFS2/ePDM2019/MobileApps/PDMApp/FileProvider/bin/iPhone/Debug/PDMFileProvider.dll' is newer than output file 'bin/iPhone/Debug/device-builds/ipad7.1-11.1.2/PDMFileProvider.appex/PDMFileProvider'</pre>
+    </div>
+
+    <div id="c72" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 72</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikalai Daronin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-12-13 20:13:54 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><span class="quote">&gt;I added this to the bottom of my file provider extension project right before the closing project tag.</span>
+
+Hm, why you added the "BeforeCodeSign" to the extension project? I think you should move it into the main app csproj. As far I know IDE can skip building project dependencies if they are already built.
+
+In our app we have added very similar tasks to the main csproj and now everything works fine from command-line MSBuild and in the VS for Mac.</pre>
+    </div>
+
+    <div id="c73" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 73</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">tmrog</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-12-13 20:40:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I was following the instructions from above.  The issue is that when the files are copied, the dates are not updated.  Since my extension was built earlier in the day in XCode, it always gets rebuilt.  I tried manually touching it and it still rebuilt it.  Still investigating that.  
+
+This is from the SO article referenced above:
+
+"Or you can automate this process, to to so, place the appex file in the csproj's extension and set the build-action as "content". Then in this csproj's file (you'll need to edit directly) you can add something like this. (In this case, the file is called Notifications.appex and is placed in a folder called NativeExtension)"</pre>
+    </div>
+
+    <div id="c74" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 74</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">tmrog</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-12-13 20:50:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Nikolai Doronim I was hoping by doing it in the extensions BeforeCodeSign I would not have to do any additional code signing steps.  How does that get handled if you copy the extension over in the main app BeforeCodeSign?</pre>
+    </div>
+
+    <div id="c75" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 75</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mat</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-12-13 20:52:58 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The SO answer is doing those steps:
+1- manually build a appex in xcode, using the same bundle ID and same signature as you would in visual studio for your xamarin appex.
+2- Place that appex in your visual studio solution as Content.
+3- in the main app csproj, in BeforeCodeSign, take that native appex and replace the xamarin-built one. 
+
+Only step 3 is automated by the SO answer I wrote.</pre>
+    </div>
+
+    <div id="c76" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 76</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bob</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2018-02-10 22:37:43 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Any update on when this will be fixed in Xamarin.</pre>
+    </div>
+
+    <div id="c77" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 77</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2018-02-12 08:56:28 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Bob, I'm working on it, but I have no dates yet.</pre>
+    </div>
+
+    <div id="c78" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 78</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rolf Bjarne Kvinge [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2018-03-08 13:34:52 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Looks like this is working with the fix for #56022.
+
+I can successfully modify notifications using the project from the initial description (it even works in debug mode, although putting a breakpoint and stepping through the code makes the extension hit the memory limit and it's killed).
+
+This will be released in our next stable release (d15-7). Previews should be available in the alpha or beta channel fairly soon.</pre>
+    </div>
+
+    <div id="c79" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 79</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bob</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2018-03-08 14:16:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Rolf..Thanks for the update!</pre>
+    </div>
+
+    <div id="c80" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 80</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Shawn Castrianni</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2018-03-19 20:03:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Rolf, I have a similar issue, but do not mess with images.  I am simply trying to aggregate notifications into 1.  This works fine on iOS11, but not on iOS10.  Below is the log for iOS10.  I just get an error message with "connection from pid 369".  Not very useful.  My extension source is also below.  I am not doing anything fancy.  Any ideas?
+
+
+        public async override void DidReceiveNotificationRequest(UNNotificationRequest request, Action&lt;UNNotificationContent&gt; contentHandler)
+        {
+            ContentHandler = contentHandler;
+            _origNotification = request.Content;
+            UNUserNotificationCenter nc = UNUserNotificationCenter.Current;
+            //Find most recent notification article count
+            int pendingNumArticles = 0;
+            UNNotification[] dns = await nc.GetDeliveredNotificationsAsync();
+            UNNotification mostRecent = dns.OrderByDescending(n =&gt; n.Date).FirstOrDefault();
+            NSString numArticlesKey = new NSString(NUM_ARTICLES);
+            if((mostRecent != null) &amp;&amp; (mostRecent.Request.Content.UserInfo.ContainsKey(numArticlesKey)))
+                pendingNumArticles = ((NSNumber)mostRecent.Request.Content.UserInfo.ObjectForKey(numArticlesKey)).Int32Value;
+			//Remove all previous notifications
+			nc.RemoveAllDeliveredNotifications();
+			//Find article count from this notification
+			int newNumArticles = 0;
+			if (request.Content.UserInfo.ContainsKey(numArticlesKey))
+				newNumArticles = ((NSNumber)request.Content.UserInfo.ObjectForKey(numArticlesKey)).Int32Value;
+            int aggregatedNumArticles = pendingNumArticles + newNumArticles;
+            //If aggregation count is just 1, then display notification as is
+            if (aggregatedNumArticles == 1)
+                ContentHandler(_origNotification);
+            else {
+                //Copy this notification to modify it
+                UNMutableNotificationContent aggregatedNotification = (UNMutableNotificationContent)_origNotification.MutableCopy();
+                aggregatedNotification.Title = string.Empty;
+                aggregatedNotification.Body = "" + aggregatedNumArticles + " new articles published";
+                aggregatedNotification.Badge = NSNumber.FromInt32(aggregatedNumArticles);
+                NSMutableDictionary aggregatedUserInfo = (NSMutableDictionary)_origNotification.UserInfo.MutableCopy();
+                aggregatedUserInfo[numArticlesKey] = aggregatedNotification.Badge;
+                aggregatedNotification.UserInfo = aggregatedUserInfo;
+                ContentHandler(aggregatedNotification);
+            }
+        }
+
+
+
+
+Mar 19 14:22:51 Gregorys-iPhone-5S assertiond[61] &lt;Notice&gt;: Ignoring assertion request named "com.apple.extension.session" from &lt;BSProcessHandle: 0x11fd0ad90; SpringBoard:51; valid: YES&gt; because process { pid 365; bundleID (null) } is unknown.
+Mar 19 14:22:51 Gregorys-iPhone-5S SpringBoard(Foundation)[51] &lt;Notice&gt;: calling plugIn beginUsing:
+Mar 19 14:22:51 Gregorys-iPhone-5S pkd[145] &lt;Notice&gt;: allowing host 51 /System/Library/CoreServices/SpringBoard.app/SpringBoard to use plug-in &lt;private&gt;(&lt;private&gt;) uuid=32CFA519-4F0C-4F77-9BC3-FCD8B34D446F at &lt;private&gt;
+Mar 19 14:22:51 Gregorys-iPhone-5S NotificationAggregation.iOS(Mono)[369] &lt;Notice&gt;: Found new TLS offset at 224
+Mar 19 14:22:51 Gregorys-iPhone-5S SpringBoard(Foundation)[51] &lt;Notice&gt;: completed calling plugIn beginUsing: for pid: 369
+Mar 19 14:22:51 Gregorys-iPhone-5S NotificationAggregation.iOS(Foundation)[369] &lt;Notice&gt;: in _willPerformHostCallback: block
+Mar 19 14:22:51 Gregorys-iPhone-5S mediaserverd(CoreMedia)[25] &lt;Notice&gt;: -CMSessionMgr- cmsmHandleApplicationStateChange: CMSession: Client com.ihs.energyalert.notifications with pid '369' is now Foreground Running. Background entitlement: NO
+Mar 19 14:22:51 Gregorys-iPhone-5S symptomsd(SymptomEvaluator)[124] &lt;Notice&gt;: 369 com.ihs.energyalert.notifications: ForegroundRunning (most elevated: ForegroundRunning)
+Mar 19 14:22:51 Gregorys-iPhone-5S symptomsd(SymptomEvaluator)[124] &lt;Notice&gt;: Entry, display name com.ihs.energyalert.notifications uuid 3CD26EDB-0C78-3A08-9C96-8800462A45A8 pid 369 isFront 1
+Mar 19 14:22:51 Gregorys-iPhone-5S symptomsd(SymptomEvaluator)[124] &lt;Notice&gt;: Check for bundle name com.ihs.energyalert returns 0
+Mar 19 14:22:51 Gregorys-iPhone-5S symptomsd(SymptomEvaluator)[124] &lt;Notice&gt;: app name com.ihs.energyalert isForeground 1  hasForegroundApps 1, current idea of foreground 0 disp (null)
+Mar 19 14:22:51 Gregorys-iPhone-5S symptomsd(SymptomEvaluator)[124] &lt;Notice&gt;: Going to Foreground, new flags 0x0, initial value 0x0, enabled 0
+Mar 19 14:22:51 Gregorys-iPhone-5S symptomsd(SymptomEvaluator)[124] &lt;Notice&gt;: Continue with bundle name com.ihs.energyalert, is front 1
+Mar 19 14:22:51 Gregorys-iPhone-5S symptomsd(SymptomEvaluator)[124] &lt;Notice&gt;: com.ihs.energyalert: Foreground: true
+Mar 19 14:22:51 Gregorys-iPhone-5S symptomsd(SymptomEvaluator)[124] &lt;Notice&gt;: Set appCompactState object 1758576 for key com.ihs.energyalert
+Mar 19 14:22:51 Gregorys-iPhone-5S symptomsd(SymptomEvaluator)[124] &lt;Notice&gt;: CFSM2 foreground (current/proposed/state) in = (0/1/2)
+Mar 19 14:22:51 Gregorys-iPhone-5S symptomsd(SymptomEvaluator)[124] &lt;Notice&gt;: CFSM2 foreground (current/state) out = (1/1)
+Mar 19 14:22:51 Gregorys-iPhone-5S symptomsd(SymptomEvaluator)[124] &lt;Notice&gt;: CFSM Current state: idle, changed: systemForeground to 1 for net type 0, eligible for alerted but constraints unsatisfied (1,0,0,0)
+Mar 19 14:22:51 Gregorys-iPhone-5S CommCenter[73] &lt;Notice&gt;: #I BundleID: &lt;private&gt; is a foreground app
+Mar 19 14:22:51 Gregorys-iPhone-5S symptomsd(SymptomEvaluator)[124] &lt;Notice&gt;: CFSM Current state: idle, changed: systemForeground to 1 for net type 0, ineligible for committed as nil pred, wifi (0x0) cell (0x0)
+Mar 19 14:22:51 Gregorys-iPhone-5S symptomsd(SymptomEvaluator)[124] &lt;Notice&gt;: CFSM Relays: cell (active-no/primary-no/knowngood-no/rssithresh-ok/txthresh-ok/arp-ok/dns-ok/tcp-ok/lqm:-2/advisory:0) wifi (active/primary/knowngood/rssithresh-ok/txthresh-ok/arp-ok/dns-ok/tcp-ok/lqm:100/advisory:7)
+Mar 19 14:22:51 Gregorys-iPhone-5S SpringBoard(PlugInKit)[51] &lt;Notice&gt;: connection to plug-in &lt;private&gt;(32CFA519-4F0C-4F77-9BC3-FCD8B34D446F) lost
+Mar 19 14:22:51 Gregorys-iPhone-5S SpringBoard(PlugInKit)[51] &lt;Notice&gt;: connection to plug-in &lt;private&gt;(&lt;private&gt;) lost
+Mar 19 14:22:51 Gregorys-iPhone-5S SpringBoard(Foundation)[51] &lt;Notice&gt;: tearing down extension request for pid 0
+Mar 19 14:22:51 Gregorys-iPhone-5S SpringBoard(UserNotificationsServer)[51] &lt;Error&gt;: Extension error whilst trying to modify push notification 5AAD-379D: Error Domain=NSCocoaErrorDomain Code=4097 "connection from pid 369" UserInfo={NSDebugDescription=connection from pid 369}
+Mar 19 14:22:51 Gregorys-iPhone-5S SpringBoard(Foundation)[51] &lt;Notice&gt;: extension connection was interrupted
+Mar 19 14:22:51 Gregorys-iPhone-5S SpringBoard(UserNotificationsServer)[51] &lt;Notice&gt;: UNSUserNotificationServerConnectionListener connection invalidated
+Mar 19 14:22:51 Gregorys-iPhone-5S SpringBoard(UserNotificationsServer)[51] &lt;Notice&gt;: [com.ihs.energyalert] Saving notification 5AAD-379D</pre>
+    </div>
+
+    <div id="c81" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 81</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Shawn Castrianni</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2018-03-19 22:49:35 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Since there is no way to debug an extension (that I know of), I added Console.Writeline messages to my extension since those show up in the device log.  I put a writeline before every single line of code in my extension, like below.  The device log output showed the below. Notice that it printed out line number 7 but did not print out 8.  That means it died on this line:
+
+NSString numArticlesKey = new NSString(NUM_ARTICLES);
+
+where:
+
+private const string NUM_ARTICLES = "numArticles";
+
+any ideas?
+
+
+Mar 19 17:31:27 Gregorys-iPhone-5S NotificationAggregation.iOS(Xamarin)[449] &lt;Notice&gt;: NotificationService: 1
+Mar 19 17:31:27 Gregorys-iPhone-5S NotificationAggregation.iOS(Xamarin)[449] &lt;Notice&gt;: NotificationService: 2
+Mar 19 17:31:27 Gregorys-iPhone-5S NotificationAggregation.iOS(Xamarin)[449] &lt;Notice&gt;: NotificationService: 3
+Mar 19 17:31:27 Gregorys-iPhone-5S NotificationAggregation.iOS(Xamarin)[449] &lt;Notice&gt;: NotificationService: 4
+Mar 19 17:31:27 Gregorys-iPhone-5S NotificationAggregation.iOS(Xamarin)[449] &lt;Notice&gt;: NotificationService: 5
+Mar 19 17:31:27 Gregorys-iPhone-5S NotificationAggregation.iOS(Xamarin)[449] &lt;Notice&gt;: NotificationService: 6
+Mar 19 17:31:27 Gregorys-iPhone-5S NotificationAggregation.iOS(Xamarin)[449] &lt;Notice&gt;: NotificationService: 7
+Mar 19 17:31:27 Gregorys-iPhone-5S SpringBoard(PlugInKit)[51] &lt;Notice&gt;: connection to plug-in &lt;private&gt;(C7051547-5FE3-4616-AB09-6CC4A94EB730) lost
+Mar 19 17:31:27 Gregorys-iPhone-5S SpringBoard(PlugInKit)[51] &lt;Notice&gt;: connection to plug-in &lt;private&gt;(&lt;private&gt;) lost
+Mar 19 17:31:27 Gregorys-iPhone-5S SpringBoard(Foundation)[51] &lt;Notice&gt;: extension connection was interrupted
+Mar 19 17:31:27 Gregorys-iPhone-5S SpringBoard(UserNotificationsServer)[51] &lt;Error&gt;: Extension error whilst trying to modify push notification E4C6-7201: Error Domain=NSCocoaErrorDomain Code=4097 "connection from pid 449" UserInfo={NSDebugDescription=connection from pid 449}
+Mar 19 17:31:27 Gregorys-iPhone-5S SpringBoard(Foundation)[51] &lt;Notice&gt;: tearing down extension request for pid 0
+Mar 19 17:31:27 Gregorys-iPhone-5S SpringBoard(UserNotificationsServer)[51] &lt;Notice&gt;: [com.ihs.energyalert] Saving notification E4C6-7201
+Mar 19 17:31:27 Gregorys-iPhone-5S SpringBoard(UserNotificationsServer)[51] &lt;Notice&gt;: Saving notification list at /var/mobile/Library/SpringBoard/PushStore/com.ihs.energyalert.pushstore with 2 items
+Mar 19 17:31:27 Gregorys-iPhone-5S mediaserverd(CoreMedia)[25] &lt;Notice&gt;: -CMSessionMgr- cmsmHandleApplicationStateChange: CMSession: Client com.ihs.energyalert.notifications with pid '449' is now Background Suspended. Background entitlement: NO
+
+
+
+
+        public async override void DidReceiveNotificationRequest(UNNotificationRequest request, Action&lt;UNNotificationContent&gt; contentHandler)
+        {
+            Console.WriteLine("NotificationService: 1");
+            ContentHandler = contentHandler;
+            Console.WriteLine("NotificationService: 2");
+            _origNotification = request.Content;
+            Console.WriteLine("NotificationService: 3");
+            UNUserNotificationCenter nc = UNUserNotificationCenter.Current;
+            //Find most recent notification article count
+            Console.WriteLine("NotificationService: 4");
+            int pendingNumArticles = 0;
+            Console.WriteLine("NotificationService: 5");
+            UNNotification[] dns = await nc.GetDeliveredNotificationsAsync();
+            Console.WriteLine("NotificationService: 6");
+            UNNotification mostRecent = dns.OrderByDescending(n =&gt; n.Date).FirstOrDefault();
+            Console.WriteLine("NotificationService: 7");
+            NSString numArticlesKey = new NSString(NUM_ARTICLES);
+            Console.WriteLine("NotificationService: 8");
+            if ((mostRecent != null) &amp;&amp; (mostRecent.Request.Content.UserInfo.ContainsKey(numArticlesKey))) {
+                Console.WriteLine("NotificationService: 9");
+                pendingNumArticles = ((NSNumber)mostRecent.Request.Content.UserInfo.ObjectForKey(numArticlesKey)).Int32Value;
+            }
+			//Remove all previous notifications
+            Console.WriteLine("NotificationService: 10");
+			nc.RemoveAllDeliveredNotifications();
+			//Find article count from this notification
+            Console.WriteLine("NotificationService: 11");
+			int newNumArticles = 0;
+            Console.WriteLine("NotificationService: 12");
+            if (request.Content.UserInfo.ContainsKey(numArticlesKey)) {
+                Console.WriteLine("NotificationService: 13");
+                newNumArticles = ((NSNumber)request.Content.UserInfo.ObjectForKey(numArticlesKey)).Int32Value;
+            }
+            Console.WriteLine("NotificationService: 14");
+            int aggregatedNumArticles = pendingNumArticles + newNumArticles;
+            //If aggregation count is just 1, then display notification as is
+            Console.WriteLine("NotificationService: 15");
+            if (aggregatedNumArticles == 1) {
+                Console.WriteLine("NotificationService: 16");
+                ContentHandler(_origNotification);
+            } else {
+                //Copy this notification to modify it
+                Console.WriteLine("NotificationService: 17");
+                UNMutableNotificationContent aggregatedNotification = (UNMutableNotificationContent)_origNotification.MutableCopy();
+                Console.WriteLine("NotificationService: 18");
+                aggregatedNotification.Title = string.Empty;
+                Console.WriteLine("NotificationService: 19");
+                aggregatedNotification.Body = "" + aggregatedNumArticles + " new articles published";
+                Console.WriteLine("NotificationService: 20");
+                aggregatedNotification.Badge = NSNumber.FromInt32(aggregatedNumArticles);
+                Console.WriteLine("NotificationService: 21");
+                NSMutableDictionary aggregatedUserInfo = (NSMutableDictionary)_origNotification.UserInfo.MutableCopy();
+                Console.WriteLine("NotificationService: 22");
+                aggregatedUserInfo[numArticlesKey] = aggregatedNotification.Badge;
+                Console.WriteLine("NotificationService: 23");
+                aggregatedNotification.UserInfo = aggregatedUserInfo;
+                Console.WriteLine("NotificationService: 24");
+                ContentHandler(aggregatedNotification);
+                Console.WriteLine("NotificationService: 25");
+            }
+        }</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>
