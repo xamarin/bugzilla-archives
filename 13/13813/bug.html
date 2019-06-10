@@ -1,0 +1,2712 @@
+<html lang="en"><head>
+    <title>13813 – Mono crashes when AppDomains are created in parallel (few)</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Runtime
+                 bz_component_GC
+                 bz_bug_13813 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;13813</span>
+
+        <span id="subtitle" class="subheader">Mono crashes when AppDomains are created in parallel (few)</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2017-05-31 00:34:09 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2017-05-31 00:34:09">
+  <input type="hidden" name="id" value="13813">
+  <input type="hidden" name="token" value="1559167930-7ie7sj6GeHdFjSpEBcLJx6A_iLj0Y-nasPMv_AcWMJ0">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;13813</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">Mono crashes when AppDomains are created in parallel (few)</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>Mono crashes when AppDomains are created in parallel (few)
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Runtime
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Mono
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">GC
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>unspecified
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Linux
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>---
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Vlad Brezae</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2013-08-07 09:24 UTC by <span class="vcard"><span class="fn">Alexandre Faria</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2017-05-31 00:34 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>8
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="benjamin.c.burns">benjamin.c.burns</option>
+                <option value="cvetomir.todorov">cvetomir.todorov</option>
+                <option value="igor">igor</option>
+                <option value="kumpera">kumpera</option>
+                <option value="matt.zinkevicius">matt.zinkevicius</option>
+                <option value="mono-bugs+mono">mono-bugs+mono</option>
+                <option value="mono-bugs+runtime">mono-bugs+runtime</option>
+                <option value="vargaz">vargaz</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=22340&amp;file=bburns%20mono%20debug%20log%2020170524.txt" title="View the content of the attachment">
+          <b>Repro crash log showing GDB crash output</b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.64 MB,
+                text/plain)
+
+            <br>
+            <a href="#attach_22340" title="Go to the comment associated with the attachment">2017-05-22 04:25 UTC</a>,
+
+            <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=22340&amp;file=bburns%20mono%20debug%20log%2020170524.txt">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+            <a href="https://github.com/mono">GitHub</a> or <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexandre Faria</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-07 09:24:29 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mono crashes when I try to create AppDomains in parallel, it varies, but only a few are required to crash mono.
+
+Code:
+using System;
+using System.Threading;
+
+public class A
+{
+        private static void ToDo(object stateInfo)
+        {
+                System.Console.WriteLine("\n\nIteration " + ((int)stateInfo));
+                AppDomain ad = AppDomain.CreateDomain("ChildDomain");
+                AppDomain.Unload(ad);
+        }
+
+        public static void Main(string[] args)
+        {
+                for(int i=0; i&lt;4000; i++)
+                {
+                        ThreadPool.QueueUserWorkItem(new WaitCallback(ToDo), i);
+                }
+                Thread.Sleep(100000000);
+        }
+}
+
+Error:
+* Assertion: should not be reached at sgen-scan-object.h:111
+
+Stacktrace:
+
+
+Native stacktrace:
+
+	mono() [0x4e3bb1]
+	/lib/x86_64-linux-gnu/libpthread.so.0(+0xfbd0) [0x7f3c4f8bbbd0]
+	/lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f3c4f305037]
+	/lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f3c4f308698]
+	mono() [0x67385d]
+	mono() [0x673996]
+	mono() [0x61c931]
+	mono() [0x612cb7]
+	mono() [0x612ebf]
+	mono() [0x61485a]
+	mono() [0x615474]
+	mono() [0x618ea7]
+	mono(mono_gc_collect+0x28) [0x6190b8]
+	mono(mono_domain_finalize+0x94) [0x5e7874]
+	mono() [0x5deb9d]
+	mono() [0x65f2b1]
+	mono() [0x66f120]
+	/lib/x86_64-linux-gnu/libpthread.so.0(+0x7f8e) [0x7f3c4f8b3f8e]
+	/lib/x86_64-linux-gnu/libc.so.6(clone+0x6d) [0x7f3c4f3c7e1d]
+
+Debug info from gdb:
+
+Could not attach to process.  If your uid matches the uid of the target
+process, check the setting of /proc/sys/kernel/yama/ptrace_scope, or try
+again as the root user.  For more details, see /etc/sysctl.d/10-ptrace.conf
+ptrace: Operação não permitida.
+No threads.
+
+=================================================================
+Got a SIGABRT while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+=================================================================</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexandre Faria</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-07 09:33:50 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mono JIT compiler version 3.3.0 (master/b213fac Qua Ago  7 10:19:08 WEST 2013)</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rodrigo Kumpera</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-23 14:33:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mark, the above test crashes us very reliably and fast.</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-05 11:25:44 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SGEN: Assertion: should not be reached at sgen-scan-object.h:111" href="show_bug.cgi?id=14339">bug 14339</a> ***</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexandre Faria</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-06 10:26:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I just updated from git and it still crashes.
+
+I assumed the fix was already on git, is that correct?
+
+Mono JIT compiler version 3.2.3 (master/81d7fec Sex Set  6 12:17:34 WEST 2013)
+Copyright (C) 2002-2012 Novell, Inc, Xamarin Inc and Contributors. www.mono-project.com
+	TLS:           __thread
+	SIGSEGV:       altstack
+	Notifications: epoll
+	Architecture:  amd64
+	Disabled:      none
+	Misc:          softdebug 
+	LLVM:          yes(3.3svn-mono)
+	GC:            sgen</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-06 10:47:08 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Does it still crash the same way ?</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexandre Faria</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-06 11:01:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Well, yes, but the assertion isn't present and it might take a bit longer to happen.
+
+Stacktrace:
+
+
+Native stacktrace:
+
+	mono() [0x4e2b71]
+	mono() [0x54885f]
+	mono() [0x456677]
+	/lib/x86_64-linux-gnu/libpthread.so.0(+0xfbd0) [0x7fcbbbfa4bd0]
+	mono() [0x61b750]
+	mono() [0x5c3d99]
+	mono() [0x612167]
+	mono() [0x613baa]
+	mono() [0x6147c4]
+	mono() [0x618207]
+	mono(mono_gc_collect+0x28) [0x618418]
+	mono() [0x5ddf8e]
+	mono() [0x65e611]
+	mono() [0x66e4e0]
+	/lib/x86_64-linux-gnu/libpthread.so.0(+0x7f8e) [0x7fcbbbf9cf8e]
+	/lib/x86_64-linux-gnu/libc.so.6(clone+0x6d) [0x7fcbbbab0e1d]
+
+Debug info from gdb:
+
+Could not attach to process.  If your uid matches the uid of the target
+process, check the setting of /proc/sys/kernel/yama/ptrace_scope, or try
+again as the root user.  For more details, see /etc/sysctl.d/10-ptrace.conf
+ptrace: Operação não permitida.
+No threads.
+
+=================================================================
+Got a SIGSEGV while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+=================================================================</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-06 12:12:06 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I can reproduce this.</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-06 14:06:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Fixed in 0b296662aec9a33b27bd0a4ad6ee93f3fb3334c5.</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexandre Faria</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-06 18:55:08 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks, confirmed ;)</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexandre Faria</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-05 09:25:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The same problem is back on more recent mono, crashing really fast and reliably...
+
+Mono JIT compiler version 4.1.0 (master/199cc80 Dom Abr  5 11:19:29 WEST 2015)
+Copyright (C) 2002-2014 Novell, Inc, Xamarin Inc and Contributors. www.mono-project.com
+	TLS:           __thread
+	SIGSEGV:       altstack
+	Notifications: epoll
+	Architecture:  amd64
+	Disabled:      none
+	Misc:          softdebug 
+	LLVM:          supported, not enabled.
+	GC:            sgen
+
+The errors given vary a lot...</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-07 20:06:20 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I can't reproduce this.  How often do you need to run it for it to crash?  Could you post crash logs?</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexandre Faria</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 08:08:42 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I believe this is an sgen bug, with bohem it does not happen.
+
+Every time I execute that code sample, it crashes just after a few seconds.
+
+I just updated from mono to check if there was a recent fix, but its still there.
+
+I get this kind of bugs with sgen in many more places, but this way has been the easiest to reproduce reliably and fast.
+
+There is another code sample nicer and faster to crash (I used the other one for the sample crashes):
+
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+public class Example
+{
+  public static void Main()
+  {
+    Parallel.For(0, 10000, i =&gt;
+    {
+      System.Console.WriteLine("\n\nIteration " + i);
+      AppDomain ad = AppDomain.CreateDomain("ChildDomain");
+      AppDomain.Unload(ad);
+    });
+  }
+}
+
+
+
+Here you have some examples of crashes (taken from the original):
+
+Example 1:
+
+Unhandled Exception:
+System.NullReferenceException: Object reference not set to an instance of an object
+  at &lt;0x00000 + 0x00000&gt; &lt;unknown method&gt;
+  at &lt;0x00000 + 0x00000&gt; &lt;unknown method&gt;
+  at &lt;0x00000 + 0x00000&gt; &lt;unknown method&gt;
+  at &lt;0x00000 + 0x00000&gt; &lt;unknown method&gt;
+  at &lt;0x00000 + 0x00000&gt; &lt;unknown method&gt;
+  at &lt;0x00000 + 0x00000&gt; &lt;unknown method&gt;
+  at &lt;0x00000 + 0x00000&gt; &lt;unknown method&gt;
+  at &lt;0x00000 + 0x00000&gt; &lt;unknown method&gt;
+  at &lt;0x00000 + 0x00000&gt; &lt;unknown method&gt;
+  at System.AppDomain.InvokeInDomain (System.AppDomain domain, System.Reflection.MethodInfo method, System.Object obj, System.Object[] args) &lt;0x7f3d1bf57970 + 0x000a2&gt; in &lt;filename unknown&gt;:0 
+  at System.Runtime.Remoting.RemotingServices.GetDomainProxy (System.AppDomain domain) &lt;0x7f3d1c035f80 + 0x00059&gt; in &lt;filename unknown&gt;:0 
+  at System.AppDomain.CreateDomain (System.String friendlyName, System.Security.Policy.Evidence securityInfo, System.AppDomainSetup info) &lt;0x7f3d1bf57c30 + 0x00203&gt; in &lt;filename unknown&gt;:0 
+  at System.AppDomain.CreateDomain (System.String friendlyName) &lt;0x7f3d1bf57bf0 + 0x00010&gt; in &lt;filename unknown&gt;:0 
+  at A.ToDo (System.Object stateInfo) &lt;0x41ccbfb0 + 0x00095&gt; in &lt;filename unknown&gt;:0 
+
+Example 2:
+
+* Assertion: should not be reached at sgen-scan-object.h:101
+
+Stacktrace:
+
+
+Native stacktrace:
+
+	mono(mono_handle_native_sigsegv+0xc8) [0x4d08f8]
+	/lib/x86_64-linux-gnu/libpthread.so.0(+0x10340) [0x7fd0877de340]
+	/lib/x86_64-linux-gnu/libc.so.6(gsignal+0x39) [0x7fd08743fcc9]
+	/lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fd0874430d8]
+	mono() [0x660f59]
+	mono(monoeg_g_logv+0x3f) [0x66115f]
+	mono(monoeg_assertion_message+0x96) [0x6612a6]
+	mono() [0x60ca27]
+	mono() [0x60e53b]
+	mono() [0x602b9c]
+	mono() [0x603da5]
+	mono() [0x604409]
+	mono(sgen_perform_collection+0x4c8) [0x6076d8]
+	mono(mono_gc_collect+0x28) [0x607fe8]
+	mono() [0x5d2eda]
+	mono() [0x65aa1e]
+	/lib/x86_64-linux-gnu/libpthread.so.0(+0x8182) [0x7fd0877d6182]
+	/lib/x86_64-linux-gnu/libc.so.6(clone+0x6d) [0x7fd08750347d]
+
+Debug info from gdb:
+
+Could not attach to process.  If your uid matches the uid of the target
+process, check the setting of /proc/sys/kernel/yama/ptrace_scope, or try
+again as the root user.  For more details, see /etc/sysctl.d/10-ptrace.conf
+ptrace: Operação não permitida.
+No threads.
+
+=================================================================
+Got a SIGABRT while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+=================================================================
+
+
+Example 3:
+
+Stacktrace:
+
+
+Native stacktrace:
+
+	mono(mono_handle_native_sigsegv+0xc8) [0x4d08f8]
+	mono(mono_arch_handle_altstack_exception+0xbe) [0x526e5e]
+	mono(mono_sigsegv_signal_handler+0xf8) [0x44fca8]
+	/lib/x86_64-linux-gnu/libpthread.so.0(+0x10340) [0x7feeb41ec340]
+
+Debug info from gdb:
+
+
+
+Iteration 2870
+Could not attach to process.  If your uid matches the uid of the target
+process, check the setting of /proc/sys/kernel/yama/ptrace_scope, or try
+again as the root user.  For more details, see /etc/sysctl.d/10-ptrace.conf
+ptrace: Operação não permitida.
+No threads.
+
+=================================================================
+Got a SIGSEGV while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+=================================================================
+
+
+Example 4:
+
+Unhandled Exception:
+System.NullReferenceException: Object reference not set to an instance of an object
+  at System.Runtime.Remoting.Proxies.RemotingProxy.Invoke (IMessage request) &lt;0x7ff68e02cda0 + 0x003fc&gt; in &lt;filename unknown&gt;:0 
+  at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke (System.Runtime.Remoting.Proxies.RealProxy rp, IMessage msg, System.Exception&amp; exc, System.Object[]&amp; out_args) &lt;0x7ff68e02b640 + 0x00452&gt; in &lt;filename unknown&gt;:0 
+
+
+Example 5:
+
+Stacktrace:
+
+
+Native stacktrace:
+
+Segmentation fault (core dumped)</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rodrigo Kumpera</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 10:26:06 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hi Mark,
+
+Please take a look at this report.</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-08 16:41:59 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The problem is cross-appdomain references.  Running with `MONO_GC_DEBUG=xdomain-checks` I get lots of this:
+
+xdomain reference in 0x7ffff5c8e790 (System.Runtime.Remoting.Messaging.CADMethodCallMessage) at offset 48 (_method) to 0x7ffff5c06af0 (System.Reflection.MonoMethod) ()  -  pointed to by:
+found ref to 0x7ffff5c8e790 in object 0x7ffff5c922f8 (Object[]) at offset 40
+xdomain reference in 0x7ffff5ca79a0 (System.Runtime.Remoting.Messaging.CADMethodCallMessage) at offset 48 (_method) to 0x7ffff5c0b4c8 (System.Reflection.MonoMethod) ()  -  pointed to by:
+found ref to 0x7ffff5ca79a0 in object 0x7ffff5cacf88 (Object[]) at offset 40
+xdomain reference in 0x7ffff5cb3630 (System.Runtime.Remoting.Messaging.CADMethodCallMessage) at offset 48 (_method) to 0x7ffff5c0a4c8 (System.Reflection.MonoMethod) ()  -  pointed to by:
+found ref to 0x7ffff5cb3630 in object 0x7ffff5cb70c0 (Object[]) at offset 40
+xdomain reference in 0x7ffff5ca79a0 (System.Runtime.Remoting.Messaging.CADMethodCallMessage) at offset 48 (_method) to 0x7ffff618c478 (System.Reflection.MonoMethod) ()  -  pointed to by:
+found ref to 0x7ffff5ca79a0 in object 0x7ffff5cacf88 (Object[]) at offset 40
+xdomain reference in 0x7ffff5cb3630 (System.Runtime.Remoting.Messaging.CADMethodCallMessage) at offset 48 (_method) to 0x7ffff5c0a4c8 (System.Reflection.MonoMethod) ()  -  pointed to by:
+found ref to 0x7ffff5cb3630 in object 0x7ffff5cb70c0 (Object[]) at offset 40
+xdomain reference in 0x7ffff5ca79a0 (System.Runtime.Remoting.Messaging.CADMethodCallMessage) at offset 48 (_method) to 0x7ffff618c478 (System.Reflection.MonoMethod) ()  -  pointed to by:
+found ref to 0x7ffff5ca79a0 in object 0x7ffff5cacf88 (Object[]) at offset 40
+xdomain reference in 0x7ffff5cb3630 (System.Runtime.Remoting.Messaging.CADMethodCallMessage) at offset 48 (_method) to 0x7ffff7f18770 (System.Reflection.MonoMethod) ()  -  pointed to by:
+found ref to 0x7ffff5cb3630 in object 0x7ffff5cb70c0 (Object[]) at offset 40
+xdomain reference in 0x7ffff5ca79a0 (System.Runtime.Remoting.Messaging.CADMethodCallMessage) at offset 48 (_method) to 0x7ffff618c478 (System.Reflection.MonoMethod) ()  -  pointed to by:
+found ref to 0x7ffff5ca79a0 in object 0x7ffff5cacf88 (Object[]) at offset 40
+xdomain reference in 0x7ffff5cb3630 (System.Runtime.Remoting.Messaging.CADMethodCallMessage) at offset 48 (_method) to 0x7ffff7f18770 (System.Reflection.MonoMethod) ()  -  pointed to by:
+found ref to 0x7ffff5cb3630 in object 0x7ffff5cb70c0 (Object[]) at offset 40</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexander Kyte</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-04-10 14:41:50 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Those x-domain references were fixed in one of the commits on the xunit-fixes PR thread. This should be fixed when they can be merged. Still working out an issue that appeared when I rebased the commits to the head of master when they got out of date. 
+
+- Alex</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matt Z</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-06-11 03:37:02 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I still see this, even with Alexander's xunit fixes that are now integrated:
+
+* Assertion: should not be reached at sgen-scan-object.h:101
+Stacktrace:
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at (wrapper managed-to-native) object.__icall_wrapper_mono_gc_alloc_vector (intptr,intptr,intptr) &lt;0xffffffff&gt;
+  at (wrapper alloc) object.AllocVector (intptr,intptr) &lt;0xffffffff&gt;
+  at System.Collections.Generic.HashSet`1.SetCapacity (int,bool) &lt;0x0004e&gt;
+  at System.Collections.Generic.HashSet`1.IncreaseCapacity () &lt;0x00043&gt;
+  at System.Collections.Generic.HashSet`1.AddIfNotPresent (T) &lt;0x001df&gt;
+  at System.Collections.Generic.HashSet`1.Add (T) &lt;0x00013&gt;
+  at Irony.Parsing.Construction.ParserStateData.AddItem (Irony.Parsing.Construction.LR0Item) &lt;0x00047&gt;
+  at Irony.Parsing.Construction.ParserStateData.AddItem (Irony.Parsing.Construction.LR0Item) &lt;0x0026f&gt;
+  at Irony.Parsing.Construction.ParserStateData.AddItem (Irony.Parsing.Construction.LR0Item) &lt;0x0026f&gt;
+  at Irony.Parsing.Construction.ParserStateData.AddItem (Irony.Parsing.Construction.LR0Item) &lt;0x0026f&gt;
+  at Irony.Parsing.Construction.ParserStateData.AddItem (Irony.Parsing.Construction.LR0Item) &lt;0x0026f&gt;
+  at Irony.Parsing.Construction.ParserStateData.AddItem (Irony.Parsing.Construction.LR0Item) &lt;0x0026f&gt;
+  at Irony.Parsing.Construction.ParserStateData..ctor (Irony.Parsing.ParserState,Irony.Parsing.Construction.LR0ItemSet) &lt;0x00407&gt;
+  at Irony.Parsing.Construction.ParserDataBuilder.FindOrCreateState (Irony.Parsing.Construction.LR0ItemSet) &lt;0x0012b&gt;
+  at Irony.Parsing.Construction.ParserDataBuilder.ExpandParserStateList (int) &lt;0x00107&gt;
+  at Irony.Parsing.Construction.ParserDataBuilder.CreateParserStates () &lt;0x00093&gt;
+  at Irony.Parsing.Construction.ParserDataBuilder.Build () &lt;0x0006b&gt;
+  at Irony.Parsing.Construction.LanguageDataBuilder.Build () &lt;0x001bf&gt;
+  at Irony.Parsing.LanguageData.ConstructAll () &lt;0x00047&gt;
+  at Irony.Parsing.LanguageData..ctor (Irony.Parsing.Grammar) &lt;0x001f7&gt;
+  at HP.Storage.Web.QueryFilterCriteriaBuilder..ctor (HP.Storage.Logging.ILog,HP.Storage.Web.IPropertyConverter) &lt;0x000d3&gt;
+  at UnitTests.QueryNotExpressionGeneratesHqlNotExpression () &lt;0x0006b&gt;
+  at (wrapper runtime-invoke) object.runtime_invoke_void__this__ (object,intptr,intptr,intptr) &lt;0xffffffff&gt;
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&amp;) &lt;0xffffffff&gt;
+  at System.Reflection.MonoMethod.Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo) &lt;0x000f2&gt;
+  at System.Reflection.MethodBase.Invoke (object,object[]) &lt;0x0002a&gt;
+  at Xunit.Sdk.Reflector/ReflectionMethodInfo.Invoke (object,object[]) &lt;0x00117&gt;
+  at Xunit.Sdk.FactCommand.Execute (object) &lt;0x00034&gt;
+  at Xunit.Sdk.FixtureCommand.Execute (object) &lt;0x001d4&gt;
+  at Xunit.Sdk.BeforeAfterCommand.Execute (object) &lt;0x00190&gt;
+  at Xunit.Sdk.LifetimeCommand.Execute (object) &lt;0x000d6&gt;
+  at Xunit.Sdk.ExceptionAndOutputCaptureCommand.Execute (object) &lt;0x004bc&gt;
+  at Xunit.Sdk.TimedCommand.Execute (object) &lt;0x0006b&gt;
+  at Xunit.Sdk.TestClassCommandRunner.Execute (Xunit.Sdk.ITestClassCommand,System.Collections.Generic.List`1&lt;Xunit.Sdk.IMethodInfo&gt;,System.Predicate`1&lt;Xunit.Sdk.ITestCommand&gt;,System.Predicate`1&lt;Xunit.Sdk.ITestResult&gt;) &lt;0x00440&gt;
+  at Xunit.Sdk.Executor/RunTests/&lt;&gt;c__DisplayClass12.&lt;.ctor&gt;b__f () &lt;0x00137&gt;
+  at Xunit.Sdk.Executor.ThreadRunner (object) &lt;0x00070&gt;
+  at System.Threading.Thread.StartInternal () &lt;0x0009d&gt;
+  at (wrapper runtime-invoke) object.runtime_invoke_void__this__ (object,intptr,intptr,intptr) &lt;0xffffffff&gt;</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexander Kyte</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-06-11 17:15:40 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">It was an issue that wasn't directly related to parallel appdomains, but those put enough memory pressure to expose a use-after-free bug.
+
+<a href="https://github.com/mono/mono/pull/1869">https://github.com/mono/mono/pull/1869</a></pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Igor Kiselev</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-12-04 02:46:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I had issue with same stack trace as first here when we run JSIL tests on Travis-CI (<a href="https://s3.amazonaws.com/archive.travis-ci.org/jobs/77761849/log.txt">https://s3.amazonaws.com/archive.travis-ci.org/jobs/77761849/log.txt</a>)
+
+With mono 4.2.1.102-0xamarin1 I still get an error, but now with different stack trace (<a href="https://s3.amazonaws.com/archive.travis-ci.org/jobs/94786977/log.txt">https://s3.amazonaws.com/archive.travis-ci.org/jobs/94786977/log.txt</a>):
+
+Stacktrace:
+Native stacktrace:
+	mono() [0x49cf0c]
+	mono() [0x4f2d5e]
+	mono() [0x4249dd]
+	/lib/x86_64-linux-gnu/libpthread.so.0(+0xfcb0) [0x7f3617b97cb0]
+	mono(mono_metadata_type_hash+0x1) [0x55ca81]
+	mono() [0x55ca4f]
+	mono(mono_metadata_type_hash+0xb7) [0x55cb37]
+	mono() [0x55cbe4]
+	mono() [0x55cc26]
+	mono() [0x55cc5d]
+	mono() [0x62711e]
+	mono() [0x627325]
+	mono(mono_metadata_get_inflated_signature+0x12a) [0x560e3a]
+	mono() [0x543466]
+	mono() [0x45d672]
+	mono() [0x4fd622]
+	mono() [0x4fe93f]
+	mono() [0x423a14]
+	mono() [0x42408b]
+	mono() [0x49f4b1]
+	[0x4034717d]
+Debug info from gdb:
+=================================================================
+Got a SIGSEGV while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+=================================================================
+
+We was adviced to install mono-runtime-dbg package. Probably I don't know how to use it properly, but stack trace with it installed is absolutely same  as it was without.</pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rodrigo Kumpera</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-12-04 14:30:27 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hi Igor,
+
+How can I reproduce the JSIL crashes?</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Igor Kiselev</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-12-04 16:56:17 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Unfortunately I can't provide any small isolated steps to reproduce an issue, only complex one,
+
+So, we use next script to run test cases on Travis-CI: <a href="https://github.com/sq/JSIL/blob/master/.travis.yml">https://github.com/sq/JSIL/blob/master/.travis.yml</a>
+
+You need grab JSIL with subrepos from github before, and we have NodeJS (we export path to it in NODEJS environment variable) dependency to build.
+
+You need define next environment variables:
+export JsilUseAppDomainsInTest=true
+export TestRun=JSIL.Tests.DeadCodeEliminationTest,JSIL.Tests.APITests,JSIL.Tests.AnalysisTests,JSIL.Tests.ComparisonTests,JSIL.Tests.ConfigurationTests,JSIL.Tests.DependencyTests,JSIL.Tests.FailingTests,JSIL.Tests.FormattingTests,JSIL.Tests.GenericsTests,JSIL.Tests.MetadataTests,JSIL.Tests.PerformanceTests,JSIL.Tests.TypeInformationTests,JSIL.Tests.UnsafeTests,JSIL.Tests.VerbatimTests,JSIL.Tests.XMLTests,JSIL.Tests.ThreadingTests
+
+After it run test cases with next command:
+mono ./packages/NUnit.Runners.2.6.4/tools/nunit-console.exe ./bin/Tests.DCE.dll ./bin/SimpleTests.dll ./bin/Tests.dll --run:$TestRun  --exclude:FailsOnMono\|\(FailsOnMonoWhenStubbed+Stubbed\)\|\(FailsOnMonoWhenStubbed+Translated\)
+
+We see error once per several runs of test cases, about once per 3 runs.
+
+I suppose that we have an error during Dispose method of JSIL.Tests.ComparisonTest (<a href="https://github.com/sq/JSIL/blob/f8848c1b09ad30fc1e5045d689a76e7d57b8db04/Tests/ComparisonTest.cs#L250">https://github.com/sq/JSIL/blob/f8848c1b09ad30fc1e5045d689a76e7d57b8db04/Tests/ComparisonTest.cs#L250</a>):
+        public void Dispose () {
+            if (Evaluator != null)
+                Evaluator.Dispose();
+
+            if (AssemblyAppDomain != AppDomain.CurrentDomain) {
+                var unloadSignal = new ManualResetEventSlim(false);
+                ThreadPool.QueueUserWorkItem((_) =&gt; {
+                    AppDomain.Unload(AssemblyAppDomain);
+                    unloadSignal.Set();
+                });
+
+                unloadSignal.Wait(5000);
+                if (!unloadSignal.IsSet)
+                    throw new ThreadStateException("Timed out in AppDomain.Unload for test " + this.OutputPath);
+            }</pre>
+    </div>
+
+    <div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Igor Kiselev</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-12-04 17:07:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I will try to extract all App-Domain related logic into small app and will try to reproduce issue.
+Will report if will be successful in it.</pre>
+    </div>
+
+    <div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rodrigo Kumpera</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-12-04 20:46:36 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hi Igor,
+
+This sort of test is very hard to build a test case so I wouldn't worry about that.
+
+For now it's enough to have simple instructions on how to reproduce it. Reliably failing
+is more important than a smaller test case.
+
+I think we got enough to try to reproduce it ourselves.</pre>
+    </div>
+
+    <div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-19 02:35:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'm still seeing this issue in 4.8.0 and 5.0.0.
+
+Native stack trace from 4.8.0:
+
+Native stacktrace:
+        mono() [0x4a77ca]
+        /lib/x86_64-linux-gnu/libpthread.so.0(+0xf0a0) [0x7f9ee8fb00a0]
+        /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x35) [0x7f9ee8a30125]
+        /lib/x86_64-linux-gnu/libc.so.6(abort+0x180) [0x7f9ee8a333a0]
+        mono() [0x640879]
+        mono() [0x640a87]
+        mono() [0x640bd6]
+        mono() [0x5ffeb0]
+        mono() [0x5f21d9]
+        mono() [0x5f3224]
+        mono() [0x5f35a3]
+        mono() [0x5f5852]
+        mono() [0x5e9535]
+        mono() [0x5d7459]
+        [0x41eb2c8e]
+
+This problem is _very_ intermittent, but based on the symbols I see elsewhere in this thread and in other similar issues, I'd have to imagine there's some sort of race happening in sgen-scan-object.h around when signals are handled -- perhaps caused by other thread zeroing out the "desc" variable?
+
+When we see this problem mono does not shut down until we send a SIGKILL, which also leads me to think it's some race during signal handling.</pre>
+    </div>
+
+    <div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-19 02:38:17 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Since it doesn't seem to be mentioned elsewhere here, <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Assertion: should not be reached at sgen-scan-object.h:101" href="show_bug.cgi?id=38941">https://bugzilla.xamarin.com/show_bug.cgi?id=38941</a> seems to be a similar case.</pre>
+    </div>
+
+    <div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-19 03:02:02 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The following repro from up thread does appear to crash for me on 5.0.0.100 (tested using the docker mono:5.0.0.100 image), but so far this hasn't produced the same sort of crash, and in both this crash and the one I mention below, mono does exit rather than hang.
+
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+public class Example
+{
+  public static void Main()
+  {
+    Parallel.For(0, 10000, i =&gt;
+    {
+      System.Console.WriteLine("\n\nIteration " + i);
+      AppDomain ad = AppDomain.CreateDomain("ChildDomain");
+      AppDomain.Unload(ad);
+    });
+  }
+}
+
+Error observed:
+Stacktrace:
+
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at (wrapper managed-to-native) System.AppDomain.createDomain (string,System.AppDomainSetup) [0x0000b] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.AppDomain.CreateDomain (string,System.Security.Policy.Evidence,System.AppDomainSetup) [0x000bd] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.AppDomain.CreateDomain (string) [0x00000] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at Example.&lt;Main&gt;m__0 (int) [0x00015] in &lt;2a8797dd639a48f7a1c58c2517d54de6&gt;:0
+  at System.Threading.Tasks.Parallel/&lt;&gt;c__DisplayClass17_0`1&lt;TLocal_REF&gt;.&lt;ForWorker&gt;b__1 () [0x000cb] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.Threading.Tasks.Task.InnerInvoke () [0x0000f] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.Threading.Tasks.Task.InnerInvokeWithArg (System.Threading.Tasks.Task) [0x00000] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.Threading.Tasks.Task/&lt;&gt;c__DisplayClass176_0.&lt;ExecuteSelfReplicating&gt;b__0 (object) [0x00086] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.Threading.Tasks.Task.InnerInvoke () [0x00025] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.Threading.Tasks.Task.Execute () [0x00010] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.Threading.Tasks.Task.ExecutionContextCallback (object) [0x00000] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.Threading.ExecutionContext.RunInternal (System.Threading.ExecutionContext,System.Threading.ContextCallback,object,bool) [0x00071] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.Threading.ExecutionContext.Run (System.Threading.ExecutionContext,System.Threading.ContextCallback,object,bool) [0x00000] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.Threading.Tasks.Task.ExecuteWithThreadLocal (System.Threading.Tasks.Task&amp;) [0x00050] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.Threading.Tasks.Task.ExecuteEntry (bool) [0x00058] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.Threading.Tasks.Task.System.Threading.IThreadPoolWorkItem.ExecuteWorkItem () [0x00000] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.Threading.ThreadPoolWorkQueue.Dispatch () [0x00074] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at System.Threading._ThreadPoolWaitCallback.PerformWaitCallback () [0x00000] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+  at (wrapper runtime-invoke) &lt;Module&gt;.runtime_invoke_bool (object,intptr,intptr,intptr) [0x0001e] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0
+/proc/self/maps:
+&lt;&lt; snip &gt;&gt;
+
+
+The repro from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SGEN: Assertion: should not be reached at sgen-scan-object.h:111" href="show_bug.cgi?id=14339">https://bugzilla.xamarin.com/show_bug.cgi?id=14339</a> also occasionally throws the following:
+
+```System.ApplicationException: Exception in TestRunnerThread ---&gt; System.InvalidOperationException: TestContext: too many Restores
+  at NUnit.Core.TestExecutionContext.ReverseChanges () [0x00011] in &lt;573414579ab64f38a2e50dcf72455b60&gt;:0 
+  at NUnit.Core.TestExecutionContext.Restore () [0x00001] in &lt;573414579ab64f38a2e50dcf72455b60&gt;:0 
+  at NUnit.Core.TestSuite.RunSuiteInContext (NUnit.Core.EventListener listener, NUnit.Core.ITestFilter filter) [0x0002b] in &lt;573414579ab64f38a2e50dcf72455b60&gt;:0 
+  at NUnit.Core.TestSuite.Run (NUnit.Core.EventListener listener, NUnit.Core.ITestFilter filter) [0x00039] in &lt;573414579ab64f38a2e50dcf72455b60&gt;:0 
+  at NUnit.Core.SimpleTestRunner.Run (NUnit.Core.EventListener listener, NUnit.Core.ITestFilter filter, System.Boolean tracing, NUnit.Core.LoggingThreshold logLevel) [0x00083] in &lt;573414579ab64f38a2e50dcf72455b60&gt;:0 
+  at NUnit.Core.TestRunnerThread.TestRunnerThreadProc () [0x00002] in &lt;573414579ab64f38a2e50dcf72455b60&gt;:0 
+   --- End of inner exception stack trace ---
+  at NUnit.Core.TestRunnerThread.TestRunnerThreadProc () [0x00053] in &lt;573414579ab64f38a2e50dcf72455b60&gt;:0 
+  at System.Threading.ThreadHelper.ThreadStart_Context (System.Object state) [0x00014] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0 
+  at System.Threading.ExecutionContext.RunInternal (System.Threading.ExecutionContext executionContext, System.Threading.ContextCallback callback, System.Object state, System.Boolean preserveSyncCtx) [0x00071] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0 
+  at System.Threading.ExecutionContext.Run (System.Threading.ExecutionContext executionContext, System.Threading.ContextCallback callback, System.Object state, System.Boolean preserveSyncCtx) [0x00000] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0 
+  at System.Threading.ExecutionContext.Run (System.Threading.ExecutionContext executionContext, System.Threading.ContextCallback callback, System.Object state) [0x0002b] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0 
+  at System.Threading.ThreadHelper.ThreadStart () [0x00008] in &lt;4dc8ec68b0964e099af86e50301f5f3c&gt;:0```</pre>
+    </div>
+
+    <div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-19 03:03:44 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Native stacktrace from first crash above, though I'd imagine it's likely not helpful?
+
+Native stacktrace:
+
+        mono() [0x4ad98a]
+        mono() [0x5132f6]
+        mono() [0x5c0b0b]
+        [0x18bab50]</pre>
+    </div>
+
+    <div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-19 04:32:55 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Ran the same repro code I mentioned above on 4.8.0.254 and it crashed after a long while.
+
+There was no managed stack trace to speak of.
+
+Native stacktrace:
+
+        mono() [0x4b1faf]
+        mono() [0x50c2fe]
+        mono() [0x427507]
+        /lib/x86_64-linux-gnu/libpthread.so.0(+0xf0a0) [0x7efcccaad0a0]
+        mono() [0x5a3f83]
+        mono() [0x666a3c]
+        mono() [0x5a9545]
+        mono() [0x5d2516]
+        mono(mono_class_vtable+0xd) [0x5d29dd]
+        mono() [0x5d5134]
+        mono() [0x5c4e15]
+        mono() [0x5c59bb]
+        mono() [0x5c5de0]
+        [0x418f0818]</pre>
+    </div>
+
+    <div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-19 04:33:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Correction - 4.8.0.524</pre>
+    </div>
+
+    <div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rodrigo Kumpera</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-19 21:09:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hey Vlad,
+
+This looks like a sgen crash. Can you try to repro it?
+
+I tried with 5.2 and master on OSX and Linux and it didn't crash.
+
+Ben, can you try to update and retry? Additionally, can you install debug symbols as otherwise we have no way to now what's going on.</pre>
+    </div>
+
+    <div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-22 03:09:07 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Assuming you're referring to the mono-dbg package in the Debian Xamarin repo (e.g. for 4.8.0.524 <a href="http://download.mono-project.com/repo/debian/dists/wheezy/snapshots/4.8.0.524/main">http://download.mono-project.com/repo/debian/dists/wheezy/snapshots/4.8.0.524/main</a>), I installed this into the official mono:4.8.0.524 image and the exception was still not symbolicated.
+
+/usr/lib/libmonosgen-2.0.so.1.0.0 and /usr/bin/mono-sgen appear to be stripped binaries per the file command.  Will give 5.0 a try.</pre>
+    </div>
+
+    <div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-22 03:12:03 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Ah, I meant mono-runtime-dbug, but dpkg -L mono-runtime-dbg appears to have saved me - will try running using /usr/lib/debug/usr/bin/mono-sgen</pre>
+    </div>
+
+    <div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-22 04:23:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'm having trouble getting a symbolicated native stacktrace but I am getting GDB output now. Will attach the full GDB output, but I'm afraid that it's rather large as there are quite a few active threads at the time of crash.
+
+It appears that pretty much everything is waiting on locks in various ways, apart from the one worker thread which caught a SIGSEGV. I think that this may be a red herring though, as IIRC, any thread can be interrupted by the signal handler?
+
+Also worth point out, I'm not seeing the "* Assertion: should not be reached at sgen-scan-object.h:LINE_NO" error here, so I'm a bit concerned this is different from the crash I'm seeing in my production service.
+
+Thread 9 (Thread 0x7f4408a5d700 (LWP 2208)):
+#0  0x00007f448c2f9c8d in waitpid () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000004b2042 in mono_handle_native_sigsegv (signal=signal@entry=11, ctx=ctx@entry=0x7f443b15cac0, info=info@entry=0x7f443b15cbf0) at mini-exceptions.c:2469
+#2  0x000000000050c2fe in mono_arch_handle_altstack_exception (sigctx=sigctx@entry=0x7f443b15cac0, siginfo=siginfo@entry=0x7f443b15cbf0, fault_addr=&lt;optimized out&gt;, stack_ovf=stack_ovf@entry=0) at exceptions-amd64.c:795
+#3  0x0000000000427507 in mono_sigsegv_signal_handler (_dummy=11, _info=0x7f443b15cbf0, context=0x7f443b15cac0) at mini-runtime.c:2896
+#4  &lt;signal handler called&gt;
+#5  0x00000000005a3f83 in alloc_context_static_data_helper (key=&lt;optimized out&gt;, value=&lt;optimized out&gt;, user=0x80022a01) at threads.c:4139
+#6  0x0000000000666a3c in monoeg_g_hash_table_foreach (hash=0x1afb390, func=func@entry=0x5a3f50 &lt;alloc_context_static_data_helper&gt;, user_data=user_data@entry=0x80022a01) at ghashtable.c:354
+#7  0x00000000005a9545 in mono_alloc_special_static_data (static_type=static_type@entry=2, size=&lt;optimized out&gt;, align=&lt;optimized out&gt;, bitmap=bitmap@entry=0x7f4408a5c020, numbits=1) at threads.c:4231
+#8  0x00000000005d2516 in mono_class_create_runtime_vtable (error=0x7f4408a5c080, klass="System.Runtime.Remoting.Contexts.Context", domain=0x7f43f9593120) at object.c:2016
+#9  mono_class_vtable_full (domain=0x7f43f9593120, klass="System.Runtime.Remoting.Contexts.Context", error=0x7f4408a5c080) at object.c:1787
+#10 0x00000000005d29dd in mono_class_vtable (domain=domain@entry=0x7f43f9593120, klass=klass@entry="System.Runtime.Remoting.Contexts.Context") at object.c:1753
+#11 0x00000000005d5134 in mono_object_new_pinned (domain=domain@entry=0x7f43f9593120, klass="System.Runtime.Remoting.Contexts.Context", error=error@entry=0x7f4408a5c190) at object.c:5204
+#12 0x00000000005c4e15 in mono_context_init_checked (domain=domain@entry=0x7f43f9593120, error=error@entry=0x7f4408a5c190) at appdomain.c:380
+#13 0x00000000005c59bb in mono_domain_create_appdomain_internal (friendly_name=friendly_name@entry=0x7f43f91b2550 "ChildDomain", setup=setup@entry=0x7f448b2f5ae8, error=error@entry=0x7f4408a5c190) at appdomain.c:568
+#14 0x00000000005c5de0 in ves_icall_System_AppDomain_createDomain (friendly_name=&lt;optimized out&gt;, setup=0x7f448b2f5ae8) at appdomain.c:982
+#15 0x0000000040fe6d78 in ?? ()
+#16 0x00007f4430157370 in ?? ()
+#17 0x00007f448ccf8130 in ?? ()
+#18 0x00007f448cce03d0 in ?? ()
+#19 0x0000000000000000 in ?? ()</pre>
+    </div>
+
+    <div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-22 04:25:17 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=22340&amp;file=bburns%20mono%20debug%20log%2020170524.txt" name="attach_22340" title="Repro crash log showing GDB crash output">attachment 22340</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=22340&amp;file=bburns%20mono%20debug%20log%2020170524.txt" title="Repro crash log showing GDB crash output">[details]</a></span>
+Repro crash log showing GDB crash output</pre>
+    </div>
+
+    <div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-22 04:38:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Shot in the dark: is this perhaps an unchecked allocation failure?
+
+
+from the signaled stack frame above:
+
+static void
+alloc_context_data_helper (...) {
+    ...
+    mono_alloc_static_data (&amp;ctx-&gt;static_data, offset, FALSE);
+    ctx-&gt;data-&gt;static_data = ctx-&gt;static_data; // signaled on this line
+}</pre>
+    </div>
+
+    <div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-22 05:30:50 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I managed to symbolicate the Native stacktrace from the crash which occurred in my production system which did trigger the sgen assertion error. Unfortunately we're running 4.8.0.495 there, although per my initial comment another team has observed the same assertion failure on 5.0.0.100.
+
+From prod service running on 4.8.0.495:
+
+Native stacktrace:
+        mono() [0x4a77ca]
+        /lib/x86_64-linux-gnu/libpthread.so.0(+0xf0a0) [0x7fd9d24830a0]
+        /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x35) [0x7fd9d1f03125]
+        /lib/x86_64-linux-gnu/libc.so.6(abort+0x180) [0x7fd9d1f063a0]
+        mono() [0x640879]
+        mono() [0x640a87]
+        mono() [0x640b32]
+        mono() [0x5f8b76]
+        mono() [0x5fb220]
+        mono() [0x605f42]
+        mono() [0x606bfa]
+        mono() [0x5fad43]
+        mono() [0x5e9df6]
+        mono() [0x5f11dd]
+        mono() [0x609e28]
+        mono() [0x5f3807]
+        mono() [0x5f597d]
+        mono() [0x5e9535]
+        mono() [0x5d7459]
+
+Which translates to the following, per addr2line --pretty-print -fe /usr/lib/debug/usr/bin/mono-sgen 0x4a77ca 0x640879 0x640a87 0x640bd6 0x5ffeb0 0x5f21d9 0x5f3224 0x5f35a3 0x5f5852 0x5e9535 0x5d7459
+
+load_function_full at /tmp/buildd/mono-4.8.0.495/mono/mini/aot-runtime.c:4933
+/lib/x86_64-linux-gnu/libpthread.so.0(+0xf0a0) [0x7fd9d24830a0]
+/lib/x86_64-linux-gnu/libc.so.6(gsignal+0x35) [0x7fd9d1f03125]
+/lib/x86_64-linux-gnu/libc.so.6(abort+0x180) [0x7fd9d1f063a0]
+is_pid_valid at /tmp/buildd/mono-4.8.0.495/mono/io-layer/processes.c:198
+utf16_concat at /tmp/buildd/mono-4.8.0.495/mono/io-layer/processes.c:251
+load_modules at /tmp/buildd/mono-4.8.0.495/mono/io-layer/processes.c:1626
+D32AddCarry at /tmp/buildd/mono-4.8.0.495/mono/metadata/decimal-ms.c:2131
+_mono_reflection_parse_type at /tmp/buildd/mono-4.8.0.495/mono/metadata/reflection.c:1515
+mono_property_get_object_checked at /tmp/buildd/mono-4.8.0.495/mono/metadata/reflection.c:750
+mono_get_dbnull_object at /tmp/buildd/mono-4.8.0.495/mono/metadata/reflection.c:1187
+mono_method_get_object_checked at /tmp/buildd/mono-4.8.0.495/mono/metadata/reflection.c:608
+fixup_method at /tmp/buildd/mono-4.8.0.495/mono/metadata/sre-save.c:1745
+mono_array_full_copy at /tmp/buildd/mono-4.8.0.495/mono/metadata/object.c:5576</pre>
+    </div>
+
+    <div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-22 05:50:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Argh, that hand-symbolicated stack trace was nonsensical because we apparently run 4.4.0 in prod :-(
+
+To avoid further confusion I grabbed this one straight from one of our prod containers...
+
+mono_handle_native_sigsegv at /tmp/buildd/mono-4.4.0.182/mono/mini/mini-exceptions.c:2310
+/lib/x86_64-linux-gnu/libpthread.so.0(+0xf0a0) [0x7fd9d24830a0]
+/lib/x86_64-linux-gnu/libc.so.6(gsignal+0x35) [0x7fd9d1f03125]
+/lib/x86_64-linux-gnu/libc.so.6(abort+0x180) [0x7fd9d1f063a0]
+monoeg_log_default_handler at /tmp/buildd/mono-4.4.0.182/eglib/src/goutput.c:233
+monoeg_g_logv at /tmp/buildd/mono-4.4.0.182/eglib/src/goutput.c:114
+monoeg_assertion_message at /tmp/buildd/mono-4.4.0.182/eglib/src/goutput.c:135
+major_scan_object_no_evacuation at /tmp/buildd/mono-4.4.0.182/mono/sgen/sgen-scan-object.h:82
+finish_gray_stack at /tmp/buildd/mono-4.4.0.182/mono/sgen/sgen-gc.c:1151
+major_finish_collection at /tmp/buildd/mono-4.4.0.182/mono/sgen/sgen-gc.c:1925
+major_do_collection at /tmp/buildd/mono-4.4.0.182/mono/sgen/sgen-gc.c:2051
+sgen_perform_collection at /tmp/buildd/mono-4.4.0.182/mono/sgen/sgen-gc.c:2266
+sgen_alloc_obj_nolock at /tmp/buildd/mono-4.4.0.182/mono/sgen/sgen-alloc.c:292
+mono_gc_alloc_vector at /tmp/buildd/mono-4.4.0.182/mono/metadata/sgen-mono.c:1736</pre>
+    </div>
+
+    <div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-22 06:20:24 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I also managed to dig up the 5.0.0 crash which came w/ the same sgen assertion:
+
+* Assertion: should not be reached at sgen-scan-object.h:90
+
+Native stacktrace:
+
+        /opt/mono-5.0.0/bin/mono() [0x4abadd]
+        /lib64/libpthread.so.0(+0xf370) [0x7fe8ce830370]
+        /lib64/libc.so.6(gsignal+0x37) [0x7fe8ce27f1d7]
+        /lib64/libc.so.6(abort+0x148) [0x7fe8ce2808c8]
+        /opt/mono-5.0.0/bin/mono() [0x6631d4]
+        /opt/mono-5.0.0/bin/mono() [0x67841c]
+        /opt/mono-5.0.0/bin/mono() [0x67857d]
+        /opt/mono-5.0.0/bin/mono() [0x64d092]
+        /opt/mono-5.0.0/bin/mono() [0x65a9d1]
+        /opt/mono-5.0.0/bin/mono() [0x659963]
+        /lib64/libpthread.so.0(+0x7dc5) [0x7fe8ce828dc5]
+        /lib64/libc.so.6(clone+0x6d) [0x7fe8ce34173d]
+
+Manually Symbolicated version:
+
+mono_handle_native_crash at /usr/src/debug/mono-5.0.0/mono/mini/mini-exceptions.c:2520
+        /lib64/libpthread.so.0(+0xf370) [0x7fe8ce830370]
+        /lib64/libc.so.6(gsignal+0x37) [0x7fe8ce27f1d7]
+        /lib64/libc.so.6(abort+0x148) [0x7fe8ce2808c8]
+mono_log_write_logfile at /usr/src/debug/mono-5.0.0/mono/utils/mono-log-common.c:137
+monoeg_g_logv at /usr/src/debug/mono-5.0.0/eglib/src/goutput.c:116
+monoeg_assertion_message at /usr/src/debug/mono-5.0.0/eglib/src/goutput.c:137
+major_scan_object_no_evacuation at /usr/src/debug/mono-5.0.0/mono/sgen/sgen-scan-object.h:90
+marker_idle_func at /usr/src/debug/mono-5.0.0/mono/sgen/sgen-workers.c:330
+continue_idle_job at /usr/src/debug/mono-5.0.0/mono/sgen/sgen-thread-pool.c:87 (discriminator 1)
+        /lib64/libpthread.so.0(+0x7dc5) [0x7fe8ce828dc5]
+        /lib64/libc.so.6(clone+0x6d) [0x7fe8ce34173d]
+
+And for completeness, the same code which generated that crash also generated this one:
+
+Managed stacktrace:
+  673   at &lt;unknown&gt; &lt;0xffffffff&gt;
+  674   at (wrapper managed-to-native) object.__icall_wrapper_mono_gc_alloc_vector (intptr,intptr,intptr) [0x00000] in &lt;8e4c7b80ba0942cb8aa6c8f9f3e5b12d&gt;:0
+  675   at (wrapper alloc) object.AllocVector (intptr,intptr) &lt;0x00173&gt;
+  676   at System.MulticastDelegate.CombineImpl (System.Delegate) [0x0008a] in &lt;8e4c7b80ba0942cb8aa6c8f9f3e5b12d&gt;:0
+  677   at System.Delegate.Combine (System.Delegate,System.Delegate) [0x0004f] in &lt;8e4c7b80ba0942cb8aa6c8f9f3e5b12d&gt;:0
+  678   at snipped_private_application_code (System.EventHandler) [0x00009] in &lt;fdbbe40f91de4db0afa6c9311cd8c822&gt;:0
+  679   at snipped_private_application_code (snipped_private_application_type4) [0x00048] in &lt;fdbbe40f91de4db0afa6c9311cd8c822&gt;:0
+  680   at snipped_private_application_code (System.Transactions.Enlistment) [0x00014] in &lt;fdbbe40f91de4db0afa6c9311cd8c822&gt;:0
+  681   at System.Transactions.Transaction.DoCommitPhase () [0x0001a] in &lt;29dd66c2bf9a43179a8e55be8dbb00e9&gt;:0
+  682   at System.Transactions.Transaction.DoCommit () [0x00095] in &lt;29dd66c2bf9a43179a8e55be8dbb00e9&gt;:0
+  683   at System.Transactions.Transaction.CommitInternal () [0x00022] in &lt;29dd66c2bf9a43179a8e55be8dbb00e9&gt;:0
+  684   at System.Transactions.CommittableTransaction.Commit () [0x00000] in &lt;29dd66c2bf9a43179a8e55be8dbb00e9&gt;:0
+  685   at snipped_private_application_code () [0x0000f] in &lt;fdbbe40f91de4db0afa6c9311cd8c822&gt;:0
+  686   at snipped_private_application_code () [0x00000] in &lt;fdbbe40f91de4db0afa6c9311cd8c822&gt;:0
+  687   at snipped_private_application_code (System.Action,string,System.Collections.Generic.IDictionary`2&lt;string, object&gt;) [0x00006] in &lt;fdbbe40f91de4db0afa6c9311cd8c822&gt;:0
+  688   at snipped_private_application_code (snipped_private_application_type3) [0x002c1] in &lt;fdbbe40f91de4db0afa6c9311cd8c822&gt;:0
+  689   at snipped_private_application_code (snipped_private_application_type2,bool,int) [0x000f1] in &lt;fdbbe40f91de4db0afa6c9311cd8c822&gt;:0
+  690   at snipped_private_application_code (System.Collections.Concurrent.BlockingCollection`1&lt;snipped_private_application_type1&gt;[]) [0x00039] in &lt;fdbbe40f91de4db0afa6c9311cd8c822&gt;:0
+  691   at snipped_private_application_code () [0x00000] in &lt;fdbbe40f91de4db0afa6c9311cd8c822&gt;:0
+  692   at System.Threading.ThreadHelper.ThreadStart () [0x0001a] in &lt;8e4c7b80ba0942cb8aa6c8f9f3e5b12d&gt;:0
+  693   at (wrapper runtime-invoke) object.runtime_invoke_void__this__ (object,intptr,intptr,intptr) [0x0004d] in &lt;8e4c7b80ba0942cb8aa6c8f9f3e5b12d&gt;:0
+
+Native stacktrace:
+
+        /opt/mono-5.0.0/bin/mono() [0x4abadd]
+        /opt/mono-5.0.0/bin/mono() [0x50f7fe]
+        /opt/mono-5.0.0/bin/mono() [0x63ac54]
+        [0x6fb3e90]
+
+Manually symbolicated version:
+
+mono_handle_native_crash at /usr/src/debug/mono-5.0.0/mono/mini/mini-exceptions.c:2520
+altstack_handle_and_restore at /usr/src/debug/mono-5.0.0/mono/mini/exceptions-amd64.c:780
+major_copy_or_mark_object_concurrent_canonical at /usr/src/debug/mono-5.0.0/mono/sgen/sgen-marksweep-drain-gray-stack.h:156</pre>
+    </div>
+
+    <div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rodrigo Kumpera</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-22 22:20:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hi Ben,
+
+We fixed the crash on <a href="bug.html">comment #32</a> on mono 5.2.</pre>
+    </div>
+
+    <div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-23 02:56:00 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks, Rodrigo.
+
+I've spent some time today digging into our own code and the various versions of mono in play.
+
+I should say straight off that we do have a native component which we're calling via P/Invoke, and I haven't yet ruled out memory corruption. That said, we haven't observed other indicators of this being the problem, so it's low on my list of priorities.
+
+Assuming it's not memory corruption, the assertion failure occurs during major collection when scanning objects in the gray object queue. This can only happen because something calls GRAY_OBJECT_ENQUEUE with an invalid SgenDescriptor. I haven't yet been able to get it to dump the value of said descriptor, but I'm guessing it's 0.
+
+Biggest problem for me is that out of ~96 instances of my service this crops up around once every 3-5 days, and I've been very unsuccessful at getting it to repro locally on the same docker image. I've gotten in touch with my colleague who saw the same assertion failure on 5.0.0 and he's going to get me set up w/ his code, as that seems to repro much more quickly (order of hours instead of days). Once I can get GDB connected up to it, I should have a much better feel for what's going on.</pre>
+    </div>
+
+    <div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-24 00:29:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I managed to repro the assertion failure in the official mono:5.0.0.100 docker image.
+
+Thread 83 (Thread 0x7f6737fff700 (LWP 231)):
+#0  0x00007f67398b6489 in __libc_waitpid (pid=pid@entry=361, stat_loc=stat_loc@entry=0x7f6737ffc7fc, options=options@entry=0) at ../sysdeps/unix/sysv/linux/waitpid.c:40
+#1  0x00000000004ada49 in mono_handle_native_crash (signal=&lt;optimized out&gt;, signal@entry=0x69abd3 "SIGSEGV", ctx=ctx@entry=0x7f6737ffd280, info=info@entry=0x7f6737ffd3b0) at mini-exceptions.c:2567
+#2  0x000000000042671c in mono_sigsegv_signal_handler (_dummy=11, _info=0x7f6737ffd3b0, context=0x7f6737ffd280) at mini-runtime.c:2821
+#3  &lt;signal handler called&gt;
+#4  __GI_abort () at abort.c:125
+#5  0x00000000004adac9 in mono_handle_native_crash (signal=&lt;optimized out&gt;, ctx=&lt;optimized out&gt;, info=&lt;optimized out&gt;) at mini-exceptions.c:2615
+#6  &lt;signal handler called&gt;
+#7  0x00007f673931b067 in __GI_raise (sig=sig@entry=6) at ../nptl/sysdeps/unix/sysv/linux/raise.c:56
+#8  0x00007f673931c448 in __GI_abort () at abort.c:89
+#9  0x000000000067ad49 in mono_log_write_logfile (log_domain=0x1 &lt;error: Cannot access memory at address 0x1&gt;, level=G_LOG_LEVEL_ERROR, hdr=6, message=0x7f673933199a &lt;_IO_vfprintf_internal+22490&gt; "\200\275(\373\377\377") at mono-log-common.c:137
+#10 0x000000000068ff3d in monoeg_g_logv (log_domain=log_domain@entry=0x0, log_level=log_level@entry=G_LOG_LEVEL_ERROR, format=format@entry=0x6997b0 "* Assertion: should not be reached at %s:%d\n", args=args@entry=0x7f6737ffeca0) at goutput.c:115
+#11 0x00000000006900d3 in monoeg_assertion_message (format=format@entry=0x6997b0 "* Assertion: should not be reached at %s:%d\n") at goutput.c:135
+#12 0x000000000065e2b8 in major_scan_object_concurrent_with_evacuation (full_object=0x7f6700000000, desc=&lt;optimized out&gt;, queue=queue@entry=0x7f673ab13010) at sgen-scan-object.h:90
+#13 0x000000000065f38c in drain_gray_stack_concurrent_with_evacuation (queue=&lt;optimized out&gt;) at sgen-marksweep-drain-gray-stack.h:339
+#14 drain_gray_stack_concurrent (queue=0x7f673ab13010) at sgen-marksweep.c:1321
+#15 0x0000000000672151 in marker_idle_func (data_untyped=0x7f673ab13008) at sgen-workers.c:328
+#16 0x000000000067134f in thread_func (thread_data=0x7f673ab13008) at sgen-thread-pool.c:151
+#17 0x00007f67398af064 in start_thread (arg=0x7f6737fff700) at pthread_create.c:309
+#18 0x00007f67393ce62d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:111
+
+
+It appears to be as I said before, bad SgenDescriptor in the gray object queue. For giggles I'll switch back to the non-concurrent marksweep and see if I still observe this issue. Otherwise I'm a bit pressed for time on other things for the remainder of the week so I don't expect I'll have much chance of actually getting it up and running in the debugger. If I do, I'll chuck a conditional breakpoint on the enqueue and hopefully I'll be able to see a bit more into what's leading up to this.</pre>
+    </div>
+
+    <div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-24 00:39:36 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This is likely a red herring, but just in case it helps -- yesterday while trying to trace through the source of the bad SgenDescriptor, I ran across par_copy_object_no_checks and copy_object_no_checks in sgen-copy-object.h.
+
+If the vtable is potentially not valid, perhaps it is unsafe to be using it to fetch the SgenDescriptor when adding the object to the gray object queue? I realize there's an assert in par_copy_object_no_checks guarding that the vtable has a descriptor at all, but is it possible that this descriptor has been added to the vtable but not yet had its state initialized?</pre>
+    </div>
+
+    <div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vlad Brezae</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-26 00:21:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hey Ben,
+
+     Using the Parallel.For appdomain creation test case, on a docker image, I was able to reproduce the crash in alloc_context_static_data_helper, but not the sgen crash yet. Did you reproduce the sgen crash using the same test case ?</pre>
+    </div>
+
+    <div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-26 01:04:45 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hi Vlad,
+
+No, I wasn't able to repro the Sgen assert crash using the repro above. Apologies for the confusion on that.
+
+I've gotten the sgen crash to repro fairly readily (down to a few hours from several days), on mono 5.0.0.100, but not using code that I can share.
+
+My running theory is that when an object is pushed onto the gray object queue desc &amp; DESC_TYPE_MASK is 0 (the only invalid value AFAIK). I tried adding a conditional breakpoint to demonstrate this, but strangely gdb tells me that both desc and obj were optimized out from sgen_gray_object_enqueue in sgen-gray.c.
+
+TBH I'm not very familiar w/ garbage collection in general, let alone sgen, and I'm only passingly familiar w/ compiler optimizations, so I'm not very sure where to go from here. My assumption is that if the compiler can safely optimize out desc from the signature of sgen_gray_object_enqueue that it's either because of some ABI-level optimisation which I'm very unfamiliar with, or because sgen_gray_object_enqueue is only ever called with one value. Either way, I'm not sure why *obj would be optimized out. From what I can see of code paths leading to sgen_gray_object_enqueue, the SgenDescriptor comes from the object's vtable. If the object initialization silently failed in some way, I could imagine that the descriptor type wouldn't have been set, leaving the default value of 0 (assuming zeroed initial values of course).
+
+But that's a long stretch based on a few too many assumptions, so I'm not trusting any of it until I can verify those assumptions more. That said, hopefully some of this will help you all to spot what might be happening here.
+
+In the mean time as a coarse measure I see that there's a SGEN_CHECK_GRAY_OBJECT_ENQUEUE macro - I may try building with that enabled and see what it tells me. If nothing, I'll try getting a build together w/o optimizations, but if this is rooted in the compiler I'm a bit worried that the problem will disappear in that case.
+
+Either way, thanks in advance for any help you can provide. I realize you're going to be flying a bit blind until I can share something to repro this.</pre>
+    </div>
+
+    <div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vlad Brezae</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-30 22:54:56 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Fixed the crash when appdomains are created in parallel (not an sgen crash). Closing this issue.
+
+@Ben sgen-scan-object.h is just a general place where the gc crashes when references are not pointing where they should be. Your issue is extremely likely unrelated with other similar crashes on bugzilla. This can happen because of very many reasons and it is not really possible to debug from the trace. Typically, in order to debug these crashes, we need a repro so we can reproduce the issue with a recompiled mono that contains heavy logging. Please submit a new bug with some repro steps (getting an NDA signed would be an option) or contact me directly mail/gitter to see if we can set up some debugging.</pre>
+    </div>
+
+    <div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ben Burns</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2017-05-31 00:34:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">For anyone finding this later on and thinking <a href="https://xkcd.com/979/">https://xkcd.com/979/</a> sort of thoughts, I've reached out to Vlad directly to see how we might debug this. If I raise a new issue (I likely will) I'll add a reference to it here.</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

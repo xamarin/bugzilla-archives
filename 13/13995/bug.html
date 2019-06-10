@@ -1,0 +1,1214 @@
+<html lang="en"><head>
+    <title>13995 – Mono crash with Keepass 2.23 while accessing password database</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Class_Libraries
+                 bz_component_Windows.Forms
+                 bz_bug_13995 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;13995</span>
+
+        <span id="subtitle" class="subheader">Mono crash with Keepass 2.23 while accessing password database</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2018-01-02 23:12:12 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2018-01-02 23:12:12">
+  <input type="hidden" name="id" value="13995">
+  <input type="hidden" name="token" value="1559166566-SxRr8jZx9tcpwfgY0-Crq-6wWqG6B_ThN448uO-3yl8">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;13995</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">Mono crash with Keepass 2.23 while accessing password database</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>Mono crash with Keepass 2.23 while accessing password database
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Class Libraries
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Mono
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">Windows.Forms
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>unspecified
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Lowest
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>Community
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Bugzilla</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2013-08-15 04:15 UTC by <span class="vcard">agn82kv
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2018-01-02 23:12 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>4
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="alkpli">alkpli</option>
+                <option value="kumpera">kumpera</option>
+                <option value="mono-bugs+mono">mono-bugs+mono</option>
+                <option value="mono-bugs+runtime">mono-bugs+runtime</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">mono-community
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+            <a href="https://github.com/mono">GitHub</a> or <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">agn82kv
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-15 04:15:42 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Mono is  crashing on MAC OS X (10.8.4) with Keepass 2.23 while accessing password database
+===========================================================
+Process:         mono-sgen [7586]
+Path:            /usr/bin/mono
+Identifier:      mono-sgen
+Version:         ???
+Code Type:       X86 (Native)
+Parent Process:  bash [7194]
+User ID:         501
+
+Date/Time:       2013-08-15 13:34:28.515 +0530
+OS Version:      Mac OS X 10.8.4 (12E55)
+Report Version:  10
+
+Interval Since Last Report:          1736954 sec
+Crashes Since Last Report:           415
+Per-App Crashes Since Last Report:   5
+Anonymous UUID:                      718933CD-E40F-E149-90FB-657A80079D13
+
+Crashed Thread:  0  Dispatch queue: com.apple.main-thread
+
+Exception Type:  EXC_CRASH (SIGABRT)
+Exception Codes: 0x0000000000000000, 0x0000000000000000
+
+Application Specific Information:
+*** error for object 0x7b177b20: double free
+ 
+
+Thread 0 Crashed:: Dispatch queue: com.apple.main-thread
+0   libsystem_kernel.dylib            0x966f8a6a __pthread_kill + 10
+1   libsystem_c.dylib                 0x98dc6b2f pthread_kill + 101
+2   libsystem_c.dylib                 0x98dfd4ec abort + 168
+3   mono                              0x0010a620 mono_handle_native_sigsegv + 592
+4   mono                              0x0015fcbd sigabrt_signal_handler + 109
+5   libsystem_c.dylib                 0x98db18cb _sigtramp + 43
+6   ???                               0xffffffff 0 + 4294967295
+7   mono                              0x0015fc50 sigusr1_signal_handler + 272
+8   libsystem_c.dylib                 0x98dfd4ec abort + 168
+9   libsystem_c.dylib                 0x98de7227 szone_error + 443
+10  libsystem_c.dylib                 0x98de84ec free_tiny_botch + 101
+11  libsystem_c.dylib                 0x98ddfd30 free + 217
+12  com.apple.CoreServices.CarbonCore    0x98a596a0 CSMemDisposePtr + 36
+13  com.apple.CoreServices.CarbonCore    0x98a5965a CSMemDisposeHandle + 73
+14  com.apple.QD                      0x94d19f01 DisposeRgn + 21
+15  com.apple.HIToolbox               0x962e0361 RestoreQDDrawingState + 119
+16  com.apple.HIToolbox               0x960f4859 HIView::RecursiveDrawComposited(__HIShape const*, __HIShape const*, unsigned long, HIView*, CGContext*, unsigned char, float) + 811
+17  com.apple.HIToolbox               0x960f3c40 HIView::DrawComposited(short, OpaqueGrafPtr*, __HIShape const*, unsigned long, HIView*, CGContext*) + 802
+18  com.apple.HIToolbox               0x960f38d2 HIView::Draw(short, OpaqueGrafPtr*, unsigned long) + 82
+19  com.apple.HIToolbox               0x960f3879 HIView::Render(unsigned long, CGContext*) + 45
+20  com.apple.HIToolbox               0x96070260 FlushWindowObject(WindowData*, void**, unsigned char) + 812
+21  com.apple.HIToolbox               0x96078dc1 FlushAllBuffers(__CFRunLoopObserver*, unsigned long, void*) + 245
+22  com.apple.CoreFoundation          0x992ba84e __CFRUNLOOP_IS_CALLING_OUT_TO_AN_OBSERVER_CALLBACK_FUNCTION__ + 30
+23  com.apple.CoreFoundation          0x992ba78d __CFRunLoopDoObservers + 381
+24  com.apple.CoreFoundation          0x99294003 CFRunLoopRunSpecific + 355
+25  com.apple.CoreFoundation          0x99293e8b CFRunLoopRunInMode + 123
+26  com.apple.HIToolbox               0x96071f5a RunCurrentEventLoopInMode + 242
+27  com.apple.HIToolbox               0x96071bf5 ReceiveNextEventCommon + 162
+28  com.apple.HIToolbox               0x961d715c ReceiveNextEvent + 79
+29  ???                               0x0140c5e8 0 + 21022184
+30  ???                               0x05fd35e8 0 + 100480488
+31  ???                               0x070d0347 0 + 118293319
+32  ???                               0x05bcaf4c 0 + 96251724
+33  ???                               0x05bca3b8 0 + 96248760
+34  ???                               0x05bca120 0 + 96248096
+35  ???                               0x014020c0 0 + 20979904
+36  ???                               0x01402433 0 + 20980787
+37  mono                              0x000704a5 mono_jit_runtime_invoke + 741
+38  mono                              0x002276ce mono_runtime_invoke + 126
+39  mono                              0x0022bc44 mono_runtime_exec_main + 420
+40  mono                              0x0022bfb5 mono_runtime_run_main + 725
+41  mono                              0x000daf25 mono_jit_exec + 149
+42  mono                              0x000dd45f mono_main + 9519
+43  mono                              0x00063c1e main + 558
+44  mono                              0x000639e5 start + 53
+
+Thread 1:
+0   libsystem_kernel.dylib            0x966f680e semaphore_wait_trap + 10
+1   mono                              0x002a88fe mono_sem_wait + 30
+2   mono                              0x0022103a finalizer_thread + 74
+3   mono                              0x001f7de6 start_wrapper + 470
+4   mono                              0x0029cf1a thread_start_routine + 154
+5   mono                              0x002ad201 inner_start_thread + 65
+6   libsystem_c.dylib                 0x98dc55b7 _pthread_start + 344
+7   libsystem_c.dylib                 0x98dafd4e thread_start + 34
+
+Thread 2:
+0   libsystem_kernel.dylib            0x966f90ee __workq_kernreturn + 10
+1   libsystem_c.dylib                 0x98dc80ac _pthread_workq_return + 45
+2   libsystem_c.dylib                 0x98dc7e79 _pthread_wqthread + 448
+3   libsystem_c.dylib                 0x98dafd2a start_wqthread + 30
+
+Thread 3:: Dispatch queue: com.apple.libdispatch-manager
+0   libsystem_kernel.dylib            0x966f99ae kevent + 10
+1   libdispatch.dylib                 0x99fe9c71 _dispatch_mgr_invoke + 993
+2   libdispatch.dylib                 0x99fe97a9 _dispatch_mgr_thread + 53
+
+Thread 4:
+0   libsystem_kernel.dylib            0x966f8c72 __semwait_signal + 10
+1   libsystem_c.dylib                 0x98e4fa55 nanosleep$UNIX2003 + 189
+2   mono                              0x0029c185 SleepEx + 309
+3   mono                              0x001fade8 ves_icall_System_Threading_Thread_Sleep_internal + 88
+4   ???                               0x05dee5ec 0 + 98493932
+5   ???                               0x05dee568 0 + 98493800
+6   ???                               0x05dee394 0 + 98493332
+7   ???                               0x05dedf78 0 + 98492280
+8   ???                               0x0140cf4d 0 + 21024589
+9   mono                              0x000704a5 mono_jit_runtime_invoke + 741
+10  mono                              0x002276ce mono_runtime_invoke + 126
+11  mono                              0x0022783c mono_runtime_delegate_invoke + 140
+12  mono                              0x001f7e12 start_wrapper + 514
+13  mono                              0x0029cf1a thread_start_routine + 154
+14  mono                              0x002ad201 inner_start_thread + 65
+15  libsystem_c.dylib                 0x98dc55b7 _pthread_start + 344
+16  libsystem_c.dylib                 0x98dafd4e thread_start + 34
+
+Thread 5:
+0   libsystem_kernel.dylib            0x966f8be6 __select + 10
+1   mono                              0x002a82bf mono_poll + 463
+2   mono                              0x001fd7ce tp_poll_wait + 1390
+3   mono                              0x001f7de6 start_wrapper + 470
+4   mono                              0x0029cf1a thread_start_routine + 154
+5   mono                              0x002ad201 inner_start_thread + 65
+6   libsystem_c.dylib                 0x98dc55b7 _pthread_start + 344
+7   libsystem_c.dylib                 0x98dafd4e thread_start + 34
+
+Thread 6:
+0   libsystem_kernel.dylib            0x966f6826 semaphore_timedwait_trap + 10
+1   mono                              0x002a8885 mono_sem_timedwait + 261
+2   mono                              0x001ff361 async_invoke_thread + 2961
+3   mono                              0x001f7de6 start_wrapper + 470
+4   mono                              0x0029cf1a thread_start_routine + 154
+5   mono                              0x002ad201 inner_start_thread + 65
+6   libsystem_c.dylib                 0x98dc55b7 _pthread_start + 344
+7   libsystem_c.dylib                 0x98dafd4e thread_start + 34
+
+Thread 7:
+0   libsystem_kernel.dylib            0x966f88e2 __psynch_cvwait + 10
+1   libsystem_c.dylib                 0x98dca280 _pthread_cond_wait + 833
+2   libsystem_c.dylib                 0x98e50095 pthread_cond_wait$UNIX2003 + 71
+3   mono                              0x00286c3c _wapi_handle_timedwait_signal_handle + 620
+4   mono                              0x00286c88 _wapi_handle_wait_signal_handle + 40
+5   mono                              0x00299f71 WaitForSingleObjectEx + 625
+6   mono                              0x001faaaa mono_wait_uninterrupted + 122
+7   mono                              0x001fab6f ves_icall_System_Threading_WaitHandle_WaitOne_internal + 95
+8   ???                               0x05f0d60c 0 + 99669516
+9   ???                               0x05f0d398 0 + 99668888
+10  ???                               0x05f0c49c 0 + 99665052
+11  ???                               0x05dedf78 0 + 98492280
+12  ???                               0x0140cf4d 0 + 21024589
+13  mono                              0x000704a5 mono_jit_runtime_invoke + 741
+14  mono                              0x002276ce mono_runtime_invoke + 126
+15  mono                              0x0022783c mono_runtime_delegate_invoke + 140
+16  mono                              0x001f7e12 start_wrapper + 514
+17  mono                              0x0029cf1a thread_start_routine + 154
+18  mono                              0x002ad201 inner_start_thread + 65
+19  libsystem_c.dylib                 0x98dc55b7 _pthread_start + 344
+20  libsystem_c.dylib                 0x98dafd4e thread_start + 34
+
+Thread 8:
+0   libsystem_kernel.dylib            0x966f8c72 __semwait_signal + 10
+1   libsystem_c.dylib                 0x98e4fa55 nanosleep$UNIX2003 + 189
+2   mono                              0x0029c185 SleepEx + 309
+3   mono                              0x001fc8f8 monitor_thread + 136
+4   mono                              0x001f7de6 start_wrapper + 470
+5   mono                              0x0029cf1a thread_start_routine + 154
+6   mono                              0x002ad201 inner_start_thread + 65
+7   libsystem_c.dylib                 0x98dc55b7 _pthread_start + 344
+8   libsystem_c.dylib                 0x98dafd4e thread_start + 34
+
+Thread 9:
+0   libsystem_kernel.dylib            0x966f6826 semaphore_timedwait_trap + 10
+1   mono                              0x002a8885 mono_sem_timedwait + 261
+2   mono                              0x001ff361 async_invoke_thread + 2961
+3   mono                              0x001f7de6 start_wrapper + 470
+4   mono                              0x0029cf1a thread_start_routine + 154
+5   mono                              0x002ad201 inner_start_thread + 65
+6   libsystem_c.dylib                 0x98dc55b7 _pthread_start + 344
+7   libsystem_c.dylib                 0x98dafd4e thread_start + 34
+
+Thread 10:
+0   libsystem_kernel.dylib            0x966f6826 semaphore_timedwait_trap + 10
+1   mono                              0x002a8885 mono_sem_timedwait + 261
+2   mono                              0x001ff361 async_invoke_thread + 2961
+3   mono                              0x001f7de6 start_wrapper + 470
+4   mono                              0x0029cf1a thread_start_routine + 154
+5   mono                              0x002ad201 inner_start_thread + 65
+6   libsystem_c.dylib                 0x98dc55b7 _pthread_start + 344
+7   libsystem_c.dylib                 0x98dafd4e thread_start + 34
+
+Thread 11:
+0   libsystem_kernel.dylib            0x966f6826 semaphore_timedwait_trap + 10
+1   mono                              0x002a8885 mono_sem_timedwait + 261
+2   mono                              0x001ff361 async_invoke_thread + 2961
+3   mono                              0x001f7de6 start_wrapper + 470
+4   mono                              0x0029cf1a thread_start_routine + 154
+5   mono                              0x002ad201 inner_start_thread + 65
+6   libsystem_c.dylib                 0x98dc55b7 _pthread_start + 344
+7   libsystem_c.dylib                 0x98dafd4e thread_start + 34
+
+Thread 12:
+0   libsystem_kernel.dylib            0x966f6826 semaphore_timedwait_trap + 10
+1   mono                              0x002a8885 mono_sem_timedwait + 261
+2   mono                              0x001ff361 async_invoke_thread + 2961
+3   mono                              0x001f7de6 start_wrapper + 470
+4   mono                              0x0029cf1a thread_start_routine + 154
+5   mono                              0x002ad201 inner_start_thread + 65
+6   libsystem_c.dylib                 0x98dc55b7 _pthread_start + 344
+7   libsystem_c.dylib                 0x98dafd4e thread_start + 34
+
+Thread 13:
+0   libsystem_kernel.dylib            0x966f6826 semaphore_timedwait_trap + 10
+1   mono                              0x002a8885 mono_sem_timedwait + 261
+2   mono                              0x001ff361 async_invoke_thread + 2961
+3   mono                              0x001f7de6 start_wrapper + 470
+4   mono                              0x0029cf1a thread_start_routine + 154
+5   mono                              0x002ad201 inner_start_thread + 65
+6   libsystem_c.dylib                 0x98dc55b7 _pthread_start + 344
+7   libsystem_c.dylib                 0x98dafd4e thread_start + 34
+
+Thread 14:
+0   libfreetype.6.dylib               0x052564b1 TT_Load_Simple_Glyph + 993
+1   libfreetype.6.dylib               0x0525844e load_truetype_glyph + 1566
+2   libfreetype.6.dylib               0x0525964a TT_Load_Glyph + 522
+3   libfreetype.6.dylib               0x05254f03 tt_glyph_load + 291
+4   libfreetype.6.dylib               0x0523fad8 FT_Load_Glyph + 744
+5   libcairo.2.dylib                  0x04cd8e66 _cairo_ft_scaled_glyph_init + 246
+6   libcairo.2.dylib                  0x04c76094 _cairo_scaled_glyph_lookup + 372
+7   libcairo.2.dylib                  0x04c737f2 cairo_scaled_font_glyph_extents + 274
+8   libcairo.2.dylib                  0x04c1e490 _cairo_gstate_glyph_extents + 96
+9   libcairo.2.dylib                  0x04c15c88 _cairo_default_context_glyph_extents + 72
+10  libcairo.2.dylib                  0x04c08961 cairo_text_extents + 337
+11  libgdiplus.dylib                  0x04a479e7 CalculateStringWidths + 119
+12  libgdiplus.dylib                  0x04a481a1 MeasureString + 1905
+13  libgdiplus.dylib                  0x04a4af0e cairo_DrawString + 350
+14  libgdiplus.dylib                  0x04a475de GdipDrawString + 270
+15  ???                               0x05face9c 0 + 100322972
+16  ???                               0x05facda8 0 + 100322728
+17  ???                               0x07184edc 0 + 119033564
+18  ???                               0x07184e70 0 + 119033456
+19  ???                               0x07184d20 0 + 119033120
+20  ???                               0x05fd489f 0 + 100485279
+21  ???                               0x0557eaa8 0 + 89647784
+22  ???                               0x05bce7ec 0 + 96266220
+23  ???                               0x05bce7b0 0 + 96266160
+24  ???                               0x05bce62c 0 + 96265772
+25  ???                               0x0557e903 0 + 89647363
+26  ???                               0x0557e8dc 0 + 89647324
+27  ???                               0x0557d6a1 0 + 89642657
+28  ???                               0x05fd43c4 0 + 100484036
+29  ???                               0x070d061b 0 + 118294043
+30  ???                               0x05bcae38 0 + 96251448
+31  ???                               0x05fa4964 0 + 100288868
+32  ???                               0x05fa417c 0 + 100286844
+33  ???                               0x0718261c 0 + 119023132
+34  ???                               0x07182560 0 + 119022944
+35  ???                               0x07181cd8 0 + 119020760
+36  ???                               0x004b636c 0 + 4940652
+37  ???                               0x004b62ba 0 + 4940474
+38  ???                               0x01400cc5 0 + 20974789
+39  mono                              0x000704a5 mono_jit_runtime_invoke + 741
+40  mono                              0x002276ce mono_runtime_invoke + 126
+41  mono                              0x0022783c mono_runtime_delegate_invoke + 140
+42  mono                              0x001ff032 async_invoke_thread + 2146
+43  mono                              0x001f7de6 start_wrapper + 470
+44  mono                              0x0029cf1a thread_start_routine + 154
+45  mono                              0x002ad201 inner_start_thread + 65
+46  libsystem_c.dylib                 0x98dc55b7 _pthread_start + 344
+47  libsystem_c.dylib                 0x98dafd4e thread_start + 34
+
+Thread 15:
+0   libsystem_kernel.dylib            0x966f88e2 __psynch_cvwait + 10
+1   libsystem_c.dylib                 0x98dca280 _pthread_cond_wait + 833
+2   libsystem_c.dylib                 0x98e500e0 pthread_cond_timedwait$UNIX2003 + 70
+3   mono                              0x00286bd4 _wapi_handle_timedwait_signal_handle + 516
+4   mono                              0x00299f94 WaitForSingleObjectEx + 660
+5   mono                              0x001faaaa mono_wait_uninterrupted + 122
+6   mono                              0x001fab6f ves_icall_System_Threading_WaitHandle_WaitOne_internal + 95
+7   ???                               0x05f0d60c 0 + 99669516
+8   ???                               0x07504ae0 0 + 122702560
+9   ???                               0x075bfc49 0 + 123468873
+10  ???                               0x075bf7a4 0 + 123467684
+11  ???                               0x05dedf78 0 + 98492280
+12  ???                               0x0140cf4d 0 + 21024589
+13  mono                              0x000704a5 mono_jit_runtime_invoke + 741
+14  mono                              0x002276ce mono_runtime_invoke + 126
+15  mono                              0x0022783c mono_runtime_delegate_invoke + 140
+16  mono                              0x001f7e12 start_wrapper + 514
+17  mono                              0x0029cf1a thread_start_routine + 154
+18  mono                              0x002ad201 inner_start_thread + 65
+19  libsystem_c.dylib                 0x98dc55b7 _pthread_start + 344
+20  libsystem_c.dylib                 0x98dafd4e thread_start + 34
+
+Thread 16:
+0   libsystem_kernel.dylib            0x966f90ee __workq_kernreturn + 10
+1   libsystem_c.dylib                 0x98dc80ac _pthread_workq_return + 45
+2   libsystem_c.dylib                 0x98dc7e79 _pthread_wqthread + 448
+3   libsystem_c.dylib                 0x98dafd2a start_wqthread + 30
+
+Thread 0 crashed with X86 Thread State (32-bit):
+  eax: 0x00000000  ebx: 0x7baa74a4  ecx: 0xbff9c78c  edx: 0x966f8a6a
+  edi: 0xacc40a28  esi: 0x00000006  ebp: 0xbff9c7a8  esp: 0xbff9c78c
+   ss: 0x00000023  efl: 0x00000206  eip: 0x966f8a6a   cs: 0x0000000b
+   ds: 0x00000023   es: 0x00000023   fs: 0x00000000   gs: 0x0000000f
+  cr2: 0x00391294
+Logical CPU: 0
+
+Binary Images:
+   0x63000 -   0x390ffc  mono (???) &lt;D01CD861-6223-37A1-B088-6096632ABB9C&gt; /usr/bin/mono
+ 0x48d3000 -  0x48e0ff7 +libintl.8.dylib (10.2) &lt;193924BC-ECE7-3D4B-AB9F-961B210AE6E2&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/libintl.8.dylib
+ 0x48e5000 -  0x48ecffe +libgif.4.dylib (6.6) &lt;7DDB6AFB-E116-3F33-BF1B-BEC4F9F0D2F1&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/libgif.4.dylib
+ 0x4a00000 -  0x4a70fe7 +libgdiplus.dylib (1) &lt;346626CC-DC63-34B6-934F-BAFEB95F680C&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/libgdiplus.dylib
+ 0x4a88000 -  0x4bc3ff7 +libglib-2.0.0.dylib (3601.3) &lt;2944F24D-BD1C-3873-97C6-3B78DFA39DF8&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/libglib-2.0.0.dylib
+ 0x4bf2000 -  0x4d0fff3 +libcairo.2.dylib (11203.14) &lt;4CC19CD4-BB97-361A-84A4-B5A33405C49B&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/libcairo.2.dylib
+ 0x4d45000 -  0x50d9ffb +libpixman-1.0.dylib (31) &lt;EAFCE818-3569-3035-9EF6-7D1FF4E37EEB&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/libpixman-1.0.dylib
+ 0x50ee000 -  0x516dff9 +libtiff.5.dylib (8) &lt;0E56ACB5-9B65-3F1F-AF09-9CE58EEBE1D2&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/libtiff.5.dylib
+ 0x517d000 -  0x51a8fe3 +liblzma.5.dylib (6.4) &lt;145C0C79-F2E1-34AC-AFE7-83ECC25C8548&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/liblzma.5.dylib
+ 0x51af000 -  0x51eeffc +libjpeg.8.dylib (9) &lt;3F647674-F7C9-3DF4-A968-426A18423163&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/libjpeg.8.dylib
+ 0x51f5000 -  0x522ffff +libfontconfig.1.dylib (8.2) &lt;0D03EEED-0CF8-3794-8392-1EF2B0A81A72&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/libfontconfig.1.dylib
+ 0x523b000 -  0x52dbfef +libfreetype.6.dylib (17.2) &lt;63EAD638-5C11-3202-8256-A7A9A6BF5B51&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/libfreetype.6.dylib
+ 0x52f2000 -  0x531efe3 +libpng14.14.dylib (27) &lt;9A6100D9-79E3-36CC-9BF3-AB17B4277A3A&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/libpng14.14.dylib
+ 0x5325000 -  0x534fff7 +libexpat.1.dylib (7.2) &lt;73D0B990-3C78-3143-97AF-2675FC1D2C06&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/libexpat.1.dylib
+ 0x5f5a000 -  0x5f82fe7 +libMonoPosixHelper.dylib (0) &lt;E4FB8454-AF7B-3A89-8B0D-FBA723EAAF2A&gt; /Library/Frameworks/Mono.framework/Versions/3.2.1/lib/libMonoPosixHelper.dylib
+0x8fe62000 - 0x8fe94e57  dyld (210.2.3) &lt;23DBDBB1-1D21-342C-AC2A-0E55F27E6A1F&gt; /usr/lib/dyld
+0x90007000 - 0x90013ff7  com.apple.NetAuth (4.0 - 4.0) &lt;52D23F12-0718-341D-B9DF-16C814022250&gt; /System/Library/PrivateFrameworks/NetAuth.framework/Versions/A/NetAuth
+0x90014000 - 0x90015fff  libquarantine.dylib (52.1) &lt;094A1501-373E-3397-B632-8F7C5AC8EFD5&gt; /usr/lib/system/libquarantine.dylib
+0x90016000 - 0x90458fff  com.apple.CoreGraphics (1.600.0 - 332) &lt;67E70F21-A0F1-356F-90B7-4B90C468EE2C&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics
+0x9045f000 - 0x9045ffff  libsystem_blocks.dylib (59) &lt;3A743C5D-CFA5-37D8-80A8-B6795A9DB04F&gt; /usr/lib/system/libsystem_blocks.dylib
+0x90460000 - 0x90720ff3  com.apple.security (7.0 - 55179.13) &lt;000FD8E9-D070-326A-B386-51314360FD5C&gt; /System/Library/Frameworks/Security.framework/Versions/A/Security
+0x90c7c000 - 0x90cafffb  com.apple.GSS (3.0 - 2.0) &lt;9566A96D-C296-3ABD-A12A-E274C81C0B25&gt; /System/Library/Frameworks/GSS.framework/Versions/A/GSS
+0x90cb0000 - 0x90cd0ffd  com.apple.ChunkingLibrary (2.0 - 133.3) &lt;FA45EAE8-BB10-3AEE-9FDC-C0C3A533FF48&gt; /System/Library/PrivateFrameworks/ChunkingLibrary.framework/Versions/A/ChunkingLibrary
+0x90cd1000 - 0x90dcfff7  libFontParser.dylib (84.6) &lt;7D3EB3CC-527E-3A74-816A-59CAFD2260A4&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Resources/libFontParser.dylib
+0x90dd0000 - 0x90e27ff3  com.apple.HIServices (1.20 - 417) &lt;B8410ABC-E0DB-31EB-B923-17F3B65B5F4C&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/HIServices
+0x90e28000 - 0x90e2bffc  libpam.2.dylib (20) &lt;FCF74195-A99E-3B07-8E49-688D4A6F1E18&gt; /usr/lib/libpam.2.dylib
+0x91141000 - 0x91160ff3  com.apple.Ubiquity (1.2 - 243.15) &lt;E10A2937-D671-3D14-AF8D-BA25E601F458&gt; /System/Library/PrivateFrameworks/Ubiquity.framework/Versions/A/Ubiquity
+0x911bd000 - 0x911befff  libDiagnosticMessagesClient.dylib (8) &lt;39B3D25A-148A-3936-B800-0D393A00E64F&gt; /usr/lib/libDiagnosticMessagesClient.dylib
+0x911ca000 - 0x91205fef  libGLImage.dylib (8.9.2) &lt;9D41F71E-E927-3767-A856-55480E20E9D9&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLImage.dylib
+0x91206000 - 0x91207fff  libremovefile.dylib (23.2) &lt;9813B2DB-2374-3AA2-99B6-AA2E9897B249&gt; /usr/lib/system/libremovefile.dylib
+0x91210000 - 0x9122dfff  libxpc.dylib (140.43) &lt;C628073D-51A0-3541-A665-1121520508C6&gt; /usr/lib/system/libxpc.dylib
+0x9122e000 - 0x91245fff  com.apple.GenerationalStorage (1.1 - 132.3) &lt;DD0AA3DB-376D-37F3-AC5B-17AC9B9E0A63&gt; /System/Library/PrivateFrameworks/GenerationalStorage.framework/Versions/A/GenerationalStorage
+0x91b04000 - 0x91b5efff  com.apple.Symbolication (1.3 - 93) &lt;4A794D1C-DE02-3183-87BF-0008A602E4D3&gt; /System/Library/PrivateFrameworks/Symbolication.framework/Versions/A/Symbolication
+0x91b5f000 - 0x91c6c057  libobjc.A.dylib (532.2) &lt;FA455371-7395-3D58-A89B-D1520612D1BC&gt; /usr/lib/libobjc.A.dylib
+0x91c6d000 - 0x91c74ff3  com.apple.NetFS (5.0 - 4.0) &lt;FD429432-6DA7-3B41-9889-0E8B4ECB8A4F&gt; /System/Library/Frameworks/NetFS.framework/Versions/A/NetFS
+0x91d13000 - 0x91d13fff  com.apple.Accelerate.vecLib (3.8 - vecLib 3.8) &lt;908B8D40-3FB5-3047-B482-3DF95025ECFC&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib
+0x91e6a000 - 0x91ecbfff  com.apple.audio.CoreAudio (4.1.1 - 4.1.1) &lt;A3B911DB-77DF-3037-A47A-634B08E5727D&gt; /System/Library/Frameworks/CoreAudio.framework/Versions/A/CoreAudio
+0x926ae000 - 0x926afffd  com.apple.TrustEvaluationAgent (2.0 - 23) &lt;E42347C0-2D3C-36A4-9200-757FFA61B388&gt; /System/Library/PrivateFrameworks/TrustEvaluationAgent.framework/Versions/A/TrustEvaluationAgent
+0x926b0000 - 0x926b7fff  liblaunch.dylib (442.26.2) &lt;310C99F8-0811-314D-9BB9-D0ED6DFA024B&gt; /usr/lib/system/liblaunch.dylib
+0x926b8000 - 0x926b8fff  com.apple.CoreServices (57 - 57) &lt;83B793A6-720D-31F6-A76A-89EBB2644346&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices
+0x926b9000 - 0x926bafff  liblangid.dylib (116) &lt;E13CC8C5-5034-320A-A210-41A2BDE4F846&gt; /usr/lib/liblangid.dylib
+0x926bb000 - 0x926bffff  com.apple.OpenDirectory (10.8 - 151.10) &lt;E3D2E1A4-6E55-3C23-BCB4-7B9D31EFD605&gt; /System/Library/Frameworks/OpenDirectory.framework/Versions/A/OpenDirectory
+0x926c0000 - 0x92838ff5  com.apple.QuartzCore (1.8 - 304.3) &lt;F2EFC117-CDC6-3252-A4A8-880965764385&gt; /System/Library/Frameworks/QuartzCore.framework/Versions/A/QuartzCore
+0x92eca000 - 0x92f25fff  com.apple.htmlrendering (77 - 1.1.4) &lt;CD33B313-7E85-3AC0-9EFF-6B0C05F10135&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HTMLRendering.framework/Versions/A/HTMLRendering
+0x92f71000 - 0x9308dffb  com.apple.desktopservices (1.7.4 - 1.7.4) &lt;782D711D-7930-324A-9015-686C2F86DBA3&gt; /System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv
+0x9308e000 - 0x930b3ff7  com.apple.CoreVideo (1.8 - 99.4) &lt;A26DE896-32E0-3D5E-BA89-02AD23FA96B3&gt; /System/Library/Frameworks/CoreVideo.framework/Versions/A/CoreVideo
+0x930b4000 - 0x93168fff  com.apple.coreui (2.0 - 181.1) &lt;C15ABF35-B7F5-34ED-A461-386DAF65D96B&gt; /System/Library/PrivateFrameworks/CoreUI.framework/Versions/A/CoreUI
+0x93173000 - 0x93181fff  com.apple.opengl (1.8.9 - 1.8.9) &lt;1872D2CD-00A8-30D1-8ECC-B663F4E4C530&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL
+0x93182000 - 0x9318eff8  libbz2.1.0.dylib (29) &lt;7031A4C0-784A-3EAA-93DF-EA1F26CC9264&gt; /usr/lib/libbz2.1.0.dylib
+0x9318f000 - 0x931ddff3  com.apple.SystemConfiguration (1.12.2 - 1.12.2) &lt;15B4EFFC-22D1-3517-BE8C-7947DAA24729&gt; /System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration
+0x931de000 - 0x931e6fff  libcopyfile.dylib (89) &lt;4963541B-0254-371B-B29A-B6806888949B&gt; /usr/lib/system/libcopyfile.dylib
+0x93418000 - 0x9341cffc  libGIF.dylib (850) &lt;45CD8B8F-7324-3187-B01C-8E16C04F33FA&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libGIF.dylib
+0x9341d000 - 0x934f1ff3  com.apple.backup.framework (1.4.3 - 1.4.3) &lt;6EA22ED3-BA18-3A37-AE05-5D6FDA3F372F&gt; /System/Library/PrivateFrameworks/Backup.framework/Versions/A/Backup
+0x934f2000 - 0x93507fff  com.apple.speech.synthesis.framework (4.1.12 - 4.1.12) &lt;DE68CEB5-4959-3652-83B8-D2B00D3B932D&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/SpeechSynthesis.framework/Versions/A/SpeechSynthesis
+0x93508000 - 0x93514ffa  com.apple.CrashReporterSupport (10.8.3 - 418) &lt;03BC564E-35FE-384E-87D6-6E0C55DF16E3&gt; /System/Library/PrivateFrameworks/CrashReporterSupport.framework/Versions/A/CrashReporterSupport
+0x93515000 - 0x93519fff  com.apple.IOSurface (86.0.4 - 86.0.4) &lt;6431ACB6-561B-314F-9A2A-FAC1578FCC86&gt; /System/Library/Frameworks/IOSurface.framework/Versions/A/IOSurface
+0x935f1000 - 0x935f1fff  libSystem.B.dylib (169.3) &lt;B81FAD7E-8808-3F49-807F-0AD68D0D7359&gt; /usr/lib/libSystem.B.dylib
+0x93663000 - 0x93675fff  libbsm.0.dylib (32) &lt;DADD385E-FE53-3458-94FB-E316A6345108&gt; /usr/lib/libbsm.0.dylib
+0x93982000 - 0x93982ffd  libOpenScriptingUtil.dylib (148.3) &lt;87895E27-88E2-3249-8D0E-B17E76FB00C1&gt; /usr/lib/libOpenScriptingUtil.dylib
+0x93983000 - 0x93a8eff7  libJP2.dylib (850) &lt;3FFCEFA6-317A-34AF-8D99-AEBB017543C5&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libJP2.dylib
+0x93bed000 - 0x93bf0ffc  libCoreVMClient.dylib (32.3) &lt;35B63A60-DF0A-3FB3-ABB8-164B246A43CC&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCoreVMClient.dylib
+0x93bf1000 - 0x93ca0ff7  com.apple.CoreText (260.0 - 275.16) &lt;873ADCD9-D361-3753-A220-CDD289196AD8&gt; /System/Library/Frameworks/CoreText.framework/Versions/A/CoreText
+0x93ca1000 - 0x93d05ff3  libstdc++.6.dylib (56) &lt;F8FA490A-8F3C-3645-ABF5-78926CE9C62C&gt; /usr/lib/libstdc++.6.dylib
+0x93d3c000 - 0x93d80ff7  libGLU.dylib (8.9.2) &lt;F33F6C73-7F89-3B5B-A50F-2AB57BBA314D&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
+0x93d81000 - 0x93d90fff  libGL.dylib (8.9.2) &lt;1082B9A5-9AA3-35D4-968B-3A3FE15B1ED7&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
+0x93dbd000 - 0x93dbfffd  libCVMSPluginSupport.dylib (8.9.2) &lt;D6D0BB75-42DA-3772-AB5E-CBD59B343393&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCVMSPluginSupport.dylib
+0x94af9000 - 0x94b5ffff  com.apple.print.framework.PrintCore (8.3 - 387.2) &lt;0F7665F5-33F0-3661-9BE2-7DD2890E304B&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/PrintCore
+0x94c4f000 - 0x94d0dff3  com.apple.ColorSync (4.8.0 - 4.8.0) &lt;B534DE6A-3AF0-307C-B274-A4FCFC5BC696&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ColorSync.framework/Versions/A/ColorSync
+0x94d0e000 - 0x94d17fff  com.apple.CommerceCore (1.0 - 26.1) &lt;8C28115C-6EC1-316D-9237-F4FBCBB778C5&gt; /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/Frameworks/CommerceCore.framework/Versions/A/CommerceCore
+0x94d18000 - 0x94db8ff7  com.apple.QD (3.42.1 - 285.1) &lt;BAAC13D2-1312-33C0-A255-FAB1D314C324&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/QD.framework/Versions/A/QD
+0x94db9000 - 0x94dd7ff3  com.apple.openscripting (1.3.6 - 148.3) &lt;F3422C02-5ACB-343A-987B-A2D58EA2F5A8&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/OpenScripting.framework/Versions/A/OpenScripting
+0x94dd8000 - 0x94ec9ffc  libiconv.2.dylib (34) &lt;B096A9B7-83A6-31B3-8D2F-87D91910BF4C&gt; /usr/lib/libiconv.2.dylib
+0x94eca000 - 0x94fd7ff3  com.apple.ImageIO.framework (3.2.1 - 850) &lt;C964E877-660E-3482-ACF9-EC25DFEAF307&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/ImageIO
+0x94fd8000 - 0x95020ff5  com.apple.opencl (2.2.19 - 2.2.19) &lt;968DD067-49D0-3B71-A96B-B3579698D992&gt; /System/Library/Frameworks/OpenCL.framework/Versions/A/OpenCL
+0x95039000 - 0x9509bfff  libc++.1.dylib (65.1) &lt;35EE57E1-2705-3C76-A75A-75655D720268&gt; /usr/lib/libc++.1.dylib
+0x9509c000 - 0x954b9fff  FaceCoreLight (2.4.1) &lt;B12C8721-EFB3-30A2-9A1B-ABCDF5670764&gt; /System/Library/PrivateFrameworks/FaceCoreLight.framework/Versions/A/FaceCoreLight
+0x954ba000 - 0x954c8ff7  libz.1.dylib (43) &lt;245F1B61-2276-3BBB-9891-99934116D833&gt; /usr/lib/libz.1.dylib
+0x954ef000 - 0x95531fff  libauto.dylib (185.4) &lt;3098A75E-438E-3F18-BAAC-CD8F1CC7C2F7&gt; /usr/lib/libauto.dylib
+0x95532000 - 0x9554bfff  com.apple.Kerberos (2.0 - 1) &lt;8413EDD3-7E01-3D47-83FD-C14A5235DCD2&gt; /System/Library/Frameworks/Kerberos.framework/Versions/A/Kerberos
+0x9554c000 - 0x9554cfff  com.apple.ApplicationServices (45 - 45) &lt;B23FD836-ECA1-3DF8-B043-9CA9779BE9DB&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/ApplicationServices
+0x9554d000 - 0x95709ffd  libicucore.A.dylib (491.11.3) &lt;FF55E176-7D66-3DBB-AF86-84744C47A02C&gt; /usr/lib/libicucore.A.dylib
+0x9570a000 - 0x9570effe  libcache.dylib (57) &lt;834FDCA7-FE3B-33CC-A12A-E11E202477EC&gt; /usr/lib/system/libcache.dylib
+0x95969000 - 0x959e3ff3  com.apple.securityfoundation (6.0 - 55115.4) &lt;8A3DA1FE-1985-3ECB-945A-6B1E853B4BDC&gt; /System/Library/Frameworks/SecurityFoundation.framework/Versions/A/SecurityFoundation
+0x959e4000 - 0x95adcff9  libsqlite3.dylib (138.1) &lt;AD7C5914-35F0-37A3-9238-A29D2E26C755&gt; /usr/lib/libsqlite3.dylib
+0x95ae1000 - 0x95b17ffb  com.apple.DebugSymbols (98 - 98) &lt;D0293694-C381-30DF-8DD9-D1B04CD0E5F0&gt; /System/Library/PrivateFrameworks/DebugSymbols.framework/Versions/A/DebugSymbols
+0x95b5b000 - 0x95b66fff  libcommonCrypto.dylib (60027) &lt;8EE30FA5-AA8D-3FA6-AB0F-05DA8B0425D9&gt; /usr/lib/system/libcommonCrypto.dylib
+0x95b67000 - 0x95bfffff  com.apple.CoreServices.OSServices (557.6 - 557.6) &lt;8DEEED08-A4B3-3B08-8C2A-BDDBF005B43F&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices
+0x95fca000 - 0x96019ff6  libTIFF.dylib (850) &lt;78E121A6-92A2-3120-883C-7AA3C2966F9C&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libTIFF.dylib
+0x9601a000 - 0x963fdfff  com.apple.HIToolbox (2.0 - 626.1) &lt;ECC3F04F-C4B7-35BF-B10E-183B749DAB92&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/HIToolbox
+0x963fe000 - 0x9654cff3  com.apple.CFNetwork (596.4.3 - 596.4.3) &lt;547BD138-E902-35F0-B6EC-41DD06794B22&gt; /System/Library/Frameworks/CFNetwork.framework/Versions/A/CFNetwork
+0x96551000 - 0x965abffb  com.apple.AE (645.6 - 645.6) &lt;44556FF7-A869-399A-AEBB-F4E9263D9152&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
+0x966e0000 - 0x966e0ffd  com.apple.audio.units.AudioUnit (1.9 - 1.9) &lt;F7638E43-F885-372E-9DAE-24D0C21AA66E&gt; /System/Library/Frameworks/AudioUnit.framework/Versions/A/AudioUnit
+0x966e4000 - 0x966feffc  libsystem_kernel.dylib (2050.24.15) &lt;9E58DCC0-D5FF-37E1-AA7F-F2206719E138&gt; /usr/lib/system/libsystem_kernel.dylib
+0x966ff000 - 0x96703fff  com.apple.CommonPanels (1.2.5 - 94) &lt;7B3FC9A4-0F71-31E7-88CE-1BD4CBB655B2&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/CommonPanels.framework/Versions/A/CommonPanels
+0x96706000 - 0x967b0fff  com.apple.LaunchServices (539.9 - 539.9) &lt;C0E0CFFF-3714-3467-87DA-4A6F0AF1953B&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
+0x968c2000 - 0x96926ff7  com.apple.datadetectorscore (4.1 - 269.3) &lt;C11C2014-298E-3E2B-9F5D-02CCD3CA4AB3&gt; /System/Library/PrivateFrameworks/DataDetectorsCore.framework/Versions/A/DataDetectorsCore
+0x96a88000 - 0x96ab5ffe  libsystem_m.dylib (3022.6) &lt;93CEEC8C-FAB5-313C-B0BB-0F4E91E6B878&gt; /usr/lib/system/libsystem_m.dylib
+0x96ab6000 - 0x96af5ff7  com.apple.bom (12.0 - 192) &lt;D245FA22-3B6C-3872-B485-BE84AD9098B2&gt; /System/Library/PrivateFrameworks/Bom.framework/Versions/A/Bom
+0x96af6000 - 0x96eaeffa  libLAPACK.dylib (1073.4) &lt;9A6E5EAD-F2F2-3D5C-B655-2B536DB477F2&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLAPACK.dylib
+0x96eaf000 - 0x96ebbffe  libkxld.dylib (2050.24.15) &lt;BEC097B0-9D9A-3484-99DB-0F537E71963E&gt; /usr/lib/system/libkxld.dylib
+0x96ebc000 - 0x96ebefff  libdyld.dylib (210.2.3) &lt;05D6FF2A-F09B-309D-95F7-7AF10259C707&gt; /usr/lib/system/libdyld.dylib
+0x9732e000 - 0x974b7ff7  com.apple.vImage (6.0 - 6.0) &lt;1D1F67FE-4F75-3689-BEF6-4A46C8039E70&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vImage.framework/Versions/A/vImage
+0x974b8000 - 0x976cffff  com.apple.CoreData (106.1 - 407.7) &lt;EC4B8297-8E01-3778-A8A4-E8747F91109D&gt; /System/Library/Frameworks/CoreData.framework/Versions/A/CoreData
+0x976d0000 - 0x97973ff3  com.apple.CoreImage (8.4.0 - 1.0.1) &lt;C25B9EEC-4824-3088-BC08-2EA516C0728C&gt; /System/Library/Frameworks/QuartzCore.framework/Versions/A/Frameworks/CoreImage.framework/Versions/A/CoreImage
+0x97ac3000 - 0x97de3ff3  com.apple.Foundation (6.8 - 945.18) &lt;BDC56A93-45C5-3459-B307-65A1CCE702C5&gt; /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation
+0x97de4000 - 0x97dedfff  com.apple.DiskArbitration (2.5.2 - 2.5.2) &lt;89822A83-B450-3363-8E9C-9B80CB4450B1&gt; /System/Library/Frameworks/DiskArbitration.framework/Versions/A/DiskArbitration
+0x97dee000 - 0x989aaff3  com.apple.AppKit (6.8 - 1187.39) &lt;ACA24416-D910-39B8-9387-52A6C6A561F8&gt; /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit
+0x989dc000 - 0x989dfff7  com.apple.TCC (1.0 - 1) &lt;437D76CD-6437-3B55-BE2C-A53508858256&gt; /System/Library/PrivateFrameworks/TCC.framework/Versions/A/TCC
+0x989e0000 - 0x989f3ff9  com.apple.MultitouchSupport.framework (235.29 - 235.29) &lt;451701B6-03CE-3F26-9FF0-92D8DA1467EE&gt; /System/Library/PrivateFrameworks/MultitouchSupport.framework/Versions/A/MultitouchSupport
+0x98a0b000 - 0x98a34fff  libxslt.1.dylib (11.3) &lt;0DE17DAA-66FF-3195-AADB-347BEB5E2EFA&gt; /usr/lib/libxslt.1.dylib
+0x98a39000 - 0x98d3eff7  com.apple.CoreServices.CarbonCore (1037.6 - 1037.6) &lt;4DB4B0C9-1377-3062-BE0E-CD3326ACDAF0&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/CarbonCore
+0x98d3f000 - 0x98d81ff7  libcups.2.dylib (327.6) &lt;D994A44F-CCDD-3D40-B732-79CB88F45908&gt; /usr/lib/libcups.2.dylib
+0x98d82000 - 0x98d88fff  libGFXShared.dylib (8.9.2) &lt;F3B0E66D-5C47-3A5A-A2CD-F0C58E8322C3&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGFXShared.dylib
+0x98d89000 - 0x98daeffb  com.apple.framework.familycontrols (4.1 - 410) &lt;B1755756-BEA2-3205-ADAA-68FCC32E60BD&gt; /System/Library/PrivateFrameworks/FamilyControls.framework/Versions/A/FamilyControls
+0x98daf000 - 0x98e6cfeb  libsystem_c.dylib (825.26) &lt;6E35A83F-1A5B-3AF9-8C6D-D7B57B25FB63&gt; /usr/lib/system/libsystem_c.dylib
+0x98e6d000 - 0x98e6ffff  com.apple.securityhi (4.0 - 55002) &lt;79E3B880-3AB7-3BF3-9CDF-117A45599545&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/SecurityHI.framework/Versions/A/SecurityHI
+0x98e81000 - 0x98e8affd  com.apple.audio.SoundManager (4.0 - 4.0) &lt;6A0B4A5D-6320-37E4-A1CA-91189777848C&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/CarbonSound.framework/Versions/A/CarbonSound
+0x98e8b000 - 0x98f1dffb  libvMisc.dylib (380.6) &lt;6DA3A03F-20BE-300D-A664-B50A7B4E4B1A&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvMisc.dylib
+0x98f1e000 - 0x98f3bff7  libresolv.9.dylib (51) &lt;B9742A2A-DF15-3F6E-8FCE-778A58214B3A&gt; /usr/lib/libresolv.9.dylib
+0x98f3c000 - 0x98f6dfff  com.apple.DictionaryServices (1.2 - 184.4) &lt;A31BB2CE-6965-3610-8B11-EA26EC6D7EEA&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
+0x98f6e000 - 0x98f78fff  libCSync.A.dylib (332) &lt;86C5C84F-11EC-39C0-9FAC-A93FDEEC3117&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Resources/libCSync.A.dylib
+0x98fc4000 - 0x98fc7ff7  libcompiler_rt.dylib (30) &lt;CE5DBDB4-0124-3E2B-9105-989DF98DD108&gt; /usr/lib/system/libcompiler_rt.dylib
+0x98ff8000 - 0x98ffbfff  com.apple.help (1.3.2 - 42) &lt;2B727B38-0E18-3108-9735-F65958924A91&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Help.framework/Versions/A/Help
+0x98ffc000 - 0x9900aff3  libsystem_network.dylib (77.10) &lt;11CAF6A8-17CF-3178-9348-57C5ED494BA8&gt; /usr/lib/system/libsystem_network.dylib
+0x99025000 - 0x99051ff7  libsystem_info.dylib (406.17) &lt;2731CC70-DF2E-3BD1-AE73-A3B83C531756&gt; /usr/lib/system/libsystem_info.dylib
+0x99052000 - 0x99067fff  com.apple.ImageCapture (8.0 - 8.0) &lt;F681CA5B-2871-32CF-8E9F-9220EB387407&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/ImageCapture.framework/Versions/A/ImageCapture
+0x99068000 - 0x99085fff  libCRFSuite.dylib (33) &lt;8E6E8815-406E-3A89-B96E-908FEFC27F0A&gt; /usr/lib/libCRFSuite.dylib
+0x99086000 - 0x991c1ff7  libBLAS.dylib (1073.4) &lt;FF74A147-05E1-37C4-BC10-7DEB57FE5326&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
+0x991c9000 - 0x99245ff3  com.apple.Metadata (10.7.0 - 707.11) &lt;F9BB5BBE-69D0-3309-8280-2303EB1DC455&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Metadata
+0x99246000 - 0x9925cfff  com.apple.CFOpenDirectory (10.8 - 151.10) &lt;3640B988-F915-3E0D-897C-CB04C95BA601&gt; /System/Library/Frameworks/OpenDirectory.framework/Versions/A/Frameworks/CFOpenDirectory.framework/Versions/A/CFOpenDirectory
+0x9925d000 - 0x99445ffb  com.apple.CoreFoundation (6.8 - 744.19) &lt;DDD3AA21-5B5F-3D8F-B137-AD95FCA89064&gt; /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation
+0x99446000 - 0x99447fff  libsystem_sandbox.dylib (220.3) &lt;C532F6A6-7E85-38F3-8660-EC1066DF67BE&gt; /usr/lib/system/libsystem_sandbox.dylib
+0x9952a000 - 0x99576fff  libcorecrypto.dylib (106.2) &lt;20EBADBA-D6D6-36F0-AE80-168E9AF13DB6&gt; /usr/lib/system/libcorecrypto.dylib
+0x99577000 - 0x9957efff  libsystem_dnssd.dylib (379.38.1) &lt;4F164CA8-4A4F-3B27-B88A-0926E2FEB7D4&gt; /usr/lib/system/libsystem_dnssd.dylib
+0x9957f000 - 0x99582ff9  libCGXType.A.dylib (332) &lt;07B59FCC-6229-37C2-9870-70A18E2C5598&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Resources/libCGXType.A.dylib
+0x99583000 - 0x99585ffb  libRadiance.dylib (850) &lt;83434287-A09E-3A3F-A1AC-085B563BA46D&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libRadiance.dylib
+0x99586000 - 0x995eeff7  com.apple.framework.IOKit (2.0.1 - 755.24.1) &lt;70DE925B-51E8-3C65-8928-FB49FD823D94&gt; /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit
+0x995ef000 - 0x995fdfff  libxar.1.dylib (105) &lt;6498A359-2DBA-3EDA-8F00-EEB989DD0A93&gt; /usr/lib/libxar.1.dylib
+0x995fe000 - 0x9961afff  libPng.dylib (850) &lt;26AD967A-D55E-3C5A-A643-D9953136DE58&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libPng.dylib
+0x998d1000 - 0x998d1fff  com.apple.Carbon (154 - 155) &lt;C0A26E7B-28F1-3C7E-879E-A3CF3ED5111C&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Carbon
+0x998d2000 - 0x998f6fff  libJPEG.dylib (850) &lt;36FEAB05-86C5-33B9-9DE9-5FAD8AEBA15F&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libJPEG.dylib
+0x998f7000 - 0x998feffb  libunwind.dylib (35.1) &lt;E1E8D8B3-3C78-3AB1-B398-C180DC6DCF05&gt; /usr/lib/system/libunwind.dylib
+0x998ff000 - 0x99909fff  com.apple.speech.recognition.framework (4.1.5 - 4.1.5) &lt;774CDB2F-34A1-347A-B302-4746D256E921&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/SpeechRecognition.framework/Versions/A/SpeechRecognition
+0x9990a000 - 0x9990afff  com.apple.Accelerate (1.8 - Accelerate 1.8) &lt;4EC0548E-3A3F-310D-A366-47B51D5B6398&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Accelerate
+0x99943000 - 0x999b2ffb  com.apple.Heimdal (3.0 - 2.0) &lt;964D9952-B0F2-34F6-8265-1823C0D5EAB8&gt; /System/Library/PrivateFrameworks/Heimdal.framework/Versions/A/Heimdal
+0x99a31000 - 0x99a76ff7  com.apple.NavigationServices (3.7 - 200) &lt;6AB1A00C-BC94-3889-BA95-40A454B720CE&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/NavigationServices.framework/Versions/A/NavigationServices
+0x99a77000 - 0x99aceff7  com.apple.ScalableUserInterface (1.0 - 1) &lt;4B538E02-4F41-37FF-81F6-ED43DE0E78CC&gt; /System/Library/Frameworks/QuartzCore.framework/Versions/A/Frameworks/ScalableUserInterface.framework/Versions/A/ScalableUserInterface
+0x99acf000 - 0x99ad9ffe  com.apple.bsd.ServiceManagement (2.0 - 2.0) &lt;9732BA61-D6F6-3644-82DA-FF0D6FEEFC69&gt; /System/Library/Frameworks/ServiceManagement.framework/Versions/A/ServiceManagement
+0x99b18000 - 0x99b3afff  libc++abi.dylib (26) &lt;3AAA8D55-F5F6-362B-BA3C-CCAF0D3C8E27&gt; /usr/lib/libc++abi.dylib
+0x99bdd000 - 0x99d36ffb  com.apple.audio.toolbox.AudioToolbox (1.9 - 1.9) &lt;8BF022FC-C38A-34AA-8469-D98294094659&gt; /System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox
+0x99d37000 - 0x99d64ffb  com.apple.CoreServicesInternal (154.3 - 154.3) &lt;A452602B-67CB-39C4-95EB-E59433C65774&gt; /System/Library/PrivateFrameworks/CoreServicesInternal.framework/Versions/A/CoreServicesInternal
+0x99d99000 - 0x99e0eff7  com.apple.ApplicationServices.ATS (332 - 341.1) &lt;BEE998BC-E4A5-3BA0-A6B5-31A1DFA1522C&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/ATS
+0x99e0f000 - 0x99eaafff  com.apple.CoreSymbolication (3.0 - 117) &lt;2BBBE224-301D-3931-AEF2-DD967A6E9172&gt; /System/Library/PrivateFrameworks/CoreSymbolication.framework/Versions/A/CoreSymbolication
+0x99eb0000 - 0x99eb6fff  com.apple.print.framework.Print (8.0 - 258) &lt;3E10C488-C390-33BD-8A4F-568E3021811D&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Print.framework/Versions/A/Print
+0x99eba000 - 0x99ecaff2  com.apple.LangAnalysis (1.7.0 - 1.7.0) &lt;C6076983-A02E-389E-BFC6-008EECC4C896&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/LangAnalysis.framework/Versions/A/LangAnalysis
+0x99ecb000 - 0x99f50ff7  com.apple.SearchKit (1.4.0 - 1.4.0) &lt;4E947DC1-7985-3111-A864-58EDD6D955DC&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SearchKit.framework/Versions/A/SearchKit
+0x99f51000 - 0x99f51fff  com.apple.vecLib (3.8 - vecLib 3.8) &lt;83160DD1-5614-3E34-80EB-97041016EF1F&gt; /System/Library/Frameworks/vecLib.framework/Versions/A/vecLib
+0x99f52000 - 0x99f53ffd  libunc.dylib (25) &lt;5E1EEE9E-3423-33D7-95B2-E4D17DD08C18&gt; /usr/lib/system/libunc.dylib
+0x99fbb000 - 0x99fe4ff7  libRIP.A.dylib (332) &lt;521E60A6-A768-3CB8-B10D-D10EECD68A94&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Resources/libRIP.A.dylib
+0x99fe5000 - 0x99ff7ff7  libdispatch.dylib (228.23) &lt;86EF7D45-2D97-3465-A449-95038AE5DABA&gt; /usr/lib/system/libdispatch.dylib
+0x99ff8000 - 0x9a046ffb  libFontRegistry.dylib (100) &lt;97D8F15F-F072-3AF0-8EF8-50C41781951C&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Resources/libFontRegistry.dylib
+0x9a047000 - 0x9a054ff7  com.apple.AppleFSCompression (49 - 1.0) &lt;9A066D13-6E85-36FC-8B58-FD46E51751CE&gt; /System/Library/PrivateFrameworks/AppleFSCompression.framework/Versions/A/AppleFSCompression
+0x9a055000 - 0x9a056fff  libdnsinfo.dylib (453.19) &lt;3B523729-84A8-3D0B-B58C-3FC185060E67&gt; /usr/lib/system/libdnsinfo.dylib
+0x9a058000 - 0x9a09affb  com.apple.RemoteViewServices (2.0 - 80.6) &lt;AE962502-4539-3893-A2EB-9D384652AEAC&gt; /System/Library/PrivateFrameworks/RemoteViewServices.framework/Versions/A/RemoteViewServices
+0x9a09b000 - 0x9a09fff7  libmacho.dylib (829) &lt;5280A013-4F74-3F74-BE0C-7F612C49F1DC&gt; /usr/lib/system/libmacho.dylib
+0x9a0a0000 - 0x9a108fe7  libvDSP.dylib (380.6) &lt;55780308-4DCA-3B10-9703-EAFC3E13A3FA&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvDSP.dylib
+0x9a109000 - 0x9a1a0ff7  com.apple.ink.framework (10.8.2 - 150) &lt;A9C3B735-7D5F-3D7D-AA70-2CC852D09CDE&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Ink.framework/Versions/A/Ink
+0x9a414000 - 0x9a414fff  libkeymgr.dylib (25) &lt;D5E93F7F-9315-3AD6-92C7-941F7B54C490&gt; /usr/lib/system/libkeymgr.dylib
+0x9a55a000 - 0x9a57efff  com.apple.PerformanceAnalysis (1.16 - 16) &lt;7B7EAA0B-5208-32DB-B083-D4B62F37EC46&gt; /System/Library/PrivateFrameworks/PerformanceAnalysis.framework/Versions/A/PerformanceAnalysis
+0x9a57f000 - 0x9a589fff  libsystem_notify.dylib (98.5) &lt;7EEE9475-18F8-3099-B0ED-23A3E528ABE0&gt; /usr/lib/system/libsystem_notify.dylib
+0x9a58a000 - 0x9a671ff7  libxml2.2.dylib (22.3) &lt;56E973D6-6B55-3E67-8282-6BC982816488&gt; /usr/lib/libxml2.2.dylib
+0x9a680000 - 0x9a689ff9  com.apple.CommonAuth (3.0 - 2.0) &lt;34C4768C-EF8D-3DBA-AFB7-09148C8672DB&gt; /System/Library/PrivateFrameworks/CommonAuth.framework/Versions/A/CommonAuth
+
+External Modification Summary:
+  Calls made by other processes targeting this process:
+    task_for_pid: 2
+    thread_create: 0
+    thread_set_state: 0
+  Calls made by this process:
+    task_for_pid: 0
+    thread_create: 0
+    thread_set_state: 0
+  Calls made by all processes on this machine:
+    task_for_pid: 1437
+    thread_create: 1
+    thread_set_state: 0
+
+VM Region Summary:
+ReadOnly portion of Libraries: Total=127.0M resident=78.2M(62%) swapped_out_or_unallocated=48.8M(38%)
+Writable regions: Total=186.0M written=3716K(2%) resident=75.7M(41%) swapped_out=0K(0%) unallocated=110.3M(59%)
+ 
+REGION TYPE                      VIRTUAL
+===========                      =======
+(null) (reserved)                   324K        reserved VM address space (unallocated)
+CG backing stores                  8524K
+CG shared images                    192K
+CoreServices                       1808K
+MALLOC                            117.8M
+MALLOC guard page                    48K
+Memory tag=242                       12K
+Memory tag=35                      7400K
+Stack                              76.0M
+VM_ALLOCATE                        40.1M
+__DATA                             5552K
+__DATA/__OBJC                        32K
+__IMAGE                             528K
+__LINKEDIT                         31.8M
+__OBJC                             1616K
+__PAGEZERO                            4K
+__TEXT                             95.2M
+__UNICODE                           544K
+mapped file                       144.2M
+shared memory                       308K
+===========                      =======
+TOTAL                             531.4M
+TOTAL, minus reserved VM space    531.0M
+
+Model: MacBookPro10,1, BootROM MBP101.00EE.B02, 4 processors, Intel Core i7, 2.3 GHz, 16 GB, SMC 2.3f35
+Graphics: Intel HD Graphics 4000, Intel HD Graphics 4000, Built-In, 512 MB
+Graphics: NVIDIA GeForce GT 650M, NVIDIA GeForce GT 650M, PCIe, 1024 MB
+Memory Module: BANK 0/DIMM0, 8 GB, DDR3, 1600 MHz, 0x80AD, 0x484D5434314753364D465238432D50422020
+Memory Module: BANK 1/DIMM0, 8 GB, DDR3, 1600 MHz, 0x80AD, 0x484D5434314753364D465238432D50422020
+AirPort: spairport_wireless_card_type_airport_extreme (0x14E4, 0xEF), Broadcom BCM43xx 1.0 (5.106.98.100.17)
+Bluetooth: Version 4.1.4f2 12041, 2 service, 11 devices, 1 incoming serial ports
+Network Service: Wi-Fi, AirPort, en0
+Serial ATA Device: APPLE SSD SD256E, 251 GB
+USB Device: hub_device, 0x8087  (Intel Corporation), 0x0024, 0x1a100000 / 2
+USB Device: FaceTime HD Camera (Built-in), apple_vendor_id, 0x8510, 0x1a110000 / 3
+USB Device: hub_device, 0x8087  (Intel Corporation), 0x0024, 0x1d100000 / 2
+USB Device: hub_device, 0x0424  (SMSC), 0x2512, 0x1d180000 / 3
+USB Device: Apple Internal Keyboard / Trackpad, apple_vendor_id, 0x0262, 0x1d182000 / 5
+USB Device: BRCM20702 Hub, 0x0a5c  (Broadcom Corp.), 0x4500, 0x1d181000 / 4
+USB Device: Bluetooth USB Host Controller, apple_vendor_id, 0x8286, 0x1d181300 / 7</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rodrigo Kumpera</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-20 16:32:22 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This is a winforms bug.</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexander Köplinger [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2018-01-02 23:12:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">KeePass 2.37 works fine on OSX with mono32 for me.</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

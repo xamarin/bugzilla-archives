@@ -1,0 +1,3085 @@
+<html lang="en"><head>
+    <title>14129 – Android App crashes with signal 4 or 11 if actions are passed between threads (4.8.2)</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_VERIFIED
+                 bz_product_Android
+                 bz_component_Mono_runtime___AOT_Compiler
+                 bz_bug_14129 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;14129</span>
+
+        <span id="subtitle" class="subheader">Android App crashes with signal 4 or 11 if actions are passed between threads (4.8.2)</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2014-01-22 04:32:10 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-01-22 04:32:10">
+  <input type="hidden" name="id" value="14129">
+  <input type="hidden" name="token" value="1559164687-5E6VVWs3JCshMfkwyDM_f_v4sIbyTcdFl79yAAhW7Cg">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;14129</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">Android App crashes with signal 4 or 11 if actions are passed between threads (4.8.2)</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span><span title="Android App crashes with signal 4 or 11 if actions are passed between threads (4.8.2)">Android App crashes with signal 4 or 11 if actions are passed between threads...
+        </span>
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">VERIFIED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Android
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Xamarin
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">Mono runtime / AOT Compiler
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>4.8.x
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">All
+        All
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>High
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>4.12.0 (KitKat)
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Rodrigo Kumpera</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=14050">14050</a> 
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+    <tr>
+      <th>&nbsp;</th>
+
+      <td id="show_dependency_tree_or_graph">
+        Show dependency <a href="showdependencytree.cgi?id=14129&amp;hide_resolved=1">tree</a>
+
+      </td>
+    </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2013-08-21 01:36 UTC by <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-01-22 04:32 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>10
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="andrew.way">andrew.way</option>
+                <option value="atsushi">atsushi</option>
+                <option value="ben">ben</option>
+                <option value="dev">dev</option>
+                <option value="jonp">jonp</option>
+                <option value="mark">mark</option>
+                <option value="mono-bugs+monodroid">mono-bugs+monodroid</option>
+                <option value="peter.collins">peter.collins</option>
+                <option value="pj.beaman">pj.beaman</option>
+                <option value="sadika">sadika</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=4682&amp;file=Activity1.cs" title="View the content of the attachment">
+          <b>Repro for crashing with signal 4/11</b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.66 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_4682" title="Go to the comment associated with the attachment">2013-08-21 01:36 UTC</a>,
+
+            <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=4682&amp;file=Activity1.cs">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_application_x-zip-compressed">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5015&amp;file=crashme2.zip" title="View the content of the attachment">
+          <b>debug.mono.log=all on HTC One Android 4.1.2</b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.20 MB,
+                application/x-zip-compressed)
+
+            <br>
+            <a href="#attach_5015" title="Go to the comment associated with the attachment">2013-09-28 01:32 UTC</a>,
+
+            <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5015&amp;file=crashme2.zip">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5141&amp;file=LongCallFromJavaThread.cs" title="View the content of the attachment">
+          <b><span class="bz_obsolete">test case: deep recursive on java main thread while GCing from a background thread</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.42 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_5141" title="Go to the comment associated with the attachment">2013-10-14 01:47 UTC</a>,
+
+            <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5141&amp;file=LongCallFromJavaThread.cs">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5142&amp;file=LessRandomizedLongCall.cs" title="View the content of the attachment">
+          <b><span class="bz_obsolete">test case: kick off java gc and mono gc while executing a 1000 frame call on main thread via handler.post</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.79 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_5142" title="Go to the comment associated with the attachment">2013-10-14 02:47 UTC</a>,
+
+            <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5142&amp;file=LessRandomizedLongCall.cs">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5177&amp;file=LessRandomizedLongCall.cs" title="View the content of the attachment">
+          <b>test case: simultaneous gc kick off while running a long (non-recursive) call via Handler.Post</b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.96 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_5177" title="Go to the comment associated with the attachment">2013-10-18 23:17 UTC</a>,
+
+            <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5177&amp;file=LessRandomizedLongCall.cs">Details</a>
+        </td>
+      </tr>
+      <tr id="a6" class="bz_contenttype_application_octet-stream">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5227&amp;file=Linux%20Kernel%20ARM%20Snapdragon%20Always%20Clear%20ITSTATE" title="View the content of the attachment">
+          <b>Linux Kernel patch that illustrates the original source of this bug</b></a>
+
+          <span class="bz_attach_extra_info">
+              (838 bytes,
+                application/octet-stream)
+
+            <br>
+            <a href="#attach_5227" title="Go to the comment associated with the attachment">2013-10-24 02:12 UTC</a>,
+
+            <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5227&amp;file=Linux%20Kernel%20ARM%20Snapdragon%20Always%20Clear%20ITSTATE">Details</a>
+        </td>
+      </tr>
+      <tr id="a7" class="bz_contenttype_application_pdf">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5230&amp;file=ITState%20ARM%20Architecture.pdf" title="View the content of the attachment">
+          <b>ARM Architecture Clipping highlighting that the kernel is relying on unspecified behavior</b></a>
+
+          <span class="bz_attach_extra_info">
+              (49.58 KB,
+                application/pdf)
+
+            <br>
+            <a href="#attach_5230" title="Go to the comment associated with the attachment">2013-10-24 14:39 UTC</a>,
+
+            <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5230&amp;file=ITState%20ARM%20Architecture.pdf">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/xamarin">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">VERIFIED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-21 01:36:42 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=4682&amp;file=Activity1.cs" name="attach_4682" title="Repro for crashing with signal 4/11">attachment 4682</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=4682&amp;file=Activity1.cs" title="Repro for crashing with signal 4/11">[details]</a></span>
+Repro for crashing with signal 4/11
+
+I have been receiving random crashes since the update to the initial Xamarin Android 4.8.  These have persisted across all the version up to the latest available 4.8.2.  My app would die with signal 4 or 11 typically.   I have found that passing Action's and other function types between threads safely while poking the garbage collector causes these crashes reliably
+
+Attached is a sample that is replacement code for the default android project created by Visual Studio which crashes within a minute or so on my device with signal 4 or 11 ... or a hang of the app (its random).  My device is an HTC One running Android 4.1.2.</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-21 12:23:14 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This test case doesn't seem to repro for me within 3 minutes on the following other devices I have tried 
+- Motorola Atrix 4G running 2.3.6
+- Mono for Android API 10 emulator
+- Original Nexus 7 - Android 4.3</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-21 14:26:20 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Note: always using the Release build.</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-22 17:21:58 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The repro also works happen with 4.8.1 and Debug builds.  I see these random crashes with my app on other devices as well, but this particular reliable repro test case only works on my HTC One with Android 4.1.2.</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-27 21:53:43 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">When you get a crash, what's the stack trace from `adb logcat`?
+
+Is it a SIGSEGV? Does it look like <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Got a SIGSEGV while executing native code" href="show_bug.cgi?id=13858">Bug #13858</a>?
+
+<span class="quote">&gt; E/mono-rt(1600): Stacktrace:
+&gt; E/mono-rt(1600): at &lt;unknown&gt; &lt;0xffffffff&gt;
+&gt; E/mono-rt(1600): at (wrapper managed-to-native) object.wrapper_native_0x8233c760 (intptr,intptr,intptr)
+&gt; E/mono-rt(1600): at Android.Runtime.JNIEnv.CallVoidMethod (intptr,intptr) [0x00005] 
+&gt; ...
+&gt; E/mono-rt(1600): =================================================================
+&gt; E/mono-rt(1600): Got a SIGSEGV while executing native code.  This usually indicates
+&gt; E/mono-rt(1600): a fatal error in the mono runtime or one of the native libraries
+&gt; E/mono-rt(1600): used by your application.
+&gt; E/mono-rt(1600): =================================================================</span>
+
+In particular, is JNIEnv.Call*Method() near the top of the stack trace?
+
+I've run it for several minutes on a Nexus 10 w/ Android v4.3, and not hit a crash yet. I'll let it run overnight...</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-28 01:30:18 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks for having a look at this.  Unfortunately, neither the debug nor the release version produce a mono-rt stacktrace.  I enabled the full mono debug log and will attach that (it still doesnt not include a stack trace.  At the end it says core dumped, but I don't know where to get the core dump file.  Any suggestions? Do I need to root the phone and look in /data/tombstones?
+
+This specific test case did not reproduce for me on the other devices I use for testing, including a Galaxy Nexus, Nexus S, Motorola Atrix, and Nexus 7 first gen. 
+
+I was thinking it might have something to do with having 4 cores in the devices.  Is there anything the GC does differently if it has more cores available?</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-28 01:32:29 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=5015&amp;file=crashme2.zip" name="attach_5015" title="debug.mono.log=all on HTC One Android 4.1.2">attachment 5015</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5015&amp;file=crashme2.zip" title="debug.mono.log=all on HTC One Android 4.1.2">[details]</a></span>
+debug.mono.log=all on HTC One Android 4.1.2</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-28 09:56:16 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><span class="quote">&gt; I've run it for several minutes on a Nexus 10 w/ Android v4.3, and not hit a
+&gt; crash yet. I'll let it run overnight...</span>
+
+My overnight run is complete. It did NOT crash. It DID hang; the UI was unresponsive come morning.
+
+Guess I'll need to run within gdb to see where it's hanging...</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-30 03:22:46 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">So, I discovered the command "adb setprop log.redirect-stdio 1" which supposedly should make the crash traces end up in the logcat.  The really weird thing here is that now, the test application **freezes** within one minute rather than crashing and producing a signal 4 or 11.  I rooted the phone so that I could poke around more, but I still haven't figured out what magic to invoke to get a core dump written out.</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-02 00:40:24 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I managed to get a little more information out of GDB to clarify that the SIGILL is actually an ILLOPC.  I haven't managed to get a reasonable stack trace, but it seems to repeatedly happen at a BL instruction.   The CPSR indicates that the chip is not in Thumb mode, so I believe the dissembly was correct.  I did a bit of disassembling in IDA and found that at least in one case, the particular call seemed to be to get the errno (from an unnamed function).  Note that the trace below isn't the one I did the math on to discover the BL target was an errno function call.  I did load the libraries and verify that I could do breakpoints in the named functions but the crash never seemed to include any of those on the stack.  I don't know if I am using the android GDB incorrectly or not, however a command like "disass mono_jit_exec" did give sensible results, so I think that only unnamed functions in the binaries bundled in the apk are on the stack at this time.
+
+
+<span class="quote">&gt;&gt;&gt;&gt;&gt;&gt; some gdb info &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>
+Program received signal SIGPWR, Power fail/restart.
+
+Program received signal SIGXCPU, CPU time limit exceeded.
+
+Program received signal SIGXCPU, CPU time limit exceeded.
+
+Program received signal SIGPWR, Power fail/restart.
+
+Program received signal SIGPWR, Power fail/restart.
+
+Program received signal SIGILL, Illegal instruction.
+[Switching to Thread 21773]
+0x6ad1c45c in ?? ()
+(gdb) x/i $pc
+Cannot access memory at address 0xfffffe10
+=&gt; 0x6ad1c45c:  bl      0x6aba23d8
+(gdb) info registers
+r0             0x1e     30
+r1             0x6f1d4698       1864189592
+r2             0x6f1d4718       1864189720
+r3             0x33c6edf        54292191
+r4             0x0      0
+r5             0x6f1d4718       1864189720
+r6             0x6d3cea30       1832708656
+r7             0x5f     95
+r8             0x40980140       1083703616
+r9             0x9      9
+r10            0x0      0
+r11            0xfffffe10       4294966800
+r12            0x6d3bc1c4       1832632772
+sp             0x6f1d4698       0x6f1d4698
+lr             0xffff050c       -64244
+pc             0x6ad1c45c       0x6ad1c45c
+cpsr           0x10     16
+(gdb) p $_siginfo
+$3 = {si_signo = 4, si_errno = 0, si_code = 1, _sifields = {_pad = {
+      1792132188, 301244, -1093564636, -1093564512, 0, 269440, 174239,
+      1074700288, 13991162, 0, 241411734, 262180, 13991162, 1, 307064, 0,
+      204132, 218, 5056, 436, -1073741824, 0, 204132, 0, 307064, 307064, 0,
+      307064, 307064}, _kill = {si_pid = 1792132188, si_uid = 301244},
+    _timer = {si_tid = 1792132188, si_overrun = 301244, si_sigval = {
+        sival_int = -1093564636, sival_ptr = 0xbed18724}}, _rt = {
+      si_pid = 1792132188, si_uid = 301244, si_sigval = {
+        sival_int = -1093564636, sival_ptr = 0xbed18724}}, _sigchld = {
+      si_pid = 1792132188, si_uid = 301244, si_status = -1093564636,
+      si_utime = -1093564512, si_stime = 0}, _sigfault = {
+      si_addr = 0x6ad1c45c}, _sigpoll = {si_band = 1792132188,
+      si_fd = 301244}}}
+(gdb) bt
+#0  0x6ad1c45c in ?? ()
+#1  0xffff050c in ?? ()
+Cannot access memory at address 0xfffffe10
+#2  0xffff050c in ?? ()
+Cannot access memory at address 0xfffffe10
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-02 16:46:34 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Now that I have become familiar with the steps to use GDB with Xamarin, I completely wiped the Mono frameworks and test application off the phone before proceeding through them again.  I was finally able to get the stack traces to include the method names from within libmonosgen-2.0.so and libmonodroid.so
+
+I have included backtraces, siginfo information, etc to help identify the issue.  The thread that appears to show a $_siginfo of SIGILL/ILLOPC seems to have its si_addr pointing to a valid arm instruction (BL). I also included the CPSR flags for each thread, but I don't know how to get these from the frame that triggered the SIGILL.  If the code were executed in thumb mode, then the second half of that word would be an invalid opcode.  That would only make sense if the ARM instruction decoder decoded both instructions in one clock and faulted yielding the old address or some part of gdb/kernel fudged the address so si_addr didn't point to the exact invalid opcode.
+
+The code looks reasonable disassembled as ARM
+(gdb) disass $_siginfo._sifields._sigfault.si_addr
+Dump of assembler code for function suspend_handler:
+   0x6ad1c454 &lt;+0&gt;:     push    {r4, r5, r6, lr}
+   0x6ad1c458 &lt;+4&gt;:     mov     r5, r2
+=&gt; 0x6ad1c45c &lt;+8&gt;:     bl      0x6aba23d8
+   0x6ad1c460 &lt;+12&gt;:    ldr     r4, [r0]
+   0x6ad1c464 &lt;+16&gt;:    bl      0x6ad70100 &lt;mono_thread_info_current&gt;
+   0x6ad1c468 &lt;+20&gt;:    cmp     r0, #0
+   0x6ad1c46c &lt;+24&gt;:    beq     0x6ad1c478 &lt;suspend_handler+36&gt;
+   0x6ad1c470 &lt;+28&gt;:    mov     r1, r5
+   0x6ad1c474 &lt;+32&gt;:    bl      0x6ad1c2a0 &lt;suspend_thread&gt;
+   0x6ad1c478 &lt;+36&gt;:    bl      0x6aba23d8
+   0x6ad1c47c &lt;+40&gt;:    str     r4, [r0]
+   0x6ad1c480 &lt;+44&gt;:    pop     {r4, r5, r6, pc}
+End of assembler dump.
+
+The first invalid instruction in the function if it was interpreted as Thumb code is the second half of the 
+(gdb) set arm force-mode thumb
+(gdb) disass $_siginfo._sifields._sigfault.si_addr
+Dump of assembler code for function suspend_handler:
+   0x6ad1c454 &lt;+0&gt;:     eors    r0, r6
+   0x6ad1c456 &lt;+2&gt;:     stmdb   sp!, {r1, r12, lr}
+   0x6ad1c45a &lt;+6&gt;:     b.n     0x6ad1c79e &lt;sgen_sort_addresses+98&gt;
+=&gt; 0x6ad1c45c &lt;+8&gt;:     asrs    r5, r3, #31
+   0x6ad1c45e &lt;+10&gt;:                    ; &lt;UNDEFINED&gt; instruction: 0xebfa4000
+   0x6ad1c462 &lt;+14&gt;:    b.n     0x6ad1bf86 &lt;mono_image_create_pefile+5054&gt;
+   0x6ad1c464 &lt;+16&gt;:    ldr     r7, [pc, #148]  ; (0x6ad1c4fc &lt;sgen_wait_for_sus
+pend_ack+36&gt;)
+   0x6ad1c466 &lt;+18&gt;:    add.w   r0, r1, r0
+   0x6ad1c46a &lt;+22&gt;:    b.n     0x6ad1cb0e &lt;mono_gc_set_allow_synchronous_major+
+26&gt;
+   0x6ad1c46c &lt;+24&gt;:    movs    r1, r0
+   0x6ad1c46e &lt;+26&gt;:    lsrs    r0, r0, #8
+   0x6ad1c470 &lt;+28&gt;:    asrs    r5, r0, #32
+   0x6ad1c472 &lt;+30&gt;:    b.n     0x6ad1c7b6 &lt;sgen_sort_addresses+122&gt;
+   0x6ad1c474 &lt;+32&gt;:                    ; &lt;UNDEFINED&gt; instruction: 0xff89ebff
+   0x6ad1c478 &lt;+36&gt;:    asrs    r6, r2, #31
+   0x6ad1c47a &lt;+38&gt;:                    ; &lt;UNDEFINED&gt; instruction: 0xebfa4000
+   0x6ad1c47e &lt;+42&gt;:    b.n     0x6ad1bf82 &lt;mono_image_create_pefile+5050&gt;
+   0x6ad1c480 &lt;+44&gt;:    strh    r0, [r6, #2]
+   0x6ad1c482 &lt;+46&gt;:    ldmia.w sp!, {r4, lr}
+End of assembler dump.
+
+At this point, I am not quite sure what else I can provide you to help.  Is there any progress towards resolving this issue? 
+
+
+MORE GDB DETAILS
+----------------
+
+
+<span class="quote">&gt;&gt;&gt; for thread 3 (sigill) x/i $_siginfo._sifields._sigfault.si_addr &lt;&lt;&lt;</span>
+=&gt; 0x6ad1c45c &lt;suspend_handler+8&gt;:      bl      0x6aba23d8
+
+
+<span class="quote">&gt;&gt;&gt;&gt; thread apply all bt &lt;&lt;&lt;&lt;</span>
+Thread 15 (Thread 25877):
+#0  0x40111bd0 in ?? ()
+Cannot access memory at address 0x1
+#1  0x4012d1e0 in ?? ()
+#2  0x4012d1e0 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 14 (Thread 25876):
+#0  0x40111bd0 in ?? ()
+Cannot access memory at address 0x1
+#1  0x4012d1e0 in ?? ()
+#2  0x4012d1e0 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 13 (Thread 25862):
+#0  0x40112ce0 in ?? ()
+Cannot access memory at address 0x0
+#1  0x4012e4a8 in ?? ()
+#2  0x4012e4a8 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 12 (Thread 25797):
+#0  0x40111bd0 in ?? ()
+Cannot access memory at address 0x1
+#1  0x4012d1e0 in ?? ()
+#2  0x4012d1e0 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 11 (Thread 25796):
+#0  0x40111bd0 in ?? ()
+Cannot access memory at address 0x1
+#1  0x4012d1e0 in ?? ()
+#2  0x4012d1e0 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 10 (Thread 25795):
+#0  0x40112ce0 in ?? ()
+Cannot access memory at address 0xfffffe10
+#1  0x40118094 in ?? ()
+Cannot access memory at address 0xfffffe10
+#2  0x40118094 in ?? ()
+Cannot access memory at address 0xfffffe10
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 9 (Thread 25794):
+#0  0x40112ce0 in ?? ()
+Cannot access memory at address 0xfffffe10
+#1  0x40118094 in ?? ()
+Cannot access memory at address 0xfffffe10
+#2  0x40118094 in ?? ()
+Cannot access memory at address 0xfffffe10
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 8 (Thread 25793):
+#0  0x40112ce0 in ?? ()
+Cannot access memory at address 0xfffffe10
+#1  0x40118094 in ?? ()
+Cannot access memory at address 0xfffffe10
+#2  0x40118094 in ?? ()
+Cannot access memory at address 0xfffffe10
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 7 (Thread 25792):
+#0  0x40112ce0 in ?? ()
+Cannot access memory at address 0x1
+#1  0x40117210 in ?? ()
+Cannot access memory at address 0x1
+#2  0x40117210 in ?? ()
+Cannot access memory at address 0x1
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 6 (Thread 25791):
+#0  0x40111cf4 in ?? ()
+Cannot access memory at address 0x1
+#1  0x409ca18e in ?? ()
+#2  0x409ca18e in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 5 (Thread 25790):
+#0  0x40112594 in ?? ()
+Cannot access memory at address 0x4a3d0
+#1  0x4011f4c6 in ?? ()
+#2  0x4011f4c6 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 4 (Thread 25789):
+#0  0x40112ce4 in ?? ()
+Cannot access memory at address 0x1
+#1  0x40118094 in ?? ()
+Cannot access memory at address 0x1
+#2  0x40118094 in ?? ()
+Cannot access memory at address 0x1
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 3 (Thread 25861):
+#0  suspend_handler (sig=30, siginfo=0x6f1d4698, context=0x6f1d4718)
+    at /Users/builder/data/lanes/monodroid-mlion-monodroid-4.8.2-branch/3c344aeb
+/source/mono/mono/metadata/sgen-os-posix.c:129
+#1  0x000064b8 in ?? ()
+#2  0x000064b8 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+Thread 2 (Thread 25799):
+#0  0x4011253c in ?? ()
+Cannot access memory at address 0xe
+
+Thread 1 (Thread 25785):
+#0  0x4011253c in ?? ()
+#1  0x6ad1c368 in suspend_thread (info=0x6a48f180, context=&lt;optimized out&gt;)
+    at /Users/builder/data/lanes/monodroid-mlion-monodroid-4.8.2-branch/3c344aeb
+/source/mono/mono/metadata/sgen-os-posix.c:113
+#2  0x000000f0 in ?? ()
+#3  0x000000f0 in ?? ()
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+<span class="quote">&gt;&gt;&gt;&gt; print $_siginfo  for thread 1 ( in suspend handler )&lt;&lt;&lt;&lt;</span>
+$28 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+	  
+<span class="quote">&gt;&gt;&gt;&gt; print $_siginfo for thread 3 (in suspend_Handler) &lt;&lt;&lt;</span>
+$29 = {si_signo = 4, si_errno = 0, si_code = 1, _sifields = {_pad = {
+      1792132188, 0, -782532608, 0, 136, 1, 0, -641912640, -1072992484,
+      -1096640704, 1610612755, 0, 0, -782524584, -641912640, 0, 0,
+      1792132188, 1, -782532608, 0, -1096640812, -1073117680, -641912640, 0,
+      -1096640964, -1073115824, -1096640964, -1096640952}, _kill = {
+      si_pid = 1792132188, si_uid = 0}, _timer = {si_tid = 1792132188,
+      si_overrun = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _rt = {si_pid = 1792132188, si_uid = 0,
+      si_sigval = {sival_int = -782532608, sival_ptr = 0xd15b8000}},
+    _sigchld = {si_pid = 1792132188, si_uid = 0, si_status = -782532608,
+      si_utime = 0, si_stime = 136}, _sigfault = {si_addr = 0x6ad1c45c},
+    _sigpoll = {si_band = 1792132188, si_fd = 0}}}
+	
+<span class="quote">&gt;&gt;&gt;&gt; thread apply all print $_siginfo &lt;&lt;&lt;&lt;</span>
+Thread 15 (Thread 25877):
+$30 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+Thread 14 (Thread 25876):
+$31 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+Thread 13 (Thread 25862):
+$32 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+Thread 12 (Thread 25797):
+$33 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+Thread 11 (Thread 25796):
+$34 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+Thread 10 (Thread 25795):
+$35 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+Thread 9 (Thread 25794):
+$36 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+Thread 8 (Thread 25793):
+$37 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+Thread 7 (Thread 25792):
+$38 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+Thread 6 (Thread 25791):
+$39 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+Thread 5 (Thread 25790):
+$40 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+Thread 4 (Thread 25789):
+$41 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+Thread 3 (Thread 25861):
+$42 = {si_signo = 4, si_errno = 0, si_code = 1, _sifields = {_pad = {
+      1792132188, 0, -782532608, 0, 136, 1, 0, -641912640, -1072992484,
+      -1096640704, 1610612755, 0, 0, -782524584, -641912640, 0, 0,
+      1792132188, 1, -782532608, 0, -1096640812, -1073117680, -641912640, 0,
+      -1096640964, -1073115824, -1096640964, -1096640952}, _kill = {
+      si_pid = 1792132188, si_uid = 0}, _timer = {si_tid = 1792132188,
+      si_overrun = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _rt = {si_pid = 1792132188, si_uid = 0,
+      si_sigval = {sival_int = -782532608, sival_ptr = 0xd15b8000}},
+    _sigchld = {si_pid = 1792132188, si_uid = 0, si_status = -782532608,
+      si_utime = 0, si_stime = 136}, _sigfault = {si_addr = 0x6ad1c45c},
+    _sigpoll = {si_band = 1792132188, si_fd = 0}}}
+
+Thread 2 (Thread 25799):
+$43 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+Thread 1 (Thread 25785):
+$44 = {si_signo = 19, si_errno = 0, si_code = -6, _sifields = {_pad = {25848,
+      0, -782532608, 0, 136, 1, 0, -641912640, -1072992484, -1096640704,
+      1610612755, 0, 0, -782524584, -641912640, 0, 0, 1792132188, 1,
+      -782532608, 0, -1096640812, -1073117680, -641912640, 0, -1096640964,
+      -1073115824, -1096640964, -1096640952}, _kill = {si_pid = 25848,
+      si_uid = 0}, _timer = {si_tid = 25848, si_overrun = 0, si_sigval = {
+        sival_int = -782532608, sival_ptr = 0xd15b8000}}, _rt = {
+      si_pid = 25848, si_uid = 0, si_sigval = {sival_int = -782532608,
+        sival_ptr = 0xd15b8000}}, _sigchld = {si_pid = 25848, si_uid = 0,
+      si_status = -782532608, si_utime = 0, si_stime = 136}, _sigfault = {
+      si_addr = 0x64f8}, _sigpoll = {si_band = 25848, si_fd = 0}}}
+
+<span class="quote">&gt;&gt;&gt; thread apply all printf "%x", $cpsr &lt;&lt;&lt;
+&gt;&gt;&gt; everyone is in regular arm mode &lt;&lt;&lt;&lt;</span>
+Thread 15 (Thread 25877):
+Cannot access memory at address 0x1
+10
+Thread 14 (Thread 25876):
+Cannot access memory at address 0x1
+10
+Thread 13 (Thread 25862):
+Cannot access memory at address 0x0
+60000010
+Thread 12 (Thread 25797):
+Cannot access memory at address 0x1
+10
+Thread 11 (Thread 25796):
+Cannot access memory at address 0x1
+10
+Thread 10 (Thread 25795):
+Cannot access memory at address 0xfffffe10
+60000010
+Thread 9 (Thread 25794):
+Cannot access memory at address 0xfffffe10
+60000010
+Thread 8 (Thread 25793):
+Cannot access memory at address 0xfffffe10
+60000010
+Thread 7 (Thread 25792):
+Cannot access memory at address 0x1
+60000010
+Thread 6 (Thread 25791):
+Cannot access memory at address 0x1
+40000010
+Thread 5 (Thread 25790):
+Cannot access memory at address 0x4a3d0
+20000010
+Thread 4 (Thread 25789):
+Cannot access memory at address 0x1
+60000010
+Thread 3 (Thread 25861):
+10
+Thread 2 (Thread 25799):
+Cannot access memory at address 0xe	  
+40000010
+Thread 1 (Thread 25785):
+40000010
+
+<span class="quote">&gt;&gt;&gt;&gt; thread apply all x/i $pc &lt;&lt;&lt;&lt;
+&gt;&gt;&gt;&gt; all these opcodes look ok &lt;&lt;&lt;&lt;</span>
+Thread 15 (Thread 25877):
+Cannot access memory at address 0x1
+=&gt; 0x40111bd0:  svc     0x00000000
+
+Thread 14 (Thread 25876):
+Cannot access memory at address 0x1
+=&gt; 0x40111bd0:  svc     0x00000000
+
+Thread 13 (Thread 25862):
+Cannot access memory at address 0x0
+=&gt; 0x40112ce0:  svc     0x00000000
+
+Thread 12 (Thread 25797):
+Cannot access memory at address 0x1
+=&gt; 0x40111bd0:  svc     0x00000000
+
+Thread 11 (Thread 25796):
+Cannot access memory at address 0x1
+=&gt; 0x40111bd0:  svc     0x00000000
+
+Thread 10 (Thread 25795):
+Cannot access memory at address 0xfffffe10
+=&gt; 0x40112ce0:  svc     0x00000000
+
+Thread 9 (Thread 25794):
+Cannot access memory at address 0xfffffe10
+=&gt; 0x40112ce0:  svc     0x00000000
+
+Thread 8 (Thread 25793):
+Cannot access memory at address 0xfffffe10
+=&gt; 0x40112ce0:  svc     0x00000000
+
+Thread 7 (Thread 25792):
+Cannot access memory at address 0x1
+=&gt; 0x40112ce0:  svc     0x00000000
+
+Thread 6 (Thread 25791):
+Cannot access memory at address 0x1
+=&gt; 0x40111cf4:  svc     0x00000000
+
+Thread 5 (Thread 25790):
+Cannot access memory at address 0x4a3d0
+=&gt; 0x40112594:  pop     {r4, r7}
+
+Thread 4 (Thread 25789):
+Cannot access memory at address 0x1
+=&gt; 0x40112ce4:  pop     {r4, r7}
+
+Thread 3 (Thread 25861):
+=&gt; 0x6ad1c45c &lt;suspend_handler+8&gt;:      bl      0x6aba23d8
+
+Thread 2 (Thread 25799):
+Cannot access memory at address 0xe
+=&gt; 0x4011253c:  svc     0x00000000
+
+Thread 1 (Thread 25785):
+=&gt; 0x4011253c:  svc     0x00000000</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-14 01:46:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have been trying to find modifications to my test case that produce other visible error logs.  I managed to create a variant of this test case that causes a n assertion log statement.
+
+10-13 22:40:07.672: A/(2709): * Assertion at /Users/builder/data/lanes/monodroid-mlion-monodroid-4.8.2-branch/a25a31d0/source/mono/mono/metadata/sgen-os-posix.c:90, condition `!info-&gt;stack_start' not met
+10-13 22:40:07.672: E/mono-rt(2709): Stacktrace:
+10-13 22:40:07.672: E/mono-rt(2709): =================================================================
+10-13 22:40:07.672: E/mono-rt(2709): Got a SIGSEGV while executing native code. This usually indicates
+10-13 22:40:07.672: E/mono-rt(2709): a fatal error in the mono runtime or one of the native libraries 
+10-13 22:40:07.672: E/mono-rt(2709): used by your application.
+10-13 22:40:07.672: E/mono-rt(2709): =================================================================
+
+
+Code for this test case will be attached momentarily. It doesn't always produce a log message, sometimes it produces a signal 4/11 with no error message.  Sometimes it produces an assert with no backtrace (as in the above).  Other times it has produced a stack trace which shows some C# methods.
+
+F/        (27712): * Assertion at /Users/builder/data/lanes/monodroid-mlion-monodroid-4.8.2-branch/a25a31d0/source/mono/mono/metadata/sgen-os-posix.c:90, condition `!info-&gt;stack_start' not met
+E/mono-rt (27712): Stacktrace:
+E/mono-rt (27712): 
+E/mono-rt (27712):   at &lt;unknown&gt; &lt;0xffffffff&gt;
+E/mono-rt (27712):   at (wrapper managed-to-native) System.Environment.get_TickCount () &lt;0xffffffff&gt;
+E/mono-rt (27712):   at System.Random..ctor () &lt;0x0000f&gt;
+E/mono-rt (27712):   at AndroidApplication3.LongCallFromJavaThread.Recurser (int) &lt;0x0001f&gt;
+E/mono-rt (27712):   at AndroidApplication3.LongCallFromJavaThread.Recurser (int) &lt;0x00053&gt;
+... Repeats 1000's of times (test code is doing a recursive call ...
+E/mono-rt (27712):   at AndroidApplication3.LongCallFromJavaThread.Recurser (int) &lt;0x00053&gt;
+E/mono-rt (27712):   at AndroidApplication3.LongCallFromJavaThread/&lt;&gt;c__DisplayClass1.&lt;ReekHavok&gt;b__0 () &lt;0x00013&gt;
+E/mono-rt (27712):   at Java.Lang.Thread/RunnableImplementor.Run () &lt;0x0003f&gt;
+E/mono-rt (27712):   at Java.Lang.IRunnableInvoker.n_Run (intptr,intptr) &lt;0x0003b&gt;
+E/mono-rt (27712):   at (wrapper dynamic-method) object.c07f6396-4971-40a4-a0a0-d27678123b34 (intptr,intptr) &lt;0x0003b&gt;
+E/mono-rt (27712):   at (wrapper native-to-managed) object.c07f6396-4971-40a4-a0a0-d27678123b34 (intptr,intptr) &lt;0xffffffff&gt;
+E/mono-rt (27712): 
+E/mono-rt (27712): =================================================================
+E/mono-rt (27712): Got a SIGSEGV while executing native code. This usually indicates
+E/mono-rt (27712): a fatal error in the mono runtime or one of the native libraries 
+E/mono-rt (27712): used by your application.
+E/mono-rt (27712): =================================================================
+E/mono-rt (27712):</pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-14 01:47:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class="bz_obsolete"><a href="https://bugzilla.xamarin.com/attachment.cgi?id=5141&amp;file=LongCallFromJavaThread.cs" name="attach_5141" title="test case: deep recursive on java main thread while GCing from a background thread">attachment 5141</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5141&amp;file=LongCallFromJavaThread.cs" title="test case: deep recursive on java main thread while GCing from a background thread">[details]</a></span>
+test case: deep recursive on java main thread while GCing from a background thread</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-14 02:47:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class="bz_obsolete"><a href="https://bugzilla.xamarin.com/attachment.cgi?id=5142&amp;file=LessRandomizedLongCall.cs" name="attach_5142" title="test case: kick off java gc and mono gc while executing a 1000 frame call on main thread via handler.post">attachment 5142</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5142&amp;file=LessRandomizedLongCall.cs" title="test case: kick off java gc and mono gc while executing a 1000 frame call on main thread via handler.post">[details]</a></span>
+test case: kick off java gc and mono gc while executing a 1000 frame call on main thread via handler.post</pre>
+    </div>
+
+    <div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-14 02:49:53 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I attached another test case that uses semaphores to attempt to trigger both a Java GC and a Mono GC simultaneously while executing some simple C# code on the main Java thread.  On my quad core device (HTC One - Android 4.1.2) this crashes  extremely quickly (70% of the time within 1 second) and always with a signal 4.</pre>
+    </div>
+
+    <div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-14 16:29:57 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The first and second test cases crash quickly on a MotoX as well.  The second test case crashes with the same assertion at least some of the time.</pre>
+    </div>
+
+    <div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-18 17:22:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><span class="quote">&gt; Is there any chance that Qualcomm provides an alternative optimized garbage
+&gt; collector which violates the assumptions drawn from the open source dalvik
+&gt; code?  </span>
+
+Anything is possible, though I've tried to stick to straight JNI. I don't believe that we're making an Dalvik-oriented assumptions.
+
+<span class="quote">&gt; I am wondering why there has not been more activity on this bug.</span>
+
+Our biggest hurdle has been simply trying to reproduce it. We have been so far unable to reproduce on the test hardware we have at hand.
+
+Unfortunately I seem to have missed <a href="bug.html">Comment #18</a> and <a href="bug.html">Comment #20</a> (the new testcases). I'll try those shortly.</pre>
+    </div>
+
+    <div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-18 22:19:58 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><span class="bz_obsolete"><a href="https://bugzilla.xamarin.com/attachment.cgi?id=5142&amp;file=LessRandomizedLongCall.cs" name="attach_5142" title="test case: kick off java gc and mono gc while executing a 1000 frame call on main thread via handler.post">Attachment #5142</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5142&amp;file=LessRandomizedLongCall.cs" title="test case: kick off java gc and mono gc while executing a 1000 frame call on main thread via handler.post">[details]</a></span> doesn't crash on my Nexus 10/Android v4.3, even after running for hours.
+
+<span class="bz_obsolete"><a href="https://bugzilla.xamarin.com/attachment.cgi?id=5141&amp;file=LongCallFromJavaThread.cs" name="attach_5141" title="test case: deep recursive on java main thread while GCing from a background thread">Attachment #5141</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5141&amp;file=LongCallFromJavaThread.cs" title="test case: deep recursive on java main thread while GCing from a background thread">[details]</a></span> crashes (for me) with a stack overflow:
+
+<span class="quote">&gt; F/        (29227): * Assertion at /Users/jon/Development/xamarin/mono/mono/metadata/sgen-os-posix.c:89, condition `!info-&gt;stack_start' not met
+&gt; E/mono-rt (29227): Stacktrace:
+&gt; E/mono-rt (29227): 
+&gt; E/mono-rt (29227):   at &lt;unknown&gt; &lt;0xffffffff&gt;
+&gt; E/mono-rt (29227):   at (wrapper managed-to-native) System.Environment.get_TickCount () &lt;IL 0x00020, 0xffffffff&gt;
+&gt; E/mono-rt (29227):   at System.Random..ctor () &lt;IL 0x00001, 0x0000f&gt;
+&gt; E/mono-rt (29227):   at Scratch.Bxc14129LongCall.MainActivity.Recurser (int) [0x00001] in /Users/jon/Development/Projects/Scratch.Bxc14129/Scratch.Bxc14129-LongCall/MainActivity.cs:39
+&gt; E/mono-rt (29227):   at Scratch.Bxc14129LongCall.MainActivity.Recurser (int) [0x00018] in /Users/jon/Development/Projects/Scratch.Bxc14129/Scratch.Bxc14129-LongCall/MainActivity.cs:42</span>
+# ...repeat a lot...
+
+This is probably due to line 51:
+
+	Recurser(10000);
+
+I highly doubt that you can get 10000 nested method calls, so this isn't completely unexpected, and IIRC on pre-Android v4.1/v4.2 targets (the ones that don't copy stdout/stderr to logcat), this would cause _eactly_ what you described: app death with no notice of any kind.
+
+Consequently, as-written <span class="bz_obsolete"><a href="https://bugzilla.xamarin.com/attachment.cgi?id=5141&amp;file=LongCallFromJavaThread.cs" name="attach_5141" title="test case: deep recursive on java main thread while GCing from a background thread">Attachment #5141</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5141&amp;file=LongCallFromJavaThread.cs" title="test case: deep recursive on java main thread while GCing from a background thread">[details]</a></span> is invalid.
+
+If I change `Recurser(10000)` to `Recurser(1000)`, the app doesn't crash instantly. (It's run for several 10s of seconds at the time of this writing; time to let it run longer...)</pre>
+    </div>
+
+    <div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-18 22:50:18 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">OK, thank you for taking the time to look at this.  I thought getting an assert was promising as it might lead to a discovery with regard to cause.  This seems to just be a stack blow out.   I also ran a variant of this case with no recursion, where they run in a loop, and I still get the crashes in that case.
+
+Do you have access to an HTC One device?  I have 3 of these devices and they all exhibit these random signal 4/11 errors.  It's a pretty notable phone so I don't think its unreasonable to expect that it should be fully supported by Xamarin.
+
+I ran some of these tests on my co-workers new MotoX and that exhibited crashes as well.  I will make sure we re-run these without the large recursion depth.</pre>
+    </div>
+
+    <div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-18 23:17:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=5177&amp;file=LessRandomizedLongCall.cs" name="attach_5177" title="test case: simultaneous gc kick off while running a long (non-recursive) call via Handler.Post">attachment 5177</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5177&amp;file=LessRandomizedLongCall.cs" title="test case: simultaneous gc kick off while running a long (non-recursive) call via Handler.Post">[details]</a></span>
+test case: simultaneous gc kick off while running a long (non-recursive) call via Handler.Post
+
+This is a replacement for test case 5142 that 
+- prints a little bit of log information so that I can better illustrate the crashing behavior with excerpts from logcat
+- does not use heavy recursion at all to eliminate any auxiliary problem that might come from stack size handling.
+
+It still crashes instantly on HTC One, a quad-core Qualcomm flagship Android device.</pre>
+    </div>
+
+    <div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-18 23:22:14 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Here is the excerpts from the crash log indicating the failure.  This is several runs.
+
+10-18 20:11:01.670: W/MonoDroid-Debugger(7137): Not starting the debugger as the timeout value has been reached; current-time: 1382152261  timeout: 1382004576
+10-18 20:11:01.710: W/monodroid-gc(7137): GREF GC Threshold: 46800
+10-18 20:11:02.320: I/mono-stdout(7137): pass 1
+10-18 20:11:02.340: I/mono-stdout(7137): pass 2
+10-18 20:11:02.360: D/Zygote(189): Process 7137 terminated by signal (4)
+10-18 20:11:04.673: W/MonoDroid-Debugger(7176): Not starting the debugger as the timeout value has been reached; current-time: 1382152264  timeout: 1382004576
+10-18 20:11:04.703: W/monodroid-gc(7176): GREF GC Threshold: 46800
+10-18 20:11:05.274: I/mono-stdout(7176): pass 1
+10-18 20:11:05.314: I/mono-stdout(7176): pass 2
+10-18 20:11:05.374: I/mono-stdout(7176): pass 3
+10-18 20:11:05.414: I/mono-stdout(7176): pass 4
+10-18 20:11:05.454: I/mono-stdout(7176): pass 5
+10-18 20:11:05.504: I/mono-stdout(7176): pass 6
+10-18 20:11:05.504: I/mono-stdout(7176): pass 7
+10-18 20:11:05.514: I/mono-stdout(7176): pass 8
+10-18 20:11:05.514: I/mono-stdout(7176): pass 9
+10-18 20:11:05.684: I/mono-stdout(7176): pass 10
+10-18 20:11:05.684: I/mono-stdout(7176): pass 11
+10-18 20:11:05.694: I/mono-stdout(7176): pass 12
+10-18 20:11:05.754: D/Zygote(189): Process 7176 terminated by signal (4)
+10-18 20:11:06.805: W/MonoDroid-Debugger(7196): Not starting the debugger as the timeout value has been reached; current-time: 1382152266  timeout: 1382004576
+10-18 20:11:06.835: W/monodroid-gc(7196): GREF GC Threshold: 46800
+10-18 20:11:07.386: I/mono-stdout(7196): pass 1
+10-18 20:11:07.416: I/mono-stdout(7196): pass 2
+10-18 20:11:07.456: I/mono-stdout(7196): pass 3
+10-18 20:11:07.466: D/Zygote(189): Process 7196 terminated by signal (4)
+10-18 20:11:08.877: W/MonoDroid-Debugger(7218): Not starting the debugger as the timeout value has been reached; current-time: 1382152268  timeout: 1382004576
+10-18 20:11:08.907: W/monodroid-gc(7218): GREF GC Threshold: 46800
+10-18 20:11:09.478: I/mono-stdout(7218): pass 1
+10-18 20:11:09.508: I/mono-stdout(7218): pass 2
+10-18 20:11:09.548: I/mono-stdout(7218): pass 3
+10-18 20:11:09.558: I/mono-stdout(7218): pass 4
+10-18 20:11:09.648: I/mono-stdout(7218): pass 5
+10-18 20:11:09.648: I/mono-stdout(7218): pass 6
+10-18 20:11:09.738: I/mono-stdout(7218): pass 7
+10-18 20:11:09.748: I/mono-stdout(7218): pass 8
+10-18 20:11:09.748: I/mono-stdout(7218): pass 9
+10-18 20:11:09.798: I/mono-stdout(7218): pass 10
+10-18 20:11:09.928: I/mono-stdout(7218): pass 11
+10-18 20:11:09.979: I/mono-stdout(7218): pass 12
+10-18 20:11:10.019: I/mono-stdout(7218): pass 13
+10-18 20:11:10.079: I/mono-stdout(7218): pass 14
+10-18 20:11:10.089: D/Zygote(189): Process 7218 terminated by signal (4)
+10-18 20:11:10.930: W/MonoDroid-Debugger(7238): Not starting the debugger as the timeout value has been reached; current-time: 1382152270  timeout: 1382004576
+10-18 20:11:10.960: W/monodroid-gc(7238): GREF GC Threshold: 46800
+10-18 20:11:11.560: I/mono-stdout(7238): pass 1
+10-18 20:11:11.590: I/mono-stdout(7238): pass 2
+10-18 20:11:11.630: I/mono-stdout(7238): pass 3
+10-18 20:11:11.680: I/mono-stdout(7238): pass 4
+10-18 20:11:11.720: I/mono-stdout(7238): pass 5
+10-18 20:11:11.770: I/mono-stdout(7238): pass 6
+10-18 20:11:11.820: I/mono-stdout(7238): pass 7
+10-18 20:11:11.861: I/mono-stdout(7238): pass 8
+10-18 20:11:11.861: I/mono-stdout(7238): pass 9
+10-18 20:11:11.871: I/mono-stdout(7238): pass 10
+10-18 20:11:11.921: I/mono-stdout(7238): pass 11
+10-18 20:11:11.921: I/mono-stdout(7238): pass 12
+10-18 20:11:11.921: I/mono-stdout(7238): pass 13
+10-18 20:11:11.931: I/mono-stdout(7238): pass 14
+10-18 20:11:12.091: I/mono-stdout(7238): pass 15
+10-18 20:11:12.091: I/mono-stdout(7238): pass 16
+10-18 20:11:12.191: I/mono-stdout(7238): pass 17
+10-18 20:11:12.321: I/mono-stdout(7238): pass 18
+10-18 20:11:12.321: I/mono-stdout(7238): pass 19
+10-18 20:11:12.431: I/mono-stdout(7238): pass 20
+10-18 20:11:12.441: I/mono-stdout(7238): pass 21
+10-18 20:11:12.441: I/mono-stdout(7238): pass 22
+10-18 20:11:12.611: I/mono-stdout(7238): pass 23
+10-18 20:11:12.691: I/mono-stdout(7238): pass 24
+10-18 20:11:12.701: D/Zygote(189): Process 7238 terminated by signal (4)
+10-18 20:11:13.612: W/MonoDroid-Debugger(7263): Not starting the debugger as the timeout value has been reached; current-time: 1382152273  timeout: 1382004576
+10-18 20:11:13.642: W/monodroid-gc(7263): GREF GC Threshold: 46800
+10-18 20:11:14.233: I/mono-stdout(7263): pass 1
+10-18 20:11:14.263: I/mono-stdout(7263): pass 2
+10-18 20:11:14.323: I/mono-stdout(7263): pass 3
+10-18 20:11:14.373: I/mono-stdout(7263): pass 4
+10-18 20:11:14.423: I/mono-stdout(7263): pass 5
+10-18 20:11:14.473: I/mono-stdout(7263): pass 6
+10-18 20:11:14.513: I/mono-stdout(7263): pass 7
+10-18 20:11:14.563: I/mono-stdout(7263): pass 8
+10-18 20:11:14.613: I/mono-stdout(7263): pass 9
+10-18 20:11:14.674: I/mono-stdout(7263): pass 10
+10-18 20:11:14.724: I/mono-stdout(7263): pass 11
+10-18 20:11:14.734: D/Zygote(189): Process 7263 terminated by signal (4)
+10-18 20:11:16.095: W/MonoDroid-Debugger(7286): Not starting the debugger as the timeout value has been reached; current-time: 1382152276  timeout: 1382004576
+10-18 20:11:16.115: W/monodroid-gc(7286): GREF GC Threshold: 46800
+10-18 20:11:16.726: I/mono-stdout(7286): pass 1
+10-18 20:11:16.766: I/mono-stdout(7286): pass 2
+10-18 20:11:16.806: I/mono-stdout(7286): pass 3
+10-18 20:11:16.856: I/mono-stdout(7286): pass 4
+10-18 20:11:16.896: I/mono-stdout(7286): pass 5
+10-18 20:11:16.936: I/mono-stdout(7286): pass 6
+10-18 20:11:16.986: I/mono-stdout(7286): pass 7
+10-18 20:11:16.986: I/mono-stdout(7286): pass 8
+10-18 20:11:17.086: I/mono-stdout(7286): pass 9
+10-18 20:11:17.086: I/mono-stdout(7286): pass 10
+10-18 20:11:17.166: I/mono-stdout(7286): pass 11
+10-18 20:11:17.216: I/mono-stdout(7286): pass 12
+10-18 20:11:17.216: I/mono-stdout(7286): pass 13
+10-18 20:11:17.266: D/Zygote(189): Process 7286 terminated by signal (4)
+10-18 20:11:18.648: W/MonoDroid-Debugger(7305): Not starting the debugger as the timeout value has been reached; current-time: 1382152278  timeout: 1382004576
+10-18 20:11:18.678: W/monodroid-gc(7305): GREF GC Threshold: 46800
+10-18 20:11:19.258: I/mono-stdout(7305): pass 1
+10-18 20:11:19.298: I/mono-stdout(7305): pass 2
+10-18 20:11:19.339: I/mono-stdout(7305): pass 3
+10-18 20:11:19.339: I/mono-stdout(7305): pass 4
+10-18 20:11:19.339: I/mono-stdout(7305): pass 5
+10-18 20:11:19.469: I/mono-stdout(7305): pass 6
+10-18 20:11:19.519: I/mono-stdout(7305): pass 7
+10-18 20:11:19.559: I/mono-stdout(7305): pass 8
+10-18 20:11:19.629: I/mono-stdout(7305): pass 9
+10-18 20:11:19.679: I/mono-stdout(7305): pass 10
+10-18 20:11:19.679: I/mono-stdout(7305): pass 11
+10-18 20:11:19.799: I/mono-stdout(7305): pass 12
+10-18 20:11:19.849: I/mono-stdout(7305): pass 13
+10-18 20:11:19.919: I/mono-stdout(7305): pass 14
+10-18 20:11:19.979: I/mono-stdout(7305): pass 15
+10-18 20:11:19.979: I/mono-stdout(7305): pass 16
+10-18 20:11:20.089: I/mono-stdout(7305): pass 17
+10-18 20:11:20.139: I/mono-stdout(7305): pass 18
+10-18 20:11:20.199: I/mono-stdout(7305): pass 19
+10-18 20:11:20.199: I/mono-stdout(7305): pass 20
+10-18 20:11:20.310: I/mono-stdout(7305): pass 21
+10-18 20:11:20.320: D/Zygote(189): Process 7305 terminated by signal (4)
+10-18 20:11:21.371: W/MonoDroid-Debugger(7331): Not starting the debugger as the timeout value has been reached; current-time: 1382152281  timeout: 1382004576
+10-18 20:11:21.391: W/monodroid-gc(7331): GREF GC Threshold: 46800
+10-18 20:11:21.971: I/mono-stdout(7331): pass 1
+10-18 20:11:22.001: I/mono-stdout(7331): pass 2
+10-18 20:11:22.061: I/mono-stdout(7331): pass 3
+10-18 20:11:22.101: I/mono-stdout(7331): pass 4
+10-18 20:11:22.111: D/Zygote(189): Process 7331 terminated by signal (4)
+10-18 20:11:23.993: W/MonoDroid-Debugger(7371): Not starting the debugger as the timeout value has been reached; current-time: 1382152283  timeout: 1382004576
+10-18 20:11:24.014: W/monodroid-gc(7371): GREF GC Threshold: 46800
+10-18 20:11:24.594: I/mono-stdout(7371): pass 1
+10-18 20:11:24.624: I/mono-stdout(7371): pass 2
+10-18 20:11:24.654: I/mono-stdout(7371): pass 3
+10-18 20:11:24.694: I/mono-stdout(7371): pass 4
+10-18 20:11:24.744: I/mono-stdout(7371): pass 5
+10-18 20:11:24.794: I/mono-stdout(7371): pass 6
+10-18 20:11:24.844: I/mono-stdout(7371): pass 7
+10-18 20:11:24.904: I/mono-stdout(7371): pass 8
+10-18 20:11:24.904: I/mono-stdout(7371): pass 9
+10-18 20:11:24.914: I/mono-stdout(7371): pass 10
+10-18 20:11:24.914: I/mono-stdout(7371): pass 11
+10-18 20:11:25.105: I/mono-stdout(7371): pass 12
+10-18 20:11:25.145: I/mono-stdout(7371): pass 13
+10-18 20:11:25.195: I/mono-stdout(7371): pass 14
+10-18 20:11:25.235: I/mono-stdout(7371): pass 15
+10-18 20:11:25.285: I/mono-stdout(7371): pass 16
+10-18 20:11:25.325: I/mono-stdout(7371): pass 17
+10-18 20:11:25.385: I/mono-stdout(7371): pass 18
+10-18 20:11:25.435: I/mono-stdout(7371): pass 19
+10-18 20:11:25.495: I/mono-stdout(7371): pass 20
+10-18 20:11:25.555: I/mono-stdout(7371): pass 21
+10-18 20:11:25.595: I/mono-stdout(7371): pass 22
+10-18 20:11:25.605: I/mono-stdout(7371): pass 23
+10-18 20:11:25.715: I/mono-stdout(7371): pass 24
+10-18 20:11:25.725: I/mono-stdout(7371): pass 25
+10-18 20:11:25.835: I/mono-stdout(7371): pass 26
+10-18 20:11:25.896: I/mono-stdout(7371): pass 27
+10-18 20:11:25.916: D/Zygote(189): Process 7371 terminated by signal (4)
+10-18 20:11:28.018: W/MonoDroid-Debugger(7416): Not starting the debugger as the timeout value has been reached; current-time: 1382152288  timeout: 1382004576
+10-18 20:11:28.038: W/monodroid-gc(7416): GREF GC Threshold: 46800
+10-18 20:11:28.598: I/mono-stdout(7416): pass 1
+10-18 20:11:28.628: I/mono-stdout(7416): pass 2
+10-18 20:11:28.668: I/mono-stdout(7416): pass 3
+10-18 20:11:28.719: I/mono-stdout(7416): pass 4
+10-18 20:11:28.759: I/mono-stdout(7416): pass 5
+10-18 20:11:28.809: I/mono-stdout(7416): pass 6
+10-18 20:11:28.849: I/mono-stdout(7416): pass 7
+10-18 20:11:28.899: I/mono-stdout(7416): pass 8
+10-18 20:11:28.949: I/mono-stdout(7416): pass 9
+10-18 20:11:28.999: I/mono-stdout(7416): pass 10
+10-18 20:11:29.059: I/mono-stdout(7416): pass 11
+10-18 20:11:29.099: I/mono-stdout(7416): pass 12
+10-18 20:11:29.159: I/mono-stdout(7416): pass 13
+10-18 20:11:29.219: I/mono-stdout(7416): pass 14
+10-18 20:11:29.259: I/mono-stdout(7416): pass 15
+10-18 20:11:29.299: I/mono-stdout(7416): pass 16
+10-18 20:11:29.359: I/mono-stdout(7416): pass 17
+10-18 20:11:29.419: I/mono-stdout(7416): pass 18
+10-18 20:11:29.469: I/mono-stdout(7416): pass 19
+10-18 20:11:29.539: I/mono-stdout(7416): pass 20
+10-18 20:11:29.549: I/mono-stdout(7416): pass 21
+10-18 20:11:29.549: I/mono-stdout(7416): pass 22
+10-18 20:11:29.680: D/Zygote(189): Process 7416 terminated by signal (4)</pre>
+    </div>
+
+    <div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-19 00:56:43 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">On the new MotoX, another recent flagship device (notably only dual core) the original test case (<span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=4682&amp;file=Activity1.cs" name="attach_4682" title="Repro for crashing with signal 4/11">Attachment #4682</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=4682&amp;file=Activity1.cs" title="Repro for crashing with signal 4/11">[details]</a></span>) crashes quickly.  The other ones that I created do not crash quickly ( &lt; 1 min ).</pre>
+    </div>
+
+    <div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-19 01:27:47 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I flashed the open source CyanogenMod firmware on to the HTC One device and found that it still crashes in both current test cases almost immediately (<span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=4682&amp;file=Activity1.cs" name="attach_4682" title="Repro for crashing with signal 4/11">Attachment #4682</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=4682&amp;file=Activity1.cs" title="Repro for crashing with signal 4/11">[details]</a></span> == original, and <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=5177&amp;file=LessRandomizedLongCall.cs" name="attach_5177" title="test case: simultaneous gc kick off while running a long (non-recursive) call via Handler.Post">Attachment #5177</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5177&amp;file=LessRandomizedLongCall.cs" title="test case: simultaneous gc kick off while running a long (non-recursive) call via Handler.Post">[details]</a></span> == updated concurrent GC launch no recursion) .  There are no extra debug logs besides the termination messages.  The crashes manifest primarily as signal 11.  This is a 4.2.2 firmware.
+
+So.. I can confirm the crashes exist on these device/firmware combos
+- HTC One ATT - Stock 4.1.2 image - all crash quickly
+- HTC One ATT - CyanogenMod AOSP based 4.2.2  Image - all crash quickly
+- MotoX Verizon - Stock - only <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=4682&amp;file=Activity1.cs" name="attach_4682" title="Repro for crashing with signal 4/11">attachment 4682</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=4682&amp;file=Activity1.cs" title="Repro for crashing with signal 4/11">[details]</a></span> (first test case) crashes quickly
+
+I mentioned before that I do not see them on some devices.</pre>
+    </div>
+
+    <div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-20 03:41:15 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Today I confirmed that these issues are still present in the latest Xamarin.Android 4.10 alpha build.
+
+I have an even more simplified test case available.
+- No Handler.Post or use of the main thread
+- No explicit call to the Mono GC, only a timed call to the Java GC
+- No use of any framework classes, I make my own class with one member function
+- No use of recursion, there is only a loop during which a 1000 objects are allocated and one (non-virtual even) method is called on each one immediately after it is allocated
+
+I have been using a git repository to develop these tests as I attempted to narrow down the minimum case that fails.  I made it public so that you can just get all my test case code from there; I think the multiple attachments are starting to get confusing on this bug.  
+
+The repository is available here: 
+<a href="https://bitbucket.org/tpurtell/monodroid-action-gc-crash">https://bitbucket.org/tpurtell/monodroid-action-gc-crash</a>
+
+I also created a pure Java version of the quickest test case for reproduction.  I wanted to eliminate the possibility that there was something else wrong in the devices frameworks in another way (I had previously tried the reproduction cases using a build of CyanogenMod for the HTC One).  The pure java equivalent does not seem to crash.  This case is also included in the repository.</pre>
+    </div>
+
+    <div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-20 04:13:29 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">My best guesses at this point are:
+- an interaction between the mono and Dalvik garbage collectors
+- tracking logic errors in the garbage collection for things reachable from actively running code (e.g. stack or register gc roots)
+- missing memory barriers in some place that maybe expose themselves more on newer hardware</pre>
+    </div>
+
+    <div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-20 16:56:16 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have been digging through the mono commits and other reported bugs to try to find more leads on any of these potential causes.  I noticed this one which was of particular interest: <a href="https://github.com/mono/mono/commit/3f587a4ec5c9b201cd36d9210f4f5ccdf9f0dcae#diff-70f8005b72a9a3fd335ebf5afe931040">https://github.com/mono/mono/commit/3f587a4ec5c9b201cd36d9210f4f5ccdf9f0dcae#diff-70f8005b72a9a3fd335ebf5afe931040</a>
+
+Essentially the x86/amd64 context restoration codes was doing some bad things with respect to the stack pointer leading the signal handler to corrupt the stack.  Mark Schani did an excellent write up of this problem here: <a href="http://schani.wordpress.com/2013/10/05/stacks-and-signals/">http://schani.wordpress.com/2013/10/05/stacks-and-signals/</a>
+
+He noted that the same error was also in the amd64 port, however no one had explicitly reported it probably because of the difficulty of reproduction.  I noticed that there was not a corresponding change to the ARM port of mono.  I just took a look through that code and noticed it uses a full register set LDM instruction to restore the context.  This operation is not atomic and can be interrupted (and restarted either in full or partially) according to the ARM architecture design.
+
+Reference (I haven't had a chance to read through the ARM spec in enough detail to confirm this):
+<a href="http://stackoverflow.com/questions/9857760/can-an-arm-interrupt-occur-in-mid-instruction">http://stackoverflow.com/questions/9857760/can-an-arm-interrupt-occur-in-mid-instruction</a>
+
+If this is in fact the case, perhaps a power management function of the chip or other interrupt causes a core to interrupt mid-LDM, the chip cancels the operation planning to restart it.  Because the ARM cache line is equal to  size of all registers (<a href="http://www.7-cpu.com/cpu/Krait.html">http://www.7-cpu.com/cpu/Krait.html</a>, cache line size is 64b, while  reg * 4 b/reg = 64 bytes) there would often be AT LEAST two completely separate memory operations due to stack alignment.  There could be significantly more depending on the exact implementation details of the chip.   Meanwhile, a suspend signal is dispatched by the mono garbage collector, the garbage collector sees a indeterminate state and walks the stack or registers incorrectly.</pre>
+    </div>
+
+    <div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-21 05:25:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I made another test case (in the repo) which does not do a dalvik GC, instead it throws 100 exceptions.  This crashes quickly as well.  This is similar to the gc-altstack test case which appears to be disabled in wrench.  It would lend some more credence to the theory about their being an issue in the architecture specific context restore handler.</pre>
+    </div>
+
+    <div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-21 13:58:59 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">One of the things that I have been seeing a lot which I thought was ultimately related to this problem is frequent crashing of apps on the newer test devices while running under the soft debugger.
+
+The soft debugger uses a function called "create_function_wrapper" which appears to share much of the code with the ARM architecture context restorer.
+
+<a href="https://github.com/mono/mono/blob/master/mono/mini/mini-arm.c#L760">https://github.com/mono/mono/blob/master/mono/mini/mini-arm.c#L760</a>
+
+<a href="https://github.com/mono/mono/blob/master/mono/mini/exceptions-arm.c#L74">https://github.com/mono/mono/blob/master/mono/mini/exceptions-arm.c#L74</a></pre>
+    </div>
+
+    <div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-21 14:59:06 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have now confirmed that some of the test cases crash very quickly (particular the equivalent to the gc-altstack test case) on the 2013 edition of the Google Nexus 7.  It also has a Qualcomm Krait architecture SoC.  A lot of our development devices are Krait architecture and all of them have been exhibiting the crashes frequently in our apps and while making use of the soft debugger.</pre>
+    </div>
+
+    <div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-21 17:29:32 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I've reproduced the crashes of CrossThreadPostGC.cs, SimplestLongCall.cs and LessRandomizedLongCall.cs on the HTC One.  GCAltStackEquivalent.cs does not crash, but locks up.
+
+I'll fix the ARM context restore issue and see whether that makes a difference.</pre>
+    </div>
+
+    <div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-21 20:18:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I am glad to hear you have a solid reproduction case now.  If the STM all-registers is not the issue, please let me know as soon as you can so that I can assist in looking for other possibilities.</pre>
+    </div>
+
+    <div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-21 22:27:04 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I confirmed that the issues are also reproducible on a ASUS PadFone Infinity.  This is another Krait architecture CPU.</pre>
+    </div>
+
+    <div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-22 16:05:47 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Have you been able to determine if adjusting the context restore code fixes the issue?</pre>
+    </div>
+
+    <div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Probst</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-22 17:58:50 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Fixing the context restore does not fix the crashes.
+
+I did notice that while the latest Xamarin Android release makes GCAltStackEquivalent.cs lock up, the latest master makes it crash.  I'll bisect to see where it went from locking up to crashing - that might give us a clue as to what's going on.</pre>
+    </div>
+
+    <div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-22 19:54:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">:( Doh!
+
+When I run these test under the debugger and catch the signal of doom, the CPU state usually looks pretty weird.  In particular the PC is often &lt; 0x8000.  So it seems like there is some MonoContext corruption/mis-save/mis-restore or there is another redzone issue somewhere else that we just aren't seeing.
+
+I suppose we could systematically probe for redzone issues by using ptrace to step the process and purposefully corrupting everything above the redzone pointer while tracking the previous full register state.  This could let us see what code is actually running before the process explodes.  Actually, perhaps this is a good idea even without automatic redzone corruption.  If the issue can still be triggered while ptracing, then knowing the sequence of previous PCs and register states could shed a lot of light on the issue.</pre>
+    </div>
+
+    <div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-22 23:22:59 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">It is possible that making a build with some compiler provided memory error detection might tease out issues too.  For example, clang and gcc appear to support -fsanitize-address, which writes some data in with stack allocated objects.  However, it seems these might have some limitations with regards to mono because of the use of the restore context (which is like swap context).  <a href="https://code.google.com/p/address-sanitizer/wiki/AddressSanitizer">https://code.google.com/p/address-sanitizer/wiki/AddressSanitizer</a></pre>
+    </div>
+
+    <div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-24 02:12:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=5227&amp;file=Linux%20Kernel%20ARM%20Snapdragon%20Always%20Clear%20ITSTATE" name="attach_5227" title="Linux Kernel patch that illustrates the original source of this bug">attachment 5227</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5227&amp;file=Linux%20Kernel%20ARM%20Snapdragon%20Always%20Clear%20ITSTATE" title="Linux Kernel patch that illustrates the original source of this bug">[details]</a></span>
+Linux Kernel patch that illustrates the original source of this bug</pre>
+    </div>
+
+    <div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-24 12:24:35 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">It looks like the Linux kernel patch is to workaround a Krait processor bug.
+
+Fun!</pre>
+    </div>
+
+    <div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-24 14:39:24 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=5230&amp;file=ITState%20ARM%20Architecture.pdf" name="attach_5230" title="ARM Architecture Clipping highlighting that the kernel is relying on unspecified behavior">attachment 5230</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5230&amp;file=ITState%20ARM%20Architecture.pdf" title="ARM Architecture Clipping highlighting that the kernel is relying on unspecified behavior">[details]</a></span>
+ARM Architecture Clipping highlighting that the kernel is relying on unspecified behavior</pre>
+    </div>
+
+    <div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rodrigo Kumpera</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-11-13 18:36:03 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Fix is on 4.10.1.</pre>
+    </div>
+
+    <div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-11-13 19:33:01 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Linux kernel patch has made its way to mainline kernel <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=6ecf830e5029598732e04067e325d946097519cb">https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=6ecf830e5029598732e04067e325d946097519cb</a></pre>
+    </div>
+
+    <div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sadik Ali</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-17 07:01:10 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have checked this issue and its working fine, below are the steps and environment:
+
+1. Created a new sample android project.
+2. Added both attached test case's code in created sample project.
+3. Debug sample app on HTC 4.0 for 5-6 minute, and not getting any exception.
+
+Checked With:
+Windows 7
+VS 2013,12
+XS: 4.2.3 (Build 3)
+XA. 4.10.01073</pre>
+    </div>
+
+    <div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michal Dobrodenka</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-20 09:35:10 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'm getting this bug probably on Scorpion CPUs with XA 4.10.2</pre>
+    </div>
+
+    <div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Peter Collins</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-20 12:47:38 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Michal, I was unable to reproduce this issue on an HTC Droid Incredible (v2.3.4, Scorpion CPU). Could you possibley link to, or paste the test case that is failing for you on devices with a Scorpion CPU?</pre>
+    </div>
+
+    <div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michal Dobrodenka</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-21 05:25:00 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Can not reproduce, but after update to 4.10 branch I'm getting crash logs like these to flurry:
+
+Exception of type 'Java.Lang.RuntimeException' was thrown.
+at Android.Runtime.JNIEnv.CallVoidMethod (intptr,intptr) ...
+
+And many clients using old phones are reporting crashes, giving 1 star rating:(
+
+Problematic phones:
+
+Galaxy S2 (SGH-T989) - using scorpion core
+HTC Desire HD(ace) - scorpion
+HTC Desire - scorpion
+
+(We had one strange crash report from customer from HTC Legend phone some time ago, but maybe not connected to this bug.)</pre>
+    </div>
+
+    <div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-21 10:27:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Michal:
+<span class="quote">&gt; Exception of type 'Java.Lang.RuntimeException' was thrown.</span>
+
+Can you please provide the full stack trace, including the Java-side stack trace?
+
+Java.Lang.RuntimeException means that the Java code threw a java.lang.RuntimeException, and we wrapped it in Java.Lang.RuntimeException. Consequently, the Java-side stack trace is important, because Java threw the exception.
+
+This isn't necessarily a Xamarin.Android bug; it could be a usage or Android "bug".</pre>
+    </div>
+
+    <div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michal Dobrodenka</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-22 04:32:10 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Jonathan
+
+You are right, It can be bug in usage or Android, if I'll have test case, I'll share it here.
+
+Unfortunately I don't have full stack trace, flurry cuts our logs:(</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

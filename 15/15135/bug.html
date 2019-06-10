@@ -1,0 +1,2966 @@
+<html lang="en"><head>
+    <title>15135 – HttpWebRequest leaks sockets</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Class_Libraries
+                 bz_component_System
+                 bz_bug_15135 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;15135</span>
+
+        <span id="subtitle" class="subheader">HttpWebRequest leaks sockets</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2014-11-04 18:54:11 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-04 18:54:11">
+  <input type="hidden" name="id" value="15135">
+  <input type="hidden" name="token" value="1559198581-quj3vk5h7T_hBh6R0y_fgCwTH1suzUGXKD02H9CQn-Q">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;15135</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">HttpWebRequest leaks sockets</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>HttpWebRequest leaks sockets
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Class Libraries
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Mono
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">System
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>unspecified
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Highest
+       critical
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>Untriaged
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label>Duplicates (2)</label>:
+    </th>
+    <td class="field_value">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Cant download more than 240 files before NameResolutionFailure" href="show_bug.cgi?id=11634">11634</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="show_bug.cgi?id=13750">13750</a> 
+      </span>
+      ()
+    </td>
+  </tr>
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2013-10-02 16:04 UTC by <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-04 18:54 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>16
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="bassam">bassam</option>
+                <option value="ben">ben</option>
+                <option value="dylanvdm">dylanvdm</option>
+                <option value="fox_224">fox_224</option>
+                <option value="jon.goldberger">jon.goldberger</option>
+                <option value="kobynet">kobynet</option>
+                <option value="mattlouderback.ml">mattlouderback.ml</option>
+                <option value="miguel">miguel</option>
+                <option value="mono-bugs+mono">mono-bugs+mono</option>
+                <option value="nitescua">nitescua</option>
+                <option value="oystein">oystein</option>
+                <option value="SLippert">SLippert</option>
+                <option value="sreesree82">sreesree82</option>
+                <option value="tf">tf</option>
+                <option value="tj">tj</option>
+                <option value="xamarinbugzilla">xamarinbugzilla</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+<br>
+<table id="attachment_table">
+  <tbody><tr id="a0">
+    <th colspan="2" class="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_image_png">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5859&amp;file=mono%20http%20stack.png" title="View the content of the attachment">
+          <b>iOS 6.1 Simulator result with monotouch-7.0.4.213.pkg</b></a>
+
+          <span class="bz_attach_extra_info">
+              (119.02 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_5859" title="Go to the comment associated with the attachment">2014-01-16 16:50 UTC</a>,
+
+            <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5859&amp;file=mono%20http%20stack.png">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_image_png">
+        <td>
+            <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5860&amp;file=afnetwork%20http%20stack.png" title="View the content of the attachment">
+          <b>iOS 6.1 Simulator result with monotouch-7.0.4.213.pkg (Using AFNetworkHandler)</b></a>
+
+          <span class="bz_attach_extra_info">
+              (118.02 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_5860" title="Go to the comment associated with the attachment">2014-01-16 16:51 UTC</a>,
+
+            <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+          </span>
+        </td>
+
+
+        <td>
+          <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5860&amp;file=afnetwork%20http%20stack.png">Details</a>
+        </td>
+      </tr>
+
+  
+</tbody></table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<hr>
+
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+            <a href="https://github.com/mono">GitHub</a> or <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-02 16:04:24 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Note: I may be an idiot, or I'm missing something fundamental, or I just have unrealistic expectations.
+
+Context: <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="show_bug.cgi?id=13750">https://bugzilla.xamarin.com/show_bug.cgi?id=13750</a>
+
+Background (i.e. Why I Care): a Socket uses file descriptors, and Android's Linux (emulator) only allows a limited number of them to be open at once (~982, by my estimation). If an app downloads lots of http(s) URLs and the Socket's aren't closed, the process will run out of file descriptors and start reporting "bizarre" errors, including NameResolutionFailure and Network is unreachable. The problem isn't that the network has suddenly broken; the problem is that the process has run out of file descriptors, and nothing that requires file descriptors will work sanely.
+
+Behold my test code! It uses HttpWebRequest to access www.example.com, checking to see if the underlying Socket has been disposed or not.
+
+I have two questions regarding it:
+
+Q1: Am I using the API correctly? (Note: I may be an idiot.)
+Q2: How should I be cleaning up resources?
+
+Code:
+
+  using System;
+  using System.Linq;
+  using System.Net;
+  using System.Net.Sockets;
+  using System.Reflection;
+
+  class Test {
+    public static void Main ()
+    {
+      var u = new Uri ("<a href="http://www.example.com">http://www.example.com</a>");
+      for (int i = 0; i &lt; 10; ++i) {
+        GetUri (u);
+      }
+    }
+
+    static void GetUri (Uri uri)
+    {
+      var request     = (HttpWebRequest) WebRequest.Create (uri);
+      request.Method  = "GET";
+      var response    = request.GetResponse ();
+      var wc          = GetWebConnection (request);
+      var socket      = GetSocketFromWebConnection (wc);
+      WriteSocketState (socket, "# BEG: ");
+      using (var s = response.GetResponseStream ()) {
+      }
+      response.Dispose ();
+      WriteSocketState (socket, "# END: ");
+    }
+
+    static void WriteSocketState (Socket s, string f, params object[] a)
+    {
+      bool? d = IsSocketDisposed (s);
+      Console.Write (f, a);
+      Console.WriteLine ("socket? {0,-5} Disposed={1,-5} Handle={2}",
+          s != null,
+          d.HasValue ? d.Value.ToString () : "?",
+          s == null ? "" : s.Handle.ToString ("x"));
+    }
+
+    static object GetWebConnection (HttpWebRequest request)
+    {
+      var HttpWebRequest_WebConnection = typeof (HttpWebRequest)
+        .GetField ("WebConnection",
+          BindingFlags.NonPublic | BindingFlags.Instance);
+      if (HttpWebRequest_WebConnection == null)
+        return null;
+      return HttpWebRequest_WebConnection.GetValue (request);
+    }
+
+    static Socket GetSocketFromWebConnection (object webConnection)
+    {
+      if (webConnection == null)
+        return null;
+      var WebConnection_socket = webConnection.GetType ()
+        .GetField ("socket", BindingFlags.NonPublic | BindingFlags.Instance);
+      if (WebConnection_socket == null)
+        return null;
+      return (Socket) WebConnection_socket.GetValue (webConnection);
+    }
+
+    static bool? IsSocketDisposed (Socket s)
+    {
+      var f = typeof (Socket)
+        .GetField ("disposed", BindingFlags.NonPublic | BindingFlags.Instance);
+      if (f == null)
+        return null;
+      return (bool) f.GetValue (s);
+    }
+  }
+
+Sample execution. Note that _sometimes_ the Socket is disposed, and sometimes (usually) it isn't:
+
+<span class="quote">&gt; $ mono app.exe 
+&gt; # BEG: socket? True  Disposed=False Handle=4
+&gt; # END: socket? True  Disposed=False Handle=4
+&gt; # BEG: socket? True  Disposed=False Handle=8
+&gt; # END: socket? True  Disposed=False Handle=8
+&gt; # BEG: socket? True  Disposed=False Handle=9
+&gt; # END: socket? True  Disposed=False Handle=9
+&gt; # BEG: socket? True  Disposed=False Handle=a
+&gt; # END: socket? True  Disposed=False Handle=a
+&gt; # BEG: socket? True  Disposed=False Handle=b
+&gt; # END: socket? True  Disposed=True  Handle=ffffffff
+&gt; # BEG: socket? True  Disposed=False Handle=b
+&gt; # END: socket? True  Disposed=False Handle=b
+&gt; # BEG: socket? True  Disposed=False Handle=c
+&gt; # END: socket? True  Disposed=False Handle=c
+&gt; # BEG: socket? True  Disposed=False Handle=d
+&gt; # END: socket? True  Disposed=False Handle=d
+&gt; # BEG: socket? True  Disposed=False Handle=e
+&gt; # END: socket? True  Disposed=False Handle=e
+&gt; # BEG: socket? True  Disposed=False Handle=f</span></pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-02 17:00:28 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="show_bug.cgi?id=13750">Bug 13750</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-07 17:57:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Just had a quick look at this and I can't see any problems in your code.  Disposing both the response stream and the response should get rid of the socket.
+
+Looks like we're somehow not correctly closing the socket.  I'll have a look at it when I'm back home.</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-10 14:27:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Which version of Mono are you using?
+
+I'm getting this:
+
+# BEG: socket? True  Disposed=False Handle=4
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=4
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=4
+# END: socket? True  Disposed=False Handle=4
+# BEG: socket? True  Disposed=False Handle=4
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=4
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=4
+# END: socket? True  Disposed=False Handle=4
+# BEG: socket? True  Disposed=False Handle=4
+# END: socket? True  Disposed=False Handle=4
+# BEG: socket? True  Disposed=False Handle=4
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=4
+# END: socket? True  Disposed=False Handle=4
+# BEG: socket? True  Disposed=False Handle=4
+# END: socket? True  Disposed=True  Handle=ffffffff
+
+with Mono 3.2.3 on Mavericks.
+
+I also tried the
+                        var response = await newRequest.GetResponseAsync();
+loop from #13750, it runs all 1000 iterations without problem.  Looking at the process with Activity Monitor also confirms that it's not leaking any fd's.</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-10 14:38:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><span class="quote">&gt; Which version of Mono are you using?</span>
+
+<span class="quote">&gt; $ mono --version
+&gt; Mono JIT compiler version 3.2.3 ((no/8d3b4b7 Mon Sep 16 23:46:28 EDT 2013)</span>
+
+This is on OS X Mountain Lion 10.8.5.
+
+I also think that your output does show "leakage"; why isn't the Socket _always_ Disposed=True? (More than half of your requests have Disposed=False.)
+
+Granted, the Handle value is never larger than 4 for you, but that doesn't make me feel particularly confident. When will the Socket be disposed? How can we _ensure_ that the Socket (and accompanying file descriptor) are closed? I'm not seeing it in your output.</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-10 14:41:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">You're right, it doesn't look like it's reliably closed anywhere.  I'll investigate a bit more.</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-10 15:10:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">A quick single-stepping through this in XS shows that there might be a problem ...</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-11-25 11:51:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Cant download more than 240 files before NameResolutionFailure" href="show_bug.cgi?id=11634">Bug 11634</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-16 15:23:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have definitely been seeing these name resolution failures and weird behavior as a result.
+
+I think there are additional problems with the WebRequest in mono as well.  .NET's WebRequest uses connection pools with parameters defined by the ServicePointManager.  It doesn't look like Android does this (from my experience and from the initial log Jonathan posted for Android.  I see the same behavior (a socket per connection) using latest Windows mono.
+
+This is particular problematic for SSL connections because there is a significant set up cost to these connections.  Unfortunately, as a result of this I was forced to port all my WebRequest code to use Microsoft HTTP Client libraries.  Luckily that is now licensed for use in Xamarin.  It isn't drop in compatible and changes the Exception management requirements in a big way so it is not an easy workaround.</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-16 23:14:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I received a report from one of my team members that they observed a too many file handles-name resolution exception even using the new code.  I will have to investigate more to see if there is a code issue on our end, however, this might point to a lower level error as the root cause.  For example, if the Socket class itself occasionally leaked rather than it being directly a result of the WebRequest class.  I had been using the iOS simulator as my test bed for validiting there were no handle leaks with the new code, since it is must easier easy to inspect the process for open handles.  The error report came from an Android device.</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-17 03:13:22 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">OK, so I have a version of my app that can run with the simple .NET framework.  It serves its UI up via a local HTTP Server.  This lets me run the exact same code on Mono as well as on .NET on Windows.  I can't do a proper comparative analysis using this because of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Using System.Net.HttpRequest::EndGetRequestStream" href="show_bug.cgi?id=12875">https://bugzilla.xamarin.com/show_bug.cgi?id=12875</a>
+
+That said.  I run  the iOS version of my app in the simulator (even with Microsoft's HTTP library) and I find that connections are **NOT** reused.  I don't see permanent file handle leaks from these web requests.  A GC seems to make them go away.  If I run using Microsoft's .NET, I get perfect connection reuse.  I see a max of 4 connections per host.
+
+I use Charles proxy with SSL proxying disabled to monitor the number of connections created to service requests made by the application.
+
+Perhaps there is a Mono bug related to the connection pooling that is causing this.  For example, it tries to keep connections alive to pool, but then it never decides to actually use them for a new request, so they **look** like they are leaked until a GC decides to nuke these extra connections.</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-17 20:03:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">TJ,
+
+Notice that Microsoft's System.Net.HttpClient is merely a thin/async-friendly wrapper on top of the actual HttpWebRequest in Mono.   So there should be really no difference there.</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-17 22:00:35 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Here is a project that includes iOS, Android, and Console projects that makes requests to <a href="https://ipv4.google.com">https://ipv4.google.com</a>
+
+When I enabled a proxy, I see HTTP CONNECT requests for each request under Mono, but under real .NET, I see only one request.
+
+This is the easiest way to show that WebRequest is not reusing connections.  Jonathan's original log post should show that the same WebConnection is used every time, instead it shows that each request uses a new socket.</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-17 22:11:48 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Project referenced in <a href="bug.html">comment #12</a> is here:
+
+<a href="https://bitbucket.org/tpurtell/web-request-reuse">https://bitbucket.org/tpurtell/web-request-reuse</a></pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 01:55:27 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Oops!  Thank you for sharing the link Miguel.  
+
+I ran that test using no proxy and altered to use plain HTTP on my Mac in Console mode and in the iOS simulator.  I traced using Wireshark during this process.  I confirmed that each request occurs on a new connection under this much simpler scenario by capturing a trace using Wireshark.
+
+Here is pcap file that shows 29 request from my iOS simulator test app to <a href="http://ipv4.google.com">http://ipv4.google.com</a> with no proxy enabled.
+<a href="https://www.dropbox.com/s/zkkp4uvce30vwt7/trace.pcapng.gz">https://www.dropbox.com/s/zkkp4uvce30vwt7/trace.pcapng.gz</a>
+
+For reference sake, I used the absolute latest bleeding edge Xamarin alpha suite (downloaded last night)
+Xamarin Studio
+Version 4.3.0 (build 52)
+Runtime:
+	Mono 3.2.5 ((no/964e8f0)
+	GTK+ 2.24.20 theme: Raleigh
+	GTK# (2.12.0.0)
+	Package version: 302050000
+
+Apple Developer Tools
+Xcode 5.0.2 (3335.32)
+Build 5A3005
+
+Xamarin.iOS
+Version: 7.0.5.2 (Business Edition)
+Hash: 9c42159
+Branch: 
+Build date: 2013-02-12 20:04:08-0500
+
+Xamarin.Android
+Version: 4.10.2 (Business Edition)
+Android SDK: /Users/tj/Library/Developer/Xamarin/android-sdk-mac_x86
+	Supported Android versions:
+		2.1   (API level 7)
+		2.2   (API level 8)
+		2.3   (API level 10)
+		3.1   (API level 12)
+		4.0   (API level 14)
+		4.0.3 (API level 15)
+		4.1   (API level 16)
+		4.2   (API level 17)
+		4.3   (API level 18)
+Java SDK: /usr
+java version "1.7.0_21"
+Java(TM) SE Runtime Environment (build 1.7.0_21-b12)
+Java HotSpot(TM) 64-Bit Server VM (build 23.21-b01, mixed mode)
+
+Xamarin.Mac
+Xamarin.Mac: 1.6.27
+
+Build Information
+Release ID: 403000052
+Git revision: cd02fcfb350930f468f3d7cbf8e39f940553d378
+Build date: 2013-11-24 02:13:57+0000
+Xamarin addins: 14d41853742c36662973f9bbc0d14e58befdebfb
+
+Operating System
+Mac OS X 10.8.5
+Darwin lucite.private 12.5.0 Darwin Kernel Version 12.5.0
+    Sun Sep 29 13:33:47 PDT 2013
+    root:xnu-2050.48.12~1/RELEASE_X86_64 x86_64</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 03:26:28 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">For testing (much easier than using wireshark or tcpdump):
+
+<a href="http://last-hope.baulig.net/waringers-lab/bugfree-octo-nemesis/www/cgi-bin/get-puppy.pl">http://last-hope.baulig.net/waringers-lab/bugfree-octo-nemesis/www/cgi-bin/get-puppy.pl</a>
+and
+<a href="https://last-hope.baulig.net/waringers-lab/bugfree-octo-nemesis/www/cgi-bin/get-puppy.pl">https://last-hope.baulig.net/waringers-lab/bugfree-octo-nemesis/www/cgi-bin/get-puppy.pl</a>
+
+Prints this:
+
+====
+METHOD: GET
+PATH: 
+REMOTE: 91.67.1.107
+PORT: 57930
+====
+
+You can add paths after the script like this:
+<a href="http://last-hope.baulig.net/waringers-lab/bugfree-octo-nemesis/www/cgi-bin/get-puppy.pl/hello/world">http://last-hope.baulig.net/waringers-lab/bugfree-octo-nemesis/www/cgi-bin/get-puppy.pl/hello/world</a>
+
+which would then print
+
+====
+METHOD: GET
+PATH: /hello/world
+REMOTE: 91.67.1.107
+PORT: 57981
+====
+
+Source is here: <a href="https://github.com/baulig/bugfree-octo-nemesis">https://github.com/baulig/bugfree-octo-nemesis</a></pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 05:40:32 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I ran some tests using my own console app which talks to a CGI script on my webserver and can confirm that we are definitely reusing connections.
+
+The only issue that I see is that the first three requests always happen on a new connection, then we reuse the connection for about 90-150 requests before it it closed.
+
+.NET always runs exactly 100 requests on each connection, every 101st request is then using a new one.
+
+The server is running Amazon EC2 t1.micro - temporarily changing it to m1.medium (highest that I could change the instance into) and back again did not make any difference.
+
+I have restarted the script several times and it's always using a new connection for each of the first three requests - after that, it starts reusing them.</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 05:44:46 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This is the script that I'm running on the server:
+<a href="https://github.com/baulig/bugfree-octo-nemesis/blob/master/www/cgi-bin/get-puppy.pl">https://github.com/baulig/bugfree-octo-nemesis/blob/master/www/cgi-bin/get-puppy.pl</a>
+
+Client test case:
+<a href="https://github.com/baulig/bugfree-octo-nemesis/blob/master/Xamarin.WebTests/GetPuppy.cs">https://github.com/baulig/bugfree-octo-nemesis/blob/master/Xamarin.WebTests/GetPuppy.cs</a>
+<a href="https://github.com/baulig/bugfree-octo-nemesis/blob/master/Xamarin.WebTests/MainClass.cs">https://github.com/baulig/bugfree-octo-nemesis/blob/master/Xamarin.WebTests/MainClass.cs</a>
+
+The perl script prints the remote port number, so that's easier to debug than using wireshark or tcpdump.</pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 10:15:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hey guys,
+
+Gonzalo provided the following insight to me:
+
+(a) Connections that do not receive a "Connection: close" are kept on the WebConnectionGroup as a WeakReference, which is why you see the effect that the GC will sometimes close the connections.
+
+(b) One option to force the connection to shutdown is to use HTTP/1.0, but that would not reuse any HTTP connections, and would not be what we want.</pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 10:58:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Could we/should we provide an extension method in a Mono.Net.dll assembly (or something) that would allow us to deterministically close the underlying Socket?
+
+I think the problem is that users are running out of file descriptors, resulting in "bizarro" errors, and the GC isn't smart enough to know that the process is low on file descriptors and thus should collect some of these HttpWebRequest/Socket instances.
+
+Alternatively, is there some way to bound the number of HttpWebRequests that we keep alive?
+
+Related: it would be _really handy_ if io-layer could log when file descriptors were acquired/released based on MONO_LOG_LEVEL/etc. At present, the only way to tell that a file descriptor is being used is by recompiling libmono*.so, which isn't fun. This would also help with at least one support request we've had recently complaining about running out of file descriptors, and there's no easy way to track that down w/o a full repro+source.</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 12:05:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Martin, that is a cool test idea.  Unfortunately, I can't replicate your test scenario because there are a lot of variables in terms of server configuration.  Can you share a test URL that you believe to work well?  
+
+If I run Jonathan's original test case on my Mac I see this
+# BEG: socket? True  Disposed=False Handle=5
+# END: socket? True  Disposed=False Handle=5
+# BEG: socket? True  Disposed=False Handle=9
+# END: socket? True  Disposed=False Handle=9
+# BEG: socket? True  Disposed=False Handle=a
+# END: socket? True  Disposed=False Handle=a
+# BEG: socket? True  Disposed=False Handle=b
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=b
+# END: socket? True  Disposed=False Handle=b
+# BEG: socket? True  Disposed=False Handle=c
+# END: socket? True  Disposed=False Handle=c
+# BEG: socket? True  Disposed=False Handle=d
+# END: socket? True  Disposed=False Handle=d
+# BEG: socket? True  Disposed=False Handle=e
+# END: socket? True  Disposed=False Handle=e
+# BEG: socket? True  Disposed=False Handle=f
+# END: socket? True  Disposed=False Handle=f
+# BEG: socket? True  Disposed=False Handle=10
+# END: socket? True  Disposed=False Handle=10
+
+When I run that test case on Mono for Windows I see this
+    # BEG: socket? True  Disposed=False Handle=29c
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=2f0
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=2f8
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=300
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=308
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=310
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=318
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=320
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=32c
+# END: socket? True  Disposed=True  Handle=ffffffff
+# BEG: socket? True  Disposed=False Handle=334
+# END: socket? True  Disposed=True  Handle=ffffffff
+
+Neither of these are indicative of connection reuse.  I also see that your log above shows that you see the socket reused!  Why are you different? Please share your magical bits :)
+
+Jonathan, there are a lot of configuration options for HTTP connection limits in the ServicePoint/ServicePointManager classes.  My guess it that ServicePointManager.MaxServicePoints should put a hard cap on how many connections can be used.  I think it throws an exception if this is exceeded. <a href="http://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.maxservicepoints(v=vs.110).aspx">http://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.maxservicepoints(v=vs.110).aspx</a>  There are a bunch of other options to control behavior as well.</pre>
+    </div>
+
+    <div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 13:00:06 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I pushed a change to my repository that prints information from the
+ServicePointManager. In particular.
+
+ServicePointManager.FindServicePoint(TEST_URI).CurrentConnections
+
+Using mono, this prints
+Total requests 1 Current connections 0:
+Total requests 7 Current connections 0:
+Total requests 19 Current connections 0:
+
+Using .NET, this prints
+Total requests 13 Current connections 1:
+Total requests 29 Current connections 1:
+Total requests 44 Current connections 1:
+
+So it kind of looks like Mono is failing to find the existing service point for
+a given URL.  This would theoretically cripple its ability to reuse a
+connection or otherwise apply sane limits as defined by the .NET API to the
+number of connections.</pre>
+    </div>
+
+    <div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 14:11:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Here's my test module:
+<a href="https://github.com/baulig/bugfree-octo-nemesis">https://github.com/baulig/bugfree-octo-nemesis</a>
+
+After checking out, add this app.config file to the root directory of your checkout:
+
+====
+&lt;configuration&gt;
+  &lt;appSettings&gt;
+    &lt;add key="web_host" value="last-hope.baulig.net"/&gt;
+    &lt;add key="web_prefix" value="/waringers-lab/bugfree-octo-nemesis/"/&gt;
+    &lt;add key="squid_address" value="<a href="http://stalhof.baulig.net:3128/">http://stalhof.baulig.net:3128/</a>"/&gt;
+    &lt;add key="squid_address_ssl" value="<a href="https://stalhof.baulig.net:3129/">https://stalhof.baulig.net:3129/</a>"/&gt;
+  &lt;/appSettings&gt;
+&lt;/configuration&gt;
+====
+
+Load the Xamarin.WebTests.sln in Xamarin Studio, right-click References in the Solution Explorer and select "Restore NuGet packages" - it's using NuGet light</pre>
+    </div>
+
+    <div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 14:18:13 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Miguel, Gonzalo, Jonathan: That does not really matter because the ServicePointManager already exposes a limit on the maximum number of connections.
+
+You guys are also mixing up two separate issues here: I can not - and have never been - able to run out of sockets or file descriptors, nor does it leak any sockets for me.
+
+The only issue that I see is that a connection is not always reused when it's supposed to be.
+
+That is actually a race condition that I'm currently working on.  Note that this _could_ in theory lead towards running out of sockets if it does not reuse the connection more often than 4 out of 100 times.</pre>
+    </div>
+
+    <div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 14:41:14 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I ran Martin's test from Xamarin Studio on my Mac and I see it is making a new connection per second (Pretty sure that's one per request).  I think this should rule out any special HTTP headers being the issue.
+
+NEW PORT: #0: [GetPuppy: Method=GET, Path=, RemoteAddress=24.6.51.150, RemotePort=62512]
+NEW PORT: #1: [GetPuppy: Method=GET, Path=, RemoteAddress=24.6.51.150, RemotePort=62515]
+NEW PORT: #2: [GetPuppy: Method=GET, Path=, RemoteAddress=24.6.51.150, RemotePort=62516]
+...
+NEW PORT: #178: [GetPuppy: Method=GET, Path=, RemoteAddress=24.6.51.150, RemotePort=62701]
+NEW PORT: #179: [GetPuppy: Method=GET, Path=, RemoteAddress=24.6.51.150, RemotePort=62702]</pre>
+    </div>
+
+    <div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 15:42:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Debugging the first connection close ....
+
+Mono with lots of debugging spew: <a href="https://github.com/baulig/mono/tree/work-cnc-reuse">https://github.com/baulig/mono/tree/work-cnc-reuse</a>, line numbers below are from this commit, which is the current HEAD: <a href="https://github.com/baulig/mono/commit/ca13d7016a160799d6bbce419c899498daf8559d">https://github.com/baulig/mono/commit/ca13d7016a160799d6bbce419c899498daf8559d</a>
+
+Now look at the output: <a href="https://gist.github.com/baulig/039813b4cd5a0e7e9558#file-gistfile1-txt">https://gist.github.com/baulig/039813b4cd5a0e7e9558#file-gistfile1-txt</a>
+
+This is a bit cryptic, so also look at the source code.
+
+Line 21: WebConnectionStream.Close() is called on the main thread after the client read all the data - this happens when we exit the "using" block in GetPuppy.cs.  The parameters are isRead, nextReadCalled, allowBuffering.  This is <a href="https://github.com/baulig/mono/blob/ca13d7016a160799d6bbce419c899498daf8559d/mcs/class/System/System.Net/WebConnectionStream.cs#L767">https://github.com/baulig/mono/blob/ca13d7016a160799d6bbce419c899498daf8559d/mcs/class/System/System.Net/WebConnectionStream.cs#L767</a>.
+
+Line 22: isRead was true, nextReadCalled is false, so we're calling CheckComplete().
+
+Line 23: CheckComplete() at WebConnectionStream.cs:224
+			Debug ("CHECK COMPLETE: {0} {1} {2} {3} {4}", nrc, readBufferOffset, readBufferSize, contentLength, readBufferSize - readBufferOffset == contentLength);
+
+So contentLength has been set to the full length of the response (which we have fully read at this point), but neither readBufferOffset nor readBufferSize have been updated.  We then call WebConnection.Close() (lines 24 and 27).
+
+Why has readBufferOffset not been updated?
+
+Look at lines 8-10, this is WebConnection.cs:520, 551 and <a href="https://github.com/baulig/mono/blob/ca13d7016a160799d6bbce419c899498daf8559d/mcs/class/System/System.Net/WebConnection.cs#L592">https://github.com/baulig/mono/blob/ca13d7016a160799d6bbce419c899498daf8559d/mcs/class/System/System.Net/WebConnection.cs#L592</a>.  The last one is the interesting one: chunkedRead is true and chunkStream == null.
+
+So we create a new ChunkStream, but do not update WebConnectionStream.ReadBufferOffset/Size.</pre>
+    </div>
+
+    <div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 15:45:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">So this entire WebConnectionStream.CheckComplete() logic needs some love.</pre>
+    </div>
+
+    <div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-18 23:33:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Ah, I see. The logic that provides the virtual streams per WebRequest on top of the WebConnection is not taking the correct actions as the request is completed.  As a result, the connection can not be reused, because it does not appear to be in a fully completed state.
+
+There is quite a bit of code to peruse, but I noticed that the ServicePoint's ConnectionCount is never updated.  I have a feeling this means that any connection limitation logic may not work correctly.  It is ofcourse possible that the connection limit logic in Mono directly uses the connection list to apply these limits, but I haven't gotten to dig that deep yet.
+
+For reference, the IncrementConnection method:
+<a href="https://github.com/mono/mono/blob/master/mcs/class/System/System.Net/ServicePoint.cs#L340">https://github.com/mono/mono/blob/master/mcs/class/System/System.Net/ServicePoint.cs#L340</a>
+
+Using grep -r, I see that it is never called from anywhere.</pre>
+    </div>
+
+    <div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-19 15:19:17 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">There is some code dealing with limits, don't remember exactly where that is, though.
+
+I have just updated my get-puppy.pl script to address all the three scenarios that the server can send us:
+
+a) The server does not send any Content-Length header.
+
+b) The server does send a Content-Length header.
+
+c) The server uses chunked transfer encoding.
+
+That code path that I talked about yesterday is a) - it's a common behavior from all kinds of simple scripts (more complex / ASP.NET kind of scripts would be more likely to use chunked encoding) whereas static content should usually be returned with Content-Length.</pre>
+    </div>
+
+    <div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-20 04:01:48 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">AFAIK, situation B is equivalent to including a Connection: close header.  The only way to terminate the response is to close it out.
+
+Generally in my team's application, everything has a Content-Length.  So I definitely fall under the situation A case.  Nonetheless I tried your test script out with ?mode=chunked.  I saw it still created new connections for me.
+
+Another failure mode I have seen which I don't have a test case for is that a request will just hang for on the order of a hundred seconds.  These are requests for static content on S3 over SSL.  Since I can't produce a test case that makes them, I am ignoring them for now and focusing on the connection reuse and handle leakage aspects.  But it sounds like its possible that these are related to the issue at hand.</pre>
+    </div>
+
+    <div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-20 05:16:36 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I tried dropping in ModernHttpClient as a replacment HttpClientHandler, and the performance boost (from connection reuse presumably) was like MAGIC.  Unfortunately, that library does not properly marshal HTTP result codes, so it isn't possible to build a fully functioning application out of it.  I am looking forward to seeing similar blistering performance from Xamarin.XYZ soon :D.</pre>
+    </div>
+
+    <div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-22 14:35:55 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Even adapting that library to pass exceptions is not working as a temporary work around.  It ends up causing an invalid access to a previously freed GREF. 
+
+:( :( :(</pre>
+    </div>
+
+    <div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Pryor</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-26 11:02:24 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@T.J.Purtell:
+<span class="quote">&gt; It ends up causing an invalid access to a previously freed GREF.</span>
+
+Please try the XA 4.11 alpha, which contains a number of multithreading fixes and _may_ fix these issues.
+
+If it still fails on XA 4.11, please file a _new_ bug with a repro, enable gref logging, and attach the gref log.</pre>
+    </div>
+
+    <div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-31 12:19:19 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Any progress on this HttpWebRequest issue?
+
+From my testing, it has serious bad repercussions on Xamarin.iOS in addition to Xamarin.Android.  On iOS the file handle limit is much lower.  By my measurement about 78 file handles are allowed.  This leak causes strange issues there as well as bad performance.  Workarounds all lower performance or are unreliable.</pre>
+    </div>
+
+    <div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-02 08:58:43 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">TJ,
+
+Xamarin's offices were closed from the 24th to the 2nd.   Most of the team took vacations.
+
+Miguel</pre>
+    </div>
+
+    <div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-16 15:06:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have gone and updated that test project so that it now includes a server javascript that can provide the port number for connection counting (similar to Martins test design)  and a second ios project that uses the hack around to show the working case for comparison.  This should show that the server javascript is functioning properly.
+
+The repository is here
+<a href="https://bitbucket.org/tpurtell/web-request-reuse">https://bitbucket.org/tpurtell/web-request-reuse</a>
+
+To run the server
+node port-number.js
+
+Then run one of the projects
+- web-request-resuse.sln - IosWebRequest - This uses the mono Http stack and directly calls WebRequest.Create, etc
+- web-request-resuse-hack.sln - IosMicrosoftHttp - This uses a custom HttpMessageHandler based on the AFNetwork library and the async friends HttpClient abstraction</pre>
+    </div>
+
+    <div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-16 16:50:17 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=5859&amp;file=mono%20http%20stack.png" name="attach_5859" title="iOS 6.1 Simulator result with monotouch-7.0.4.213.pkg">attachment 5859</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5859&amp;file=mono%20http%20stack.png" title="iOS 6.1 Simulator result with monotouch-7.0.4.213.pkg">[details]</a></span>
+iOS 6.1 Simulator result with monotouch-7.0.4.213.pkg</pre>
+    </div>
+
+    <div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-16 16:51:04 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=5860&amp;file=afnetwork%20http%20stack.png" name="attach_5860" title="iOS 6.1 Simulator result with monotouch-7.0.4.213.pkg (Using AFNetworkHandler)">attachment 5860</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=5860&amp;file=afnetwork%20http%20stack.png" title="iOS 6.1 Simulator result with monotouch-7.0.4.213.pkg (Using AFNetworkHandler)">[details]</a></span>
+iOS 6.1 Simulator result with monotouch-7.0.4.213.pkg (Using AFNetworkHandler)</pre>
+    </div>
+
+    <div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-17 12:49:52 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks a lot for this test case!
+
+I can now see why I was unable to reproduce this issue: when I launch this in the ios simulator and start a single network worker, then it's reusing the connection perfectly fine.  Launching a second worker adds a few connections, but the total number of connections still stays stable after a few seconds.  Same when adding a few more workers, except that the number of new connections increases.  But it still stays stable after a few seconds, thus reusing all those that it opened.  However, if I keep adding new network workers, then there's a point where it actually starts leaking connections!
+
+I need to start about 4-5 network workers before it's actually starting to leak connection - and then, it keeps opening new connections.
+
+Now I finally have something to work with :-)</pre>
+    </div>
+
+    <div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-01-17 17:10:56 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Martin, that is great news!
+
+FYI, even with the 213 package, I can reproduce 100% with one worker in the simulator.  Since the test case is using a local host server, it should eliminate a lot of variability.  Hopefully we are both actually hitting the same race just with different timing.
+
+I am wondering if something about # of cores or OS version changes the frequency of the error.
+
+My machine is 
+  Model Name:	Mac mini
+  Model Identifier:	Macmini6,2
+  Processor Name:	Intel Core i7
+  Processor Speed:	2.3 GHz
+  Number of Processors:	1
+  Total Number of Cores:	4
+  L2 Cache (per Core):	256 KB
+  L3 Cache:	6 MB
+  Memory:	8 GB
+
+Running this OS
+  System Version:	OS X 10.8.5 (12F45)
+  Kernel Version:	Darwin 12.5.0
+  Boot Volume:	Macintosh HD
+  Boot Mode:	Normal</pre>
+    </div>
+
+    <div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-02-19 14:50:24 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Update:
+
+Martin has now rewritten the core of the engine that deals with sharing connections, fixing several design mistakes and bugs along the way.   We now:
+
+* Properly reuse connections
+* We close connection after ServicePoint.MaxIdleTime has elapsed
+* We update ServicePoint.CurrentConnections and ServicePoint.IdleSince
+* ServicePointManager recycles idle ServicePoints when making new connections
+* We handle MaxServicePoints
+* We handle MaxConnections
+
+In addition, we just added an async pipeline for TLS/SSL that does not clog the ThreadPool (patch was a contribution, but we had to fix a bug on it).   
+
+Those changes are now on mono/master, and will be coming to a desktop or mobile device near you soon.</pre>
+    </div>
+
+    <div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Baulig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-02-20 07:53:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hey, yeah sorry for not updating the bug.  I started to really enjoy fixing the web stack, so I jumped right into the next problem ...
+
+Fully async requests, reliable redirects with POST/PUT and 100-Continue is coming shortly.</pre>
+    </div>
+
+    <div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-02-20 13:39:53 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks Martin!  This is excellent news. :)  I look forward to deploying it ASAP.</pre>
+    </div>
+
+    <div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-02-27 13:48:16 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Which releases is the available in? I am itching to try it out.</pre>
+    </div>
+
+    <div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-06 17:06:49 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I would like to alert you to one other potential issue to be aware of which isn’t a problem with the implementation.  On iOS, if your app enters the background, iOS will **close** sockets that you leave open.  This can lead to very unexpected behavior even with the native Apple networking interfaces, for example, callbacks for a request timing out will never get called if the request’s connection was closed by iOS.  I generally handle this by ensuring that I close all my background connections before the expiration time proscribed by iOS.
+
+I am not quite sure how to do this with the .NET HttpClient API because the connection group name is obscured, so I can’t just lookup all the relevant service points and close the connection groups.  I think the approach I am going to try is to keep track of all ServicePoints engaged via my own HttpClientHandler.  Then when I need to shutdown the background activity, (e.g. close all persistent connections), I will iterate over these requests and set the MaxIdle time to 1ms.  Hopefully this will cause the connections to be closed out.  Then on resuming from background, I will reset the IdleTime to 100s.  Failing that, I might use some reflection to find the internal connection group name and close the connections.
+
+It's an interesting issue because before the connections were being fully reused, there would be no chance of iOS closing an socket which might be reused.  However, I suppose it could have led to instances of a close being called on a bad fd.</pre>
+    </div>
+
+    <div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-06 17:15:18 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hmm, actually it seems like messing with IdleTime is not the way to go (connections aren't closed until try to use them).  So, I'll eventually try figuring out the connection group name and see how that works.
+
+<a href="http://msdn.microsoft.com/en-us/library/system.net.servicepoint.maxidletime(v=vs.110).aspx">http://msdn.microsoft.com/en-us/library/system.net.servicepoint.maxidletime(v=vs.110).aspx</a>
+
+"When the MaxIdleTime for a connection associated with a ServicePoint is exceeded, the connection remains open until the application tries to use the connection. At that time, the Framework closes the connection and creates a new connection to the remote host"</pre>
+    </div>
+
+    <div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-15 22:43:22 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">TJ,
+
+I do not believe that the OS performs a "close()" on the socket connections of the process, that would be very nasty.   What might be happening is that the sockets time out and the kernel flags them as having their connections severed, so any new attempt to use the file descriptor would produce an error.</pre>
+    </div>
+
+    <div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-16 15:44:56 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Thanks Miguel.  I think you are right.
+
+I was a bit misled by the error code I had observed (EBADF) investigating background network connection issues in the past.  I turns out that Apple provides some information on this which I hadn't seen before.
+
+<a href="https://developer.apple.com/library/ios/technotes/tn2277/_index.html">https://developer.apple.com/library/ios/technotes/tn2277/_index.html</a>
+
+"Note: When your app resumes execution the actual error returned by a socket's whose resources have been reclaimed is purposely not specified here to allow for future refinements. However, in many cases the error will be EBADF, which is probably not what you were expecting! Under normal circumstances EBADF means that the app has passed an invalid file descriptor to a system call. However, in the case of a socket whose resources have been reclaimed, it does not mean that the file descriptor was invalid, just that the socket is no longer usable.
+"
+
+From my observations, I see some jammed network connection issues after running in the background.  A request or two will hang forever, but other requests will be able to proceed (presumably because they get new connections allocated to them).
+
+I think this means one of two possibilities
+
+(1) Mono/HttpWebRequest doesn't handle EBADF correctly on some of its calls to underlying APIs.
+(2) Mono/HttpWebRequest is using a notification mechanism (e.g. select/kqueue) to get events for the socket, but that interface never delivers a notification that the connection is ready for write or that an error has occurred, so some request is assigned to a connection but never proceeds.
+
+... this is just a hypothesis ...
+
+I think the second case is most likely, in particular, from the Apple doc it sounds as if the socket will have its "data available for read" flag set but not its "error flag" set.  
+
+"If you're using an NSStream, you will receive an NSStreamEventHasBytesAvailable event. You should respond to this by reading from the stream, at which point -[NSInputStream -read:maxLength:] will return -1, indicating an error", 
+
+Since there is no pending read on a WebConnection when a new HTTP request is sent, the error state will never be observed for the socket.  Instead the request stays in limbo hung on that connection.</pre>
+    </div>
+
+    <div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T.J. Purtell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-22 16:22:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Since I am always using the Mono version of System.Net.Http.HttpClient to do my network requests, I use a custom HttpClientHandler as a workaround which appears to avoid jammed connections.  I still need to test against iOS &lt; 7.1 on a device, since they could have adjusted their behavior with 7.1.
+
+<span class="quote">&gt;public class MonoStallableHttpClientHandler : HttpClientHandler, IStallable
+&gt;{
+&gt;    private bool _Stall;
+&gt;    private readonly object _Lock = new object();
+&gt;    private HashSet&lt;ServicePoint&gt; _ServicePoints = new HashSet&lt;ServicePoint&gt;(); </span>
+&gt;
+<span class="quote">&gt;    protected override Task&lt;HttpResponseMessage&gt; SendAsync(HttpRequestMessage request,
+&gt;        CancellationToken cancellationToken)
+&gt;    {
+&gt;        lock (_Lock)
+&gt;        {
+&gt;            while (_Stall)
+&gt;                Monitor.Wait(_Stall);
+&gt;            var sp = ServicePointManager.FindServicePoint(request.RequestUri);
+&gt;            //TODO: redirects?
+&gt;            _ServicePoints.Add(sp);
+&gt;            return base.SendAsync(request, cancellationToken);
+&gt;        }
+&gt;    }</span>
+&gt;
+<span class="quote">&gt;    public bool Stall
+&gt;    {
+&gt;        get
+&gt;        {
+&gt;            return _Stall;
+&gt;        }
+&gt;        set
+&gt;        {
+&gt;            lock (_Lock)
+&gt;            {
+&gt;                _Stall = value;
+&gt;                if (!_Stall)
+&gt;                {
+&gt;                    Monitor.PulseAll(_Lock);
+&gt;                }
+&gt;                else
+&gt;                {
+&gt;                    foreach (var sp in _ServicePoints)
+&gt;                        sp.CloseConnectionGroup("HttpClientHandler");
+&gt;                    _ServicePoints.Clear();
+&gt;                }
+&gt;            }
+&gt;        }
+&gt;    }
+&gt;}</span></pre>
+    </div>
+
+    <div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Koby</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-23 04:45:34 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Are there any news regarding this bug?</pre>
+    </div>
+
+    <div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dylan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-27 11:46:34 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Also interested in finding out more information on this.</pre>
+    </div>
+
+    <div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tom_Qv</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-10 16:58:46 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'm busy writing an app which is downloading OpenStreetMap-Maptiles (png's)
+At least 20% of my HttpWebRequests are answered with a NameResolutionFailure-Exception.
+
+Any progress on this?
+
+Tom</pre>
+    </div>
+
+    <div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dylan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-10 17:01:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I've resorted to resolving the DNS once (and retry a few times) and use the IP address for all future requests. Something definitely going on. Mainly happens for me on Android.</pre>
+    </div>
+
+    <div id="c56" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 56</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Koby</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-13 08:52:06 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This bug is opened for over 6 months and is a show stopper many people, what is going on Xamarin please give some feedback....</pre>
+    </div>
+
+    <div id="c57" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 57</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-14 11:48:19 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The update was posted back in February, <a href="bug.html">comment #42</a>.
+
+The change is available on Alpha channels. moving to betas, moving to stables.</pre>
+    </div>
+
+    <div id="c58" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 58</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Koby</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-10 05:54:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This issue still exists after updating to Xamarin for Visual Studio 1.12.278 (Latest stable) and even after trying Xamarin for Visual Studio 2.00.84.0 (Latest beta). 
+
+I'v checked on Galasy S3 and Nexus 5 both real machines (also happens in genymotion simulator - checked on Galaxy S3 android 4.3).
+After retrying few times it eventualy works, but it forces me to sleep between calls for few hundred miliseconds or else it will keep throwing this error.
+
+When it happens on critical services, it really affect app start time.</pre>
+    </div>
+
+    <div id="c59" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 59</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andrei.N</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-07-27 07:29:31 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I am running the last stable Xamarin Android and I just got this strange behavior too for the first time now.
+It never occurred to me after running HttpClient many times during last year.
+
+This bug was not posted in February, it dates back from August 2013: <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="show_bug.cgi?id=13750">https://bugzilla.xamarin.com/show_bug.cgi?id=13750</a>
+
+I see the status is RESOLVE FIXED which it shouldn't.</pre>
+    </div>
+
+    <div id="c60" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 60</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">La Nap</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-09-08 08:44:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The same issue was happening trying to consume web services. Installed latest Xamarin IOS 7.4 and Studio 5.3 hoping it was fixed but still happening! Will this ever be fixed? Trying to invoke a soap/wsdl web service fails with 'System.net.webexception error: NameResolutionFailure'
+Please help!</pre>
+    </div>
+
+    <div id="c61" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 61</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andrei.N</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-09-08 10:14:52 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Here's the behavior I've seen on Android:
+- this seems to happen only in debug mode and for the first call.
+- thankfully, in Release mode it doesn't happen.
+
+But I wonder why is this is marked as resolved if people are still reporting it</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

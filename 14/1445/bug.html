@@ -1,0 +1,2090 @@
+<html lang="en"><head>
+    <title>1445 – MD crashes with SIGABRT occasionally when stopping debugging</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Xamarin_Studio
+                 bz_component_Debugger
+                 bz_bug_1445 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;1445</span>
+
+        <span id="subtitle" class="subheader">MD crashes with SIGABRT occasionally when stopping debugging</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2012-04-04 22:30:19 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2012-04-04 22:30:19">
+  <input type="hidden" name="id" value="1445">
+  <input type="hidden" name="token" value="1559144652-zuKQjXDPI_GduPXzduKP_7NqKsXNslng7-SeE_0mkYE">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;1445</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">MD crashes with SIGABRT occasionally when stopping debugging</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>MD crashes with SIGABRT occasionally when stopping debugging
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Xamarin Studio
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Desktop
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">Debugger
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>unspecified
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Linux
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>High
+       major
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label>Duplicates (4)</label>:
+    </th>
+    <td class="field_value">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Random crashes while working with Monodevelop 2.6" href="show_bug.cgi?id=890">890</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Stoping debugging Simulator crashes Mondevelop randomly" href="show_bug.cgi?id=1850">1850</a> <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed" title="CLOSED DUPLICATE - Crashes when stopping debugging on Android device" href="show_bug.cgi?id=1942">1942</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Monodevelop crashes when trying to debug Simulator" href="show_bug.cgi?id=2339">2339</a> 
+      </span>
+      ()
+    </td>
+  </tr>
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2011-10-12 07:05 UTC by <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2012-04-04 22:30 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>7
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="alan">alan</option>
+                <option value="eric.maupin">eric.maupin</option>
+                <option value="mhutch">mhutch</option>
+                <option value="miguel">miguel</option>
+                <option value="mkrueger">mkrueger</option>
+                <option value="mono-bugs+monodevelop">mono-bugs+monodevelop</option>
+                <option value="rene">rene</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/mono/monodevelop/issues">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-10-12 07:05:04 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">OnTargetEvent, type - TargetHitBreakpoint
+**
+Gtk:ERROR:/build/buildd/gtk+2.0-2.24.4/gtk/gtkcontainer.c:2756:IA__gtk_container_propagate_expose: assertion failed: (child-&gt;parent == GTK_WIDGET (container))
+Stacktrace:
+
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at (wrapper managed-to-native) Gtk.Application.gtk_main () &lt;IL 0x0000e, 0xffffffff&gt;
+  at Gtk.Application.Run () [0x00000] in /home/marek/git/gtk-sharp/gtk/Application.cs:135
+  at MonoDevelop.Ide.IdeApp.Run () [0x00000] in /home/marek/git/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/Ide.cs:384
+  at MonoDevelop.Ide.IdeStartup.Run (string[]) [0x007bc] in /home/marek/git/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/IdeStartup.cs:280
+  at MonoDevelop.Ide.IdeStartup.Main (string[]) [0x00017] in /home/marek/git/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/IdeStartup.cs:543
+  at MonoDevelop.Startup.MonoDevelopMain.Main (string[]) [0x00000] in /home/marek/git/monodevelop/main/src/core/MonoDevelop.Startup/MonoDevelop.Startup/MonoDevelopMain.cs:16
+  at (wrapper runtime-invoke) &lt;Module&gt;.runtime_invoke_int_object (object,intptr,intptr,intptr) &lt;IL 0x0005c, 0xffffffff&gt;
+
+Native stacktrace:
+
+	monodevelop() [0x4952a1]
+	/lib/x86_64-linux-gnu/libpthread.so.0(+0xfc60) [0x2b2782edac60]
+	/lib/x86_64-linux-gnu/libc.so.6(gsignal+0x35) [0x2b278311cd05]
+	/lib/x86_64-linux-gnu/libc.so.6(abort+0x186) [0x2b2783120ab6]
+	/lib/x86_64-linux-gnu/libglib-2.0.so.0(g_assertion_message+0x12d) [0x2aaaac99851d]
+	/lib/x86_64-linux-gnu/libglib-2.0.so.0(+0x68ae0) [0x2aaaac998ae0]
+	/usr/lib/libgtk-x11-2.0.so.0(gtk_container_propagate_expose+0xd1) [0x2aaaad7d5e81]
+	/usr/lib/libgtk-x11-2.0.so.0(+0xb9ab4) [0x2aaaad7d4ab4]
+	/usr/lib/libgtk-x11-2.0.so.0(+0xd0e2f) [0x2aaaad7ebe2f]
+	/usr/lib/libgtk-x11-2.0.so.0(+0x138578) [0x2aaaad853578]
+	/usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0(g_closure_invoke+0x15c) [0x2aaaad08e81c]
+	/usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0(+0x1fe1f) [0x2aaaad09fe1f]
+	/usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0(g_signal_emit_valist+0x5a9) [0x2aaaad0a8fa9]
+	/usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0(g_signal_emit+0x7f) [0x2aaaad0a941f]
+	/usr/lib/libgtk-x11-2.0.so.0(+0x2544d1) [0x2aaaad96f4d1]
+	/usr/lib/libgtk-x11-2.0.so.0(gtk_main_do_event+0x55d) [0x2aaaad851d9d]
+	/usr/lib/libgdk-x11-2.0.so.0(+0x437dc) [0x2aaaadda17dc]
+	/usr/lib/libgdk-x11-2.0.so.0(+0x3e73b) [0x2aaaadd9c73b]
+	/usr/lib/libgdk-x11-2.0.so.0(gdk_window_process_all_updates+0x129) [0x2aaaadd9e929]
+	/usr/lib/libgtk-x11-2.0.so.0(+0xb9761) [0x2aaaad7d4761]
+	/usr/lib/libgdk-x11-2.0.so.0(+0x1dc46) [0x2aaaadd7bc46]
+	/lib/x86_64-linux-gnu/libglib-2.0.so.0(g_main_context_dispatch+0x1dd) [0x2aaaac972bcd]
+	/lib/x86_64-linux-gnu/libglib-2.0.so.0(+0x433a8) [0x2aaaac9733a8]
+	/lib/x86_64-linux-gnu/libglib-2.0.so.0(g_main_loop_run+0x172) [0x2aaaac9739f2]
+	/usr/lib/libgtk-x11-2.0.so.0(gtk_main+0xa7) [0x2aaaad850af7]
+	[0x40705905]
+
+Debug info from gdb:
+
+Could not attach to process.  If your uid matches the uid of the target
+process, check the setting of /proc/sys/kernel/yama/ptrace_scope, or try
+again as the root user.  For more details, see /etc/sysctl.d/10-ptrace.conf
+ptrace: Operation not permitted.
+
+=================================================================
+Got a SIGABRT while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+=================================================================
+
+make[1]: *** [runmd] Aborted</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-10-21 04:03:27 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Setting to major as I get this almost every day now</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-10-21 07:32:48 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Looks like a crash in GTK. Can you get a native stack trace with symbols? If would be great if you could catch the abort in GTK and inspect the parameters of the last gtk_container_propagate_expose to figure out what the container and widget are.</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-10-21 09:35:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">OK, happened for 5th time today and I am going to give it a try
+
+How can I get "a native stack trace with symbols" ?</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-10-21 09:47:07 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Do you have GTK+ debug symbols installed? Those will come from a package which depends on your linux distro.
+
+Start MD, find its PID, run
+    gdb attach $MD_PID
+When GDB attaches the MD it will pause the process. First, set a breakpoint on the "abort" function, which will be hit when you crash:
+    break abort
+Then resume execution
+    continue
+and use MD as normal.
+
+When MD crashes, go to the gdb terminal, and get a full backtrace of all threads:
+    thread apply all backtrace
+or as shorthand
+    t a a bt
+
+Don't terminate it, come into IRC and I'll walk you through inspecting some of the bad parameters that are causing the crash.</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-10-27 05:43:11 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Here is the output
+
+Breakpoint 1, 0x00002ada6b8f1930 in abort () from /lib/x86_64-linux-gnu/libc.so.6
+(gdb) t a a bt
+
+Thread 102 (Thread 0x2aaaca6f0700 (LWP 23767)):
+#0  0x00002ada6b6ab4bd in nanosleep () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005b77e7 in SleepEx (ms=&lt;value optimised out&gt;, alertable=1) at wthreads.c:865
+#2  0x000000000050bf09 in ves_icall_System_Threading_Thread_Sleep_internal (ms=250) at threads.c:1118
+#3  0x000000004165721a in ?? ()
+#4  0x000000000252b980 in ?? ()
+#5  0x00002aaac9e51200 in ?? ()
+#6  0x00002aaad2cd5540 in ?? ()
+#7  0x0000000000000001 in ?? ()
+#8  0x0000000000000000 in ?? ()
+
+Thread 101 (Thread 0x2aaad63a7700 (LWP 23766)):
+#0  0x00002ada6b6ab4bd in nanosleep () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005b77e7 in SleepEx (ms=&lt;value optimised out&gt;, alertable=1) at wthreads.c:865
+#2  0x000000000050bf09 in ves_icall_System_Threading_Thread_Sleep_internal (ms=250) at threads.c:1118
+#3  0x000000004165721a in ?? ()
+#4  0x0000000003acfb30 in ?? ()
+#5  0x00002aaac9e51200 in ?? ()
+#6  0x00002aaad2cd55a0 in ?? ()
+#7  0x0000000000000000 in ?? ()
+
+Thread 71 (Thread 0x2aaad5514700 (LWP 23565)):
+#0  0x00002ada6b6a9f91 in sem_timedwait () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005c4925 in mono_sem_timedwait (sem=0x9184e8, timeout_ms=&lt;value optimised out&gt;, alertable=1) at mono-semaphore.c:76
+#2  0x000000000051c31f in async_invoke_thread (data=0x0) at threadpool.c:1486
+#3  0x000000000050c1bc in start_wrapper_internal (data=0x2aaabcc25810) at threads.c:571
+#4  start_wrapper (data=0x2aaabcc25810) at threads.c:619
+#5  0x00000000005b8473 in thread_start_routine (args=0x327b528) at wthreads.c:290
+#6  0x00000000005c94a9 in inner_start_thread (arg=0x2aaabc87a180) at mono-threads-posix.c:49
+#7  0x00000000005e3299 in GC_start_routine (arg=0x2aaad10777e0) at pthread_support.c:1473
+#8  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#9  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#10 0x0000000000000000 in ?? ()
+
+Thread 70 (Thread 0x2aaad5f8d700 (LWP 23563)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#1  0x00000000005bad3b in _wapi_handle_timedwait_signal_handle (handle=0x438, timeout=0x0, alertable=1, 
+    poll=&lt;value optimised out&gt;) at handles.c:1650
+#2  0x00000000005b4225 in WaitForSingleObjectEx (handle=0x438, timeout=4294967295, alertable=1) at wait.c:203
+#3  0x000000000050bafb in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=&lt;value optimised out&gt;, handle=0x438, ms=
+    -1, exitContext=&lt;value optimised out&gt;) at threads.c:1462
+#4  0x0000000041ab0868 in ?? ()
+#5  0x0000000002ee92a0 in ?? ()
+#6  0x000000004173b344 in ?? ()
+#7  0x00002aaad5f8c3b7 in ?? ()
+#8  0x00002aaad3746fc8 in ?? ()
+#9  0x00002aaac99f3618 in ?? ()
+#10 0x00002aaad5f8c3d0 in ?? ()
+#11 0x00002aaad5f8c340 in ?? ()
+#12 0x00002aaad3466f00 in ?? ()
+#13 0x00002aaad4c2b3b8 in ?? ()
+#14 0x00002aaad3466f00 in ?? ()
+#15 0x00002aaad3466f00 in ?? ()
+#16 0x0000000041ab065c in ?? ()
+#17 0x00002aaad1d78ed8 in ?? ()
+#18 0x00002aaad1d78ed8 in ?? ()
+#19 0x01002aaad3aa6a80 in ?? ()
+#20 0x00002aaad3466f00 in ?? ()
+#21 0x00002aaad1d78ed8 in ?? ()
+#22 0x00002aaad344cf00 in ?? ()
+#23 0x00002aaad5f8c440 in ?? ()
+#24 0x000000004173cf3b in ?? ()
+#25 0x0000000000000000 in ?? ()
+
+Thread 60 (Thread 0x2aaaca4ef700 (LWP 23531)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bad3b in _wapi_handle_timedwait_signal_handle (handle=0x555, timeout=0x0, alertable=1, 
+    poll=&lt;value optimised out&gt;) at handles.c:1650
+#2  0x00000000005b4225 in WaitForSingleObjectEx (handle=0x555, timeout=4294967295, alertable=1) at wait.c:203
+#3  0x0000000000593bac in ves_icall_System_Threading_Monitor_Monitor_wait (obj=0x2aaac9af8bb0, ms=4294967295) at monitor.c:1454
+#4  0x0000000041a9ddfd in ?? ()
+#5  0x00002aaabcbcf290 in ?? ()
+#6  0x00002aaad399c910 in ?? ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#7  0x00002aaaac74d970 in ?? ()
+#8  0x0000000041358ac4 in ?? ()
+#9  0x00002aaabc0bbce0 in ?? ()
+#10 0x00002aaaca4ee9a0 in ?? ()
+#11 0x00002aaaca4ee8e0 in ?? ()
+#12 0x00002ada6d106cc0 in ?? ()
+#13 0x00002aaad2f03c30 in ?? ()
+#14 0x00002aaac9af8bb0 in ?? ()
+#15 0xffffffffffffffff in ?? ()
+#16 0x0000000041a9dc84 in ?? ()
+#17 0x00002aaad40dc100 in ?? ()
+#18 0x00002aaad40dc0c0 in ?? ()
+#19 0x00002aaad2f03c30 in ?? ()
+#20 0x0000000041a9dc28 in ?? ()
+#21 0x00002aaac9af8bb0 in ?? ()
+#22 0x0000000041746e6c in ?? ()
+#23 0x01000004ffffffff in ?? ()
+#24 0x00002aaac9af8bb0 in ?? ()
+#25 0x0000000000000000 in ?? ()
+
+Thread 59 (Thread 0x2aaad5b43700 (LWP 23530)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bad3b in _wapi_handle_timedwait_signal_handle (handle=0x45c, timeout=0x0, alertable=1, 
+    poll=&lt;value optimised out&gt;) at handles.c:1650
+#2  0x00000000005b4225 in WaitForSingleObjectEx (handle=0x45c, timeout=4294967295, alertable=1) at wait.c:203
+#3  0x000000000050bafb in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=&lt;value optimised out&gt;, handle=0x45c, ms=
+    -1, exitContext=&lt;value optimised out&gt;) at threads.c:1462
+#4  0x0000000041ab0868 in ?? ()
+#5  0x000000000388faf0 in ?? ()
+#6  0x000000004173b344 in ?? ()
+#7  0x00002aaad5b423b7 in ?? ()
+#8  0x00002aaad4cc7960 in ?? ()
+#9  0x00002aaad3c5f708 in ?? ()
+#10 0x00002aaad5b423d0 in ?? ()
+#11 0x00002aaad5b42340 in ?? ()
+#12 0x00002aaad4cbcc60 in ?? ()
+#13 0x00002aaad0ac2f88 in ?? ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#14 0x00002aaad4cbcc60 in ?? ()
+#15 0x00002aaad4cbcc60 in ?? ()
+#16 0x0000000041ab065c in ?? ()
+#17 0x00002aaad4d83fc8 in ?? ()
+#18 0x00002aaad4d83fc8 in ?? ()
+#19 0x01002aaad4cc4680 in ?? ()
+#20 0x00002aaad4cbcc60 in ?? ()
+#21 0x00002aaad4d83fc8 in ?? ()
+#22 0x00002aaad4c89aa0 in ?? ()
+#23 0x00002aaad5b42440 in ?? ()
+#24 0x000000004173cf3b in ?? ()
+#25 0x0000000000000000 in ?? ()
+
+Thread 48 (Thread 0x2aaacacff700 (LWP 23497)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bad3b in _wapi_handle_timedwait_signal_handle (handle=0x585, timeout=0x0, alertable=1, 
+    poll=&lt;value optimised out&gt;) at handles.c:1650
+#2  0x00000000005b4225 in WaitForSingleObjectEx (handle=0x585, timeout=4294967295, alertable=1) at wait.c:203
+#3  0x0000000000593bac in ves_icall_System_Threading_Monitor_Monitor_wait (obj=0x2aaac9af8b10, ms=4294967295) at monitor.c:1454
+#4  0x0000000041a9ddfd in ?? ()
+#5  0x0000000003734ee0 in ?? ()
+#6  0x00002aaad424eaf0 in ?? ()
+#7  0x00002aaaac74d970 in ?? ()
+#8  0x0000000041358ac4 in ?? ()
+#9  0x00002aaabc0bbce0 in ?? ()
+#10 0x00002aaacacfe9a0 in ?? ()
+#11 0x00002aaacacfe8e0 in ?? ()
+#12 0x00002ada6d106cc0 in ?? ()
+#13 0x00002aaaccd01068 in ?? ()
+#14 0x00002aaac9af8b10 in ?? ()
+#15 0xffffffffffffffff in ?? ()
+#16 0x0000000041a9dc84 in ?? ()
+#17 0x00002aaad0c51e00 in ?? ()
+#18 0x00002aaad0c51dc0 in ?? ()
+#19 0x00002aaaccd01068 in ?? ()
+#20 0x0000000041a9dc28 in ?? ()
+#21 0x00002aaac9af8b10 in ?? ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#22 0x0000000041746e6c in ?? ()
+#23 0x0100000cffffffff in ?? ()
+#24 0x00002aaac9af8b10 in ?? ()
+#25 0x0000000000000000 in ?? ()
+
+Thread 47 (Thread 0x2aaad5719700 (LWP 23496)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bad3b in _wapi_handle_timedwait_signal_handle (handle=0x5f5, timeout=0x0, alertable=1, 
+    poll=&lt;value optimised out&gt;) at handles.c:1650
+#2  0x00000000005b4225 in WaitForSingleObjectEx (handle=0x5f5, timeout=4294967295, alertable=1) at wait.c:203
+#3  0x000000000050bafb in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=&lt;value optimised out&gt;, handle=0x5f5, ms=
+    -1, exitContext=&lt;value optimised out&gt;) at threads.c:1462
+#4  0x0000000041ab0868 in ?? ()
+#5  0x0000000003713eb0 in ?? ()
+#6  0x000000004173b344 in ?? ()
+#7  0x00002aaad57183b7 in ?? ()
+#8  0x00002aaad2578140 in ?? ()
+#9  0x00002aaad0c1b708 in ?? ()
+#10 0x00002aaad57183d0 in ?? ()
+#11 0x00002aaad5718340 in ?? ()
+#12 0x00002aaad4435f00 in ?? ()
+#13 0x00002aaad2bb4380 in ?? ()
+#14 0x00002aaad4435f00 in ?? ()
+#15 0x00002aaad4435f00 in ?? ()
+#16 0x0000000041ab065c in ?? ()
+#17 0x00002aaad1a62b40 in ?? ()
+#18 0x00002aaad1a62b40 in ?? ()
+#19 0x01002aaad4ae5a80 in ?? ()
+#20 0x00002aaad4435f00 in ?? ()
+#21 0x00002aaad1a62b40 in ?? ()
+#22 0x00002aaac8e52320 in ?? ()
+#23 0x00002aaad5718440 in ?? ()
+#24 0x000000004173cf3b in ?? ()
+#25 0x0000000000000000 in ?? ()
+
+Thread 40 (Thread 0x2aaaca8f5700 (LWP 23477)):
+#0  0x00002ada6b6a9f91 in sem_timedwait () from /lib/x86_64-linux-gnu/libpthread.so.0
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit--- 
+#1  0x00000000005c4925 in mono_sem_timedwait (sem=0x9184e8, timeout_ms=&lt;value optimised out&gt;, alertable=1) at mono-semaphore.c:76
+#2  0x000000000051c31f in async_invoke_thread (data=0x0) at threadpool.c:1486
+#3  0x000000000050c1bc in start_wrapper_internal (data=0x2aaabc5f0f10) at threads.c:571
+#4  start_wrapper (data=0x2aaabc5f0f10) at threads.c:619
+#5  0x00000000005b8473 in thread_start_routine (args=0x132abd0) at wthreads.c:290
+#6  0x00000000005c94a9 in inner_start_thread (arg=0x2aaabcb95550) at mono-threads-posix.c:49
+#7  0x00000000005e3299 in GC_start_routine (arg=0x2aaad3f45fc0) at pthread_support.c:1473
+#8  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#9  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#10 0x0000000000000000 in ?? ()
+
+Thread 39 (Thread 0x2aaacaf04700 (LWP 23476)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bad3b in _wapi_handle_timedwait_signal_handle (handle=0x55c, timeout=0x0, alertable=1, 
+    poll=&lt;value optimised out&gt;) at handles.c:1650
+#2  0x00000000005b4225 in WaitForSingleObjectEx (handle=0x55c, timeout=4294967295, alertable=1) at wait.c:203
+#3  0x000000000050bafb in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=&lt;value optimised out&gt;, handle=0x55c, ms=
+    -1, exitContext=&lt;value optimised out&gt;) at threads.c:1462
+#4  0x0000000041ab0868 in ?? ()
+#5  0x00000000032d4150 in ?? ()
+#6  0x000000004173b344 in ?? ()
+#7  0x00002aaacaf033a7 in ?? ()
+#8  0x00002aaad38b4438 in ?? ()
+#9  0x00002aaac9d84708 in ?? ()
+#10 0x00002aaacaf033c0 in ?? ()
+#11 0x00002aaacaf03330 in ?? ()
+#12 0x00002aaad4609ea0 in ?? ()
+#13 0x00002aaac9cd98f8 in ?? ()
+#14 0x00002aaad4609ea0 in ?? ()
+#15 0x00002aaad4609ea0 in ?? ()
+#16 0x0000000041ab065c in ?? ()
+#17 0x00002aaad3cac848 in ?? ()
+#18 0x00002aaad3cac848 in ?? ()
+#19 0x01002aaaabf4f3a8 in ?? ()
+#20 0x00002aaad4609ea0 in ?? ()
+#21 0x00002aaad3cac848 in ?? ()
+#22 0x00002aaad056ee60 in ?? ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#23 0x00002aaacaf03430 in ?? ()
+#24 0x000000004173cf3b in ?? ()
+#25 0x0000000000000000 in ?? ()
+
+Thread 30 (Thread 0x2aaacbb2d700 (LWP 23444)):
+#0  0x00002ada6b6a7f2b in pthread_cond_timedwait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bab5a in _wapi_handle_timedwait_signal_handle (handle=0x52f, timeout=0x2aaacbb2c810, alertable=1, 
+    poll=&lt;value optimised out&gt;) at handles.c:1648
+#2  0x00000000005b40ee in WaitForSingleObjectEx (handle=0x52f, timeout=999, alertable=1) at wait.c:205
+#3  0x000000000050bafb in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=&lt;value optimised out&gt;, handle=0x52f, ms=
+    999, exitContext=&lt;value optimised out&gt;) at threads.c:1462
+#4  0x0000000041ab0868 in ?? ()
+#5  0x00000000033705d0 in ?? ()
+#6  0x00007fffa06d9897 in clock_gettime ()
+#7  0x00000000405d676b in ?? ()
+#8  0x00000000000003e7 in ?? ()
+#9  0x00000000000003e7 in ?? ()
+#10 0x00000000405d4c04 in ?? ()
+#11 0x00000000405d4c3f in ?? ()
+#12 0x00002aaac9c04fc0 in ?? ()
+#13 0x00002aaac9618600 in ?? ()
+#14 0x000000dd0853c244 in ?? ()
+#15 0x0000000000000038 in ?? ()
+#16 0x00000000031f3870 in ?? ()
+#17 0x00000000031f35b8 in ?? ()
+#18 0x00002aaac9277a98 in ?? ()
+#19 0x00002aaac9277a68 in ?? ()
+#20 0x00000000031f3850 in ?? ()
+#21 0x00000000031f35b8 in ?? ()
+#22 0x00002aaac9277a68 in ?? ()
+#23 0x0000000000002710 in ?? ()
+#24 0x000000dd07bb2bc4 in ?? ()
+#25 0x00000000cbb2cb30 in ?? ()
+#26 0x00002aaac9277a90 in ?? ()
+#27 0x00002aaac9277a68 in ?? ()
+#28 0x00002aaad45cb5e8 in ?? ()
+#29 0x0000000000000038 in ?? ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#30 0x00002aaad45cb620 in ?? ()
+#31 0x00002aaac9277a68 in ?? ()
+#32 0x00002aaad45cb5e8 in ?? ()
+#33 0x00000000031f35b8 in ?? ()
+#34 0x00002aaad45cb620 in ?? ()
+#35 0x0000000000000000 in ?? ()
+
+Thread 22 (Thread 0x2aaac898d700 (LWP 23421)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bad3b in _wapi_handle_timedwait_signal_handle (handle=0x484, timeout=0x0, alertable=1, 
+    poll=&lt;value optimised out&gt;) at handles.c:1650
+#2  0x00000000005b4225 in WaitForSingleObjectEx (handle=0x484, timeout=4294967295, alertable=1) at wait.c:203
+#3  0x000000000050bafb in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=&lt;value optimised out&gt;, handle=0x484, ms=
+    -1, exitContext=&lt;value optimised out&gt;) at threads.c:1462
+#4  0x0000000041ab0868 in ?? ()
+#5  0x000000000144c000 in ?? ()
+#6  0x000000004141efa4 in ?? ()
+#7  0x00002aaac898ca17 in ?? ()
+#8  0x00002aaab8e77b18 in ?? ()
+#9  0x0000000001646c20 in ?? ()
+#10 0x00002aaac898ca30 in ?? ()
+#11 0x00002aaac898c9a0 in ?? ()
+#12 0x00002ada6d106cc0 in ?? ()
+#13 0x00002aaac7c819c0 in ?? ()
+#14 0x00002aaac7c819c0 in ?? ()
+#15 0x00002aaac7c819c0 in ?? ()
+#16 0x0000000041ab065c in ?? ()
+#17 0x00002aaac752d550 in ?? ()
+#18 0x00002aaac752d550 in ?? ()
+#19 0x0100000000007abc in ?? ()
+#20 0x00000000404d0a54 in ?? ()
+#21 0x00002aaac7c819c0 in ?? ()
+#22 0x0000000040364fa0 in ?? ()
+#23 0x00002aaac898cab0 in ?? ()
+#24 0x0000000040364eb1 in ?? ()
+#25 0x00002aaac7c819c0 in ?? ()
+#26 0x000000006d106cc8 in ?? ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#27 0x00002aaac752d528 in ?? ()
+#28 0x0000000000000000 in ?? ()
+
+Thread 21 (Thread 0x2aaac82bf700 (LWP 23420)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bad3b in _wapi_handle_timedwait_signal_handle (handle=0x480, timeout=0x0, alertable=1, 
+    poll=&lt;value optimised out&gt;) at handles.c:1650
+#2  0x00000000005b4225 in WaitForSingleObjectEx (handle=0x480, timeout=4294967295, alertable=1) at wait.c:203
+#3  0x000000000050bafb in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=&lt;value optimised out&gt;, handle=0x480, ms=
+    -1, exitContext=&lt;value optimised out&gt;) at threads.c:1462
+#4  0x0000000041ab0868 in ?? ()
+#5  0x0000000002679d80 in ?? ()
+#6  0x00002aaac82be7f0 in ?? ()
+#7  0x00002aaac82bea57 in ?? ()
+#8  0x00002aaac1a90370 in ?? ()
+#9  0x0000000001646c20 in ?? ()
+#10 0x00002aaac82bea70 in ?? ()
+#11 0x00002aaac82be9e0 in ?? ()
+#12 0x00002ada6d106cc0 in ?? ()
+#13 0x00002aaac1cd9f70 in ?? ()
+#14 0x00002aaac1cd9f70 in ?? ()
+#15 0x00002aaad6abee00 in ?? ()
+#16 0x0000000041ab065c in ?? ()
+#17 0x00002aaac1e5a8e8 in ?? ()
+#18 0x00002aaac1e5a8e8 in ?? ()
+#19 0x01002aaac1cd9f70 in ?? ()
+#20 0x00002aaac1cd9f70 in ?? ()
+#21 0x00002ada6d106cc0 in ?? ()
+#22 0x0000000001646c20 in ?? ()
+#23 0x00002aaac82beab0 in ?? ()
+#24 0x0000000040ba08d5 in ?? ()
+#25 0x01002aaac1cd9f70 in ?? ()
+#26 0x00002aaac1e5a910 in ?? ()
+#27 0x0000000041f61220 in ?? ()
+#28 0x00000000016615d0 in ?? ()
+#29 0x00002aaac82bea70 in ?? ()
+#30 0x00002aaac1cd9f70 in ?? ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#31 0x00002aaac82beb30 in ?? ()
+#32 0x00000000414dcc02 in ?? ()
+#33 0x0000000000000000 in ?? ()
+
+Thread 20 (Thread 0x2ada6c4db700 (LWP 23376)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005e361b in GC_wait_marker () at pthread_support.c:1868
+#2  0x00000000005e8583 in GC_help_marker (my_mark_no=128) at mark.c:1116
+#3  0x00000000005e2318 in GC_mark_thread (id=0x0) at pthread_support.c:552
+#4  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#5  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#6  0x0000000000000000 in ?? ()
+
+Thread 19 (Thread 0x2ada6c6dc700 (LWP 23377)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005e361b in GC_wait_marker () at pthread_support.c:1868
+#2  0x00000000005e8583 in GC_help_marker (my_mark_no=128) at mark.c:1116
+#3  0x00000000005e2318 in GC_mark_thread (id=0x1) at pthread_support.c:552
+#4  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#5  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#6  0x0000000000000000 in ?? ()
+
+Thread 18 (Thread 0x2ada6c8dd700 (LWP 23378)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005e361b in GC_wait_marker () at pthread_support.c:1868
+#2  0x00000000005e8583 in GC_help_marker (my_mark_no=128) at mark.c:1116
+#3  0x00000000005e2318 in GC_mark_thread (id=0x2) at pthread_support.c:552
+#4  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#5  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#6  0x0000000000000000 in ?? ()
+
+Thread 17 (Thread 0x2ada6cade700 (LWP 23379)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005e361b in GC_wait_marker () at pthread_support.c:1868
+#2  0x00000000005e8583 in GC_help_marker (my_mark_no=128) at mark.c:1116
+#3  0x00000000005e2318 in GC_mark_thread (id=0x3) at pthread_support.c:552
+#4  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#5  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#6  0x0000000000000000 in ?? ()
+
+Thread 16 (Thread 0x2ada6ccdf700 (LWP 23380)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005e361b in GC_wait_marker () at pthread_support.c:1868
+#2  0x00000000005e8583 in GC_help_marker (my_mark_no=128) at mark.c:1116
+#3  0x00000000005e2318 in GC_mark_thread (id=0x4) at pthread_support.c:552
+#4  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#5  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#6  0x0000000000000000 in ?? ()
+
+Thread 15 (Thread 0x2ada6cee0700 (LWP 23381)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005e361b in GC_wait_marker () at pthread_support.c:1868
+#2  0x00000000005e8583 in GC_help_marker (my_mark_no=128) at mark.c:1116
+#3  0x00000000005e2318 in GC_mark_thread (id=0x5) at pthread_support.c:552
+#4  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#5  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#6  0x0000000000000000 in ?? ()
+
+Thread 14 (Thread 0x2ada6d0e1700 (LWP 23382)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005e361b in GC_wait_marker () at pthread_support.c:1868
+#2  0x00000000005e8583 in GC_help_marker (my_mark_no=128) at mark.c:1116
+#3  0x00000000005e2318 in GC_mark_thread (id=0x6) at pthread_support.c:552
+#4  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#5  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#6  0x0000000000000000 in ?? ()
+
+Thread 13 (Thread 0x2aaaab983700 (LWP 23383)):
+#0  0x00002ada6b6a9ea0 in sem_wait () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005c4828 in mono_sem_wait (sem=0x919540, alertable=1) at mono-semaphore.c:113
+#2  0x00000000005a7c5b in finalizer_thread (unused=&lt;value optimised out&gt;) at gc.c:1073
+#3  0x000000000050c1bc in start_wrapper_internal (data=0x133f790) at threads.c:571
+#4  start_wrapper (data=0x133f790) at threads.c:619
+#5  0x00000000005b8473 in thread_start_routine (args=0x13223e0) at wthreads.c:290
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#6  0x00000000005c94a9 in inner_start_thread (arg=0x133f9d0) at mono-threads-posix.c:49
+#7  0x00000000005e3299 in GC_start_routine (arg=0x2aaaaaed5fc0) at pthread_support.c:1473
+#8  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#9  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#10 0x0000000000000000 in ?? ()
+
+Thread 12 (Thread 0x2aaab7dda700 (LWP 23384)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bad3b in _wapi_handle_timedwait_signal_handle (handle=0x408, timeout=0x0, alertable=1, 
+    poll=&lt;value optimised out&gt;) at handles.c:1650
+#2  0x00000000005b4225 in WaitForSingleObjectEx (handle=0x408, timeout=4294967295, alertable=1) at wait.c:203
+#3  0x000000000050bafb in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=&lt;value optimised out&gt;, handle=0x408, ms=
+    -1, exitContext=&lt;value optimised out&gt;) at threads.c:1462
+#4  0x0000000041ab0868 in ?? ()
+#5  0x00000000016466e0 in ?? ()
+#6  0x00002aaab7dd9a40 in ?? ()
+#7  0x00002aaab7dd9a47 in ?? ()
+#8  0x00002aaaaaed0488 in ?? ()
+#9  0x0000000001646c20 in ?? ()
+#10 0x00002aaab7dd9a60 in ?? ()
+#11 0x00002aaab7dd99d0 in ?? ()
+#12 0x00002ada6d106cc0 in ?? ()
+#13 0x00002ada6d10ee10 in ?? ()
+#14 0x0000000000000001 in ?? ()
+#15 0x0000000000000000 in ?? ()
+
+Thread 11 (Thread 0x2aaab8b0a700 (LWP 23385)):
+#0  0x00002ada6b6aafdd in accept () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bbead in _wapi_accept (fd=7, addr=0x0, addrlen=0x0) at sockets.c:225
+#2  0x000000000059fc13 in ves_icall_System_Net_Sockets_Socket_Accept_internal (sock=&lt;value optimised out&gt;, error=0x2aaab8b099fc, 
+    blocking=&lt;value optimised out&gt;) at socket-io.c:883
+#3  0x0000000040bc26b3 in ?? ()
+#4  0x000000000195d1e0 in ?? ()
+#5  0x00002ada6d106cc0 in ?? ()
+#6  0x00002aaaabf4fc98 in ?? ()
+#7  0x00002aaaabf25d80 in ?? ()
+#8  0x0000000001646c20 in ?? ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#9  0x00002aaab8b09a30 in ?? ()
+#10 0x00002aaab8b09910 in ?? ()
+#11 0x00002ada6d106cc0 in ?? ()
+#12 0x00002aaaabf4fc98 in ?? ()
+#13 0x00002aaaabf25d80 in ?? ()
+#14 0x00002aaaabf25d80 in ?? ()
+#15 0x0000000040bc2470 in ?? ()
+#16 0x0000000000000000 in ?? ()
+
+Thread 10 (Thread 0x2aaab8d0f700 (LWP 23386)):
+#0  0x00002ada6b6aafdd in accept () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bbead in _wapi_accept (fd=9, addr=0x0, addrlen=0x0) at sockets.c:225
+#2  0x000000000059fc13 in ves_icall_System_Net_Sockets_Socket_Accept_internal (sock=&lt;value optimised out&gt;, error=0x2aaab8d0e9cc, 
+    blocking=&lt;value optimised out&gt;) at socket-io.c:883
+#3  0x0000000040bc26b3 in ?? ()
+#4  0x00000000019619d0 in ?? ()
+#5  0x00002aaab8d0eab0 in ?? ()
+#6  0x00002aaab8d0ea10 in ?? ()
+#7  0x00002ada6d106cc0 in ?? ()
+#8  0x0000000001646c20 in ?? ()
+#9  0x00002aaab8d0ea00 in ?? ()
+#10 0x00002aaab8d0e8e0 in ?? ()
+#11 0x00002ada6d106cc0 in ?? ()
+#12 0x00002aaaabf4fbc8 in ?? ()
+#13 0x00002aaaabf4fbc8 in ?? ()
+#14 0x00002aaab88d35c8 in ?? ()
+#15 0x0000000040bc2470 in ?? ()
+#16 0x0000000000000000 in ?? ()
+
+Thread 9 (Thread 0x2aaac170a700 (LWP 23391)):
+#0  0x00002ada6b992f03 in poll () from /lib/x86_64-linux-gnu/libc.so.6
+#1  0x00002aaab0a12104 in ?? () from /lib/x86_64-linux-gnu/libglib-2.0.so.0
+#2  0x00002aaab0a129f2 in g_main_loop_run () from /lib/x86_64-linux-gnu/libglib-2.0.so.0
+#3  0x00002aaab33b9c44 in ?? () from /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0
+#4  0x00002aaab0a393e4 in ?? () from /lib/x86_64-linux-gnu/libglib-2.0.so.0
+#5  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#6  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#7  0x0000000000000000 in ?? ()
+
+Thread 8 (Thread 0x2aaab90b8700 (LWP 23392)):
+#0  0x00002ada6b6a7f2b in pthread_cond_timedwait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bab5a in _wapi_handle_timedwait_signal_handle (handle=0x46f, timeout=0x2aaab90b7950, alertable=1, 
+    poll=&lt;value optimised out&gt;) at handles.c:1648
+#2  0x00000000005b40ee in WaitForSingleObjectEx (handle=0x46f, timeout=5000, alertable=1) at wait.c:205
+#3  0x000000000050bafb in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=&lt;value optimised out&gt;, handle=0x46f, ms=
+    5000, exitContext=&lt;value optimised out&gt;) at threads.c:1462
+#4  0x0000000041ab0868 in ?? ()
+#5  0x0000000002270e60 in ?? ()
+#6  0x00002ada6d106cc0 in ?? ()
+#7  0x00002aaab90b7a1f in ?? ()
+#8  0x00002aaac1b2fca8 in ?? ()
+#9  0x0000000001646c20 in ?? ()
+#10 0x00002aaab90b7a40 in ?? ()
+#11 0x00002aaab90b79a0 in ?? ()
+#12 0x00002ada6d106cc0 in ?? ()
+#13 0x00002aaac1ab37b8 in ?? ()
+#14 0x00002aaac1ab37b8 in ?? ()
+#15 0x0000000000001388 in ?? ()
+#16 0x0000000040a200a8 in ?? ()
+#17 0x00002aaac1f6e5c8 in ?? ()
+#18 0x0000000000000001 in ?? ()
+#19 0x00002aaac1f6e5c8 in ?? ()
+#20 0x01002aaab90b78f0 in ?? ()
+#21 0x00002aaab90b78f0 in ?? ()
+#22 0x00002aaac1ab37b8 in ?? ()
+#23 0x00002aaac1ab37b8 in ?? ()
+#24 0x00002aaac1ab37b8 in ?? ()
+#25 0x00002aaab90b7ab0 in ?? ()
+#26 0x0000000040a20017 in ?? ()
+#27 0x00002aaab90b7ab0 in ?? ()
+#28 0x0000000040a1fed4 in ?? ()
+#29 0x00002aaab90b86c0 in ?? ()
+#30 0x0000000000000000 in ?? ()
+
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+Thread 7 (Thread 0x2aaab94f0700 (LWP 23393)):
+#0  0x00002ada6b6ab4bd in nanosleep () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005b77e7 in SleepEx (ms=&lt;value optimised out&gt;, alertable=1) at wthreads.c:865
+#2  0x000000000050bf09 in ves_icall_System_Threading_Thread_Sleep_internal (ms=750) at threads.c:1118
+#3  0x000000004165721a in ?? ()
+#4  0x00000000022b2e20 in ?? ()
+#5  0x00002aaac8cd7d80 in ?? ()
+#6  0x0000000000000000 in ?? ()
+
+Thread 6 (Thread 0x2aaac6035700 (LWP 23394)):
+#0  0x00002ada6b6ab4bd in nanosleep () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005b77e7 in SleepEx (ms=&lt;value optimised out&gt;, alertable=1) at wthreads.c:865
+#2  0x0000000000519db8 in monitor_thread (unused=&lt;value optimised out&gt;) at threadpool.c:778
+#3  0x000000000050c1bc in start_wrapper_internal (data=0x2aaaac0c1380) at threads.c:571
+#4  start_wrapper (data=0x2aaaac0c1380) at threads.c:619
+#5  0x00000000005b8473 in thread_start_routine (args=0x1327908) at wthreads.c:290
+#6  0x00000000005c94a9 in inner_start_thread (arg=0x2aaaac0079b0) at mono-threads-posix.c:49
+#7  0x00000000005e3299 in GC_start_routine (arg=0x2aaac202ffc0) at pthread_support.c:1473
+#8  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#9  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#10 0x0000000000000000 in ?? ()
+
+Thread 5 (Thread 0x2aaac6236700 (LWP 23395)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bad3b in _wapi_handle_timedwait_signal_handle (handle=0x4aa, timeout=0x0, alertable=1, 
+    poll=&lt;value optimised out&gt;) at handles.c:1650
+#2  0x00000000005b4225 in WaitForSingleObjectEx (handle=0x4aa, timeout=4294967295, alertable=1) at wait.c:203
+#3  0x0000000000593bac in ves_icall_System_Threading_Monitor_Monitor_wait (obj=0x2aaac9af8de0, ms=4294967295) at monitor.c:1454
+#4  0x0000000041a9ddfd in ?? ()
+#5  0x00002aaabc0bbb00 in ?? ()
+#6  0x00002aaac6235977 in ?? ()
+#7  0x00002aaac9af8de0 in ?? ()
+#8  0x0000000001594638 in ?? ()
+#9  0x00002aaabc0bbce0 in ?? ()
+#10 0x00002aaac62359a0 in ?? ()
+#11 0x00002aaac62358e0 in ?? ()
+#12 0x00002ada6d106cc0 in ?? ()
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#13 0x00002aaacb226068 in ?? ()
+#14 0x00002aaac9af8de0 in ?? ()
+#15 0xffffffffffffffff in ?? ()
+#16 0x0000000041a9dc84 in ?? ()
+#17 0x00002aaac9d1f8c0 in ?? ()
+#18 0x00002aaac9d1f840 in ?? ()
+#19 0x0000000041a9dbf8 in ?? ()
+#20 0x0000000041a9dc28 in ?? ()
+#21 0x00002aaac9af8de0 in ?? ()
+#22 0x0000000041746e6c in ?? ()
+#23 0x01000004ffffffff in ?? ()
+#24 0x00002aaac9af8de0 in ?? ()
+#25 0x5b5b5b5b5b5b5b5b in ?? ()
+#26 0x2020202020202020 in ?? ()
+#27 0x0000000000000000 in ?? ()
+
+Thread 4 (Thread 0x2aaac70e1700 (LWP 23396)):
+#0  0x00002ada6b9a06a3 in epoll_wait () from /lib/x86_64-linux-gnu/libc.so.6
+#1  0x000000000051a500 in tp_epoll_wait (p=0x918660) at ../../mono/metadata/tpool-epoll.c:113
+#2  0x000000000050c1bc in start_wrapper_internal (data=0x2aaaac1358d0) at threads.c:571
+#3  start_wrapper (data=0x2aaaac1358d0) at threads.c:619
+#4  0x00000000005b8473 in thread_start_routine (args=0x1327a98) at wthreads.c:290
+#5  0x00000000005c94a9 in inner_start_thread (arg=0x2aaaac1362c0) at mono-threads-posix.c:49
+#6  0x00000000005e3299 in GC_start_routine (arg=0x2aaab8e3afc0) at pthread_support.c:1473
+#7  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#8  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#9  0x0000000000000000 in ?? ()
+
+Thread 3 (Thread 0x2aaac7122700 (LWP 23397)):
+#0  0x00002ada6b6a9f91 in sem_timedwait () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005c4925 in mono_sem_timedwait (sem=0x9185a8, timeout_ms=&lt;value optimised out&gt;, alertable=1) at mono-semaphore.c:76
+#2  0x000000000051c31f in async_invoke_thread (data=0x0) at threadpool.c:1486
+#3  0x000000000050c1bc in start_wrapper_internal (data=0x2aaaac0eb1a0) at threads.c:571
+#4  start_wrapper (data=0x2aaaac0eb1a0) at threads.c:619
+#5  0x00000000005b8473 in thread_start_routine (args=0x1327b60) at wthreads.c:290
+#6  0x00000000005c94a9 in inner_start_thread (arg=0x2aaaac0eb1d0) at mono-threads-posix.c:49
+#7  0x00000000005e3299 in GC_start_routine (arg=0x2aaab8e3afc0) at pthread_support.c:1473
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#8  0x00002ada6b6a2d8c in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#9  0x00002ada6b9a004d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#10 0x0000000000000000 in ?? ()
+
+Thread 2 (Thread 0x2aaac732b700 (LWP 23398)):
+#0  0x00002ada6b6a7bac in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005bad3b in _wapi_handle_timedwait_signal_handle (handle=0x58f, timeout=0x0, alertable=1, 
+    poll=&lt;value optimised out&gt;) at handles.c:1650
+#2  0x00000000005b4225 in WaitForSingleObjectEx (handle=0x58f, timeout=4294967295, alertable=1) at wait.c:203
+#3  0x0000000000593bac in ves_icall_System_Threading_Monitor_Monitor_wait (obj=0x2aaac9af8e20, ms=4294967295) at monitor.c:1454
+#4  0x0000000041a9ddfd in ?? ()
+#5  0x00000000024f5ba0 in ?? ()
+#6  0x00002aaad34e4d98 in ?? ()
+#7  0x00002aaaac74d970 in ?? ()
+#8  0x0000000041358ac4 in ?? ()
+#9  0x00002aaabc0bbce0 in ?? ()
+#10 0x00002aaac732a9a0 in ?? ()
+#11 0x00002aaac732a8e0 in ?? ()
+#12 0x00002ada6d106cc0 in ?? ()
+#13 0x00002aaad1a87410 in ?? ()
+#14 0x00002aaac9af8e20 in ?? ()
+#15 0xffffffffffffffff in ?? ()
+#16 0x0000000041a9dc84 in ?? ()
+#17 0x00002aaac9569700 in ?? ()
+#18 0x00002aaac95696c0 in ?? ()
+#19 0x00002aaad1a87410 in ?? ()
+#20 0x0000000041a9dc28 in ?? ()
+#21 0x00002aaac9af8e20 in ?? ()
+#22 0x0000000041746e6c in ?? ()
+#23 0x01000004ffffffff in ?? ()
+#24 0x00002aaac9af8e20 in ?? ()
+#25 0x0000000000000000 in ?? ()
+
+Thread 1 (Thread 0x2ada6bc4f460 (LWP 23375)):
+#0  0x00002ada6b8f1930 in abort () from /lib/x86_64-linux-gnu/libc.so.6
+#1  0x00002aaab0a3751d in g_assertion_message () from /lib/x86_64-linux-gnu/libglib-2.0.so.0
+#2  0x00002aaab0a37ae0 in g_assertion_message_expr () from /lib/x86_64-linux-gnu/libglib-2.0.so.0
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+#3  0x00002aaab1874e81 in IA__gtk_container_propagate_expose (container=0x348dcd0, child=0x3048df0, event=0x7fffa063f110)
+    at /build/buildd/gtk+2.0-2.24.4/gtk/gtkcontainer.c:2756
+#4  0x00002aaab1873ab4 in gtk_container_expose (widget=0x348dcd0, event=0x7fffa063f110)
+    at /build/buildd/gtk+2.0-2.24.4/gtk/gtkcontainer.c:2681
+#5  0x00002aaab188ae2f in gtk_event_box_expose (widget=0x348dcd0, event=0x7fffa063f110)
+    at /build/buildd/gtk+2.0-2.24.4/gtk/gtkeventbox.c:568
+#6  0x00002aaab18f2578 in _gtk_marshal_BOOLEAN__BOXED (closure=0x15c0c20, return_value=0x7fffa063edb0, 
+    n_param_values=&lt;value optimised out&gt;, param_values=0x2d50c00, invocation_hint=&lt;value optimised out&gt;, 
+    marshal_data=&lt;value optimised out&gt;) at /build/buildd/gtk+2.0-2.24.4/gtk/gtkmarshalers.c:86
+#7  0x00002aaab112d81c in g_closure_invoke () from /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0
+#8  0x00002aaab113ee1f in ?? () from /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0
+#9  0x00002aaab1147fa9 in g_signal_emit_valist () from /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0
+#10 0x00002aaab114841f in g_signal_emit () from /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0
+#11 0x00002aaab1a0e4d1 in gtk_widget_event_internal (widget=0x348dcd0, event=0x7fffa063f110)
+    at /build/buildd/gtk+2.0-2.24.4/gtk/gtkwidget.c:4988
+#12 0x00002aaab18f0d9d in IA__gtk_main_do_event (event=0x7fffa063f110) at /build/buildd/gtk+2.0-2.24.4/gtk/gtkmain.c:1610
+#13 0x00002aaab1e407dc in _gdk_window_process_updates_recurse (window=0x21bb7e0, expose_region=0x23e3b60)
+    at /build/buildd/gtk+2.0-2.24.4/gdk/gdkwindow.c:5429
+#14 0x00002aaab1e3b73b in gdk_window_process_updates_internal (window=0x21bb7e0)
+    at /build/buildd/gtk+2.0-2.24.4/gdk/gdkwindow.c:5588
+#15 0x00002aaab1e3d929 in IA__gdk_window_process_all_updates () at /build/buildd/gtk+2.0-2.24.4/gdk/gdkwindow.c:5696
+#16 0x00002aaab1873761 in gtk_container_idle_sizer (data=&lt;value optimised out&gt;)
+    at /build/buildd/gtk+2.0-2.24.4/gtk/gtkcontainer.c:1380
+#17 0x00002aaab1e1ac46 in gdk_threads_dispatch (data=0x321a2a0) at /build/buildd/gtk+2.0-2.24.4/gdk/gdk.c:512
+#18 0x00002aaab0a11bcd in g_main_context_dispatch () from /lib/x86_64-linux-gnu/libglib-2.0.so.0
+#19 0x00002aaab0a123a8 in ?? () from /lib/x86_64-linux-gnu/libglib-2.0.so.0
+#20 0x00002aaab0a129f2 in g_main_loop_run () from /lib/x86_64-linux-gnu/libglib-2.0.so.0
+#21 0x00002aaab18efaf7 in IA__gtk_main () at /build/buildd/gtk+2.0-2.24.4/gtk/gtkmain.c:1257
+#22 0x0000000041824785 in ?? ()
+#23 0x00000000012b1390 in ?? ()
+#24 0x00002ada6d106cc0 in ?? ()
+#25 0x0000000000000000 in ?? ()</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-10-27 09:36:26 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">(gdb) p gtk_widget_get_name (0x348dcd0)
+$1 = 36562395
+(gdb) p (char*) gtk_widget_get_name (0x348dcd0)
+[Thread 0x2aaad63a7700 (LWP 23766) exited]
+$2 = 0x22de5db "__gtksharp_67_MonoDevelop_Components_Docking_ScrollableContainer"
+(gdb) p (char*) gtk_widget_get_name (0x3048df0)
+$3 = 0x1de9c78 "__gtksharp_30_MonoDevelop_Components_Docking_DockItemContainer"</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-10-27 09:43:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">To sum up:
+
+Assertion is:
+Gtk:ERROR:/build/buildd/gtk+2.0-2.24.4/gtk/gtkcontainer.c:2756:IA__gtk_container_propagate_expose:
+assertion failed: (child-&gt;parent == GTK_WIDGET (container))
+Stacktrace:
+
+Important part of trace is:
+#2  0x00002aaab0a37ae0 in g_assertion_message_expr () from /lib/x86_64-linux-gnu/libglib-2.0.so.0
+#3  0x00002aaab1874e81 in IA__gtk_container_propagate_expose (container=0x348dcd0, child=0x3048df0, event=0x7fffa063f110) at /build/buildd/gtk+2.0-2.24.4/gtk/gtkcontainer.c:2756
+#4  0x00002aaab1873ab4 in gtk_container_expose (widget=0x348dcd0, event=0x7fffa063f110) at /build/buildd/gtk+2.0-2.24.4/gtk/gtkcontainer.c:2681
+#5  0x00002aaab188ae2f in gtk_event_box_expose (widget=0x348dcd0, event=0x7fffa063f110)
+
+And in GDB on IRC we found the type of the child and the parent:
+p (char*) gtk_widget_get_name (0x348dcd0)
+$2 = 0x22de5db "__gtksharp_67_MonoDevelop_Components_Docking_ScrollableContainer"
+p (char*) gtk_widget_get_name (0x3048df0)
+$3 = 0x1de9c78 "__gtksharp_30_MonoDevelop_Components_Docking_DockItemContainer"</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-03 09:25:14 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Stoping debugging Simulator crashes Mondevelop randomly" href="show_bug.cgi?id=1850">Bug 1850</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-03 09:42:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">A potential fix has been committed in 6c7267c8. I've no idea if this will actually help or not as the issue is so rare it's nigh-impossible to reproduce. Marking as need info while we wait to see if the patch has had any effect.</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mike Krüger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-15 16:30:51 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Re-open, if it happens again.</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Miguel de Icaza [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-09 15:01:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This is filed against MonoDevelop, but it is really our Gtk+ stack on OSX.
+
+Updated, I get crashes like this using:
+
+Mono 2.10.8.1 (the one with the new Gtk+) using both 2.8.5 and newresolver.
+
+Attached is one of my crashes:
+
+
+**
+Gtk:ERROR:gtkcontainer.c:2743:gtk_container_propagate_expose: assertion failed: (child-&gt;parent == GTK_WIDGET (container))
+Stacktrace:
+
+  at (wrapper managed-to-native) Gtk.Application.gtk_main () &lt;IL 0x00022, 0xffffffff&gt;
+  at Gtk.Application.Run () &lt;IL 0x00000, 0x0000b&gt;
+  at MonoDevelop.Ide.IdeApp.Run () [0x00000] in /Users/builder/data/lanes/monodevelop-mac-newresolver/189dd79b/source/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/Ide.cs:385
+  at MonoDevelop.Ide.IdeStartup.Run (MonoDevelop.Ide.MonoDevelopOptions) [0x00688] in /Users/builder/data/lanes/monodevelop-mac-newresolver/189dd79b/source/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/IdeStartup.cs:272
+  at MonoDevelop.Ide.IdeStartup.Main (string[]) [0x0004f] in /Users/builder/data/lanes/monodevelop-mac-newresolver/189dd79b/source/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/IdeStartup.cs:503
+  at MonoDevelop.Startup.MonoDevelopMain.Main (string[]) [0x00000] in /Users/builder/data/lanes/monodevelop-mac-newresolver/189dd79b/source/monodevelop/main/src/core/MonoDevelop.Startup/MonoDevelop.Startup/MonoDevelopMain.cs:16
+  at (wrapper runtime-invoke) &lt;Module&gt;.runtime_invoke_int_object (object,intptr,intptr,intptr) &lt;IL 0x0005c, 0xffffffff&gt;
+
+Native stacktrace:
+
+	0   monodevelop                         0x00094eec mono_handle_native_sigsegv + 284
+	1   monodevelop                         0x000dab3d sigabrt_signal_handler + 109
+	2   libsystem_c.dylib                   0x9595a59b _sigtramp + 43
+	3   ???                                 0xffffffff 0x0 + 4294967295
+	4   libsystem_c.dylib                   0x958f5bdd abort + 167
+	5   libglib-2.0.0.dylib                 0x04b15568 g_assertion_message_expr + 0
+	6   libglib-2.0.0.dylib                 0x04b155c6 g_assertion_message_cmpnum + 0
+	7   libgtk-quartz-2.0.0.dylib           0x04cd2673 gtk_container_propagate_expose + 435
+	8   libgtk-quartz-2.0.0.dylib           0x04cd2236 gtk_container_expose_child + 54
+	9   libgtk-quartz-2.0.0.dylib           0x04c7e5a5 gtk_bin_forall + 69
+	10  libgtk-quartz-2.0.0.dylib           0x04ccf7f8 gtk_container_forall + 280
+	11  libgtk-quartz-2.0.0.dylib           0x04cd235e gtk_container_expose + 286
+	12  libgtk-quartz-2.0.0.dylib           0x04cf354f gtk_event_box_expose + 111
+	13  libgtk-quartz-2.0.0.dylib           0x04d8ecbe _gtk_marshal_BOOLEAN__BOXED + 286
+	14  libgobject-2.0.0.dylib              0x04c07c44 g_type_class_meta_marshal + 97
+	15  libgobject-2.0.0.dylib              0x04c0793b g_closure_invoke + 370
+	16  libgobject-2.0.0.dylib              0x04c20c86 signal_emit_unlocked_R + 3080
+	17  libgobject-2.0.0.dylib              0x04c1fbe6 g_signal_emit_valist + 2334
+	18  libgobject-2.0.0.dylib              0x04c1fe92 g_signal_emit + 44
+	19  libgtk-quartz-2.0.0.dylib           0x04f3a5b9 gtk_widget_event_internal + 713
+	20  libgtk-quartz-2.0.0.dylib           0x04f3a1e1 gtk_widget_send_expose + 369
+	21  libgtk-quartz-2.0.0.dylib           0x04d8aea8 gtk_main_do_event + 600
+	22  libgdk-quartz-2.0.0.dylib           0x051c1802 _gdk_window_process_updates_recurse + 786
+	23  libgdk-quartz-2.0.0.dylib           0x051c16fa _gdk_window_process_updates_recurse + 522
+	24  libgdk-quartz-2.0.0.dylib           0x051c16fa _gdk_window_process_updates_recurse + 522
+	25  libgdk-quartz-2.0.0.dylib           0x051c16fa _gdk_window_process_updates_recurse + 522
+	26  libgdk-quartz-2.0.0.dylib           0x051ce422 -[GdkQuartzView drawRect:] + 418
+	27  AppKit                              0x97f628c2 -[NSView _drawRect:clip:] + 3717
+	28  AppKit                              0x97f92483 -[NSView _recursiveDisplayAllDirtyWithLockFocus:visRect:] + 1958
+	29  AppKit                              0x97f6021f -[NSView _recursiveDisplayRectIfNeededIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:topView:] + 708
+	30  AppKit                              0x97f5aeaa -[NSView _displayRectIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:] + 4817
+	31  AppKit                              0x97f53d61 -[NSView displayIfNeeded] + 1256
+	32  libgdk-quartz-2.0.0.dylib           0x051e61b1 _gdk_windowing_after_process_all_updates + 113
+	33  libgdk-quartz-2.0.0.dylib           0x051c1d2f gdk_window_process_all_updates + 319
+	34  libgtk-quartz-2.0.0.dylib           0x04ccf1d2 gtk_container_idle_sizer + 114
+	35  libgdk-quartz-2.0.0.dylib           0x0518a53e gdk_threads_dispatch + 94
+	36  libglib-2.0.0.dylib                 0x04aec8ce g_idle_dispatch + 71
+	37  libglib-2.0.0.dylib                 0x04ae858d g_main_dispatch + 495
+	38  libglib-2.0.0.dylib                 0x04ae9bf7 g_main_context_dispatch + 144
+	39  libglib-2.0.0.dylib                 0x04aea13b g_main_context_iterate + 1235
+	40  libglib-2.0.0.dylib                 0x04aea987 g_main_loop_run + 992
+	41  libgtk-quartz-2.0.0.dylib           0x04d8a540 gtk_main + 240
+	42  ???                                 0x1087a68c 0x0 + 277325452
+	43  ???                                 0x1087a654 0x0 + 277325396
+	44  ???                                 0x1087a634 0x0 + 277325364
+	45  ???                                 0x04a34004 0x0 + 77807620
+	46  ???                                 0x004a5f90 0x0 + 4874128
+	47  ???                                 0x004a5d9c 0x0 + 4873628
+	48  ???                                 0x004a5e56 0x0 + 4873814
+	49  monodevelop                         0x0000d272 mono_jit_runtime_invoke + 722
+	50  monodevelop                         0x001a435a mono_runtime_invoke + 170
+	51  monodevelop                         0x001a6e9c mono_runtime_exec_main + 620
+	52  monodevelop                         0x001a6101 mono_runtime_run_main + 929
+	53  monodevelop                         0x00069985 mono_jit_exec + 149
+	54  monodevelop                         0x0006bf03 mono_main + 9587
+	55  monodevelop                         0x00002289 main + 441
+	56  monodevelop                         0x00002096 start + 54
+
+Debug info from gdb:
+
+
+=================================================================
+Got a SIGABRT while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+=================================================================</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-09 16:05:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Do you know what you were doing when this happened?  I have a semi-reliable repro where i get a similar crash when I debug a console app and then quit it immediately. I only just got a Gtk with debug symbols last week so I'm going to look into this again this week once I can make it happen reliably</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jeffrey Stedfast</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-09 17:00:25 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed" title="CLOSED DUPLICATE - Crashes when stopping debugging on Android device" href="show_bug.cgi?id=1942">Bug 1942</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-11 06:37:24 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Monodevelop crashes when trying to debug Simulator" href="show_bug.cgi?id=2339">Bug 2339</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-11 10:44:05 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Between myself and jeff we have found and fixed at least one cause of this issue using a slightly different way to reproduce the crash. The repro was to click on some of the auto-hide tabs so that they expand and then clicking on the File menu and opening a recent project before the tabs slid closed. If a new project was selected *before* the tabs closed, this crash occurred. I'm listing the commits in question so that if the bug reoccurs they can be located easily:
+
+b4afa025fcfb1f70f2361c06a0110bc4f962b3da
+c72103c912b83e78ef1a4a715ee9423553abaf41
+f3a8f09d898af03ba4f2e937f233e0a7c9b6f306 
+
+ If this issue does occur again, please reopen this bug.</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-11 15:51:54 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The fix was reverted because it caused problems.</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-11 18:36:34 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I have committed a potential fix for this problem.
+
+Alan, since you can reproduce it, can you test my fix?</pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-13 09:40:56 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I've tested it as much as possible and it appears to resolve things perfectly. My repro was 'reliable' in that it happened at least 1 in 10 times. I've tried to repro about 30 times now with no crash or orphaned slider panes. I'm going to close this one again because it seems like you fixed it. I'll reopen if I trigger it again.</pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jeffrey Stedfast</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-13 16:29:28 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I've backported the patches for this to the 2.8.6 branch</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-04-04 22:30:19 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Random crashes while working with Monodevelop 2.6" href="show_bug.cgi?id=890">Bug 890</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

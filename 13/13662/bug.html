@@ -1,0 +1,1777 @@
+<html lang="en"><head>
+    <title>13662 – Crashes if left idle for a long period of time (hours)</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Xamarin_Studio
+                 bz_component_General
+                 bz_bug_13662 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;13662</span>
+
+        <span id="subtitle" class="subheader">Crashes if left idle for a long period of time (hours)</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2016-10-18 17:08:40 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2016-10-18 17:08:40">
+  <input type="hidden" name="id" value="13662">
+  <input type="hidden" name="token" value="1559168916-uTLSccZQ09YAA81DdjZDuwnYkdG0BR7aie02YNT8KjU">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;13662</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">Crashes if left idle for a long period of time (hours)</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>Crashes if left idle for a long period of time (hours)
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Xamarin Studio
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Desktop
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">General
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>4.0.9
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">Macintosh
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>---
+       normal
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>master
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Bugzilla</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2013-07-31 13:45 UTC by <span class="vcard"><span class="fn">traderhut</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2016-10-18 17:08 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>3
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="iain.holmes">iain.holmes</option>
+                <option value="mono-bugs+monodevelop">mono-bugs+monodevelop</option>
+                <option value="xamarin">xamarin</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/mono/monodevelop/issues">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">traderhut</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-07-31 13:45:42 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Since the last release, just leaving the app sitting there, doing nothing - with that desktop not even visible... and Boom! it crashes.  I used to leave it running for days on my 10'th screen, and whenever I would want to flip back and work on that I would just flip over and do some work on it.
+
+Since the last release, EVERY time I flip back there when it has been idle for a while it has a message saying it died.
+
+I can only assume it is crashing because it is checking for updates or something.  It shouldn't be doing anything at all.
+
+(Between the time I started writing this up, and finished it, I just saw (and installed) an update, so I am now at 4.0.10, build 7.  Previously, I was running the 4.0.9 I presume.</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-07-31 14:04:50 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Do you have a crash trace?</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">traderhut</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-07-31 14:36:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Does it leave one?  It asked if I wanted to report it to Apple, and I did many times.  Is there another way/place to get something to send you?</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-07-31 15:26:19 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Apple doesn't forwards the crash report to developers, unfortunately, so reporting it to them does not good.
+
+If you look at the error "details" you can see the content, copy/paste it into a text file, and attach it.</pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">traderhut</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-07-31 16:13:03 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">OK, will do that if it happens again.  Being as I just installed an update, perhaps, it won't crash anymore.
+
+I would think that Apple would forward the reports, I think that Microsoft will do that if you register with them to get them.  Although, I've not been in a company that registered with them.</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-07-31 16:43:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Yes, Microsoft does if you have signed binaries and register for WER (Windows Error Reporting). Apple doesn't unless your app is shipped though the App Store. We can't use the app store because the sandboxing would prevent us from doing a lot of things.
+
+You can find logs from older crashes in ~/Library/Logs/DiagnosticReports, most easily accessed from Console.app.</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">traderhut</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-03 16:17:42 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Sigh, Left it sit over 24 hours and then BOOM!
+
+So I don't have to go get a file.. And it appears this was the current version - or should be.
+
+I can't imagine why there are *40* threads running.  I could see a couple, but it seems like a poor design to have that many threads running.   (I have a background in threading of over 10 years.)
+
+
+Process:         XamarinStudio [9881]
+Path:            /Applications/Xamarin Studio.app/Contents/MacOS/XamarinStudio
+Identifier:      com.xamarin.monodevelop
+Version:         4.0.10.7 (4.0.10.7)
+Code Type:       X86 (Native)
+Parent Process:  launchd [293]
+User ID:         501
+
+Date/Time:       2013-08-03 15:06:08.106 -0500
+OS Version:      Mac OS X 10.8.4 (12E55)
+Report Version:  10
+
+Interval Since Last Report:          813964 sec
+Crashes Since Last Report:           2
+Per-App Interval Since Last Report:  265365 sec
+Per-App Crashes Since Last Report:   1
+Anonymous UUID:                      02143BB9-23AD-59E5-A55E-4FC5B7C66330
+
+Crashed Thread:  0  Dispatch queue: com.apple.main-thread
+
+Exception Type:  EXC_BAD_ACCESS (SIGABRT)
+Exception Codes: KERN_INVALID_ADDRESS at 0x00000000c0000000
+
+VM Regions Near 0xc0000000:
+    Stack                  00000000bf809000-00000000c0000000 [ 8156K] rw-/rwx SM=COW  
+--&gt; 
+    CG shared images       00000000c0001000-00000000c0009000 [   32K] rw-/rw- SM=SHM  
+
+Application Specific Information:
+abort() called
+
+Thread 0 Crashed:: Dispatch queue: com.apple.main-thread
+0   libsystem_kernel.dylib        	0x92e28a6a __pthread_kill + 10
+1   libsystem_c.dylib             	0x92480b2f pthread_kill + 101
+2   libsystem_c.dylib             	0x924b74ec abort + 168
+3   libmonosgen-2.0.dylib         	0x010a7980 mono_handle_native_sigsegv + 592
+4   libmonosgen-2.0.dylib         	0x010f7245 mono_arch_handle_altstack_exception + 149
+5   libmonosgen-2.0.dylib         	0x01003c61 mono_sigsegv_signal_handler + 369
+6   libsystem_c.dylib             	0x9246b8cb _sigtramp + 43
+7   ???                           	0xffffffff 0 + 4294967295
+8   libmonosgen-2.0.dylib         	0x01003af0 mono_sigill_signal_handler + 48
+9   com.apple.mobiledevice        	0x17db9685 copy_daemon_name + 305
+
+Thread 1:
+0   libsystem_kernel.dylib        	0x92e2680e semaphore_wait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c9e mono_sem_wait + 30
+2   libmonosgen-2.0.dylib         	0x011be38a finalizer_thread + 74
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 2:: Dispatch queue: com.apple.libdispatch-manager
+0   libsystem_kernel.dylib        	0x92e299ae kevent + 10
+1   libdispatch.dylib             	0x97cdec71 _dispatch_mgr_invoke + 993
+2   libdispatch.dylib             	0x97cde7a9 _dispatch_mgr_thread + 53
+
+Thread 3:
+0   libsystem_kernel.dylib        	0x92e288e2 __psynch_cvwait + 10
+1   libsystem_c.dylib             	0x92484280 _pthread_cond_wait + 833
+2   libsystem_c.dylib             	0x9250a095 pthread_cond_wait$UNIX2003 + 71
+3   libmonosgen-2.0.dylib         	0x01223e1c _wapi_handle_timedwait_signal_handle + 620
+4   libmonosgen-2.0.dylib         	0x01223e68 _wapi_handle_wait_signal_handle + 40
+5   libmonosgen-2.0.dylib         	0x01237191 WaitForSingleObjectEx + 625
+6   libmonosgen-2.0.dylib         	0x01197dda mono_wait_uninterrupted + 122
+7   libmonosgen-2.0.dylib         	0x01197e9f ves_icall_System_Threading_WaitHandle_WaitOne_internal + 95
+8   ???                           	0x098ae03c 0 + 160096316
+9   ???                           	0x014ecfb0 0 + 21942192
+10  ???                           	0x014ec863 0 + 21940323
+11  ???                           	0x014ec6a0 0 + 21939872
+12  ???                           	0x014b25fd 0 + 21702141
+13  libmonosgen-2.0.dylib         	0x0100d805 mono_jit_runtime_invoke + 741
+14  libmonosgen-2.0.dylib         	0x011c4a2e mono_runtime_invoke + 126
+15  libmonosgen-2.0.dylib         	0x011c4b9c mono_runtime_delegate_invoke + 140
+16  libmonosgen-2.0.dylib         	0x01195142 start_wrapper + 514
+17  libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+18  libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+19  libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+20  libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 4:
+0   libsystem_kernel.dylib        	0x92e28c72 __semwait_signal + 10
+1   libsystem_c.dylib             	0x92509a55 nanosleep$UNIX2003 + 189
+2   libmonosgen-2.0.dylib         	0x012393a5 SleepEx + 309
+3   libmonosgen-2.0.dylib         	0x01199c18 monitor_thread + 120
+4   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+5   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+6   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+7   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+8   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 5:
+0   libsystem_kernel.dylib        	0x92e28be6 __select + 10
+1   libmonosgen-2.0.dylib         	0x0124565f mono_poll + 463
+2   libmonosgen-2.0.dylib         	0x0119aaee tp_poll_wait + 1390
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 6:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 7:: CVDisplayLink
+0   libsystem_kernel.dylib        	0x92e288e2 __psynch_cvwait + 10
+1   libsystem_c.dylib             	0x92484280 _pthread_cond_wait + 833
+2   libsystem_c.dylib             	0x9250a095 pthread_cond_wait$UNIX2003 + 71
+3   com.apple.CoreVideo           	0x98a4915a CVDisplayLink::runIOThread() + 912
+4   com.apple.CoreVideo           	0x98a48db2 startIOThread(void*) + 160
+5   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+6   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 8:
+0   libsystem_kernel.dylib        	0x92e28c72 __semwait_signal + 10
+1   libsystem_c.dylib             	0x92509a55 nanosleep$UNIX2003 + 189
+2   libmonosgen-2.0.dylib         	0x012393a5 SleepEx + 309
+3   libmonosgen-2.0.dylib         	0x01198118 ves_icall_System_Threading_Thread_Sleep_internal + 88
+4   ???                           	0x0f2e9fbc 0 + 254713788
+5   ???                           	0x0f2e9f38 0 + 254713656
+6   ???                           	0x0f2e9cf4 0 + 254713076
+7   ???                           	0x014ec6a0 0 + 21939872
+8   ???                           	0x014b25fd 0 + 21702141
+9   libmonosgen-2.0.dylib         	0x0100d805 mono_jit_runtime_invoke + 741
+10  libmonosgen-2.0.dylib         	0x011c4a2e mono_runtime_invoke + 126
+11  libmonosgen-2.0.dylib         	0x011c4b9c mono_runtime_delegate_invoke + 140
+12  libmonosgen-2.0.dylib         	0x01195142 start_wrapper + 514
+13  libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+14  libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+15  libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+16  libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 9:
+0   libsystem_kernel.dylib        	0x92e288e2 __psynch_cvwait + 10
+1   libsystem_c.dylib             	0x92484280 _pthread_cond_wait + 833
+2   libsystem_c.dylib             	0x9250a0e0 pthread_cond_timedwait$UNIX2003 + 70
+3   libmonosgen-2.0.dylib         	0x01223db4 _wapi_handle_timedwait_signal_handle + 516
+4   libmonosgen-2.0.dylib         	0x012371b4 WaitForSingleObjectEx + 660
+5   libmonosgen-2.0.dylib         	0x01197dda mono_wait_uninterrupted + 122
+6   libmonosgen-2.0.dylib         	0x01197e9f ves_icall_System_Threading_WaitHandle_WaitOne_internal + 95
+7   ???                           	0x098ae03c 0 + 160096316
+8   ???                           	0x0f2da0d0 0 + 254648528
+9   ???                           	0x0f9e0184 0 + 262013316
+10  ???                           	0x0f9e0090 0 + 262013072
+11  ???                           	0x014ec6a0 0 + 21939872
+12  ???                           	0x014b25fd 0 + 21702141
+13  libmonosgen-2.0.dylib         	0x0100d805 mono_jit_runtime_invoke + 741
+14  libmonosgen-2.0.dylib         	0x011c4a2e mono_runtime_invoke + 126
+15  libmonosgen-2.0.dylib         	0x011c4b9c mono_runtime_delegate_invoke + 140
+16  libmonosgen-2.0.dylib         	0x01195142 start_wrapper + 514
+17  libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+18  libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+19  libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+20  libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 10:
+0   libsystem_kernel.dylib        	0x92e288e2 __psynch_cvwait + 10
+1   libsystem_c.dylib             	0x92484280 _pthread_cond_wait + 833
+2   libsystem_c.dylib             	0x9250a0e0 pthread_cond_timedwait$UNIX2003 + 70
+3   libmonosgen-2.0.dylib         	0x01223db4 _wapi_handle_timedwait_signal_handle + 516
+4   libmonosgen-2.0.dylib         	0x012371b4 WaitForSingleObjectEx + 660
+5   libmonosgen-2.0.dylib         	0x01197dda mono_wait_uninterrupted + 122
+6   libmonosgen-2.0.dylib         	0x01197e9f ves_icall_System_Threading_WaitHandle_WaitOne_internal + 95
+7   ???                           	0x098ae03c 0 + 160096316
+8   ???                           	0x0f2da0d0 0 + 254648528
+9   ???                           	0x0f9e3431 0 + 262026289
+10  ???                           	0x0f9e202c 0 + 262021164
+11  ???                           	0x014ec6a0 0 + 21939872
+12  ???                           	0x014b25fd 0 + 21702141
+13  libmonosgen-2.0.dylib         	0x0100d805 mono_jit_runtime_invoke + 741
+14  libmonosgen-2.0.dylib         	0x011c4a2e mono_runtime_invoke + 126
+15  libmonosgen-2.0.dylib         	0x011c4b9c mono_runtime_delegate_invoke + 140
+16  libmonosgen-2.0.dylib         	0x01195142 start_wrapper + 514
+17  libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+18  libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+19  libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+20  libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 11:: com.apple.CFSocket.private
+0   libsystem_kernel.dylib        	0x92e28be6 __select + 10
+1   com.apple.CoreFoundation      	0x9145a650 __CFSocketManager + 1632
+2   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+3   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 12:
+0   libsystem_kernel.dylib        	0x92e28be6 __select + 10
+1   libglib-2.0.0.dylib           	0x07470fef g_poll + 1295
+2   libgdk-quartz-2.0.0.dylib     	0x07b241cc select_thread_func + 332
+3   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+4   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 13:
+0   libsystem_kernel.dylib        	0x92e288e2 __psynch_cvwait + 10
+1   libsystem_c.dylib             	0x92484280 _pthread_cond_wait + 833
+2   libsystem_c.dylib             	0x9250a095 pthread_cond_wait$UNIX2003 + 71
+3   libmonosgen-2.0.dylib         	0x01223e1c _wapi_handle_timedwait_signal_handle + 620
+4   libmonosgen-2.0.dylib         	0x01223e68 _wapi_handle_wait_signal_handle + 40
+5   libmonosgen-2.0.dylib         	0x01237191 WaitForSingleObjectEx + 625
+6   libmonosgen-2.0.dylib         	0x01197dda mono_wait_uninterrupted + 122
+7   libmonosgen-2.0.dylib         	0x01197e9f ves_icall_System_Threading_WaitHandle_WaitOne_internal + 95
+8   ???                           	0x098ae03c 0 + 160096316
+9   ???                           	0x014ecfb0 0 + 21942192
+10  ???                           	0x0a12071f 0 + 168953631
+11  ???                           	0x014ec6a0 0 + 21939872
+12  ???                           	0x014b25fd 0 + 21702141
+13  libmonosgen-2.0.dylib         	0x0100d805 mono_jit_runtime_invoke + 741
+14  libmonosgen-2.0.dylib         	0x011c4a2e mono_runtime_invoke + 126
+15  libmonosgen-2.0.dylib         	0x011c4b9c mono_runtime_delegate_invoke + 140
+16  libmonosgen-2.0.dylib         	0x01195142 start_wrapper + 514
+17  libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+18  libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+19  libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+20  libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 14:
+0   libsystem_kernel.dylib        	0x92e288e2 __psynch_cvwait + 10
+1   libsystem_c.dylib             	0x92484280 _pthread_cond_wait + 833
+2   libsystem_c.dylib             	0x9250a095 pthread_cond_wait$UNIX2003 + 71
+3   libmonosgen-2.0.dylib         	0x01223e1c _wapi_handle_timedwait_signal_handle + 620
+4   libmonosgen-2.0.dylib         	0x01223e68 _wapi_handle_wait_signal_handle + 40
+5   libmonosgen-2.0.dylib         	0x01237191 WaitForSingleObjectEx + 625
+6   libmonosgen-2.0.dylib         	0x01197dda mono_wait_uninterrupted + 122
+7   libmonosgen-2.0.dylib         	0x01197e9f ves_icall_System_Threading_WaitHandle_WaitOne_internal + 95
+8   ???                           	0x098ae03c 0 + 160096316
+9   ???                           	0x014ecfb0 0 + 21942192
+10  ???                           	0x0f191607 0 + 253302279
+11  ???                           	0x014ec6a0 0 + 21939872
+12  ???                           	0x014b25fd 0 + 21702141
+13  libmonosgen-2.0.dylib         	0x0100d805 mono_jit_runtime_invoke + 741
+14  libmonosgen-2.0.dylib         	0x011c4a2e mono_runtime_invoke + 126
+15  libmonosgen-2.0.dylib         	0x011c4b9c mono_runtime_delegate_invoke + 140
+16  libmonosgen-2.0.dylib         	0x01195142 start_wrapper + 514
+17  libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+18  libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+19  libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+20  libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 15:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 16:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 17:
+0   libsystem_kernel.dylib        	0x92e288e2 __psynch_cvwait + 10
+1   libsystem_c.dylib             	0x92484280 _pthread_cond_wait + 833
+2   libsystem_c.dylib             	0x9250a0e0 pthread_cond_timedwait$UNIX2003 + 70
+3   libmonosgen-2.0.dylib         	0x01223db4 _wapi_handle_timedwait_signal_handle + 516
+4   libmonosgen-2.0.dylib         	0x012371b4 WaitForSingleObjectEx + 660
+5   libmonosgen-2.0.dylib         	0x011c0406 mono_monitor_try_enter_internal + 1526
+6   libmonosgen-2.0.dylib         	0x011c071f ves_icall_System_Threading_Monitor_Monitor_try_enter_with_atomic_var + 31
+7   ???                           	0x000f179c 0 + 989084
+8   ???                           	0x000f16ac 0 + 988844
+9   ???                           	0x000f1658 0 + 988760
+10  ???                           	0x000f1624 0 + 988708
+11  ???                           	0x0cca1c8c 0 + 214572172
+12  ???                           	0x000eecc5 0 + 978117
+13  libmonosgen-2.0.dylib         	0x0100d805 mono_jit_runtime_invoke + 741
+14  libmonosgen-2.0.dylib         	0x011c4a2e mono_runtime_invoke + 126
+15  libmonosgen-2.0.dylib         	0x011c4b9c mono_runtime_delegate_invoke + 140
+16  libmonosgen-2.0.dylib         	0x0119c361 async_invoke_thread + 2161
+17  libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+18  libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+19  libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+20  libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+21  libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 18:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 19:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 20:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 21:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 22:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 23:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 24:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 25:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 26:
+0   libsystem_kernel.dylib        	0x92e288e2 __psynch_cvwait + 10
+1   libsystem_c.dylib             	0x92484280 _pthread_cond_wait + 833
+2   libsystem_c.dylib             	0x9250a095 pthread_cond_wait$UNIX2003 + 71
+3   libmonosgen-2.0.dylib         	0x01223e1c _wapi_handle_timedwait_signal_handle + 620
+4   libmonosgen-2.0.dylib         	0x01223e68 _wapi_handle_wait_signal_handle + 40
+5   libmonosgen-2.0.dylib         	0x01237191 WaitForSingleObjectEx + 625
+6   libmonosgen-2.0.dylib         	0x01197dda mono_wait_uninterrupted + 122
+7   libmonosgen-2.0.dylib         	0x01197e9f ves_icall_System_Threading_WaitHandle_WaitOne_internal + 95
+8   ???                           	0x098ae03c 0 + 160096316
+9   ???                           	0x014ecfb0 0 + 21942192
+10  ???                           	0x0cc97f1f 0 + 214531871
+11  ???                           	0x0cc97eb0 0 + 214531760
+12  ???                           	0x18ec0484 0 + 418120836
+13  ???                           	0x18ec03b4 0 + 418120628
+14  ???                           	0x18ec0094 0 + 418119828
+15  ???                           	0x0f360937 0 + 255199543
+16  ???                           	0x0ce935e8 0 + 216610280
+17  ???                           	0x18ec0830 0 + 418121776
+18  ???                           	0x18ec07b4 0 + 418121652
+19  ???                           	0x18ec0787 0 + 418121607
+20  ???                           	0x18ec0644 0 + 418121284
+21  ???                           	0x0a30b3c7 0 + 170963911
+22  ???                           	0x0a30acc0 0 + 170962112
+23  ???                           	0x014ec6a0 0 + 21939872
+24  ???                           	0x014b25fd 0 + 21702141
+25  libmonosgen-2.0.dylib         	0x0100d805 mono_jit_runtime_invoke + 741
+26  libmonosgen-2.0.dylib         	0x011c4a2e mono_runtime_invoke + 126
+27  libmonosgen-2.0.dylib         	0x011c4b9c mono_runtime_delegate_invoke + 140
+28  libmonosgen-2.0.dylib         	0x01195142 start_wrapper + 514
+29  libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+30  libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+31  libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+32  libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 27:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 28:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 29:
+0   libsystem_kernel.dylib        	0x92e288e2 __psynch_cvwait + 10
+1   libsystem_c.dylib             	0x92484280 _pthread_cond_wait + 833
+2   libsystem_c.dylib             	0x9250a095 pthread_cond_wait$UNIX2003 + 71
+3   libmonosgen-2.0.dylib         	0x01223e1c _wapi_handle_timedwait_signal_handle + 620
+4   libmonosgen-2.0.dylib         	0x01223e68 _wapi_handle_wait_signal_handle + 40
+5   libmonosgen-2.0.dylib         	0x01237191 WaitForSingleObjectEx + 625
+6   libmonosgen-2.0.dylib         	0x01197dda mono_wait_uninterrupted + 122
+7   libmonosgen-2.0.dylib         	0x01197e9f ves_icall_System_Threading_WaitHandle_WaitOne_internal + 95
+8   ???                           	0x098ae03c 0 + 160096316
+9   ???                           	0x014ecfb0 0 + 21942192
+10  ???                           	0x0cc97f1f 0 + 214531871
+11  ???                           	0x0cc97eb0 0 + 214531760
+12  ???                           	0x18ec0484 0 + 418120836
+13  ???                           	0x18ec03b4 0 + 418120628
+14  ???                           	0x18d2668c 0 + 416441996
+15  ???                           	0x18d265c9 0 + 416441801
+16  ???                           	0x0cca1c9f 0 + 214572191
+17  ???                           	0x000eecc5 0 + 978117
+18  libmonosgen-2.0.dylib         	0x0100d805 mono_jit_runtime_invoke + 741
+19  libmonosgen-2.0.dylib         	0x011c4a2e mono_runtime_invoke + 126
+20  libmonosgen-2.0.dylib         	0x011c4b9c mono_runtime_delegate_invoke + 140
+21  libmonosgen-2.0.dylib         	0x0119c361 async_invoke_thread + 2161
+22  libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+23  libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+24  libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+25  libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+26  libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 30:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 31:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 32:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 33:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 34:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 35:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 36:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 37:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 38:
+0   libsystem_kernel.dylib        	0x92e26826 semaphore_timedwait_trap + 10
+1   libmonosgen-2.0.dylib         	0x01245c25 mono_sem_timedwait + 261
+2   libmonosgen-2.0.dylib         	0x0119c6a4 async_invoke_thread + 2996
+3   libmonosgen-2.0.dylib         	0x01195116 start_wrapper + 470
+4   libmonosgen-2.0.dylib         	0x0123a13a thread_start_routine + 154
+5   libmonosgen-2.0.dylib         	0x0124ab01 inner_start_thread + 65
+6   libsystem_c.dylib             	0x9247f5b7 _pthread_start + 344
+7   libsystem_c.dylib             	0x92469d4e thread_start + 34
+
+Thread 39:
+0   libsystem_kernel.dylib        	0x92e290ee __workq_kernreturn + 10
+1   libsystem_c.dylib             	0x924820ac _pthread_workq_return + 45
+2   libsystem_c.dylib             	0x92481e79 _pthread_wqthread + 448
+3   libsystem_c.dylib             	0x92469d2a start_wqthread + 30
+
+Thread 0 crashed with X86 Thread State (32-bit):
+  eax: 0x00000000  ebx: 0x00000000  ecx: 0x0076f72c  edx: 0x92e28a6a
+  edi: 0xac257a28  esi: 0x00000006  ebp: 0x0076f748  esp: 0x0076f72c
+   ss: 0x00000023  efl: 0x00000206  eip: 0x92e28a6a   cs: 0x0000000b
+   ds: 0x00000023   es: 0x00000023   fs: 0x00000000   gs: 0x0000000f
+  cr2: 0xac25bdc4
+Logical CPU: 0</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">traderhut</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-03 16:17:53 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Binary Images:
+    0x1000 -     0x3ffc +com.xamarin.monodevelop (4.0.10.7 - 4.0.10.7) &lt;6D1D932C-9450-336C-88A5-229EC61E2864&gt; /Applications/Xamarin Studio.app/Contents/MacOS/XamarinStudio
+  0x7f4000 -   0x7f4ff9 +libgthread-2.0.0.dylib (3601.3) &lt;CD1BACDC-352E-3E6F-803A-678D462C80F9&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libgthread-2.0.0.dylib
+  0x7fc000 -   0x7fdffb +libgmodule-2.0.0.dylib (3601.3) &lt;3AEE2E3F-9DDB-3EE9-A002-E139CDAFBA8B&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libgmodule-2.0.0.dylib
+ 0x1000000 -  0x132effa +libmonosgen-2.0.dylib (2) &lt;B4069E73-BB8C-3267-AF24-9FD8B3BC3134&gt; /Library/Frameworks/Mono.framework/Versions/Current/lib/libmonosgen-2.0.dylib
+ 0x17f2000 -  0x17fafff +libffi.6.dylib (7.1) &lt;EA252FE0-E0D3-3C89-B9FF-D9BAF4CAB087&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libffi.6.dylib
+ 0x27f5000 -  0x27f6fff +libglibsharpglue-2.so (???) &lt;562B1E84-E9B3-3B9D-95D0-005D44F97014&gt; /Library/Frameworks/Mono.framework/Versions/Current/lib/libglibsharpglue-2.so
+ 0x27fc000 -  0x27fcff7  libffi.dylib (18) &lt;362F6C27-6407-388E-9521-8A2A0845188C&gt; /usr/lib/libffi.dylib
+ 0x3f00000 -  0x3f28fe7 +libMonoPosixHelper.dylib (0) &lt;CD04B7C6-8076-3E62-AE14-EB77CA6BC503&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libMonoPosixHelper.dylib
+ 0x52e7000 -  0x52f4ff7 +libintl.8.dylib (10.2) &lt;201560C5-EAF9-35CC-9938-DE5BBE20DBF2&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libintl.8.dylib
+ 0x57d9000 -  0x57e7ff7 +libpangocairo-1.0.0.dylib (3501) &lt;FD712495-CA6D-3A7A-B1C8-885A287E5B94&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libpangocairo-1.0.0.dylib
+ 0x7415000 -  0x7550ff7 +libglib-2.0.0.dylib (3601.3) &lt;A84E7F0A-0116-35E4-B195-1F3D31F17200&gt; /Library/Frameworks/Mono.framework/Versions/Current/lib/libglib-2.0.0.dylib
+ 0x757f000 -  0x79eaff6 +libgtk-quartz-2.0.0.dylib (2401.20) &lt;58BE8B09-CB04-3381-8F90-A63C983AFC4B&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libgtk-quartz-2.0.0.dylib
+ 0x7acf000 -  0x7b64feb +libgdk-quartz-2.0.0.dylib (2401.20) &lt;22577BC0-AE38-3066-8A85-F7FB1BB9D96F&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libgdk-quartz-2.0.0.dylib
+ 0x7b8c000 -  0x7bd5ffb +libpango-1.0.0.dylib (3501) &lt;8E8DF900-6B89-3B7C-A26D-A805C3C32D69&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libpango-1.0.0.dylib
+ 0x7bea000 -  0x7c03feb +libatk-1.0.0.dylib (20810.1) &lt;DCC81E34-D603-3822-AAEF-5E6D23AFB88F&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libatk-1.0.0.dylib
+ 0x7c11000 -  0x7d2eff3 +libcairo.2.dylib (11203.14) &lt;C2D1C188-2B57-3A63-A24F-735886B9D3F8&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libcairo.2.dylib
+ 0x7d64000 -  0x80f8ffb +libpixman-1.0.dylib (31) &lt;9C61C8D5-AEC1-3E18-A65D-47AE6FB16632&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libpixman-1.0.dylib
+ 0x810d000 -  0x8147fff +libfontconfig.1.dylib (8.2) &lt;551E3923-16BC-320E-A242-62690A78D62F&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libfontconfig.1.dylib
+ 0x8153000 -  0x817dff7 +libexpat.1.dylib (7.2) &lt;44E22D31-BBA5-3BDB-A64D-34F43100D6B7&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libexpat.1.dylib
+ 0x8184000 -  0x8224fef +libfreetype.6.dylib (17.2) &lt;85EB0D38-21F0-3D19-AAB5-DB8BF1FA3CE1&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libfreetype.6.dylib
+ 0x823b000 -  0x825afff +libgdk_pixbuf-2.0.0.dylib (2801.2) &lt;0D52E51A-42D6-35A0-9042-5F8110901E6B&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libgdk_pixbuf-2.0.0.dylib
+ 0x8264000 -  0x8290fe3 +libpng14.14.dylib (27) &lt;AFFF2763-337C-3342-83CF-9496220B5EA1&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libpng14.14.dylib
+ 0x8297000 -  0x83efff4 +libgio-2.0.0.dylib (3601.3) &lt;6C8FB0A0-2B6C-34FF-8EC1-1E0AF548787A&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libgio-2.0.0.dylib
+ 0x8457000 -  0x849dfff +libgobject-2.0.0.dylib (3601.3) &lt;47642385-937D-3920-A654-B42DE86B08A2&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libgobject-2.0.0.dylib
+ 0x96d8000 -  0x96e5ff3  com.apple.Librarian (1.1 - 1) &lt;68F8F983-5F16-3BA5-BDA7-1A5451CC02BB&gt; /System/Library/PrivateFrameworks/Librarian.framework/Versions/A/Librarian
+ 0x9c64000 -  0x9c64ff5 +cl_kernels (???) &lt;39F2B1BD-9AB4-46E6-B659-9351E4113C5F&gt; cl_kernels
+ 0x9cf4000 -  0x9cf4ffd  com.apple.applescript.component (2.2.4 - 2.2.4) &lt;5CBCAFAE-FEBD-3110-B5E8-D75E418E6D82&gt; /System/Library/Components/AppleScript.component/Contents/MacOS/AppleScript
+ 0xa0f9000 -  0xa0fcff8 +libpixbufloader-png.so (???) &lt;8574DC40-E635-3AA5-AC4F-CAA3D12F01BC&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-png.so
+ 0xa707000 -  0xa741ffd +libxamarin.so (???) &lt;7D6BCC90-9215-311F-A91B-E273AE56EDC0&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/gtk-2.0/2.10.0/engines/libxamarin.so
+ 0xa74a000 -  0xa755fee +libquartz.so (???) &lt;43B95A55-8B5B-30ED-BD6E-9F45E0679694&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/gtk-2.0/2.10.0/engines/libquartz.so
+ 0xa7cc000 -  0xa7d5fff  com.apple.ProtocolBuffer (2 - 104) &lt;BFA598AA-2E77-3578-B079-2C89796811B3&gt; /System/Library/PrivateFrameworks/ProtocolBuffer.framework/Versions/A/ProtocolBuffer
+ 0xa7fe000 -  0xa7fefff +cl_kernels (???) &lt;1A1992FC-EBF4-4907-8153-E384C14DED72&gt; cl_kernels
+ 0xa949000 -  0xa9a5ffb  com.apple.corelocation (1239.40 - 1239.40) &lt;DF504BBD-A9D5-3AF0-AAF7-F7C06753A13C&gt; /System/Library/Frameworks/CoreLocation.framework/CoreLocation
+ 0xaa80000 -  0xab9fffb  com.apple.WebKit (8536 - 8536.30.1) &lt;4A5E9136-681F-3AB1-AD69-B59F2B9126E7&gt; /System/Library/Frameworks/WebKit.framework/WebKit
+ 0xac50000 -  0xac82ff3  com.apple.GeoServices (1.0 - 1) &lt;2E4033FA-18BD-3E73-B00E-CBFEE0ACCB6A&gt; /System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/GeoServices
+ 0xac94000 -  0xacadff7  com.apple.ScriptingBridge (1.3 - 61.2) &lt;74397541-E4DD-3DCA-BA5F-F7AAF145819A&gt; /System/Library/Frameworks/ScriptingBridge.framework/ScriptingBridge
+ 0xacbc000 -  0xadd6ffb  com.apple.avfoundation (2.0 - 361.40) &lt;BFC9959C-7F41-3D1B-B108-F4245E4D9311&gt; /System/Library/Frameworks/AVFoundation.framework/AVFoundation
+ 0xb0fb000 -  0xb0fcff5 +cl_kernels (???) &lt;86A5E4E4-9EA6-4B7C-95BC-DE3B4EBB7E50&gt; cl_kernels
+ 0xc1f8000 -  0xc1f9ff9 +pango-basic-coretext.so (???) &lt;366EB3A4-9D53-3A78-9927-B5EAC0074333&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/pango/1.8.0/modules/pango-basic-coretext.so
+ 0xc326000 -  0xc336ffb +libgtksharpglue-2.so (???) &lt;4DA7B26B-4518-317B-9481-A4C0C9E0A3A0&gt; /Library/Frameworks/Mono.framework/Versions/Current/lib/libgtksharpglue-2.so
+ 0xc3cd000 -  0xc3d1fff  com.apple.IOAccelerator (74.5.1 - 74.5.1) &lt;CB7CDE62-DAEC-35AF-8ADB-3271AA2DF921&gt; /System/Library/PrivateFrameworks/IOAccelerator.framework/Versions/A/IOAccelerator
+ 0xc3d8000 -  0xc3e2fff  libGPUSupportMercury.dylib (8.9.2) &lt;302EC167-66A3-3E12-8416-F03F50CA96D9&gt; /System/Library/PrivateFrameworks/GPUSupport.framework/Versions/A/Libraries/libGPUSupportMercury.dylib
+ 0xc3ea000 -  0xc3f5fff  libGPUSupport.dylib (8.9.2) &lt;01E0F852-CBB7-3EE7-A2CD-79CB4A3EF2B5&gt; /System/Library/PrivateFrameworks/GPUSupport.framework/Versions/A/Libraries/libGPUSupport.dylib
+ 0xc8cb000 -  0xc8f6ff7  GLRendererFloat (8.9.2) &lt;96FF25EA-1BC3-3FBA-85B6-08CC9F1D2077&gt; /System/Library/Frameworks/OpenGL.framework/Resources/GLRendererFloat.bundle/GLRendererFloat
+ 0xcae1000 -  0xcae9ffd  libcldcpuengine.dylib (2.2.16) &lt;0BE2D018-66CC-3F69-B8F1-7A81EEEE09F4&gt; /System/Library/Frameworks/OpenCL.framework/Versions/A/Libraries/libcldcpuengine.dylib
+ 0xce6b000 -  0xce6dff1 +libpixbufloader-tiff.so (???) &lt;838005FE-0147-35C4-80AF-794A40B6217D&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-tiff.so
+ 0xd1d3000 -  0xd1d6ff6 +libgdksharpglue-2.so (???) &lt;D0EFFE88-95D0-33E5-BA85-CDD1C61179AE&gt; /Library/Frameworks/Mono.framework/Versions/Current/lib/libgdksharpglue-2.so
+ 0xd210000 -  0xd2a2fff  unorm8_bgra.dylib (2.2.16) &lt;1298D118-0B14-3F3D-B2CA-348A1C67183E&gt; /System/Library/Frameworks/OpenCL.framework/Versions/A/Libraries/ImageFormats/unorm8_bgra.dylib
+ 0xd2f3000 -  0xd2f4ff7 +libpangosharpglue-2.so (???) &lt;4AAAAB9D-EDA7-3EB2-95E0-97AFCF583C6F&gt; /Library/Frameworks/Mono.framework/Versions/Current/lib/libpangosharpglue-2.so
+ 0xd300000 -  0xd481fff  libGLProgrammability.dylib (8.9.2) &lt;B7AFCCD1-7FA5-3071-9F11-5161FFA2076C&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLProgrammability.dylib
+ 0xd801000 -  0xd995ffa  GLEngine (8.9.2) &lt;73F967E8-16C2-3FB2-8C04-293EB038952D&gt; /System/Library/Frameworks/OpenGL.framework/Resources/GLEngine.bundle/GLEngine
+ 0xda80000 -  0xe715ff3  com.apple.WebCore (8536 - 8536.30.2) &lt;D644997F-5F1A-34B4-AF32-DD427E9043E2&gt; /System/Library/Frameworks/WebKit.framework/Versions/A/Frameworks/WebCore.framework/Versions/A/WebCore
+ 0xf3f4000 -  0xf3f6fff +net.culater.SIMBL (0.8.2 - 8) /Library/InputManagers/*/SIMBL.bundle/Contents/MacOS/SIMBL
+ 0xf500000 -  0xf7c9fff  com.apple.AMDRadeonX3000GLDriver (1.8.18 - 1.0.8) &lt;0F84A3D7-FF9A-3266-89D3-FFD84FC151EA&gt; /System/Library/Extensions/AMDRadeonX3000GLDriver.bundle/Contents/MacOS/AMDRadeonX3000GLDriver
+ 0xf808000 -  0xf894fff  com.apple.applescript (2.2.4 - 2.2.4) &lt;E3B635BE-0198-3B38-8671-A52CF89DE904&gt; /System/Library/PrivateFrameworks/AppleScript.framework/Versions/A/AppleScript
+0x10f90000 - 0x10fbbfe3 +liblzma.5.dylib (6.4) &lt;E540E235-C639-3AFE-9FE6-ABD90E3A9137&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/liblzma.5.dylib
+0x12ef2000 - 0x13278ff3  com.apple.driver.AppleIntelHD3000GraphicsGLDriver (8.12.47 - 8.1.2) &lt;6D34B12D-7E54-3B24-A018-D061C03FDD35&gt; /System/Library/Extensions/AppleIntelHD3000GraphicsGLDriver.bundle/Contents/MacOS/AppleIntelHD3000GraphicsGLDriver
+0x15fb3000 - 0x15fb7fff +libpixbufloader-jpeg.so (???) &lt;1B7F621B-A079-3624-A983-BAE05844873D&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-jpeg.so
+0x17d5e000 - 0x17df4ffa  com.apple.mobiledevice (555.43 - 555.43) &lt;53CFE037-2BA3-3B7F-8C77-3218B97B03A3&gt; /System/Library/PrivateFrameworks/MobileDevice.framework/MobileDevice
+0x17e2f000 - 0x17e6effc +libjpeg.8.dylib (9) &lt;2740C2A8-CD79-3A67-BA57-FFD35EE22D5C&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libjpeg.8.dylib
+0x19000000 - 0x1907fff9 +libtiff.5.dylib (8) &lt;987044A2-AD25-3532-8B66-77ECDCC89375&gt; /Library/Frameworks/Mono.framework/Versions/3.2.0/lib/libtiff.5.dylib
+0x8fe85000 - 0x8feb7e57  dyld (210.2.3) &lt;4D38DEED-9837-3202-B8E9-41272D01EA2C&gt; /usr/lib/dyld
+0x9005e000 - 0x9007dff3  com.apple.Ubiquity (1.2 - 243.15) &lt;E10A2937-D671-3D14-AF8D-BA25E601F458&gt; /System/Library/PrivateFrameworks/Ubiquity.framework/Versions/A/Ubiquity
+0x9007e000 - 0x90090fff  libbsm.0.dylib (32) &lt;DADD385E-FE53-3458-94FB-E316A6345108&gt; /usr/lib/libbsm.0.dylib
+0x90091000 - 0x900c2fff  com.apple.DictionaryServices (1.2 - 184.4) &lt;A31BB2CE-6965-3610-8B11-EA26EC6D7EEA&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices
+0x900c3000 - 0x900c3fff  com.apple.Cocoa (6.7 - 19) &lt;354094F0-F36B-36F9-BF5F-FD60590FBEB9&gt; /System/Library/Frameworks/Cocoa.framework/Versions/A/Cocoa
+0x900c4000 - 0x90335ffb  com.apple.RawCamera.bundle (4.05 - 690) &lt;1B2DF4B6-1229-36E3-86CF-5006E2A6DBB2&gt; /System/Library/CoreServices/RawCamera.bundle/Contents/MacOS/RawCamera
+0x90366000 - 0x90388fff  libc++abi.dylib (26) &lt;3AAA8D55-F5F6-362B-BA3C-CCAF0D3C8E27&gt; /usr/lib/libc++abi.dylib
+0x90389000 - 0x90396ff7  com.apple.AppleFSCompression (49 - 1.0) &lt;166AA1F8-E50A-3533-A3B5-8737C5118CC3&gt; /System/Library/PrivateFrameworks/AppleFSCompression.framework/Versions/A/AppleFSCompression
+0x90397000 - 0x903a2ffb  com.apple.DirectoryService.Framework (10.8 - 151.10) &lt;ABBD7712-B220-36FC-90FE-0C19D02D21C4&gt; /System/Library/Frameworks/DirectoryService.framework/Versions/A/DirectoryService
+0x903a3000 - 0x903adfff  libsystem_notify.dylib (98.5) &lt;7EEE9475-18F8-3099-B0ED-23A3E528ABE0&gt; /usr/lib/system/libsystem_notify.dylib
+0x903ae000 - 0x90416ff7  com.apple.framework.IOKit (2.0.1 - 755.24.1) &lt;70DE925B-51E8-3C65-8928-FB49FD823D94&gt; /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit
+0x90417000 - 0x90444ffb  com.apple.CoreServicesInternal (154.3 - 154.3) &lt;A452602B-67CB-39C4-95EB-E59433C65774&gt; /System/Library/PrivateFrameworks/CoreServicesInternal.framework/Versions/A/CoreServicesInternal
+0x90445000 - 0x90462fff  libCRFSuite.dylib (33) &lt;C9D72D0C-871A-39A2-8AFB-682D11AE7D0D&gt; /usr/lib/libCRFSuite.dylib
+0x90463000 - 0x904a2ff7  com.apple.bom (12.0 - 192) &lt;0637E52C-D151-37B3-904F-8656B2FD44DD&gt; /System/Library/PrivateFrameworks/Bom.framework/Versions/A/Bom
+0x904a3000 - 0x9058cff7  libxml2.2.dylib (22.3) &lt;015A4FA6-5BB9-3F95-AFB8-B9281E22685B&gt; /usr/lib/libxml2.2.dylib
+0x9058d000 - 0x90597fff  com.apple.speech.recognition.framework (4.1.5 - 4.1.5) &lt;B855E8B4-2EE3-3BFF-8547-98A0F084F9AF&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/SpeechRecognition.framework/Versions/A/SpeechRecognition
+0x90598000 - 0x9059cfff  com.apple.OpenDirectory (10.8 - 151.10) &lt;B9244697-CB05-3BD3-80A7-D188B3747B03&gt; /System/Library/Frameworks/OpenDirectory.framework/Versions/A/OpenDirectory
+0x905a8000 - 0x905befff  com.apple.CFOpenDirectory (10.8 - 151.10) &lt;CDA91E5D-6F99-3001-BD31-82585FCF5CA2&gt; /System/Library/Frameworks/OpenDirectory.framework/Versions/A/Frameworks/CFOpenDirectory.framework/Versions/A/CFOpenDirectory
+0x905bf000 - 0x905e3fff  com.apple.PerformanceAnalysis (1.16 - 16) &lt;18DE0F9F-1264-394D-AC56-6B2A1771DFBE&gt; /System/Library/PrivateFrameworks/PerformanceAnalysis.framework/Versions/A/PerformanceAnalysis
+0x905e6000 - 0x905e6fff  libSystem.B.dylib (169.3) &lt;0A82D354-A1B4-3F3E-8C7E-5047C38D4668&gt; /usr/lib/libSystem.B.dylib
+0x905e7000 - 0x90863ff7  com.apple.QuickTime (7.7.1 - 2599.31) &lt;3839E1F3-7948-3E68-9AE1-A0CEE8C59212&gt; /System/Library/Frameworks/QuickTime.framework/Versions/A/QuickTime
+0x90864000 - 0x9087dffb  com.apple.frameworks.preferencepanes (15.1 - 15.1) &lt;D788C8BE-5A13-3EA3-93FA-9B5CEEFE249B&gt; /System/Library/Frameworks/PreferencePanes.framework/Versions/A/PreferencePanes
+0x9087e000 - 0x90a95fff  com.apple.CoreData (106.1 - 407.7) &lt;EC4B8297-8E01-3778-A8A4-E8747F91109D&gt; /System/Library/Frameworks/CoreData.framework/Versions/A/CoreData
+0x90a96000 - 0x90a9fffe  com.apple.aps.framework (3.0 - 3.0) &lt;26A02202-9CCA-37A5-AD26-234F55D51471&gt; /System/Library/PrivateFrameworks/ApplePushService.framework/Versions/A/ApplePushService
+0x90b5d000 - 0x90befffb  libvMisc.dylib (380.6) &lt;6DA3A03F-20BE-300D-A664-B50A7B4E4B1A&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvMisc.dylib
+0x90bf0000 - 0x90bfeff3  libsystem_network.dylib (77.10) &lt;7FBF5A15-97BA-3721-943E-E77F0C40DBE1&gt; /usr/lib/system/libsystem_network.dylib
+0x90bff000 - 0x90c08fff  com.apple.DiskArbitration (2.5.2 - 2.5.2) &lt;89822A83-B450-3363-8E9C-9B80CB4450B1&gt; /System/Library/Frameworks/DiskArbitration.framework/Versions/A/DiskArbitration
+0x90c2f000 - 0x90c2ffff  com.apple.ApplicationServices (45 - 45) &lt;677C4ACC-9D12-366F-8A87-B898AC806DD9&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/ApplicationServices
+0x90c30000 - 0x90c36fff  com.apple.print.framework.Print (8.0 - 258) &lt;12AEAD24-6924-3923-9E4A-C5D21231E639&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Print.framework/Versions/A/Print
+0x90c37000 - 0x90c8eff3  com.apple.HIServices (1.20 - 417) &lt;30AA0F48-A397-339E-BC62-24620B2B35BC&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/HIServices
+0x90c8f000 - 0x90ceafff  com.apple.htmlrendering (77 - 1.1.4) &lt;5C0C669F-AE07-3983-B38F-EB829B5CE609&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HTMLRendering.framework/Versions/A/HTMLRendering
+0x90ceb000 - 0x90d60ff7  com.apple.ApplicationServices.ATS (332 - 341.1) &lt;BEE998BC-E4A5-3BA0-A6B5-31A1DFA1522C&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/ATS
+0x90d61000 - 0x90d6eff7  com.apple.HelpData (2.1.4 - 85) &lt;1E180AEF-53FF-3D8B-9513-7FCA1B25A4AB&gt; /System/Library/PrivateFrameworks/HelpData.framework/Versions/A/HelpData
+0x90d6f000 - 0x90d70fff  libdnsinfo.dylib (453.19) &lt;3B523729-84A8-3D0B-B58C-3FC185060E67&gt; /usr/lib/system/libdnsinfo.dylib
+0x90d71000 - 0x90db3fff  libcurl.4.dylib (69.2) &lt;8CC566A0-0B25-37E8-A6EC-30074C3CDB8C&gt; /usr/lib/libcurl.4.dylib
+0x90db4000 - 0x90ed0ffb  com.apple.desktopservices (1.7.4 - 1.7.4) &lt;782D711D-7930-324A-9015-686C2F86DBA3&gt; /System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv
+0x90ed1000 - 0x90ed5fff  com.apple.IOSurface (86.0.4 - 86.0.4) &lt;6431ACB6-561B-314F-9A2A-FAC1578FCC86&gt; /System/Library/Frameworks/IOSurface.framework/Versions/A/IOSurface
+0x90ed6000 - 0x90ed6ffd  libOpenScriptingUtil.dylib (148.3) &lt;87895E27-88E2-3249-8D0E-B17E76FB00C1&gt; /usr/lib/libOpenScriptingUtil.dylib
+0x90ed7000 - 0x90f02ff9  com.apple.framework.Apple80211 (8.4 - 840.22.1) &lt;DBC31BEB-B771-315F-852D-66ADC3BD75A1&gt; /System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Apple80211
+0x90f03000 - 0x90f7dff7  com.apple.securityfoundation (6.0 - 55115.4) &lt;4843FAEA-8161-34B3-A1F1-720154884E34&gt; /System/Library/Frameworks/SecurityFoundation.framework/Versions/A/SecurityFoundation
+0x90f7e000 - 0x91003ff7  com.apple.SearchKit (1.4.0 - 1.4.0) &lt;454E950F-291C-3E95-8F35-05CA0AD6B327&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SearchKit.framework/Versions/A/SearchKit
+0x91004000 - 0x91020fff  libPng.dylib (850) &lt;26AD967A-D55E-3C5A-A643-D9953136DE58&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libPng.dylib
+0x91021000 - 0x91034ff9  com.apple.MultitouchSupport.framework (235.29 - 235.29) &lt;451701B6-03CE-3F26-9FF0-92D8DA1467EE&gt; /System/Library/PrivateFrameworks/MultitouchSupport.framework/Versions/A/MultitouchSupport
+0x9103f000 - 0x91115fff  com.apple.DiscRecording (7.0 - 7000.2.4) &lt;4C51CD9C-0E0E-3836-BA7F-62B1076FB974&gt; /System/Library/Frameworks/DiscRecording.framework/Versions/A/DiscRecording
+0x91118000 - 0x9115affb  com.apple.RemoteViewServices (2.0 - 80.6) &lt;AE962502-4539-3893-A2EB-9D384652AEAC&gt; /System/Library/PrivateFrameworks/RemoteViewServices.framework/Versions/A/RemoteViewServices
+0x9115b000 - 0x9115dffb  libRadiance.dylib (850) &lt;83434287-A09E-3A3F-A1AC-085B563BA46D&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libRadiance.dylib
+0x9115e000 - 0x91160fff  libdyld.dylib (210.2.3) &lt;05D6FF2A-F09B-309D-95F7-7AF10259C707&gt; /usr/lib/system/libdyld.dylib
+0x91161000 - 0x911c5ff3  libstdc++.6.dylib (56) &lt;F8FA490A-8F3C-3645-ABF5-78926CE9C62C&gt; /usr/lib/libstdc++.6.dylib
+0x911c6000 - 0x9121ffff  com.apple.QuickLookFramework (4.0 - 555.5) &lt;4E381B7B-7EB5-37FD-9BA7-517DB48D07A7&gt; /System/Library/Frameworks/QuickLook.framework/Versions/A/QuickLook
+0x91220000 - 0x91220fff  com.apple.Accelerate.vecLib (3.8 - vecLib 3.8) &lt;908B8D40-3FB5-3047-B482-3DF95025ECFC&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib
+0x91221000 - 0x91399ff5  com.apple.QuartzCore (1.8 - 304.3) &lt;F2EFC117-CDC6-3252-A4A8-880965764385&gt; /System/Library/Frameworks/QuartzCore.framework/Versions/A/QuartzCore
+0x9139a000 - 0x913deff7  libGLU.dylib (8.9.2) &lt;F33F6C73-7F89-3B5B-A50F-2AB57BBA314D&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
+0x913df000 - 0x915c7ffb  com.apple.CoreFoundation (6.8 - 744.19) &lt;DDD3AA21-5B5F-3D8F-B137-AD95FCA89064&gt; /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation
+0x915c8000 - 0x915d0fff  libcopyfile.dylib (89) &lt;4963541B-0254-371B-B29A-B6806888949B&gt; /usr/lib/system/libcopyfile.dylib
+0x915d1000 - 0x9162bfff  com.apple.Symbolication (1.3 - 93) &lt;227F64A9-FC28-3680-BE92-FFAE86FD4866&gt; /System/Library/PrivateFrameworks/Symbolication.framework/Versions/A/Symbolication
+0x9162c000 - 0x9162cfff  com.apple.quartzframework (1.5 - 1.5) &lt;9018BE5B-4070-320E-8091-6584CC17F798&gt; /System/Library/Frameworks/Quartz.framework/Versions/A/Quartz
+0x9166f000 - 0x9167fff2  com.apple.LangAnalysis (1.7.0 - 1.7.0) &lt;875363E7-6D02-3229-A9DD-E5A5568A7D61&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/LangAnalysis.framework/Versions/A/LangAnalysis
+0x91680000 - 0x9177dff7  com.apple.DiskImagesFramework (10.8.3 - 345) &lt;26D0C7F8-E87E-3511-8388-8EE616A39D6D&gt; /System/Library/PrivateFrameworks/DiskImages.framework/Versions/A/DiskImages
+0x9177e000 - 0x917b1fff  libssl.0.9.8.dylib (47.1) &lt;1725A506-BD80-39D5-8EE8-78D2FBBE194C&gt; /usr/lib/libssl.0.9.8.dylib
+0x917b2000 - 0x91a9efff  com.apple.AOSKit (1.051 - 152.4) &lt;31156351-70C4-381A-810D-8E5A937EF95C&gt; /System/Library/PrivateFrameworks/AOSKit.framework/Versions/A/AOSKit
+0x91aa7000 - 0x91ab6fff  libGL.dylib (8.9.2) &lt;1082B9A5-9AA3-35D4-968B-3A3FE15B1ED7&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib
+0x91ab7000 - 0x91dd7ff3  com.apple.Foundation (6.8 - 945.18) &lt;BDC56A93-45C5-3459-B307-65A1CCE702C5&gt; /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation
+0x91dd8000 - 0x91e70fff  com.apple.CoreServices.OSServices (557.6 - 557.6) &lt;E1600639-3EEC-3DF8-BD40-747BB2117988&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices
+0x91e71000 - 0x91f2fff3  com.apple.ColorSync (4.8.0 - 4.8.0) &lt;EFEDCB37-4F20-3CEC-A185-5D2976E11BAC&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ColorSync.framework/Versions/A/ColorSync
+0x91f63000 - 0x91f6fff7  com.apple.NetAuth (4.0 - 4.0) &lt;4983C4B8-9D95-3C4D-897E-07743326487E&gt; /System/Library/PrivateFrameworks/NetAuth.framework/Versions/A/NetAuth
+0x91f70000 - 0x9206eff7  libFontParser.dylib (84.6) &lt;7D3EB3CC-527E-3A74-816A-59CAFD2260A4&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Resources/libFontParser.dylib
+0x9206f000 - 0x9209afff  com.apple.shortcut (2.2 - 2.2) &lt;FA94F2BF-37E1-3F16-9085-7BCCB815BAE9&gt; /System/Library/PrivateFrameworks/Shortcut.framework/Versions/A/Shortcut
+0x9209b000 - 0x92349ffb  com.apple.MediaToolbox (1.0 - 926.104) &lt;DD264DFD-9AFB-38E2-A44C-B463DCB721A0&gt; /System/Library/Frameworks/MediaToolbox.framework/Versions/A/MediaToolbox
+0x9234a000 - 0x923c6ff3  com.apple.Metadata (10.7.0 - 707.11) &lt;F9BB5BBE-69D0-3309-8280-2303EB1DC455&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Metadata
+0x923c7000 - 0x923caff3  com.apple.AppleSystemInfo (2.0 - 2) &lt;4639D755-8A68-31C9-95C4-7E7F70C233FA&gt; /System/Library/PrivateFrameworks/AppleSystemInfo.framework/Versions/A/AppleSystemInfo
+0x923cb000 - 0x92468ff7  com.apple.PDFKit (2.8.4 - 2.8.4) &lt;639CF802-BE94-39C5-AC97-B5B42FF910C2&gt; /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/PDFKit.framework/Versions/A/PDFKit
+0x92469000 - 0x92526feb  libsystem_c.dylib (825.26) &lt;6E35A83F-1A5B-3AF9-8C6D-D7B57B25FB63&gt; /usr/lib/system/libsystem_c.dylib
+0x92527000 - 0x9252dffc  libCGXCoreImage.A.dylib (332) &lt;C370B56E-888F-31E8-B6F9-C3944725FBD5&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Resources/libCGXCoreImage.A.dylib
+0x9252e000 - 0x9252ffff  libsystem_sandbox.dylib (220.3) &lt;C532F6A6-7E85-38F3-8660-EC1066DF67BE&gt; /usr/lib/system/libsystem_sandbox.dylib
+0x92530000 - 0x9279dffb  com.apple.imageKit (2.2 - 673) &lt;CDB2AC11-6D60-34A7-83F9-F6E7DA25F97B&gt; /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Versions/A/ImageKit
+0x9279e000 - 0x927cdff7  com.apple.securityinterface (6.0 - 55024.4) &lt;7C5E28DC-F8BE-3238-883F-E1646A2AF895&gt; /System/Library/Frameworks/SecurityInterface.framework/Versions/A/SecurityInterface
+0x927ce000 - 0x927d0ffd  libCVMSPluginSupport.dylib (8.9.2) &lt;D6D0BB75-42DA-3772-AB5E-CBD59B343393&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCVMSPluginSupport.dylib
+0x92829000 - 0x9282bfff  com.apple.securityhi (4.0 - 55002) &lt;F95F4BF5-2290-3CC4-A37A-4852F0AE6FAE&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/SecurityHI.framework/Versions/A/SecurityHI
+0x9282c000 - 0x92c28feb  com.apple.VideoToolbox (1.0 - 926.104) &lt;4275B89E-F826-3F65-ACE1-89052A9CAC6B&gt; /System/Library/Frameworks/VideoToolbox.framework/Versions/A/VideoToolbox
+0x92cce000 - 0x92d01ffb  com.apple.GSS (3.0 - 2.0) &lt;9566A96D-C296-3ABD-A12A-E274C81C0B25&gt; /System/Library/Frameworks/GSS.framework/Versions/A/GSS
+0x92d02000 - 0x92d02ffd  com.apple.audio.units.AudioUnit (1.9 - 1.9) &lt;F7638E43-F885-372E-9DAE-24D0C21AA66E&gt; /System/Library/Frameworks/AudioUnit.framework/Versions/A/AudioUnit
+0x92e14000 - 0x92e2effc  libsystem_kernel.dylib (2050.24.15) &lt;9E58DCC0-D5FF-37E1-AA7F-F2206719E138&gt; /usr/lib/system/libsystem_kernel.dylib
+0x92e2f000 - 0x92e39ffe  com.apple.bsd.ServiceManagement (2.0 - 2.0) &lt;9732BA61-D6F6-3644-82DA-FF0D6FEEFC69&gt; /System/Library/Frameworks/ServiceManagement.framework/Versions/A/ServiceManagement
+0x92e3a000 - 0x92e46ffa  com.apple.CrashReporterSupport (10.8.3 - 418) &lt;03BC564E-35FE-384E-87D6-6E0C55DF16E3&gt; /System/Library/PrivateFrameworks/CrashReporterSupport.framework/Versions/A/CrashReporterSupport
+0x92e47000 - 0x92e5cfff  com.apple.ImageCapture (8.0 - 8.0) &lt;B8BD421F-D5A9-3FB4-8E89-AD5CFC0D4030&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/ImageCapture.framework/Versions/A/ImageCapture
+0x92e5d000 - 0x92e63fff  libGFXShared.dylib (8.9.2) &lt;F3B0E66D-5C47-3A5A-A2CD-F0C58E8322C3&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGFXShared.dylib
+0x92e64000 - 0x92f55ffc  libiconv.2.dylib (34) &lt;B096A9B7-83A6-31B3-8D2F-87D91910BF4C&gt; /usr/lib/libiconv.2.dylib
+0x92f56000 - 0x930a4ff3  com.apple.CFNetwork (596.4.3 - 596.4.3) &lt;547BD138-E902-35F0-B6EC-41DD06794B22&gt; /System/Library/Frameworks/CFNetwork.framework/Versions/A/CFNetwork
+0x930a5000 - 0x930b3fff  com.apple.opengl (1.8.9 - 1.8.9) &lt;1872D2CD-00A8-30D1-8ECC-B663F4E4C530&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL
+0x930b4000 - 0x930b4fff  com.apple.Carbon (154 - 155) &lt;17F1B675-E054-3D2C-900B-C9CE69F1FC31&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Carbon
+0x930b5000 - 0x930f0fef  libGLImage.dylib (8.9.2) &lt;9D41F71E-E927-3767-A856-55480E20E9D9&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLImage.dylib
+0x930f1000 - 0x930fbfff  libCSync.A.dylib (332) &lt;86C5C84F-11EC-39C0-9FAC-A93FDEEC3117&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Resources/libCSync.A.dylib
+0x930fc000 - 0x93162fff  com.apple.print.framework.PrintCore (8.3 - 387.2) &lt;0F7665F5-33F0-3661-9BE2-7DD2890E304B&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/PrintCore
+0x93163000 - 0x9316afff  liblaunch.dylib (442.26.2) &lt;310C99F8-0811-314D-9BB9-D0ED6DFA024B&gt; /usr/lib/system/liblaunch.dylib
+0x9316b000 - 0x9321ffff  com.apple.coreui (2.0 - 181.1) &lt;C15ABF35-B7F5-34ED-A461-386DAF65D96B&gt; /System/Library/PrivateFrameworks/CoreUI.framework/Versions/A/CoreUI
+0x93220000 - 0x93249fff  libxslt.1.dylib (11.3) &lt;0DE17DAA-66FF-3195-AADB-347BEB5E2EFA&gt; /usr/lib/libxslt.1.dylib
+0x9324a000 - 0x93291ff3  com.apple.CoreMedia (1.0 - 926.104) &lt;D0E3BE86-12ED-31BE-816F-E72D757A9F2F&gt; /System/Library/Frameworks/CoreMedia.framework/Versions/A/CoreMedia
+0x93292000 - 0x933cdff7  libBLAS.dylib (1073.4) &lt;FF74A147-05E1-37C4-BC10-7DEB57FE5326&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
+0x933ce000 - 0x93415ff7  com.apple.framework.CoreWiFi (1.3 - 130.13) &lt;1961CC70-C00D-31DE-BAB5-A077538CD5CB&gt; /System/Library/Frameworks/CoreWiFi.framework/Versions/A/CoreWiFi
+0x93416000 - 0x9341dfff  libsystem_dnssd.dylib (379.38.1) &lt;4F164CA8-4A4F-3B27-B88A-0926E2FEB7D4&gt; /usr/lib/system/libsystem_dnssd.dylib
+0x9341e000 - 0x93421ffc  libpam.2.dylib (20) &lt;FCF74195-A99E-3B07-8E49-688D4A6F1E18&gt; /usr/lib/libpam.2.dylib
+0x93422000 - 0x93423fff  libquarantine.dylib (52.1) &lt;094A1501-373E-3397-B632-8F7C5AC8EFD5&gt; /usr/lib/system/libquarantine.dylib
+0x93424000 - 0x934c4ff7  com.apple.QD (3.42.1 - 285.1) &lt;BAAC13D2-1312-33C0-A255-FAB1D314C324&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/QD.framework/Versions/A/QD
+0x934c5000 - 0x93529ff7  com.apple.datadetectorscore (4.1 - 269.3) &lt;C11C2014-298E-3E2B-9F5D-02CCD3CA4AB3&gt; /System/Library/PrivateFrameworks/DataDetectorsCore.framework/Versions/A/DataDetectorsCore
+0x9352a000 - 0x9358bfff  com.apple.audio.CoreAudio (4.1.1 - 4.1.1) &lt;A3B911DB-77DF-3037-A47A-634B08E5727D&gt; /System/Library/Frameworks/CoreAudio.framework/Versions/A/CoreAudio
+0x9358c000 - 0x9396ffff  com.apple.HIToolbox (2.0 - 626.1) &lt;ECC3F04F-C4B7-35BF-B10E-183B749DAB92&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/HIToolbox
+0x93970000 - 0x93980ff7  libsasl2.2.dylib (166) &lt;D9080BA2-A365-351E-9FF2-7E0D4E8B1339&gt; /usr/lib/libsasl2.2.dylib
+0x93a1f000 - 0x945dbff3  com.apple.AppKit (6.8 - 1187.39) &lt;ACA24416-D910-39B8-9387-52A6C6A561F8&gt; /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit
+0x9462c000 - 0x94661ff7  com.apple.framework.internetaccounts (2.1 - 210) &lt;553BF1E7-B26F-3BE7-BAA9-D80E53E73B0D&gt; /System/Library/PrivateFrameworks/InternetAccounts.framework/Versions/A/InternetAccounts
+0x94662000 - 0x94679fff  com.apple.GenerationalStorage (1.1 - 132.3) &lt;DD0AA3DB-376D-37F3-AC5B-17AC9B9E0A63&gt; /System/Library/PrivateFrameworks/GenerationalStorage.framework/Versions/A/GenerationalStorage
+0x9467a000 - 0x94681ff3  com.apple.NetFS (5.0 - 4.0) &lt;1F7041F2-4E97-368C-8F5D-24153D81BBDB&gt; /System/Library/Frameworks/NetFS.framework/Versions/A/NetFS
+0x94682000 - 0x94685ff7  libcompiler_rt.dylib (30) &lt;CE5DBDB4-0124-3E2B-9105-989DF98DD108&gt; /usr/lib/system/libcompiler_rt.dylib
+0x94686000 - 0x946bcffb  com.apple.DebugSymbols (98 - 98) &lt;9A9ADA0A-E487-3C8F-9998-286EE04C235A&gt; /System/Library/PrivateFrameworks/DebugSymbols.framework/Versions/A/DebugSymbols
+0x94e99000 - 0x94fa6ff3  com.apple.ImageIO.framework (3.2.1 - 850) &lt;C964E877-660E-3482-ACF9-EC25DFEAF307&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/ImageIO
+0x94fa7000 - 0x94fb1fff  com.apple.DisplayServicesFW (2.7.2 - 357) &lt;76D33A58-C39E-398A-9597-389A9B1FE76D&gt; /System/Library/PrivateFrameworks/DisplayServices.framework/Versions/A/DisplayServices
+0x94fb2000 - 0x9500cffb  com.apple.AE (645.6 - 645.6) &lt;44556FF7-A869-399A-AEBB-F4E9263D9152&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE
+0x9500d000 - 0x9505bff3  com.apple.SystemConfiguration (1.12.2 - 1.12.2) &lt;6E858B9F-337A-314E-88B7-24A274ACE568&gt; /System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration
+0x9505c000 - 0x9531cff3  com.apple.security (7.0 - 55179.13) &lt;000FD8E9-D070-326A-B386-51314360FD5C&gt; /System/Library/Frameworks/Security.framework/Versions/A/Security
+0x9531d000 - 0x9533afff  libxpc.dylib (140.43) &lt;C628073D-51A0-3541-A665-1121520508C6&gt; /usr/lib/system/libxpc.dylib
+0x9533b000 - 0x95347ffe  libkxld.dylib (2050.24.15) &lt;BEC097B0-9D9A-3484-99DB-0F537E71963E&gt; /usr/lib/system/libkxld.dylib
+0x95348000 - 0x9578afff  com.apple.CoreGraphics (1.600.0 - 332) &lt;67E70F21-A0F1-356F-90B7-4B90C468EE2C&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics
+0x9578b000 - 0x957b0ffb  com.apple.framework.familycontrols (4.1 - 410) &lt;B1755756-BEA2-3205-ADAA-68FCC32E60BD&gt; /System/Library/PrivateFrameworks/FamilyControls.framework/Versions/A/FamilyControls
+0x957b1000 - 0x95813fff  libc++.1.dylib (65.1) &lt;C0CFF9FF-5D52-3EAE-B921-6AE1DA00A135&gt; /usr/lib/libc++.1.dylib
+0x95814000 - 0x95818ffc  libGIF.dylib (850) &lt;45CD8B8F-7324-3187-B01C-8E16C04F33FA&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libGIF.dylib
+0x95819000 - 0x9581afff  libDiagnosticMessagesClient.dylib (8) &lt;39B3D25A-148A-3936-B800-0D393A00E64F&gt; /usr/lib/libDiagnosticMessagesClient.dylib
+0x9581b000 - 0x95b20ff7  com.apple.CoreServices.CarbonCore (1037.6 - 1037.6) &lt;4DB4B0C9-1377-3062-BE0E-CD3326ACDAF0&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/CarbonCore
+0x95b21000 - 0x95b3eff7  libresolv.9.dylib (51) &lt;B9742A2A-DF15-3F6E-8FCE-778A58214B3A&gt; /usr/lib/libresolv.9.dylib
+0x95b3f000 - 0x95de2ff3  com.apple.CoreImage (8.4.0 - 1.0.1) &lt;C25B9EEC-4824-3088-BC08-2EA516C0728C&gt; /System/Library/Frameworks/QuartzCore.framework/Versions/A/Frameworks/CoreImage.framework/Versions/A/CoreImage
+0x95de3000 - 0x95e01ff3  com.apple.openscripting (1.3.6 - 148.3) &lt;F3422C02-5ACB-343A-987B-A2D58EA2F5A8&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/OpenScripting.framework/Versions/A/OpenScripting
+0x95e02000 - 0x95f35ff3  com.apple.MediaControlSender (1.7 - 170.20) &lt;7B1AC317-AFDB-394F-8026-9561930E696B&gt; /System/Library/PrivateFrameworks/MediaControlSender.framework/Versions/A/MediaControlSender
+0x95f36000 - 0x95f36fff  com.apple.Accelerate (1.8 - Accelerate 1.8) &lt;4EC0548E-3A3F-310D-A366-47B51D5B6398&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Accelerate
+0x95f37000 - 0x95f38ffd  com.apple.TrustEvaluationAgent (2.0 - 23) &lt;E42347C0-2D3C-36A4-9200-757FFA61B388&gt; /System/Library/PrivateFrameworks/TrustEvaluationAgent.framework/Versions/A/TrustEvaluationAgent
+0x95f39000 - 0x961d3ff7  com.apple.AddressBook.framework (7.1 - 1170) &lt;9A7DDF7F-5081-3708-8965-E564953EEE39&gt; /System/Library/Frameworks/AddressBook.framework/Versions/A/AddressBook
+0x961d4000 - 0x961fdff7  libRIP.A.dylib (332) &lt;521E60A6-A768-3CB8-B10D-D10EECD68A94&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Resources/libRIP.A.dylib
+0x96579000 - 0x96579fff  libkeymgr.dylib (25) &lt;D5E93F7F-9315-3AD6-92C7-941F7B54C490&gt; /usr/lib/system/libkeymgr.dylib
+0x9657a000 - 0x9657bffd  libunc.dylib (25) &lt;58599CBF-E262-3CEA-AFE1-35560E0177DC&gt; /usr/lib/system/libunc.dylib
+0x9657c000 - 0x9657dfff  libremovefile.dylib (23.2) &lt;9813B2DB-2374-3AA2-99B6-AA2E9897B249&gt; /usr/lib/system/libremovefile.dylib
+0x9657e000 - 0x965f9ff3  com.apple.CorePDF (2.2 - 2.2) &lt;5A52A1CF-4801-3E6C-BF6E-E5E75A8DBD8F&gt; /System/Library/PrivateFrameworks/CorePDF.framework/Versions/A/CorePDF
+0x965fe000 - 0x96658ff3  com.apple.ImageCaptureCore (5.0.4 - 5.0.4) &lt;6313E06F-37FD-3606-BF2F-87D8598A9983&gt; /System/Library/Frameworks/ImageCaptureCore.framework/Versions/A/ImageCaptureCore
+0x96659000 - 0x96690ffa  com.apple.LDAPFramework (2.4.28 - 194.5) &lt;23668AB5-68EA-37D2-978E-C9EF22BF8C0C&gt; /System/Library/Frameworks/LDAP.framework/Versions/A/LDAP
+0x96691000 - 0x966aafff  com.apple.Kerberos (2.0 - 1) &lt;9BDE8F4D-DBC3-34D1-852C-898D3655A611&gt; /System/Library/Frameworks/Kerberos.framework/Versions/A/Kerberos
+0x966ab000 - 0x966abffe  com.apple.AOSMigrate (1.0 - 1) &lt;4EA0829E-6AE5-3877-A5B6-032AFDF28D39&gt; /System/Library/PrivateFrameworks/AOSMigrate.framework/Versions/A/AOSMigrate
+0x966ac000 - 0x966baff7  libz.1.dylib (43) &lt;245F1B61-2276-3BBB-9891-99934116D833&gt; /usr/lib/libz.1.dylib
+0x966bb000 - 0x966bbfff  com.apple.vecLib (3.8 - vecLib 3.8) &lt;83160DD1-5614-3E34-80EB-97041016EF1F&gt; /System/Library/Frameworks/vecLib.framework/Versions/A/vecLib
+0x966c8000 - 0x966d6fff  libxar.1.dylib (105) &lt;343E4A3B-1D04-34A3-94C2-8C7C9A8F736B&gt; /usr/lib/libxar.1.dylib
+0x966d7000 - 0x966d7fff  com.apple.CoreServices (57 - 57) &lt;956C6C6D-A5DD-314F-9C57-4A61D41F30CE&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices
+0x96f56000 - 0x96fa0ff7  com.apple.framework.CoreWLAN (3.3 - 330.15) &lt;74C4B50F-7016-341F-8261-D379B8F0CC97&gt; /System/Library/Frameworks/CoreWLAN.framework/Versions/A/CoreWLAN
+0x96fa1000 - 0x96faaffd  com.apple.audio.SoundManager (4.0 - 4.0) &lt;ABC5FE40-B222-36EB-9905-5C8C4BFD8C87&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/CarbonSound.framework/Versions/A/CarbonSound
+0x96fab000 - 0x971dbfff  com.apple.QuartzComposer (5.1 - 284) &lt;4E8682B7-EBAE-3C40-ABDB-8705EC7952BD&gt; /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/QuartzComposer.framework/Versions/A/QuartzComposer
+0x971dc000 - 0x97201ff7  com.apple.quartzfilters (1.8.0 - 1.7.0) &lt;F6A88D89-AB4A-3217-9D65-C2C259B5F09B&gt; /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/QuartzFilters.framework/Versions/A/QuartzFilters
+0x97202000 - 0x97250ffb  libFontRegistry.dylib (100) &lt;3B8350C2-4D8F-38C4-A22E-2F855D7E83D1&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Resources/libFontRegistry.dylib
+0x97251000 - 0x97325ff3  com.apple.backup.framework (1.4.3 - 1.4.3) &lt;6EA22ED3-BA18-3A37-AE05-5D6FDA3F372F&gt; /System/Library/PrivateFrameworks/Backup.framework/Versions/A/Backup
+0x97326000 - 0x97381ff7  com.apple.AppleVAFramework (5.0.19 - 5.0.19) &lt;3C43A555-0A22-3D7C-A3FB-CFADDDA43E9B&gt; /System/Library/PrivateFrameworks/AppleVA.framework/Versions/A/AppleVA
+0x97382000 - 0x9741dfff  com.apple.CoreSymbolication (3.0 - 117) &lt;F705A8CD-A04A-3A84-970A-7B04BC05DA97&gt; /System/Library/PrivateFrameworks/CoreSymbolication.framework/Versions/A/CoreSymbolication
+0x9741e000 - 0x97421ffc  libCoreVMClient.dylib (32.3) &lt;35B63A60-DF0A-3FB3-ABB8-164B246A43CC&gt; /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCoreVMClient.dylib
+0x97422000 - 0x97425ff9  libCGXType.A.dylib (332) &lt;07B59FCC-6229-37C2-9870-70A18E2C5598&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/Resources/libCGXType.A.dylib
+0x97426000 - 0x9742affe  libcache.dylib (57) &lt;834FDCA7-FE3B-33CC-A12A-E11E202477EC&gt; /usr/lib/system/libcache.dylib
+0x9742b000 - 0x9746bfff  com.apple.MediaKit (14 - 687) &lt;8735A76E-7766-33F5-B3D2-86630070A1BA&gt; /System/Library/PrivateFrameworks/MediaKit.framework/Versions/A/MediaKit
+0x9746c000 - 0x9746ffff  com.apple.help (1.3.2 - 42) &lt;AD7EB1F0-A068-3A2C-9D59-38E59CEC0D96&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Help.framework/Versions/A/Help
+0x97470000 - 0x975f9ff7  com.apple.vImage (6.0 - 6.0) &lt;1D1F67FE-4F75-3689-BEF6-4A46C8039E70&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vImage.framework/Versions/A/vImage
+0x975fa000 - 0x9763cff7  libcups.2.dylib (327.6) &lt;D994A44F-CCDD-3D40-B732-79CB88F45908&gt; /usr/lib/libcups.2.dylib
+0x9763d000 - 0x9779affb  com.apple.QTKit (7.7.1 - 2599.31) &lt;B9AE5675-22B0-3AA9-903F-2195DA0B04F5&gt; /System/Library/Frameworks/QTKit.framework/Versions/A/QTKit
+0x9779b000 - 0x977eaff6  libTIFF.dylib (850) &lt;78E121A6-92A2-3120-883C-7AA3C2966F9C&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libTIFF.dylib
+0x977eb000 - 0x978ccfff  libcrypto.0.9.8.dylib (47.1) &lt;E4820342-4F42-3DEB-90DB-DE5A66C5585E&gt; /usr/lib/libcrypto.0.9.8.dylib
+0x978cd000 - 0x97b26ff5  com.apple.JavaScriptCore (8536 - 8536.30) &lt;24A2ACA7-6E51-30C6-B9AE-17A77E511735&gt; /System/Library/Frameworks/JavaScriptCore.framework/Versions/A/JavaScriptCore
+0x97b27000 - 0x97b6cff7  com.apple.NavigationServices (3.7 - 200) &lt;F6531764-6E43-3AF3-ACDD-8A5551EF016A&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/NavigationServices.framework/Versions/A/NavigationServices
+0x97b6d000 - 0x97b76ff9  com.apple.CommonAuth (3.0 - 2.0) &lt;34C4768C-EF8D-3DBA-AFB7-09148C8672DB&gt; /System/Library/PrivateFrameworks/CommonAuth.framework/Versions/A/CommonAuth
+0x97b77000 - 0x97c8fff7  com.apple.coreavchd (5.6.0 - 5600.4.16) &lt;F024C78B-4FAA-38F1-A182-AD0A0A596CBE&gt; /System/Library/PrivateFrameworks/CoreAVCHD.framework/Versions/A/CoreAVCHD
+0x97c90000 - 0x97c90fff  libsystem_blocks.dylib (59) &lt;3A743C5D-CFA5-37D8-80A8-B6795A9DB04F&gt; /usr/lib/system/libsystem_blocks.dylib
+0x97c91000 - 0x97cd9ff5  com.apple.opencl (2.2.19 - 2.2.19) &lt;968DD067-49D0-3B71-A96B-B3579698D992&gt; /System/Library/Frameworks/OpenCL.framework/Versions/A/OpenCL
+0x97cda000 - 0x97cecff7  libdispatch.dylib (228.23) &lt;86EF7D45-2D97-3465-A449-95038AE5DABA&gt; /usr/lib/system/libdispatch.dylib
+0x97ced000 - 0x97d44ff7  com.apple.ScalableUserInterface (1.0 - 1) &lt;2B5E454B-BC49-3E85-B54D-1950397C448C&gt; /System/Library/Frameworks/QuartzCore.framework/Versions/A/Frameworks/ScalableUserInterface.framework/Versions/A/ScalableUserInterface
+0x97d45000 - 0x97d4cffb  libunwind.dylib (35.1) &lt;E1E8D8B3-3C78-3AB1-B398-C180DC6DCF05&gt; /usr/lib/system/libunwind.dylib
+0x97d4d000 - 0x97d71fff  libJPEG.dylib (850) &lt;36FEAB05-86C5-33B9-9DE9-5FAD8AEBA15F&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libJPEG.dylib
+0x97d72000 - 0x97e09ff7  com.apple.ink.framework (10.8.2 - 150) &lt;A9C3B735-7D5F-3D7D-AA70-2CC852D09CDE&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Ink.framework/Versions/A/Ink
+0x97e0a000 - 0x97e2affd  com.apple.ChunkingLibrary (2.0 - 133.3) &lt;FA45EAE8-BB10-3AEE-9FDC-C0C3A533FF48&gt; /System/Library/PrivateFrameworks/ChunkingLibrary.framework/Versions/A/ChunkingLibrary
+0x97e2b000 - 0x97e91ffc  com.apple.ISSupport (1.9.8 - 56) &lt;D2AC4E10-0B3C-3194-AEB7-1E9964CBC0D0&gt; /System/Library/PrivateFrameworks/ISSupport.framework/Versions/A/ISSupport
+0x97e98000 - 0x97f47ff7  com.apple.CoreText (260.0 - 275.16) &lt;873ADCD9-D361-3753-A220-CDD289196AD8&gt; /System/Library/Frameworks/CoreText.framework/Versions/A/CoreText
+0x97f48000 - 0x97f75ffe  libsystem_m.dylib (3022.6) &lt;9975D9C3-3B71-38E3-AA21-C5C5F9D9C431&gt; /usr/lib/system/libsystem_m.dylib
+0x97f76000 - 0x9806eff9  libsqlite3.dylib (138.1) &lt;AD7C5914-35F0-37A3-9238-A29D2E26C755&gt; /usr/lib/libsqlite3.dylib
+0x9806f000 - 0x980bfff7  com.apple.CoreMediaIO (308.0 - 4155.4) &lt;E2FF59A9-3728-3D17-A1AD-84DC1BDA2146&gt; /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/CoreMediaIO
+0x980c0000 - 0x981cbff7  libJP2.dylib (850) &lt;3FFCEFA6-317A-34AF-8D99-AEBB017543C5&gt; /System/Library/Frameworks/ImageIO.framework/Versions/A/Resources/libJP2.dylib
+0x981cc000 - 0x985e9fff  FaceCoreLight (2.4.1) &lt;B12C8721-EFB3-30A2-9A1B-ABCDF5670764&gt; /System/Library/PrivateFrameworks/FaceCoreLight.framework/Versions/A/FaceCoreLight
+0x985ea000 - 0x98601ff4  com.apple.CoreMediaAuthoring (2.1 - 914) &lt;DE0D100E-96AA-3E85-AFB0-43832E9B4C54&gt; /System/Library/PrivateFrameworks/CoreMediaAuthoring.framework/Versions/A/CoreMediaAuthoring
+0x9868e000 - 0x98a46ffa  libLAPACK.dylib (1073.4) &lt;9A6E5EAD-F2F2-3D5C-B655-2B536DB477F2&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLAPACK.dylib
+0x98a47000 - 0x98a6cff7  com.apple.CoreVideo (1.8 - 99.4) &lt;A26DE896-32E0-3D5E-BA89-02AD23FA96B3&gt; /System/Library/Frameworks/CoreVideo.framework/Versions/A/CoreVideo
+0x997a6000 - 0x997b1fff  libcommonCrypto.dylib (60027) &lt;8EE30FA5-AA8D-3FA6-AB0F-05DA8B0425D9&gt; /usr/lib/system/libcommonCrypto.dylib
+0x997b2000 - 0x9985cfff  com.apple.LaunchServices (539.9 - 539.9) &lt;C0E0CFFF-3714-3467-87DA-4A6F0AF1953B&gt; /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices
+0x9985d000 - 0x99861ff7  libmacho.dylib (829) &lt;5280A013-4F74-3F74-BE0C-7F612C49F1DC&gt; /usr/lib/system/libmacho.dylib
+0x99865000 - 0x9986efff  com.apple.CommerceCore (1.0 - 26.1) &lt;8C28115C-6EC1-316D-9237-F4FBCBB778C5&gt; /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/Frameworks/CommerceCore.framework/Versions/A/CommerceCore
+0x9986f000 - 0x99870fff  liblangid.dylib (116) &lt;E13CC8C5-5034-320A-A210-41A2BDE4F846&gt; /usr/lib/liblangid.dylib
+0x99871000 - 0x99877fff  com.apple.phonenumbers (1.1 - 47) &lt;DD22B3D1-DA4B-3794-9D73-E90D49A1F88E&gt; /System/Library/PrivateFrameworks/PhoneNumbers.framework/Versions/A/PhoneNumbers
+0x99878000 - 0x998bafff  libauto.dylib (185.4) &lt;3098A75E-438E-3F18-BAAC-CD8F1CC7C2F7&gt; /usr/lib/libauto.dylib
+0x998bb000 - 0x99923fe7  libvDSP.dylib (380.6) &lt;55780308-4DCA-3B10-9703-EAFC3E13A3FA&gt; /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvDSP.dylib
+0x99924000 - 0x99fb0ff3  com.apple.CoreAUC (6.16.13 - 6.16.13) &lt;3DCF4456-AF8D-3E87-B00C-C56055AF9B8E&gt; /System/Library/PrivateFrameworks/CoreAUC.framework/Versions/A/CoreAUC
+0x99fb1000 - 0x99fb4ff7  com.apple.TCC (1.0 - 1) &lt;437D76CD-6437-3B55-BE2C-A53508858256&gt; /System/Library/PrivateFrameworks/TCC.framework/Versions/A/TCC
+0x99feb000 - 0x9a144ffb  com.apple.audio.toolbox.AudioToolbox (1.9 - 1.9) &lt;8BF022FC-C38A-34AA-8469-D98294094659&gt; /System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox
+0x9a145000 - 0x9a252057  libobjc.A.dylib (532.2) &lt;FA455371-7395-3D58-A89B-D1520612D1BC&gt; /usr/lib/libobjc.A.dylib
+0x9a253000 - 0x9a25fff8  libbz2.1.0.dylib (29) &lt;7031A4C0-784A-3EAA-93DF-EA1F26CC9264&gt; /usr/lib/libbz2.1.0.dylib
+0x9a260000 - 0x9a354ff3  com.apple.QuickLookUIFramework (4.0 - 555.5) &lt;5A62C87F-5F74-380B-8B86-8CE3D8788603&gt; /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/QuickLookUI.framework/Versions/A/QuickLookUI
+0x9a355000 - 0x9a381ff7  libsystem_info.dylib (406.17) &lt;AA5611DB-A944-3072-B6BE-ACAB08689547&gt; /usr/lib/system/libsystem_info.dylib
+0x9a382000 - 0x9a3b2ff3  libtidy.A.dylib (15.10) &lt;F2F4E000-E305-3089-91E6-3DB0ED07E74A&gt; /usr/lib/libtidy.A.dylib
+0x9a3b3000 - 0x9a3fffff  libcorecrypto.dylib (106.2) &lt;20EBADBA-D6D6-36F0-AE80-168E9AF13DB6&gt; /usr/lib/system/libcorecrypto.dylib
+0x9a400000 - 0x9a46fffb  com.apple.Heimdal (3.0 - 2.0) &lt;964D9952-B0F2-34F6-8265-1823C0D5EAB8&gt; /System/Library/PrivateFrameworks/Heimdal.framework/Versions/A/Heimdal
+0x9a470000 - 0x9a474fff  com.apple.CommonPanels (1.2.5 - 94) &lt;6B3E7E53-7708-3DA2-8C50-59C2B4735DE1&gt; /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/CommonPanels.framework/Versions/A/CommonPanels
+0x9a475000 - 0x9a48afff  com.apple.speech.synthesis.framework (4.1.12 - 4.1.12) &lt;DE68CEB5-4959-3652-83B8-D2B00D3B932D&gt; /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/SpeechSynthesis.framework/Versions/A/SpeechSynthesis
+0x9a4d1000 - 0x9a68dffd  libicucore.A.dylib (491.11.3) &lt;FF55E176-7D66-3DBB-AF86-84744C47A02C&gt; /usr/lib/libicucore.A.dylib
+
+External Modification Summary:
+  Calls made by other processes targeting this process:
+    task_for_pid: 11
+    thread_create: 0
+    thread_set_state: 0
+  Calls made by this process:
+    task_for_pid: 0
+    thread_create: 0
+    thread_set_state: 0
+  Calls made by all processes on this machine:
+    task_for_pid: 8822
+    thread_create: 1
+    thread_set_state: 0
+
+VM Region Summary:
+ReadOnly portion of Libraries: Total=217.1M resident=71.5M(33%) swapped_out_or_unallocated=145.7M(67%)
+Writable regions: Total=477.6M written=39.2M(8%) resident=212.7M(45%) swapped_out=65.5M(14%) unallocated=264.9M(55%)
+ 
+REGION TYPE                      VIRTUAL
+===========                      =======
+(null) (reserved)                   772K        reserved VM address space (unallocated)
+ATS (font support)                 31.9M
+ATS (font support) (reserved)         4K        reserved VM address space (unallocated)
+CG backing stores                  25.7M
+CG image                           1176K
+CG shared images                    256K
+CoreAnimation                       148K
+CoreImage                             4K
+CoreServices                       2408K
+IOKit                              5300K
+IOKit (reserved)                    128K        reserved VM address space (unallocated)
+MALLOC                            216.2M
+MALLOC guard page                    48K
+Memory tag=240                        4K
+Memory tag=242                       12K
+Memory tag=243                        4K
+Memory tag=249                      156K
+Memory tag=35                      3700K
+OpenCL                               28K
+OpenGL GLSL                        1424K
+OpenGL GLSL (reserved)              128K        reserved VM address space (unallocated)
+Stack                              97.7M
+VM_ALLOCATE                       156.5M
+__DATA                             9420K
+__DATA/__OBJC                        44K
+__IMAGE                             528K
+__IMPORT                              4K
+__LINKEDIT                         43.4M
+__OBJC                             3424K
+__PAGEZERO                            4K
+__TEXT                            173.8M
+__UNICODE                           544K
+mapped file                       276.9M
+shared memory                      56.7M
+===========                      =======
+TOTAL                               1.1G
+TOTAL, minus reserved VM space      1.1G</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Lluis Sanchez</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2015-08-27 06:34:22 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Is this still an issue? I can't reproduce with current stable.</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">iain</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-10-18 17:08:40 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Resolving as fixed due to c#8</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>
