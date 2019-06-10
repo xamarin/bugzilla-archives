@@ -1,0 +1,1650 @@
+<html lang="en"><head>
+    <title>3825 – Crash in GTK with Mono 2.10.9 and MonoDevelop master/2.8.8</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_RESOLVED
+                 bz_product_Xamarin_Studio
+                 bz_component_General
+                 bz_bug_3825 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;3825</span>
+
+        <span id="subtitle" class="subheader">Crash in GTK with Mono 2.10.9 and MonoDevelop master/2.8.8</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2012-04-10 14:14:30 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2012-04-10 14:14:30">
+  <input type="hidden" name="id" value="3825">
+  <input type="hidden" name="token" value="1559140957-rVFIT4dpFQ-5Rl1_xB8YxCsXt5oT76my7RbuY2mFkrY">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;3825</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">Crash in GTK with Mono 2.10.9 and MonoDevelop master/2.8.8</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>Crash in GTK with Mono 2.10.9 and MonoDevelop master/2.8.8
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Xamarin Studio
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Desktop
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">General
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>Trunk
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        Mac OS
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>High
+       critical
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>---
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Mike Krüger</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label>Duplicates (2)</label>:
+    </th>
+    <td class="field_value">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - update alpha crash" href="show_bug.cgi?id=3928">3928</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=4080">4080</a> 
+      </span>
+      ()
+    </td>
+  </tr>
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2012-03-09 11:03 UTC by <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2012-04-10 14:14 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>7
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="andreia">andreia</option>
+                <option value="chrisntr">chrisntr</option>
+                <option value="duncan.mak">duncan.mak</option>
+                <option value="flatlandcn">flatlandcn</option>
+                <option value="kris">kris</option>
+                <option value="mitch">mitch</option>
+                <option value="mono-bugs+monodevelop">mono-bugs+monodevelop</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">---
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+        <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> or <a href="https://github.com/mono/monodevelop/issues">GitHub</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">RESOLVED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-03-09 11:03:16 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">We get this exception opening some files in the 'Changes view'
+
+
+
+Stacktrace:
+
+  at (wrapper managed-to-native) Pango.Layout.pango_layout_get_extents (intptr,intptr,intptr) &lt;IL 0x00025, 0xffffffff&gt;
+  at Pango.Layout.GetExtents (Pango.Rectangle&amp;,Pango.Rectangle&amp;) &lt;IL 0x00032, 0x0006b&gt;
+  at Mono.TextEditor.TextViewMargin.ColumnToX (Mono.TextEditor.LineSegment,int) [0x004e0] in /Users/alanmcgovern/Projects/monodevelop/main/src/core/Mono.Texteditor/Mono.TextEditor/TextViewMargin.cs:2529
+  at Mono.TextEditor.TextViewMargin.LocationToPoint (Mono.TextEditor.DocumentLocation,bool) [0x00021] in /Users/alanmcgovern/Projects/monodevelop/main/src/core/Mono.Texteditor/Mono.TextEditor/TextViewMargin.cs:2415
+  at Mono.TextEditor.TextEditor.LocationToPoint (Mono.TextEditor.DocumentLocation,bool) [0x00000] in /Users/alanmcgovern/Projects/monodevelop/main/src/core/Mono.Texteditor/Mono.TextEditor/TextEditor.cs:2615
+  at MonoDevelop.VersionControl.Views.EditorCompareWidgetBase.GetDiffRectangle (Mono.TextEditor.TextEditor,int,int) [0x0005c] in /Users/alanmcgovern/Projects/monodevelop/main/src/addins/VersionControl/MonoDevelop.VersionControl/MonoDevelop.VersionControl.Views/EditorCompareWidgetBase.cs:265
+  at MonoDevelop.VersionControl.Views.EditorCompareWidgetBase.CalculateChunkPath (Mono.TextEditor.TextEditor,System.Collections.Generic.List`1&lt;Mono.TextEditor.Utils.Hunk&gt;,System.Collections.Generic.List`1&lt;Mono.TextEditor.ISegment&gt;,bool) [0x000d5] in /Users/alanmcgovern/Projects/monodevelop/main/src/addins/VersionControl/MonoDevelop.VersionControl/MonoDevelop.VersionControl.Views/EditorCompareWidgetBase.cs:301
+  at MonoDevelop.VersionControl.Views.EditorCompareWidgetBase.GetDiffPaths (System.Collections.Generic.List`1&lt;Mono.TextEditor.Utils.Hunk&gt;,Mono.TextEditor.TextEditor,Mono.TextEditor.Utils.Hunk) [0x000c3] in /Users/alanmcgovern/Projects/monodevelop/main/src/addins/VersionControl/MonoDevelop.VersionControl/MonoDevelop.VersionControl.Views/EditorCompareWidgetBase.cs:321
+  at MonoDevelop.VersionControl.Views.EditorCompareWidgetBase.PaintEditorOverlay (Mono.TextEditor.TextEditor,Mono.TextEditor.PaintEventArgs,System.Collections.Generic.List`1&lt;Mono.TextEditor.Utils.Hunk&gt;,bool) [0x000e4] in /Users/alanmcgovern/Projects/monodevelop/main/src/addins/VersionControl/MonoDevelop.VersionControl/MonoDevelop.VersionControl.Views/EditorCompareWidgetBase.cs:554
+  at MonoDevelop.VersionControl.Views.EditorCompareWidgetBase.&lt;Intialize&gt;m__2C (object,Mono.TextEditor.PaintEventArgs) [0x00007] in /Users/alanmcgovern/Projects/monodevelop/main/src/addins/VersionControl/MonoDevelop.VersionControl/MonoDevelop.VersionControl.Views/EditorCompareWidgetBase.cs:163
+  at Mono.TextEditor.TextEditor.OnPainted (Mono.TextEditor.PaintEventArgs) [0x0000d] in /Users/alanmcgovern/Projects/monodevelop/main/src/core/Mono.Texteditor/Mono.TextEditor/TextEditor.cs:1637
+  at Mono.TextEditor.TextEditor.OnExposeEvent (Gdk.EventExpose) [0x001b0] in /Users/alanmcgovern/Projects/monodevelop/main/src/core/Mono.Texteditor/Mono.TextEditor/TextEditor.cs:1627
+  at Gtk.Widget.exposeevent_cb (intptr,intptr) &lt;IL 0x00014, 0x00071&gt;
+  at (wrapper native-to-managed) Gtk.Widget.exposeevent_cb (intptr,intptr) &lt;IL 0x00020, 0xffffffff&gt;
+  at (wrapper managed-to-native) Gtk.Application.gtk_main () &lt;IL 0x00022, 0xffffffff&gt;
+  at Gtk.Application.Run () &lt;IL 0x00000, 0x0000b&gt;
+  at MonoDevelop.Ide.IdeApp.Run () [0x00000] in /Users/alanmcgovern/Projects/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/Ide.cs:384
+  at MonoDevelop.Ide.IdeStartup.Run (MonoDevelop.Ide.MonoDevelopOptions) [0x00688] in /Users/alanmcgovern/Projects/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/IdeStartup.cs:272
+  at MonoDevelop.Ide.IdeStartup.Main (string[]) [0x0004f] in /Users/alanmcgovern/Projects/monodevelop/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide/IdeStartup.cs:503
+  at MonoDevelop.Startup.MonoDevelopMain.Main (string[]) [0x00000] in /Users/alanmcgovern/Projects/monodevelop/main/src/core/MonoDevelop.Startup/MonoDevelop.Startup/MonoDevelopMain.cs:16
+  at (wrapper runtime-invoke) &lt;Module&gt;.runtime_invoke_int_object (object,intptr,intptr,intptr) &lt;IL 0x0005c, 0xffffffff&gt;
+
+Native stacktrace:
+
+	0   mono                                0x0009fe1f mono_handle_native_sigsegv + 287
+	1   mono                                0x00004fce mono_sigsegv_signal_handler + 334
+	2   libsystem_c.dylib                   0x981ae59b _sigtramp + 43
+	3   ???                                 0xffffffff 0x0 + 4294967295
+	4   pango-basic-coretext.so             0x06e26638 create_core_text_glyph_list + 98
+	5   pango-basic-coretext.so             0x06e266f9 basic_engine_shape + 74
+	6   libpango-1.0.0.dylib                0x047d32f1 _pango_engine_shape_shape + 66
+	7   libpango-1.0.0.dylib                0x047eba4b pango_shape + 102
+	8   libpango-1.0.0.dylib                0x047dc64e shape_run + 186
+	9   libpango-1.0.0.dylib                0x047dc8b6 process_item + 94
+	10  libpango-1.0.0.dylib                0x047dd1c3 process_line + 420
+	11  libpango-1.0.0.dylib                0x047ddbeb pango_layout_check_lines + 1159
+	12  libpango-1.0.0.dylib                0x047db9a1 pango_layout_get_extents_internal + 218
+	13  libpango-1.0.0.dylib                0x047dbdb4 pango_layout_get_extents + 88
+	14  ???                                 0x1034bd88 0x0 + 271891848
+	15  ???                                 0x1034bca4 0x0 + 271891620
+	16  ???                                 0x1034a948 0x0 + 271886664
+	17  ???                                 0x103492d0 0x0 + 271880912
+	18  ???                                 0x103491c0 0x0 + 271880640
+	19  ???                                 0x10348ec4 0x0 + 271879876
+	20  ???                                 0x10348ba4 0x0 + 271879076
+	21  ???                                 0x10346824 0x0 + 271869988
+	22  ???                                 0x10345d48 0x0 + 271867208
+	23  ???                                 0x10345808 0x0 + 271865864
+	24  ???                                 0x0febebbd 0x0 + 267119549
+	25  ???                                 0x0feaae8a 0x0 + 267038346
+	26  ???                                 0x0e2a8d12 0x0 + 237669650
+	27  ???                                 0x0b3cf8bc 0x0 + 188545212
+	28  libgtk-quartz-2.0.0.dylib           0x042d45b6 _gtk_marshal_BOOLEAN__BOXED + 225
+	29  libgobject-2.0.0.dylib              0x04169c40 g_type_class_meta_marshal + 97
+	30  libgobject-2.0.0.dylib              0x04169937 g_closure_invoke + 370
+	31  libgobject-2.0.0.dylib              0x04182c82 signal_emit_unlocked_R + 3080
+	32  libgobject-2.0.0.dylib              0x04181be2 g_signal_emit_valist + 2334
+	33  libgobject-2.0.0.dylib              0x04181e8e g_signal_emit + 44
+	34  libgtk-quartz-2.0.0.dylib           0x04449191 gtk_widget_event_internal + 846
+	35  libgtk-quartz-2.0.0.dylib           0x04448d60 gtk_widget_send_expose + 324
+	36  libgtk-quartz-2.0.0.dylib           0x042d13c3 gtk_main_do_event + 731
+	37  libgdk-quartz-2.0.0.dylib           0x046dc602 _gdk_window_process_updates_recurse + 763
+	38  libgdk-quartz-2.0.0.dylib           0x046dc50b _gdk_window_process_updates_recurse + 516
+	39  libgdk-quartz-2.0.0.dylib           0x046dc50b _gdk_window_process_updates_recurse + 516
+	40  libgdk-quartz-2.0.0.dylib           0x046dc50b _gdk_window_process_updates_recurse + 516
+	41  libgdk-quartz-2.0.0.dylib           0x046e71da -[GdkQuartzView drawRect:] + 403
+	42  AppKit                              0x92718369 -[NSView _drawRect:clip:] + 3929
+	43  AppKit                              0x92716388 -[NSView _recursiveDisplayRectIfNeededIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:topView:] + 2650
+	44  AppKit                              0x9271087c -[NSView _displayRectIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:] + 4817
+	45  AppKit                              0x92709732 -[NSView displayIfNeeded] + 1256
+	46  libgdk-quartz-2.0.0.dylib           0x046fa2fb _gdk_windowing_after_process_all_updates + 105
+	47  libgdk-quartz-2.0.0.dylib           0x046dcb14 gdk_window_process_all_updates + 315
+	48  libgtk-quartz-2.0.0.dylib           0x0422d092 gtk_container_idle_sizer + 106
+	49  libgdk-quartz-2.0.0.dylib           0x046afd74 gdk_threads_dispatch + 85
+	50  libglib-2.0.0.dylib                 0x0404e8d6 g_idle_dispatch + 71
+	51  libglib-2.0.0.dylib                 0x0404a595 g_main_dispatch + 495
+	52  libglib-2.0.0.dylib                 0x0404bbff g_main_context_dispatch + 144
+	53  libglib-2.0.0.dylib                 0x0404c143 g_main_context_iterate + 1235
+	54  libglib-2.0.0.dylib                 0x0404c98f g_main_loop_run + 992
+	55  libgtk-quartz-2.0.0.dylib           0x042d0a53 gtk_main + 239
+	56  ???                                 0x0e3d79c4 0x0 + 238909892
+	57  ???                                 0x0e3d798c 0x0 + 238909836
+	58  ???                                 0x0e3d796c 0x0 + 238909804
+	59  ???                                 0x03ee6b04 0x0 + 65956612
+	60  ???                                 0x00555040 0x0 + 5591104
+	61  ???                                 0x00554e0c 0x0 + 5590540
+	62  ???                                 0x00554ec6 0x0 + 5590726
+	63  mono                                0x0000ed54 mono_jit_runtime_invoke + 164
+	64  mono                                0x001843a4 mono_runtime_invoke + 68
+	65  mono                                0x0018a4f1 mono_runtime_exec_main + 369
+	66  mono                                0x000746ad mono_main + 6797
+	67  mono                                0x00002036 start + 54
+
+Debug info from gdb:
+
+Attaching to process 34756.
+Reading symbols for shared libraries . done
+Reading symbols for shared libraries warning: Trying to remove a section from the ordered section list that did not exist at 0x2ea000.
+..........................................................................................................................................warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/closure.o" - no debug information available for "closure.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/error.o" - no debug information available for "error.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/object.o" - no debug information available for "object.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/ptrarray.o" - no debug information available for "ptrarray.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/signal.o" - no debug information available for "signal.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/type.o" - no debug information available for "type.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/unichar.o" - no debug information available for "unichar.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/value.o" - no debug information available for "value.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/valuearray.o" - no debug information available for "valuearray.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/glib/glue/.libs/thread.o" - no debug information available for "thread.c".
+
+.............................warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/errno.o" - no debug information available for "errno.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/map.o" - no debug information available for "map.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/signal.o" - no debug information available for "signal.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/stdio.o" - no debug information available for "stdio.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/string.o" - no debug information available for "string.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/stdlib.o" - no debug information available for "stdlib.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/dirent.o" - no debug information available for "dirent.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/fcntl.o" - no debug information available for "fcntl.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/fstab.o" - no debug information available for "fstab.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/grp.o" - no debug information available for "grp.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/macros.o" - no debug information available for "macros.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/old-map.o" - no debug information available for "old-map.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/pwd.o" - no debug information available for "pwd.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/serial.o" - no debug information available for "serial.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/sys-mman.o" - no debug information available for "sys-mman.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/sys-sendfile.o" - no debug information available for "sys-sendfile.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/sys-stat.o" - no debug information available for "sys-stat.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/sys-statvfs.o" - no debug information available for "sys-statvfs.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/sys-time.o" - no debug information available for "sys-time.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/sys-utsname.o" - no debug information available for "sys-utsname.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/sys-wait.o" - no debug information available for "sys-wait.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/sys-xattr.o" - no debug information available for "sys-xattr.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/syslog.o" - no debug information available for "syslog.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/time.o" - no debug information available for "time.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/unistd.o" - no debug information available for "unistd.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/utime.o" - no debug information available for "utime.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/x-struct-str.o" - no debug information available for "x-struct-str.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/zlib-helper.o" - no debug information available for "zlib-helper.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/ioapi.o" - no debug information available for "minizip/ioapi.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/unzip.o" - no debug information available for "minizip/unzip.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/support/.libs/zip.o" - no debug information available for "minizip/zip.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/mono-2.10.9/eglib/src/.libs/libeglib.a(libeglib_la-garray.o)" - no debug information available for "garray.c".
+
+...............................................warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/adjustment.o" - no debug information available for "adjustment.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/cellrenderer.o" - no debug information available for "cellrenderer.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/clipboard.o" - no debug information available for "clipboard.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/colorseldialog.o" - no debug information available for "colorseldialog.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/container.o" - no debug information available for "container.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/nodestore.o" - no debug information available for "nodestore.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/object.o" - no debug information available for "object.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/selectiondata.o" - no debug information available for "selectiondata.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/statusicon.o" - no debug information available for "statusicon.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/style.o" - no debug information available for "style.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/targetlist.o" - no debug information available for "targetlist.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/widget.o" - no debug information available for "widget.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gtk/glue/.libs/generated.o" - no debug information available for "generated.c".
+
+..warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gdk/glue/.libs/dragcontext.o" - no debug information available for "dragcontext.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gdk/glue/.libs/device.o" - no debug information available for "device.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gdk/glue/.libs/event.o" - no debug information available for "event.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gdk/glue/.libs/selection.o" - no debug information available for "selection.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gdk/glue/.libs/windowmanager.o" - no debug information available for "windowmanager.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/gdk/glue/.libs/generated.o" - no debug information available for "generated.c".
+
+........................warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/pango/glue/.libs/attribute.o" - no debug information available for "attribute.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/pango/glue/.libs/units.o" - no debug information available for "units.c".
+
+warning: Could not find object file "/private/tmp/monobuild/build/BUILD/gtk-sharp-2.12.11/pango/glue/.libs/generated.o" - no debug information available for "generated.c".
+
+. done
+0x96d4bfda in __wait4 ()
+  29                                 0x96d4ba9a in recvfrom$UNIX2003 ()
+  28                                 0x96d4bbb2 in __semwait_signal ()
+  27                                 0x96d4b83e in __psynch_cvwait ()
+  26                                 0x96d4c02e in __workq_kernreturn ()
+  25                                 0x96d4cd4e in read$UNIX2003 ()
+  24                                 0x96d4cd4e in read$UNIX2003 ()
+  23                                 0x96d4b83e in __psynch_cvwait ()
+  22                                 0x96d4ae12 in accept$UNIX2003 ()
+  21                                 0x96d4ae12 in accept$UNIX2003 ()
+  20                                 0x96d4b83e in __psynch_cvwait ()
+  19                                 0x96d4b83e in __psynch_cvwait ()
+  18                                 0x96d4c02e in __workq_kernreturn ()
+  17                                 0x96d4c02e in __workq_kernreturn ()
+  16                                 0x96d4bb42 in select$DARWIN_EXTSN ()
+  15                                 0x96d49c76 in semaphore_timedwait_trap ()
+  14                                 0x96d49c76 in semaphore_timedwait_trap ()
+  13                                 0x96d4c90a in kevent ()
+  12                                 0x96d4bbb2 in __semwait_signal ()
+  11                                 0x96d4bbb2 in __semwait_signal ()
+  10                                 0x96d4ba9a in recvfrom$UNIX2003 ()
+   9                                 0x96d49c76 in semaphore_timedwait_trap ()
+   8                                 0x96d4bbb2 in __semwait_signal ()
+   7                                 0x96d4b83e in __psynch_cvwait ()
+   6                                 0x96d4c02e in __workq_kernreturn ()
+   5                                 0x96d4c02e in __workq_kernreturn ()
+   4 "com.apple.libdispatch-manager" 0x96d4c90a in kevent ()
+   3                                 0x96d49c5e in semaphore_wait_trap ()
+   2                                 0x96d49c22 in mach_msg_trap ()
+*  1 "com.apple.main-thread"         0x96d4bfda in __wait4 ()
+
+Thread 29 (process 34756):
+#0  0x96d4ba9a in recvfrom$UNIX2003 ()
+#1  0x001e864b in _wapi_recvfrom (fd=112, buf=0x77df010, len=4096, recv_flags=0, from=0x0, fromlen=0x0) at sockets.c:607
+#2  0x001e8736 in _wapi_recv (fd=112, buf=0x77df010, len=4096, recv_flags=0) at sockets.c:585
+#3  0x001b372a in ves_icall_System_Net_Sockets_Socket_Receive_internal (sock=112, buffer=0x77df000, offset=0, count=4096, flags=0, error=0xb1654bc0) at socket-io.c:1470
+#4  0x10252ec4 in ?? ()
+#5  0x10252e08 in ?? ()
+#6  0x10252bd0 in ?? ()
+#7  0x102529cc in ?? ()
+#8  0x0fde11c8 in ?? ()
+#9  0x102528d0 in ?? ()
+#10 0x10252578 in ?? ()
+#11 0x1025234c in ?? ()
+#12 0x03eecd8a in ?? ()
+#13 0x039f2419 in ?? ()
+#14 0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x77dafc0, params=0xb1654ee8, exc=0x0) at mini.c:5791
+#15 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x77dafc0, params=0xb1654ee8, exc=0x0) at object.c:2755
+#16 0x0018467f in mono_runtime_delegate_invoke (delegate=0x77dafc0, params=0xb1654ee8, exc=0x0) at object.c:3420
+#17 0x001bd9bb in start_wrapper (data=0xf9aea10) at threads.c:790
+#18 0x001efada in thread_start_routine (args=0x29684fc) at wthreads.c:287
+#19 0x00217214 in GC_start_routine (arg=0x74c0840) at pthread_support.c:1468
+#20 0x98156ed9 in _pthread_start ()
+#21 0x9815a6de in thread_start ()
+
+Thread 28 (process 34756):
+#0  0x96d4bbb2 in __semwait_signal ()
+#1  0x9810b7b9 in nanosleep$UNIX2003 ()
+#2  0x001ee43b in SleepEx (ms=&lt;value temporarily unavailable, due to optimizations&gt;, alertable=1) at wthreads.c:1027
+#3  0x001bfa60 in ves_icall_System_Threading_Thread_Sleep_internal (ms=3000) at threads.c:1320
+#4  0x0e2b5b54 in ?? ()
+#5  0x0e2b5ad8 in ?? ()
+#6  0x1025dd28 in ?? ()
+#7  0x03eecd8a in ?? ()
+#8  0x039f2419 in ?? ()
+#9  0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x74bd428, params=0xb1552ee8, exc=0x0) at mini.c:5791
+#10 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x74bd428, params=0xb1552ee8, exc=0x0) at object.c:2755
+#11 0x0018467f in mono_runtime_delegate_invoke (delegate=0x74bd428, params=0xb1552ee8, exc=0x0) at object.c:3420
+#12 0x001bd9bb in start_wrapper (data=0xeed3bc0) at threads.c:790
+#13 0x001efada in thread_start_routine (args=0x2968290) at wthreads.c:287
+#14 0x00217214 in GC_start_routine (arg=0x74c0d80) at pthread_support.c:1468
+#15 0x98156ed9 in _pthread_start ()
+#16 0x9815a6de in thread_start ()
+
+Thread 27 (process 34756):
+#0  0x96d4b83e in __psynch_cvwait ()
+#1  0x9815ae21 in _pthread_cond_wait ()
+#2  0x9810b42c in pthread_cond_wait$UNIX2003 ()
+#3  0x001da50f in _wapi_handle_timedwait_signal_handle (handle=0x876, timeout=0x0, alertable=1, poll=0) at handles.c:1655
+#4  0x001da568 in _wapi_handle_wait_signal_handle (handle=0x876, alertable=1) at handles.c:1598
+#5  0x001ecce3 in WaitForSingleObjectEx (handle=0x876, timeout=4294967295, alertable=1) at wait.c:203
+#6  0x001bbe4e in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=0x7d3c1c8, handle=0x876, ms=-1, exitContext=0) at threads.c:1665
+#7  0x03eedb88 in ?? ()
+#8  0x03eed390 in ?? ()
+#9  0x1025ab77 in ?? ()
+#10 0x067037f1 in ?? ()
+#11 0x0000ed54 in mono_jit_runtime_invoke (method=0xf32288c, obj=0x658ed70, params=0xb1450830, exc=0x0) at mini.c:5791
+#12 0x001843a4 in mono_runtime_invoke (method=0xf32288c, obj=0x658ed70, params=0xb1450830, exc=0x0) at object.c:2755
+#13 0x00187f49 in mono_runtime_invoke_array (method=0xf32288c, obj=0x658ed70, params=0x7a7e620, exc=0x0) at object.c:4142
+#14 0x0012e89f in ves_icall_InternalExecute (method=0x7206c78, this=0x658ed70, params=0x7a7e620, outArgs=0xb14509d4) at icall.c:2981
+#15 0x0b28b558 in ?? ()
+#16 0x0b28af20 in ?? ()
+#17 0x0e2a83e8 in ?? ()
+#18 0x0e2a81fc in ?? ()
+#19 0x0e2a7fc0 in ?? ()
+#20 0x0e2a73ce in ?? ()
+#21 0x0b289c51 in ?? ()
+#22 0x0e2a7111 in ?? ()
+#23 0x102565d8 in ?? ()
+#24 0x10256468 in ?? ()
+#25 0x10256434 in ?? ()
+#26 0x10253bd8 in ?? ()
+#27 0x10252fcd in ?? ()
+#28 0x1025238c in ?? ()
+#29 0x03eecd8a in ?? ()
+#30 0x039f2419 in ?? ()
+#31 0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x7a7d000, params=0xb1450ee8, exc=0x0) at mini.c:5791
+#32 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x7a7d000, params=0xb1450ee8, exc=0x0) at object.c:2755
+#33 0x0018467f in mono_runtime_delegate_invoke (delegate=0x7a7d000, params=0xb1450ee8, exc=0x0) at object.c:3420
+#34 0x001bd9bb in start_wrapper (data=0xf9a1ca0) at threads.c:790
+#35 0x001efada in thread_start_routine (args=0x2968198) at wthreads.c:287
+#36 0x00217214 in GC_start_routine (arg=0x75c83c0) at pthread_support.c:1468
+#37 0x98156ed9 in _pthread_start ()
+#38 0x9815a6de in thread_start ()
+
+Thread 26 (process 34756):
+#0  0x96d4c02e in __workq_kernreturn ()
+#1  0x98158ccf in _pthread_wqthread ()
+#2  0x9815a6fe in start_wqthread ()
+
+Thread 25 (process 34756):
+#0  0x96d4cd4e in read$UNIX2003 ()
+#1  0x001dcee6 in pipe_read (handle=0x6e, buffer=0x76f5010, numbytes=8192, bytesread=0xb124ab5c, overlapped=0x0) at io.c:1242
+#2  0x00127029 in ves_icall_System_IO_MonoIO_Read (handle=0x6e, dest=0x76f5000, dest_offset=0, count=8192, error=0xb124abf0) at file-io.c:839
+#3  0x04de1630 in ?? ()
+#4  0x04de1560 in ?? ()
+#5  0x04de1164 in ?? ()
+#6  0x04de0ed0 in ?? ()
+#7  0x04de0b1c in ?? ()
+#8  0x04dfc1d3 in ?? ()
+#9  0x04f9981c in ?? ()
+#10 0x0fe3d12c in ?? ()
+#11 0x03eecd8a in ?? ()
+#12 0x039f2419 in ?? ()
+#13 0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x6c6f968, params=0xb124aee8, exc=0x0) at mini.c:5791
+#14 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x6c6f968, params=0xb124aee8, exc=0x0) at object.c:2755
+#15 0x0018467f in mono_runtime_delegate_invoke (delegate=0x6c6f968, params=0xb124aee8, exc=0x0) at object.c:3420
+#16 0x001bd9bb in start_wrapper (data=0x1d83490) at threads.c:790
+#17 0x001efada in thread_start_routine (args=0x2967eb0) at wthreads.c:287
+#18 0x00217214 in GC_start_routine (arg=0x75c83c0) at pthread_support.c:1468
+#19 0x98156ed9 in _pthread_start ()
+#20 0x9815a6de in thread_start ()
+
+Thread 24 (process 34756):
+#0  0x96d4cd4e in read$UNIX2003 ()
+#1  0x001dcee6 in pipe_read (handle=0x6c, buffer=0x7795010, numbytes=8192, bytesread=0xb1148b4c, overlapped=0x0) at io.c:1242
+#2  0x00127029 in ves_icall_System_IO_MonoIO_Read (handle=0x6c, dest=0x7795000, dest_offset=0, count=8192, error=0xb1148be0) at file-io.c:839
+#3  0x04de1630 in ?? ()
+#4  0x04de1560 in ?? ()
+#5  0x04de1164 in ?? ()
+#6  0x04de0ed0 in ?? ()
+#7  0x04de0b1c in ?? ()
+#8  0x04dfc1d3 in ?? ()
+#9  0x04f9981c in ?? ()
+#10 0x0fe3d3e4 in ?? ()
+#11 0x03eecd8a in ?? ()
+#12 0x039f2419 in ?? ()
+#13 0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x6c6f9d8, params=0xb1148ee8, exc=0x0) at mini.c:5791
+#14 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x6c6f9d8, params=0xb1148ee8, exc=0x0) at object.c:2755
+#15 0x0018467f in mono_runtime_delegate_invoke (delegate=0x6c6f9d8, params=0xb1148ee8, exc=0x0) at object.c:3420
+#16 0x001bd9bb in start_wrapper (data=0xb406350) at threads.c:790
+#17 0x001efada in thread_start_routine (args=0x2967db8) at wthreads.c:287
+#18 0x00217214 in GC_start_routine (arg=0x75c83c0) at pthread_support.c:1468
+#19 0x98156ed9 in _pthread_start ()
+#20 0x9815a6de in thread_start ()
+
+Thread 23 (process 34756):
+#0  0x96d4b83e in __psynch_cvwait ()
+#1  0x9815ae21 in _pthread_cond_wait ()
+#2  0x9810b3e0 in pthread_cond_timedwait$UNIX2003 ()
+#3  0x001da421 in _wapi_handle_timedwait_signal_handle (handle=0x87d, timeout=0xb1046bd8, alertable=1, poll=0) at handles.c:1653
+#4  0x001ecbcf in WaitForSingleObjectEx (handle=0x87d, timeout=9995, alertable=1) at wait.c:205
+#5  0x001bbe4e in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=0x7063720, handle=0x87d, ms=9995, exitContext=0) at threads.c:1665
+#6  0x03eedb88 in ?? ()
+#7  0x0e3a3984 in ?? ()
+#8  0x0fe343f3 in ?? ()
+#9  0x0fe31c28 in ?? ()
+#10 0x03eecd8a in ?? ()
+#11 0x039f2419 in ?? ()
+#12 0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x798dd20, params=0xb1046ee8, exc=0x0) at mini.c:5791
+#13 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x798dd20, params=0xb1046ee8, exc=0x0) at object.c:2755
+#14 0x0018467f in mono_runtime_delegate_invoke (delegate=0x798dd20, params=0xb1046ee8, exc=0x0) at object.c:3420
+#15 0x001bd9bb in start_wrapper (data=0xeeb33f0) at threads.c:790
+#16 0x001efada in thread_start_routine (args=0x29679d8) at wthreads.c:287
+#17 0x00217214 in GC_start_routine (arg=0x6bba900) at pthread_support.c:1468
+#18 0x98156ed9 in _pthread_start ()
+#19 0x9815a6de in thread_start ()
+
+Thread 22 (process 34756):
+#0  0x96d4ae12 in accept$UNIX2003 ()
+#1  0x001e8fff in _wapi_accept (fd=107, addr=0x0, addrlen=0x0) at sockets.c:225
+#2  0x001b39eb in ves_icall_System_Net_Sockets_Socket_Accept_internal (sock=107, error=0xb0f44d2c, blocking=1) at socket-io.c:883
+#3  0x0fdfc4b4 in ?? ()
+#4  0x0fdfc1b4 in ?? ()
+#5  0x0fdff658 in ?? ()
+#6  0x0fdff308 in ?? ()
+#7  0x03eecd8a in ?? ()
+#8  0x039f2419 in ?? ()
+#9  0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x85c8498, params=0xb0f44ee8, exc=0x0) at mini.c:5791
+#10 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x85c8498, params=0xb0f44ee8, exc=0x0) at object.c:2755
+#11 0x0018467f in mono_runtime_delegate_invoke (delegate=0x85c8498, params=0xb0f44ee8, exc=0x0) at object.c:3420
+#12 0x001bd9bb in start_wrapper (data=0xeeb1ed0) at threads.c:790
+#13 0x001efada in thread_start_routine (args=0x2967864) at wthreads.c:287
+#14 0x00217214 in GC_start_routine (arg=0x6bba900) at pthread_support.c:1468
+#15 0x98156ed9 in _pthread_start ()
+#16 0x9815a6de in thread_start ()
+
+Thread 21 (process 34756):
+#0  0x96d4ae12 in accept$UNIX2003 ()
+#1  0x001e8fff in _wapi_accept (fd=106, addr=0x0, addrlen=0x0) at sockets.c:225
+#2  0x001b39eb in ves_icall_System_Net_Sockets_Socket_Accept_internal (sock=106, error=0xb0e42d3c, blocking=1) at socket-io.c:883
+#3  0x0fdfc4b4 in ?? ()
+#4  0x0fdfc1b4 in ?? ()
+#5  0x0fdfbe4c in ?? ()
+#6  0x0fdfbdd8 in ?? ()
+#7  0x0fdfbd08 in ?? ()
+#8  0x03eecd8a in ?? ()
+#9  0x039f2419 in ?? ()
+#10 0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x6ae77e0, params=0xb0e42ee8, exc=0x0) at mini.c:5791
+#11 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x6ae77e0, params=0xb0e42ee8, exc=0x0) at object.c:2755
+#12 0x0018467f in mono_runtime_delegate_invoke (delegate=0x6ae77e0, params=0xb0e42ee8, exc=0x0) at object.c:3420
+#13 0x001bd9bb in start_wrapper (data=0xf98fb90) at threads.c:790
+#14 0x001efada in thread_start_routine (args=0x29676f0) at wthreads.c:287
+#15 0x00217214 in GC_start_routine (arg=0x6bbaa80) at pthread_support.c:1468
+#16 0x98156ed9 in _pthread_start ()
+#17 0x9815a6de in thread_start ()
+
+Thread 20 (process 34756):
+#0  0x96d4b83e in __psynch_cvwait ()
+#1  0x9815ae21 in _pthread_cond_wait ()
+#2  0x9810b42c in pthread_cond_wait$UNIX2003 ()
+#3  0x001da50f in _wapi_handle_timedwait_signal_handle (handle=0x86c, timeout=0x0, alertable=1, poll=0) at handles.c:1655
+#4  0x001da568 in _wapi_handle_wait_signal_handle (handle=0x86c, alertable=1) at handles.c:1598
+#5  0x001ecce3 in WaitForSingleObjectEx (handle=0x86c, timeout=4294967295, alertable=1) at wait.c:203
+#6  0x001bbe4e in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=0x86ebe28, handle=0x86c, ms=-1, exitContext=0) at threads.c:1665
+#7  0x03eedb88 in ?? ()
+#8  0x03eed390 in ?? ()
+#9  0x0efac667 in ?? ()
+#10 0x03eecd8a in ?? ()
+#11 0x039f2419 in ?? ()
+#12 0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x7863af0, params=0xb0d40ee8, exc=0x0) at mini.c:5791
+#13 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x7863af0, params=0xb0d40ee8, exc=0x0) at object.c:2755
+#14 0x0018467f in mono_runtime_delegate_invoke (delegate=0x7863af0, params=0xb0d40ee8, exc=0x0) at object.c:3420
+#15 0x001bd9bb in start_wrapper (data=0xee55b20) at threads.c:790
+#16 0x001efada in thread_start_routine (args=0x296719c) at wthreads.c:287
+#17 0x00217214 in GC_start_routine (arg=0x3ecc300) at pthread_support.c:1468
+#18 0x98156ed9 in _pthread_start ()
+#19 0x9815a6de in thread_start ()
+
+Thread 19 (process 34756):
+#0  0x96d4b83e in __psynch_cvwait ()
+#1  0x9815ae21 in _pthread_cond_wait ()
+#2  0x9810b42c in pthread_cond_wait$UNIX2003 ()
+#3  0x001da50f in _wapi_handle_timedwait_signal_handle (handle=0x868, timeout=0x0, alertable=1, poll=0) at handles.c:1655
+#4  0x001da568 in _wapi_handle_wait_signal_handle (handle=0x868, alertable=1) at handles.c:1598
+#5  0x001ecce3 in WaitForSingleObjectEx (handle=0x868, timeout=4294967295, alertable=1) at wait.c:203
+#6  0x001bbe4e in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=0x88fddc8, handle=0x868, ms=-1, exitContext=0) at threads.c:1665
+#7  0x03eedb88 in ?? ()
+#8  0x03eed390 in ?? ()
+#9  0x0ef41543 in ?? ()
+#10 0x03eecd8a in ?? ()
+#11 0x039f2419 in ?? ()
+#12 0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x88f87a8, params=0xb0c3eee8, exc=0x0) at mini.c:5791
+#13 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x88f87a8, params=0xb0c3eee8, exc=0x0) at object.c:2755
+#14 0x0018467f in mono_runtime_delegate_invoke (delegate=0x88f87a8, params=0xb0c3eee8, exc=0x0) at object.c:3420
+#15 0x001bd9bb in start_wrapper (data=0xe4d42d0) at threads.c:790
+#16 0x001efada in thread_start_routine (args=0x2966fac) at wthreads.c:287
+#17 0x00217214 in GC_start_routine (arg=0x731e3c0) at pthread_support.c:1468
+#18 0x98156ed9 in _pthread_start ()
+#19 0x9815a6de in thread_start ()
+
+Thread 18 (process 34756):
+#0  0x96d4c02e in __workq_kernreturn ()
+#1  0x98158ccf in _pthread_wqthread ()
+#2  0x9815a6fe in start_wqthread ()
+
+Thread 17 (process 34756):
+#0  0x96d4c02e in __workq_kernreturn ()
+#1  0x98158ccf in _pthread_wqthread ()
+#2  0x9815a6fe in start_wqthread ()
+
+Thread 16 (process 34756):
+#0  0x96d4bb42 in select$DARWIN_EXTSN ()
+#1  0x0405d45d in g_poll ()
+#2  0x046f05c4 in select_thread_func ()
+#3  0x98156ed9 in _pthread_start ()
+#4  0x9815a6de in thread_start ()
+
+Thread 15 (process 34756):
+#0  0x96d49c76 in semaphore_timedwait_trap ()
+#1  0x001f7fc8 in mono_sem_timedwait (sem=0x2c8548, timeout_ms=&lt;value temporarily unavailable, due to optimizations&gt;, alertable=1) at mono-semaphore.c:76
+#2  0x001b7d6e in async_invoke_thread (data=0x0) at threadpool.c:1485
+#3  0x001bd93c in start_wrapper (data=0xad296c0) at threads.c:784
+#4  0x001efada in thread_start_routine (args=0x29689d4) at wthreads.c:287
+#5  0x00217214 in GC_start_routine (arg=0x64b8780) at pthread_support.c:1468
+#6  0x98156ed9 in _pthread_start ()
+#7  0x9815a6de in thread_start ()
+
+Thread 14 (process 34756):
+#0  0x96d49c76 in semaphore_timedwait_trap ()
+#1  0x001f7fc8 in mono_sem_timedwait (sem=0x2c85c8, timeout_ms=&lt;value temporarily unavailable, due to optimizations&gt;, alertable=1) at mono-semaphore.c:76
+#2  0x001b7d6e in async_invoke_thread (data=0x0) at threadpool.c:1485
+#3  0x001bd93c in start_wrapper (data=0xad2afa0) at threads.c:784
+#4  0x001efada in thread_start_routine (args=0x2968958) at wthreads.c:287
+#5  0x00217214 in GC_start_routine (arg=0x64b87e0) at pthread_support.c:1468
+#6  0x98156ed9 in _pthread_start ()
+#7  0x9815a6de in thread_start ()
+
+Thread 13 (process 34756):
+#0  0x96d4c90a in kevent ()
+#1  0x001b5de5 in tp_kqueue_wait (p=0x2c84e0) at tpool-kqueue.c:95
+#2  0x001bd93c in start_wrapper (data=0x1d7c720) at threads.c:784
+#3  0x001efada in thread_start_routine (args=0x29688dc) at wthreads.c:287
+#4  0x00217214 in GC_start_routine (arg=0x64b87e0) at pthread_support.c:1468
+#5  0x98156ed9 in _pthread_start ()
+#6  0x9815a6de in thread_start ()
+
+Thread 12 (process 34756):
+#0  0x96d4bbb2 in __semwait_signal ()
+#1  0x9810b7b9 in nanosleep$UNIX2003 ()
+#2  0x001ee43b in SleepEx (ms=&lt;value temporarily unavailable, due to optimizations&gt;, alertable=1) at wthreads.c:1027
+#3  0x001bfa60 in ves_icall_System_Threading_Thread_Sleep_internal (ms=100) at threads.c:1320
+#4  0x0e2b5b54 in ?? ()
+#5  0x0e2b5ad8 in ?? ()
+#6  0x0e3d2a14 in ?? ()
+#7  0x03eecd8a in ?? ()
+#8  0x039f2419 in ?? ()
+#9  0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x73b8380, params=0xb0936ee8, exc=0x0) at mini.c:5791
+#10 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x73b8380, params=0xb0936ee8, exc=0x0) at object.c:2755
+#11 0x0018467f in mono_runtime_delegate_invoke (delegate=0x73b8380, params=0xb0936ee8, exc=0x0) at object.c:3420
+#12 0x001bd9bb in start_wrapper (data=0xe440bf0) at threads.c:790
+#13 0x001efada in thread_start_routine (args=0x2968860) at wthreads.c:287
+#14 0x00217214 in GC_start_routine (arg=0x64b87e0) at pthread_support.c:1468
+#15 0x98156ed9 in _pthread_start ()
+#16 0x9815a6de in thread_start ()
+
+Thread 11 (process 34756):
+#0  0x96d4bbb2 in __semwait_signal ()
+#1  0x9810b7b9 in nanosleep$UNIX2003 ()
+#2  0x001ee43b in SleepEx (ms=&lt;value temporarily unavailable, due to optimizations&gt;, alertable=1) at wthreads.c:1027
+#3  0x001bfa60 in ves_icall_System_Threading_Thread_Sleep_internal (ms=500) at threads.c:1320
+#4  0x0e2b5b54 in ?? ()
+#5  0x0e2b5ad8 in ?? ()
+#6  0x0e3add04 in ?? ()
+#7  0x03eecd8a in ?? ()
+#8  0x039f2419 in ?? ()
+#9  0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x839c620, params=0xb0834ee8, exc=0x0) at mini.c:5791
+#10 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x839c620, params=0xb0834ee8, exc=0x0) at object.c:2755
+#11 0x0018467f in mono_runtime_delegate_invoke (delegate=0x839c620, params=0xb0834ee8, exc=0x0) at object.c:3420
+#12 0x001bd9bb in start_wrapper (data=0x6f1d0a0) at threads.c:790
+#13 0x001efada in thread_start_routine (args=0x2968670) at wthreads.c:287
+#14 0x00217214 in GC_start_routine (arg=0x64b8d20) at pthread_support.c:1468
+#15 0x98156ed9 in _pthread_start ()
+#16 0x9815a6de in thread_start ()
+
+Thread 10 (process 34756):
+#0  0x96d4ba9a in recvfrom$UNIX2003 ()
+#1  0x001e864b in _wapi_recvfrom (fd=111, buf=0x768a010, len=4096, recv_flags=0, from=0x0, fromlen=0x0) at sockets.c:607
+#2  0x001e8736 in _wapi_recv (fd=111, buf=0x768a010, len=4096, recv_flags=0) at sockets.c:585
+#3  0x001b372a in ves_icall_System_Net_Sockets_Socket_Receive_internal (sock=111, buffer=0x768a000, offset=0, count=4096, flags=0, error=0xb0732450) at socket-io.c:1470
+#4  0x10252ec4 in ?? ()
+#5  0x10252e08 in ?? ()
+#6  0x10252bd0 in ?? ()
+#7  0x102529cc in ?? ()
+#8  0x0fde11c8 in ?? ()
+#9  0x102528d0 in ?? ()
+#10 0x10252578 in ?? ()
+#11 0x1025d8c0 in ?? ()
+#12 0x1025c15f in ?? ()
+#13 0x1025bb36 in ?? ()
+#14 0x1025ab28 in ?? ()
+#15 0x064e21e9 in ?? ()
+#16 0x064e0bfc in ?? ()
+#17 0x064e1838 in ?? ()
+#18 0x0000ed54 in mono_jit_runtime_invoke (method=0x2af4e54, obj=0x0, params=0xb0732a60, exc=0xb0732ad8) at mini.c:5791
+#19 0x001843a4 in mono_runtime_invoke (method=0x2af4e54, obj=0x0, params=0xb0732a60, exc=0xb0732ad8) at object.c:2755
+#20 0x00184477 in mono_remoting_invoke (real_proxy=0x74bd268, msg=0x74baa40, exc=0xb0732ad8, out_args=0xb0732ad4) at object.c:5800
+#21 0x00150cea in mono_remoting_wrapper (method=0x12ca244, params=0xb0732b54) at marshal.c:2830
+#22 0x0b287bc0 in ?? ()
+#23 0x1025ff80 in ?? ()
+#24 0x1025fec8 in ?? ()
+#25 0x0fdf4acc in ?? ()
+#26 0x0fdf472b in ?? ()
+#27 0x0fdf427a in ?? ()
+#28 0x0e3a37dc in ?? ()
+#29 0x03eecd8a in ?? ()
+#30 0x039f2419 in ?? ()
+#31 0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x8613150, params=0xb0732ee8, exc=0x0) at mini.c:5791
+#32 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x8613150, params=0xb0732ee8, exc=0x0) at object.c:2755
+#33 0x0018467f in mono_runtime_delegate_invoke (delegate=0x8613150, params=0xb0732ee8, exc=0x0) at object.c:3420
+#34 0x001bd9bb in start_wrapper (data=0xadeb7f0) at threads.c:790
+#35 0x001efada in thread_start_routine (args=0x2968578) at wthreads.c:287
+#36 0x00217214 in GC_start_routine (arg=0x64b8de0) at pthread_support.c:1468
+#37 0x98156ed9 in _pthread_start ()
+#38 0x9815a6de in thread_start ()
+
+Thread 9 (process 34756):
+#0  0x96d49c76 in semaphore_timedwait_trap ()
+#1  0x001f7fc8 in mono_sem_timedwait (sem=0x2c8548, timeout_ms=&lt;value temporarily unavailable, due to optimizations&gt;, alertable=1) at mono-semaphore.c:76
+#2  0x001b7d6e in async_invoke_thread (data=0x0) at threadpool.c:1485
+#3  0x001bd93c in start_wrapper (data=0x1e14090) at threads.c:784
+#4  0x001efada in thread_start_routine (args=0x2967d3c) at wthreads.c:287
+#5  0x00217214 in GC_start_routine (arg=0x3eccf00) at pthread_support.c:1468
+#6  0x98156ed9 in _pthread_start ()
+#7  0x9815a6de in thread_start ()
+
+Thread 8 (process 34756):
+#0  0x96d4bbb2 in __semwait_signal ()
+#1  0x9810b7b9 in nanosleep$UNIX2003 ()
+#2  0x001ee43b in SleepEx (ms=&lt;value temporarily unavailable, due to optimizations&gt;, alertable=1) at wthreads.c:1027
+#3  0x001b523a in monitor_thread (unused=0x0) at threadpool.c:777
+#4  0x001bd93c in start_wrapper (data=0x47e010) at threads.c:784
+#5  0x001efada in thread_start_routine (args=0x2967cc0) at wthreads.c:287
+#6  0x00217214 in GC_start_routine (arg=0x3eccf00) at pthread_support.c:1468
+#7  0x98156ed9 in _pthread_start ()
+#8  0x9815a6de in thread_start ()
+
+Thread 7 (process 34756):
+#0  0x96d4b83e in __psynch_cvwait ()
+#1  0x9815ae21 in _pthread_cond_wait ()
+#2  0x9810b42c in pthread_cond_wait$UNIX2003 ()
+#3  0x001da50f in _wapi_handle_timedwait_signal_handle (handle=0x809, timeout=0x0, alertable=1, poll=0) at handles.c:1655
+#4  0x001da568 in _wapi_handle_wait_signal_handle (handle=0x809, alertable=1) at handles.c:1598
+#5  0x001ecce3 in WaitForSingleObjectEx (handle=0x809, timeout=4294967295, alertable=1) at wait.c:203
+#6  0x001bbe4e in ves_icall_System_Threading_WaitHandle_WaitOne_internal (this=0x1ffc9f0, handle=0x809, ms=-1, exitContext=0) at threads.c:1665
+#7  0x03eedb88 in ?? ()
+#8  0x03eed390 in ?? ()
+#9  0x03eecfa6 in ?? ()
+#10 0x03eecd8a in ?? ()
+#11 0x039f2419 in ?? ()
+#12 0x0000ed54 in mono_jit_runtime_invoke (method=0x99d334, obj=0x573770, params=0xb040aee8, exc=0x0) at mini.c:5791
+#13 0x001843a4 in mono_runtime_invoke (method=0x99d334, obj=0x573770, params=0xb040aee8, exc=0x0) at object.c:2755
+#14 0x0018467f in mono_runtime_delegate_invoke (delegate=0x573770, params=0xb040aee8, exc=0x0) at object.c:3420
+#15 0x001bd9bb in start_wrapper (data=0x450540) at threads.c:790
+#16 0x001efada in thread_start_routine (args=0x29641a8) at wthreads.c:287
+#17 0x00217214 in GC_start_routine (arg=0x3eccf60) at pthread_support.c:1468
+#18 0x98156ed9 in _pthread_start ()
+#19 0x9815a6de in thread_start ()
+
+Thread 6 (process 34756):
+#0  0x96d4c02e in __workq_kernreturn ()
+#1  0x98158ccf in _pthread_wqthread ()
+#2  0x9815a6fe in start_wqthread ()
+
+Thread 5 (process 34756):
+#0  0x96d4c02e in __workq_kernreturn ()
+#1  0x98158ccf in _pthread_wqthread ()
+#2  0x9815a6fe in start_wqthread ()
+
+Thread 4 (process 34756):
+#0  0x96d4c90a in kevent ()
+#1  0x95ce6c58 in _dispatch_mgr_invoke ()
+#2  0x95ce56a7 in _dispatch_mgr_thread ()
+
+Thread 3 (process 34756):
+#0  0x96d49c5e in semaphore_wait_trap ()
+#1  0x001f7f0a in mono_sem_wait (sem=0x2c7df0, alertable=1) at mono-semaphore.c:115
+#2  0x0012a192 in finalizer_thread (unused=0x0) at gc.c:1066
+#3  0x001bd93c in start_wrapper (data=0x634420) at threads.c:784
+#4  0x001efada in thread_start_routine (args=0x2963fb8) at wthreads.c:287
+#5  0x00217214 in GC_start_routine (arg=0x502f60) at pthread_support.c:1468
+#6  0x98156ed9 in _pthread_start ()
+#7  0x9815a6de in thread_start ()
+
+Thread 2 (process 34756):
+#0  0x96d49c22 in mach_msg_trap ()
+#1  0x96d491f6 in mach_msg ()
+#2  0x000ee184 in mach_exception_thread (arg=0x0) at mini-darwin.c:129
+#3  0x00217214 in GC_start_routine (arg=0x502f60) at pthread_support.c:1468
+#4  0x98156ed9 in _pthread_start ()
+#5  0x9815a6de in thread_start ()
+
+Thread 1 (process 34756):
+#0  0x96d4bfda in __wait4 ()
+#1  0x9810b4ec in waitpid$UNIX2003 ()
+#2  0x0009fefb in mono_handle_native_sigsegv (signal=11, ctx=0xbfffcf00) at mini-exceptions.c:2192
+#3  0x00004fce in mono_sigsegv_signal_handler (_dummy=10, info=0xbfffcec0, context=0xbfffcf00) at mini.c:5917
+#4  &lt;signal handler called&gt;
+#5  0x06e262d5 in run_iterator_get_cgglyph ()
+#6  0x06e26638 in create_core_text_glyph_list ()
+#7  0x06e266f9 in basic_engine_shape ()
+#8  0x047d32f1 in _pango_engine_shape_shape ()
+#9  0x047eba4b in pango_shape ()
+#10 0x047dc64e in shape_run ()
+#11 0x047dc8b6 in process_item ()
+#12 0x047dd1c3 in process_line ()
+#13 0x047ddbeb in pango_layout_check_lines ()
+#14 0x047db9a1 in pango_layout_get_extents_internal ()
+#15 0x047dbdb4 in pango_layout_get_extents ()
+#16 0x1034bd88 in ?? ()
+#17 0x1034bca4 in ?? ()
+#18 0x1034a948 in ?? ()
+#19 0x103492d0 in ?? ()
+#20 0x103491c0 in ?? ()
+#21 0x10348ec4 in ?? ()
+#22 0x10348ba4 in ?? ()
+#23 0x10346824 in ?? ()
+#24 0x10345d48 in ?? ()
+#25 0x10345808 in ?? ()
+#26 0x0febebbd in ?? ()
+#27 0x0feaae8a in ?? ()
+#28 0x0e2a8d12 in ?? ()
+#29 0x0b3cf8bc in ?? ()
+#30 0x042d45b6 in _gtk_marshal_BOOLEAN__BOXED ()
+#31 0x04169c40 in g_type_class_meta_marshal ()
+#32 0x04169937 in g_closure_invoke ()
+#33 0x04182c82 in signal_emit_unlocked_R ()
+#34 0x04181be2 in g_signal_emit_valist ()
+#35 0x04181e8e in g_signal_emit ()
+#36 0x04449191 in gtk_widget_event_internal ()
+#37 0x04448d60 in gtk_widget_send_expose ()
+#38 0x042d13c3 in gtk_main_do_event ()
+#39 0x046dc602 in _gdk_window_process_updates_recurse ()
+#40 0x046dc50b in _gdk_window_process_updates_recurse ()
+#41 0x046dc50b in _gdk_window_process_updates_recurse ()
+#42 0x046dc50b in _gdk_window_process_updates_recurse ()
+#43 0x046e71da in -[GdkQuartzView drawRect:] ()
+#44 0x92718369 in -[NSView _drawRect:clip:] ()
+#45 0x92716388 in -[NSView _recursiveDisplayRectIfNeededIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:topView:] ()
+#46 0x9271087c in -[NSView _displayRectIgnoringOpacity:isVisibleRect:rectIsVisibleRectForView:] ()
+#47 0x92709732 in -[NSView displayIfNeeded] ()
+#48 0x046fa2fb in _gdk_windowing_after_process_all_updates ()
+#49 0x046dcb14 in gdk_window_process_all_updates ()
+#50 0x0422d092 in gtk_container_idle_sizer ()
+#51 0x046afd74 in gdk_threads_dispatch ()
+#52 0x0404e8d6 in g_idle_dispatch ()
+#53 0x0404a595 in g_main_dispatch ()
+#54 0x0404bbff in g_main_context_dispatch ()
+#55 0x0404c143 in g_main_context_iterate ()
+#56 0x0404c98f in g_main_loop_run ()
+#57 0x042d0a53 in gtk_main ()
+#58 0x0e3d79c4 in ?? ()
+#59 0x0e3d798c in ?? ()
+#60 0x0e3d796c in ?? ()
+#61 0x03ee6b04 in ?? ()
+#62 0x00555040 in ?? ()
+#63 0x00554e0c in ?? ()
+#64 0x00554ec6 in ?? ()
+#65 0x0000ed54 in mono_jit_runtime_invoke (method=0x294321c, obj=0x0, params=0xbffff47c, exc=0x0) at mini.c:5791
+#66 0x001843a4 in mono_runtime_invoke (method=0x294321c, obj=0x0, params=0xbffff47c, exc=0x0) at object.c:2755
+#67 0x0018a4f1 in mono_runtime_exec_main (method=0x294321c, args=0x50de00, exc=0x0) at object.c:3930
+#68 0x000746ad in mono_main (argc=3, argv=0xbffff7d4) at driver.c:1003
+#69 0x00002036 in start ()
+
+=================================================================
+Got a SIGSEGV while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+=================================================================
+
+make[1]: *** [runmd] Abort trap: 6
+make: *** [run] Error 2</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-03-12 08:41:24 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This is a shaping engine bug.  Could you find out which of the files is causing this crash?  It is very likely there is a specific string in a specific file which is triggering this.</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan McGovern</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-03-12 16:21:44 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Kristian, i actually supplied that information in the form of a private comment as I was talking about some private data. Luckily Duncan spent a little bit of time and narrowed it down. We suspect that it's the BOM causing the crash. His last private comment says:
+
+I think I found the cause of the problem: Files that show up as UTF-8 Unicode
+in file (1) cause this crash:
+
+AndroidDeviceTracker.cs:        UTF-8 Unicode (with BOM) C++ program text
+AndroidExceptions.cs:           UTF-8 Unicode (with BOM) C++ program text
+AndroidLogCatEntry.cs:          UTF-8 Unicode (with BOM) C++ program text
+
+The other files, ones that show up as 'ASCII C++ program text', do not have
+this problem.
+
+duncan@Duncans-iMac:Mono.AndroidTools ((55de636...))$ more
+AndroidLogCatEntry.cs 
+==&gt; append : to filename to view the UTF-8 encoded data
+&lt;U+FEFF&gt;using System;
+
+I'd guess that &lt;U+FEFF&gt; is the thing that's causing the crash.
+
+I have also checked with files in the MonoDevelop main repository - the unicode
+files with BOM are the one that will trigger this crash.</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mike Krüger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-03-14 09:03:08 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Fixed that with a better encoding detection. (no BOMs anymore)
+
+But the gtk crash shouldn't happen and is unrelated to that, if something is going wrong there length 0 is ok.
+
+Linux does the same btw.
+(On windows pango gives a whitespace for the BOM).</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kristian Rietveld (inactive)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-03-18 05:45:58 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">The only way I could reproduce this was to create a run solely consisting of the BOM character. (e.g. a string like "&lt;BOM&gt;hello world" was processed without problems).  In such a case, the shaping engine would indeed trigger a crash. I can imagine this is what is happening in MonoDevelop, e.g. "&lt;BOM&gt;&lt;set syntax highlight attributes&gt;using System;" would IIRC cause the &lt;BOM&gt; to go in a separate run.
+
+When a run contains just a BOM, CoreText will return a zero-length glyph string. This lead to a crash, which I just fixed in Pango master:
+
+  <a href="http://git.gnome.org/browse/pango/commit/?id=4ed7cd1a9e61f969bcdb616a5ba9a1290b7e43b4">http://git.gnome.org/browse/pango/commit/?id=4ed7cd1a9e61f969bcdb616a5ba9a1290b7e43b4</a></pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-04-04 22:07:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=4080">Bug 4080</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-04-04 22:09:07 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - update alpha crash" href="show_bug.cgi?id=3928">Bug 3928</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mikayla Hutchinson [MSFT]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-04-10 14:14:30 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Crash in gtk rendering some fonts" href="show_bug.cgi?id=4366">Bug 4366</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>

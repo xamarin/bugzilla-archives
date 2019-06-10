@@ -1,0 +1,2343 @@
+<html lang="en"><head>
+    <title>39832 – SIGSEGV when running roslyn</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style>/* js/yui/assets/skins/sam/autocomplete.css */
+.yui-skin-sam .yui-ac{position:relative;font-family:arial;font-size:100%}.yui-skin-sam .yui-ac-input{position:absolute;width:100%}.yui-skin-sam .yui-ac-container{position:absolute;top:1.6em;width:100%}.yui-skin-sam .yui-ac-content{position:absolute;width:100%;border:1px solid #808080;background:#fff;overflow:hidden;z-index:9050}.yui-skin-sam .yui-ac-shadow{position:absolute;margin:.3em;width:100%;background:#000;-moz-opacity:.10;opacity:.10;filter:alpha(opacity=10);z-index:9049}.yui-skin-sam .yui-ac iframe{opacity:0;filter:alpha(opacity=0);padding-right:.3em;padding-bottom:.3em}.yui-skin-sam .yui-ac-content ul{margin:0;padding:0;width:100%}.yui-skin-sam .yui-ac-content li{margin:0;padding:2px 5px;cursor:default;white-space:nowrap;list-style:none;zoom:1}.yui-skin-sam .yui-ac-content li.yui-ac-prehighlight{background:#b3d4ff}.yui-skin-sam .yui-ac-content li.yui-ac-highlight{background:#426fd9;color:#FFF}
+/* js/yui/assets/skins/sam/calendar.css */
+.yui-calcontainer{position:relative;float:left;_overflow:hidden}.yui-calcontainer iframe{position:absolute;border:0;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative}.yui-calcontainer .title{position:relative;z-index:1}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar{position:relative}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden}.yui-calendar .calheader{position:relative;width:100%;text-align:center}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:0;background-color:transparent;cursor:pointer}.yui-calendar .calbody a:hover{background:inherit}p#clear{clear:left;padding-top:10px}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:0;padding:10px 5px 10px 5px;margin:0}.yui-skin-sam .yui-calcontainer .title{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0}.yui-skin-sam .yui-calcontainer .calclose{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:0;vertical-align:middle;padding:0}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center}.yui-skin-sam .yui-calendar .calheader img{border:0}.yui-skin-sam .yui-calendar .calnavleft{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calnavright{background:url(../../js/yui/assets/skins/sam/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:0}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:0}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default}.yui-skin-sam .yui-calendar td.calcell.oom a{color:#a6a6a6}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;border-color:#a0a0a0;cursor:pointer}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25)}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#edf5ff;border-top:1px solid black;display:none}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#ffee69;border:1px solid #000}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../../js/yui/assets/skins/sam/sprite.png) repeat-x 0 -1400px}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff}
+/* skins/standard/global.css */
+body {font-family: sans-serif;color: #000;background: #fff url(../../skins/standard/global/body-back.gif) repeat-x;}body, td, th, input, dt, #titles {font-family: Verdana, sans-serif;font-size: small;}pre, code, kbd {font-size: medium;}#bugzilla-body {clear: both;}#bugzilla-body th {font-weight: bold;vertical-align: top;}#header {margin-bottom: 1em;}#header form, #header form input,#footer form, #footer form input{font-size: 95%;display: inline;}#header .links {border-left: 1px solid #747E93;border-right: 1px solid #747E93;border-bottom: 1px solid #747E93;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;padding: 0.5em;}#lang_links_container {float: right;white-space: nowrap;}#lang_links_container .links {border: none;padding: .5em;}.lang_current {font-weight: bold;}#message {border: 1px solid red;margin: 0.3em 0em;padding: 0.3em;color: green;}form.mini_login input.bz_login  {width: 10em;}form.mini_login input.bz_password {width: 6em;}form.mini_login input.bz_remember {margin: 0;}#banner {}#titles {width: 100%;background-color: #404D6C;color: #fff;border-top-left-radius: 5px;border-top-right-radius: 5px;margin: 0;vertical-align: bottom;display: table;}#titles a {color: #fff;}#titles p {margin: 0;padding: 0;}#titles #title {font-weight: bold;padding: 0.5em;white-space: nowrap;display: table-cell;}#titles #subtitle {font-weight: normal;text-align: center;padding: 0.5em;display: table-cell;}#titles #information {font-weight: normal;text-align: right;font-size: 90%;padding: 0.5em;white-space: nowrap;display: table-cell;}#footer {clear: both;margin-top: 1em;width: 100%;background: #edf2f2;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}#footer #useful-links {padding-left: 1ex;padding-right: 1ex;}#footer ul {list-style-type: none;}#links-saved ul {display: inline;}#links-saved th {vertical-align: top;}#footer .label {white-space: nowrap;vertical-align: top;}#footer .links {vertical-align: top;}ul.links {margin: 0;padding: 0;list-style-type: none;}ul.links li {display: inline;white-space: nowrap;}table.tabs {width: 100%;}.tabs th, .tabs td {padding: 1em;}.tabs td {background: #eee;text-align: center;border-style: solid;border-color: black;border-width: 0px 0px 2px 0px;}.tabs td.selected {background: white;border-width: 2px 2px 0px 2px;}.tabs td.spacer {background: white;}a {color: #039;}a:visited {color: #636;}a:hover {color: #333;}a:active {color: #000;}.clickable_area {cursor: pointer;}textarea {font-family: monospace;}a.controller {font-size: 115%;}div#docslinks {float: right;border: 1px solid black;padding: 1ex;font-size: 80%;}#docslinks h2 {margin: 0;}.rss {background: transparent url(../../skins/standard/../../images/rss_small.png) no-repeat;padding-left: 16px;line-height: 1.5em;}.bz_bug_link {}.bz_bug_link.bz_status_UNCONFIRMED {font-style: italic;}.bz_obsolete {text-decoration: line-through;}.bz_inactive {text-decoration: line-through;}.bz_closed,.bz_CLOSED td {text-decoration: line-through;}.bz_private {color: darkred;background: #f3eeee;}.bz_disabled {color: #a0a0a0;}.bz_comment_table td {vertical-align: top;}.bz_comment {margin-bottom: 2em;}.bz_comment_text, .uneditable_textarea, tbody.file pre {font-family: monospace;white-space: pre-wrap;}.bz_comment_text {width: 50em;}.bz_comment_text span.quote {color: #65379c;white-space: pre;overflow: auto;display: block;}.bz_comment_user, .bz_comment_time, .bz_comment_number,.bz_private_checkbox, .bz_comment_actions{margin: 0 .5em;}.bz_comment_actions, .bz_comment_number, .bz_private_checkbox {float: right;}.bz_collapse_expand_comments {padding: 0;margin: 0 0 0 1em;list-style-type: none;}.bz_collapse_expand_comments li {margin-bottom: .5em;}.bz_collapse_comment {text-decoration: none;}.bz_private_checkbox input {margin: 0;vertical-align: middle;}.bz_comment_head, .bz_first_comment_head {padding-top: .1em;padding-bottom: .1em;padding-left: .5em;background-color: #e0e0e0;}.bz_comment_user_images img {vertical-align: bottom;}.bz_comment_hilite pre {background-color: lightgreen;margin: 0;padding: 1em 0;}.bz_comment_collapse_reason,.bz_default_collapsed .bz_comment_number {font-weight: normal;}.bz_default_hidden, .bz_tui_hidden, .bz_hidden_field, .bz_hidden_option {display: none !important;}table#flags th,table#flags td {vertical-align: middle;text-align: left;}#email_prefs, #saved_search_prefs, #shared_search_prefs,#bug_activity {border: 1px solid black;border-collapse: collapse;}#email_prefs th,#shared_search_prefs th,#saved_search_prefs th {text-align: center;}#email_prefs th, #email_prefs td,#shared_search_prefs th, #shared_search_prefs td,#saved_search_prefs th, #saved_search_prefs td,#bug_activity td {border: 1px solid;padding: 0.3em;}#email_prefs th.role_header {width: 10%;}#bug_activity td {vertical-align: top;}#user_prefs th, #user_prefs td {padding: 0.5em;}#permissions {margin-left: auto;margin-right: auto;width: 40em;}#permissions p {margin-top: 2em;margin-bottom: 0.5em;}#permissions li {list-style-type: none;}#permissions table td {vertical-align: top;}.column_header {background-color: #66f;}.column_header th {text-align: center;}.flag_select {min-width: 3em;}input.requestee {width: 15em;}#error_msg {font-size: x-large;}#post_err_msg, form#check {clear: both;}.warning {color: red;}.throw_error {background-color: red;color: black;font-size: 120%;margin-bottom: 2em;padding: 0.5em 1em;float: left;}.label {font-weight: bold;}.throw_error a:visited {color: darkblue ;}dt {font-weight: bold;}body > dl > dt {border-top: dotted gray thin;}dl dl > dt {border-top: none;}.arrow_button {font-size: 150%;}#attachment_table {border-collapse: collapse;border: 1px solid #333333;}#attachment_table th, .bz_attach_footer, .bz_time_tracking_table th,.dependency_tree_controls {background-color: #E0E0E0;color: black;}#attachment_table td, .bz_time_tracking_table th, .bz_time_tracking_table td {border: 1px solid #333333;}#attachment_table th, #attachment_table td {padding: 0.3em;}.bz_attach_extra_info, .bz_info {font-size: smaller;}.bz_attach_flags, .bz_attach_footer, .bz_flags, .nowrap {white-space: nowrap;}.bz_attach_view_hide {float: right;padding-left: 1em;}#user_match_table {border-collapse: collapse;}#user_match_table td {vertical-align: top;border-bottom: 1px solid black;padding: 1em 0.5em;}div.user_match {margin-bottom: 1em;}.indented {margin-left: 3em;}.box {border: 1px solid black;color: black;background-color: #ffc;margin: 1em;padding: 0.5em 1em;}.collapsed,.bz_default_collapsed .bz_private_checkbox,.bz_default_collapsed .bz_comment_user,.bz_default_collapsed .bz_comment_user_images,.bz_default_collapsed .bz_comment_time,.bz_default_collapsed .bz_comment_tags,.bz_default_collapsed .bz_comment_text,.bz_default_collapsed .bz_collapsed_actions{display: none;}#serverpush_msg {margin-top: 20%;text-align: center;font-size: xx-large;}@media print {#header, #footer {display: none;}div.bz_query_buttons {display: none;}body {background-image: none;background-color: #fff;}}.field_label {text-align: right;vertical-align: top;font-weight: bold;}.field_help_link {cursor: help;}.field_value, form#Create th, form#Create td, .top {vertical-align: top;}.bottom {vertical-align: bottom;}.field_value .text_input {width: 100%;min-width: 25em;}.uneditable_textarea {max-width: 30em;font-size: medium;}th.required:before {content: "* ";}th.required:before, span.required_star {color: red;}input.required, select.required, span.required_explanation {background-color: #fff7cd;color: #000;}.calendar_button {background: transparent url(../../skins/standard/global/calendar.png) no-repeat;width: 20px;height: 20px;vertical-align: middle;}.calendar_button span { display: none }.yui-calcontainer {display: none;background-color: white;padding: 10px;border: 1px solid #404D6C;}.bug_urls {margin: 0;padding: 0;list-style-type: none;}pre.field_textarea_readonly {margin: 2px;padding: 4px;overflow: auto;float: left;max-width: 30em;max-height: 7em;border: 1px solid #CCC;font-family: monospace;white-space: pre-wrap;}.yui-skin-sam .yui-ac-input { position:static !important;vertical-align:middle !important; }.yui-skin-sam .yui-ac-container { left:0px !important; }.yui-skin-sam .yui-ac { display: inline-block; }#bugzilla-body .yui-ac-content {max-height: 19em;overflow: auto;overflow-x: hidden;}#keywords_container {padding-top: .2em;}#keywords_container .yui-ac-content {margin-left: -1px;}#comment_tabs {border-spacing: 0;}.comment_tab {display: table-cell;border: 1px solid silver;padding: 2px 1em;cursor: pointer;background: transparent;}.active_comment_tab {background: #fff;font-weight: bold;}#comment_preview {border: 1px solid silver;padding: 1px;overflow: auto;margin: 0px;}#comment_preview_text {margin: 0px;width: auto;}#comment_preview_loading {font-style: italic;}#comment {margin: 0px 0px 1em 0px;}.validation_error_text {font-size: 120%;color: #B70000;font-weight: bold;}.validation_error_field, input.validation_error_field {border: 2px solid #B70000;background-color: #FFEBEB;}form th {text-align: right;}.left {text-align: left;}.center {text-align: center;}.right {text-align: right;}.middle {vertical-align: middle;}.inline {display: inline;}tr.shared_search {background-color: #fff7cd;color: #000;}.multi-columns {columns: 3;-moz-columns: 3;-webkit-columns: 3;}#page-index {padding: 0.2em 0.2em 0.15em 0.2em;max-width: 1000px;}.intro, .outro {text-align: center;}#new_release {border: 2px solid red;padding: 0.5em 1em;margin: 1em;font-weight: bold;}#new_release .notice {font-size: 80%;font-weight: normal;}#welcome-admin a {font-weight: bold;}.bz_common_actions {text-align: center;}.bz_common_actions ul {list-style-type: none;padding: 0;}.bz_common_actions ul li {display: inline;vertical-align: top;}.bz_common_actions ul li a {display: inline-block;height: 170px;width: 145px;margin: 0 2ex 2em 0;}.bz_common_actions ul li a span {position: relative;top: 90%;font-weight: bold;}.bz_common_actions a,.bz_common_actions a:visited,.bz_common_actions a:hover {text-decoration: none;}#enter_bug { background: url(../../skins/standard/index/file-a-bug.png)  no-repeat; }#query     { background: url(../../skins/standard/index/search.png)      no-repeat; }#account   { background: url(../../skins/standard/index/new-account.png) no-repeat; }#help      { background: url(../../skins/standard/index/help.png)        no-repeat; }#quicksearchForm {clear: both;text-align: center;margin-bottom: 2em;}#quicksearchForm #quicksearch_main {width: 27em;}#quicksearchForm {margin: 0;padding: 0;}#page-index table {border-collapse: collapse;margin: auto;}#welcome {font-size: x-large;font-weight: bold;text-align: center;margin: 0 0 0.8em 0;padding: 0;}#common_queries ul {list-style: none;padding-left: 1.5em;}#common_queries li a {text-decoration: none;}ul#quicksearch_links {margin-bottom: 1em;}ul.additional_links {list-style: none;margin: 0;padding: 0;}ul.additional_links li {display: inline;}ul.additional_links li.bz_default_hidden {display: none;}body.narrow_page #bugzilla-body > * {max-width: 45em;}.req_new {color: red;}.req_table {border-collapse: collapse;}.req_table td, .req_table th {border: 1px solid black;padding: .25em;}.qs_help li {margin-top: 1ex;}.qs_fields th {padding: 0 .25em;}.qs_fields th.field_nickname {text-align: left;}.qs_fields td {padding: .25em;border-top: 1px solid gray;}.qs_fields .field_name {width: 10em;}table.field_value_explanation {table-layout: fixed;border-collapse: collapse;}.field_value_explanation thead h2 {margin: 0;}.field_value_explanation .header_row td {text-align: center;font-size: 120%;font-weight: bold;}.field_value_explanation tbody td {border: 1px solid black;padding: 1em;}.field_value_explanation dt, .field_descriptions dt {margin-top: 1em;}.field_descriptions dt {font-size: 120%;}#duplicates_table {border-collapse: collapse;}#duplicates_table .resolved {background-color: #d9d9d9;color: black;}#duplicates_table thead tr {background-color: #ccc;color: black;}#duplicates_table thead tr th {vertical-align: middle;}#duplicates_table td, #duplicates_table th {border: 1px solid black;padding: .1em .25em;}#duplicates_table tbody td {text-align: center;}#duplicates_table tbody td.short_desc {text-align: left;}
+/* skins/standard/bug.css */
+.enter_bug_form table {border-spacing: 0;border-width: 0;}.enter_bug_form td, .enter_bug_form th {padding: .25em;}.enter_bug_form th {text-align: right;}#Create #field_container_component {width: 1px;}#Create #field_container_reporter {width: 100%;}#Create .comment, #guided_form #description {vertical-align: top;overflow: auto;color: green;}#guided_form #description {display: inline;margin-left: 10px;}#Create #comp_desc_container td {padding: 0;}#Create #comp_desc {height: 11ex;}#Create #os_guess_note {padding-top: 0;}#Create #os_guess_note div {max-width: 35em;}#Create .field_value .text_input {max-width: 50em;}#possible_duplicates th {text-align: center;background: none;border-collapse: collapse;}#possible_duplicates td {vertical-align: middle;}#possible_duplicates .yui-dt-col-update_token {white-space: nowrap;}table#flags th, table#flags td,table#bug_flags th, table#bug_flags td,table#attachment_flags th, table#attachment_flags td {text-align: left;vertical-align: baseline;font-size: small;}.guided_form_field {background-color: #ffc;}#somebugs {width: 100%;height: 500px;}.good {color: #090;}.bad {color: #900;}.bz_short_desc_container {margin: 8px 0;padding: 0.3em;background-color: rgb(208, 208, 208);border-radius: 0.5em;font-size: 125%;font-weight: bold;}.bz_bug .edit_form {width: 100%;}.bz_bug .edit_form table {width: 100%;}.bz_bug #alias {min-width: 0;width: 10em;}table#flags {width: auto;}.bz_column_spacer {width: 0.5em;}.related_actions {font-size: 0.85em;float: right;list-style-type: none;white-space: nowrap;margin: 0;padding: 0;}.related_actions li {display: inline;}.navigation_link {color: #777;font-style: italic;}.bz_show_bug_column {vertical-align: top;}.bz_section_spacer {height: 1em;}#duplicate_settings {white-space: nowrap;}#bz_big_form_parts td {vertical-align: top;}.bz_group_visibility_section {margin-left: 1em;}.bz_group_visibility_section .instructions {font-style: italic;}#bz_restrict_group_visibility_help .instructions {margin-top: 0;}#bz_enable_role_visibility_help {margin-top: 1em;}.bz_time_tracking_table {border-collapse: collapse;}.bz_time_tracking_table th {text-align: center;}.bz_time_tracking_table td {text-align: center;}.bz_time_tracking_table th,.bz_time_tracking_table td {padding: 4px;}.bz_time_tracking_table .bz_summarize_time {text-align: right;}.bz_time_tracking_table #deadline {width: 7em;}#summary tr td {vertical-align:top;}#status {margin-bottom: 3ex;}.knob-buttons {float: right;}.text_input, .bz_userfield, #keywords_container, #tag_container {width: 100%;}.bz_bug .bz_short_desc_container {width: inherit;}.bz_comment_tags {margin-top: 3px;}.bz_comment_tag {border: 1px solid #c8c8ba;padding: 1px 3px;margin-right: 2px;border-radius: 0.5em;background-color: #eee;color: #000;}#bz_ctag_div {display: inline-block;}#bz_ctag_error {border: 1px solid #ff6666;padding: 0px 2px;border-radius: 0.5em;margin: 2px;display: inline-block;}#comment_tags_collapse_expand_container {padding-top: 1em;}#comment_tags_collapse_expand {list-style-type: none;padding-left: 1em;}#comment_tags_collapse_expand li {margin-bottom: 0px;}ul.tree {padding-left: 0em;margin-left: 1em;display: block;}ul.tree ul {padding-top: 3px;display: block;}ul.tree li {padding-top: 3px;text-indent: -1.2em;padding-left: 0.5em;padding-bottom: 3px;list-style-type: none;background: url(../../skins/standard/dependency-tree/bug-item.png) no-repeat;}ul.tree li a.b {padding-left: 30px;margin-right: -14px;text-decoration: none;}ul.tree li a.b_open {background: url(../../skins/standard/dependency-tree/tree-open.png) center no-repeat;cursor: pointer;}ul.tree li a.b_closed {background: url(../../skins/standard/dependency-tree/tree-closed.png) center no-repeat;cursor: pointer;}ul.tree a.tree_link img {border: 0;}.summ_info {display: none;font-size: 75%;}.hint {font-size: 90%;margin: 0.2em;padding: 0.1em;}.hint h3, .hint ul {margin-top: 0.1em;margin-bottom: 0.1em;}.summ A, .summ_deep A {text-decoration: none;color: darkblue;}.summ_h A {background-color: #ffffaa;color: #333;font-weight: bold;}.dependency_tree_controls input[type=submit] {min-width: 3em;}table.attachment_entry th {text-align: right;vertical-align: baseline;white-space: nowrap;}table.attachment_entry td {text-align: left;vertical-align: baseline;padding-bottom: 5px;}.file_head {font-weight: bold;font-size: 1em;background-color: #c3c3c3;border: 1px solid black;}.file_head a {text-decoration: none;font-family: monospace;font-size: 1.1em;}.file_collapse {display: none;}.section_head {background-color: #f0f0f0;border: 1px solid black;text-align: left;padding: 0.2em;}.section_head .link_here {float: right;padding-left: 1em;padding-right: 0.5em;}.lines_count a {padding-left: 0.5em;padding-right: 1em;}table.file_table {table-layout: fixed;width: 100%;empty-cells: show;border-spacing: 0px;border-collapse: collapse;border-bottom: 1px solid black;}tbody.file pre {display: inline;font-size: 0.9em;}tbody.file pre:empty {display: block;}.changed {background-color: lightblue;}.added {background-color: lightgreen;}.removed {background-color: #FFCC99;}.num {background-color: #ffe9ae;text-align:right;padding: 0 0.3em;width: 3em;}table.attachment_info th {text-align: right;vertical-align: top;}table.attachment_info td {text-align: left;vertical-align: top;}#noview {text-align: left;vertical-align: middle;}#attachment_attributes div {padding-bottom: 0.4em;}#attachment_attributes label {font-weight: bold;}#attachment_attributes .block {display: block;}#smallCommentFrame, #attachment_flags {float: left;}#smallCommentFrame {margin-right: 1.5em;}#attachment_comments_and_flags, #attachment_actions {clear: both;margin-bottom: 1ex;}#attachment_information_read_only .title {font-weight: bold;font-size: 1.5em;padding: 0;margin: 0;}#attachment_information_read_only .title #bz_edit {font-size: 0.7em;}#attachment_information_read_only .details {font-size: 90%;}#attachment_info.read #attachment_information_edit {display: none;}#attachment_info.edit #attachment_information_read_only {display: none;}#attachment_info.edit #attachment_view_window {float: left;width: 80%;}#attachment_info.edit #attachment_information_edit {width: 20%;}#attachment_info.edit #attachment_information_edit input.text,#attachment_info.edit #attachment_information_edit textarea {width: 90%;}#attachment_isobsolete {padding-right: 1em;}#attachment_information_edit {float: left;}#smallCommentFrame textarea {display: block;}textarea.bz_private {border: 1px solid #F8C8BA;}#update {clear: both;display: block;}div#update_container {clear: both;padding: 1.5em 0;}#attachment_flags {margin-bottom: 1em;}#attachment_flags p {padding-bottom: 0;margin-bottom: 0;}#editFrame, #viewDiffFrame, #viewFrame {height: 400px;width: 95%;margin-left: 2%;}.viewall_frame_container {width: 75%;margin: 2em auto;}.viewall_desc {width: 100%;border: 1px solid black;border-spacing: 0px;border-collapse: collapse;}.viewall_desc th, .viewall_desc td {border: 1px solid black;padding: 0.3em;}.viewall_frame {width: 100%;height: 350px;}.no_javascript .bz_hide, .no_javascript .bz_edit {display: none;}#hidden_obsolete_message {text-align: left;width: 75%;margin: 0  auto;font-weight: bold;}
+/* skins/contrib/Dusk/global.css */
+body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1em;padding-right: 1em;}#titles {border-top-left-radius: 5px;border-top-right-radius: 5px;}#header .links, #footer {background-color: #929bb1;color: #ddd;}#header {border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border: none;}#header a, #footer a {color: white;text-decoration: none;}#header a:hover, #footer a:hover {text-decoration: underline;}#bugzilla-body {background: #f0f0f0;color: black;border: 1px solid #747e93;padding: 10px;font-size: 10pt;border-radius: 5px;}a {color: #6070cf;}a:hover {color: #8090ef;}hr {border-color: #969696;border-style: dashed;border-width: 1px;margin-top: 10px;}#bug-form td {padding-top: 2px;}#attachment-list {border: 2px solid #c8c8ba;font-size: 9pt;}#attachment-list th {background-color: #e6e6d8;border: none;border-bottom: 1px solid #c8c8ba;text-align: left;}#attachment-list th a {color: #646456;}#attachment-list td {border: none;}#attachment-list-actions td {border-top: 1px solid #c8c8ba;}#comments th {font-size: 9pt;font-weight: bold;padding-top: 5px;padding-right: 5px;padding-bottom: 10px;text-align: right;vertical-align: top;white-space: nowrap;}#comments td {padding-top: 2px;}.reply-button a {padding-left: 2px;padding-right: 2px;}.bz_comment {background-color: #e8e8e8;margin: 1px 1px 10px 1px;border-width: 1px;border-style: solid;border-color: #c8c8ba;padding: 5px;font-size: 9pt;}.bz_comment_head, .bz_first_comment_head {margin: 0; padding: 0;background-color: transparent;font-weight: bold;}.bz_comment_user {margin-left: 0;}.bz_comment.bz_private {background-color: #f0e8e8;border-color: #f8c8ba;}.comment_rule {display: none;}#footer {border: 1px solid #747e93;width: 100%;border-radius: 5px;}#footer #links-actions,#footer #links-edit,#footer #links-saved,#footer #links-special {margin-top: 2ex;}#footer .links {border-spacing: 30px;margin-bottom: 2ex;}.separator {color: #cccccc;}.tabbed .tabbody {background: #f8f8f8;padding: 1em;border-style: solid;border-color: #000000;border-width: 0 3px 3px 1px;}.tabs {margin: 0;padding: 0;border-collapse: collapse;}.tabs td {background: #c8c8c8;border-width: 1px;}.tabs td.selected {background: #f8f8f8;border-width: 1px 3px 0 1px;}.tabs td.spacer {background: transparent;border-top: none;border-left: none;border-right: none;}.bz_row_odd {background-color: #f0f0f0;}#page-index .outro {clear:both;}@media print {#header,#footer,.navigation {display: none;}body {background-image: none;background-color: #ffffff;}#bugzilla-body {border: none;margin: 0;padding: 0;}}
+</style>
+
+<style>/* skins/custom/global.css */
+#banner > div {border-radius: 5px;}#banner a {color: #6070cf}
+</style>
+
+    
+
+
+    
+
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml" title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico"><link href="https://c.s-microsoft.com/mscc/statics/mscc-0.4.1.min.css" rel="stylesheet" type="text/css">
+
+      
+
+    <style>.wrapper {
+    margin: 0 auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+#global-footer {
+    background-color: #354b60;
+}
+
+#global-footer li,#global-footer ul {
+    list-style: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: normal
+}
+
+#global-footer footer {
+    margin-top: 60px;
+    background: rgba(44,62,80,.5);
+    clear: both;
+    padding: 30px;
+    margin: 0;
+    font-size: 14px;
+    color: #ecf0f1;
+}
+
+#global-footer footer .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    /* align-items:center; */
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#global-footer footer .microsoft-logo img {
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+}
+
+#global-footer footer .contact {
+    text-align: left
+}
+
+#global-footer footer .legal {
+    text-align: right
+}
+
+#global-footer footer a,#global-footer footer span {
+    padding: 0 10px
+}
+
+#global-footer footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#global-footer footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#global-footer .sub-footer {
+    background-color: #233140;
+    color: hsla(0,0%,100%,.7);
+    font-size: 14px;
+    padding: 3px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased
+}
+
+@media (max-width: 992px) {
+    html:not(.non-responsive) #global-footer footer {
+        padding:0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 430px
+    }
+
+    html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    html:not(.non-responsive) #global-footer footer .wrapper>:not(.microsoft-logo) {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal,html:not(.non-responsive) #global-footer footer .microsoft-logo {
+        float: none;
+        padding: 20px 0;
+        text-align: center
+    }
+
+    html:not(.non-responsive) #global-footer footer .contact,html:not(.non-responsive) #global-footer footer .legal {
+        padding-top: 0
+    }
+}
+</style>
+  </head>
+
+  <body class="bugzilla-xamarin-com
+                 bz_bug
+                 bz_status_VERIFIED
+                 bz_product_Runtime
+                 bz_component_JIT
+                 bz_bug_39832 yui-skin-sam">
+
+  <div id="header">
+
+    <div id="titles">
+      <span id="title">Bugzilla – Bug&nbsp;39832</span>
+
+        <span id="subtitle" class="subheader">SIGSEGV when running roslyn</span>
+
+        <span id="information" class="header_addl_info">Last modified: 2016-10-17 13:15:27 UTC</span>
+    </div>
+
+
+    <div id="common_links">
+    </div>
+  </div>
+
+  <div id="bugzilla-body">
+
+
+
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2016-10-17 13:15:27">
+  <input type="hidden" name="id" value="39832">
+  <input type="hidden" name="token" value="1559158736-W3KMJudUVeN2ub7UUI67iuaNdACMVlYg8q4elMRkF1o">
+<div class="bz_short_desc_container edit_form">
+     <a href="bug.html"><b>Bug&nbsp;39832</b></a> <span id="summary_container" class="bz_default_hidden">
+      - <span id="short_desc_nonedit_display">SIGSEGV when running roslyn</span>
+     </span>
+
+    <div id="summary_input"><span class="field_label " id="field_label_short_desc">
+
+
+  <a title="The bug summary is a short sentence which succinctly describes what the bug is about." class="field_help_link" href="#">Summary:</a>
+
+</span>SIGSEGV when running roslyn
+    </div>
+  </div>
+  
+  <table class="edit_form">
+    <tbody><tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">
+        <table>
+          <tbody><tr>
+    <th class="field_label">
+      <a href="#">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">VERIFIED
+          FIXED
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_alias">
+
+
+  <a title="A short, unique name assigned to a bug in order to assist with looking it up and referring to it in other places in Bugzilla." class="field_help_link" href="#">Alias:</a>
+
+</th>
+    <td>
+        None
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_product">
+
+
+  <a title="Bugs are categorised into Products and Components. Select a Classification to narrow down this list." class="field_help_link" href="#">Product:</a>
+
+</th>
+  <td class="field_value " id="field_container_product">Runtime
+
+</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label " id="field_label_classification">
+
+
+  <a title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation." class="field_help_link" href="#">Classification:</a>
+
+</th>
+  <td class="field_value " id="field_container_classification">Mono
+
+</td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_component">
+
+
+  <a title="Components are second-level categories; each belongs to a particular Product. Select a Product to narrow down this list." class="field_help_link" href="#">Component:</a>
+
+</th>
+  <td class="field_value " id="field_container_component">JIT
+
+  ()
+</td>
+    </tr>
+    <tr><th class="field_label " id="field_label_version">
+
+
+  <a title="The version field defines the version of the software the bug was found in." class="field_help_link" href="#">Version:</a>
+
+</th>
+<td>unspecified
+  </td>
+    </tr>
+    
+    
+    
+    <tr><th class="field_label " id="field_label_rep_platform">
+
+
+  <a title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;." class="field_help_link" href="#">Hardware:</a>
+
+</th>
+      <td class="field_value">PC
+        All
+      </td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+      <th class="field_label">
+        <label accesskey="i">
+          <a href="#"><u>I</u>mportance</a></label>:
+      </th>
+      <td>---
+       major
+      </td>
+    </tr>
+
+      <tr><th class="field_label " id="field_label_target_milestone">
+
+
+  <a title="The Target Milestone field is used to define when the engineer the bug is assigned to expects to fix it." class="field_help_link" href="#">Target Milestone:</a>
+
+</th><td>4.6.1 (C8SR1)
+  </td>
+      </tr>
+
+          <tr><th class="field_label " id="field_label_assigned_to">
+
+
+  <a title="The person in charge of resolving the bug." class="field_help_link" href="#">Assignee:</a>
+
+</th>
+      <td><span class="vcard"><span class="fn">Rodrigo Kumpera</span>
+</span>
+      </td>
+    </tr>
+
+    
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label " id="field_label_bug_file_loc">
+
+
+  <a title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen." class="field_help_link" href="#">URL:</a>
+
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label>Duplicates (1)</label>:
+    </th>
+    <td class="field_value">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - [Roslyn] HashSet allocation crash?" href="show_bug.cgi?id=41913">41913</a> 
+      </span>
+      ()
+    </td>
+  </tr>
+<tr><th class="field_label " id="field_label_dependson">
+
+
+  <a title="The bugs listed here must be resolved before this bug can be resolved." class="field_help_link" href="#">Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+  <tr><th class="field_label " id="field_label_blocked">
+
+
+  <a title="This bug must be resolved before the bugs listed in this field can be resolved." class="field_help_link" href="#">Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+
+  </td>
+  </tr>
+
+        </tbody></table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table>
+        <tbody><tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2016-03-22 11:23 UTC by <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2016-10-17 13:15 UTC
+      (<a href="activity.html">History</a>)
+    </td>
+
+  </tr>
+<tr>
+      <th class="field_label">
+        <label accesskey="a">
+          CC List:
+        </label>
+      </th>
+      <td>11
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="bernhard.urban">bernhard.urban</option>
+                <option value="kyle.white">kyle.white</option>
+                <option value="luis.aguilera">luis.aguilera</option>
+                <option value="mono-bugs+mono">mono-bugs+mono</option>
+                <option value="mono-bugs+runtime">mono-bugs+runtime</option>
+                <option value="peter.collins">peter.collins</option>
+                <option value="shrutis">shrutis</option>
+                <option value="sshaw">sshaw</option>
+                <option value="vargaz">vargaz</option>
+                <option value="vlad.brezae">vlad.brezae</option>
+                <option value="z.gramana">z.gramana</option>
+            </select>
+        </div>
+          
+      </td>
+    </tr>
+
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr>
+      <th class="field_label " id="field_label_cf_tags">
+
+
+  <a title="A custom Free Text field in this installation of Bugzilla." class="field_help_link" href="#">Tags:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_tags">C8SR1
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label " id="field_label_cf_bug_regression">
+
+
+  <a title="If this bug is not a regression select no, otherwise select yes and complete the &quot;last known good build&quot; entry." class="field_help_link" href="#">Is this bug a regression?:</a>
+
+</th>
+  <td class="field_value " id="field_container_cf_bug_regression">No
+
+</td>
+    </tr>
+    <tr>
+      <th class="field_label  bz_hidden_field" id="field_label_cf_bug_regression_build">
+
+
+  <a title="What is the last known good build? (e.g. C7, 4.5.x, etc.)" class="field_help_link" href="#">Last known good build:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field" id="field_container_cf_bug_regression_build">
+
+</td>
+    </tr>
+<tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+
+
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </tbody></table>
+
+  <table id="bz_big_form_parts">
+  <tbody><tr>
+  <td>
+
+    
+
+
+  </td>
+  <td>
+  </td>
+  </tr></tbody></table>
+<div id="add_comment" class="bz_section_additional_comments">
+<div class="box" style="margin: 1px 1px 10px 1px; max-width: 47.8em">
+    <p>
+        <strong>Notice (2018-05-24)</strong>: bugzilla.xamarin.com is now in
+        <strong>read-only</strong> mode.
+    </p>
+    <p>
+        Please join us on
+        <a href="https://developercommunity.visualstudio.com/spaces/8/index.html">
+        Visual Studio Developer Community</a> and in the
+        <a href="https://github.com/xamarin">Xamarin</a> and
+        <a href="https://github.com/mono">Mono</a> organizations on
+        GitHub to continue tracking issues. Bugzilla will remain
+        available for reference in read-only mode. We will continue to work
+        on <strong>open</strong> Bugzilla bugs, copy them to the new locations
+        as needed for follow-up, and add the new items under <strong>Related
+        Links</strong>.
+    </p>
+    <p>
+        Our sincere thanks to everyone who has contributed on this bug
+        tracker over the years. Thanks also for your understanding as we
+        make these adjustments and improvements for the future.
+    </p>
+    <hr><p>
+        <strong>Please create a new report</strong> on 
+            <a href="https://github.com/mono">GitHub</a> or <a href="https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio-2017">Developer Community</a> with
+        your current version information, steps to reproduce, and relevant error
+        messages or log files if you are hitting an issue that looks similar to
+        this resolved bug and you do not yet see a matching new report.
+    </p>
+</div>
+
+    <div style="margin: 4ex 0">
+        <table><tbody><tr><th class="field_label " id="field_label_see_also">
+
+
+  <a title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with whitespace. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields." class="field_help_link" href="#">Related Links:</a>
+
+</th>
+  <td class="field_value " id="field_container_see_also">
+
+</td>
+    </tr>
+        </tbody></table>
+    </div>
+
+    <table id="bug_status_bottom" class="status">
+        <tbody><tr>
+            <th class="field_label">
+                <a href="#">Status</a>:
+            </th>
+            <td><div id="status">VERIFIED
+
+    <noscript><br>resolved as </noscript>
+
+  <span id="resolution_settings">FIXED
+  </span>
+
+</div>
+
+
+            </td>
+        </tr>
+    </tbody></table>
+
+</div>
+    <hr>
+
+  
+  <div id="comments">
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links
+     to the right. -->
+<table class="bz_comment_table">
+<tbody><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-03-22 11:23:59 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Native stacktrace:
+
+	/var/lib/jenkins/workspace/test-mono-pull-request-amd64/mono/mini/mono() [0x5045c2]
+	/var/lib/jenkins/workspace/test-mono-pull-request-amd64/mono/mini/mono() [0x58f323]
+	/var/lib/jenkins/workspace/test-mono-pull-request-amd64/mono/mini/mono() [0x41b0c1]
+	/lib/x86_64-linux-gnu/libpthread.so.0(+0xf0a0) [0x2b78807aa0a0]
+	[0x417c6cc0]
+
+Debug info from gdb:
+
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x2b7890d00700 (LWP 25976)]
+[New Thread 0x2b7884a4a700 (LWP 25975)]
+[New Thread 0x2b7884849700 (LWP 25974)]
+[New Thread 0x2b7884648700 (LWP 25973)]
+[New Thread 0x2b78835a1700 (LWP 25972)]
+[New Thread 0x2b7881600700 (LWP 25971)]
+0x00002b78807a9c8d in waitpid () from /lib/x86_64-linux-gnu/libpthread.so.0
+  Id   Target Id         Frame 
+  7    Thread 0x2b7881600700 (LWP 25971) "mono" 0x00002b78807a6344 in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+  6    Thread 0x2b78835a1700 (LWP 25972) "Finalizer" 0x00002b78807a8490 in sem_wait () from /lib/x86_64-linux-gnu/libpthread.so.0
+  5    Thread 0x2b7884648700 (LWP 25973) "mono" 0x00002b78807a66bb in pthread_cond_timedwait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+  4    Thread 0x2b7884849700 (LWP 25974) "Threadpool work" 0x00002b78807a66bb in pthread_cond_timedwait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+  3    Thread 0x2b7884a4a700 (LWP 25975) "Threadpool work" 0x00002b78807a66bb in pthread_cond_timedwait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+  2    Thread 0x2b7890d00700 (LWP 25976) "Threadpool work" 0x00002b78807a66bb in pthread_cond_timedwait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+* 1    Thread 0x2b787ff1aa80 (LWP 25956) "mono" 0x00002b78807a9c8d in waitpid () from /lib/x86_64-linux-gnu/libpthread.so.0
+
+Thread 7 (Thread 0x2b7881600700 (LWP 25971)):
+#0  0x00002b78807a6344 in pthread_cond_wait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x000000000073f6b8 in mono_os_cond_wait (cond=0xae8fc0, mutex=0xae8f80) at ../../mono/utils/mono-os-mutex.h:105
+#2  0x0000000000740240 in thread_func (thread_data=0x0) at sgen-thread-pool.c:118
+#3  0x00002b78807a1b50 in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#4  0x00002b7880cab30d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#5  0x0000000000000000 in ?? ()
+
+Thread 6 (Thread 0x2b78835a1700 (LWP 25972)):
+#0  0x00002b78807a8490 in sem_wait () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x0000000000696d68 in mono_os_sem_wait (sem=0xad9e20, flags=MONO_SEM_FLAGS_ALERTABLE) at ../../mono/utils/mono-os-semaphore.h:163
+#2  0x00000000006970d8 in mono_coop_sem_wait (sem=0xad9e20, flags=MONO_SEM_FLAGS_ALERTABLE) at ../../mono/utils/mono-coop-semaphore.h:40
+#3  0x00000000006988cd in finalizer_thread (unused=0x0) at gc.c:726
+#4  0x00000000006643fc in start_wrapper_internal (data=0x265e020) at threads.c:731
+#5  0x00000000006644ba in start_wrapper (data=0x265e020) at threads.c:778
+#6  0x000000000077ee8a in inner_start_thread (arg=0x7fff6b69c0e0) at mono-threads-posix.c:92
+#7  0x00002b78807a1b50 in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#8  0x00002b7880cab30d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#9  0x0000000000000000 in ?? ()
+
+Thread 5 (Thread 0x2b7884648700 (LWP 25973)):
+#0  0x00002b78807a66bb in pthread_cond_timedwait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x000000000077a8e2 in mono_os_cond_timedwait (cond=0xae9e40, mutex=0xae9e00, timeout_ms=500) at ../../mono/utils/mono-os-mutex.h:134
+#2  0x000000000077aa66 in mono_coop_cond_timedwait (cond=0xae9e40, mutex=0xae9e00, timeout_ms=500) at ../../mono/utils/mono-coop-mutex.h:107
+#3  0x000000000077ca13 in sleep_interruptable (ms=500, alerted=0x2b7884647d3c) at mono-threads.c:1162
+#4  0x000000000077cacf in mono_thread_info_sleep (ms=500, alerted=0x2b7884647d3c) at mono-threads.c:1194
+#5  0x000000000066d75f in monitor_thread () at threadpool-ms.c:895
+#6  0x00000000006643fc in start_wrapper_internal (data=0x28e7ed0) at threads.c:731
+#7  0x00000000006644ba in start_wrapper (data=0x28e7ed0) at threads.c:778
+#8  0x000000000077ee8a in inner_start_thread (arg=0x7fff6b69a700) at mono-threads-posix.c:92
+#9  0x00002b78807a1b50 in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#10 0x00002b7880cab30d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#11 0x0000000000000000 in ?? ()
+
+Thread 4 (Thread 0x2b7884849700 (LWP 25974)):
+#0  0x00002b78807a66bb in pthread_cond_timedwait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x000000000066ae2f in mono_os_cond_timedwait (cond=0x28e7fa8, mutex=0x28e7fd8, timeout_ms=35539) at ../../mono/utils/mono-os-mutex.h:134
+#2  0x000000000066b09b in mono_coop_cond_timedwait (cond=0x28e7fa8, mutex=0x28e7fd8, timeout_ms=35539) at ../../mono/utils/mono-coop-mutex.h:107
+#3  0x000000000066c26e in worker_park () at threadpool-ms.c:527
+#4  0x000000000066c6e5 in worker_thread (data=0x0) at threadpool-ms.c:618
+#5  0x00000000006643fc in start_wrapper_internal (data=0x28e8af0) at threads.c:731
+#6  0x00000000006644ba in start_wrapper (data=0x28e8af0) at threads.c:778
+#7  0x000000000077ee8a in inner_start_thread (arg=0x7fff6b69a6a0) at mono-threads-posix.c:92
+#8  0x00002b78807a1b50 in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#9  0x00002b7880cab30d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#10 0x0000000000000000 in ?? ()
+
+Thread 3 (Thread 0x2b7884a4a700 (LWP 25975)):
+#0  0x00002b78807a66bb in pthread_cond_timedwait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x000000000066ae2f in mono_os_cond_timedwait (cond=0x28e7fa8, mutex=0x28e7fd8, timeout_ms=36080) at ../../mono/utils/mono-os-mutex.h:134
+#2  0x000000000066b09b in mono_coop_cond_timedwait (cond=0x28e7fa8, mutex=0x28e7fd8, timeout_ms=36080) at ../../mono/utils/mono-coop-mutex.h:107
+#3  0x000000000066c26e in worker_park () at threadpool-ms.c:527
+#4  0x000000000066c6e5 in worker_thread (data=0x0) at threadpool-ms.c:618
+#5  0x00000000006643fc in start_wrapper_internal (data=0x29cc7b0) at threads.c:731
+#6  0x00000000006644ba in start_wrapper (data=0x29cc7b0) at threads.c:778
+#7  0x000000000077ee8a in inner_start_thread (arg=0x2b7884848370) at mono-threads-posix.c:92
+#8  0x00002b78807a1b50 in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#9  0x00002b7880cab30d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#10 0x0000000000000000 in ?? ()
+
+Thread 2 (Thread 0x2b7890d00700 (LWP 25976)):
+#0  0x00002b78807a66bb in pthread_cond_timedwait@@GLIBC_2.3.2 () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x000000000066ae2f in mono_os_cond_timedwait (cond=0x28e7fa8, mutex=0x28e7fd8, timeout_ms=47115) at ../../mono/utils/mono-os-mutex.h:134
+#2  0x000000000066b09b in mono_coop_cond_timedwait (cond=0x28e7fa8, mutex=0x28e7fd8, timeout_ms=47115) at ../../mono/utils/mono-coop-mutex.h:107
+#3  0x000000000066c26e in worker_park () at threadpool-ms.c:527
+#4  0x000000000066c6e5 in worker_thread (data=0x0) at threadpool-ms.c:618
+#5  0x00000000006643fc in start_wrapper_internal (data=0x29d1600) at threads.c:731
+#6  0x00000000006644ba in start_wrapper (data=0x29d1600) at threads.c:778
+#7  0x000000000077ee8a in inner_start_thread (arg=0x2b7884a49370) at mono-threads-posix.c:92
+#8  0x00002b78807a1b50 in start_thread () from /lib/x86_64-linux-gnu/libpthread.so.0
+#9  0x00002b7880cab30d in clone () from /lib/x86_64-linux-gnu/libc.so.6
+#10 0x0000000000000000 in ?? ()
+
+Thread 1 (Thread 0x2b787ff1aa80 (LWP 25956)):
+#0  0x00002b78807a9c8d in waitpid () from /lib/x86_64-linux-gnu/libpthread.so.0
+#1  0x00000000005046aa in mono_handle_native_sigsegv (signal=11, ctx=0x2b7880107c40, info=0x2b7880107d70) at mini-exceptions.c:2392
+#2  0x000000000058f323 in mono_arch_handle_altstack_exception (sigctx=0x2b7880107c40, siginfo=0x2b7880107d70, fault_addr=0xd, stack_ovf=0) at exceptions-amd64.c:808
+#3  0x000000000041b0c1 in mono_sigsegv_signal_handler (_dummy=11, _info=0x2b7880107d70, context=0x2b7880107c40) at mini-runtime.c:3004
+#4  &lt;signal handler called&gt;
+#5  0x00000000417c6cc0 in ?? ()
+#6  0x00002b7882a52b49 in System_Collections_Generic_Dictionary_2_TKey_REF_TValue_REF_Insert_TKey_REF_TValue_REF_bool (this=..., key=-2126896768, value=-2126896768, add=false) from /var/lib/jenkins/workspace/test-mono-pull-request-amd64/mcs/class/lib/build/mscorlib.dll.so
+#7  0x00002b7882a51b69 in System_Collections_Generic_Dictionary_2_TKey_REF_TValue_REF_set_Item_TKey_REF_TValue_REF (this=..., key=-2126896768, value=-2126896768) from /var/lib/jenkins/workspace/test-mono-pull-request-amd64/mcs/class/lib/build/mscorlib.dll.so
+#8  0x00000000417dcebc in ?? ()
+#9  0x0000000000000000 in ?? ()
+
+=================================================================
+Got a SIGSEGV while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+=================================================================
+
+Aborted</pre>
+    </div>
+
+    <div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-03-22 11:24:50 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This could be AOT miscompilation</pre>
+    </div>
+
+    <div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-03-29 02:04:19 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Hopefully this one got fixed.</pre>
+    </div>
+
+    <div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-04-16 08:07:12 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">It still crashes pretty often.
+
+This one is latest mono on AMD64
+
+<a href="https://jenkins.mono-project.com/job/test-mono-pull-request-amd64/2606/parsed_console/log_content.html#ERROR1">https://jenkins.mono-project.com/job/test-mono-pull-request-amd64/2606/parsed_console/log_content.html#ERROR1</a></pre>
+    </div>
+
+    <div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-06-17 09:43:29 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - [Roslyn] HashSet allocation crash?" href="show_bug.cgi?id=41913">Bug 41913</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+    <div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Stephen Shaw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-06-17 17:04:32 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - [Roslyn] HashSet allocation crash?" href="show_bug.cgi?id=41913">Bug 41913</a> was from a customer's Xamarin Studio log. This is being seen in the wild too</pre>
+    </div>
+
+    <div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-08-17 13:48:34 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This is still not that hard to reproduce with C8/master. I was running System.Core compilation in loop and got following 5 different crashes in 2 hours.
+
+It was easier to trigger if my machine was not under any load.</pre>
+    </div>
+
+    <div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-08-17 13:48:53 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">System.TypedReference doesn't implement interface System.Collections.Generic.IEqualityComparer&lt;Microsoft.CodeAnalysis.CSharp.BoundLoopStatement&gt;
+
+Stacktrace:
+
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at System.Collections.Generic.Dictionary`2&lt;Microsoft.CodeAnalysis.CSharp.BoundLoopStatement, Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.FindEntry (Microsoft.CodeAnalysis.CSharp.BoundLoopStatement) &lt;0x0005a&gt;
+  at System.Collections.Generic.Dictionary`2&lt;Microsoft.CodeAnalysis.CSharp.BoundLoopStatement, Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.get_Item (Microsoft.CodeAnalysis.CSharp.BoundLoopStatement) &lt;0x0002f&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.LoopTail (Microsoft.CodeAnalysis.CSharp.BoundLoopStatement) &lt;0x00036&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitForEachStatement (Microsoft.CodeAnalysis.CSharp.BoundForEachStatement) &lt;0x00097&gt;
+  at Microsoft.CodeAnalysis.CSharp.BoundForEachStatement.Accept (Microsoft.CodeAnalysis.CSharp.BoundTreeVisitor) &lt;0x00020&gt;
+  at Microsoft.CodeAnalysis.CSharp.BoundTreeVisitor.Visit (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x00022&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitWithStackGuard (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x00073&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitAlways (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x0008f&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.Visit (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x00013&gt;
+  at Microsoft.CodeAnalysis.CSharp.ControlFlowPass.Visit (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x0004b&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitStatement (Microsoft.CodeAnalysis.CSharp.BoundStatement) &lt;0x00018&gt;
+  at Microsoft.CodeAnalysis.CSharp.ControlFlowPass.VisitStatement (Microsoft.CodeAnalysis.CSharp.BoundStatement) &lt;0x000af&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitBlock (Microsoft.CodeAnalysis.CSharp.BoundBlock) &lt;0x0008c&gt;
+  at Microsoft.CodeAnalysis.CSharp.BoundBlock.Accept (Microsoft.CodeAnalysis.CSharp.BoundTreeVisitor) &lt;0x00020&gt;
+  at Microsoft.CodeAnalysis.CSharp.BoundTreeVisitor.Visit (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x00022&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitWithStackGuard (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x00073&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitAlways (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x0008f&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.Visit (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x00013&gt;
+  at Microsoft.CodeAnalysis.CSharp.ControlFlowPass.Visit (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x0004b&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitStatement (Microsoft.CodeAnalysis.CSharp.BoundStatement) &lt;0x00018&gt;
+  at Microsoft.CodeAnalysis.CSharp.ControlFlowPass.VisitStatement (Microsoft.CodeAnalysis.CSharp.BoundStatement) &lt;0x0005b&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitIfStatement (Microsoft.CodeAnalysis.CSharp.BoundIfStatement) &lt;0x00097&gt;
+  at Microsoft.CodeAnalysis.CSharp.BoundIfStatement.Accept (Microsoft.CodeAnalysis.CSharp.BoundTreeVisitor) &lt;0x00020&gt;
+  at Microsoft.CodeAnalysis.CSharp.BoundTreeVisitor.Visit (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x00022&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitWithStackGuard (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x00073&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitAlways (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x0008f&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.Visit (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x00013&gt;
+  at Microsoft.CodeAnalysis.CSharp.ControlFlowPass.Visit (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x0004b&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitStatement (Microsoft.CodeAnalysis.CSharp.BoundStatement) &lt;0x00018&gt;
+  at Microsoft.CodeAnalysis.CSharp.ControlFlowPass.VisitStatement (Microsoft.CodeAnalysis.CSharp.BoundStatement) &lt;0x000af&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitBlock (Microsoft.CodeAnalysis.CSharp.BoundBlock) &lt;0x0008c&gt;
+  at Microsoft.CodeAnalysis.CSharp.BoundBlock.Accept (Microsoft.CodeAnalysis.CSharp.BoundTreeVisitor) &lt;0x00020&gt;
+  at Microsoft.CodeAnalysis.CSharp.BoundTreeVisitor.Visit (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x00022&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitWithStackGuard (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x00073&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.VisitAlways (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x0008f&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.Visit (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x00013&gt;
+  at Microsoft.CodeAnalysis.CSharp.ControlFlowPass.Visit (Microsoft.CodeAnalysis.CSharp.BoundNode) &lt;0x0004b&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.Scan (bool&amp;) &lt;0x0002f&gt;
+  at Microsoft.CodeAnalysis.CSharp.ControlFlowPass.Scan (bool&amp;) &lt;0x00063&gt;
+  at Microsoft.CodeAnalysis.CSharp.PreciseAbstractFlowPass`1&lt;Microsoft.CodeAnalysis.CSharp.ControlFlowPass/LocalState&gt;.Analyze (bool&amp;) &lt;0x00106&gt;
+  at Microsoft.CodeAnalysis.CSharp.ControlFlowPass.Analyze (bool&amp;,Microsoft.CodeAnalysis.DiagnosticBag) &lt;0x0001f&gt;
+  at Microsoft.CodeAnalysis.CSharp.ControlFlowPass.Analyze (Microsoft.CodeAnalysis.CSharp.CSharpCompilation,Microsoft.CodeAnalysis.CSharp.Symbol,Microsoft.CodeAnalysis.CSharp.BoundBlock,Microsoft.CodeAnalysis.DiagnosticBag) &lt;0x000c3&gt;
+  at Microsoft.CodeAnalysis.CSharp.FlowAnalysisPass.Analyze (Microsoft.CodeAnalysis.CSharp.CSharpCompilation,Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol,Microsoft.CodeAnalysis.CSharp.BoundBlock,Microsoft.CodeAnalysis.DiagnosticBag) &lt;0x00027&gt;
+  at Microsoft.CodeAnalysis.CSharp.FlowAnalysisPass.Rewrite (Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol,Microsoft.CodeAnalysis.CSharp.BoundBlock,Microsoft.CodeAnalysis.DiagnosticBag,bool,bool) &lt;0x00113&gt;
+  at Microsoft.CodeAnalysis.CSharp.MethodCompiler.CompileMethod (Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol,int,Microsoft.CodeAnalysis.CSharp.Binder/ProcessedFieldInitializers&amp;,Microsoft.CodeAnalysis.CSharp.SynthesizedSubmissionFields,Microsoft.CodeAnalysis.CSharp.TypeCompilationState) &lt;0x00a6f&gt;
+  at Microsoft.CodeAnalysis.CSharp.MethodCompiler.CompileNamedType (Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol) &lt;0x00793&gt;
+  at Microsoft.CodeAnalysis.CSharp.MethodCompiler/&lt;&gt;c__DisplayClass20_0.&lt;CompileNamedTypeAsTask&gt;b__0 () &lt;0x0001b&gt;
+  at Roslyn.Utilities.UICultureUtilities/&lt;&gt;c__DisplayClass5_0.&lt;WithCurrentUICulture&gt;b__0 () &lt;0x000a3&gt;
+  at System.Threading.Tasks.Task.InnerInvoke () &lt;0x0004c&gt;
+  at System.Threading.Tasks.Task.Execute () &lt;0x00055&gt;
+  at System.Threading.Tasks.Task.ExecutionContextCallback (object) &lt;0x00045&gt;
+  at System.Threading.ExecutionContext.RunInternal (System.Threading.ExecutionContext,System.Threading.ContextCallback,object,bool) &lt;0x0017a&gt;
+  at System.Threading.ExecutionContext.Run (System.Threading.ExecutionContext,System.Threading.ContextCallback,object,bool) &lt;0x00020&gt;
+  at System.Threading.Tasks.Task.ExecuteWithThreadLocal (System.Threading.Tasks.Task&amp;) &lt;0x0010c&gt;
+  at System.Threading.Tasks.Task.ExecuteEntry (bool) &lt;0x000f2&gt;
+  at System.Threading.Tasks.Task.System.Threading.IThreadPoolWorkItem.ExecuteWorkItem () &lt;0x0000e&gt;
+  at System.Threading.ThreadPoolWorkQueue.Dispatch () &lt;0x001d4&gt;
+  at System.Threading._ThreadPoolWaitCallback.PerformWaitCallback () &lt;0x00008&gt;
+  at (wrapper runtime-invoke) &lt;Module&gt;.runtime_invoke_bool (object,intptr,intptr,intptr) &lt;0x0005a&gt;
+
+Native stacktrace:
+
+	/home/marek/mono/mono/mono/mini/mono() [0x4b3faf]
+	/lib/x86_64-linux-gnu/libpthread.so.0(+0x113d0) [0x2ba45fafc3d0]
+	/lib/x86_64-linux-gnu/libc.so.6(gsignal+0x38) [0x2ba45ff53418]
+	/lib/x86_64-linux-gnu/libc.so.6(abort+0x16a) [0x2ba45ff5501a]
+	/home/marek/mono/mono/mono/mini/mono() [0x674ecb]
+	/home/marek/mono/mono/mono/mini/mono() [0x674c65]
+	/home/marek/mono/mono/mono/mini/mono() [0x674d44]
+	/home/marek/mono/mono/mono/mini/mono() [0x4b52f0]
+	/home/marek/mono/mono/mono/mini/mono() [0x4b5743]
+	/home/marek/mono/mono/mono/mini/mono() [0x4b62ac]
+	[0x40ba068c]
+
+Debug info from gdb:
+
+
+=================================================================
+Got a SIGABRT while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries
+used by your application.
+=================================================================</pre>
+    </div>
+
+    <div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-08-17 13:49:04 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Native stacktrace:
+
+Segmentation fault (core dumped)
+../../build/library.make:302: recipe for target '../../class/lib/net_4_x/System.Core.dll' failed
+make[1]: *** [../../class/lib/net_4_x/System.Core.dll] Error 139</pre>
+    </div>
+
+    <div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-08-17 13:49:27 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Stacktrace:
+
+
+Native stacktrace:
+
+  /home/marek/mono/mono/mono/mini/mono() [0x4b3faf]
+  /home/marek/mono/mono/mono/mini/mono() [0x50a4fe]
+  /home/marek/mono/mono/mono/mini/mono() [0x427453]
+  /lib/x86_64-linux-gnu/libpthread.so.0(+0x113d0) [0x2b48ed1ee3d0]
+  [0x4116e822]
+
+Debug info from gdb:
+
+[New LWP 53632]
+[New LWP 53635]
+[New LWP 53638]
+[New LWP 53639]
+[New LWP 53640]
+[New LWP 53642]
+[New LWP 53646]
+[New LWP 53673]
+[New LWP 53674]
+[New LWP 53675]
+[New LWP 53676]
+[New LWP 53677]
+[New LWP 53678]
+[New LWP 53679]
+[New LWP 53680]
+[New LWP 53681]
+[New LWP 53682]
+[New LWP 53683]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+30  ../sysdeps/unix/sysv/linux/sigsuspend.c: No such file or directory.
+  Id   Target Id         Frame
+* 1    Thread 0x2b48ec8d5c40 (LWP 53583) "Main" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  2    Thread 0x2b48ee200700 (LWP 53632) "SGen worker" pthread_cond_wait@@GLIBC_2.3.2 () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+  3    Thread 0x2b48f01b0700 (LWP 53635) "Finalizer" 0x00002b48ed1ec867 in futex_abstimed_wait_cancelable (private=0, abstime=0x0, expected=0, futex_word=0x9a5400 &lt;finalizer_sem&gt;) at ../sysdeps/unix/sysv/linux/futex-internal.h:205
+  4    Thread 0x2b48edbf5700 (LWP 53638) "Main" __lll_lock_wait () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:135
+  5    Thread 0x2b48f1f08700 (LWP 53639) "Threadpool work" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  6    Thread 0x2b48f2109700 (LWP 53640) "Threadpool work" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  7    Thread 0x2b4904580700 (LWP 53642) "Threadpool work" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  8    Thread 0x2b4905358700 (LWP 53646) "Threadpool work" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  9    Thread 0x2b49064dc700 (LWP 53673) "Threadpool work" 0x00002b48ed1edfbb in __waitpid (pid=pid@entry=53691, stat_loc=stat_loc@entry=0x2b48f18eb10c, options=options@entry=0) at ../sysdeps/unix/sysv/linux/waitpid.c:29
+  10   Thread 0x2b49066dd700 (LWP 53674) "Threadpool work" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  11   Thread 0x2b4906a60700 (LWP 53675) "Threadpool work" 0x00002b48ed1ec867 in futex_abstimed_wait_cancelable (private=0, abstime=0x0, expected=0, futex_word=0x9a5b20 &lt;suspend_ack_semaphore&gt;) at ../sysdeps/unix/sysv/linux/futex-internal.h:205
+  12   Thread 0x2b4906c61700 (LWP 53676) "Threadpool work" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  13   Thread 0x2b4906e62700 (LWP 53677) "Threadpool work" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  14   Thread 0x2b4907063700 (LWP 53678) "Threadpool work" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  15   Thread 0x2b4907264700 (LWP 53679) "Threadpool work" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  16   Thread 0x2b4907465700 (LWP 53680) "Threadpool work" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  17   Thread 0x2b4907666700 (LWP 53681) "Threadpool work" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  18   Thread 0x2b4907867700 (LWP 53682) "Threadpool work" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  19   Thread 0x2b4907a68700 (LWP 53683) "Threadpool work" 0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+
+Thread 19 (Thread 0x2b4907a68700 (LWP 53683)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2b49300020f0, context=context@entry=0x2b4907a65bc0) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b4907a65bc0) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  __lll_lock_wait () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:133
+#5  0x00002b48ed1e6e82 in __GI___pthread_mutex_lock (mutex=mutex@entry=0x9a49e0 &lt;loader_mutex&gt;) at ../nptl/pthread_mutex_lock.c:115
+#6  0x0000000000560245 in mono_os_mutex_lock (mutex=0x9a49e0 &lt;loader_mutex&gt;) at ../../mono/utils/mono-os-mutex.h:96
+#7  mono_coop_mutex_lock (mutex=0x9a49e0 &lt;loader_mutex&gt;) at ../../mono/utils/mono-coop-mutex.h:53
+#8  mono_loader_lock () at loader.c:2258
+#9  0x0000000000539e85 in mono_class_create_from_typedef (image=image@entry=0x267f290, type_token=type_token@entry=33554718, error=error@entry=0x2b4907a66360) at class.c:5748
+#10 0x0000000000539d7e in mono_class_get_checked (image=0x267f290, type_token=33554718, error=error@entry=0x2b4907a66360) at class.c:7436
+#11 0x0000000000547a1d in mono_exception_from_token (image=&lt;optimized out&gt;, token=&lt;optimized out&gt;) at exception.c:108
+#12 0x0000000041356388 in ?? ()
+#13 0x00002b48edaa8ab0 in ?? ()
+#14 0x000000004116af9e in ?? ()
+#15 0x0000000000000000 in ?? ()
+
+Thread 18 (Thread 0x2b4907867700 (LWP 53682)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x390cb70, context=context@entry=0x2b4907864740) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b4907864740) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  __lll_lock_wait () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:135
+#5  0x00002b48ed1e6e82 in __GI___pthread_mutex_lock (mutex=mutex@entry=0x267a990) at ../nptl/pthread_mutex_lock.c:115
+#6  0x00000000005ce3d7 in mono_os_mutex_lock (mutex=0x267a990) at ../../mono/utils/mono-os-mutex.h:96
+#7  mono_coop_mutex_lock (mutex=0x267a990) at ../../mono/utils/mono-coop-mutex.h:53
+#8  mono_domain_lock (domain=domain@entry=0x267a990) at domain.c:2047
+#9  0x00000000005ec61b in mono_method_get_object_checked (domain=0x267a990, method=method@entry=0x2ab4270, refclass=refclass@entry=0x2b49080fde18, error=error@entry=0x2b4907864e30) at reflection.c:7445
+#10 0x0000000000557570 in ves_icall_System_Reflection_MethodBase_GetMethodFromHandleInternalType_native (method=0x2ab4270, type=&lt;optimized out&gt;, generic_check=&lt;optimized out&gt;) at icall.c:5233
+#11 0x0000000040e06d1e in ?? ()
+#12 0x000000000000003c in ?? ()
+#13 0x00002b48edcddce8 in ?? ()
+#14 0x00000000000000c4 in ?? ()
+#15 0x00002b48edf76290 in ?? ()
+#16 0x00000000000000c7 in ?? ()
+#17 0x0000000002eb9330 in ?? ()
+#18 0x00002b4907864f80 in ?? ()
+#19 0x00002b4907864fd0 in ?? ()
+#20 0x00002b4907864ec0 in ?? ()
+#21 0x00002b48ef7db6bd in System_Reflection_MethodBase_GetMethodFromHandleNoGenericCheck_System_RuntimeMethodHandle_System_RuntimeTypeHandle (handle=44778096, reflectedType=135257824) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#22 0x00002b48ef5d53b0 in System_RuntimeType_GetMethodsByName_string_System_Reflection_BindingFlags_bool_System_RuntimeType (this=..., name=0x2b48edcddce8, bindingAttr=(Public | NonPublic | FlattenHierarchy | CreateInstance | PutDispProperty | ExactBinding | SuppressChangeType | unknown: 44564480), ignoreCase=224, reflectedType=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#23 0x00002b48ef5d75cd in System_RuntimeType_GetMethodCandidates_string_System_Reflection_BindingFlags_System_Reflection_CallingConventions_System_Type___bool (this=..., name=0x0, bindingAttr=(Instance | Static | Public | NonPublic), callConv=Any, types=0x0, allowPrefixLookup=false) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#24 0x00002b48ef5d8205 in System_RuntimeType_GetMethods_System_Reflection_BindingFlags (this=..., bindingAttr=(Instance | Static | Public | NonPublic)) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#25 0x00002b48ef81e1cd in System_Diagnostics_StackTrace_GetFullNameForStackTrace_System_Text_StringBuilder_System_Reflection_MethodBase (sb=..., mi=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#26 0x00002b48ef81de43 in System_Diagnostics_StackTrace_AddFrames_System_Text_StringBuilder (this=..., sb=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#27 0x00002b48ef81e58f in System_Diagnostics_StackTrace_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#28 0x00002b48ef81e5d1 in System_Diagnostics_StackTrace_ToString_System_Diagnostics_StackTrace_TraceFormat (this=..., traceFormat=&lt;optimized out&gt;) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#29 0x00002b48ef59ced6 in System_Environment_GetStackTrace_System_Exception_bool (e=..., needFileInfo=32) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#30 0x00002b48ef606e08 in System_Exception_GetStackTrace_bool (this=..., needFileInfo=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#31 0x00002b48ef607172 in System_Exception_ToString_bool_bool (this=..., needFileLineInfo=true, needMessage=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#32 0x00002b48ef606fc7 in System_Exception_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#33 0x000000004116af84 in ?? ()
+#34 0x0000000000000000 in ?? ()
+
+Thread 17 (Thread 0x2b4907666700 (LWP 53681)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2b4930000900, context=context@entry=0x2b4907663740) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b4907663740) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  __lll_lock_wait () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:135
+#5  0x00002b48ed1e6e82 in __GI___pthread_mutex_lock (mutex=mutex@entry=0x267a990) at ../nptl/pthread_mutex_lock.c:115
+#6  0x00000000005ce3d7 in mono_os_mutex_lock (mutex=0x267a990) at ../../mono/utils/mono-os-mutex.h:96
+#7  mono_coop_mutex_lock (mutex=0x267a990) at ../../mono/utils/mono-coop-mutex.h:53
+#8  mono_domain_lock (domain=domain@entry=0x267a990) at domain.c:2047
+#9  0x00000000005ec61b in mono_method_get_object_checked (domain=0x267a990, method=method@entry=0x2b49002c9bd8, refclass=refclass@entry=0x2cc5728, error=error@entry=0x2b4907663e20) at reflection.c:7445
+#10 0x0000000000557570 in ves_icall_System_Reflection_MethodBase_GetMethodFromHandleInternalType_native (method=0x2b49002c9bd8, type=&lt;optimized out&gt;, generic_check=&lt;optimized out&gt;) at icall.c:5233
+#11 0x0000000040e06d1e in ?? ()
+#12 0x000000000000003c in ?? ()
+#13 0x00002b48edcf7880 in ?? ()
+#14 0x0000000000000219 in ?? ()
+#15 0x00002b48edf37190 in ?? ()
+#16 0x0000000000000296 in ?? ()
+#17 0x00002b4930001e00 in ?? ()
+#18 0x00002b4907663f70 in ?? ()
+#19 0x00002b4907663fc0 in ?? ()
+#20 0x00002b4907663eb0 in ?? ()
+#21 0x00002b48ef7db6bd in System_Reflection_MethodBase_GetMethodFromHandleNoGenericCheck_System_RuntimeMethodHandle_System_RuntimeTypeHandle (handle=2923480, reflectedType=46946288) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#22 0x00002b48ef5d53b0 in System_RuntimeType_GetMethodsByName_string_System_Reflection_BindingFlags_bool_System_RuntimeType (this=..., name=0x2b48edcf7880, bindingAttr=(Static | Public | FlattenHierarchy | InvokeMethod | CreateInstance | SetField | GetProperty | PutRefDispProperty | OptionalParamBinding | unknown: 2621568), ignoreCase=240, reflectedType=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#23 0x00002b48ef5d75cd in System_RuntimeType_GetMethodCandidates_string_System_Reflection_BindingFlags_System_Reflection_CallingConventions_System_Type___bool (this=..., name=0x0, bindingAttr=(Instance | Static | Public | NonPublic), callConv=Any, types=0x0, allowPrefixLookup=false) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#24 0x00002b48ef5d8205 in System_RuntimeType_GetMethods_System_Reflection_BindingFlags (this=..., bindingAttr=(Instance | Static | Public | NonPublic)) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#25 0x00002b48ef81e1cd in System_Diagnostics_StackTrace_GetFullNameForStackTrace_System_Text_StringBuilder_System_Reflection_MethodBase (sb=..., mi=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#26 0x00002b48ef81de43 in System_Diagnostics_StackTrace_AddFrames_System_Text_StringBuilder (this=..., sb=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#27 0x00002b48ef81e58f in System_Diagnostics_StackTrace_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#28 0x00002b48ef81e5d1 in System_Diagnostics_StackTrace_ToString_System_Diagnostics_StackTrace_TraceFormat (this=..., traceFormat=&lt;optimized out&gt;) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#29 0x00002b48ef59ced6 in System_Environment_GetStackTrace_System_Exception_bool (e=..., needFileInfo=40) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#30 0x00002b48ef606e08 in System_Exception_GetStackTrace_bool (this=..., needFileInfo=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#31 0x00002b48ef607172 in System_Exception_ToString_bool_bool (this=..., needFileLineInfo=true, needMessage=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#32 0x00002b48ef606fc7 in System_Exception_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#33 0x000000004135637d in ?? ()
+#34 0x00002b48edaa8ab0 in ?? ()
+#35 0x000000004116af9e in ?? ()
+#36 0x0000000000000000 in ?? ()
+
+Thread 16 (Thread 0x2b4907465700 (LWP 53680)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2b492c000900, context=context@entry=0x2b4907462740) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b4907462740) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  __lll_unlock_wake () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:371
+#5  0x00002b48ed1e853f in __pthread_mutex_unlock_usercnt (decr=1, mutex=0x267a990) at pthread_mutex_unlock.c:55
+#6  __GI___pthread_mutex_unlock (mutex=0x267a990) at pthread_mutex_unlock.c:314
+#7  0x00000000005ce456 in mono_os_mutex_unlock (mutex=&lt;optimized out&gt;) at ../../mono/utils/mono-os-mutex.h:118
+#8  mono_coop_mutex_unlock (mutex=&lt;optimized out&gt;) at ../../mono/utils/mono-coop-mutex.h:67
+#9  mono_domain_unlock (domain=&lt;optimized out&gt;) at domain.c:2053
+#10 0x00000000005ec5d4 in mono_method_get_object_checked (domain=0x267a990, method=method@entry=0x2b49080fe158, refclass=refclass@entry=0x2b49080fde18, error=error@entry=0x2b4907462e20) at reflection.c:7445
+#11 0x0000000000557570 in ves_icall_System_Reflection_MethodBase_GetMethodFromHandleInternalType_native (method=0x2b49080fe158, type=&lt;optimized out&gt;, generic_check=&lt;optimized out&gt;) at icall.c:5233
+#12 0x0000000040e06d1e in ?? ()
+#13 0x000000000000003c in ?? ()
+#14 0x00002b48edcce970 in ?? ()
+#15 0x0000000000000002 in ?? ()
+#16 0x00002b48edfea7b8 in ?? ()
+#17 0x00000000000000c7 in ?? ()
+#18 0x00002b492c001e00 in ?? ()
+#19 0x00002b4907462f70 in ?? ()
+#20 0x00002b4907462fc0 in ?? ()
+#21 0x00002b4907462eb0 in ?? ()
+#22 0x00002b48ef7db6bd in System_Reflection_MethodBase_GetMethodFromHandleNoGenericCheck_System_RuntimeMethodHandle_System_RuntimeTypeHandle (handle=135258456, reflectedType=135257824) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#23 0x00002b48ef5d53b0 in System_RuntimeType_GetMethodsByName_string_System_Reflection_BindingFlags_bool_System_RuntimeType (this=..., name=0x2b48edcce970, bindingAttr=(Static | Public | FlattenHierarchy | InvokeMethod | SetProperty | PutDispProperty | PutRefDispProperty | ExactBinding | SuppressChangeType | OptionalParamBinding | unknown: 134742016), ignoreCase=224, reflectedType=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#24 0x00002b48ef5d75cd in System_RuntimeType_GetMethodCandidates_string_System_Reflection_BindingFlags_System_Reflection_CallingConventions_System_Type___bool (this=..., name=0x0, bindingAttr=(Instance | Static | Public | NonPublic), callConv=Any, types=0x0, allowPrefixLookup=false) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#25 0x00002b48ef5d8205 in System_RuntimeType_GetMethods_System_Reflection_BindingFlags (this=..., bindingAttr=(Instance | Static | Public | NonPublic)) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#26 0x00002b48ef81e1cd in System_Diagnostics_StackTrace_GetFullNameForStackTrace_System_Text_StringBuilder_System_Reflection_MethodBase (sb=..., mi=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#27 0x00002b48ef81de43 in System_Diagnostics_StackTrace_AddFrames_System_Text_StringBuilder (this=..., sb=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#28 0x00002b48ef81e58f in System_Diagnostics_StackTrace_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#29 0x00002b48ef81e5d1 in System_Diagnostics_StackTrace_ToString_System_Diagnostics_StackTrace_TraceFormat (this=..., traceFormat=&lt;optimized out&gt;) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#30 0x00002b48ef59ced6 in System_Environment_GetStackTrace_System_Exception_bool (e=..., needFileInfo=232) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#31 0x00002b48ef606e08 in System_Exception_GetStackTrace_bool (this=..., needFileInfo=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#32 0x00002b48ef607172 in System_Exception_ToString_bool_bool (this=..., needFileLineInfo=true, needMessage=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#33 0x00002b48ef606fc7 in System_Exception_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#34 0x000000004135637d in ?? ()
+#35 0x00002b48edaa8ab0 in ?? ()
+#36 0x000000004116af9e in ?? ()
+#37 0x0000000000000000 in ?? ()
+
+Thread 15 (Thread 0x2b4907264700 (LWP 53679)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2b4928000900, context=context@entry=0x2b4907261740) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b4907261740) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  __lll_lock_wait () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:135
+#5  0x00002b48ed1e6e82 in __GI___pthread_mutex_lock (mutex=mutex@entry=0x267a990) at ../nptl/pthread_mutex_lock.c:115
+#6  0x00000000005ce3d7 in mono_os_mutex_lock (mutex=0x267a990) at ../../mono/utils/mono-os-mutex.h:96
+#7  mono_coop_mutex_lock (mutex=0x267a990) at ../../mono/utils/mono-coop-mutex.h:53
+#8  mono_domain_lock (domain=domain@entry=0x267a990) at domain.c:2047
+#9  0x00000000005ec61b in mono_method_get_object_checked (domain=0x267a990, method=method@entry=0x31c9090, refclass=refclass@entry=0x2b48fc25d370, error=error@entry=0x2b4907261e20) at reflection.c:7445
+#10 0x0000000000557570 in ves_icall_System_Reflection_MethodBase_GetMethodFromHandleInternalType_native (method=0x31c9090, type=&lt;optimized out&gt;, generic_check=&lt;optimized out&gt;) at icall.c:5233
+#11 0x0000000040e06d1e in ?? ()
+#12 0x000000000000003c in ?? ()
+#13 0x00002b48edceeb48 in ?? ()
+#14 0x000000000000001e in ?? ()
+#15 0x00002b48edfd8008 in ?? ()
+#16 0x00000000000000b5 in ?? ()
+#17 0x00002b4928001e00 in ?? ()
+#18 0x00002b4907261f70 in ?? ()
+#19 0x00002b4907261fc0 in ?? ()
+#20 0x00002b4907261eb0 in ?? ()
+#21 0x00002b48ef7db6bd in System_Reflection_MethodBase_GetMethodFromHandleNoGenericCheck_System_RuntimeMethodHandle_System_RuntimeTypeHandle (handle=52203664, reflectedType=-64629704) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#22 0x00002b48ef5d53b0 in System_RuntimeType_GetMethodsByName_string_System_Reflection_BindingFlags_bool_System_RuntimeType (this=..., name=0x2b48edceeb48, bindingAttr=(Public | GetProperty | PutRefDispProperty | OptionalParamBinding | IgnoreReturn | unknown: 35127424), ignoreCase=56, reflectedType=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#23 0x00002b48ef5d75cd in System_RuntimeType_GetMethodCandidates_string_System_Reflection_BindingFlags_System_Reflection_CallingConventions_System_Type___bool (this=..., name=0x0, bindingAttr=(Instance | Static | Public | NonPublic), callConv=Any, types=0x0, allowPrefixLookup=false) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#24 0x00002b48ef5d8205 in System_RuntimeType_GetMethods_System_Reflection_BindingFlags (this=..., bindingAttr=(Instance | Static | Public | NonPublic)) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#25 0x00002b48ef81e1cd in System_Diagnostics_StackTrace_GetFullNameForStackTrace_System_Text_StringBuilder_System_Reflection_MethodBase (sb=..., mi=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#26 0x00002b48ef81de43 in System_Diagnostics_StackTrace_AddFrames_System_Text_StringBuilder (this=..., sb=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#27 0x00002b48ef81e58f in System_Diagnostics_StackTrace_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#28 0x00002b48ef81e5d1 in System_Diagnostics_StackTrace_ToString_System_Diagnostics_StackTrace_TraceFormat (this=..., traceFormat=&lt;optimized out&gt;) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#29 0x00002b48ef59ced6 in System_Environment_GetStackTrace_System_Exception_bool (e=..., needFileInfo=64) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#30 0x00002b48ef606e08 in System_Exception_GetStackTrace_bool (this=..., needFileInfo=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#31 0x00002b48ef607172 in System_Exception_ToString_bool_bool (this=..., needFileLineInfo=true, needMessage=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#32 0x00002b48ef606fc7 in System_Exception_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#33 0x000000004135637d in ?? ()
+#34 0x00002b48edaa8ab0 in ?? ()
+#35 0x000000004116af9e in ?? ()
+#36 0x0000000000000000 in ?? ()
+
+Thread 14 (Thread 0x2b4907063700 (LWP 53678)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2b4924000900, context=context@entry=0x2b4907060740) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b4907060740) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  __lll_lock_wait () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:135
+#5  0x00002b48ed1e6e82 in __GI___pthread_mutex_lock (mutex=mutex@entry=0x267a990) at ../nptl/pthread_mutex_lock.c:115
+#6  0x00000000005ce3d7 in mono_os_mutex_lock (mutex=0x267a990) at ../../mono/utils/mono-os-mutex.h:96
+#7  mono_coop_mutex_lock (mutex=0x267a990) at ../../mono/utils/mono-coop-mutex.h:53
+#8  mono_domain_lock (domain=domain@entry=0x267a990) at domain.c:2047
+#9  0x00000000005ec61b in mono_method_get_object_checked (domain=0x267a990, method=method@entry=0x35ed9d8, refclass=refclass@entry=0x2b4900087a38, error=error@entry=0x2b4907060e20) at reflection.c:7445
+#10 0x0000000000557570 in ves_icall_System_Reflection_MethodBase_GetMethodFromHandleInternalType_native (method=0x35ed9d8, type=&lt;optimized out&gt;, generic_check=&lt;optimized out&gt;) at icall.c:5233
+#11 0x0000000040e06d1e in ?? ()
+#12 0x000000000000003c in ?? ()
+#13 0x00002b48edce4a40 in ?? ()
+#14 0x00000000000000ba in ?? ()
+#15 0x00002b48eddefe08 in ?? ()
+#16 0x00000000000000c3 in ?? ()
+#17 0x00002b4924001e00 in ?? ()
+#18 0x00002b4907060f70 in ?? ()
+#19 0x00002b4907060fc0 in ?? ()
+#20 0x00002b4907060eb0 in ?? ()
+#21 0x00002b48ef7db6bd in System_Reflection_MethodBase_GetMethodFromHandleNoGenericCheck_System_RuntimeMethodHandle_System_RuntimeTypeHandle (handle=56547800, reflectedType=555776) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#22 0x00002b48ef5d53b0 in System_RuntimeType_GetMethodsByName_string_System_Reflection_BindingFlags_bool_System_RuntimeType (this=..., name=0x2b48edce4a40, bindingAttr=(Static | Public | FlattenHierarchy | InvokeMethod | SetField | GetProperty | PutDispProperty | PutRefDispProperty | SuppressChangeType | OptionalParamBinding | IgnoreReturn | unknown: 39321728), ignoreCase=false, reflectedType=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#23 0x00002b48ef5d75cd in System_RuntimeType_GetMethodCandidates_string_System_Reflection_BindingFlags_System_Reflection_CallingConventions_System_Type___bool (this=..., name=0x0, bindingAttr=(Instance | Static | Public | NonPublic), callConv=Any, types=0x0, allowPrefixLookup=false) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#24 0x00002b48ef5d8205 in System_RuntimeType_GetMethods_System_Reflection_BindingFlags (this=..., bindingAttr=(Instance | Static | Public | NonPublic)) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#25 0x00002b48ef81e1cd in System_Diagnostics_StackTrace_GetFullNameForStackTrace_System_Text_StringBuilder_System_Reflection_MethodBase (sb=..., mi=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#26 0x00002b48ef81de43 in System_Diagnostics_StackTrace_AddFrames_System_Text_StringBuilder (this=..., sb=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#27 0x00002b48ef81e58f in System_Diagnostics_StackTrace_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#28 0x00002b48ef81e5d1 in System_Diagnostics_StackTrace_ToString_System_Diagnostics_StackTrace_TraceFormat (this=..., traceFormat=&lt;optimized out&gt;) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#29 0x00002b48ef59ced6 in System_Environment_GetStackTrace_System_Exception_bool (e=..., needFileInfo=200) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#30 0x00002b48ef606e08 in System_Exception_GetStackTrace_bool (this=..., needFileInfo=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#31 0x00002b48ef607172 in System_Exception_ToString_bool_bool (this=..., needFileLineInfo=true, needMessage=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#32 0x00002b48ef606fc7 in System_Exception_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#33 0x000000004135637d in ?? ()
+#34 0x00002b48edaa8ab0 in ?? ()
+#35 0x000000004116af9e in ?? ()
+#36 0x0000000000000000 in ?? ()
+
+Thread 13 (Thread 0x2b4906e62700 (LWP 53677)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2b4920000900, context=context@entry=0x2b4906e5f740) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b4906e5f740) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  __lll_unlock_wake () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:371
+#5  0x00002b48ed1e853f in __pthread_mutex_unlock_usercnt (decr=1, mutex=0x267a990) at pthread_mutex_unlock.c:55
+#6  __GI___pthread_mutex_unlock (mutex=0x267a990) at pthread_mutex_unlock.c:314
+#7  0x00000000005ce456 in mono_os_mutex_unlock (mutex=&lt;optimized out&gt;) at ../../mono/utils/mono-os-mutex.h:118
+#8  mono_coop_mutex_unlock (mutex=&lt;optimized out&gt;) at ../../mono/utils/mono-coop-mutex.h:67
+#9  mono_domain_unlock (domain=&lt;optimized out&gt;) at domain.c:2053
+#10 0x00000000005ec5d4 in mono_method_get_object_checked (domain=0x267a990, method=method@entry=0x2b490032b9d0, refclass=refclass@entry=0x2cc5728, error=error@entry=0x2b4906e5fe20) at reflection.c:7445
+#11 0x0000000000557570 in ves_icall_System_Reflection_MethodBase_GetMethodFromHandleInternalType_native (method=0x2b490032b9d0, type=&lt;optimized out&gt;, generic_check=&lt;optimized out&gt;) at icall.c:5233
+#12 0x0000000040e06d1e in ?? ()
+#13 0x000000000000003c in ?? ()
+#14 0x00002b48edcf57b8 in ?? ()
+#15 0x0000000000000148 in ?? ()
+#16 0x00002b48edf38660 in ?? ()
+#17 0x0000000000000296 in ?? ()
+#18 0x00002b4920001e00 in ?? ()
+#19 0x00002b4906e5ff70 in ?? ()
+#20 0x00002b4906e5ffc0 in ?? ()
+#21 0x00002b4906e5feb0 in ?? ()
+#22 0x00002b48ef7db6bd in System_Reflection_MethodBase_GetMethodFromHandleNoGenericCheck_System_RuntimeMethodHandle_System_RuntimeTypeHandle (handle=3324368, reflectedType=46946288) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#23 0x00002b48ef5d53b0 in System_RuntimeType_GetMethodsByName_string_System_Reflection_BindingFlags_bool_System_RuntimeType (this=..., name=0x2b48edcf57b8, bindingAttr=(Public | FlattenHierarchy | InvokeMethod | SetField | GetProperty | SetProperty | PutRefDispProperty | SuppressChangeType | unknown: 3145856), ignoreCase=240, reflectedType=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#24 0x00002b48ef5d75cd in System_RuntimeType_GetMethodCandidates_string_System_Reflection_BindingFlags_System_Reflection_CallingConventions_System_Type___bool (this=..., name=0x0, bindingAttr=(Instance | Static | Public | NonPublic), callConv=Any, types=0x0, allowPrefixLookup=false) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#25 0x00002b48ef5d8205 in System_RuntimeType_GetMethods_System_Reflection_BindingFlags (this=..., bindingAttr=(Instance | Static | Public | NonPublic)) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#26 0x00002b48ef81e1cd in System_Diagnostics_StackTrace_GetFullNameForStackTrace_System_Text_StringBuilder_System_Reflection_MethodBase (sb=..., mi=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#27 0x00002b48ef81de43 in System_Diagnostics_StackTrace_AddFrames_System_Text_StringBuilder (this=..., sb=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#28 0x00002b48ef81e58f in System_Diagnostics_StackTrace_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#29 0x00002b48ef81e5d1 in System_Diagnostics_StackTrace_ToString_System_Diagnostics_StackTrace_TraceFormat (this=..., traceFormat=&lt;optimized out&gt;) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#30 0x00002b48ef59ced6 in System_Environment_GetStackTrace_System_Exception_bool (e=..., needFileInfo=40) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#31 0x00002b48ef606e08 in System_Exception_GetStackTrace_bool (this=..., needFileInfo=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#32 0x00002b48ef607172 in System_Exception_ToString_bool_bool (this=..., needFileLineInfo=true, needMessage=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#33 0x00002b48ef606fc7 in System_Exception_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#34 0x000000004135637d in ?? ()
+#35 0x00002b48edaa8ab0 in ?? ()
+#36 0x000000004116af9e in ?? ()
+#37 0x0000000000000000 in ?? ()
+
+Thread 12 (Thread 0x2b4906c61700 (LWP 53676)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2b491c000900, context=context@entry=0x2b4906c5e180) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b4906c5e180) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  __lll_lock_wait () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:133
+#5  0x00002b48ed1e6e82 in __GI___pthread_mutex_lock (mutex=mutex@entry=0x9a49e0 &lt;loader_mutex&gt;) at ../nptl/pthread_mutex_lock.c:115
+#6  0x0000000000560245 in mono_os_mutex_lock (mutex=0x9a49e0 &lt;loader_mutex&gt;) at ../../mono/utils/mono-os-mutex.h:96
+#7  mono_coop_mutex_lock (mutex=0x9a49e0 &lt;loader_mutex&gt;) at ../../mono/utils/mono-coop-mutex.h:53
+#8  mono_loader_lock () at loader.c:2258
+#9  0x00000000005ec0dc in mono_type_get_object_checked (domain=0x267a990, type=type@entry=0x2b38cf8, error=error@entry=0x2b4906c5e820) at reflection.c:7290
+#10 0x000000000054aa13 in ves_icall_RuntimeTypeHandle_GetGenericTypeDefinition_impl (type=0x2b49061b8910) at icall.c:2872
+#11 0x0000000040ee1aa2 in ?? ()
+#12 0x00002b48eda86f20 in ?? ()
+#13 0x00002b48edaa5c30 in ?? ()
+#14 0x00002b49061b8910 in ?? ()
+#15 0x00002b48edf75c80 in ?? ()
+#16 0x00002b48edcc37f8 in ?? ()
+#17 0x00002b491c001e00 in ?? ()
+#18 0x00002b48edcc37f8 in ?? ()
+#19 0x00002b48edf75cf0 in ?? ()
+#20 0x00002b4906c5e8b0 in ?? ()
+#21 0x00002b48ef5ad4fd in System_RuntimeTypeHandle_GetGenericTypeDefinition_System_RuntimeType (type=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#22 0x00002b48ef5dac45 in System_RuntimeType_GetGenericTypeDefinition (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#23 0x00002b48ef81e1b8 in System_Diagnostics_StackTrace_GetFullNameForStackTrace_System_Text_StringBuilder_System_Reflection_MethodBase (sb=..., mi=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#24 0x00002b48ef81de43 in System_Diagnostics_StackTrace_AddFrames_System_Text_StringBuilder (this=..., sb=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#25 0x00002b48ef81e58f in System_Diagnostics_StackTrace_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#26 0x00002b48ef81e5d1 in System_Diagnostics_StackTrace_ToString_System_Diagnostics_StackTrace_TraceFormat (this=..., traceFormat=&lt;optimized out&gt;) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#27 0x00002b48ef59ced6 in System_Environment_GetStackTrace_System_Exception_bool (e=..., needFileInfo=200) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#28 0x00002b48ef606e08 in System_Exception_GetStackTrace_bool (this=..., needFileInfo=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#29 0x00002b48ef607172 in System_Exception_ToString_bool_bool (this=..., needFileLineInfo=true, needMessage=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#30 0x00002b48ef606fc7 in System_Exception_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#31 0x000000004135637d in ?? ()
+#32 0x00002b48edaa8ab0 in ?? ()
+#33 0x000000004116af9e in ?? ()
+#34 0x0000000000000000 in ?? ()
+
+Thread 11 (Thread 0x2b4906a60700 (LWP 53675)):
+#0  0x00002b48ed1ec867 in futex_abstimed_wait_cancelable (private=0, abstime=0x0, expected=0, futex_word=0x9a5b20 &lt;suspend_ack_semaphore&gt;) at ../sysdeps/unix/sysv/linux/futex-internal.h:205
+#1  do_futex_wait (sem=sem@entry=0x9a5b20 &lt;suspend_ack_semaphore&gt;, abstime=0x0) at sem_waitcommon.c:111
+#2  0x00002b48ed1ec914 in __new_sem_wait_slow (sem=0x9a5b20 &lt;suspend_ack_semaphore&gt;, abstime=0x0) at sem_waitcommon.c:181
+#3  0x00002b48ed1ec9ba in __new_sem_wait (sem=sem@entry=0x9a5b20 &lt;suspend_ack_semaphore&gt;) at sem_wait.c:29
+#4  0x0000000000600c41 in mono_os_sem_wait (flags=MONO_SEM_FLAGS_NONE, sem=0x9a5b20 &lt;suspend_ack_semaphore&gt;) at ../../mono/utils/mono-os-semaphore.h:209
+#5  sgen_wait_for_suspend_ack (count=count@entry=15) at sgen-os-posix.c:161
+#6  0x0000000000600d2f in sgen_thread_handshake (suspend=suspend@entry=1) at sgen-os-posix.c:196
+#7  0x00000000006014aa in sgen_client_stop_world (generation=generation@entry=0) at sgen-stw.c:225
+#8  0x0000000000622dea in sgen_stop_world (generation=0) at sgen-gc.c:3221
+#9  0x000000000062316f in sgen_perform_collection (requested_size=requested_size@entry=5328, generation_to_collect=0, reason=0x72219c "Nursery full", wait_to_finish=wait_to_finish@entry=0, stw=stw@entry=1) at sgen-gc.c:2247
+#10 0x000000000062349c in sgen_ensure_free_space (size=size@entry=5328, generation=generation@entry=0) at sgen-gc.c:2226
+#11 0x0000000000615476 in sgen_alloc_obj_nolock (vtable=vtable@entry=0x289cce8, size=size@entry=5328) at sgen-alloc.c:261
+#12 0x0000000000601e21 in mono_gc_alloc_vector (vtable=0x289cce8, size=5328, max_length=662) at sgen-mono.c:1768
+#13 0x0000000040e0813e in ?? ()
+#14 0x00002b48edfff0b0 in ?? ()
+#15 0x00002b4906a606e8 in ?? ()
+#16 0x00000000000014d0 in ?? ()
+#17 0x000000000289cce8 in ?? ()
+#18 0x0000000000000296 in ?? ()
+#19 0x00002b4918001e00 in ?? ()
+#20 0x00002b4906a5def0 in ?? ()
+#21 0x00002b4906a5df20 in ?? ()
+#22 0x00002b4906a5de80 in ?? ()
+#23 0x0000000040e061c4 in ?? ()
+#24 0x00002b48ee000580 in ?? ()
+#25 0x0000000040e0e3ad in ?? ()
+#26 0x000000000000003c in ?? ()
+#27 0x0000000000000000 in ?? ()
+
+Thread 10 (Thread 0x2b49066dd700 (LWP 53674)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2b4914000900, context=context@entry=0x2b49066db340) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b49066db340) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  0x0000000040e07ae7 in ?? ()
+#5  0x00002b48edcb68d0 in ?? ()
+#6  0x0000000000000000 in ?? ()
+
+Thread 9 (Thread 0x2b49064dc700 (LWP 53673)):
+#0  0x00002b48ed1edfbb in __waitpid (pid=pid@entry=53691, stat_loc=stat_loc@entry=0x2b48f18eb10c, options=options@entry=0) at ../sysdeps/unix/sysv/linux/waitpid.c:29
+#1  0x00000000004b4086 in mono_handle_native_sigsegv (signal=signal@entry=11, ctx=ctx@entry=0x2b48f18ebac0, info=info@entry=0x2b48f18ebbf0) at mini-exceptions.c:2424
+#2  0x000000000050a4fe in mono_arch_handle_altstack_exception (sigctx=sigctx@entry=0x2b48f18ebac0, siginfo=siginfo@entry=0x2b48f18ebbf0, fault_addr=&lt;optimized out&gt;, stack_ovf=stack_ovf@entry=0) at exceptions-amd64.c:795
+#3  0x0000000000427453 in mono_sigsegv_signal_handler (_dummy=11, _info=0x2b48f18ebbf0, context=0x2b48f18ebac0) at mini-runtime.c:2872
+#4  &lt;signal handler called&gt;
+#5  0x000000004116e822 in ?? ()
+#6  0x0000000040f89298 in ?? ()
+#7  0x00002b4905bdadb0 in ?? ()
+#8  0x00002b490553ee30 in ?? ()
+#9  0x0000000000000000 in ?? ()
+
+Thread 8 (Thread 0x2b4905358700 (LWP 53646)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2b490c000900, context=context@entry=0x2b4905355500) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b4905355500) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  __lll_lock_wait () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:133
+#5  0x00002b48ed1e6e82 in __GI___pthread_mutex_lock (mutex=mutex@entry=0x9a49e0 &lt;loader_mutex&gt;) at ../nptl/pthread_mutex_lock.c:115
+#6  0x0000000000560245 in mono_os_mutex_lock (mutex=0x9a49e0 &lt;loader_mutex&gt;) at ../../mono/utils/mono-os-mutex.h:96
+#7  mono_coop_mutex_lock (mutex=0x9a49e0 &lt;loader_mutex&gt;) at ../../mono/utils/mono-coop-mutex.h:53
+#8  mono_loader_lock () at loader.c:2258
+#9  0x00000000005ec0dc in mono_type_get_object_checked (domain=0x267a990, type=type@entry=0x26e8cb0, error=error@entry=0x2b4905355bb0) at reflection.c:7290
+#10 0x000000000054aa13 in ves_icall_RuntimeTypeHandle_GetGenericTypeDefinition_impl (type=0x2b4905140dc0) at icall.c:2872
+#11 0x0000000040ee1aa2 in ?? ()
+#12 0x0000000000000018 in ?? ()
+#13 0x00002b4905140dc0 in ?? ()
+#14 0x0000000000000001 in ?? ()
+#15 0x00002b48edfac2e8 in ?? ()
+#16 0x00002b48edce9250 in ?? ()
+#17 0x00002b490c001e00 in ?? ()
+#18 0x00002b48edce9250 in ?? ()
+#19 0x00002b48edce90b8 in ?? ()
+#20 0x00002b4905355c40 in ?? ()
+#21 0x00002b48ef5ad4fd in System_RuntimeTypeHandle_GetGenericTypeDefinition_System_RuntimeType (type=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#22 0x00002b48ef5dac45 in System_RuntimeType_GetGenericTypeDefinition (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#23 0x00002b48ef81e3b6 in System_Diagnostics_StackTrace_GetFullNameForStackTrace_System_Text_StringBuilder_System_Reflection_MethodBase (sb=..., mi=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#24 0x00002b48ef81de43 in System_Diagnostics_StackTrace_AddFrames_System_Text_StringBuilder (this=..., sb=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#25 0x00002b48ef81e58f in System_Diagnostics_StackTrace_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#26 0x00002b48ef81e5d1 in System_Diagnostics_StackTrace_ToString_System_Diagnostics_StackTrace_TraceFormat (this=..., traceFormat=&lt;optimized out&gt;) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#27 0x00002b48ef59ced6 in System_Environment_GetStackTrace_System_Exception_bool (e=..., needFileInfo=false) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#28 0x00002b48ef606e08 in System_Exception_GetStackTrace_bool (this=..., needFileInfo=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#29 0x00002b48ef607172 in System_Exception_ToString_bool_bool (this=..., needFileLineInfo=true, needMessage=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#30 0x00002b48ef606fc7 in System_Exception_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#31 0x000000004116af84 in ?? ()
+#32 0x0000000000000000 in ?? ()
+
+Thread 7 (Thread 0x2b4904580700 (LWP 53642)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2b4908000900, context=context@entry=0x2b490457d8c0) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b490457d8c0) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  __lll_lock_wait () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:135
+#5  0x00002b48ed1e6e82 in __GI___pthread_mutex_lock (mutex=mutex@entry=0x9a49e0 &lt;loader_mutex&gt;) at ../nptl/pthread_mutex_lock.c:115
+#6  0x0000000000560245 in mono_os_mutex_lock (mutex=0x9a49e0 &lt;loader_mutex&gt;) at ../../mono/utils/mono-os-mutex.h:96
+#7  mono_coop_mutex_lock (mutex=0x9a49e0 &lt;loader_mutex&gt;) at ../../mono/utils/mono-coop-mutex.h:53
+#8  mono_loader_lock () at loader.c:2258
+#9  0x0000000000517c9f in mono_get_seq_points (domain=domain@entry=0x267a990, method=0x2b490c17d120) at seq-points.c:259
+#10 0x0000000000517d91 in mono_find_prev_seq_point_for_native_offset (domain=domain@entry=0x267a990, method=&lt;optimized out&gt;, native_offset=native_offset@entry=59, info=info@entry=0x0, seq_point=seq_point@entry=0x2b490457dfd0) at seq-points.c:304
+#11 0x00000000004b0cad in ves_icall_get_trace (exc=&lt;optimized out&gt;, skip=&lt;optimized out&gt;, need_file_info=1 '\001') at mini-exceptions.c:778
+#12 0x000000004135505e in ?? ()
+#13 0x00002b48edcdc348 in ?? ()
+#14 0x00002b48edfc90c0 in ?? ()
+#15 0x0000000000000000 in ?? ()
+
+Thread 6 (Thread 0x2b48f2109700 (LWP 53640)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2b4900000900, context=context@entry=0x2b48f2106740) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b48f2106740) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  __lll_lock_wait () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:135
+#5  0x00002b48ed1e6e82 in __GI___pthread_mutex_lock (mutex=mutex@entry=0x267a990) at ../nptl/pthread_mutex_lock.c:115
+#6  0x00000000005ce3d7 in mono_os_mutex_lock (mutex=0x267a990) at ../../mono/utils/mono-os-mutex.h:96
+#7  mono_coop_mutex_lock (mutex=0x267a990) at ../../mono/utils/mono-coop-mutex.h:53
+#8  mono_domain_lock (domain=domain@entry=0x267a990) at domain.c:2047
+#9  0x00000000005ec61b in mono_method_get_object_checked (domain=0x267a990, method=method@entry=0x2b48fc192f10, refclass=refclass@entry=0x2cc5728, error=error@entry=0x2b48f2106e20) at reflection.c:7445
+#10 0x0000000000557570 in ves_icall_System_Reflection_MethodBase_GetMethodFromHandleInternalType_native (method=0x2b48fc192f10, type=&lt;optimized out&gt;, generic_check=&lt;optimized out&gt;) at icall.c:5233
+#11 0x0000000040e06d1e in ?? ()
+#12 0x000000000000003c in ?? ()
+#13 0x00002b48edcf8a88 in ?? ()
+#14 0x000000000000028d in ?? ()
+#15 0x00002b48edfaadd0 in ?? ()
+#16 0x0000000000000296 in ?? ()
+#17 0x00002b4900001e00 in ?? ()
+#18 0x00002b48f2106f70 in ?? ()
+#19 0x00002b48f2106fc0 in ?? ()
+#20 0x00002b48f2106eb0 in ?? ()
+#21 0x00002b48ef7db6bd in System_Reflection_MethodBase_GetMethodFromHandleNoGenericCheck_System_RuntimeMethodHandle_System_RuntimeTypeHandle (handle=-65458416, reflectedType=46946288) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#22 0x00002b48ef5d53b0 in System_RuntimeType_GetMethodsByName_string_System_Reflection_BindingFlags_bool_System_RuntimeType (this=..., name=0x2b48edcf8a88, bindingAttr=(Public | InvokeMethod | CreateInstance | GetField | SetField | SetProperty | ExactBinding | unknown: -65536000), ignoreCase=240, reflectedType=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#23 0x00002b48ef5d75cd in System_RuntimeType_GetMethodCandidates_string_System_Reflection_BindingFlags_System_Reflection_CallingConventions_System_Type___bool (this=..., name=0x0, bindingAttr=(Instance | Static | Public | NonPublic), callConv=Any, types=0x0, allowPrefixLookup=false) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#24 0x00002b48ef5d8205 in System_RuntimeType_GetMethods_System_Reflection_BindingFlags (this=..., bindingAttr=(Instance | Static | Public | NonPublic)) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#25 0x00002b48ef81e1cd in System_Diagnostics_StackTrace_GetFullNameForStackTrace_System_Text_StringBuilder_System_Reflection_MethodBase (sb=..., mi=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#26 0x00002b48ef81de43 in System_Diagnostics_StackTrace_AddFrames_System_Text_StringBuilder (this=..., sb=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#27 0x00002b48ef81e58f in System_Diagnostics_StackTrace_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#28 0x00002b48ef81e5d1 in System_Diagnostics_StackTrace_ToString_System_Diagnostics_StackTrace_TraceFormat (this=..., traceFormat=&lt;optimized out&gt;) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#29 0x00002b48ef59ced6 in System_Environment_GetStackTrace_System_Exception_bool (e=..., needFileInfo=32) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#30 0x00002b48ef606e08 in System_Exception_GetStackTrace_bool (this=..., needFileInfo=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#31 0x00002b48ef607172 in System_Exception_ToString_bool_bool (this=..., needFileLineInfo=true, needMessage=true) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#32 0x00002b48ef606fc7 in System_Exception_ToString (this=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#33 0x000000004135637d in ?? ()
+#34 0x00002b48edaa8ab0 in ?? ()
+#35 0x000000004116af9e in ?? ()
+#36 0x0000000000000000 in ?? ()
+
+Thread 5 (Thread 0x2b48f1f08700 (LWP 53639)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2b48fc000900, context=context@entry=0x2b48f1f05a80) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b48f1f05a80) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  __lll_lock_wait () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:133
+#5  0x00002b48ed1e6e82 in __GI___pthread_mutex_lock (mutex=mutex@entry=0x9a49e0 &lt;loader_mutex&gt;) at ../nptl/pthread_mutex_lock.c:115
+#6  0x0000000000560245 in mono_os_mutex_lock (mutex=0x9a49e0 &lt;loader_mutex&gt;) at ../../mono/utils/mono-os-mutex.h:96
+#7  mono_coop_mutex_lock (mutex=0x9a49e0 &lt;loader_mutex&gt;) at ../../mono/utils/mono-coop-mutex.h:53
+#8  mono_loader_lock () at loader.c:2258
+#9  0x0000000000517c9f in mono_get_seq_points (domain=domain@entry=0x267a990, method=0x2b490c17d120) at seq-points.c:259
+#10 0x0000000000517d91 in mono_find_prev_seq_point_for_native_offset (domain=domain@entry=0x267a990, method=&lt;optimized out&gt;, native_offset=native_offset@entry=59, info=info@entry=0x0, seq_point=seq_point@entry=0x2b48f1f06190) at seq-points.c:304
+#11 0x00000000004b0cad in ves_icall_get_trace (exc=&lt;optimized out&gt;, skip=&lt;optimized out&gt;, need_file_info=1 '\001') at mini-exceptions.c:778
+#12 0x000000004135505e in ?? ()
+#13 0x00002b48edefd000 in ?? ()
+#14 0x00002b48edfd4c78 in ?? ()
+#15 0x0000000000000000 in ?? ()
+
+Thread 4 (Thread 0x2b48edbf5700 (LWP 53638)):
+#0  __lll_lock_wait () at ../sysdeps/unix/sysv/linux/x86_64/lowlevellock.S:135
+#1  0x00002b48ed1e6dfd in __GI___pthread_mutex_lock (mutex=mutex@entry=0x9d5f40 &lt;gc_mutex&gt;) at ../nptl/pthread_mutex_lock.c:80
+#2  0x0000000000622cab in mono_os_mutex_lock (mutex=0x9d5f40 &lt;gc_mutex&gt;) at ../../mono/utils/mono-os-mutex.h:96
+#3  mono_coop_mutex_lock (mutex=0x9d5f40 &lt;gc_mutex&gt;) at ../../mono/utils/mono-coop-mutex.h:53
+#4  sgen_gc_lock () at sgen-gc.c:3169
+#5  0x0000000000605ed5 in mono_gc_set_skip_thread (skip=skip@entry=0) at sgen-mono.c:2294
+#6  0x00000000005b162f in monitor_thread () at threadpool-ms.c:918
+#7  0x00000000005aae5c in start_wrapper_internal (data=&lt;optimized out&gt;) at threads.c:753
+#8  start_wrapper (data=&lt;optimized out&gt;) at threads.c:815
+#9  0x000000000066974f in inner_start_thread (arg=&lt;optimized out&gt;) at mono-threads-posix.c:156
+#10 0x00002b48ed1e46fa in start_thread (arg=0x2b48edbf5700) at pthread_create.c:333
+#11 0x00002b48ed716b5d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 3 (Thread 0x2b48f01b0700 (LWP 53635)):
+#0  0x00002b48ed1ec867 in futex_abstimed_wait_cancelable (private=0, abstime=0x0, expected=0, futex_word=0x9a5400 &lt;finalizer_sem&gt;) at ../sysdeps/unix/sysv/linux/futex-internal.h:205
+#1  do_futex_wait (sem=sem@entry=0x9a5400 &lt;finalizer_sem&gt;, abstime=0x0) at sem_waitcommon.c:111
+#2  0x00002b48ed1ec914 in __new_sem_wait_slow (sem=0x9a5400 &lt;finalizer_sem&gt;, abstime=0x0) at sem_waitcommon.c:181
+#3  0x00002b48ed1ec9ba in __new_sem_wait (sem=sem@entry=0x9a5400 &lt;finalizer_sem&gt;) at sem_wait.c:29
+#4  0x00000000005cf10f in mono_os_sem_wait (flags=MONO_SEM_FLAGS_ALERTABLE, sem=0x9a5400 &lt;finalizer_sem&gt;) at ../../mono/utils/mono-os-semaphore.h:209
+#5  mono_coop_sem_wait (flags=MONO_SEM_FLAGS_ALERTABLE, sem=0x9a5400 &lt;finalizer_sem&gt;) at ../../mono/utils/mono-coop-semaphore.h:40
+#6  finalizer_thread (unused=unused@entry=0x0) at gc.c:903
+#7  0x00000000005aae5c in start_wrapper_internal (data=&lt;optimized out&gt;) at threads.c:753
+#8  start_wrapper (data=&lt;optimized out&gt;) at threads.c:815
+#9  0x000000000066974f in inner_start_thread (arg=&lt;optimized out&gt;) at mono-threads-posix.c:156
+#10 0x00002b48ed1e46fa in start_thread (arg=0x2b48f01b0700) at pthread_create.c:333
+#11 0x00002b48ed716b5d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 2 (Thread 0x2b48ee200700 (LWP 53632)):
+#0  pthread_cond_wait@@GLIBC_2.3.2 () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x000000000063d0df in mono_os_cond_wait (mutex=0x9b4820 &lt;lock&gt;, cond=0x9b47e0 &lt;work_cond&gt;) at ../../mono/utils/mono-os-mutex.h:150
+#2  thread_func (thread_data=0x0) at sgen-thread-pool.c:110
+#3  0x00002b48ed1e46fa in start_thread (arg=0x2b48ee200700) at pthread_create.c:333
+#4  0x00002b48ed716b5d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 1 (Thread 0x2b48ec8d5c40 (LWP 53583)):
+#0  0x00002b48ed645816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2678d50, context=context@entry=0x7ffee35fd880) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x7ffee35fd880) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  pthread_cond_wait@@GLIBC_2.3.2 () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:183
+#5  0x000000000066d135 in mono_os_cond_wait (mutex=0x2672de0, cond=0x2672e08) at mono-os-mutex.h:150
+#6  mono_os_cond_timedwait (timeout_ms=4294967295, mutex=0x2672de0, cond=0x2672e08) at mono-os-mutex.h:164
+#7  mono_w32handle_timedwait_signal_naked (cond=0x2672e08, mutex=0x2672de0, timeout=4294967295, poll=&lt;optimized out&gt;, alerted=&lt;optimized out&gt;) at w32handle.c:1007
+#8  0x000000000066eeba in mono_w32handle_timedwait_signal_handle (handle=handle@entry=0x42c, timeout=timeout@entry=4294967295, poll=poll@entry=0, alerted=alerted@entry=0x7ffee35fdf04) at w32handle.c:1122
+#9  0x0000000000653d64 in wapi_WaitForSingleObjectEx (handle=handle@entry=0x42c, timeout=timeout@entry=4294967295, alertable=alertable@entry=1) at wait.c:148
+#10 0x00000000005d6ab6 in ves_icall_System_Threading_Monitor_Monitor_wait (obj=0x2b48edd01fd0, ms=4294967295) at monitor.c:1300
+#11 0x00002b48ef674741 in System_Threading_Monitor_ObjWait_bool_int_object (exitContext=false, millisecondsTimeout=-1, obj=0xffffffffffffffff) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#12 0x00002b48ef674cad in System_Threading_Monitor_Wait_object_int_bool (obj=0x2b48edd01fd0, millisecondsTimeout=-1, exitContext=false) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#13 0x00002b48ef674d34 in System_Threading_Monitor_Wait_object_int (obj=0x2b48edd01fd0, millisecondsTimeout=-1) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#14 0x00002b48ef68558b in System_Threading_ManualResetEventSlim_Wait_int_System_Threading_CancellationToken (this=..., millisecondsTimeout=-1, cancellationToken=0) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#15 0x00002b48ef69d892 in System_Threading_Tasks_Task_SpinThenBlockingWait_int_System_Threading_CancellationToken (this=..., millisecondsTimeout=-1, cancellationToken=0) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#16 0x00002b48ef69d7bc in System_Threading_Tasks_Task_InternalWait_int_System_Threading_CancellationToken (this=..., millisecondsTimeout=-1, cancellationToken=0) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#17 0x00002b48ef7b7211 in System_Runtime_CompilerServices_TaskAwaiter_HandleNonSuccessAndDebuggerNotification_System_Threading_Tasks_Task (task=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#18 0x00002b48ef7b719b in System_Runtime_CompilerServices_TaskAwaiter_ValidateEnd_System_Threading_Tasks_Task (task=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#19 0x00002b48ef7b7153 in System_Runtime_CompilerServices_TaskAwaiter_GetResult (this=140732713132640) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#20 0x000000004109c9e4 in ?? ()
+#21 0x00002b48eddf7558 in ?? ()
+#22 0x00002b48edeec828 in ?? ()
+#23 0x00002b48edeec828 in ?? ()
+#24 0x00002b48edeec828 in ?? ()
+#25 0x00002b48edeec828 in ?? ()
+#26 0x00000000410997c4 in ?? ()
+#27 0x0000000000000000 in ?? ()
+
+=================================================================
+Got a SIGSEGV while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries
+used by your application.
+=================================================================
+
+Aborted (core dumped)
+../../build/library.make:302: recipe for target '../../class/lib/net_4_x/System.Core.dll' failed</pre>
+    </div>
+
+    <div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-08-17 13:49:47 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">mono_class_from_mono_type: implement me 0x00
+
+* Assertion: should not be reached at class.c:6580
+
+Stacktrace:
+
+  at &lt;unknown&gt; &lt;0xffffffff&gt;
+  at System.Collections.Concurrent.ConcurrentDictionary`2&lt;Microsoft.Cci.IReference, uint&gt;.TryGetValue (Microsoft.Cci.IReference,uint&amp;) &lt;0x000e1&gt;
+  at Microsoft.CodeAnalysis.CodeGen.TokenMap`1&lt;T_REF&gt;.GetOrAddTokenFor (T_REF,bool&amp;) &lt;0x00056&gt;
+  at Microsoft.CodeAnalysis.Emit.PEModuleBuilder`9&lt;TCompilation_REF, TSourceModuleSymbol_REF, TAssemblySymbol_REF, TTypeSymbol_REF, TNamedTypeSymbol_REF, TMethodSymbol_REF, TSyntaxNode_REF, TEmbeddedTypesManager_REF, TModuleCompilationState_REF&gt;.GetFakeSymbolTokenForIL (Microsoft.Cci.IReference,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.DiagnosticBag) &lt;0x0003f&gt;
+  at Microsoft.CodeAnalysis.CodeGen.ILBuilder.EmitToken (Microsoft.Cci.IReference,Microsoft.CodeAnalysis.SyntaxNode,Microsoft.CodeAnalysis.DiagnosticBag) &lt;0x00057&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitSymbolToken (Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol,Microsoft.CodeAnalysis.CSharp.CSharpSyntaxNode,Microsoft.CodeAnalysis.CSharp.BoundArgListOperator) &lt;0x00067&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitCallExpression (Microsoft.CodeAnalysis.CSharp.BoundCall,bool) &lt;0x005ab&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitExpressionCore (Microsoft.CodeAnalysis.CSharp.BoundExpression,bool) &lt;0x00183&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitExpression (Microsoft.CodeAnalysis.CSharp.BoundExpression,bool) &lt;0x000c7&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitReceiverRef (Microsoft.CodeAnalysis.CSharp.BoundExpression,bool) &lt;0x00043&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitCallExpression (Microsoft.CodeAnalysis.CSharp.BoundCall,bool) &lt;0x00133&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitExpressionCore (Microsoft.CodeAnalysis.CSharp.BoundExpression,bool) &lt;0x00183&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitExpressionCoreWithStackGuard (Microsoft.CodeAnalysis.CSharp.BoundExpression,bool) &lt;0x00027&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitExpression (Microsoft.CodeAnalysis.CSharp.BoundExpression,bool) &lt;0x000d7&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitStatement (Microsoft.CodeAnalysis.CSharp.BoundStatement) &lt;0x0014b&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitStatementAndCountInstructions (Microsoft.CodeAnalysis.CSharp.BoundStatement) &lt;0x0003f&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitSequencePointStatement (Microsoft.CodeAnalysis.CSharp.BoundSequencePoint) &lt;0x00067&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitStatement (Microsoft.CodeAnalysis.CSharp.BoundStatement) &lt;0x000df&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitBlock (Microsoft.CodeAnalysis.CSharp.BoundBlock) &lt;0x00233&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitStatement (Microsoft.CodeAnalysis.CSharp.BoundStatement) &lt;0x000af&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitStatementList (Microsoft.CodeAnalysis.CSharp.BoundStatementList) &lt;0x0007b&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.EmitStatement (Microsoft.CodeAnalysis.CSharp.BoundStatement) &lt;0x0017f&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.GenerateImpl () &lt;0x00063&gt;
+  at Microsoft.CodeAnalysis.CSharp.CodeGen.CodeGenerator.Generate () &lt;0x0000f&gt;
+  at Microsoft.CodeAnalysis.CSharp.MethodCompiler.GenerateMethodBody (Microsoft.CodeAnalysis.CSharp.Emit.PEModuleBuilder,Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol,int,Microsoft.CodeAnalysis.CSharp.BoundStatement,System.Collections.Immutable.ImmutableArray`1&lt;Microsoft.CodeAnalysis.CodeGen.LambdaDebugInfo&gt;,System.Collections.Immutable.ImmutableArray`1&lt;Microsoft.CodeAnalysis.CodeGen.ClosureDebugInfo&gt;,Microsoft.CodeAnalysis.CSharp.StateMachineTypeSymbol,Microsoft.CodeAnalysis.CodeGen.VariableSlotAllocator,Microsoft.CodeAnalysis.DiagnosticBag,Microsoft.CodeAnalysis.CodeGen.DebugDocumentProvider,Microsoft.CodeAnalysis.CSharp.ImportChain,bool) &lt;0x00413&gt;
+  at Microsoft.CodeAnalysis.CSharp.MethodCompiler.CompileMethod (Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol,int,Microsoft.CodeAnalysis.CSharp.Binder/ProcessedFieldInitializers&amp;,Microsoft.CodeAnalysis.CSharp.SynthesizedSubmissionFields,Microsoft.CodeAnalysis.CSharp.TypeCompilationState) &lt;0x013cf&gt;
+  at Microsoft.CodeAnalysis.CSharp.MethodCompiler.CompileNamedType (Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol) &lt;0x00793&gt;
+  at Microsoft.CodeAnalysis.CSharp.MethodCompiler/&lt;&gt;c__DisplayClass20_0.&lt;CompileNamedTypeAsTask&gt;b__0 () &lt;0x0001b&gt;
+  at Roslyn.Utilities.UICultureUtilities/&lt;&gt;c__DisplayClass5_0.&lt;WithCurrentUICulture&gt;b__0 () &lt;0x000a3&gt;
+  at System.Threading.Tasks.Task.InnerInvoke () &lt;0x0004c&gt;
+  at System.Threading.Tasks.Task.Execute () &lt;0x00055&gt;
+  at System.Threading.Tasks.Task.ExecutionContextCallback (object) &lt;0x00045&gt;
+  at System.Threading.ExecutionContext.RunInternal (System.Threading.ExecutionContext,System.Threading.ContextCallback,object,bool) &lt;0x0017a&gt;
+  at System.Threading.ExecutionContext.Run (System.Threading.ExecutionContext,System.Threading.ContextCallback,object,bool) &lt;0x00020&gt;
+  at System.Threading.Tasks.Task.ExecuteWithThreadLocal (System.Threading.Tasks.Task&amp;) &lt;0x0010c&gt;
+  at System.Threading.Tasks.Task.ExecuteEntry (bool) &lt;0x000f2&gt;
+  at System.Threading.Tasks.Task.System.Threading.IThreadPoolWorkItem.ExecuteWorkItem () &lt;0x0000e&gt;
+  at System.Threading.ThreadPoolWorkQueue.Dispatch () &lt;0x001d4&gt;
+  at System.Threading._ThreadPoolWaitCallback.PerformWaitCallback () &lt;0x00008&gt;
+  at (wrapper runtime-invoke) &lt;Module&gt;.runtime_invoke_bool (object,intptr,intptr,intptr) &lt;0x0005a&gt;
+
+Native stacktrace:
+
+  /home/marek/mono/mono/mono/mini/mono() [0x4b3faf]
+  /lib/x86_64-linux-gnu/libpthread.so.0(+0x113d0) [0x2b7a5d4a43d0]
+  /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x38) [0x2b7a5d8fb418]
+  /lib/x86_64-linux-gnu/libc.so.6(abort+0x16a) [0x2b7a5d8fd01a]
+  /home/marek/mono/mono/mono/mini/mono() [0x674ecb]
+  /home/marek/mono/mono/mono/mini/mono() [0x674c65]
+  /home/marek/mono/mono/mono/mini/mono() [0x674e19]
+  /home/marek/mono/mono/mono/mini/mono(mono_class_from_mono_type+0x299) [0x534299]
+  /home/marek/mono/mono/mono/mini/mono() [0x5344f0]
+  /home/marek/mono/mono/mono/mini/mono() [0x5349b7]
+  /home/marek/mono/mono/mono/mini/mono() [0x4b52d7]
+  /home/marek/mono/mono/mono/mini/mono() [0x4b5743]
+  /home/marek/mono/mono/mono/mini/mono() [0x4b62ac]
+  [0x41c0168c]
+
+Debug info from gdb:
+
+[New LWP 56257]
+[New LWP 56258]
+[New LWP 56259]
+[New LWP 56260]
+[New LWP 56261]
+[New LWP 56270]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+pthread_cond_wait@@GLIBC_2.3.2 () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+185 ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S: No such file or directory.
+  Id   Target Id         Frame
+* 1    Thread 0x2b7a5cb8bc40 (LWP 56236) "Main" pthread_cond_wait@@GLIBC_2.3.2 () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+  2    Thread 0x2b7a5deef700 (LWP 56257) "SGen worker" pthread_cond_wait@@GLIBC_2.3.2 () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+  3    Thread 0x2b7a603af700 (LWP 56258) "Finalizer" 0x00002b7a5d4a2867 in futex_abstimed_wait_cancelable (private=0, abstime=0x0, expected=0, futex_word=0x9a5400 &lt;finalizer_sem&gt;) at ../sysdeps/unix/sysv/linux/futex-internal.h:205
+  4    Thread 0x2b7a61e0c700 (LWP 56259) "Main" pthread_cond_timedwait@@GLIBC_2.3.2 () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_timedwait.S:225
+  5    Thread 0x2b7a62011700 (LWP 56260) "Threadpool work" __pthread_kill (threadid=&lt;optimized out&gt;, signo=signo@entry=30) at ../sysdeps/unix/sysv/linux/pthread_kill.c:62
+  6    Thread 0x2b7a62218700 (LWP 56261) "Threadpool work" 0x00002b7a5d8fb816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+  7    Thread 0x2b7a6328c700 (LWP 56270) "Threadpool work" pthread_cond_timedwait@@GLIBC_2.3.2 () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_timedwait.S:225
+
+Thread 7 (Thread 0x2b7a6328c700 (LWP 56270)):
+#0  pthread_cond_timedwait@@GLIBC_2.3.2 () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_timedwait.S:225
+#1  0x00000000005b27c5 in mono_os_cond_timedwait (timeout_ms=&lt;optimized out&gt;, mutex=0x1b47238, cond=0x1b47208) at ../../mono/utils/mono-os-mutex.h:183
+#2  mono_coop_cond_timedwait (timeout_ms=&lt;optimized out&gt;, mutex=0x1b47238, cond=0x1b47208) at ../../mono/utils/mono-coop-mutex.h:99
+#3  worker_park () at threadpool-ms.c:532
+#4  worker_thread (data=data@entry=0x0) at threadpool-ms.c:624
+#5  0x00000000005aae5c in start_wrapper_internal (data=&lt;optimized out&gt;) at threads.c:753
+#6  start_wrapper (data=&lt;optimized out&gt;) at threads.c:815
+#7  0x000000000066974f in inner_start_thread (arg=&lt;optimized out&gt;) at mono-threads-posix.c:156
+#8  0x00002b7a5d49a6fa in start_thread (arg=0x2b7a6328c700) at pthread_create.c:333
+#9  0x00002b7a5d9ccb5d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 6 (Thread 0x2b7a62218700 (LWP 56261)):
+#0  0x00002b7a5d8fb816 in __GI___sigsuspend (set=set@entry=0x9a5a80 &lt;suspend_signal_mask&gt;) at ../sysdeps/unix/sysv/linux/sigsuspend.c:30
+#1  0x0000000000600a04 in suspend_thread (info=0x2b7a70000900, context=context@entry=0x2b7a62214b40) at sgen-os-posix.c:99
+#2  0x0000000000600bbf in suspend_handler (_dummy=&lt;optimized out&gt;, _info=&lt;optimized out&gt;, context=0x2b7a62214b40) at sgen-os-posix.c:126
+#3  &lt;signal handler called&gt;
+#4  0x00002b7a5d4a3fb9 in __waitpid (pid=pid@entry=56290, stat_loc=stat_loc@entry=0x2b7a6221513c, options=options@entry=0) at ../sysdeps/unix/sysv/linux/waitpid.c:29
+#5  0x00000000004b4086 in mono_handle_native_sigsegv (signal=&lt;optimized out&gt;, ctx=&lt;optimized out&gt;, info=&lt;optimized out&gt;) at mini-exceptions.c:2424
+#6  &lt;signal handler called&gt;
+#7  0x00002b7a5d8fb418 in __GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:54
+#8  0x00002b7a5d8fd01a in __GI_abort () at abort.c:89
+#9  0x0000000000674ecb in monoeg_log_default_handler (log_domain=0x0, log_level=G_LOG_LEVEL_ERROR, message=0x2b7a70349370 "* Assertion: should not be reached at class.c:6580\n", unused_data=0x0) at goutput.c:231
+#10 0x0000000000674c65 in monoeg_g_logv (log_domain=0x0, log_level=G_LOG_LEVEL_ERROR, format=0x681198 "* Assertion: should not be reached at %s:%d\n", args=0x2b7a62216100) at goutput.c:111
+#11 0x0000000000674e19 in monoeg_assertion_message (format=0x681198 "* Assertion: should not be reached at %s:%d\n") at goutput.c:131
+#12 0x0000000000534299 in mono_class_from_mono_type (type=&lt;optimized out&gt;) at class.c:6580
+#13 0x00000000005344f0 in mono_type_get_name_recurse (type=type@entry=0x2951e30, str=str@entry=0x2b7a703348c0, is_recursed=is_recursed@entry=0, format=format@entry=MONO_TYPE_NAME_FORMAT_IL) at class.c:474
+#14 0x00000000005349b7 in mono_type_get_name_full (type=0x2951e30, format=format@entry=MONO_TYPE_NAME_FORMAT_IL) at class.c:583
+#15 0x00000000004b52d7 in mini_resolve_imt_method (vt=vt@entry=0x2936c60, vtable_slot=vtable_slot@entry=0x2936bf0, imt_method=imt_method@entry=0x2b7a7412e8d0, impl_method=impl_method@entry=0x2b7a62216370, out_aot_addr=out_aot_addr@entry=0x2b7a62216360, out_need_rgctx_tramp=out_need_rgctx_tramp@entry=0x2b7a6221635c, variant_iface=0x2b7a62216368, error=0x2b7a622163e0) at mini-trampolines.c:173
+#16 0x00000000004b5743 in common_call_trampoline (regs=regs@entry=0x2b7a622164c8, code=code@entry=0x41a5f5b2 "\205\300t\r\213E A\211\a\270\001", m=&lt;optimized out&gt;, vt=vt@entry=0x2936c60, vtable_slot=0x2936bf0, error=error@entry=0x2b7a622163e0) at mini-trampolines.c:564
+#17 0x00000000004b62ac in mono_vcall_trampoline (regs=0x2b7a622164c8, code=0x41a5f5b2 "\205\300t\r\213E A\211\a\270\001", slot=-14, tramp=&lt;optimized out&gt;) at mini-trampolines.c:912
+#18 0x0000000041c0168c in ?? ()
+#19 0x0000000000000000 in ?? ()
+
+Thread 5 (Thread 0x2b7a62011700 (LWP 56260)):
+#0  __pthread_kill (threadid=&lt;optimized out&gt;, signo=signo@entry=30) at ../sysdeps/unix/sysv/linux/pthread_kill.c:62
+#1  0x0000000000668ea9 in mono_threads_pthread_kill (info=info@entry=0x2b7a70000900, signum=signum@entry=30) at mono-threads-posix.c:330
+#2  0x0000000000600d4a in sgen_thread_handshake (suspend=suspend@entry=1) at sgen-os-posix.c:188
+#3  0x00000000006014aa in sgen_client_stop_world (generation=generation@entry=0) at sgen-stw.c:225
+#4  0x0000000000622dea in sgen_stop_world (generation=0) at sgen-gc.c:3221
+#5  0x000000000062316f in sgen_perform_collection (requested_size=4096, generation_to_collect=0, reason=0x72219c "Nursery full", wait_to_finish=wait_to_finish@entry=0, stw=stw@entry=1) at sgen-gc.c:2247
+#6  0x000000000062349c in sgen_ensure_free_space (size=&lt;optimized out&gt;, generation=generation@entry=0) at sgen-gc.c:2226
+#7  0x0000000000615380 in sgen_alloc_obj_nolock (vtable=vtable@entry=0x2712758, size=size@entry=2168) at sgen-alloc.c:278
+#8  0x0000000000601e21 in mono_gc_alloc_vector (vtable=0x2712758, size=2168, max_length=89) at sgen-mono.c:1768
+#9  0x000000004180921e in ?? ()
+#10 0x00002b7a5e2639d0 in ?? ()
+#11 0x00002b7a620116e8 in ?? ()
+#12 0x0000000000000878 in ?? ()
+#13 0x0000000002712758 in ?? ()
+#14 0x0000000000000059 in ?? ()
+#15 0x00002b7a6c001e00 in ?? ()
+#16 0x0000000000000290 in ?? ()
+#17 0x00002b7a6200eab0 in ?? ()
+#18 0x00002b7a6200ea10 in ?? ()
+#19 0x00000000418071c4 in ?? ()
+#20 0x00002b7a5e264248 in ?? ()
+#21 0x0000000000635d5e in sgen_fragment_allocator_par_range_alloc (allocator=0x2712758, desired_size=47804630243048, minimum_size=47804565567952, out_alloc_size=0x2b7a6200eab0) at sgen-nursery-allocator.c:589
+#22 0x00002b7a63460e10 in ?? ()
+#23 0x0000000000000059 in ?? ()
+#24 0x0000000000000059 in ?? ()
+#25 0x00002b7a6200ec10 in ?? ()
+#26 0x00002b7a5f8593f2 in System_Collections_Generic_Dictionary_2_TKey_REF_TValue_REF_Initialize_int (this=..., capacity=89) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#27 0x00002b7a5f857fcb in System_Collections_Generic_Dictionary_2_TKey_REF_TValue_REF__ctor_int_System_Collections_Generic_IEqualityComparer_1_TKey_REF (this=..., capacity=78, comparer=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#28 0x0000000041921976 in ?? ()
+#29 0x00002b7a5e3bed90 in ?? ()
+#30 0x00002b7a620116e8 in ?? ()
+#31 0x0000000000000290 in ?? ()
+#32 0x073b250d26dc0b00 in ?? ()
+#33 0x00000000026cb070 in ?? ()
+#34 0x000000000000004e in ?? ()
+#35 0x00002b7a5e2637f8 in ?? ()
+#36 0x0000000000000000 in ?? ()
+
+Thread 4 (Thread 0x2b7a61e0c700 (LWP 56259)):
+#0  pthread_cond_timedwait@@GLIBC_2.3.2 () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_timedwait.S:225
+#1  0x000000000066770a in mono_os_cond_timedwait (timeout_ms=499, mutex=0x9b5420 &lt;sleep_mutex&gt;, cond=0x9b53e0 &lt;sleep_cond&gt;) at ../../mono/utils/mono-os-mutex.h:183
+#2  mono_coop_cond_timedwait (cond=0x9b53e0 &lt;sleep_cond&gt;, mutex=0x9b5420 &lt;sleep_mutex&gt;, timeout_ms=499) at ../../mono/utils/mono-coop-mutex.h:99
+#3  sleep_interruptable (alerted=0x2b7a61e0bd60, ms=500) at mono-threads.c:1229
+#4  mono_thread_info_sleep (ms=ms@entry=500, alerted=alerted@entry=0x2b7a61e0bd60) at mono-threads.c:1261
+#5  0x00000000005b15f6 in monitor_thread () at threadpool-ms.c:908
+#6  0x00000000005aae5c in start_wrapper_internal (data=&lt;optimized out&gt;) at threads.c:753
+#7  start_wrapper (data=&lt;optimized out&gt;) at threads.c:815
+#8  0x000000000066974f in inner_start_thread (arg=&lt;optimized out&gt;) at mono-threads-posix.c:156
+#9  0x00002b7a5d49a6fa in start_thread (arg=0x2b7a61e0c700) at pthread_create.c:333
+#10 0x00002b7a5d9ccb5d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 3 (Thread 0x2b7a603af700 (LWP 56258)):
+#0  0x00002b7a5d4a2867 in futex_abstimed_wait_cancelable (private=0, abstime=0x0, expected=0, futex_word=0x9a5400 &lt;finalizer_sem&gt;) at ../sysdeps/unix/sysv/linux/futex-internal.h:205
+#1  do_futex_wait (sem=sem@entry=0x9a5400 &lt;finalizer_sem&gt;, abstime=0x0) at sem_waitcommon.c:111
+#2  0x00002b7a5d4a2914 in __new_sem_wait_slow (sem=0x9a5400 &lt;finalizer_sem&gt;, abstime=0x0) at sem_waitcommon.c:181
+#3  0x00002b7a5d4a29ba in __new_sem_wait (sem=sem@entry=0x9a5400 &lt;finalizer_sem&gt;) at sem_wait.c:29
+#4  0x00000000005cf10f in mono_os_sem_wait (flags=MONO_SEM_FLAGS_ALERTABLE, sem=0x9a5400 &lt;finalizer_sem&gt;) at ../../mono/utils/mono-os-semaphore.h:209
+#5  mono_coop_sem_wait (flags=MONO_SEM_FLAGS_ALERTABLE, sem=0x9a5400 &lt;finalizer_sem&gt;) at ../../mono/utils/mono-coop-semaphore.h:40
+#6  finalizer_thread (unused=unused@entry=0x0) at gc.c:903
+#7  0x00000000005aae5c in start_wrapper_internal (data=&lt;optimized out&gt;) at threads.c:753
+#8  start_wrapper (data=&lt;optimized out&gt;) at threads.c:815
+#9  0x000000000066974f in inner_start_thread (arg=&lt;optimized out&gt;) at mono-threads-posix.c:156
+#10 0x00002b7a5d49a6fa in start_thread (arg=0x2b7a603af700) at pthread_create.c:333
+#11 0x00002b7a5d9ccb5d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 2 (Thread 0x2b7a5deef700 (LWP 56257)):
+#0  pthread_cond_wait@@GLIBC_2.3.2 () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x000000000063d0df in mono_os_cond_wait (mutex=0x9b4820 &lt;lock&gt;, cond=0x9b47e0 &lt;work_cond&gt;) at ../../mono/utils/mono-os-mutex.h:150
+#2  thread_func (thread_data=0x0) at sgen-thread-pool.c:110
+#3  0x00002b7a5d49a6fa in start_thread (arg=0x2b7a5deef700) at pthread_create.c:333
+#4  0x00002b7a5d9ccb5d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:109
+
+Thread 1 (Thread 0x2b7a5cb8bc40 (LWP 56236)):
+#0  pthread_cond_wait@@GLIBC_2.3.2 () at ../sysdeps/unix/sysv/linux/x86_64/pthread_cond_wait.S:185
+#1  0x000000000066d135 in mono_os_cond_wait (mutex=0x18e4590, cond=0x18e45b8) at mono-os-mutex.h:150
+#2  mono_os_cond_timedwait (timeout_ms=4294967295, mutex=0x18e4590, cond=0x18e45b8) at mono-os-mutex.h:164
+#3  mono_w32handle_timedwait_signal_naked (cond=0x18e45b8, mutex=0x18e4590, timeout=4294967295, poll=&lt;optimized out&gt;, alerted=&lt;optimized out&gt;) at w32handle.c:1007
+#4  0x000000000066eeba in mono_w32handle_timedwait_signal_handle (handle=handle@entry=0x419, timeout=timeout@entry=4294967295, poll=poll@entry=0, alerted=alerted@entry=0x7ffdc18e3b04) at w32handle.c:1122
+#5  0x0000000000653d64 in wapi_WaitForSingleObjectEx (handle=handle@entry=0x419, timeout=timeout@entry=4294967295, alertable=alertable@entry=1) at wait.c:148
+#6  0x00000000005d6ab6 in ves_icall_System_Threading_Monitor_Monitor_wait (obj=0x2b7a5e11cfc8, ms=4294967295) at monitor.c:1300
+#7  0x00002b7a5f873741 in System_Threading_Monitor_ObjWait_bool_int_object (exitContext=false, millisecondsTimeout=-1, obj=0xffffffffffffffff) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#8  0x00002b7a5f873cad in System_Threading_Monitor_Wait_object_int_bool (obj=0x2b7a5e11cfc8, millisecondsTimeout=-1, exitContext=false) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#9  0x00002b7a5f873d34 in System_Threading_Monitor_Wait_object_int (obj=0x2b7a5e11cfc8, millisecondsTimeout=-1) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#10 0x00002b7a5f88458b in System_Threading_ManualResetEventSlim_Wait_int_System_Threading_CancellationToken (this=..., millisecondsTimeout=-1, cancellationToken=0) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#11 0x00002b7a5f89c892 in System_Threading_Tasks_Task_SpinThenBlockingWait_int_System_Threading_CancellationToken (this=..., millisecondsTimeout=-1, cancellationToken=0) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#12 0x00002b7a5f89c7bc in System_Threading_Tasks_Task_InternalWait_int_System_Threading_CancellationToken (this=..., millisecondsTimeout=-1, cancellationToken=0) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#13 0x00002b7a5f9b6211 in System_Runtime_CompilerServices_TaskAwaiter_HandleNonSuccessAndDebuggerNotification_System_Threading_Tasks_Task (task=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#14 0x00002b7a5f9b619b in System_Runtime_CompilerServices_TaskAwaiter_ValidateEnd_System_Threading_Tasks_Task (task=...) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#15 0x00002b7a5f9b6153 in System_Runtime_CompilerServices_TaskAwaiter_GetResult (this=140727850778208) from /home/marek/mono/mono/mcs/class/lib/build/mscorlib.dll.so
+#16 0x0000000041a1bf64 in ?? ()
+#17 0x00002b7a5e150bc8 in ?? ()
+#18 0x00002b7a632c0c70 in ?? ()
+#19 0x00002b7a632c0c70 in ?? ()
+#20 0x00002b7a632c0c70 in ?? ()
+#21 0x00002b7a632c0c70 in ?? ()
+#22 0x0000000041a15d7c in ?? ()
+#23 0x0000000000000000 in ?? ()
+
+=================================================================
+Got a SIGABRT while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries
+used by your application.
+=================================================================
+
+Aborted (core dumped)</pre>
+    </div>
+
+    <div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-08-17 13:50:02 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">tacktrace:
+
+
+Native stacktrace:
+
+  /home/marek/mono/mono/mono/mini/mono() [0x4b3faf]
+  /home/marek/mono/mono/mono/mini/mono() [0x50a4fe]
+  /home/marek/mono/mono/mono/mini/mono() [0x427453]
+  /lib/x86_64-linux-gnu/libpthread.so.0(+0x113d0) [0x2ba8d01e53d0]
+  [0x41808de2]
+
+Debug info from gdb:
+
+mono_class_from_mono_type: implement me 0xb3
+
+* Assertion: should not be reached at class.c:6580
+
+Aborted (core dumped)
+Unable to attach: program terminated with signal SIGABRT, Aborted.</pre>
+    </div>
+
+    <div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rodrigo Kumpera</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-08-31 15:38:54 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Based on the crashes above, this is linux only.</pre>
+    </div>
+
+    <div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-08-31 15:49:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">it happens anywhere unix like but MacOS crashes usually with less details like (I didn't test windows yet)
+
+Native stacktrace:
+
+
+Debug info from gdb:
+
+(lldb) command source -s 0 '/tmp/mono-gdb-commands.znLKpW'
+Executing commands in '/tmp/mono-gdb-commands.znLKpW'.
+(lldb) process attach --pid 59924
+error: attach failed: unable to attach
+
+=================================================================
+Got a SIGSEGV while executing native code. This usually indicates
+a fatal error in the mono runtime or one of the native libraries 
+used by your application.
+=================================================================</pre>
+    </div>
+
+    <div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marek Safar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-08-31 15:51:39 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Also crashes from Roslyn running under XS are MacOS see e.g #41913</pre>
+    </div>
+
+    <div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Stephen Shaw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-08-31 16:04:33 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I'm fairly certain I've seen this on XS and mac and pulled similar stuff from XS logs all on macs</pre>
+    </div>
+
+    <div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-08-31 19:04:57 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">This is not linux only, happens on osx as well, but its very hard to reproduce, and the crashes are pretty random. Its possible that this is more than one bug, exposed by roslyn being multi-threaded.</pre>
+    </div>
+
+    <div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rodrigo Kumpera</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-09-01 20:34:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Vlad / Bernhard,
+
+Could you guys give a shot on this bug?
+
+Repro/diagnosing it has being quite elusive.</pre>
+    </div>
+
+    <div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Luis Aguilera</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-09-12 20:13:41 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">since C8 is now closed, and is shipping this week, I will move this but to the C8SR1 milestone. We'll continue working on the issue seeking it's resolution as soon as possible.</pre>
+    </div>
+
+    <div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vlad Brezae</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-09-12 20:44:21 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">I've been able to reproduce random crashes with roslyn and all were due to changing imt thunks on the fly. It seems that generic virtual invocations can lead to recomputation of the thunk (adding the additional method check) followed by invalidation of the previous thunk, which would wreak havoc if another thread is currently in the thunk. I got no more crashes if we no longer invalidate_generic_virtual_thunk (of course this is a hack fix since it's leaking thunks)
+
+I think we should either not recompute thunks (which equals m2n for each such call, which is bad performance wise) or figure something to prevent races. Maybe check during stw if any threads are in such thunks, and invalidate the rest only when the world is stopped ?
+
+kumpera/vargaz, do you want to take it from here since you have more experience in the area ?</pre>
+    </div>
+
+    <div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-09-15 11:37:07 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text"><a href="https://github.com/mono/mono/pull/3565">https://github.com/mono/mono/pull/3565</a></pre>
+    </div>
+
+    <div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoltan Varga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-09-16 18:32:09 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">Should be fixed in mono master. Thanks for tracking this down.</pre>
+    </div>
+
+    <div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+        <span class="bz_comment_number">
+          <a href="bug.html">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Shruti</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2016-10-10 06:58:44 UTC
+        </span>
+
+      </div>
+
+
+
+
+<pre class="bz_comment_text">@Marek, @Zolan: Could you please let us know how we can reproduce this issue before verifying it.
+
+As per duplicate <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - [Roslyn] HashSet allocation crash?" href="show_bug.cgi?id=41913">bug #41913</a>, I have created a new instance of HashSet&lt;int&gt; and added few values. And deployed the app with this code snippet on device and emulator as well. But not able to reproduce it.
+
+I have tried it on following Mono Versions to reproduce it:
+Mono 4.4.0.200
+Mono 4.4.2.0
+
+
+Could you please help me exact steps or sample project, which could help me to reproduce/verify this issue.</pre>
+    </div>
+
+
+
+
+</td>
+<td>
+</td>
+</tr></tbody></table>
+  </div>
+
+
+</form>
+
+<hr>
+
+
+<br>
+</div>
+
+    
+
+  
+</body></html>
