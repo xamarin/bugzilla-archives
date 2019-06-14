@@ -591,7 +591,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">At the moment if a file needs line ending conversions, has been modified on disk or has an autosave that the user hasn't decided on opening, it will silently fail to save when you try to save it. A message bar will be instead be placed at the top of the document asking you what to do.
 
 The problem with this is that if there are multiple files open and click 'save all', you may not even realise that some of your files have not saved. <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Have the option to turn off line ending conversion warnings." href="show_bug.cgi?id=624">Bug #624</a> was a prime example of this. There could be other cases which are affected by this too.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Have the option to turn off line ending conversion warnings." href="https://bugzilla.xamarin.com/show_bug.cgi?id=624">Bug #624</a> was a prime example of this. There could be other cases which are affected by this too.
 
 Commit d1952b1299 and f11df756097 mitigate some of the problems associated with this, but we should do this in a better way.</pre>
     </div>

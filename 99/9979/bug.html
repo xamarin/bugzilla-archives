@@ -771,7 +771,7 @@ That means, its doInBackground() becomes: doInBackground(Void...)
 It is precisely reflected in api.xml.
 
 The effective workaround is to remove that overload from the api.xml and let generator automatically implement the "missing" doInBackground() using "params Java.Lang.Object []" (if it doesn't then it should be fixed. But to my understanding, it does, as Facebook SDK binding builds with such metadata fixups - see <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Binding fails with latest (even semi-modern) version of the Facebook SDK" href="show_bug.cgi?id=9348">bug #9348</a>, there I privately attached my updated project that requires nonpublic mfa build).</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Binding fails with latest (even semi-modern) version of the Facebook SDK" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9348">bug #9348</a>, there I privately attached my updated project that requires nonpublic mfa build).</pre>
     </div>
 
     <div id="c7" class="bz_comment">

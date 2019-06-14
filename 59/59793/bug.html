@@ -1090,7 +1090,7 @@ Which also has the same error/issue.</pre>
 When creating a background task, objc creates a __NSCFBackgroundDownloadTask which already gave us some problems:
 
 1. Bug report: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - App crashes intermittently when calling NSUrlSessionTask" href="show_bug.cgi?id=23421">https://bugzilla.xamarin.com/show_bug.cgi?id=23421</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - App crashes intermittently when calling NSUrlSessionTask" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23421">https://bugzilla.xamarin.com/show_bug.cgi?id=23421</a>
 2. Code: <a href="https://github.com/xamarin/xamarin-macios/blob/master/runtime/runtime.m#L684">https://github.com/xamarin/xamarin-macios/blob/master/runtime/runtime.m#L684</a>
 
 That explains why <a href="https://github.com/xamarin/xamarin-macios/blob/master/src/Foundation/NSUrlSession.cs">https://github.com/xamarin/xamarin-macios/blob/master/src/Foundation/NSUrlSession.cs</a> does not have an effect at all when creating the background task. Need to talk with @rolf about this to see what else we can do with the debugging.</pre>

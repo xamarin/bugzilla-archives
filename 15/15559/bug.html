@@ -636,7 +636,7 @@ Compilation works fine on monotouch, but fails when I compile an android project
 /Library/Frameworks/Mono.framework/External/xbuild/Xamarin/Android/Xamarin.Android.Common.targets: error : Tool exited with code: 2. Output: javac: file not found: obj/Debug/android/src/aéiou/MainActivity.java
 
 it looks related to #<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - mandroid doesn't work if %CD% contains non-ASCII characters" href="show_bug.cgi?id=10669">bug 10669</a>, which is marked as resolved. But I'm up to date and it still fails</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - mandroid doesn't work if %CD% contains non-ASCII characters" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10669">bug 10669</a>, which is marked as resolved. But I'm up to date and it still fails</pre>
     </div>
 
     <div id="c1" class="bz_comment">
@@ -666,7 +666,7 @@ it looks related to #<a class="bz_bug_link
 
 
 <pre class="bz_comment_text"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - mandroid doesn't work if %CD% contains non-ASCII characters" href="show_bug.cgi?id=10669">Bug #10669</a> was (1) on Windows, not OS X, and (2) didn't involve javac.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - mandroid doesn't work if %CD% contains non-ASCII characters" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10669">Bug #10669</a> was (1) on Windows, not OS X, and (2) didn't involve javac.
 
 Javac is...interesting. In order to avoid command line length limits, we generate a response file for Javac to use. Javac in turn wants the response file to be encoded in the default encoding for the platform -- it doesn't use the `javac -encoding` parameter to control the encoding of response files (go figure).
 

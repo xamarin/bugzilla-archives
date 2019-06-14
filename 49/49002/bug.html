@@ -631,7 +631,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Example of PtrToStructure not marshaling data correctly for pack 1 structs
 
 This is somewhat related to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Null reference in call to Marshal.PtrToStructure()" href="show_bug.cgi?id=40665">Bug 40665</a> but may be a different issue.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Null reference in call to Marshal.PtrToStructure()" href="https://bugzilla.xamarin.com/show_bug.cgi?id=40665">Bug 40665</a> but may be a different issue.
 
 If a structure contains single byte fields and the structure is marked with the pack=1 StructLayoutAttribute when the field is subsequently read from the structure it will be incorrect, typically fields after the single byte value will be based upon data 1 out.
 

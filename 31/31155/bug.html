@@ -590,7 +590,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">Previously the publishing workflow did not specify the signing algorithm when signing. This allowed applications that had a key algorithm of DSA to be signed. 
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Publish Android Package should sign with SHA1 on 4.2 and below" href="show_bug.cgi?id=22897">Bug #22897</a> arose because the default behaviour in java 1.7 changed and devices with older android versions than 4.2 could not install then application, the resolution to which was to add the following arguments to the jarsigner command
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Publish Android Package should sign with SHA1 on 4.2 and below" href="https://bugzilla.xamarin.com/show_bug.cgi?id=22897">Bug #22897</a> arose because the default behaviour in java 1.7 changed and devices with older android versions than 4.2 could not install then application, the resolution to which was to add the following arguments to the jarsigner command
 
     -digestalg SHA1 -sigalg md5withRSA
 
@@ -639,7 +639,7 @@ although most solutions to this problem specify both the signing algorithm and t
 
 
 <pre class="bz_comment_text">using Java 1.7, and _not_ specifying the signing algorithm results in an APK that will not deploy to older devices (<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Publish Android Package should sign with SHA1 on 4.2 and below" href="show_bug.cgi?id=22897">bug #22897</a>) (in this case API 15), so we do need to specify the algorithm. 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Publish Android Package should sign with SHA1 on 4.2 and below" href="https://bugzilla.xamarin.com/show_bug.cgi?id=22897">bug #22897</a>) (in this case API 15), so we do need to specify the algorithm. 
 
 Both the MANIFEST.MF and &lt;alias&gt;.SF are identical, the .RSA is different and I can't determine any other difference other than when we attempt to `adb install` the package it fails with 
 

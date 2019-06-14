@@ -349,7 +349,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="show_bug.cgi?id=10867">10867</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10867">10867</a> 
       </span>
       ()
     </td>
@@ -379,7 +379,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="blocked_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=10865">10865</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10865">10865</a> 
   </td>
   </tr>
 
@@ -625,11 +625,11 @@ Steps to reproduce:
 3.a: XS: Build &gt; Android Build &gt; [X] Bundle assemblies into native code
 3.b: VS: Mono Android Options &gt; [X] Bundle assemblies into native code
 3.b.i: note: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Bundle assemblies into native code checkbox is backwards" href="show_bug.cgi?id=10768">Bug #10768</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Bundle assemblies into native code checkbox is backwards" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10768">Bug #10768</a>
 4. Build + Run project. Build fails.
 
 Unfortunately (due to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MakeBundleNativeCodeExternal task needs to capture and log mkbundle stdout &amp; stderr" href="show_bug.cgi?id=10770">Bug #10770</a>) we don't see the mkbundle output &amp; errors, so let's hit the command-line:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MakeBundleNativeCodeExternal task needs to capture and log mkbundle stdout &amp; stderr" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10770">Bug #10770</a>) we don't see the mkbundle output &amp; errors, so let's hit the command-line:
 
 <span class="quote">&gt; $ xbuild /t:SignAndroidPackage /p:Configuration=Release /v:diag *.csproj &gt; build.txt 2&gt;&amp;1</span>
 
@@ -690,7 +690,7 @@ The assembly we're generating is not liked by Android NDK's arm-linux-androideab
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="show_bug.cgi?id=10867">Bug 10867</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10867">Bug 10867</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c9" class="bz_comment">
@@ -720,7 +720,7 @@ The assembly we're generating is not liked by Android NDK's arm-linux-androideab
 
 
 <pre class="bz_comment_text">Related: the mkbundle process needs to be updated to account for satellite assemblies; see also <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - No support for .Net style resources" href="show_bug.cgi?id=5037">Bug #5037</a> and monodroid/5cedcf01.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - No support for .Net style resources" href="https://bugzilla.xamarin.com/show_bug.cgi?id=5037">Bug #5037</a> and monodroid/5cedcf01.</pre>
     </div>
 
     <div id="c14" class="bz_comment">
@@ -945,7 +945,7 @@ Hence reopening this issue</pre>
 
 
 <pre class="bz_comment_text">@narayanp what entitlements did you test against? I am seeing this behavior with starter and indie entitlements, as this feature requires Business or higher entitlements. I have refiled <a href="bug.html">Comment 18</a> as an enhancement (<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=12626">Bug 12626</a>), we should likely trigger the upgrade workflow when attempting to enable this business feature with low level entitlements.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12626">Bug 12626</a>), we should likely trigger the upgrade workflow when attempting to enable this business feature with low level entitlements.</pre>
     </div>
 
     <div id="c20" class="bz_comment">
@@ -975,7 +975,7 @@ Hence reopening this issue</pre>
 
 
 <pre class="bz_comment_text">We have checked this with Business/Priority and we are able to enable "Embed assemblies in native code" under project option and project build successfully but we are not able to debug/run the application on Mac for which we have reported another issue <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Getting 'Deployment Failed. Internal error' when debug/run the application after selecting &quot;Embed assemblies in native code&quot; in Project option" href="show_bug.cgi?id=12628">Bug 12628</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Getting 'Deployment Failed. Internal error' when debug/run the application after selecting &quot;Embed assemblies in native code&quot; in Project option" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12628">Bug 12628</a> 
 
 Changing the status of this bug to Verified.</pre>
     </div>

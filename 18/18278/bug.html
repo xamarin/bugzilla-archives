@@ -629,7 +629,7 @@ Run it on device: it fails with an exception.
         }
 
 See <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="show_bug.cgi?id=18036">Bug 18036</a> where i added a repro project in the comments.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18036">Bug 18036</a> where i added a repro project in the comments.</pre>
     </div>
 
     <div id="c1" class="bz_comment">
@@ -919,7 +919,7 @@ it works in all cases.</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpClient fails in iOS (&quot;Operation is not valid due to the current state of the object&quot;)" href="show_bug.cgi?id=17936">Bug 17936</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpClient fails in iOS (&quot;Operation is not valid due to the current state of the object&quot;)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17936">Bug 17936</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c10" class="bz_comment">
@@ -993,37 +993,37 @@ In particular, note that the logs from <a href="bug.html">comment 2</a> do not c
 
 
 Based on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="show_bug.cgi?id=18036">bug #18036</a>, I believe the correct test case for this bug is:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18036">bug #18036</a>, I believe the correct test case for this bug is:
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="show_bug.cgi?id=18036#c2">https://bugzilla.xamarin.com/show_bug.cgi?id=18036#c2</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18036#c2">https://bugzilla.xamarin.com/show_bug.cgi?id=18036#c2</a>
 
 
 Since the links for the test cases on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="show_bug.cgi?id=18036">bug #18036</a> are no longer working, I can't confirm whether both test cases on that bug are actually duplicates of each other.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18036">bug #18036</a> are no longer working, I can't confirm whether both test cases on that bug are actually duplicates of each other.
 
 
 But even without that, I think we can safely clean up these bugs as follows:
 
 1. Make <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpClient fails in iOS (&quot;Operation is not valid due to the current state of the object&quot;)" href="show_bug.cgi?id=17936">bug #17936</a> its own bug again (instead of a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="show_bug.cgi?id=18036">bug #18036</a>).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpClient fails in iOS (&quot;Operation is not valid due to the current state of the object&quot;)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17936">bug #17936</a> its own bug again (instead of a duplicate of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18036">bug #18036</a>).
 
 
 2. Reassign <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Mono.Debugger.Soft.CommandException: Debuggee returned error code INVALID_ARGUMENT" href="show_bug.cgi?id=17396">bug #17396</a> to MTVS. I suspect the corresponding test case is <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="show_bug.cgi?id=18036#c4">https://bugzilla.xamarin.com/show_bug.cgi?id=18036#c4</a>. I also suspect that this is equivalent to the updated test case from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [VS2012] PCL linker problem: PlatformNotSupportedException with Microsoft.Bcl NuGet package" href="show_bug.cgi?id=15290">bug #15290</a>, except that it's missing the required `app.config`.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Mono.Debugger.Soft.CommandException: Debuggee returned error code INVALID_ARGUMENT" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17396">bug #17396</a> to MTVS. I suspect the corresponding test case is <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18036#c4">https://bugzilla.xamarin.com/show_bug.cgi?id=18036#c4</a>. I also suspect that this is equivalent to the updated test case from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [VS2012] PCL linker problem: PlatformNotSupportedException with Microsoft.Bcl NuGet package" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15290">bug #15290</a>, except that it's missing the required `app.config`.
 
 
 3. Mark this bug (<a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - HttpClient broken (xamarin.ios 1.10.39 / 7.0.7.2)" href="bug.html">bug #18278</a>) as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="show_bug.cgi?id=18036">bug #18036</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18036">bug #18036</a>.
 
 
 If someone still has a copy of the test case from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="show_bug.cgi?id=18036#c2">https://bugzilla.xamarin.com/show_bug.cgi?id=18036#c2</a>, you can check if adding the `app.config` from [1] to the app project fixes the problem. If so, then <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="show_bug.cgi?id=18036">bug #18036</a> can be marked as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpClient fails in iOS (&quot;Operation is not valid due to the current state of the object&quot;)" href="show_bug.cgi?id=17936">bug #17936</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18036#c2">https://bugzilla.xamarin.com/show_bug.cgi?id=18036#c2</a>, you can check if adding the `app.config` from [1] to the app project fixes the problem. If so, then <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18036">bug #18036</a> can be marked as a duplicate of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpClient fails in iOS (&quot;Operation is not valid due to the current state of the object&quot;)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17936">bug #17936</a>.
 
 [1] <a href="https://gist.githubusercontent.com/jamesmontemagno/9403574/raw/app.config">https://gist.githubusercontent.com/jamesmontemagno/9403574/raw/app.config</a></pre>
     </div>
@@ -1055,12 +1055,12 @@ If someone still has a copy of the test case from <a class="bz_bug_link
 
 
 <pre class="bz_comment_text">"Reassign <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Mono.Debugger.Soft.CommandException: Debuggee returned error code INVALID_ARGUMENT" href="show_bug.cgi?id=17396">bug #17396</a> to MTVS."
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Mono.Debugger.Soft.CommandException: Debuggee returned error code INVALID_ARGUMENT" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17396">bug #17396</a> to MTVS."
 
 Should be:
 
 "Reassign <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpClient fails in iOS (&quot;Operation is not valid due to the current state of the object&quot;)" href="show_bug.cgi?id=17936">bug #17936</a> to MTVS."</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpClient fails in iOS (&quot;Operation is not valid due to the current state of the object&quot;)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17936">bug #17936</a> to MTVS."</pre>
     </div>
 
     <div id="c13" class="bz_comment">
@@ -1092,7 +1092,7 @@ Should be:
 <pre class="bz_comment_text">I have tried to reproduce this bug using the very latest binaries for Xamarin.iOS VS plugin using the attached project and it works. I have also tried to create a new project using PCL and it works as well.
 
 So, could somebody point me to the test case mentioned here (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="show_bug.cgi?id=18036#c2">https://bugzilla.xamarin.com/show_bug.cgi?id=18036#c2</a>) or any other one that might trigger this bug?</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Microsoft.Net.Http PCL Attempting to JIT compile method calling a simple http webservice from PCL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18036#c2">https://bugzilla.xamarin.com/show_bug.cgi?id=18036#c2</a>) or any other one that might trigger this bug?</pre>
     </div>
 
     <div id="c14" class="bz_comment">

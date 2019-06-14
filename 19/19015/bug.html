@@ -597,7 +597,7 @@ I started seeing deadlocks recently once we started doing multi-core optimizatio
 Ultimately, I found a piece of code that we had just changed to use a Parallel.For operation and disabled that optimization.  The end result was that the dead locks went away.  I was able to put together a test case that demonstrates the hangs that occur.
 
 I found <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Parallel.For uses unsafe 64 bit cross-thread accesses" href="show_bug.cgi?id=18363">bug #18363</a> which seems like it can cause iterations of the loop to be skipped or run multiple times... but I couldn't understand how it could cause a dead lock.  My test case includes checks for #18363 and I do see that issue periodically (maybe 1/10000 iterations).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Parallel.For uses unsafe 64 bit cross-thread accesses" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18363">bug #18363</a> which seems like it can cause iterations of the loop to be skipped or run multiple times... but I couldn't understand how it could cause a dead lock.  My test case includes checks for #18363 and I do see that issue periodically (maybe 1/10000 iterations).
 
 The test case runs a GC every 100ms.  And at the same time, it keep launching a 20 iteration parallel for loop.  I have two variants which both produce the deadlock (lock+collection like in my original app, and a lock free concurrent collection).
 

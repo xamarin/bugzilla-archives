@@ -631,9 +631,9 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 my local patch, don't commit
 
 I have a bug for a specific manifestation of this: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Build using xbuild fails with CultureNotFoundException or NullReferenceException when external referenced assemblies are changed." href="show_bug.cgi?id=9124">https://bugzilla.xamarin.com/show_bug.cgi?id=9124</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Build using xbuild fails with CultureNotFoundException or NullReferenceException when external referenced assemblies are changed." href="https://bugzilla.xamarin.com/show_bug.cgi?id=9124">https://bugzilla.xamarin.com/show_bug.cgi?id=9124</a>
 And a WONTFIX for the actual modification of an in-use assembly: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - When an assembly is modified between calls to GetReferencedAssemblies, undefined behaviour will result" href="show_bug.cgi?id=9128">https://bugzilla.xamarin.com/show_bug.cgi?id=9128</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - When an assembly is modified between calls to GetReferencedAssemblies, undefined behaviour will result" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9128">https://bugzilla.xamarin.com/show_bug.cgi?id=9128</a>
 
 When AssemblyBuilder writes an assembly, it calls File.Delete first (when running on mono).  That causes a new inode to be created for the file, instead of overwriting it when it's mapped by another process.
 

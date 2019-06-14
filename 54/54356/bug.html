@@ -356,7 +356,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unlike the .NET implementation, `new ZipArchive()` indirectly calls `System.Text.Encoding.GetEncoding()`" href="show_bug.cgi?id=54361">54361</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unlike the .NET implementation, `new ZipArchive()` indirectly calls `System.Text.Encoding.GetEncoding()`" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54361">54361</a> 
   </td>
   </tr>
 
@@ -679,7 +679,7 @@ WORKAROUND: If linker is set to 'Do Not Link' it works. So something is being st
 <pre class="bz_comment_text">## Bookkeeping note to the Xamarin Team
 
 I dug into this kind of issue once before on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - App fails to unzip a file when device is in Arabic" href="show_bug.cgi?id=37465">Bug 37465</a>, and I have some ideas for the reporter of the bug to try (as well as some info about the status of importing the CoreFx implementation of ZipArchive), so I'm working on a little initial response for this report.  I'll aim to post that reply shortly.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - App fails to unzip a file when device is in Arabic" href="https://bugzilla.xamarin.com/show_bug.cgi?id=37465">Bug 37465</a>, and I have some ideas for the reporter of the bug to try (as well as some info about the status of importing the CoreFx implementation of ZipArchive), so I'm working on a little initial response for this report.  I'll aim to post that reply shortly.</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -725,7 +725,7 @@ Caveat: These 2 results are for the _attached test case_.  The behavior of this 
 ### Explanation
 
 Xamarin.iOS 10.9 uses Mono's 2017-02 branch, and in that branch, `ZipArchive` has now been switched to the CoreFx implementation [3].  As described in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - App fails to unzip a file when device is in Arabic" href="show_bug.cgi?id=37465#c2">Bug 37465, Comment 2</a>, this means that `ZipArchive` no longer calls the problematic `System.Text.Encoding.GetEncoding()` method at all.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - App fails to unzip a file when device is in Arabic" href="https://bugzilla.xamarin.com/show_bug.cgi?id=37465#c2">Bug 37465, Comment 2</a>, this means that `ZipArchive` no longer calls the problematic `System.Text.Encoding.GetEncoding()` method at all.
 
 [3] <a href="https://github.com/mono/mono/tree/2017-02/mcs/class/System.IO.Compression">https://github.com/mono/mono/tree/2017-02/mcs/class/System.IO.Compression</a>
 

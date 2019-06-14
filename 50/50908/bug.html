@@ -609,7 +609,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">In order to work-around the known Xamarin issues related to an Android WCF client passing authentication information to a WCF service I attempted to implement all the proposed work-arounds detailed in (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE - Mono for Android Secure WCF Service (Username Authentication)" href="show_bug.cgi?id=8020#c5">https://bugzilla.xamarin.com/show_bug.cgi?id=8020#c5</a>) but I wasn't able to get any of them to work on Android.  All of the various reasons (except one) were well documented in various forums or Bugzilla.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE - Mono for Android Secure WCF Service (Username Authentication)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=8020#c5">https://bugzilla.xamarin.com/show_bug.cgi?id=8020#c5</a>) but I wasn't able to get any of them to work on Android.  All of the various reasons (except one) were well documented in various forums or Bugzilla.
 
 The one that failed for no determinable cause was implementing IClientMessageInspector and IEndpointBehavior in order to pass the authentication to the WCF service in the message header.  In the code detailed below, the ApplyClientBehavior never invoked when the call to serviceClient is made.
 

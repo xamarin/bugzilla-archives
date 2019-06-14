@@ -625,7 +625,7 @@ It would be better not to change IsPullToRefreshEnabled until IsRefreshing is se
 
 
 <pre class="bz_comment_text">I've filed a new bug which is similar to what you are talking about except it's not specific to ReactiveCommand: <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - ListView RefreshCommand CanExecute causes Attempting to change the refresh control while it is not idle is strongly discouraged and probably won't work properly" href="show_bug.cgi?id=42330">https://bugzilla.xamarin.com/show_bug.cgi?id=42330</a>
+          bz_status_CONFIRMED " title="CONFIRMED - ListView RefreshCommand CanExecute causes Attempting to change the refresh control while it is not idle is strongly discouraged and probably won't work properly" href="https://bugzilla.xamarin.com/show_bug.cgi?id=42330">https://bugzilla.xamarin.com/show_bug.cgi?id=42330</a>
 
 Also, it does appear the code is calling EndRefreshing (see my notes in #42330). I also expect a different outcome then you mentioned and believe that the control should not be removed based on CanExecute.</pre>
     </div>

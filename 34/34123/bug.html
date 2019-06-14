@@ -672,14 +672,14 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Solution to reproduce printing issue on Yosemite.
 
 This may be related to <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - System.Drawing.Graphics.DrawLine will throw exception every time on Yosemite" href="show_bug.cgi?id=27160">bug 27160</a>, which also reports an issue with System.Drawing on Yosemite.
+          bz_status_NEW " title="NEW - System.Drawing.Graphics.DrawLine will throw exception every time on Yosemite" href="https://bugzilla.xamarin.com/show_bug.cgi?id=27160">bug 27160</a>, which also reports an issue with System.Drawing on Yosemite.
 
 I've attached a solution with a very simple printing example. I have a Yosemite machine (10.10.4) and a Mavericks machine (10.9.5), both running Xamarin Studio 5.9.7 (build 9), the latest stable as of this post.
 
 When the printing code runs on Mavericks via Mono 4.0.4 or Mono 3.12.1, the print job succeeds. 
 
 When run on Yosemite with either 4.0.4.2 or 3.12.1, the print job does not print. Unlike <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - System.Drawing.Graphics.DrawLine will throw exception every time on Yosemite" href="show_bug.cgi?id=27160">bug 27160</a>, no exception is thrown, or at least no exception that percolates up to my code.
+          bz_status_NEW " title="NEW - System.Drawing.Graphics.DrawLine will throw exception every time on Yosemite" href="https://bugzilla.xamarin.com/show_bug.cgi?id=27160">bug 27160</a>, no exception is thrown, or at least no exception that percolates up to my code.
 
 I've never set up a Mono environment, but I'll try and debug my way into System.Drawing. Meanwhile, any help is appreciated.
 

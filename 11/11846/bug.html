@@ -349,8 +349,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - File Not Found dialog when navigating to compiler warning" href="show_bug.cgi?id=12045">12045</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin Studio randomly fails to Build a solution with 10 or more projects" href="show_bug.cgi?id=12532">12532</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - File Not Found dialog when navigating to compiler warning" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12045">12045</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin Studio randomly fails to Build a solution with 10 or more projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12532">12532</a> 
       </span>
       ()
     </td>
@@ -704,7 +704,7 @@ Though the file is there, I can open it manually and find the cause at line 83 a
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - File Not Found dialog when navigating to compiler warning" href="show_bug.cgi?id=12045">Bug 12045</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - File Not Found dialog when navigating to compiler warning" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12045">Bug 12045</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -885,7 +885,7 @@ So I think there are four things to fix here:
 So I'm guessing the VS and MSBuild solution hosts have special handling for the MSBuild task.
 
 But the Xamarin.Android targets really shouldn't be doing this. Building dependencies is supposed to be handled by the sln container. This appears to have been introduced by the fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - More complicated Resource designer update is required for dependencies" href="show_bug.cgi?id=10078">bug 10078</a>.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - More complicated Resource designer update is required for dependencies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10078">bug 10078</a>.</pre>
     </div>
 
     <div id="c8" class="bz_comment">
@@ -978,7 +978,7 @@ So I guess if we fixed this we could skip fixing #4. But I'm still suspicious of
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin Studio randomly fails to Build a solution with 10 or more projects" href="show_bug.cgi?id=12532">Bug 12532</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin Studio randomly fails to Build a solution with 10 or more projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12532">Bug 12532</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c11" class="bz_comment">
@@ -1130,7 +1130,7 @@ This is not a problem in VS/MSBuild because the VS solution builder somehow hija
 
 
 <pre class="bz_comment_text">Of course there is reason we needed to use &lt;MSBuild/&gt;. We must not remove that MSBuild task because it brings more disasterous regressions about <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - More complicated Resource designer update is required for dependencies" href="show_bug.cgi?id=10078">bug #10078</a> on how to deal with resources. Your reasoning is only talking about the *ideal* build process, which cannot surpass the benefit of fixing that bug. As long as the use of &lt;MSBuild/&gt; is legal, regardless of it is not ideal or not, it should be xbuild or XS side that needs fix, and it's more reasonable.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - More complicated Resource designer update is required for dependencies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10078">bug #10078</a> on how to deal with resources. Your reasoning is only talking about the *ideal* build process, which cannot surpass the benefit of fixing that bug. As long as the use of &lt;MSBuild/&gt; is legal, regardless of it is not ideal or not, it should be xbuild or XS side that needs fix, and it's more reasonable.</pre>
     </div>
 
     <div id="c16" class="bz_comment">
@@ -1160,8 +1160,8 @@ This is not a problem in VS/MSBuild because the VS solution builder somehow hija
 
 
 <pre class="bz_comment_text">Here's a suggestion. It's not perfect, it wouldn't fix <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Modifying a resource file cause the project dependencies to be built" href="show_bug.cgi?id=8425">bug 8425</a>, but it would fix this and <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin Studio randomly fails to Build a solution with 10 or more projects" href="show_bug.cgi?id=12532">bug 12532</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Modifying a resource file cause the project dependencies to be built" href="https://bugzilla.xamarin.com/show_bug.cgi?id=8425">bug 8425</a>, but it would fix this and <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin Studio randomly fails to Build a solution with 10 or more projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12532">bug 12532</a>.
 
 1) Remove all DependsOn=_BuildDependencies from the current targets
 2) Rename UpdateAndroidResources to _UpdateAndroidResources
@@ -1226,7 +1226,7 @@ So dependencies would only be built when the IDE directly invoked UpdateAndroidR
 
 
 <pre class="bz_comment_text">I suspect that the fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Not all dependent assemblies are searched for .jars" href="show_bug.cgi?id=16589">Bug #16589</a> also fixed this, as the _BuildDependencies target has been removed and the &lt;MSBuild/&gt; task is no longer used in Xamarin.Android.Common.targets.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Not all dependent assemblies are searched for .jars" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16589">Bug #16589</a> also fixed this, as the _BuildDependencies target has been removed and the &lt;MSBuild/&gt; task is no longer used in Xamarin.Android.Common.targets.
 
 Binding projects still use the &lt;MSBuild/&gt; task though.</pre>
     </div>

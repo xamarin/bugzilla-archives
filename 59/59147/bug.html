@@ -608,7 +608,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">Related <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - New file added to project with hyphen in name has invalid namespace" href="show_bug.cgi?id=59111">bug #59111</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - New file added to project with hyphen in name has invalid namespace" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59111">bug #59111</a>
 
 To repro:
 
@@ -623,9 +623,9 @@ File created uses the same namespace as other classes. So it uses an underscore 
 Actual result:
 
 If <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - New file added to project with hyphen in name has invalid namespace" href="show_bug.cgi?id=59111">bug #59111</a> is fixed then the namespace used does not contain a hyphen or an underscore.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - New file added to project with hyphen in name has invalid namespace" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59111">bug #59111</a> is fixed then the namespace used does not contain a hyphen or an underscore.
 If <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - New file added to project with hyphen in name has invalid namespace" href="show_bug.cgi?id=59111">bug #59111</a> is not fixed then the namespace contains a hyphen.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - New file added to project with hyphen in name has invalid namespace" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59111">bug #59111</a> is not fixed then the namespace contains a hyphen.
 
 Perhaps the DotNetProject class should provide a way for a DotNetProjectExtension to provide its own default namespace? Then for .NET Core projects we could change the default namespace to match existing files when the project name contains a hyphen. The alternative to this is to instead change the DotNetProject to use the same namespace generation rules as Visual Studio on Windows.</pre>
     </div>

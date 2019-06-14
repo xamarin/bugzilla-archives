@@ -797,7 +797,7 @@ I would expect there be a more reasonable fallback policy so that the .NET Globa
 It did? What commit is that? (I'm not aware of it.)
 
 Or are you referring to the fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Retrieving System.Globalization Culture info returns Invariant info" href="show_bug.cgi?id=15214">Bug #15214</a>? That was fixed in 4.10.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Retrieving System.Globalization Culture info returns Invariant info" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15214">Bug #15214</a>? That was fixed in 4.10.
 
 Or are you referring to CultureInfo.DefaultThreadCurrentCulture? If so, IIRC that only changes the default Culture for _newly created_ threads. Previously created threads will not have their CurrentCulture changed.
 
@@ -805,7 +805,7 @@ Or are you referring to CultureInfo.DefaultThreadCurrentCulture? If so, IIRC tha
 &gt; locale becomes de_US.  Mono does not handle this</span>
 
 This is: <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - Date Format Issue" href="show_bug.cgi?id=1068#c14">https://bugzilla.xamarin.com/show_bug.cgi?id=1068#c14</a>
+          bz_status_ASSIGNED " title="ASSIGNED - Date Format Issue" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1068#c14">https://bugzilla.xamarin.com/show_bug.cgi?id=1068#c14</a>
 
 <span class="quote">&gt; and so the Culture becomes Invariant culture and their is no available region info.</span>
 
@@ -845,7 +845,7 @@ Which is the intent of this bug (<a class="bz_bug_link
 My understanding of this .NET API is that it affects all other threads which have not set a **specific** UI culture.  So it should affect all threads (since I didn't set a culture explicitly on any thread).  I was looking into this because I was thinking of taking my BaseActivity classes and adding instrumentation to OnConfigurationChanged to update the culture settings (since it is not done automatically ... possibly for good reasons...).
 
 Hmm... from reading the <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Retrieving System.Globalization Culture info returns Invariant info" href="show_bug.cgi?id=15214">bug #15214</a>, I believe there is some overlap in the difficulties people are encountering.  Note that there are several reports on that bug after it was reported fixed of people still encountering this issue.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Retrieving System.Globalization Culture info returns Invariant info" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15214">bug #15214</a>, I believe there is some overlap in the difficulties people are encountering.  Note that there are several reports on that bug after it was reported fixed of people still encountering this issue.
 
 I don't have control over the device's region.  That is set by the carrier/phone manufacturer.  In my case, I have a US region set.  I do have control over the language.  So in my case, when I am testing our German translation on my US phone, mono has an Invariant Culture which causes various issues.  Likely it would work on a phone from a German provider.  A German traveling to the US would likely have a US phone that they put their SIM card in (because we have very different bands here), so that user would be stuck in my situation as well.  They would not be able to get a proper locale inside a Xamarin.Android app.</pre>
     </div>
@@ -943,7 +943,7 @@ This is the test program we used to root cause the issues we are observing with 
 
 
 <pre class="bz_comment_text"><a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - Date Format Issue" href="show_bug.cgi?id=1068#c15">https://bugzilla.xamarin.com/show_bug.cgi?id=1068#c15</a> suggests a way you can workaround the issue yourself: create a new BroadcastReceiver, listen for the ACTION_LOCALE_CHANGED broadcast, and set CultureInfo.DefaultThreadCurrentCulture when you get the event.
+          bz_status_ASSIGNED " title="ASSIGNED - Date Format Issue" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1068#c15">https://bugzilla.xamarin.com/show_bug.cgi?id=1068#c15</a> suggests a way you can workaround the issue yourself: create a new BroadcastReceiver, listen for the ACTION_LOCALE_CHANGED broadcast, and set CultureInfo.DefaultThreadCurrentCulture when you get the event.
 
 You can probably get it working in your app before we can. :-)
 
@@ -1008,7 +1008,7 @@ XA 4.12 does.</pre>
 
 
 <pre class="bz_comment_text">Yea, I agree with your analysis on <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - Date Format Issue" href="show_bug.cgi?id=1068">bug #1068</a>.  It's not really that important to do it automatically.  I was just investigating this since our testing team was complaining there was unexpected behavior with respect to Android and locale change.  I'll probably just end up nuking the app and restarting to make sure they are testing the real state and not a configuration change workaround.
+          bz_status_ASSIGNED " title="ASSIGNED - Date Format Issue" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1068">bug #1068</a>.  It's not really that important to do it automatically.  I was just investigating this since our testing team was complaining there was unexpected behavior with respect to Android and locale change.  I'll probably just end up nuking the app and restarting to make sure they are testing the real state and not a configuration change workaround.
 
 Incidentally, even major pure Android apps have locale change problem.  For instance, Amazon Kindle just crashes every time I change locale. :)
 

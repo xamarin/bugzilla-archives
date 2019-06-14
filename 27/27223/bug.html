@@ -633,14 +633,14 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Test case
 
 This is an extension of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unified build folder sandboxing for MacOSX build host files copy (project, Content, native libraries, etc...)" href="show_bug.cgi?id=23635">bug # 23635</a>, but with a slightly different use case that was alluded to in that bug, but not fixed as far as I can tell. I have a set of projects which all link to a common static library. The static library is in a common directory relative to the solution, which is outside each project's directory. My MtouchExtraArgs looks something like this:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unified build folder sandboxing for MacOSX build host files copy (project, Content, native libraries, etc...)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23635">bug # 23635</a>, but with a slightly different use case that was alluded to in that bug, but not fixed as far as I can tell. I have a set of projects which all link to a common static library. The static library is in a common directory relative to the solution, which is outside each project's directory. My MtouchExtraArgs looks something like this:
 
 -gcc_flags "-L..\..\Imports -force_load ..\..\Imports\libraryname"
 
 When I try to build this project through Visual Studio that file does not get copied to the host, and so native linking fails.
 
 At first I did not have the library in any of my projects. After looking at <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unified build folder sandboxing for MacOSX build host files copy (project, Content, native libraries, etc...)" href="show_bug.cgi?id=23635">bug 23635</a> I added the library to the project like this:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unified build folder sandboxing for MacOSX build host files copy (project, Content, native libraries, etc...)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23635">bug 23635</a> I added the library to the project like this:
 
     &lt;None Include="..\..\Imports\libraryname"&gt;
       &lt;Link&gt;libraryname&lt;/Link&gt;

@@ -639,7 +639,7 @@ The Effect should attach to both MyLabel and Label instances.
 I checked this on Android. I did not check it on iOS or UWP.
 
 This looks very similar to #58072 (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Effects are not being applied to labels" href="show_bug.cgi?id=58072">https://bugzilla.xamarin.com/show_bug.cgi?id=58072</a>), so I followed the advice given in that bug's comments. I deleted all /bin and /obj directories, uninstalled the app from my device, restarted Visual Studio, rebuilt the solution, and ran the app again. These steps did not resolve the issue.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Effects are not being applied to labels" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58072">https://bugzilla.xamarin.com/show_bug.cgi?id=58072</a>), so I followed the advice given in that bug's comments. I deleted all /bin and /obj directories, uninstalled the app from my device, restarted Visual Studio, rebuilt the solution, and ran the app again. These steps did not resolve the issue.
 
 # Repro steps
 See the attached sample solution. The Effect renderer and MyLabel definitions are in ListItemTap.Android/Renderers.cs. The Effect usage is in MyPage.cs.

@@ -609,13 +609,13 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">Context: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=34883">Bug #34883</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=34883">Bug #34883</a>
 Context: <a href="https://github.com/xamarin/xamarin-android/pull/872">https://github.com/xamarin/xamarin-android/pull/872</a>
 
 The `MonoTests.System.Net.NetworkInformation.PingTest.PingSuccess()` test does not work on all Android devices, becomes some of them don't permit `ping`ing localhost. (Android, everyone!)
 
 This was fixed with <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=34883">Bug #34883</a> by skipping execution of the test on certain "known bad" Android devices. However, this fix was never merged with mono proper.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=34883">Bug #34883</a> by skipping execution of the test on certain "known bad" Android devices. However, this fix was never merged with mono proper.
 
 Update the `MonoTests.System.Net.NetworkInformation.PingTest.PingSuccess()` test so that the device rejection logic is within mono, so that when xamarin-android uses the mono tests as-is, the correct behavior will continue to be used.</pre>
     </div>

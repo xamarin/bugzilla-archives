@@ -744,9 +744,9 @@ PLEASE fix this soon!</pre>
 This same complication also arises when accessing a "related view" of a UIView via the `Superview` property.
 
 In the end, I think this enhancement request is a near duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Derived UIButton not being disposed" href="show_bug.cgi?id=1939">bug #1939</a>. See in particular:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Derived UIButton not being disposed" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1939">bug #1939</a>. See in particular:
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Derived UIButton not being disposed" href="show_bug.cgi?id=1939#c3">https://bugzilla.xamarin.com/show_bug.cgi?id=1939#c3</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Derived UIButton not being disposed" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1939#c3">https://bugzilla.xamarin.com/show_bug.cgi?id=1939#c3</a>
 
 The comment says: "Unfortunately we've determined that it's pretty much impossible for MonoTouch to resolve this scenario [automatically]." Instead, the developer must help the Xamarin.iOS runtime by explicitly calling `Dispose()` to break the strong reference cycle [1, 2].
 

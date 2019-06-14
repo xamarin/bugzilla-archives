@@ -615,7 +615,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 +        &lt;UsingTask TaskName="Microsoft.Build.Tasks.CreateVisualBasicManifestResourceName" AssemblyName="Microsoft.Build.Tasks.v4.0, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/&gt;
 
 And when I ran `xbuild` in QuickVB source dir (Well, the same as in <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - Xamarin Develop does not support VB on .NET v4.5" href="show_bug.cgi?id=28912">https://bugzilla.xamarin.com/show_bug.cgi?id=28912</a>), the original unchanged one reported that CreateVisualBasicManifestResourceName failed because it couldn't find Microsoft.Build.Tasks, while using Microsoft.Build.Tasks.v4.0 instead does solve the problem.
+          bz_status_NEW " title="NEW - Xamarin Develop does not support VB on .NET v4.5" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28912">https://bugzilla.xamarin.com/show_bug.cgi?id=28912</a>), the original unchanged one reported that CreateVisualBasicManifestResourceName failed because it couldn't find Microsoft.Build.Tasks, while using Microsoft.Build.Tasks.v4.0 instead does solve the problem.
 
 I was still unable to build since Microsoft.Build.Tasks.v4.0.Vbc appears to be FAILED in xbuild. The assembly browser gave me a lot of [MonoTODO]s so it looks like part of another bug or so.</pre>
     </div>
@@ -651,7 +651,7 @@ I was still unable to build since Microsoft.Build.Tasks.v4.0.Vbc appears to be F
 <span class="quote">&gt; Error executing task Vbc: Argument cannot be null.</span>
 
 with the actually existing Microsoft.Build.Tasks.dll. The output is identical to what was reported in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unable to compile VB.NET Project" href="show_bug.cgi?id=24461">bug #24461</a>.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unable to compile VB.NET Project" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24461">bug #24461</a>.</pre>
     </div>
 
 

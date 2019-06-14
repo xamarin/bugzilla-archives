@@ -627,7 +627,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">A follow up to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - XamlObjectWriterSettings events are not called" href="show_bug.cgi?id=3003">bug #3003</a>, the XamlObjectWriter calls EndInit() on child objects before setting the child to a parent property, instead of after.  It does seem to call EndInit() after adding a child to a parent collection properly, just not when setting a parent property.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - XamlObjectWriterSettings events are not called" href="https://bugzilla.xamarin.com/show_bug.cgi?id=3003">bug #3003</a>, the XamlObjectWriter calls EndInit() on child objects before setting the child to a parent property, instead of after.  It does seem to call EndInit() after adding a child to a parent collection properly, just not when setting a parent property.
 
 Attached is a sample, which produces this output in MS.NET:
 

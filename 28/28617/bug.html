@@ -658,11 +658,11 @@ Linker-modified System.Net.Http.Primitives.dll causes ArgumentOutOfRangeExceptio
 
 
 This is almost identical to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Mono CIL Stripper error on Index is less than 0 or more than or equal to the list count." href="show_bug.cgi?id=25344">bug 25344</a> (see in particular <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Mono CIL Stripper error on Index is less than 0 or more than or equal to the list count." href="show_bug.cgi?id=25344#c7">bug 25344, comment 7</a>), _but_ this particular test case only fails when building on Mac.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Mono CIL Stripper error on Index is less than 0 or more than or equal to the list count." href="https://bugzilla.xamarin.com/show_bug.cgi?id=25344">bug 25344</a> (see in particular <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Mono CIL Stripper error on Index is less than 0 or more than or equal to the list count." href="https://bugzilla.xamarin.com/show_bug.cgi?id=25344#c7">bug 25344, comment 7</a>), _but_ this particular test case only fails when building on Mac.
 
 (The fact that the `System.Net.Http.Primitives.dll` is not copied into the `PreBuild` folder in VS might be _correct_ (see <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED INVALID - &quot;Microsoft HTTP Client Libraries&quot; NuGet causes &quot;System.InvalidOperationException&quot; from System.Lightup.Call()" href="show_bug.cgi?id=20589#c7">bug 20589, comment 7</a>), but in any case, that's a separate issue.)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED INVALID - &quot;Microsoft HTTP Client Libraries&quot; NuGet causes &quot;System.InvalidOperationException&quot; from System.Lightup.Call()" href="https://bugzilla.xamarin.com/show_bug.cgi?id=20589#c7">bug 20589, comment 7</a>), but in any case, that's a separate issue.)
 
 Sysem.Net.Http.Primitives.dll is part of the Microsoft.Net.Http ("Microsoft HTTP Client Libraries") NuGet package.
 

@@ -830,7 +830,7 @@ So...
 
 
 <pre class="bz_comment_text">Radek: I'm sorry; this was introduced by fixing <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Debug]Android application crashed as soon as it launches on device/Emulator" href="show_bug.cgi?id=28538">Bug #28538</a> (monodroid/8763f662b), which renames libmonosgen-2.0.so to libmonosgen-{32,64}bits-2.0.so.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Debug]Android application crashed as soon as it launches on device/Emulator" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28538">Bug #28538</a> (monodroid/8763f662b), which renames libmonosgen-2.0.so to libmonosgen-{32,64}bits-2.0.so.
 
 The problem is that libmono-profiler-log.so still has a NEEDED library reference to libmonosgen-2.0.so, which now no longer exists:
 
@@ -843,7 +843,7 @@ The problem is that libmono-profiler-log.so still has a NEEDED library reference
    0x00000001 (NEEDED)                     Shared library: [libz.so]
 
 We either need to fix the name used by libmono-profiler-log.so -- which may not be possible -- or come up with an alternative solution to <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - System.Diagnostics.Process.GetProcesses() gives truncated results" href="show_bug.cgi?id=28358">Bug #28358</a>. :-(</pre>
+          bz_status_NEW " title="NEW - System.Diagnostics.Process.GetProcesses() gives truncated results" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28358">Bug #28358</a>. :-(</pre>
     </div>
 
     <div id="c5" class="bz_comment">

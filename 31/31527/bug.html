@@ -350,7 +350,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Could not load file or assembly 'System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies" href="show_bug.cgi?id=31758">31758</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Could not load file or assembly 'System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31758">31758</a> 
       </span>
       ()
     </td>
@@ -1239,10 +1239,10 @@ Additional logcat output from <span class=""><a href="https://bugzilla.xamarin.c
 
 
 <pre class="bz_comment_text">At a high level, this looks like <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - PCLv2 facade assemblies aren't installed when required" href="show_bug.cgi?id=20179">Bug #20179</a> regressed.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - PCLv2 facade assemblies aren't installed when required" href="https://bugzilla.xamarin.com/show_bug.cgi?id=20179">Bug #20179</a> regressed.
 
 Rephrased: when <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - PCLv2 facade assemblies aren't installed when required" href="show_bug.cgi?id=20179">Bug #20179</a> was fixed (the state of play in 5.1.3), after installing the app onto the device, the fast deployment directory contained all the facade assemblies:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - PCLv2 facade assemblies aren't installed when required" href="https://bugzilla.xamarin.com/show_bug.cgi?id=20179">Bug #20179</a> was fixed (the state of play in 5.1.3), after installing the app onto the device, the fast deployment directory contained all the facade assemblies:
 
 <a href="https://gist.github.com/pjcollins/47fb98ea65bfcf6bc3a6">https://gist.github.com/pjcollins/47fb98ea65bfcf6bc3a6</a>
 <span class="quote">&gt; -rw-rw---- u0_a122  sdcard_r    12800 2015-07-07 17:15 System.Runtime.dll</span>
@@ -1360,7 +1360,7 @@ Compare to 5.1.3-generated output, which DOES contain the Facade assemblies:
 <a href="https://xamarinhq.slack.com/files/peterc/F07ACCX5X/resolved_assemblies_txt.txt">https://xamarinhq.slack.com/files/peterc/F07ACCX5X/resolved_assemblies_txt.txt</a>
 
 This in turn makes it look like the fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XA 5.1] Xamarin.Android Breakpoints in Forms PCL project do not work after cleaning solution, redeploying, and restarting debugging" href="show_bug.cgi?id=30318">Bug #30318</a> (commit 21b20812) may have caused the breakage.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XA 5.1] Xamarin.Android Breakpoints in Forms PCL project do not work after cleaning solution, redeploying, and restarting debugging" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30318">Bug #30318</a> (commit 21b20812) may have caused the breakage.</pre>
     </div>
 
     <div id="c17" class="bz_comment">
@@ -1393,7 +1393,7 @@ This in turn makes it look like the fix for <a class="bz_bug_link
 Xamarin.Android.Common.targets.patch
 
 This patch "fixes" Xamarin.Android.Common.targets by removing the parts fixed as part of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XA 5.1] Xamarin.Android Breakpoints in Forms PCL project do not work after cleaning solution, redeploying, and restarting debugging" href="show_bug.cgi?id=30318">Bug #30318</a> -- meaning this patch is probably BAD -- but in the process fixes this particular bug.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XA 5.1] Xamarin.Android Breakpoints in Forms PCL project do not work after cleaning solution, redeploying, and restarting debugging" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30318">Bug #30318</a> -- meaning this patch is probably BAD -- but in the process fixes this particular bug.
 
 I have no idea what the implications of this patch are; I only know that after it is applied (and Xamarin Studio is restarted), resolved_assemblies.txt contains the PCLv2 facade assemblies, which allows the app to run properly.</pre>
     </div>
@@ -1425,7 +1425,7 @@ I have no idea what the implications of this patch are; I only know that after i
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Could not load file or assembly 'System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies" href="show_bug.cgi?id=31758">Bug 31758</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Could not load file or assembly 'System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31758">Bug 31758</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c19" class="bz_comment">

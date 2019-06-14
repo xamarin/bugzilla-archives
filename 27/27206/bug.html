@@ -904,7 +904,7 @@ Our purpose to limit the assembly profile with Unified is to ensure that we can 
 <pre class="bz_comment_text">Good morning, Miguel, thanks for jumping in.
 
 While there has been no official announcement on the fate of the Classic API, comments like the one in this bug definitely point in a particular direction: <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - NSTextView dodgy delegate situations" href="show_bug.cgi?id=10204">https://bugzilla.xamarin.com/show_bug.cgi?id=10204</a>.
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - NSTextView dodgy delegate situations" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10204">https://bugzilla.xamarin.com/show_bug.cgi?id=10204</a>.
 
 Unless I am misreading the roadmap, all the new OS X API are only coming to Unified, because they are x64: <a href="http://developer.xamarin.com/releases/mac/roadmap/">http://developer.xamarin.com/releases/mac/roadmap/</a>.
 
@@ -1009,7 +1009,7 @@ As you can see, we lean pretty heavily on the NuGet ecosystem, and would like to
 As a minor UX side note, when XS shows an (X) next to my referenced library projects in the converted Unified project and says they are not compatible, it would be more helpful if it stated that to make them compatible, the projects have to be either PCL or Xamarin.Mac Unified.
 
 Lastly, another reason a move to Unified is not currently possible for us is debated here: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - NSWindow.DefaultButtonCell throws when set to null" href="show_bug.cgi?id=26517">https://bugzilla.xamarin.com/show_bug.cgi?id=26517</a>.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - NSWindow.DefaultButtonCell throws when set to null" href="https://bugzilla.xamarin.com/show_bug.cgi?id=26517">https://bugzilla.xamarin.com/show_bug.cgi?id=26517</a>.</pre>
     </div>
 
     <div id="c9" class="bz_comment">
@@ -1551,7 +1551,7 @@ Feel free to ping me at <a href="mailto:chris.hamons@xamarin.com">chris.hamons@x
 <pre class="bz_comment_text">So this actually isn't fixed, at all. Maybe I am doing something wrong, but today I re-attempted to move our Xamarin.Mac application to Unified and hours later ended with an epic fail.
 
 1. Only "Xamarin.Mac Mobile Framework" uses the Xamarin.Mac nuget profile. But, as already discussed here, that profile is tied to .net 2.0 and is pretty useless. The newly minted Xamarin.Mac .NET 4.5 Framework profile uses the net45 nuget profile, making it, too, completely useless and does not solve issues raised in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED UPSTREAM - NuGet does not use MonoMac assemblies" href="show_bug.cgi?id=21338">bug 21338</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED UPSTREAM - NuGet does not use MonoMac assemblies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=21338">bug 21338</a>.
 
 2. Selecting the Xamarin.Mac .NET 4.5 Framework option and attempting to compile our application results in weird errors like "Extension methods require `System.Runtime.CompilerServices.ExtensionAttribute' type to be available. Are you missing an assembly reference?" Switching to Mono / .NET 4.5 eliminates the error.
 

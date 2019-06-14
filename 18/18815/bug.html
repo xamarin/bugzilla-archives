@@ -737,18 +737,18 @@ Visual Studio extension to enable development for Xamarin.iOS</pre>
 
 
 <pre class="bz_comment_text">This is approximately a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Getting build error for monotouch-binding sample 'RouteMe'" href="show_bug.cgi?id=16555">bug #16555</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Getting build error for monotouch-binding sample 'RouteMe'" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16555">bug #16555</a>.
 
 See in particular:
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Getting build error for monotouch-binding sample 'RouteMe'" href="show_bug.cgi?id=16555#c4">https://bugzilla.xamarin.com/show_bug.cgi?id=16555#c4</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Getting build error for monotouch-binding sample 'RouteMe'" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16555#c4">https://bugzilla.xamarin.com/show_bug.cgi?id=16555#c4</a>
 
 In short, Objective-C binding projects are only supported in Xamarin Studio on Mac, and not yet in Visual Studio [1]. The template project that's included with the Xamarin.iOS Visual Studio extension is misleadingly just a plain iOS _library_ project, and is slated to be removed ASAP [2].
 
 
 <span class="quote">&gt; [1] <a href="http://docs.xamarin.com/guides/ios/advanced_topics/binding_objective-c/binding_objc_libs/">http://docs.xamarin.com/guides/ios/advanced_topics/binding_objective-c/binding_objc_libs/</a> 
 &gt; [2] <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Remove &quot;Xamarin.iOS Binding Project&quot; template" href="show_bug.cgi?id=19253">bug #19253</a></span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Remove &quot;Xamarin.iOS Binding Project&quot; template" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19253">bug #19253</a></span>
 
 
 The reason Intellisense doesn't work is that the resulting `.dll` is empty. That is, compiled library does not contain any types.  This happens because the "ObjcBindingApiDefinition" Build Action is currently equivalent to a Build Action of "None". 

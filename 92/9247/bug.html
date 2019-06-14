@@ -348,7 +348,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=9201">9201</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9201">9201</a> 
       </span>
       ()
     </td>
@@ -758,7 +758,7 @@ On Microsoft.NET, the attached example works properly. It encrypts correctly, th
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=9201">Bug 9201</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9201">Bug 9201</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -822,7 +822,7 @@ On Microsoft.NET, the attached example works properly. It encrypts correctly, th
 
 2. Reading the stream stops after a block size not equal to a valid block size.  Per your comment from my bug marked duplicate:
 "CryptoStream has a similar (to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Mono.Security.Cryptography RijndaelManaged class issue using CFB-8 mode" href="show_bug.cgi?id=7193">bug #7193</a>) and wrong assumption about data
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Mono.Security.Cryptography RijndaelManaged class issue using CFB-8 mode" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7193">bug #7193</a>) and wrong assumption about data
 length when used with CFB with a feedback size smaller than the block size.
 This mess up the end-of-stream detection."
 
@@ -1024,7 +1024,7 @@ Ray</pre>
 
 
 <pre class="bz_comment_text">CFB8 works - but then it worked <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Mono.Security.Cryptography RijndaelManaged class issue using CFB-8 mode" href="show_bug.cgi?id=7193">bug #7193</a> was fixed (and that's be in MT iirc). However it did not work with CryptoStream* (as your test case pointed out). The only immediate fix is to stop using CryptoStream and work directly on byte[] buffers (i.e. replacing it with calls to TransformBlock).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Mono.Security.Cryptography RijndaelManaged class issue using CFB-8 mode" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7193">bug #7193</a> was fixed (and that's be in MT iirc). However it did not work with CryptoStream* (as your test case pointed out). The only immediate fix is to stop using CryptoStream and work directly on byte[] buffers (i.e. replacing it with calls to TransformBlock).
 
 * not sure why (have not looked into that part yet) but it's even less likely now since the [Input|Output]BlockSize are now matching MS values (and that's not valid from CryptoStream point of view).</pre>
     </div>
@@ -1264,7 +1264,7 @@ CFB8 TransformBlock invalid block size</pre>
 
 
 <pre class="bz_comment_text">I added a new attachment showing the invalid block size error with transformblock.  Seems to be same as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Mono.Security.Cryptography RijndaelManaged class issue using CFB-8 mode" href="show_bug.cgi?id=7193">bug #7193</a> that you say was fixed.  I am using:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Mono.Security.Cryptography RijndaelManaged class issue using CFB-8 mode" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7193">bug #7193</a> that you say was fixed.  I am using:
 
 Runtime:
 	Mono 2.10.10 (mono-2-10/4d9ada6)

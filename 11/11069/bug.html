@@ -349,7 +349,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - UIImage Scale() problem" href="show_bug.cgi?id=12247">12247</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - UIImage Scale() problem" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12247">12247</a> 
       </span>
       ()
     </td>
@@ -601,7 +601,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">I'm guessing that after the introduction of the fix to bug: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - UIImage.Scale isn't using the @2x image for retina displays" href="show_bug.cgi?id=8548">https://bugzilla.xamarin.com/show_bug.cgi?id=8548</a>, a few use-cases were left out. If you run the code attached bellow you will see that the current usage is not very intuitive. If you scale an image to 240x240px, then save it to disk, and reload it, you suddenly have an image of 480x480px. I haven't tested this on non-retina devices, but this probably means that if I want the same image-size on both retina and non-retina devices, I have to check to see which one I'm currently on before I decide which size I want to scale the image to.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - UIImage.Scale isn't using the @2x image for retina displays" href="https://bugzilla.xamarin.com/show_bug.cgi?id=8548">https://bugzilla.xamarin.com/show_bug.cgi?id=8548</a>, a few use-cases were left out. If you run the code attached bellow you will see that the current usage is not very intuitive. If you scale an image to 240x240px, then save it to disk, and reload it, you suddenly have an image of 480x480px. I haven't tested this on non-retina devices, but this probably means that if I want the same image-size on both retina and non-retina devices, I have to check to see which one I'm currently on before I decide which size I want to scale the image to.
 
 
 Test-code (ViewController):
@@ -758,7 +758,7 @@ namespace ScaleTest
 
 
 <pre class="bz_comment_text">I have reverted the fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - UIImage.Scale isn't using the @2x image for retina displays" href="show_bug.cgi?id=8548">bug #8548</a> (and fixed it differently).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - UIImage.Scale isn't using the @2x image for retina displays" href="https://bugzilla.xamarin.com/show_bug.cgi?id=8548">bug #8548</a> (and fixed it differently).
 
 master: 41763882caf915c94ff2726e729e7d803e42bc35</pre>
     </div>
@@ -790,7 +790,7 @@ master: 41763882caf915c94ff2726e729e7d803e42bc35</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - UIImage Scale() problem" href="show_bug.cgi?id=12247">Bug 12247</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - UIImage Scale() problem" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12247">Bug 12247</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
 

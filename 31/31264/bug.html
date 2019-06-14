@@ -666,7 +666,7 @@ However, I see that the number of instances of several types is increasing witho
 Given the types that are leaking, our suspicion is that the way we are reusing the view model when the filter changes is somehow causing Xamarin.Forms to not unregister event handlers when they are no longer needed and re-register them multiple times on the same objects. If this is true, then when something like a property change event is raised, it would fire many times, chewing up CPU time. This might explain some of the slowdown we are seeing."
 
 This is similar to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Replacing a bound ObservableCollection entirely causes memory to leak" href="show_bug.cgi?id=30678">https://bugzilla.xamarin.com/show_bug.cgi?id=30678</a> but in this case the items within the OC are being replaced vs replacing the entire list.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Replacing a bound ObservableCollection entirely causes memory to leak" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30678">https://bugzilla.xamarin.com/show_bug.cgi?id=30678</a> but in this case the items within the OC are being replaced vs replacing the entire list.</pre>
     </div>
 
     <div id="c3" class="bz_comment">

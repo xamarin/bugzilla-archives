@@ -355,7 +355,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - Filtering exception that is thrown and caught in non-user code is not working correctly" href="show_bug.cgi?id=39371">39371</a> 
+          bz_status_NEW " title="NEW - Filtering exception that is thrown and caught in non-user code is not working correctly" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39371">39371</a> 
   </td>
   </tr>
 
@@ -660,7 +660,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - &quot;Just My Code&quot; fails to let the debugger skip exceptions that are thrown and caught entirely within external libraries (when the debugger is set to break on all thrown CLR exceptions)" href="show_bug.cgi?id=39345">39345</a>
+          bz_status_CONFIRMED " title="CONFIRMED - &quot;Just My Code&quot; fails to let the debugger skip exceptions that are thrown and caught entirely within external libraries (when the debugger is set to break on all thrown CLR exceptions)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39345">39345</a>
           </li></ul>
 
 </td>
@@ -732,8 +732,8 @@ Test case
 "Debug project code only" does not prevent the debugger from breaking on exception catchpoints in non-user code unless the exception is thrown and caught within a `Task.Delay ().ContinueWith ()`
 
 The test case for this bug is identical to the test case for the XamarinVS <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - &quot;Just My Code&quot; fails to let the debugger skip exceptions that are thrown and caught entirely within external libraries (when the debugger is set to break on all thrown CLR exceptions)" href="show_bug.cgi?id=39345">Bug 39345</a>. The problem in Xamarin Studio is almost identical to the problem in XamarinVS except for the improvement related to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="show_bug.cgi?id=9615">Bug 9615</a> as discussed below.
+          bz_status_CONFIRMED " title="CONFIRMED - &quot;Just My Code&quot; fails to let the debugger skip exceptions that are thrown and caught entirely within external libraries (when the debugger is set to break on all thrown CLR exceptions)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39345">Bug 39345</a>. The problem in Xamarin Studio is almost identical to the problem in XamarinVS except for the improvement related to <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9615">Bug 9615</a> as discussed below.
 
 This also might be a tricky problem to solve if the soft debugger does not currently provide enough context about the exception to the IDEs to make this possible.
 
@@ -760,16 +760,16 @@ Xamarin.Android 5.1.9.0 (f7b9e87)
 
 
 ## How this bug relates to the fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="show_bug.cgi?id=9615">Bug 9615</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9615">Bug 9615</a>
 
 The fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="show_bug.cgi?id=9615">Bug 9615</a> only helps in certain special cases (I think maybe when the exception never propagates to the main thread?). This is a nice enhancement, but it does not yet match the full functionality of Visual Studio's "Just My Code" feature for console C# apps.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9615">Bug 9615</a> only helps in certain special cases (I think maybe when the exception never propagates to the main thread?). This is a nice enhancement, but it does not yet match the full functionality of Visual Studio's "Just My Code" feature for console C# apps.
 
 You can see the effect of the fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="show_bug.cgi?id=9615">Bug 9615</a> if you modify the attached test case to wrap the try/catch block in `Class1.Foo()` within a `Task.Delay ().ContinueWith ()` [1]. If you make that change, then the "Debug project code only" setting has the _correct_ desired effect in Xamarin Studio 5.10.0 and higher.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9615">Bug 9615</a> if you modify the attached test case to wrap the try/catch block in `Class1.Foo()` within a `Task.Delay ().ContinueWith ()` [1]. If you make that change, then the "Debug project code only" setting has the _correct_ desired effect in Xamarin Studio 5.10.0 and higher.
 
 [1] This modification makes the test case match the unit test that was written for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="show_bug.cgi?id=9615">Bug 9615</a>:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9615">Bug 9615</a>:
 <a href="https://github.com/mono/monodevelop/blob/47065b098bf5d0278308cecbba2a2bf9a578e30d/main/src/addins/MonoDevelop.Debugger/MonoDevelop.Debugger.Tests.NonUserCodeTestLib/NonUserCodeClass.cs#L39-L44">https://github.com/mono/monodevelop/blob/47065b098bf5d0278308cecbba2a2bf9a578e30d/main/src/addins/MonoDevelop.Debugger/MonoDevelop.Debugger.Tests.NonUserCodeTestLib/NonUserCodeClass.cs#L39-L44</a>
 
 
@@ -805,7 +805,7 @@ You can see the effect of the fix for <a class="bz_bug_link
 The debugger does not break on any exceptions.
 
 (See <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - &quot;Just My Code&quot; fails to let the debugger skip exceptions that are thrown and caught entirely within external libraries (when the debugger is set to break on all thrown CLR exceptions)" href="show_bug.cgi?id=39345">Bug 39345</a> for additional details on how to run the console C# application in Visual Studio.)
+          bz_status_CONFIRMED " title="CONFIRMED - &quot;Just My Code&quot; fails to let the debugger skip exceptions that are thrown and caught entirely within external libraries (when the debugger is set to break on all thrown CLR exceptions)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39345">Bug 39345</a> for additional details on how to run the console C# application in Visual Studio.)
 
 
 
@@ -937,7 +937,7 @@ Detailed version info</pre>
 
 
 <pre class="bz_comment_text">I fixed this on IDE side(<a href="https://github.com/mono/debugger-libs/commit/c93c555485e914f0d699019efb280d23eda58b53">https://github.com/mono/debugger-libs/commit/c93c555485e914f0d699019efb280d23eda58b53</a>) but until <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - Filtering exception that is thrown and caught in non-user code is not working correctly" href="show_bug.cgi?id=39371">Bug 39371</a> is fixed, this can't be merged(it would result into weird behaviour). Since this is not regression I'm moving this to C8.</pre>
+          bz_status_NEW " title="NEW - Filtering exception that is thrown and caught in non-user code is not working correctly" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39371">Bug 39371</a> is fixed, this can't be merged(it would result into weird behaviour). Since this is not regression I'm moving this to C8.</pre>
     </div>
 
     <div id="c6" class="bz_comment">

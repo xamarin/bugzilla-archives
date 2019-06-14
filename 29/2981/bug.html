@@ -599,7 +599,7 @@ One of the calls to my services raises a System.ServiceModel.FaultException:
 
 My call is surrounded by a try-catch that catches Exception but exceptions generated through WCF will never be caught.
 See <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - WCF: SerializationException when processing response that contains a nullable enum" href="show_bug.cgi?id=2843">bug #2843</a> for a demo project (button "FaultException").
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - WCF: SerializationException when processing response that contains a nullable enum" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2843">bug #2843</a> for a demo project (button "FaultException").
 The exception is raised in ClientRuntimeChannel.Process(), l. 485 by an explicit throw and that's where execution stops. It will not reach my catch.
 
 public object Process (MethodBase method, string operationName, object [] parameters)

@@ -687,7 +687,7 @@ What "goes wrong"? Mono for Android attempts to register the MyApp class...const
 &gt; E/mono    (11268):   at (wrapper dynamic-method) object:f6b</span>
 
 Even once <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=5397">Bug #5397</a> is fixed, things still fail badly, triggering an apparent stack overflow:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=5397">Bug #5397</a> is fixed, things still fail badly, triggering an apparent stack overflow:
 
 <span class="quote">&gt; I/dalvikvm(11474):   at mono.android.Runtime.register(Native Method)
 &gt; I/dalvikvm(11474):   at scratch.contentprovidershateapplications.MyApp.onCreate(MyApp.java:24)
@@ -740,7 +740,7 @@ Workaround: Don't Do That™: If the overridden ContentProvider.OnCreate() metho
 <span class="quote">&gt; I/mono-stdout(11254): MyContentProvider.OnCreate: Context=Android.App.Application</span>
 
 The reason is that the created Application subclass has not yet been registered with Mono for Android (via the Android Callable Wrapper's Application.onCreate() method), and without "properly" fixing <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Casting problem when using Android.Support.V4.View namespace" href="show_bug.cgi?id=7459">Bug #7459</a> the Application subclass provided within the application isn't be checked. It will be used once Android invokes Application.onCreate(), but that's _after_ creating and calling ContentProvider.onCreate(), so within ContentProvider, at present, a "wrapper" instance is used.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Casting problem when using Android.Support.V4.View namespace" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7459">Bug #7459</a> the Application subclass provided within the application isn't be checked. It will be used once Android invokes Application.onCreate(), but that's _after_ creating and calling ContentProvider.onCreate(), so within ContentProvider, at present, a "wrapper" instance is used.
 
 It's plausible that this is why things "go horribly bad"; this bears further investigation.</pre>
     </div>

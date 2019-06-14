@@ -593,7 +593,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">After running into <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - BoxView in RelativeLayout with a background doesn't render on Android" href="show_bug.cgi?id=22794">https://bugzilla.xamarin.com/show_bug.cgi?id=22794</a> I tried replacing the BoxView with a StackLayout (or any other layout for that matter), which fixes the part that the background gets rendered. The problem is that even though the layout covers the whole page, it can be clicked through.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - BoxView in RelativeLayout with a background doesn't render on Android" href="https://bugzilla.xamarin.com/show_bug.cgi?id=22794">https://bugzilla.xamarin.com/show_bug.cgi?id=22794</a> I tried replacing the BoxView with a StackLayout (or any other layout for that matter), which fixes the part that the background gets rendered. The problem is that even though the layout covers the whole page, it can be clicked through.
 
 Here's a code that reproduces the error. It works as it should on iOS, where the ListView can't be clicked on through the overlay, but on Android it doesn't matter hwat value is InputTransparent set to, it just doesn't work.
 

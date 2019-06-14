@@ -350,7 +350,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin causes Visual Studio to freeze when opening Xamarin.Forms sln" href="show_bug.cgi?id=60158">60158</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin causes Visual Studio to freeze when opening Xamarin.Forms sln" href="https://bugzilla.xamarin.com/show_bug.cgi?id=60158">60158</a> 
       </span>
       ()
     </td>
@@ -1143,7 +1143,7 @@ design time build logs</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin causes Visual Studio to freeze when opening Xamarin.Forms sln" href="show_bug.cgi?id=60158">Bug 60158</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin causes Visual Studio to freeze when opening Xamarin.Forms sln" href="https://bugzilla.xamarin.com/show_bug.cgi?id=60158">Bug 60158</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c12" class="bz_comment">
@@ -1247,7 +1247,7 @@ I am marking the issue as confirmed based on <a href="bug.html">Comment 9</a>, a
 Modified .targets files for workaround
 
 ## Workaround (that might re-break <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - XAML IntelliSense only works when iOS target is set, not Android" href="show_bug.cgi?id=57281">Bug 57281</a>)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - XAML IntelliSense only works when iOS target is set, not Android" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57281">Bug 57281</a>)
 
 Add back the following attribute on the `GetAdditionalResourcesFromAssemblies` Task element in Xamarin.Android.Common.targets and Xamarin.Android.Bindings.targets:
 
@@ -1285,7 +1285,7 @@ Before this change I was able to hit the issue on 5/5 consecutive solution load 
 ## Background information
 
 This issue is caused by the attempted fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - XAML IntelliSense only works when iOS target is set, not Android" href="show_bug.cgi?id=57281">Bug 57281</a> where the `GetAdditionalResourcesFromAssemblies` task was re-enabled for "design time" builds to make XAML IntelliSense behave as expected when the active configuration is set to an Android project.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - XAML IntelliSense only works when iOS target is set, not Android" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57281">Bug 57281</a> where the `GetAdditionalResourcesFromAssemblies` task was re-enabled for "design time" builds to make XAML IntelliSense behave as expected when the active configuration is set to an Android project.
 
 Unfortunately, this bug report demonstrates that the logic added to avoid downloads in the `GetAdditionalResourcesFromAssemblies` task was not by itself sufficient to avoid hangs in that task during the design time build.</pre>
     </div>

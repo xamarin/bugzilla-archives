@@ -601,7 +601,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Customer has an Android application using Forms 2.3.2.118-pre1 and AppCompat. The app starts with a login page. After logging in, Application.Current.MainPage is replaced with a new MasterDetailPage. When the user logs out, Application.Current.MainPage is replaced with a new login page. Logging out and back in causes MasterDetailPage instances to accumulate. The accumulating instances also have MasterDetailPages which do not get disposed, which eventually crashes  the app with an out of memory error.
 
 Sample (based on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Memory leak with FormsAppCompatActivity and NavigationPage" href="show_bug.cgi?id=40955">https://bugzilla.xamarin.com/show_bug.cgi?id=40955</a> AppCompat sample)
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Memory leak with FormsAppCompatActivity and NavigationPage" href="https://bugzilla.xamarin.com/show_bug.cgi?id=40955">https://bugzilla.xamarin.com/show_bug.cgi?id=40955</a> AppCompat sample)
 <a href="https://microsoft-my.sharepoint.com/personal/asgazi_microsoft_com/_layouts/15/guestaccess.aspx?guestaccesstoken=sIBxE4fKBxa5Vmu3y7RiLS9fMQJu3bJs5%2b8tSArgiNs%3d&amp;docid=2_15a0ca616ca664919b8fa73a44e0ae4e0&amp;rev=1">https://microsoft-my.sharepoint.com/personal/asgazi_microsoft_com/_layouts/15/guestaccess.aspx?guestaccesstoken=sIBxE4fKBxa5Vmu3y7RiLS9fMQJu3bJs5%2b8tSArgiNs%3d&amp;docid=2_15a0ca616ca664919b8fa73a44e0ae4e0&amp;rev=1</a>
 
 

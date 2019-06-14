@@ -713,7 +713,7 @@ XS start sequence log</pre>
 
 
 <pre class="bz_comment_text">The logic in Xamarin Studio for handling responses asking for credentials is based on the logic used by NuGet however there was an extra patch applied to NuGet to handle a bug in Mono when connecting to https and receiving a 407 response. However in this case the prompt was never displayed so it may be a different problem. <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Verify whether NuGet proxy authentication patch should be applied to Xamarin Studio's proxy support" href="show_bug.cgi?id=23322">Bug #23322</a> was opened to see if the same patch needed to be applied to Xamarin Studio. The error in the log "The remote server returned a 407 status code." seems to be related to the workaround that was added to nuGet.
+          bz_status_CONFIRMED " title="CONFIRMED - Verify whether NuGet proxy authentication patch should be applied to Xamarin Studio's proxy support" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23322">Bug #23322</a> was opened to see if the same patch needed to be applied to Xamarin Studio. The error in the log "The remote server returned a 407 status code." seems to be related to the workaround that was added to nuGet.
 
 Do you get a prompt to enter your credentials when the Add Packages dialog is opened? Or have you added a username/password in the NuGet.Config file? Or does your firewall allow access through to nuget.org without going through the proxy?
 

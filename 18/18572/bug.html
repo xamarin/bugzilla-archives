@@ -769,15 +769,15 @@ Note that I'm unable to reproduce this in the basic case (Log out so I'm using A
 <pre class="bz_comment_text">It's a stack overflow, for reasons I was never able to fathom. If you're actually able to consistently get that...
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - TaskyAndroid:System.TypeInitializationException" href="show_bug.cgi?id=16686#c1">https://bugzilla.xamarin.com/show_bug.cgi?id=16686#c1</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - TaskyAndroid:System.TypeInitializationException" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16686#c1">https://bugzilla.xamarin.com/show_bug.cgi?id=16686#c1</a>
 
 (Alas, nobody within the company ever gets the stack trace :-(
 
 On the plus side, <a href="bug.html">Comment #2</a> contains more useful information than <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - TaskyAndroid:System.TypeInitializationException" href="show_bug.cgi?id=16686">bug #16686</a> does (yay), but I fail to see an overflow in it: I rather doubt that GC.SuppressFinalize() has any possible stack overflow (Rodrigo?), and we have ~14 stack frames between GC.SuppressFinalize() and Main(). Unless the code _calling_ main has happened to create hundreds-thousands of stack frames, I do not comprehend how that's failing with a StackOverflowException.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - TaskyAndroid:System.TypeInitializationException" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16686">bug #16686</a> does (yay), but I fail to see an overflow in it: I rather doubt that GC.SuppressFinalize() has any possible stack overflow (Rodrigo?), and we have ~14 stack frames between GC.SuppressFinalize() and Main(). Unless the code _calling_ main has happened to create hundreds-thousands of stack frames, I do not comprehend how that's failing with a StackOverflowException.
 
 Though <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - TaskyAndroid:System.TypeInitializationException" href="show_bug.cgi?id=16686">Bug #16686</a> implies that the stack overflow occurs in the "type initializer for Ionic.Zip.ZipFile", which likewise didn't make sense to me; last time i delved into the source, nothing stood out as being a recursive call.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - TaskyAndroid:System.TypeInitializationException" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16686">Bug #16686</a> implies that the stack overflow occurs in the "type initializer for Ionic.Zip.ZipFile", which likewise didn't make sense to me; last time i delved into the source, nothing stood out as being a recursive call.
 
 I for one would dearly love a thousand-line long stack trace giving a coherent stack within Ionic.Zip.ZipFile. At present, I'm lacking one. :-(
 

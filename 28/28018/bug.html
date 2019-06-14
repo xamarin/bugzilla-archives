@@ -717,7 +717,7 @@ Build date: 2015-03-06 12:27:17-0500</pre>
 <pre class="bz_comment_text">One small note: the symptoms of this case are distinct from the "classic" case where an HTTP proxy on the Windows side causes an inaccurate "too old to be used" message.
 
 I have just filed a bug for the inaccurate error message associated with that fairly well-known HTTP proxy scenario here: <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED INVALID - Inaccurate error message when build host connection fails because Windows proxy is enabled" href="show_bug.cgi?id=28177">bug 28177</a>. As noted there, the handshake in that case completes successfully, and the Windows side starts sending HTTP requests to the MTBSERVERPORTS of the Mac build host.
+          bz_status_CLOSED  bz_closed" title="CLOSED INVALID - Inaccurate error message when build host connection fails because Windows proxy is enabled" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28177">bug 28177</a>. As noted there, the handshake in that case completes successfully, and the Windows side starts sending HTTP requests to the MTBSERVERPORTS of the Mac build host.
 
 In _this_ bug, the Windows side does _not_ complete the handshake, and never sends any HTTP requests to the Mac build host.</pre>
     </div>

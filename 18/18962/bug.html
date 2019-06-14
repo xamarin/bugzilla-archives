@@ -629,7 +629,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">This is the same problem as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Can't validate server certificate while using SslStream or SslClientStream" href="show_bug.cgi?id=10366">bug #10366</a> (on iOS), but the bug also requires a platform-specific fix for Android.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Can't validate server certificate while using SslStream or SslClientStream" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10366">bug #10366</a> (on iOS), but the bug also requires a platform-specific fix for Android.
 
 
 ## Steps to reproduce
@@ -783,7 +783,7 @@ Sven Reißenweber</pre>
 
 
 <pre class="bz_comment_text">I've filed a separate <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - SslStream.AuthenticateAsClient() does not invoke RemoteCertificateValidationCallback on every call, unlike .NET" href="show_bug.cgi?id=19141">bug #19141</a> for the callback problem from <a href="bug.html">Comment 3</a>.</pre>
+          bz_status_ASSIGNED " title="ASSIGNED - SslStream.AuthenticateAsClient() does not invoke RemoteCertificateValidationCallback on every call, unlike .NET" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19141">bug #19141</a> for the callback problem from <a href="bug.html">Comment 3</a>.</pre>
     </div>
 
     <div id="c5" class="bz_comment">
@@ -813,7 +813,7 @@ Sven Reißenweber</pre>
 
 
 <pre class="bz_comment_text">Just a little extra tidbit I noticed while writing up the other bug: I think the commit from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Can't validate server certificate while using SslStream or SslClientStream" href="show_bug.cgi?id=10366">bug 10366</a> [1] could be modified to fix the bug on Android too. As I understand it, the rough idea of that fix is to skip over the default certificate validation path (involving `TrustedRootCertificates`), and instead let `ServicePointManager.ChainValidationHelper.ValidateChain()` do most of the work. In my quick tests, this seems to have an added advantage of passing the full certificate chain to the SslStream's `RemoteCertificateValidationCallback`.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Can't validate server certificate while using SslStream or SslClientStream" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10366">bug 10366</a> [1] could be modified to fix the bug on Android too. As I understand it, the rough idea of that fix is to skip over the default certificate validation path (involving `TrustedRootCertificates`), and instead let `ServicePointManager.ChainValidationHelper.ValidateChain()` do most of the work. In my quick tests, this seems to have an added advantage of passing the full certificate chain to the SslStream's `RemoteCertificateValidationCallback`.
 
 
 It looks like the main changes needed for this approach would be to add `MONODROID` to the `#if` directives, update the Makefile, and add the appropriate `Mono.Security` source files to `monodroid_System.dll.sources`.

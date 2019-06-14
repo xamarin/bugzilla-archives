@@ -588,7 +588,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">This is regression bug. Test case works correctly on .NET and Xamarin v4.0, but does not work on Xamarin v4.1. Looks similar to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MethodInfo.ReflectedType returns declaring type for generic base classes" href="show_bug.cgi?id=12205">bug #12205</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MethodInfo.ReflectedType returns declaring type for generic base classes" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12205">bug #12205</a>.
 
 Actual behaviour: when trying to get ReflectedType() on PropertyInfo of derived class it returns base class type instead of derived type.
 Expected behaviour: ReflectedType() should be the same as type of derived class
@@ -666,7 +666,7 @@ In the off chance you want a `GetTypeInfo()` in there...that doesn't work, as th
 Please provide a complete repro.
 
 Perhaps this is a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Reflection throws AmbiguousMatchException when calling GetProperty on a class that inherits from a generic base class." href="show_bug.cgi?id=41874">Bug #41874</a>?</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Reflection throws AmbiguousMatchException when calling GetProperty on a class that inherits from a generic base class." href="https://bugzilla.xamarin.com/show_bug.cgi?id=41874">Bug #41874</a>?</pre>
     </div>
 
     <div id="c2" class="bz_comment">

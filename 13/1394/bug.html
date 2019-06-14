@@ -815,10 +815,10 @@ I did what you suggested, opening/closing it and nothing happened.</pre>
 
 
 <pre class="bz_comment_text">The hang described in <a href="bug.html">comment #4</a> has been moved to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - System.IO.Directory.EnumerateFiles() doesn't work on external directory" href="show_bug.cgi?id=2485">bug #2485</a>, as it's not directly related to Android (it also happens on desktop Mono).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - System.IO.Directory.EnumerateFiles() doesn't work on external directory" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2485">bug #2485</a>, as it's not directly related to Android (it also happens on desktop Mono).
 
 Unfortunately, based on what I've seen in #2485, it looks like Thread.Abort() is partially at fault. If I take the <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - System.IO.Directory.EnumerateFiles() doesn't work on external directory" href="show_bug.cgi?id=2485">bug #2485</a> sample app, remove the iThread.Abort() call, and instead terminate the loop "cooperatively":
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - System.IO.Directory.EnumerateFiles() doesn't work on external directory" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2485">bug #2485</a> sample app, remove the iThread.Abort() call, and instead terminate the loop "cooperatively":
 
 	public void Stop()
 	{
@@ -905,7 +905,7 @@ Iain</pre>
 
 
 <pre class="bz_comment_text">Sorry, snafu; i meant <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - GC + Thread.Abort() + Thread.Join() = Hang" href="show_bug.cgi?id=2845">bug #2845</a>. (Right digits, wrong order.)
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - GC + Thread.Abort() + Thread.Join() = Hang" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2845">bug #2845</a>. (Right digits, wrong order.)
 
 I want to finally note that Thread.Abort() should be avoided anyway: <a href="http://msdn.microsoft.com/en-us/library/1c9txz50.aspx">http://msdn.microsoft.com/en-us/library/1c9txz50.aspx</a>
 

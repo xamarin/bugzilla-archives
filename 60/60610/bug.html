@@ -1049,7 +1049,7 @@ The log file</pre>
 <pre class="bz_comment_text">@Kristian,
 
 This looks like it could be related to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoTouchDesignServerUnified quit unexpectedly popup" href="show_bug.cgi?id=58803">Bug #58803</a>. There is a login that bug report which could lead to confusion, so here is what I suggest:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoTouchDesignServerUnified quit unexpectedly popup" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58803">Bug #58803</a>. There is a login that bug report which could lead to confusion, so here is what I suggest:
 
 Look through the log file and find where it mentions your controller names. For example, there are entries for "BotiquinTableController-ObtengoMedicinas". One of the underlying issues that are being fixed is that UIViewController code is being executed unexpectedly. If this seems to be the case with BotiquinTableController-ObtengoMedicinas, you can workaround it by adding a [DesignTimeVisible(false)] attribute to the class. 
 

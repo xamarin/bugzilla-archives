@@ -776,8 +776,8 @@ update repro project</pre>
 <pre class="bz_comment_text">I am still able to reproduce the issue described when using Forms 2.3.3.180.
 
 This looks related to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [iOS] ListView.ScrollTo does not work correctly when cells are of varying sizes" href="show_bug.cgi?id=28277">bug #28277</a> which describes a similar behavior but has been fixed. However the difference between this case and <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [iOS] ListView.ScrollTo does not work correctly when cells are of varying sizes" href="show_bug.cgi?id=28277">bug #28277</a> is that this project uses a grouped collection so the issue seems to still exist when using istView.IsGroupingEnabled = true and ScrollTo (item, group, position, animated)
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [iOS] ListView.ScrollTo does not work correctly when cells are of varying sizes" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28277">bug #28277</a> which describes a similar behavior but has been fixed. However the difference between this case and <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [iOS] ListView.ScrollTo does not work correctly when cells are of varying sizes" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28277">bug #28277</a> is that this project uses a grouped collection so the issue seems to still exist when using istView.IsGroupingEnabled = true and ScrollTo (item, group, position, animated)
 
 I tested with a non-grouped ListView and did not experience the issue. However when using a grouped collection and ListView.IsGroupingEnabled = true then the ListView would jump to the top then scroll to the bottom. I've attached a newer repro project to demonstrate this.</pre>
     </div>

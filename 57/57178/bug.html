@@ -594,7 +594,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">With Xamarin 4.5.0.476, using the steps to repro for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=35691">bug #35691</a>, it is still not possible to put breakpoints in external libraries, and the workaround for #35691 is not applicable anymore. I have not found another one yet.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35691">bug #35691</a>, it is still not possible to put breakpoints in external libraries, and the workaround for #35691 is not applicable anymore. I have not found another one yet.
 
 This time, for some reason, the mdb files are correctly generated, *sometimes* end up in the mtbs folder on the mac, but almost never end up in the MyApp.app folder.
 
@@ -690,7 +690,7 @@ Jerome, thank you; at least we have some sort of workaround.</pre>
 
 
 <pre class="bz_comment_text">I tested this on Visual Studio 2017 with Xamarin 4.5.0.486 but I wasn't able to reproduce the issue. The <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=35691">bug 35691</a> report was initially for an iOS library and later PCLs, so I tested both cases for this new report. The libraries were created and built in a separate VS instanceand I referenced the dlls in the main test project. I opened the source files for the libraries and set breakpoints and they were hit during debugging. I also checked the app bundle on the Mac and confirmed that it contained the mdb and pdb files for the library assemblies.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35691">bug 35691</a> report was initially for an iOS library and later PCLs, so I tested both cases for this new report. The libraries were created and built in a separate VS instanceand I referenced the dlls in the main test project. I opened the source files for the libraries and set breakpoints and they were hit during debugging. I also checked the app bundle on the Mac and confirmed that it contained the mdb and pdb files for the library assemblies.
 
 Can you confirm that Xamarin.iOS is also up to date on the Mac machine? For my tests I used v10.10.0.36. Are you experiencing this when deploying to the simulator, device, or both and can you attach the full debug output to the report? Also, if there is anything I might have missed in my steps above, please let me know. Thanks!</pre>
     </div>

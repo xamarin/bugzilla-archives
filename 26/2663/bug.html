@@ -1129,7 +1129,7 @@ Assigned the bug to me to backport this to the relevant branches.</pre>
 
 
 <pre class="bz_comment_text">I think <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Certain Regexes have become extremely slow" href="show_bug.cgi?id=6198">bug 6198</a> is related to this patch. It demonstrates extremely poor performance (appearing as an application hang) for certain regexes.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Certain Regexes have become extremely slow" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6198">bug 6198</a> is related to this patch. It demonstrates extremely poor performance (appearing as an application hang) for certain regexes.</pre>
     </div>
 
     <div id="c18" class="bz_comment">
@@ -1279,7 +1279,7 @@ The fix for this bug works for this bug, and seemed to work for all the 'make ch
 <pre class="bz_comment_text">We have had to revert the commit associated with this, <a href="https://github.com/mono/mono/commit/60a463c6f3164784939cd9535acf865f6b33ef20">https://github.com/mono/mono/commit/60a463c6f3164784939cd9535acf865f6b33ef20</a>, on our fork due to:
 
 1. Performance issues: This commit introduced a huge performance problem, as noted in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Certain Regexes have become extremely slow" href="show_bug.cgi?id=6198">bug 6198</a>. One of our test fixtures went from completing in 0.22 seconds to 555.41 seconds
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Certain Regexes have become extremely slow" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6198">bug 6198</a>. One of our test fixtures went from completing in 0.22 seconds to 555.41 seconds
 2. Regressions: Several of out unit tests now fail with the changes in the aforementioned commit. The tests pass on Microsoft's implementation and on Mono if the commit is reverted.
 
 I am trying to simplify the test cases that are now failing so that they can hopefully be added to the existing unit tests.</pre>

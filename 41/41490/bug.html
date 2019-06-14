@@ -190,7 +190,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <div class="bz_short_desc_container edit_form">
      <a href="bug.html"><b>Bug&nbsp;41490</b></a> <span id="summary_container" class="bz_default_hidden">
       - <span id="short_desc_nonedit_display">Java.Security.KeyStore.Load fails for Null Stream (not duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Java.Security.KeyStore.Load wraps null streams" href="show_bug.cgi?id=6766">Bug 6766</a>)</span>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Java.Security.KeyStore.Load wraps null streams" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6766">Bug 6766</a>)</span>
      </span>
 
     <div id="summary_input"><span class="field_label " id="field_label_short_desc">
@@ -665,7 +665,7 @@ As you can see, the exception is rising from the second call to keyStore.Load i.
 I cannot reproduce this exception in my development environment. Nevertheless many of my clients send this exception via my internal exception tracking.
 
 I have read the <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Java.Security.KeyStore.Load wraps null streams" href="show_bug.cgi?id=6766">Bug 6766</a> - Java.Security.KeyStore.Load wraps null streams. It is said that this was fixed long time ago. It appears this was not.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Java.Security.KeyStore.Load wraps null streams" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6766">Bug 6766</a> - Java.Security.KeyStore.Load wraps null streams. It is said that this was fixed long time ago. It appears this was not.</pre>
     </div>
 
     <div id="c1" class="bz_comment">
@@ -695,18 +695,18 @@ I have read the <a class="bz_bug_link
 
 
 <pre class="bz_comment_text"><span class="quote">&gt; <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Java.Security.KeyStore.Load wraps null streams" href="show_bug.cgi?id=6766">Bug 6766</a> - Java.Security.KeyStore.Load wraps null streams.</span>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Java.Security.KeyStore.Load wraps null streams" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6766">Bug 6766</a> - Java.Security.KeyStore.Load wraps null streams.</span>
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Java.Security.KeyStore.Load wraps null streams" href="show_bug.cgi?id=6766">Bug #6766</a> was a very different issue: instead of "forwarding" `null` to the underlying Java method, `null` would be "wrapped", passing a *non-null* value to the Java method:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Java.Security.KeyStore.Load wraps null streams" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6766">Bug #6766</a> was a very different issue: instead of "forwarding" `null` to the underlying Java method, `null` would be "wrapped", passing a *non-null* value to the Java method:
 
     // Old-and-busted, <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Java.Security.KeyStore.Load wraps null streams" href="show_bug.cgi?id=6766">Bug #6766</a>; pseudo-code:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Java.Security.KeyStore.Load wraps null streams" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6766">Bug #6766</a>; pseudo-code:
     var adapter = new InputStreamAdapter (stream); // stream is null!
     JNIEnv.CallVoidMethod (KeyStore_load, adapter.Handle, ...);
 
     // <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Java.Security.KeyStore.Load wraps null streams" href="show_bug.cgi?id=6766">Bug #6766</a> Fix; pseudo-code:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Java.Security.KeyStore.Load wraps null streams" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6766">Bug #6766</a> Fix; pseudo-code:
     var adapter = stream != null ? new InputStreamAdapter (stream) : null;
     JNIEnv.CallVoidMethod (KeyStore_load, adapter?.Handle, ...);
 

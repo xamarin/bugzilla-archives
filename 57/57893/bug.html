@@ -703,7 +703,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 MKBUILD is not working in mono 5.2.
 
 First problem in mkbundle is this <a href="https://github.com/mono/mono/blob/master/mcs/tools/mkbundle/mkbundle.cs#L954">https://github.com/mono/mono/blob/master/mcs/tools/mkbundle/mkbundle.cs#L954</a> code. Ie, it's trying to find file monoPath + @"\lib\monosgen-2.0-static.lib" that doesn't exists (I've filed bug <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=57892">https://bugzilla.xamarin.com/show_bug.cgi?id=57892</a> for issue, that msi hasn't static lib in it).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57892">https://bugzilla.xamarin.com/show_bug.cgi?id=57892</a> for issue, that msi hasn't static lib in it).
 
 Second problem is that in MS VS 2015 stdlib is not in the C:\Program Files (x86)\Windows Kits\8.1** path, it was moved into the windows sdk kit. I have discussed this issue with <a href="https://github.com/akoeplinger">https://github.com/akoeplinger</a> Alexander Köplinger. 
 That *.h file, it's there in C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt now.
@@ -1173,10 +1173,10 @@ Thank you!</pre>
 
 <pre class="bz_comment_text"><a href="mailto:johan.lorensson@xamarin.com">johan.lorensson@xamarin.com</a> ,please, take a look at bug -
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=57892">https://bugzilla.xamarin.com/show_bug.cgi?id=57892</a> - the build logs looks similar for this problem.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57892">https://bugzilla.xamarin.com/show_bug.cgi?id=57892</a> - the build logs looks similar for this problem.
 
 I've compiled in this case Mono static lib. After compilation it was about 7-8BM, like in case of the <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=57892">https://bugzilla.xamarin.com/show_bug.cgi?id=57892</a> . After small modification of the mkbundle (diff attached here) I was able to reach linking process and I got issues with unresolved symbols.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57892">https://bugzilla.xamarin.com/show_bug.cgi?id=57892</a> . After small modification of the mkbundle (diff attached here) I was able to reach linking process and I got issues with unresolved symbols.
 
 I think, both of these bug reports have the root issue.
 
@@ -1210,10 +1210,10 @@ Thank you!</pre>
 
 
 <pre class="bz_comment_text">I have updated <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=57892">https://bugzilla.xamarin.com/show_bug.cgi?id=57892</a> a lot - still trying to compile my app with embedded Mono.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57892">https://bugzilla.xamarin.com/show_bug.cgi?id=57892</a> a lot - still trying to compile my app with embedded Mono.
 
 Please, take a look at <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=57892">https://bugzilla.xamarin.com/show_bug.cgi?id=57892</a> again.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57892">https://bugzilla.xamarin.com/show_bug.cgi?id=57892</a> again.
 
 Thank you!</pre>
     </div>
@@ -1518,7 +1518,7 @@ At least on linux, mono 4.8.0, the stubs are in *-api, the real ones are symboli
 <pre class="bz_comment_text">OK.
 Did you wrong with issues?
 In this issue there are another questions, not same <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - System.NullReferenceException: Object reference not set to an instance of an object" href="show_bug.cgi?id=58914">https://bugzilla.xamarin.com/show_bug.cgi?id=58914</a> )))</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - System.NullReferenceException: Object reference not set to an instance of an object" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58914">https://bugzilla.xamarin.com/show_bug.cgi?id=58914</a> )))</pre>
     </div>
 
     <div id="c26" class="bz_comment">

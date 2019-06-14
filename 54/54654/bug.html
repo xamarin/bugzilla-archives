@@ -731,7 +731,7 @@ Setting status as NEEDINFO.</pre>
 <pre class="bz_comment_text">Update:
 
 After doing a preliminary review of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Unable load debugging symbols for a cross-targeted project that contains more than one TargetFrameworks values" href="show_bug.cgi?id=54682">bug #54682</a> I was able to see this issue using the test project from that bug. It seems that the class library is a .NET Standard class library (Project XPLatAndroidTest) with the &lt;TargetFramework&gt; changed from
+          bz_status_CONFIRMED " title="CONFIRMED - Unable load debugging symbols for a cross-targeted project that contains more than one TargetFrameworks values" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54682">bug #54682</a> I was able to see this issue using the test project from that bug. It seems that the class library is a .NET Standard class library (Project XPLatAndroidTest) with the &lt;TargetFramework&gt; changed from
 <span class="quote">&gt; &lt;TargetFramework&gt;netstandard1.4&lt;/TargetFramework&gt;</span>
 to
 <span class="quote">&gt; &lt;TargetFrameworks&gt;MonoAndroid60;Xamarin.iOS10&lt;/TargetFrameworks&gt;</span>
@@ -741,7 +741,7 @@ note that &lt;Targetframework&gt; was also changed to &lt;TargetFrameworks&gt;
 so I am unsure whether this is a supported scenario at this time. 
 
 After loading the test solution from <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Unable load debugging symbols for a cross-targeted project that contains more than one TargetFrameworks values" href="show_bug.cgi?id=54682">bug #54682</a>, you will have to add the XTargetTest project (in the XPLatAndroidTest folder) to the solution.</pre>
+          bz_status_CONFIRMED " title="CONFIRMED - Unable load debugging symbols for a cross-targeted project that contains more than one TargetFrameworks values" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54682">bug #54682</a>, you will have to add the XTargetTest project (in the XPLatAndroidTest folder) to the solution.</pre>
     </div>
 
     <div id="c5" class="bz_comment">

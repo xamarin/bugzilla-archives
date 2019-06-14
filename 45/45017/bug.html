@@ -652,13 +652,13 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 empty assets view in XS, but files in directory still processed
 
 While investigating <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - actool ignores subdirectories when grabbing files in Assets.xcassets" href="show_bug.cgi?id=44526">https://bugzilla.xamarin.com/show_bug.cgi?id=44526</a> I discovered that when building the WatchApp and WatchExtension, `actool` is using the contents of the Assets.xcassets directory (even if those items are not shown in the Xamarin Studio).
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - actool ignores subdirectories when grabbing files in Assets.xcassets" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44526">https://bugzilla.xamarin.com/show_bug.cgi?id=44526</a> I discovered that when building the WatchApp and WatchExtension, `actool` is using the contents of the Assets.xcassets directory (even if those items are not shown in the Xamarin Studio).
 
 [<span class=""><a href="attachment.cgi?id=1" name="attach_1" title="Screenshot of the problem">attachment 1</a> <a href="attachment.cgi?id=1&amp;action=edit" title="Screenshot of the problem">[details]</a></span>]
 
 
 Bug <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - <Link>'ing Asset Catalogs does not work" href="show_bug.cgi?id=28106">https://bugzilla.xamarin.com/show_bug.cgi?id=28106</a> says
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - <Link>'ing Asset Catalogs does not work" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28106">https://bugzilla.xamarin.com/show_bug.cgi?id=28106</a> says
 <span class="quote">&gt; The way that asset catalogs are compiled is that the `actool` 
 &gt; command from Xcode is run on a directory and not individual files</span>
 

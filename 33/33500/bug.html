@@ -593,7 +593,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">Browsing the WebView renderers over the weekend I found the WebViewRenderer on iOS doesn't conform to the usual renderer pattern.
 
 Normally the widget being rendered would be set to the Control property and enclosed in the UIView using the SetNativeControl method. For some reason this hasn't been done. This could be the source of the layout bug (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - WebViewRenderer on iOS doesn't lay out properly in response to device rotation" href="show_bug.cgi?id=30047">https://bugzilla.xamarin.com/show_bug.cgi?id=30047</a>). I reimplemented my own WebViewRenderer using the standard pattern, and there were no layout problems during rotation.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - WebViewRenderer on iOS doesn't lay out properly in response to device rotation" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30047">https://bugzilla.xamarin.com/show_bug.cgi?id=30047</a>). I reimplemented my own WebViewRenderer using the standard pattern, and there were no layout problems during rotation.
 
 Not conforming to the pattern also makes the control very difficult to subclass because we can't rely on the standard things having been done in the standard way.
 
@@ -627,7 +627,7 @@ Please fix the iOS WebViewRenderer so it works the same way as all the other ren
 
 
 <pre class="bz_comment_text">David, could you please share the code of your WebViewRenderer which fixes <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - WebViewRenderer on iOS doesn't lay out properly in response to device rotation" href="show_bug.cgi?id=30047">bug #30047</a>?</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - WebViewRenderer on iOS doesn't lay out properly in response to device rotation" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30047">bug #30047</a>?</pre>
     </div>
 
     <div id="c2" class="bz_comment">

@@ -620,7 +620,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 2) Can't quick-edit constraint constants from the Layout tab for a view.  IB has a quick "Edit" button that's really handy.  In XS, I have to Select and Edit the entire constraint, losing my current selection and context.
 NOTE: others are asking for this, see <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Provide inline editing for constraint properties in Layout tab of selected view" href="show_bug.cgi?id=23893">bug 23893</a>
+          bz_status_CONFIRMED " title="CONFIRMED - Provide inline editing for constraint properties in Layout tab of selected view" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23893">bug 23893</a>
 
 
 3) Constraints in the Outline view are only labeled "Layout Constraint", whereas IB has a much more descriptive name like "Horizontal Space - View 1 - View 2", so it's immediately apparent what type of constraint it is and what it's affecting.  The icon (constraint type) isn't enough, unfortunately, to tell me what it's doing.  This is related to #8 below.
@@ -628,7 +628,7 @@ NOTE: others are asking for this, see <a class="bz_bug_link
 
 4) I can't multi-select items in the Outline view, drag and drop items or quickly create constraints by CTRL-dragging in the Outline view.  I understand that creating constraints is done differently in XS vs Xcode/IB, but it's nearly impossible to create constraints visually (i.e. using the canvas or design surface) when there are nested overlapping views.  There needs to be an alternative interface, such as how IB provides a toolbar for adding constraints or adding them in the outline view.  #6 below could help with this as well, because if you could lock a view from being selected, it would be easy to work with views at a certain depth without affecting those on top of it.
 NOTE: others are asking for this, see <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Need other way to add constraints" href="show_bug.cgi?id=23914">bug 23914</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Need other way to add constraints" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23914">bug 23914</a>
 
 
 5) IB supports showing constraints that are for descendent views in a separate section from the view that's currently selected (i.e. Sibling &amp; Ancestor constraints vs Descendent constraints).  This helps to separate out the constraints based on their affecting context.
@@ -646,7 +646,7 @@ Locking a view would similarly only affect the designer, and nothing at runtime.
 
 
 8) In <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Document outline should show UIViewController class name" href="show_bug.cgi?id=23399">bug 23399</a>, I commented that it would be great to have custom labels for names of views in the Outline.  IB supports clicking on an outline item and renaming it.  This name isn't related to the outlet name as it is in XS, it's a specific label that's tied to the storyboard itself and is only used to label the item in the outline.  Maybe the name shown in the Outline could be a combination of attributes based on a heuristic - drawing from: Type (View, Image View, etc), Outlet name, Data type (UIView), and/or storyboard-label.  Right now, the Outline view in XS looks like there are a lot of "View" items nested, which doesn't help in determining what the views are, unless I assign outlets, which I may not want to do.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Document outline should show UIViewController class name" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23399">bug 23399</a>, I commented that it would be great to have custom labels for names of views in the Outline.  IB supports clicking on an outline item and renaming it.  This name isn't related to the outlet name as it is in XS, it's a specific label that's tied to the storyboard itself and is only used to label the item in the outline.  Maybe the name shown in the Outline could be a combination of attributes based on a heuristic - drawing from: Type (View, Image View, etc), Outlet name, Data type (UIView), and/or storyboard-label.  Right now, the Outline view in XS looks like there are a lot of "View" items nested, which doesn't help in determining what the views are, unless I assign outlets, which I may not want to do.
 
 
 Any of these would greatly help usability in the iOS Designer!  Thanks for considering them.  Not sure if I should have created separate enhancement tickets for all of these, but I'm happy to do that if you guys want.</pre>

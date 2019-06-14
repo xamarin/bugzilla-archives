@@ -596,8 +596,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 To Reproduce:
 
 Take the project attached to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - GC Prematurely collecting instances" href="show_bug.cgi?id=245">Bug #245</a>, comment out the GC.Collect() call on line 39 (as described in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - GC Prematurely collecting instances" href="show_bug.cgi?id=245#c2">Bug #245 Comment 2</a>), and deploy a Release build to a Xoom (or other multi-CPU device), it crashes ~instantly.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - GC Prematurely collecting instances" href="https://bugzilla.xamarin.com/show_bug.cgi?id=245">Bug #245</a>, comment out the GC.Collect() call on line 39 (as described in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - GC Prematurely collecting instances" href="https://bugzilla.xamarin.com/show_bug.cgi?id=245#c2">Bug #245 Comment 2</a>), and deploy a Release build to a Xoom (or other multi-CPU device), it crashes ~instantly.
 
 We should fix the armeabi runtime so that it's tied to a single core.</pre>
     </div>
@@ -689,7 +689,7 @@ We should fix the armeabi runtime so that it's tied to a single core.</pre>
 
 
 <pre class="bz_comment_text">Hello - please have a look at <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - AutoResetEvent state is getting corrupted" href="show_bug.cgi?id=6654">Bug #6654</a>.  I think that the armeabi, multi-core fix sitll has something to be adjusted, as some internal objects of the framework are being disposed when they shouldn't.  As mentioned,  compiling to armeabi-v7a seems to remove the problem.  Thank you!</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - AutoResetEvent state is getting corrupted" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6654">Bug #6654</a>.  I think that the armeabi, multi-core fix sitll has something to be adjusted, as some internal objects of the framework are being disposed when they shouldn't.  As mentioned,  compiling to armeabi-v7a seems to remove the problem.  Thank you!</pre>
     </div>
 
 

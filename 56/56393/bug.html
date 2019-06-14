@@ -214,7 +214,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Smoke] ProGuard fails with &quot;error ... (Access is denied)&quot; if Android SDK path contains a space" href="show_bug.cgi?id=32861">bug 32861</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Smoke] ProGuard fails with &quot;error ... (Access is denied)&quot; if Android SDK path contains a space" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32861">bug 32861</a>
       </span>
     </td>
   </tr>
@@ -586,7 +586,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Smoke] ProGuard fails with &quot;error ... (Access is denied)&quot; if Android SDK path contains a space" href="show_bug.cgi?id=32861">bug 32861</a></span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Smoke] ProGuard fails with &quot;error ... (Access is denied)&quot; if Android SDK path contains a space" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32861">bug 32861</a></span>
 </div>
 
 
@@ -686,10 +686,10 @@ and
 
 
 - The path to the Android SDK contains a space, which would cause problems due to an upstream bug in the Android SDK where it doesn't support spaces in paths as expected for ProGuard: see <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - The option for multi-dex fails when the path to the Android SDK contains a space" href="show_bug.cgi?id=33052">Bug 33052</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - The option for multi-dex fails when the path to the Android SDK contains a space" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33052">Bug 33052</a>.
 
 - The JDK version is Java JDK 8 (1.8), which would cause problems because the old version of ProGuard shipped with the Android SDK from Google only supports up to Java JDK 7 (1.7): see <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Build error when Proguard or MultiDex options are enabled" href="show_bug.cgi?id=44187">Bug 44187</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Build error when Proguard or MultiDex options are enabled" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44187">Bug 44187</a>.
 
 
 
@@ -704,7 +704,7 @@ When you get a chance, you can try:
 
 2. (a) Switch to Java JDK 7 (1.7) if you are targeting Android API 23 or lower
 OR (b) Install a newer version of ProGuard as described in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Build error when Proguard or MultiDex options are enabled" href="show_bug.cgi?id=44187">Bug 44187</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Build error when Proguard or MultiDex options are enabled" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44187">Bug 44187</a>.
 
 
 
@@ -742,8 +742,8 @@ OR (b) Install a newer version of ProGuard as described in <a class="bz_bug_link
 <pre class="bz_comment_text">Correction to <a href="bug.html">Comment 1</a>:
 
 Xamarin.Android 7.3 is already included in the Xamarin 15.2 Release, and the log files from <a href="bug.html">Comment 0</a> show that the reporter is using the Xamarin 15.2 Release (XamarinVS version 4.5.0.443-d15-2+c871575).  This means that the Java JDK version of 8 (1.8) is OK, and the space in the Android SDK path (related to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - The option for multi-dex fails when the path to the Android SDK contains a space" href="show_bug.cgi?id=33052">Bug 33052</a> and <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Smoke] ProGuard fails with &quot;error ... (Access is denied)&quot; if Android SDK path contains a space" href="show_bug.cgi?id=32861">Bug 32861</a>) is the most likely remaining problem.  I will accordingly mark <a href="bug.html">Comment 1</a> as obsolete.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - The option for multi-dex fails when the path to the Android SDK contains a space" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33052">Bug 33052</a> and <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Smoke] ProGuard fails with &quot;error ... (Access is denied)&quot; if Android SDK path contains a space" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32861">Bug 32861</a>) is the most likely remaining problem.  I will accordingly mark <a href="bug.html">Comment 1</a> as obsolete.
 
 From the attached monodroid*.log file:
 
@@ -863,10 +863,10 @@ ya, it's fixed after changing the Android SDK path. you can close this bug</pre>
 
 
 <pre class="bz_comment_text">Excellent.  Thanks for the follow-up.  I will mark this as a duplicate of the old related <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Smoke] ProGuard fails with &quot;error ... (Access is denied)&quot; if Android SDK path contains a space" href="show_bug.cgi?id=32861">Bug 32861</a> just for thorough bookkeeping.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Smoke] ProGuard fails with &quot;error ... (Access is denied)&quot; if Android SDK path contains a space" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32861">Bug 32861</a> just for thorough bookkeeping.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Smoke] ProGuard fails with &quot;error ... (Access is denied)&quot; if Android SDK path contains a space" href="show_bug.cgi?id=32861">bug 32861</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Smoke] ProGuard fails with &quot;error ... (Access is denied)&quot; if Android SDK path contains a space" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32861">bug 32861</a> ***</pre>
     </div>
 
 

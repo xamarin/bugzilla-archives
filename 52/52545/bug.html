@@ -349,7 +349,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin Studio 6.3 device builds are taking a long time (Build 863)" href="show_bug.cgi?id=55115">55115</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin Studio 6.3 device builds are taking a long time (Build 863)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55115">55115</a> 
       </span>
       ()
     </td>
@@ -365,7 +365,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [regression] System.IO.IOException: Too many open files" href="show_bug.cgi?id=43462">43462</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [regression] System.IO.IOException: Too many open files" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43462">43462</a> 
   </td>
   </tr>
 
@@ -890,7 +890,7 @@ I'll drill it down further tomorrow and start to compare the changes between the
 <pre class="bz_comment_text">Enabling llvm might cause long build times, but 20/40 minutes seem extreme.
 
 The fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - MTOUCH: error MT3001: Could not AOT the assembly" href="show_bug.cgi?id=52475">https://bugzilla.xamarin.com/show_bug.cgi?id=52475</a> might help here, as it disables llvm on large methods.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - MTOUCH: error MT3001: Could not AOT the assembly" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52475">https://bugzilla.xamarin.com/show_bug.cgi?id=52475</a> might help here, as it disables llvm on large methods.</pre>
     </div>
 
     <div id="c4" class="bz_comment">
@@ -1391,7 +1391,7 @@ This is something I discussed with JB (ETL meeting). Cecil is not design to reta
 
 
 Q: Zoltan, are you aware of the progress wrt <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [regression] System.IO.IOException: Too many open files" href="show_bug.cgi?id=43462">https://bugzilla.xamarin.com/show_bug.cgi?id=43462</a> ? removing the calls to Collect would be better and safer than guessing the frequency required to avoid the bug.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [regression] System.IO.IOException: Too many open files" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43462">https://bugzilla.xamarin.com/show_bug.cgi?id=43462</a> ? removing the calls to Collect would be better and safer than guessing the frequency required to avoid the bug.</pre>
     </div>
 
     <div id="c18" class="bz_comment">
@@ -1594,14 +1594,14 @@ It would still be _ideal_ to have Cecil be able to _respect_ the original metada
 
 
 <pre class="bz_comment_text">Since the original fix was a workaround for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [regression] System.IO.IOException: Too many open files" href="show_bug.cgi?id=43462">bug #43462</a> and this was fixed in C9 [1] then I think we can revert the GC.Collect calls in `master` and, time builds are confirmed, in `d15-2`.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [regression] System.IO.IOException: Too many open files" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43462">bug #43462</a> and this was fixed in C9 [1] then I think we can revert the GC.Collect calls in `master` and, time builds are confirmed, in `d15-2`.
 
 @Alex please go ahead with a PR for master. We'll merge it unless other concerns are raised. 
 
 Also please move the 2 other suggestions (strip and collect cecil data once not needed) to different bug reports (with links back here). Thanks!
 
 [1] <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [regression] System.IO.IOException: Too many open files" href="show_bug.cgi?id=43462#c18">https://bugzilla.xamarin.com/show_bug.cgi?id=43462#c18</a></pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [regression] System.IO.IOException: Too many open files" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43462#c18">https://bugzilla.xamarin.com/show_bug.cgi?id=43462#c18</a></pre>
     </div>
 
     <div id="c24" class="bz_comment">
@@ -1749,7 +1749,7 @@ Time Elapsed 00:08:25.08</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin Studio 6.3 device builds are taking a long time (Build 863)" href="show_bug.cgi?id=55115">Bug 55115</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin Studio 6.3 device builds are taking a long time (Build 863)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55115">Bug 55115</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c29" class="bz_comment">
@@ -1953,7 +1953,7 @@ Time Elapsed 00:08:25.08</pre>
 
 
 <pre class="bz_comment_text">I am struggling with this slow build problem for devices (10-20 minutes builds) but when I tried to use the alpha channel in Xamarin Studio I got compiler errors for the extensions in my project.  See here: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Compiler crashes with alpha channel build for all extensions in project" href="show_bug.cgi?id=55736">https://bugzilla.xamarin.com/show_bug.cgi?id=55736</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Compiler crashes with alpha channel build for all extensions in project" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55736">https://bugzilla.xamarin.com/show_bug.cgi?id=55736</a>
 
 Is there a path for me to get this fix?</pre>
     </div>
@@ -2127,7 +2127,7 @@ Darwin 16.6.0 Darwin Kernel Version 16.6.0
 
 
 <pre class="bz_comment_text">I entered bug <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - iOS Device builds taking a very long time" href="show_bug.cgi?id=57791">https://bugzilla.xamarin.com/show_bug.cgi?id=57791</a>.  This is already been marked "Resolved/Answered" as expected behavior.  I don't think 10 minutes builds can ever be acceptable when a simulator build takes 16 seconds.</pre>
+          bz_status_CONFIRMED " title="CONFIRMED - iOS Device builds taking a very long time" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57791">https://bugzilla.xamarin.com/show_bug.cgi?id=57791</a>.  This is already been marked "Resolved/Answered" as expected behavior.  I don't think 10 minutes builds can ever be acceptable when a simulator build takes 16 seconds.</pre>
     </div>
 
 

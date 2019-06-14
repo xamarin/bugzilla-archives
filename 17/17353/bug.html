@@ -594,7 +594,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">I just notice this today while trying to get my solution to debug with Visual Studio. Up until this point I have been doing all my development in Xamarin Studio.  However, I wanted to take advantage of Resharper's refactoring tools before we go live, so I fired up the project in Visual Studio and everything built and ran.  However I soon noticed exceptions such as those noted here:
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - “The native class hasn't been loading” error with my bindings." href="show_bug.cgi?id=11497">https://bugzilla.xamarin.com/show_bug.cgi?id=11497</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - “The native class hasn't been loading” error with my bindings." href="https://bugzilla.xamarin.com/show_bug.cgi?id=11497">https://bugzilla.xamarin.com/show_bug.cgi?id=11497</a>
 
 After further searching and troubleshooting, I discovered that other binding libraries that were reference on the main iOS app project were working as expected, just the one wasn't working including the native library after compilation.  The fact that this one wasn't working started me down the path of looking for differences and how they are used.  And the only one I could see was the fact that this one library was reference off a sub library and not the main project.  
 

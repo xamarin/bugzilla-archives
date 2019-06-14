@@ -214,7 +214,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Unlike other C# project types, Xamarin.Android projects show warning &quot;&quot;ResolveLibraryProjectImports&quot; task failed unexpectedly&quot; and lack some IntelliSense features unless all referenced dependencies have been built" href="show_bug.cgi?id=50914">bug 50914</a>
+          bz_status_CONFIRMED " title="CONFIRMED - Unlike other C# project types, Xamarin.Android projects show warning &quot;&quot;ResolveLibraryProjectImports&quot; task failed unexpectedly&quot; and lack some IntelliSense features unless all referenced dependencies have been built" href="https://bugzilla.xamarin.com/show_bug.cgi?id=50914">bug 50914</a>
       </span>
     </td>
   </tr>
@@ -597,7 +597,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Changes to referenced project not picked up by referencing project until solution is closed and re-opened." href="show_bug.cgi?id=43438">43438</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Changes to referenced project not picked up by referencing project until solution is closed and re-opened." href="https://bugzilla.xamarin.com/show_bug.cgi?id=43438">43438</a>
           </li></ul>
 
 </td>
@@ -619,7 +619,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Unlike other C# project types, Xamarin.Android projects show warning &quot;&quot;ResolveLibraryProjectImports&quot; task failed unexpectedly&quot; and lack some IntelliSense features unless all referenced dependencies have been built" href="show_bug.cgi?id=50914">bug 50914</a></span>
+          bz_status_CONFIRMED " title="CONFIRMED - Unlike other C# project types, Xamarin.Android projects show warning &quot;&quot;ResolveLibraryProjectImports&quot; task failed unexpectedly&quot; and lack some IntelliSense features unless all referenced dependencies have been built" href="https://bugzilla.xamarin.com/show_bug.cgi?id=50914">bug 50914</a></span>
 </div>
 
 
@@ -1077,7 +1077,7 @@ In some of my quick tests, it appeared that the following steps improved the cha
 
 
 <pre class="bz_comment_text">I have this problem too for quite some time. In the past it did not happen very often, but unfortunately now it is very consistent. Probably also because I have to delete my .vs folder every day because of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - VS2015 hangs an build" href="show_bug.cgi?id=39034">https://bugzilla.xamarin.com/show_bug.cgi?id=39034</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - VS2015 hangs an build" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39034">https://bugzilla.xamarin.com/show_bug.cgi?id=39034</a>
 
 Recently I tried with XVS 4.0.1.96, 4.0.1.145 and 4.1.0.87. All have the same problem.
 
@@ -1260,7 +1260,7 @@ That said, the m2repository only contains Java types, so it is not _required_ fo
 ## Additional observations
 
 As mentioned in <a href="bug.html">Comment 6</a>, building the project and then closing and reopening the solution does appear to help with this issue.  I suspect this is very closely related to the following 2 warning messages that appear in "View &gt; Error List" after step 2.  (See also <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - IDE0006 Error during first run of Forms template app" href="show_bug.cgi?id=42909">Bug 42909</a>.)
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - IDE0006 Error during first run of Forms template app" href="https://bugzilla.xamarin.com/show_bug.cgi?id=42909">Bug 42909</a>.)
 
 
 ### Warning 1 (excerpt)
@@ -1322,16 +1322,16 @@ Windows 8.1 (64-bit), Version 6.3 (Build 9600)</pre>
 <pre class="bz_comment_text">## Follow-up on the "Additional observations" from <a href="bug.html">Comment 11</a>
 
 After some further testing, I determined that the problem in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - IDE0006 Error during first run of Forms template app" href="show_bug.cgi?id=42909">Bug 42909</a> was unrelated.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - IDE0006 Error during first run of Forms template app" href="https://bugzilla.xamarin.com/show_bug.cgi?id=42909">Bug 42909</a> was unrelated.
 
 This bug (<a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Intellisense not working in Cross-Platform Android project" href="bug.html">Bug 30844</a>) is instead part of the same problem as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Warning from Android targets after opening Xamarin.Forms solution: &quot;Could not load assembly&quot;" href="show_bug.cgi?id=23210">Bug 23210</a>.  I found that both bugs could be generalized and simplified to use a shared test case that didn't involve Xamarin.Forms.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Warning from Android targets after opening Xamarin.Forms solution: &quot;Could not load assembly&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23210">Bug 23210</a>.  I found that both bugs could be generalized and simplified to use a shared test case that didn't involve Xamarin.Forms.
 
 I have filed the new generalized and simplified test case in a new bug report to provide a clean starting point for the final steps of the investigation.  I will accordingly mark this bug as a duplicate of the new bug.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Unlike other C# project types, Xamarin.Android projects show warning &quot;&quot;ResolveLibraryProjectImports&quot; task failed unexpectedly&quot; and lack some IntelliSense features unless all referenced dependencies have been built" href="show_bug.cgi?id=50914">bug 50914</a> ***</pre>
+          bz_status_CONFIRMED " title="CONFIRMED - Unlike other C# project types, Xamarin.Android projects show warning &quot;&quot;ResolveLibraryProjectImports&quot; task failed unexpectedly&quot; and lack some IntelliSense features unless all referenced dependencies have been built" href="https://bugzilla.xamarin.com/show_bug.cgi?id=50914">bug 50914</a> ***</pre>
     </div>
 
 

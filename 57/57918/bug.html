@@ -713,7 +713,7 @@ total = Socket.Send_internal (sockares.socket.m_Handle, sockares.Buffer, sockare
 doesn't consume the whole buffer being sent, the "total" value will be less than the size of the buffer.  The "if (sockares.Size &gt; 0)" block makes sure that the whole buffer will be sent, but the last line, "sockares.Complete (total);" means that the EndSend call in application code gets the original, incorrect, value for the number of bytes sent.
 
 It's also possible that this is a duplicate of <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - Socket.BeginSend... (async) sometimes appends garbage" href="show_bug.cgi?id=41506">https://bugzilla.xamarin.com/show_bug.cgi?id=41506</a> it wasn't totally clear to me.</pre>
+          bz_status_NEW " title="NEW - Socket.BeginSend... (async) sometimes appends garbage" href="https://bugzilla.xamarin.com/show_bug.cgi?id=41506">https://bugzilla.xamarin.com/show_bug.cgi?id=41506</a> it wasn't totally clear to me.</pre>
     </div>
 
     <div id="c1" class="bz_comment">

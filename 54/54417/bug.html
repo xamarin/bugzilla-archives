@@ -565,7 +565,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [tvOS]Native linking failure when Linkall.app is built with fastdev enabled." href="show_bug.cgi?id=51710">51710</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [tvOS]Native linking failure when Linkall.app is built with fastdev enabled." href="https://bugzilla.xamarin.com/show_bug.cgi?id=51710">51710</a>
           </li></ul>
 
 </td>
@@ -739,7 +739,7 @@ An example of a clang command that runs into this issue is attached. If a recent
 The -u flag we pass to the ld is to ensure that ld doesn't remove the native function (ld analyzes static libraries at link time and can remove unused code, but P/Invoke uses dlopen/dlsym to resolve methods, which ld doesn't see, so ld might end up removing P/Invoked functions otherwise).
 
 A potential fix would be to generate a .c file that references all these symbols, and then compile and link that file as well. Incidentally we already have another case where we need to find an alternative for -u (<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [tvOS]Native linking failure when Linkall.app is built with fastdev enabled." href="show_bug.cgi?id=51710">bug #51710</a>), so the this fix would work for both bugs.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [tvOS]Native linking failure when Linkall.app is built with fastdev enabled." href="https://bugzilla.xamarin.com/show_bug.cgi?id=51710">bug #51710</a>), so the this fix would work for both bugs.
 
 <span class="quote">&gt; As it stands, this would a blocking issue for us in our upcoming release, as
 &gt; the list of DllImports in internal builds of our API assembly now exceed

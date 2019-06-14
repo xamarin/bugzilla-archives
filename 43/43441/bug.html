@@ -526,7 +526,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE" href="show_bug.cgi?id=43397">43397</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43397">43397</a>
           </li></ul>
 
 </td>
@@ -598,8 +598,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 In Android's KeyboardView.OnKeyboardActionListener [1], the onKey, onPress, and onRelease methods take an int and an int[] for onKey, but in XA's KeyboardView.IOnKeyboardActionListener [2] those methods take an Android.Views.Keycode Enumeration and for OnKey it also takes an Android.Views.Keycode[] array.
 
 This has been causing some difficulty for the customer who reported <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE" href="show_bug.cgi?id=43397">bug #43397</a> which was rightly resolved as a feature, but the issue they are hitting seems more to do with the fact that the XA versions of these methods expect a KeyCode rather than an int. This seems to be causing the issue encountered in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE" href="show_bug.cgi?id=43397">bug #43397</a>. IOW in order to get their custom keyboards CAPS lick button to properly display the status with a green dot, the have to set the android:codes in the qwerty.xml file (defining the custom keyboard) for the CAPS key to -1, and then -1 is passed in to OnKey, and there is no -1 value in the Keycode enum, so it would seem that this is not the enum that should be used, or better that the methods just take an int as in native Android. 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43397">bug #43397</a> which was rightly resolved as a feature, but the issue they are hitting seems more to do with the fact that the XA versions of these methods expect a KeyCode rather than an int. This seems to be causing the issue encountered in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43397">bug #43397</a>. IOW in order to get their custom keyboards CAPS lick button to properly display the status with a green dot, the have to set the android:codes in the qwerty.xml file (defining the custom keyboard) for the CAPS key to -1, and then -1 is passed in to OnKey, and there is no -1 value in the Keycode enum, so it would seem that this is not the enum that should be used, or better that the methods just take an int as in native Android. 
 
 
 [1] <a href="https://developer.android.com/reference/android/inputmethodservice/KeyboardView.OnKeyboardActionListener.html">https://developer.android.com/reference/android/inputmethodservice/KeyboardView.OnKeyboardActionListener.html</a>

@@ -349,10 +349,10 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - When building a Mono for Android app with TFS installed, the build fails unless Resource.Designer.cs is explicitly checked out" href="show_bug.cgi?id=6909">6909</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Android Class Library doesn't generate Resource.Designer.cs" href="show_bug.cgi?id=9493">9493</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Build fails when Resource.Designer.cs is not checked out" href="show_bug.cgi?id=19657">19657</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Resource.Designer.cs does not check out automatically (TFS 2008)" href="show_bug.cgi?id=21323">21323</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - When building a Mono for Android app with TFS installed, the build fails unless Resource.Designer.cs is explicitly checked out" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6909">6909</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Android Class Library doesn't generate Resource.Designer.cs" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9493">9493</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Build fails when Resource.Designer.cs is not checked out" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19657">19657</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Resource.Designer.cs does not check out automatically (TFS 2008)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=21323">21323</a> 
       </span>
       ()
     </td>
@@ -674,7 +674,7 @@ A workaround would likely be to generate Resources.Designer.cs into the obj dire
 <pre class="bz_comment_text">
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Attempting to edit the manifest under source control fails if the file is not checked out" href="show_bug.cgi?id=2057">bug 2057</a> ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Attempting to edit the manifest under source control fails if the file is not checked out" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2057">bug 2057</a> ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -704,7 +704,7 @@ A workaround would likely be to generate Resources.Designer.cs into the obj dire
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - When building a Mono for Android app with TFS installed, the build fails unless Resource.Designer.cs is explicitly checked out" href="show_bug.cgi?id=6909">Bug 6909</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - When building a Mono for Android app with TFS installed, the build fails unless Resource.Designer.cs is explicitly checked out" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6909">Bug 6909</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -736,7 +736,7 @@ A workaround would likely be to generate Resources.Designer.cs into the obj dire
 <pre class="bz_comment_text">(Behold my lack of Reading Comprehension!)
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Attempting to edit the manifest under source control fails if the file is not checked out" href="show_bug.cgi?id=2057">Bug 2057</a> dealt with Properties\AndroidManifest.xml, not anything else, so this isn't a proper duplicate. Furthermore, the fix for 2057 only dealt with Properties\AndroidManifest.xml, so this is by no mean fixed (which was implied by marking this bug a duplicate of a bug that's been fixed!).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Attempting to edit the manifest under source control fails if the file is not checked out" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2057">Bug 2057</a> dealt with Properties\AndroidManifest.xml, not anything else, so this isn't a proper duplicate. Furthermore, the fix for 2057 only dealt with Properties\AndroidManifest.xml, so this is by no mean fixed (which was implied by marking this bug a duplicate of a bug that's been fixed!).
 
 To restate things: we should remove the $(AndroidResgenFile) MSBuild property, remove the Resources\Resources.designer.cs file, and instead:
 
@@ -746,7 +746,7 @@ To restate things: we should remove the $(AndroidResgenFile) MSBuild property, r
 I believe this will have the added benefit of implicitly "fixing" the addition of Resources into Library projects, as those are the two steps that need to manually be done to use resources in library projects:
 
     <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Android Class Library doesn't generate Resource.Designer.cs" href="show_bug.cgi?id=9493#c3">https://bugzilla.xamarin.com/show_bug.cgi?id=9493#c3</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Android Class Library doesn't generate Resource.Designer.cs" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9493#c3">https://bugzilla.xamarin.com/show_bug.cgi?id=9493#c3</a>
 
 Finally, we should review other generated files and attempt to remove any other generated files from source control. They're _generated_, they shouldn't be in source control.</pre>
     </div>
@@ -816,7 +816,7 @@ Finally, we should review other generated files and attempt to remove any other 
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Android Class Library doesn't generate Resource.Designer.cs" href="show_bug.cgi?id=9493">Bug 9493</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Android Class Library doesn't generate Resource.Designer.cs" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9493">Bug 9493</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c6" class="bz_comment">
@@ -1058,7 +1058,7 @@ I can do this is XS, but I don't how easy it is to do in VS.</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Build fails when Resource.Designer.cs is not checked out" href="show_bug.cgi?id=19657">Bug 19657</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Build fails when Resource.Designer.cs is not checked out" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19657">Bug 19657</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c16" class="bz_comment">
@@ -1182,7 +1182,7 @@ If Resources.designer.cs exists (which will be true most of the time) and @(Andr
 That said, Xamarin Studio currently calls &lt;GenerateResourceDesignerFile/&gt; every time a Resource is updated, and this has been known to take 15+ seconds on large projects.
 
 This in turn is a variation of: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Including large numbers of Resources result in really slow build times" href="show_bug.cgi?id=18692#c6">https://bugzilla.xamarin.com/show_bug.cgi?id=18692#c6</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Including large numbers of Resources result in really slow build times" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18692#c6">https://bugzilla.xamarin.com/show_bug.cgi?id=18692#c6</a>
 
 Do we have any idea on how "fast" it would need to be to consider running this in CoreBuild?
 
@@ -1253,7 +1253,7 @@ If it does take several seconds and IS part of CoreBuild, what will the IDE do? 
 	DependsOnTargets="_CheckForDeletedResourceFile;_ValidateAndroidPackageProperties;_ResolveMonoAndroidSdks;_GetLibraryImports;_CheckDuplicateJavaLibraries;_AddTrialSplashScreenResources;_GetAdditionalResourcesFromAssemblies"&gt;
 
 A problem (<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Including large numbers of Resources result in really slow build times" href="show_bug.cgi?id=18692">Bug #18692</a>) is that WHEN an Android resource is updated, generating the new Resource.designer.cs can be a SLOW (15+ second) operation, depending on the number of Android resources, the size of the project, the number of referenced projects, etc. When doing GUI work (e.g. editing a .axml file), that's a large part of what the developer is doing (editing Android resources), so this isn't a great experience. (To put it mildly.)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Including large numbers of Resources result in really slow build times" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18692">Bug #18692</a>) is that WHEN an Android resource is updated, generating the new Resource.designer.cs can be a SLOW (15+ second) operation, depending on the number of Android resources, the size of the project, the number of referenced projects, etc. When doing GUI work (e.g. editing a .axml file), that's a large part of what the developer is doing (editing Android resources), so this isn't a great experience. (To put it mildly.)
 
 On Visual Studio, Resource.designer.cs is only checked-for-and-updated on Build, not on every keystroke, so if it takes extra time it's not _quite_ as noticeable.</pre>
     </div>
@@ -1285,7 +1285,7 @@ On Visual Studio, Resource.designer.cs is only checked-for-and-updated on Build,
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Resource.Designer.cs does not check out automatically (TFS 2008)" href="show_bug.cgi?id=21323">Bug 21323</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Resource.Designer.cs does not check out automatically (TFS 2008)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=21323">Bug 21323</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c22" class="bz_comment">

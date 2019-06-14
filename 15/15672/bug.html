@@ -594,7 +594,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 More precisely, the crash occurs on the line calling NSMutableData.FromCapacity(int) with the Length of the stream.
 
 I don't think a stream is ever supposed to return -1 for its Length, but WebConnectionStream (mono internal class) is doing it, and is triggering the crash when reading a stream from the web... See <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.Net.WebConnectionStream.Length returns -1 when it can't parse the Content-Length" href="show_bug.cgi?id=15671">https://bugzilla.xamarin.com/show_bug.cgi?id=15671</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.Net.WebConnectionStream.Length returns -1 when it can't parse the Content-Length" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15671">https://bugzilla.xamarin.com/show_bug.cgi?id=15671</a></pre>
     </div>
 
     <div id="c1" class="bz_comment">

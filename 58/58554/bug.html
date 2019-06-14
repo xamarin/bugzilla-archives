@@ -585,7 +585,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - The name 'InitializeComponent' does not exist in the current context with .NETStandard/new csproj format portable library" href="show_bug.cgi?id=55593">55593</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - The name 'InitializeComponent' does not exist in the current context with .NETStandard/new csproj format portable library" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55593">55593</a>
           </li></ul>
 
 </td>
@@ -661,7 +661,7 @@ In a .Net Standard library that references Xamarin Forms and has a template Cont
 
 
 This occurs in either VS (Windows) or in VS (Mac). I saw this similar bug report, <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - The name 'InitializeComponent' does not exist in the current context with .NETStandard/new csproj format portable library" href="show_bug.cgi?id=55593">bug 55593</a>, but that was noted to be fixed in the current stable version 15.2
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - The name 'InitializeComponent' does not exist in the current context with .NETStandard/new csproj format portable library" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55593">bug 55593</a>, but that was noted to be fixed in the current stable version 15.2
 
 
 ## Steps to reproduce (Windows):
@@ -926,8 +926,8 @@ Darwin 16.7.0 Darwin Kernel Version 16.7.0
 NetStandardXamFormsTestProject
 
 Note that <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - The name 'InitializeComponent' does not exist in the current context with .NETStandard/new csproj format portable library" href="show_bug.cgi?id=55593">bug 55593</a> is unrelated to this particular bug. <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - The name 'InitializeComponent' does not exist in the current context with .NETStandard/new csproj format portable library" href="show_bug.cgi?id=55593">Bug 55593</a> was not a build error but an error shown in the text editor for the InitializeComponent method. The build worked there.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - The name 'InitializeComponent' does not exist in the current context with .NETStandard/new csproj format portable library" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55593">bug 55593</a> is unrelated to this particular bug. <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - The name 'InitializeComponent' does not exist in the current context with .NETStandard/new csproj format portable library" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55593">Bug 55593</a> was not a build error but an error shown in the text editor for the InitializeComponent method. The build worked there.
 
 The problem seems to be that if the BaseIntermediatePath is set the generated .nuget.g.targets and .nuget.g.props files are not loaded so the XamlG task is never used. The generated .nuget.g.targets files are created in the BaseIntermediatePath directory.
 

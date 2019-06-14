@@ -611,7 +611,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">I'm aware that this issue has come up in the past, such as at <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - [XVS 4.0] Could not write lines to file &quot;obj\Debug\MyLib.csproj.FileListAbsolute.txt&quot;. The process cannot access the file 'C:\MyLib\obj\Debug\MyLib.csproj.FileListAbsolute.txt' because it is being used by another process." href="show_bug.cgi?id=36190">https://bugzilla.xamarin.com/show_bug.cgi?id=36190</a>. I can therefore only assume this is a regression.
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - [XVS 4.0] Could not write lines to file &quot;obj\Debug\MyLib.csproj.FileListAbsolute.txt&quot;. The process cannot access the file 'C:\MyLib\obj\Debug\MyLib.csproj.FileListAbsolute.txt' because it is being used by another process." href="https://bugzilla.xamarin.com/show_bug.cgi?id=36190">https://bugzilla.xamarin.com/show_bug.cgi?id=36190</a>. I can therefore only assume this is a regression.
 
 With 15.1 (full version info below), I am frequently running into this problem. Android builds will stall with:
 
@@ -764,14 +764,14 @@ Xamarin.iOS and Xamarin.Mac Reference Assemblies and MSBuild support.</pre>
 For recent appearances of symptoms involving *FileListAbsolute.txt, please see recent bug reports that mention FileListAbsolute.txt such as:
 
 - <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Infinite build with errors &quot;Could not write lines to file FileListAbsolute.txt&quot;" href="show_bug.cgi?id=54966">Bug 54966</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Infinite build with errors &quot;Could not write lines to file FileListAbsolute.txt&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54966">Bug 54966</a>
 - <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Deploy continues forever, VS crashes" href="show_bug.cgi?id=54467">Bug 54467</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Deploy continues forever, VS crashes" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54467">Bug 54467</a>
 
 
 In particular, if you get a chance to try applying the change from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Deploy continues forever, VS crashes" href="show_bug.cgi?id=54467#c13">Bug 54467, Comment 13</a>, that might be a quick way to check if this is indeed a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Deploy continues forever, VS crashes" href="show_bug.cgi?id=54467">Bug 54467</a>.  Thanks!
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Deploy continues forever, VS crashes" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54467#c13">Bug 54467, Comment 13</a>, that might be a quick way to check if this is indeed a duplicate of <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Deploy continues forever, VS crashes" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54467">Bug 54467</a>.  Thanks!
 
 Here's the information about that change for reference:
 

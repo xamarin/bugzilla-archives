@@ -688,7 +688,7 @@ I tried to delete .vs and .suo hidden files (which was the solution to the previ
 
 
 <pre class="bz_comment_text">I will tentatively mark this as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 9] Visual Studio hangs in `AndroidErrorsManager.AddWarning()` while opening solutions in certain cases related to the settings in &quot;Tools > Options > Xamarin > Android Settings&quot;" href="show_bug.cgi?id=52695">Bug 52695</a> based on the similarity of the reported symptoms.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 9] Visual Studio hangs in `AndroidErrorsManager.AddWarning()` while opening solutions in certain cases related to the settings in &quot;Tools > Options > Xamarin > Android Settings&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52695">Bug 52695</a> based on the similarity of the reported symptoms.
 
 
 
@@ -697,7 +697,7 @@ I tried to delete .vs and .suo hidden files (which was the solution to the previ
 
 
 1. If you get a chance, you can try the candidate fix in the patched build as linked in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 9] Visual Studio hangs in `AndroidErrorsManager.AddWarning()` while opening solutions in certain cases related to the settings in &quot;Tools > Options > Xamarin > Android Settings&quot;" href="show_bug.cgi?id=52695#c31">Bug 52695, Comment 31</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 9] Visual Studio hangs in `AndroidErrorsManager.AddWarning()` while opening solutions in certain cases related to the settings in &quot;Tools > Options > Xamarin > Android Settings&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52695#c31">Bug 52695, Comment 31</a>.
 
 
 2. If that build does _not_ resolve the issue, please collect and attach back (on this bug, <a class="bz_bug_link 
@@ -713,7 +713,7 @@ I tried to delete .vs and .suo hidden files (which was the solution to the previ
 Thanks in advance!
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 9] Visual Studio hangs in `AndroidErrorsManager.AddWarning()` while opening solutions in certain cases related to the settings in &quot;Tools > Options > Xamarin > Android Settings&quot;" href="show_bug.cgi?id=52695">bug 52695</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 9] Visual Studio hangs in `AndroidErrorsManager.AddWarning()` while opening solutions in certain cases related to the settings in &quot;Tools > Options > Xamarin > Android Settings&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52695">bug 52695</a> ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -985,10 +985,10 @@ If (a) a candidate build for the issue from <a href="bug.html">Comment 5</a> - <
 <pre class="bz_comment_text">@Hrvoje, by chance I was working on a problem yesterday which appears to precisely match the symptoms from <a href="bug.html">Comment 5</a> - <a href="bug.html">Comment 8</a>.
 
 That issue can be resolved by updating the Xamarin.Build.Download NuGet package to 0.4.3-beta2 or higher.  I have filed the details about that issue in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;GoogleServicesJson&quot; Build Action causes Visual Studio hangs (pauses, freezes) for a long time when loading projects or during other build scenarios, with many background aapt.exe processes spawning and then closing during the delay" href="show_bug.cgi?id=53817">Bug 53817</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;GoogleServicesJson&quot; Build Action causes Visual Studio hangs (pauses, freezes) for a long time when loading projects or during other build scenarios, with many background aapt.exe processes spawning and then closing during the delay" href="https://bugzilla.xamarin.com/show_bug.cgi?id=53817">Bug 53817</a>.
 
 The minidump from <a href="bug.html">Comment 7</a> matches the details of that bug (<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;GoogleServicesJson&quot; Build Action causes Visual Studio hangs (pauses, freezes) for a long time when loading projects or during other build scenarios, with many background aapt.exe processes spawning and then closing during the delay" href="show_bug.cgi?id=53817">Bug 53817</a>).  In particular, it shows that the main thread is busy in the `Aapt.Execute()` method.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;GoogleServicesJson&quot; Build Action causes Visual Studio hangs (pauses, freezes) for a long time when loading projects or during other build scenarios, with many background aapt.exe processes spawning and then closing during the delay" href="https://bugzilla.xamarin.com/show_bug.cgi?id=53817">Bug 53817</a>).  In particular, it shows that the main thread is busy in the `Aapt.Execute()` method.
 
 
 

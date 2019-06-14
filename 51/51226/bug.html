@@ -214,7 +214,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="show_bug.cgi?id=1102">bug 1102</a>
+          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1102">bug 1102</a>
       </span>
     </td>
   </tr>
@@ -547,7 +547,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="show_bug.cgi?id=1102">bug 1102</a></span>
+          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1102">bug 1102</a></span>
 </div>
 
 
@@ -711,7 +711,7 @@ Manifest.addin 0.0.0.0</pre>
 
 
 <pre class="bz_comment_text">This is most likely an issue with the size of the app (see <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="show_bug.cgi?id=1102">bug #1102</a>): for 32-bit architectures (armv7 and armv7s) the Mach-O file format has size restrictions for object files, and if the size is too big, you may end up with strange linker errors like these.
+          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1102">bug #1102</a>): for 32-bit architectures (armv7 and armv7s) the Mach-O file format has size restrictions for object files, and if the size is too big, you may end up with strange linker errors like these.
 
 What's the size of the My.Assembly.exe.armv7.o and My.Assembly.exe.armv7.s files?</pre>
     </div>
@@ -747,14 +747,14 @@ What's the size of the My.Assembly.exe.armv7.o and My.Assembly.exe.armv7.s files
 Interestingly, I just found something else that "works", in terms of getting it to compile without that error. We have an iOS extension project that we exclude from UITest builds by unloading it. The reason we are excluding the iOS extension project is because it is a workaround for the following bug: 
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DOWNSTREAM - UITest does not work with iOS Watch App/Watch App Extension" href="show_bug.cgi?id=48276">https://bugzilla.xamarin.com/show_bug.cgi?id=48276</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DOWNSTREAM - UITest does not work with iOS Watch App/Watch App Extension" href="https://bugzilla.xamarin.com/show_bug.cgi?id=48276">https://bugzilla.xamarin.com/show_bug.cgi?id=48276</a>
 
 As suggested by Glenn Wilson of the UITest team in the below forum post, we unload the iOS extension project to workaround the UITest issue.
 
 <a href="https://forums.xamarin.com/discussion/comment/243415/#Comment_243415">https://forums.xamarin.com/discussion/comment/243415/#Comment_243415</a>
 
 If I reload the iOS extension project, the app builds for "ARMv7 + ARM64" without error. But as expected, I then run into <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DOWNSTREAM - UITest does not work with iOS Watch App/Watch App Extension" href="show_bug.cgi?id=48276">bug #48276</a> again. According to Glenn Wilson in the forum post above, there is no ETA for resolution of 48276.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DOWNSTREAM - UITest does not work with iOS Watch App/Watch App Extension" href="https://bugzilla.xamarin.com/show_bug.cgi?id=48276">bug #48276</a> again. According to Glenn Wilson in the forum post above, there is no ETA for resolution of 48276.
 
 Stepping back for a minute, it's not clear to me how the two issues are related. Why would ARMv7 make a difference in the case of an iOS extension being excluded? Seems like a bug in the toolchain.</pre>
     </div>
@@ -821,7 +821,7 @@ If this doesn't work, could you attach a build log of both the working build (wi
 
 
 <pre class="bz_comment_text">@Rolf Adding &lt;MtouchExtraArgs&gt;--mono:framework&lt;/MtouchExtraArgs&gt; indeed works around the problem; the build succeeds. Can you help me understand a bit better why that works? Is it because, by using that option to save space, <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="show_bug.cgi?id=1102">bug #1102</a> is avoided?</pre>
+          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1102">bug #1102</a> is avoided?</pre>
     </div>
 
     <div id="c5" class="bz_comment">
@@ -855,10 +855,10 @@ If this doesn't work, could you attach a build log of both the working build (wi
 The space savings (considering the entire app, not just the executable) only come if more than one executable needs the mono runtime (this is why we only enable the --mono:framework option by default for apps with extensions, since in that case there are at least 2 executables that need the mono runtime), for apps without extensions there is a slight space increase.
 
 I'm going to close this as a duplicate of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="show_bug.cgi?id=1102">bug #1102</a>; if you want us to have a deeper look at your particular app and see if we can reduce the size of the native code we generate, please attach a complete solution we can use to reproduce the problem (and reopen this bug) - but unless we find some strange degenerate case in your app that we can easily fix, it will take a while for us to investigate your app (and we may also find that there's not much we can do).
+          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1102">bug #1102</a>; if you want us to have a deeper look at your particular app and see if we can reduce the size of the native code we generate, please attach a complete solution we can use to reproduce the problem (and reopen this bug) - but unless we find some strange degenerate case in your app that we can easily fix, it will take a while for us to investigate your app (and we may also find that there's not much we can do).
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="show_bug.cgi?id=1102">bug 1102</a> ***</pre>
+          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1102">bug 1102</a> ***</pre>
     </div>
 
     <div id="c6" class="bz_comment">

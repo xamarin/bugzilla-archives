@@ -633,7 +633,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Repro
 
 Setting a solution/project to Release configuration and choosing Project | Create Android Package will always sign the .apk with the Android debug cert. I'm trying to sign and zipalign an .apk manually to avoid the current bug around signing .apks on older platforms (<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Publish Android Package should sign with SHA1 on 4.2 and below" href="show_bug.cgi?id=22897">https://bugzilla.xamarin.com/show_bug.cgi?id=22897</a>).  However, simply creating a package and trying to sign it and zipalign myself manually also fails when uploading to Google Play because the .apk is now signed with two certs (mine and Android Debug).
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Publish Android Package should sign with SHA1 on 4.2 and below" href="https://bugzilla.xamarin.com/show_bug.cgi?id=22897">https://bugzilla.xamarin.com/show_bug.cgi?id=22897</a>).  However, simply creating a package and trying to sign it and zipalign myself manually also fails when uploading to Google Play because the .apk is now signed with two certs (mine and Android Debug).
 
 The only way to get this to work is to actually go through the signing process within Xamarin Studio (Publish Android Package), take the unsigned .apk from the bin folder, then manually sign and zipalign that.  However, this is more tedious than it should be since I have to sit through the process of the tooling signing and zipaligning an .apk that I won't use anyway.
 
@@ -731,7 +731,7 @@ jarsigner -verify -verbose -certs com.xamarin.prototype.releasepackage.apk</pre>
 <pre class="bz_comment_text">You can use the import feature and store it outside of the csproj file so that it is ignored by version control software or can be placed on the folder as it's needed?
 
 Take a look on this comment: <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Setting Package Signing options within the IDE should store package signing info in a separate .targets file." href="show_bug.cgi?id=28460#c1">https://bugzilla.xamarin.com/show_bug.cgi?id=28460#c1</a></pre>
+          bz_status_CONFIRMED " title="CONFIRMED - Setting Package Signing options within the IDE should store package signing info in a separate .targets file." href="https://bugzilla.xamarin.com/show_bug.cgi?id=28460#c1">https://bugzilla.xamarin.com/show_bug.cgi?id=28460#c1</a></pre>
     </div>
 
     <div id="c4" class="bz_comment">

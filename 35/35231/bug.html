@@ -350,7 +350,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="show_bug.cgi?id=35207">35207</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35207">35207</a> 
       </span>
       ()
     </td>
@@ -366,7 +366,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 9.1] According to Microsoft Csc.exe, the new btouch enum behavior generates invalid C# enums in the &quot;.g.cs&quot; files, causing &quot;error CS1008: Type byte, sbyte, short, ushort, int, uint, long, or ulong expected&quot;" href="show_bug.cgi?id=35232">35232</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 9.1] According to Microsoft Csc.exe, the new btouch enum behavior generates invalid C# enums in the &quot;.g.cs&quot; files, causing &quot;error CS1008: Type byte, sbyte, short, ushort, int, uint, long, or ulong expected&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35232">35232</a> 
   </td>
   </tr>
 
@@ -381,8 +381,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="blocked_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=35229">35229</a> <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=35230">35230</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35229">35229</a> <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35230">35230</a> 
   </td>
   </tr>
 
@@ -693,8 +693,8 @@ Additional context about the new behavior of btouch in XI 9.1:
 ## Summary
 
 This bug is an alternate way to view the problem presented on <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=35229">Bug 35229</a> and <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=35230">Bug 35230</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35229">Bug 35229</a> and <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35230">Bug 35230</a>.
 
 This bug takes the perspective that the new behavior of `btouch` should _not_ break existing projects where the only explicit definition of an `enum` types is in a file that uses the "ObjcBindingCoreSource" build action (i.e., essentially _every_ existing binding that uses enums).
 
@@ -707,8 +707,8 @@ To solve the problem from tis perspective, maybe the behavior of the "ObjcBindin
 ## Temporary workaround 
 
 Move the `enum` definitions (but _not_ the `struct` definitions) into the `ApiDefinition.cs` file (or any another file that uses the "ObjcBindingApiDefinition" build action rather than the "ObjcBindingCoreSource" build action). This would be the "intended" fix if viewing the problem from the perspective of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=35229">Bug 35229</a> and <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=35230">Bug 35230</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35229">Bug 35229</a> and <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35230">Bug 35230</a>.
 
 (Note this only works on Mac at the moment due to a secondary bug in how `btouch` generates the `.g.cs` files for enums. I will add a link that secondary bug on this bug report shortly.)
 
@@ -875,7 +875,7 @@ Diagnostic build output from XI 9.0 and XI 9.1</pre>
 
 
 <pre class="bz_comment_text">The secondary Windows-only bug mentioned in <a href="bug.html">Comment 0</a> for the "Temporary workaround" is now filed here: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 9.1] According to Microsoft Csc.exe, the new btouch enum behavior generates invalid C# enums in the &quot;.g.cs&quot; files, causing &quot;error CS1008: Type byte, sbyte, short, ushort, int, uint, long, or ulong expected&quot;" href="show_bug.cgi?id=35232">Bug 35232</a>.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 9.1] According to Microsoft Csc.exe, the new btouch enum behavior generates invalid C# enums in the &quot;.g.cs&quot; files, causing &quot;error CS1008: Type byte, sbyte, short, ushort, int, uint, long, or ulong expected&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35232">Bug 35232</a>.</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -905,7 +905,7 @@ Diagnostic build output from XI 9.0 and XI 9.1</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="show_bug.cgi?id=35207">Bug 35207</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35207">Bug 35207</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c4" class="bz_comment">
@@ -1016,7 +1016,7 @@ Hence closing this issue</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=35229">Bug 35229</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35229">Bug 35229</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c7" class="bz_comment">

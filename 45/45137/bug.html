@@ -349,8 +349,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=46171">46171</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - aapt execution fails to include resourcecache items" href="show_bug.cgi?id=46782">46782</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=46171">46171</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - aapt execution fails to include resourcecache items" href="https://bugzilla.xamarin.com/show_bug.cgi?id=46782">46782</a> 
       </span>
       ()
     </td>
@@ -1004,7 +1004,7 @@ Given this can now be reproduced in C8SR1, I'm changing the milestone and bumpin
 
 
 <pre class="bz_comment_text">Based on the clue about the difference in behavior between `xbuild` command line builds and building in XS, I had a hunch this bug might be caused by the `Microsoft.Bcl.Build.targets` just like <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Xamarin Studio IDE build only: the Microsoft.Bcl.Build targets prevent the &quot;.appex&quot; bundle from being copied into the main app bundle" href="show_bug.cgi?id=35323">Bug 35323</a> (where there was a very similar discrepancy between command line builds and builds in XS).  In short, it looks like the problem in this new bug _is_ closely related:
+          bz_status_CONFIRMED " title="CONFIRMED - Xamarin Studio IDE build only: the Microsoft.Bcl.Build targets prevent the &quot;.appex&quot; bundle from being copied into the main app bundle" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35323">Bug 35323</a> (where there was a very similar discrepancy between command line builds and builds in XS).  In short, it looks like the problem in this new bug _is_ closely related:
 
 
 - I was able to replicate the problem as described in <a href="bug.html">Comment 0</a> using Xamarin.Android 7.0.2.37 + Xamarin Studio 6.1.2.44 + Mono 4.6.2 (db69866).
@@ -1022,7 +1022,7 @@ Given this can now be reproduced in C8SR1, I'm changing the milestone and bumpin
 ## Additional test: experimental MSBuild setting also stops the problem
 
 Test: I tried enabling "Xamarin Studio &gt; Preferences &gt; Build &gt; Build with MSBuild instead of xbuild (EXPERIMENTAL)" to see if that might stop the problem (based on the analysis from <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Xamarin Studio IDE build only: the Microsoft.Bcl.Build targets prevent the &quot;.appex&quot; bundle from being copied into the main app bundle" href="show_bug.cgi?id=35323">Bug 35323</a> where xbuild appeared to be the culprit).
+          bz_status_CONFIRMED " title="CONFIRMED - Xamarin Studio IDE build only: the Microsoft.Bcl.Build targets prevent the &quot;.appex&quot; bundle from being copied into the main app bundle" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35323">Bug 35323</a> where xbuild appeared to be the culprit).
 
 Result: "GOOD".  Enabling this setting also stopped the problem.  One little hiccup I noticed is that after changing the preference I had to close and reopen the solution in Xamarin Studio in order to get Xamarin Studio to use MSBuild rather than xbuild during the build.</pre>
     </div>
@@ -1061,22 +1061,22 @@ Result: "GOOD".  Enabling this setting also stopped the problem.  One little hic
 <a href="https://github.com/xamarin/xamarin-android/compare/567bc4f88c9aeaa7d4cca9a2a59707f4d3a9900f...fc225b10f89b8dade51f8d127b6f02e69a69594c">https://github.com/xamarin/xamarin-android/compare/567bc4f88c9aeaa7d4cca9a2a59707f4d3a9900f...fc225b10f89b8dade51f8d127b6f02e69a69594c</a>
 
 Rephrased, the fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Enabling <AndroidUseSharedRuntime> in some projects causes `classes.dex` to not deploy to device." href="show_bug.cgi?id=44633">Bug #44633</a> "caused" <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Enabling <AndroidUseSharedRuntime> in some projects causes `classes.dex` to not deploy to device." href="https://bugzilla.xamarin.com/show_bug.cgi?id=44633">Bug #44633</a> "caused" <a class="bz_bug_link 
           bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Seeing new AAPT0000 errors when building certain projects against master" href="bug.html">bug #45137</a>.
 
 Note the "scare quotes" in "caused".
 
 The apparent cause of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Enabling <AndroidUseSharedRuntime> in some projects causes `classes.dex` to not deploy to device." href="show_bug.cgi?id=44633">Bug #44633</a> was that builds within Xamarin Studio would seemingly "ignore" AfterTargets and BeforeTargets values:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Enabling <AndroidUseSharedRuntime> in some projects causes `classes.dex` to not deploy to device." href="https://bugzilla.xamarin.com/show_bug.cgi?id=44633">Bug #44633</a> was that builds within Xamarin Studio would seemingly "ignore" AfterTargets and BeforeTargets values:
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Enabling <AndroidUseSharedRuntime> in some projects causes `classes.dex` to not deploy to device." href="show_bug.cgi?id=44633#c9">https://bugzilla.xamarin.com/show_bug.cgi?id=44633#c9</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Enabling <AndroidUseSharedRuntime> in some projects causes `classes.dex` to not deploy to device." href="https://bugzilla.xamarin.com/show_bug.cgi?id=44633#c9">https://bugzilla.xamarin.com/show_bug.cgi?id=44633#c9</a>
 
 So the "actual" cause of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Enabling <AndroidUseSharedRuntime> in some projects causes `classes.dex` to not deploy to device." href="show_bug.cgi?id=44633">Bug #44633</a> is seemingly related to the MSBuild integration with Xamarin Studio. The *actual* cause/problem here was never determined, e.g. *why* was Xamarin Studio+xbuild ignoring AfterTargets and BeforeTargets? We still don't know.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Enabling <AndroidUseSharedRuntime> in some projects causes `classes.dex` to not deploy to device." href="https://bugzilla.xamarin.com/show_bug.cgi?id=44633">Bug #44633</a> is seemingly related to the MSBuild integration with Xamarin Studio. The *actual* cause/problem here was never determined, e.g. *why* was Xamarin Studio+xbuild ignoring AfterTargets and BeforeTargets? We still don't know.
 
 The fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Enabling <AndroidUseSharedRuntime> in some projects causes `classes.dex` to not deploy to device." href="show_bug.cgi?id=44633">Bug #44633</a> was to *remove* all use of AfterTargets and BeforeTargets, instead using "normal" property overrides, which seemed to work as expected.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Enabling <AndroidUseSharedRuntime> in some projects causes `classes.dex` to not deploy to device." href="https://bugzilla.xamarin.com/show_bug.cgi?id=44633">Bug #44633</a> was to *remove* all use of AfterTargets and BeforeTargets, instead using "normal" property overrides, which seemed to work as expected.
 
 
 The problem here, in <a class="bz_bug_link 
@@ -1410,7 +1410,7 @@ The code I tried to fix was here: <a href="https://github.com/mono/mono/commits/
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_REOPENED " title="REOPENED" href="show_bug.cgi?id=46700">Bug 46700</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_REOPENED " title="REOPENED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=46700">Bug 46700</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c24" class="bz_comment">
@@ -1500,7 +1500,7 @@ The code I tried to fix was here: <a href="https://github.com/mono/mono/commits/
 <pre class="bz_comment_text">Didn't find this bug until now. I think I wrote a duplicate bug yesterday:
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - aapt execution fails to include resourcecache items" href="show_bug.cgi?id=46782">https://bugzilla.xamarin.com/show_bug.cgi?id=46782</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - aapt execution fails to include resourcecache items" href="https://bugzilla.xamarin.com/show_bug.cgi?id=46782">https://bugzilla.xamarin.com/show_bug.cgi?id=46782</a></pre>
     </div>
 
     <div id="c27" class="bz_comment">
@@ -1530,7 +1530,7 @@ The code I tried to fix was here: <a href="https://github.com/mono/mono/commits/
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - aapt execution fails to include resourcecache items" href="show_bug.cgi?id=46782">Bug 46782</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - aapt execution fails to include resourcecache items" href="https://bugzilla.xamarin.com/show_bug.cgi?id=46782">Bug 46782</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c28" class="bz_comment">
@@ -1560,7 +1560,7 @@ The code I tried to fix was here: <a href="https://github.com/mono/mono/commits/
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=46171">Bug 46171</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=46171">Bug 46171</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
 

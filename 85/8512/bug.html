@@ -592,7 +592,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">Add Fragment.Instantiate(Context, Type) and Fragment.Instantiate(Context, Type, Bundle) overloads.
 
 Context: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Namespace/type name is not getting capitalized with Fragments" href="show_bug.cgi?id=8508">Bug #8508</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Namespace/type name is not getting capitalized with Fragments" href="https://bugzilla.xamarin.com/show_bug.cgi?id=8508">Bug #8508</a>.
 
 Fragment.Instantiate(Context, string) needs to take a Java name, as it's calling a Java-land API (and Java-land can't contain PascalCased namespaces). If you want to refer to a C# type, you need to use the Android Callable Wrapper name, which is annoying to get (`Class.FromType(type).Name`, iirc).
 

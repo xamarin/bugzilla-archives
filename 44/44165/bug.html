@@ -215,7 +215,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED UPSTREAM - Including System.Reactive nuget ends up with warning about System.Runtime.InteropServices.WindowsRuntime" href="show_bug.cgi?id=43494">bug 43494</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED UPSTREAM - Including System.Reactive nuget ends up with warning about System.Runtime.InteropServices.WindowsRuntime" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43494">bug 43494</a>
       </span>
     </td>
   </tr>
@@ -548,7 +548,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED UPSTREAM - Including System.Reactive nuget ends up with warning about System.Runtime.InteropServices.WindowsRuntime" href="show_bug.cgi?id=43494">bug 43494</a></span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED UPSTREAM - Including System.Reactive nuget ends up with warning about System.Runtime.InteropServices.WindowsRuntime" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43494">bug 43494</a></span>
 </div>
 
 
@@ -705,7 +705,7 @@ Xamarin.iOS   10.0.0.4 (d1ee3ba)</pre>
 
 
 <pre class="bz_comment_text">Thanks for the report!  I believe this is a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED UPSTREAM - Including System.Reactive nuget ends up with warning about System.Runtime.InteropServices.WindowsRuntime" href="show_bug.cgi?id=43494">Bug 43494</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED UPSTREAM - Including System.Reactive nuget ends up with warning about System.Runtime.InteropServices.WindowsRuntime" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43494">Bug 43494</a>.
 
 According to my investigation on that bug, the issue is a tiny problem with the System.Runtime.InteropServices.WindowsRuntime.4.0.1 NuGet package.  It seems to be missing a _._ file for Android (to tell the NuGet package manager that Xamarin.Android has its own existing implementation of the assembly).  That file should be in:
 
@@ -724,7 +724,7 @@ System.Runtime.InteropServices.WindowsRuntime.4.0.1\lib\netstandard1.3\System.Ru
 (The reference from Xamarin.Android's `Facades\` directory is the "good" reference that you want to keep.)
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED UPSTREAM - Including System.Reactive nuget ends up with warning about System.Runtime.InteropServices.WindowsRuntime" href="show_bug.cgi?id=43494">bug 43494</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED UPSTREAM - Including System.Reactive nuget ends up with warning about System.Runtime.InteropServices.WindowsRuntime" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43494">bug 43494</a> ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">

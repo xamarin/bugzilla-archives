@@ -355,7 +355,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - mtouch: Add support for not generating debug info (AOT) for specific assemblies" href="show_bug.cgi?id=59634">59634</a> 
+          bz_status_ASSIGNED " title="ASSIGNED - mtouch: Add support for not generating debug info (AOT) for specific assemblies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59634">59634</a> 
   </td>
   </tr>
 
@@ -729,7 +729,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - mtouch: Add support for not generating debug info (AOT) for specific assemblies" href="show_bug.cgi?id=59634">59634</a>
+          bz_status_ASSIGNED " title="ASSIGNED - mtouch: Add support for not generating debug info (AOT) for specific assemblies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59634">59634</a>
           </li></ul>
 
 </td>
@@ -1905,7 +1905,7 @@ You can expect to be notified of the advancement here and, if we have a fix, we'
 
 <pre class="bz_comment_text">Seems like a dup of:
 <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="show_bug.cgi?id=1102">https://bugzilla.xamarin.com/show_bug.cgi?id=1102</a>
+          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1102">https://bugzilla.xamarin.com/show_bug.cgi?id=1102</a>
 
 i.e. the app is too large, the executable in debug mode is 80mb. Does this also happen in release mode ?</pre>
     </div>
@@ -2005,7 +2005,7 @@ The runtime behaviour may differ even without rebuilding, just tapping on the ap
 This may very well be a problem with DocumentFormat.OpenXml.dll, it's an impressive assembly with over 64000 methods (~41000 after linking all assemblies).
 
 This all indicates that it's a variation of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="show_bug.cgi?id=1102">bug #1102</a>.
+          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1102">bug #1102</a>.
 
 It might be possible to work around the problem by disabling debug info for this particular assembly (we don't currently support disabling debug info for specific assemblies, so I'd have to implement it).
 
@@ -2079,7 +2079,7 @@ But this issue still not solved. I expect meaningful error message at build time
 &gt; assemblies).
 &gt; 
 &gt; This all indicates that it's a variation of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="show_bug.cgi?id=1102">bug #1102</a>.
+          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1102">bug #1102</a>.
 &gt; 
 &gt; It might be possible to work around the problem by disabling debug info for
 &gt; this particular assembly (we don't currently support disabling debug info
@@ -2087,7 +2087,7 @@ But this issue still not solved. I expect meaningful error message at build time
 &gt; </span>
 
 To make things less confusing here, I've filed <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - mtouch: Add support for not generating debug info (AOT) for specific assemblies" href="show_bug.cgi?id=59634">bug #59634</a> to track this.</pre>
+          bz_status_ASSIGNED " title="ASSIGNED - mtouch: Add support for not generating debug info (AOT) for specific assemblies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59634">bug #59634</a> to track this.</pre>
     </div>
 
     <div id="c40" class="bz_comment">
@@ -2177,7 +2177,7 @@ But for this ticket I would prefer to have meaningful error message that indicat
 
 
 <pre class="bz_comment_text">I've looked at this problem before (in <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="show_bug.cgi?id=1102">bug #1102</a>), and it's very time consuming to debug ld. My estimate is that it would take several days, maybe a week, to get a test project and a potential fix that can be submitted to Apple.
+          bz_status_CONFIRMED " title="CONFIRMED - GCC complains &quot;FATAL:Section too large&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1102">bug #1102</a>), and it's very time consuming to debug ld. My estimate is that it would take several days, maybe a week, to get a test project and a potential fix that can be submitted to Apple.
 
 Since Apple is dropping 32-bit quickly it's entirely possible they won't even accept the patch, and all the work is lost.
 

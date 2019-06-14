@@ -562,7 +562,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - With NDK r12b+ AOT is successfull but JIT still happens and app as slow as w/o AOT" href="show_bug.cgi?id=58029">58029</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - With NDK r12b+ AOT is successfull but JIT still happens and app as slow as w/o AOT" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58029">58029</a>
           </li></ul>
 
 </td>
@@ -669,12 +669,12 @@ Why apk deploy using visual studio is loading fast?</pre>
 I believe that you might be running into the following issue:
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - With NDK r12b+ AOT is successfull but JIT still happens and app as slow as w/o AOT" href="show_bug.cgi?id=58029">https://bugzilla.xamarin.com/show_bug.cgi?id=58029</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - With NDK r12b+ AOT is successfull but JIT still happens and app as slow as w/o AOT" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58029">https://bugzilla.xamarin.com/show_bug.cgi?id=58029</a>
 
 In which we had recently found the cause of this:
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - With NDK r12b+ AOT is successfull but JIT still happens and app as slow as w/o AOT" href="show_bug.cgi?id=58029#c16">https://bugzilla.xamarin.com/show_bug.cgi?id=58029#c16</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - With NDK r12b+ AOT is successfull but JIT still happens and app as slow as w/o AOT" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58029#c16">https://bugzilla.xamarin.com/show_bug.cgi?id=58029#c16</a>
 
 As for the loading differences, there shouldn't be a difference between the APK you upload to the play store and the apk you install on your device given they were both built using the same configurations. Some items that you might want to consider is using a fresh device (One that has never been used to debug) and install both APKs to time the differences. It's hard to know what the exact case is here as we do not have the APK in question to compare against your Release APK. I would also do a comparison of these two APKs to ensure no settings were changed between the Release -&gt; Store APK. If you have these APKs that we can investigate further with, that would help aid our investigation.
 

@@ -349,7 +349,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - SIGILL in proxy_button_event" href="show_bug.cgi?id=4520">4520</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - SIGILL in proxy_button_event" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4520">4520</a> 
       </span>
       ()
     </td>
@@ -365,7 +365,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Crash in gtk rendering some fonts" href="show_bug.cgi?id=4366">4366</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Crash in gtk rendering some fonts" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4366">4366</a> 
   </td>
   </tr>
 
@@ -736,7 +736,7 @@ I've attached the Crash Report.</pre>
 
 
 <pre class="bz_comment_text">Looks like random memory corruption. <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Crash in gtk rendering some fonts" href="show_bug.cgi?id=4366">Bug #4366</a> in the version of pango we are currently shipping could be causing this.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Crash in gtk rendering some fonts" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4366">Bug #4366</a> in the version of pango we are currently shipping could be causing this.</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -885,7 +885,7 @@ MonoDevelop "2.9.5" Crash report</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - SIGILL in proxy_button_event" href="show_bug.cgi?id=4520">Bug 4520</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - SIGILL in proxy_button_event" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4520">Bug 4520</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c7" class="bz_comment">
@@ -953,12 +953,12 @@ just to make sure that we are on the same page, you do use
 <a href="https://bugzilla.gnome.org/show_bug.cgi?id=516725">https://bugzilla.gnome.org/show_bug.cgi?id=516725</a>
 
 Other than that, it doesn't look related to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Crash in gtk rendering some fonts" href="show_bug.cgi?id=4366">bug #4366</a> either.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Crash in gtk rendering some fonts" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4366">bug #4366</a> either.
 
 I'm rather suspecting it is a different-but-similar incarnation
 of the issue where we fail to find the right window for an event,
 so could be related to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [GTK] crash in find_window_for_ns_event" href="show_bug.cgi?id=2158">bug #2158</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [GTK] crash in find_window_for_ns_event" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2158">bug #2158</a>.
 
 Is there any way to turn the offsets in the MD crash reports into
 line numbers?</pre>
@@ -991,7 +991,7 @@ line numbers?</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop crashed when editing code with syntax errors" href="show_bug.cgi?id=4651">Bug 4651</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop crashed when editing code with syntax errors" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4651">Bug 4651</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c10" class="bz_comment">
@@ -1312,7 +1312,7 @@ It also looks like the offsets in the stack  trace are all one ahead, so perhaps
 
 
 <pre class="bz_comment_text">In <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop crashed when editing code with syntax errors" href="show_bug.cgi?id=4651">bug 4651</a> we also observe that a crash happens in a function call, which does not appear in the "native stack trace" , but this function frame is present in the gdb info.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop crashed when editing code with syntax errors" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4651">bug 4651</a> we also observe that a crash happens in a function call, which does not appear in the "native stack trace" , but this function frame is present in the gdb info.
 
 Therefore, an alternative theory could be that the crash happens inside get_pointer_window() (since the offsets are often one ahead).  A plausible way this could happen is event_window being NULL, which for proxy_button_event() means toplevel_window is NULL.  It is not yet clear to me how toplevel_window can be NULL at this point, if event_window==NULL is passed into convert_native_coords_to_toplevel(), a crash would occur earlier (gdk_window_is_toplevel() accesses window without checking).</pre>
     </div>
@@ -1777,11 +1777,11 @@ The patch will now also ignore events for all mouse buttons when the coordinates
 <pre class="bz_comment_text">I couldn't repro the crash with bockbuild master before the patch - it hits the Gdk-warnings we added about a week ago. Alan, are you sure you were actually using master?
 
 Anyway, the patch cleans up the warnings in that particular case, which is good. It looks like Alan found a repro for the original report of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [GTK] crash in find_window_for_ns_event" href="show_bug.cgi?id=2158">bug 2158</a>, since that involved a right-click at the edge of the screen.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [GTK] crash in find_window_for_ns_event" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2158">bug 2158</a>, since that involved a right-click at the edge of the screen.
 
 But I don't think it can be responsible for the window lookup crashes related to typing in the text editor - I'm pretty sure no mouse button other than left mouse was involved in those. I still suspect we have two issues there - there's the issue with the completion window grabs described in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelops text editor stops responding to mouse events" href="show_bug.cgi?id=4497#c15">bug 4497 comment 15</a>, but the commit that introduced completion window re-use was two month after the first report of a window lookup crash in this context, in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [GTK] crash in find_window_for_ns_event" href="show_bug.cgi?id=2158">bug 2158</a>. The completion window grab issue just made it worse. So I'm not sure if that's one bug or two bugs.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelops text editor stops responding to mouse events" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4497#c15">bug 4497 comment 15</a>, but the commit that introduced completion window re-use was two month after the first report of a window lookup crash in this context, in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [GTK] crash in find_window_for_ns_event" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2158">bug 2158</a>. The completion window grab issue just made it worse. So I'm not sure if that's one bug or two bugs.
 
 After we land verify this patch, I'll remove Mike's workarounds and try to repro the completion window issue.</pre>
     </div>
@@ -1905,18 +1905,18 @@ Kristian, I can confirm that the patch you supplied fixes the crash in the two r
 
 <pre class="bz_comment_text"><span class="quote">&gt; Anyway, the patch cleans up the warnings in that particular case, which is
 &gt; good. It looks like Alan found a repro for the original report of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [GTK] crash in find_window_for_ns_event" href="show_bug.cgi?id=2158">bug 2158</a>,
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [GTK] crash in find_window_for_ns_event" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2158">bug 2158</a>,
 &gt; since that involved a right-click at the edge of the screen.</span>
 
 This one is likely fixed for sure; in my post-mortem analysis I concluded in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [GTK] crash in find_window_for_ns_event" href="show_bug.cgi?id=2158#c27">bug 2158 comment 27</a> that likely an event is generated with coordinates out of the bounds of the toplevel.  And that is exactly what we found now.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [GTK] crash in find_window_for_ns_event" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2158#c27">bug 2158 comment 27</a> that likely an event is generated with coordinates out of the bounds of the toplevel.  And that is exactly what we found now.
 
 
 <span class="quote">&gt; But I don't think it can be responsible for the window lookup crashes related
 &gt; to typing in the text editor - I'm pretty sure no mouse button other than left
 &gt; mouse was involved in those. I still suspect we have two issues there - there's
 &gt; the issue with the completion window grabs described in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelops text editor stops responding to mouse events" href="show_bug.cgi?id=4497#c15">bug 4497 comment 15</a>,</span>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelops text editor stops responding to mouse events" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4497#c15">bug 4497 comment 15</a>,</span>
 
 I agree.  We need to find out if the cases when grabs are messed up actually corrupt the grab state  by having a grab with grab-&gt;window == NULL.</pre>
     </div>
@@ -1948,7 +1948,7 @@ I agree.  We need to find out if the cases when grabs are messed up actually cor
 
 
 <pre class="bz_comment_text">As I just commented in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop crashed when editing code with syntax errors" href="show_bug.cgi?id=4651">bug 4651</a>, that bug is likely different.  In 4651 we have event-&gt;any.window is NULL, this bug was fixed because the coordinates were out of bounds (but we did have a window).</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop crashed when editing code with syntax errors" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4651">bug 4651</a>, that bug is likely different.  In 4651 we have event-&gt;any.window is NULL, this bug was fixed because the coordinates were out of bounds (but we did have a window).</pre>
     </div>
 
     <div id="c35" class="bz_comment">

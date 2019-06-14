@@ -1088,7 +1088,7 @@ I've also begun working on compiling on .NET Core, but if I can get Mono working
 Setting an environment variable MONO_TLS_PROVIDER=newtls causes Mono to load the new TLS stack supporting 1.0+. This works great, in that you get the new implementation. I could only get this to work on .NET Framework 4.6+ (Mono 4.6+). I'm not real familiar with the naming conventions.
 
 However, using the "newtls" resulted in a different bug for me which I found was reported back in April 2016: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - newtls SslStream" href="show_bug.cgi?id=40381">https://bugzilla.xamarin.com/show_bug.cgi?id=40381</a>   In this case it crashes with a null pointer to which I have no access to fix (that I can determine yet). 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - newtls SslStream" href="https://bugzilla.xamarin.com/show_bug.cgi?id=40381">https://bugzilla.xamarin.com/show_bug.cgi?id=40381</a>   In this case it crashes with a null pointer to which I have no access to fix (that I can determine yet). 
 
 In my case, I am writing a Console App on Mac OS X (El Capitan) that self-hosts using OWIN/Katana and SignalR.
 

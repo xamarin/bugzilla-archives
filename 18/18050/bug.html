@@ -630,7 +630,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Launches a self-hosted WebAPI in OWIN that throws on every request
 
 This is a follow-up bug to <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - Calling Thread.CurrentPrincipal blindly with the User from an HttpListenerContext can throw a NullReferenceException" href="show_bug.cgi?id=17965">bug 17965</a>. After patching in support for an anonymous user into the Microsoft.Owin.Host.HttpListener I reproducibly get a NullReferenceException for every HTTP request when calling DelegatingHandler.InnerHandler.SendAsync.
+          bz_status_NEW " title="NEW - Calling Thread.CurrentPrincipal blindly with the User from an HttpListenerContext can throw a NullReferenceException" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17965">bug 17965</a>. After patching in support for an anonymous user into the Microsoft.Owin.Host.HttpListener I reproducibly get a NullReferenceException for every HTTP request when calling DelegatingHandler.InnerHandler.SendAsync.
 
 As with case 17965, as soon as I unplug WebAPI from the OWIN pipeline, everything works correctly.
 
@@ -639,7 +639,7 @@ Find attached a program to reproduce this issue. The program serves to URIs:
 <a href="http://localhost:12345/api/some">http://localhost:12345/api/some</a> -&gt; handled by WebAPI
 
 The Microsoft.Owin.Host.HttpListener included is a private build with the workaround for <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - Calling Thread.CurrentPrincipal blindly with the User from an HttpListenerContext can throw a NullReferenceException" href="show_bug.cgi?id=17965">bug 17965</a> included.</pre>
+          bz_status_NEW " title="NEW - Calling Thread.CurrentPrincipal blindly with the User from an HttpListenerContext can throw a NullReferenceException" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17965">bug 17965</a> included.</pre>
     </div>
 
     <div id="c1" class="bz_comment">

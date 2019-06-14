@@ -593,7 +593,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">Via <a class="bz_bug_link 
-          bz_status_REOPENED " title="REOPENED - Got a SIGSEGV while garbage collection" href="show_bug.cgi?id=33767">Bug #33767</a>.
+          bz_status_REOPENED " title="REOPENED - Got a SIGSEGV while garbage collection" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33767">Bug #33767</a>.
 
 Imagine, if you will, a .axml file which specifies one type:
 
@@ -645,7 +645,7 @@ Theoretical follow-on effects: GC SIGSEGVs as objects are "lost" because there's
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_REOPENED " title="REOPENED - Got a SIGSEGV while garbage collection" href="show_bug.cgi?id=33767">Bug 33767</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_REOPENED " title="REOPENED - Got a SIGSEGV while garbage collection" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33767">Bug 33767</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -893,7 +893,7 @@ That sounds like it might be a different bug, because I don't see why OkHttp or 
 
 
 <pre class="bz_comment_text">So you're saying that <a class="bz_bug_link 
-          bz_status_REOPENED " title="REOPENED - Got a SIGSEGV while garbage collection" href="show_bug.cgi?id=33767">bug 33767</a> (which deals with OkHttp/ModernHttpClient) sounds like a different bug, correct? Should it be marked as a Resolved Duplicate of this bug then? Or are there two separate bugs in 33767?</pre>
+          bz_status_REOPENED " title="REOPENED - Got a SIGSEGV while garbage collection" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33767">bug 33767</a> (which deals with OkHttp/ModernHttpClient) sounds like a different bug, correct? Should it be marked as a Resolved Duplicate of this bug then? Or are there two separate bugs in 33767?</pre>
     </div>
 
     <div id="c10" class="bz_comment">
@@ -923,13 +923,13 @@ That sounds like it might be a different bug, because I don't see why OkHttp or 
 
 
 <pre class="bz_comment_text">In <a class="bz_bug_link 
-          bz_status_REOPENED " title="REOPENED - Got a SIGSEGV while garbage collection" href="show_bug.cgi?id=33767">bug #33767</a>, OkHttp was *present*, but upon further analysis OkHttp didn't seem to be *involved* in the actual crash. The *cause* of the crash was the mismatch between Java runtime type and Android Callable Wrapper type (<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=35571">Bug #35571</a>).
+          bz_status_REOPENED " title="REOPENED - Got a SIGSEGV while garbage collection" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33767">bug #33767</a>, OkHttp was *present*, but upon further analysis OkHttp didn't seem to be *involved* in the actual crash. The *cause* of the crash was the mismatch between Java runtime type and Android Callable Wrapper type (<a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35571">Bug #35571</a>).
 
 I am not aware of any bugs between OkHttp/ModernHttpClient and the GC.
 
 Crashes when the debugger is connected sounds like it could be <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Debugger exits with art/runtime/fault_handler.cc:117] Check failed: !initialized_" href="show_bug.cgi?id=35739">Bug #35739</a>, which is an ART-related abort because something hasn't been initialized.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Debugger exits with art/runtime/fault_handler.cc:117] Check failed: !initialized_" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35739">Bug #35739</a>, which is an ART-related abort because something hasn't been initialized.</pre>
     </div>
 
 

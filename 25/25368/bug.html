@@ -766,7 +766,7 @@ Darwin MacMini.local 13.4.0 Darwin Kernel Version 13.4.0
 <pre class="bz_comment_text">@Redth: Please recompile the Xamarin.Android.Support.v4.dll assembly with a more recent Xamarin.Android release, something after Xamarin.Android 4.14.0.
 
 I believe the problem here is that Fragment.OnStart() is "mis-bound", along the lines of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Bugs with Android Runtime (ART) in 4.12" href="show_bug.cgi?id=17630">Bug #17630</a>. In this particular case, what happens is that `base.OnStart()` causes the "closest bound C# method" to be invoked. Since DialogFragment doesn't override Fragment.OnStart(), the C# `base.OnStart()` invokes Fragment.OnStart().
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Bugs with Android Runtime (ART) in 4.12" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17630">Bug #17630</a>. In this particular case, what happens is that `base.OnStart()` causes the "closest bound C# method" to be invoked. Since DialogFragment doesn't override Fragment.OnStart(), the C# `base.OnStart()` invokes Fragment.OnStart().
 
 This is wrong because Fragment.OnStart() directly invokes Fragment.onStart(), thus causing us to "skip" DialogFragment.onStart():
 

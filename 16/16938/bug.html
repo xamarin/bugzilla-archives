@@ -596,7 +596,7 @@ It generally takes less than 15 seconds for this to produce a crash on my HTC On
 My best guess monodroid_get_identity_hash code does something special for strings that isn't taken into account in other places.  Or the code that converts from Java.Lang.String =&gt; string automagically for these dictionary types must have a bug where it is disposing of a gref.  Either that or there is some weird string interning going on in Android.  Given that the documentation for android offers an option to manually intern strings, I don't think this problem is an Android OS issue.
 
 I originally encountered this error attempting to work around: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="show_bug.cgi?id=15135">https://bugzilla.xamarin.com/show_bug.cgi?id=15135</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15135">https://bugzilla.xamarin.com/show_bug.cgi?id=15135</a>
 
 When using the ModernHttpClient, I found that my process would randomly crash or hang under concurrent network load.  As a workaround I had to acquire a GLOBAL LOCK around access to a JavaDictionary of strings.  You can see this atrocity here: <a href="https://github.com/tpurtell/ModernHttpClient/commit/57a37db5e6e6b489d848d30e391de55c1d577b7e#diff-ce22ec22a5fe0a65957f41e7b93462f2R80">https://github.com/tpurtell/ModernHttpClient/commit/57a37db5e6e6b489d848d30e391de55c1d577b7e#diff-ce22ec22a5fe0a65957f41e7b93462f2R80</a>
 
@@ -799,7 +799,7 @@ The original ModernHttpClient crash log on a Nexus 5 is this
 
 
 <pre class="bz_comment_text">Global lock may have worked.  The remaining class of crashes was from the IMT bug (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGVs (with interface trampoline??), multiple devices, gdb info" href="show_bug.cgi?id=16075">bug #16075</a>) fix not being on the build server (it was on x.a stable).  Hiding the iterator in pure java code and just returning an array worked too.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGVs (with interface trampoline??), multiple devices, gdb info" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16075">bug #16075</a>) fix not being on the build server (it was on x.a stable).  Hiding the iterator in pure java code and just returning an array worked too.</pre>
     </div>
 
     <div id="c5" class="bz_comment">

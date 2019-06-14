@@ -528,7 +528,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Xcode 8.1 GM] &quot;May Slow Down Your iPhone ... The developer of this app needs to update it to improve its compatibility.&quot; because of default &quot;i386&quot; supported architecture setting in the iPhoneSimulator configuration on new projects" href="show_bug.cgi?id=45861">45861</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Xcode 8.1 GM] &quot;May Slow Down Your iPhone ... The developer of this app needs to update it to improve its compatibility.&quot; because of default &quot;i386&quot; supported architecture setting in the iPhoneSimulator configuration on new projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45861">45861</a>
           </li></ul>
 
 </td>
@@ -620,16 +620,16 @@ NO  warning: Xcode 8.0 (11246), Build 8A218a
 ## Steps to replicate
 
 1. Apply the "indelicate" workaround from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Xcode 8.1 GM] &quot;Failed to launch the simulator: Could not load the framework 'libswiftos.dylib' (path: /Applications/Xcode.app/Contents/Frameworks/libswiftos.dylib): not found.&quot; when attempting to launch iOS 10.1 simulator via `mlaunch`" href="show_bug.cgi?id=45855#c8">Bug 45855, Comment 8</a> on the Mac to avoid that bug.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Xcode 8.1 GM] &quot;Failed to launch the simulator: Could not load the framework 'libswiftos.dylib' (path: /Applications/Xcode.app/Contents/Frameworks/libswiftos.dylib): not found.&quot; when attempting to launch iOS 10.1 simulator via `mlaunch`" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45855#c8">Bug 45855, Comment 8</a> on the Mac to avoid that bug.
 
 2. I also had to replace 2 other dynamic libraries in the Xcode.app bundle to avoid <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cannot launch app on iOS 10.1 simulator (Xcode8.1)" href="show_bug.cgi?id=45676">Bug 45676</a>.  I won't bother to list the specifics because it will be better to verify this bug against a build that includes the real fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cannot launch app on iOS 10.1 simulator (Xcode8.1)" href="show_bug.cgi?id=45676">Bug 45676</a> rather than my local hacks.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cannot launch app on iOS 10.1 simulator (Xcode8.1)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45676">Bug 45676</a>.  I won't bother to list the specifics because it will be better to verify this bug against a build that includes the real fix for <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cannot launch app on iOS 10.1 simulator (Xcode8.1)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45676">Bug 45676</a> rather than my local hacks.
 
 3. Create a new "Visual C# &gt; iOS &gt; iPhone &gt; Single View App (iPhone)" project.
 
 4. For the purposes of this bug, edit the `Info.plist` to select "iOS 9.3" as the "Deployment Target" (to avoid <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=45859">Bug 45859</a>).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45859">Bug 45859</a>).
 
 5. Select the Debug configuration, and select an iOS 10.1 simulator from the configuration menu.
 
@@ -702,7 +702,7 @@ Mac OS X 10.11.6</pre>
 
 
 <pre class="bz_comment_text">I have filed this bug as a corresponding tracking bug for XVS to match the Xamarin Studio <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Xcode 8.1 GM] &quot;May Slow Down Your iPhone ... The developer of this app needs to update it to improve its compatibility.&quot; because of default &quot;i386&quot; supported architecture setting in the iPhoneSimulator configuration on new projects" href="show_bug.cgi?id=45861">Bug 45861</a>.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Xcode 8.1 GM] &quot;May Slow Down Your iPhone ... The developer of this app needs to update it to improve its compatibility.&quot; because of default &quot;i386&quot; supported architecture setting in the iPhoneSimulator configuration on new projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45861">Bug 45861</a>.</pre>
     </div>
 
     <div id="c2" class="bz_comment">

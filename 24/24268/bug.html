@@ -717,7 +717,7 @@ Visual Studio plugin to enable development for Xamarin.Android.</pre>
 <pre class="bz_comment_text">This test case shows the GREF count on screen while allocating 1000 objects between repeated garbage collection.  The count rapidly increases and then the app stalls out and jams.
 
 There is a good chance this is related to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Android Lolipop - outstanding GREFs loop - causes lag + crashes" href="show_bug.cgi?id=23959">Bug 23959</a>.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Android Lolipop - outstanding GREFs loop - causes lag + crashes" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23959">Bug 23959</a>.</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -754,11 +754,11 @@ Really? You could just use Runtime.GlobalReferenceCount:
 <a href="http://androidapi.xamarin.com/?link=P%3aJava.Interop.Runtime.GlobalReferenceCount">http://androidapi.xamarin.com/?link=P%3aJava.Interop.Runtime.GlobalReferenceCount</a>
 
 The deal with <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Android Lolipop - outstanding GREFs loop - causes lag + crashes" href="show_bug.cgi?id=23959">Bug #23959</a> is that it's an emulator, so we assume that there's a 2000 GREF limit, so once we get to ~1800 GREFs we perform a GC. ART in API-21 apparently doesn't have this limit (I need to confirm), so <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Android Lolipop - outstanding GREFs loop - causes lag + crashes" href="show_bug.cgi?id=23959">Bug #23959</a> sees 6000+ GREFs, so it's *constantly* doing a GC.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Android Lolipop - outstanding GREFs loop - causes lag + crashes" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23959">Bug #23959</a> is that it's an emulator, so we assume that there's a 2000 GREF limit, so once we get to ~1800 GREFs we perform a GC. ART in API-21 apparently doesn't have this limit (I need to confirm), so <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Android Lolipop - outstanding GREFs loop - causes lag + crashes" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23959">Bug #23959</a> sees 6000+ GREFs, so it's *constantly* doing a GC.
 
 What I don't know is why there are so many GREFs in the first place. I'd have to run the sample for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Android Lolipop - outstanding GREFs loop - causes lag + crashes" href="show_bug.cgi?id=23959">Bug #23959</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Android Lolipop - outstanding GREFs loop - causes lag + crashes" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23959">Bug #23959</a>.
 
 This bug, however, is on hardware, not the emulator, so assuming we properly detect it as hardware then the GREF limit will be ~41000, so unless you're exceeding that then the cause of the slowdown will be different. (Getting 41000 GREFs would ITSELF cause performance issues; don't do that.)
 

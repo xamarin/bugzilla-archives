@@ -1003,8 +1003,8 @@ Very frustrating.</pre>
 
 
 <pre class="bz_comment_text">Ok, so I spent a bit of time talking to Atin to try to dig into this. It sounds like <a href="bug.html">comment 18</a>, <a href="bug.html">comment 17</a>, and <a href="bug.html">comment 9</a> are describing the same issue, and that issue has been reported separately as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=31753">bug 31753</a>, (and the duplicate <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=31740">bug 31740</a>). It does not result in a "Debugger Connection lost" error, and does not result in an ObjectDisposedException. 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31753">bug 31753</a>, (and the duplicate <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31740">bug 31740</a>). It does not result in a "Debugger Connection lost" error, and does not result in an ObjectDisposedException. 
 
 Those behaviors are occurring when the user has an Xcode configured that does not support the iOS version being used. In Atin's case, he's using iOS 8.4 with Xcode 6.2. 
 
@@ -1017,13 +1017,13 @@ Atin's issue is filed already, I filed Michael's issue, and I think we need a ne
 - Original issue, reported by Tim and fixed early last year (<a class="bz_bug_link 
           bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Frequent 'Debugger Connection Lost'" href="bug.html">bug 18468</a>)
 - ObjectDisposedException reported by Michael in <a href="bug.html">comment 4</a>. (Now filed as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Debugger session ends with ObjectDisposedException" href="show_bug.cgi?id=32726">bug 32726</a>)
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Debugger session ends with ObjectDisposedException" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32726">bug 32726</a>)
 - iOS 8.4 / Xcode 6.2 mismatch reported by Atin (<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=31740">bug 31740</a>)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31740">bug 31740</a>)
 - Issue reported by Alec in <a href="bug.html">comment 16</a> (Not yet filed).
 
 Michael, can you take a look at <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Debugger session ends with ObjectDisposedException" href="show_bug.cgi?id=32726">bug 32726</a> and make sure I got the right info down?
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Debugger session ends with ObjectDisposedException" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32726">bug 32726</a> and make sure I got the right info down?
 
 Alec, can you open a new bug with full version information and logs, as well as a concise test case to help us track it down? That will be the best way to make sure we resolve and verify your specific issue as well. The report of having to uninstall the app and / or reboot means that it is not the same issue being discussed by Tim, Atin, or Michael. We may be able to see something else in your logs. 
 

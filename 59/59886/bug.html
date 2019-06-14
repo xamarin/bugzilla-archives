@@ -697,29 +697,29 @@ I'm using Xamarin.Android 8.0.0.35</pre>
 <pre class="bz_comment_text">This bug is related to the following issue that has been fixed already:
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker fails to link assemblies: Reason: Object reference not set to an instance of an object (MT2001) (linker_test)" href="show_bug.cgi?id=59109">https://bugzilla.xamarin.com/show_bug.cgi?id=59109</a> (iOS Specific)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker fails to link assemblies: Reason: Object reference not set to an instance of an object (MT2001) (linker_test)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59109">https://bugzilla.xamarin.com/show_bug.cgi?id=59109</a> (iOS Specific)
 
 This was also filed under the Android product:
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Building an Android solution in Release mode that references a net standard project with a Microsoft.Identity reference results in a linker error." href="show_bug.cgi?id=59822">https://bugzilla.xamarin.com/show_bug.cgi?id=59822</a> (Android Specific)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Building an Android solution in Release mode that references a net standard project with a Microsoft.Identity reference results in a linker error." href="https://bugzilla.xamarin.com/show_bug.cgi?id=59822">https://bugzilla.xamarin.com/show_bug.cgi?id=59822</a> (Android Specific)
 
 Specifically the following comment provides insights for the cause of this issue:
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Building an Android solution in Release mode that references a net standard project with a Microsoft.Identity reference results in a linker error." href="show_bug.cgi?id=59822#c2">https://bugzilla.xamarin.com/show_bug.cgi?id=59822#c2</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Building an Android solution in Release mode that references a net standard project with a Microsoft.Identity reference results in a linker error." href="https://bugzilla.xamarin.com/show_bug.cgi?id=59822#c2">https://bugzilla.xamarin.com/show_bug.cgi?id=59822#c2</a>
 
 There is then a comment of where the actual fix is located:
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Building an Android solution in Release mode that references a net standard project with a Microsoft.Identity reference results in a linker error." href="show_bug.cgi?id=59822#c4">https://bugzilla.xamarin.com/show_bug.cgi?id=59822#c4</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Building an Android solution in Release mode that references a net standard project with a Microsoft.Identity reference results in a linker error." href="https://bugzilla.xamarin.com/show_bug.cgi?id=59822#c4">https://bugzilla.xamarin.com/show_bug.cgi?id=59822#c4</a>
 
 In short, you will need Xamarin.Android 8.0.0.35 which should hopefully make 15.4 Preview 4.
 
 Thus I am marking this issue as a DUPLICATE of 59822.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Building an Android solution in Release mode that references a net standard project with a Microsoft.Identity reference results in a linker error." href="show_bug.cgi?id=59822">bug 59822</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Building an Android solution in Release mode that references a net standard project with a Microsoft.Identity reference results in a linker error." href="https://bugzilla.xamarin.com/show_bug.cgi?id=59822">bug 59822</a> ***</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -751,7 +751,7 @@ Thus I am marking this issue as a DUPLICATE of 59822.
 <pre class="bz_comment_text">Taking a second look at this bug, I actually believe this is a different linking error that had very similar parameters to the known item I had marked as duplicate(F#, Microsoft.Identity.Client, Linker Problem). I am going to set the status to REOPENED given my earlier mistake. Apologies in advance.
 
 Here is the output from the linker error that I believe differs from the issue in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Building an Android solution in Release mode that references a net standard project with a Microsoft.Identity reference results in a linker error." href="show_bug.cgi?id=59822">https://bugzilla.xamarin.com/show_bug.cgi?id=59822</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Building an Android solution in Release mode that references a net standard project with a Microsoft.Identity reference results in a linker error." href="https://bugzilla.xamarin.com/show_bug.cgi?id=59822">https://bugzilla.xamarin.com/show_bug.cgi?id=59822</a>
 
 2&gt;C:\Program Files (x86)\Microsoft Visual Studio\Dogfood\Enterprise\MSBuild\Xamarin\Android\Xamarin.Android.Common.targets(1628,5): error MSB4018: The "LinkAssemblies" task failed unexpectedly.
 2&gt;Mono.Linker.MarkException: Error processing method: 'System.Void Microsoft.Identity.Client.AuthenticationActivity::OnResume()' in assembly: 'Microsoft.Identity.Client.dll' ---&gt; Mono.Cecil.ResolutionException: Failed to resolve System.Void Android.Support.CustomTabs.CustomTabsIntent::LaunchUrl(Android.App.Activity,Android.Net.Uri)

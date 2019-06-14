@@ -640,7 +640,7 @@ Imprecise error dialog "The SDK synchronization returned with error Unknown" whe
 
 
 This looks almost the same as <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - SDK synchronization broken in XamarinVS 3.1 &quot;Unable to connect to server&quot;" href="show_bug.cgi?id=20588">https://bugzilla.xamarin.com/show_bug.cgi?id=20588</a>, but it is indeed a different problem.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - SDK synchronization broken in XamarinVS 3.1 &quot;Unable to connect to server&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=20588">https://bugzilla.xamarin.com/show_bug.cgi?id=20588</a>, but it is indeed a different problem.
 
 
 
@@ -765,13 +765,13 @@ Keep the Mac build host clock 10 seconds behind the Windows clock (make sure to 
 
 
 <pre class="bz_comment_text">The reason of failure of sdk sync is in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mtbserver throws a DirectoryNotFoundException when trying to access ~/Library/Developer/MonoTouch" href="show_bug.cgi?id=22024">Bug 22024</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mtbserver throws a DirectoryNotFoundException when trying to access ~/Library/Developer/MonoTouch" href="https://bugzilla.xamarin.com/show_bug.cgi?id=22024">Bug 22024</a>.
 
 Hence, I am marking it as duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mtbserver throws a DirectoryNotFoundException when trying to access ~/Library/Developer/MonoTouch" href="show_bug.cgi?id=22024">bug 22024</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mtbserver throws a DirectoryNotFoundException when trying to access ~/Library/Developer/MonoTouch" href="https://bugzilla.xamarin.com/show_bug.cgi?id=22024">bug 22024</a>
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mtbserver throws a DirectoryNotFoundException when trying to access ~/Library/Developer/MonoTouch" href="show_bug.cgi?id=22024">bug 22024</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mtbserver throws a DirectoryNotFoundException when trying to access ~/Library/Developer/MonoTouch" href="https://bugzilla.xamarin.com/show_bug.cgi?id=22024">bug 22024</a> ***</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -846,7 +846,7 @@ Windows 8.1 64-bit (in VMWare Fusion)
 
 
 Unfortunately, based on that result, I think the cause of this problem is not <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mtbserver throws a DirectoryNotFoundException when trying to access ~/Library/Developer/MonoTouch" href="show_bug.cgi?id=22024">bug 22024</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mtbserver throws a DirectoryNotFoundException when trying to access ~/Library/Developer/MonoTouch" href="https://bugzilla.xamarin.com/show_bug.cgi?id=22024">bug 22024</a>.
 
 
 I tentatively have another way to reproduce the problem. I think that changing my Windows VM to have 2 processors and enabling support for VT-x/EPT is sufficient to produce the problem, even if the clocks are perfectly synchronized. I'll double-check that shortly and update this report.</pre>
@@ -888,7 +888,7 @@ I'm changing the title of this bug to account for the fact that the problem is n
 
 
 As with the clock skew repro (<a href="bug.html">comment 1</a>), I _cannot_ reproduce this problem on XamarinVS 3.1.228 + Xamarin.iOS 7.2.5.5. So this problem is effectively a regression of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - SDK synchronization broken in XamarinVS 3.1 &quot;Unable to connect to server&quot;" href="show_bug.cgi?id=20588">bug 20588</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - SDK synchronization broken in XamarinVS 3.1 &quot;Unable to connect to server&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=20588">bug 20588</a>.
 
 
 I repeated the steps from <a href="bug.html">comment 1</a> twice back-to-back using the "2 processors + VT-x/EPT" repro, and saw the same results both times:
@@ -1019,7 +1019,7 @@ not found
 <span class="quote">&gt; And this is related to #22024</span>
 
 I agree that this is a harmless (if misleading) error message. Just for reference, I filed a bug about removing that error message here: <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Remove or disable code path that looks for /Developer/MonoTouch/usr/share/doc/MonoTouch/MDocArchiveToMsxDocConverter.exe?" href="show_bug.cgi?id=21667">https://bugzilla.xamarin.com/show_bug.cgi?id=21667</a>.
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Remove or disable code path that looks for /Developer/MonoTouch/usr/share/doc/MonoTouch/MDocArchiveToMsxDocConverter.exe?" href="https://bugzilla.xamarin.com/show_bug.cgi?id=21667">https://bugzilla.xamarin.com/show_bug.cgi?id=21667</a>.
 
 
 <span class="quote">&gt; * VMWare Fusion 5.0 (VM with 2 processors + VT-x/EPT support enabled)
@@ -1061,7 +1061,7 @@ Ah ha. Tricky. My suspicion is it might be some kind of race condition. I'll see
 
 Again just for reference, I've filed a bug about that issue too:
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP" href="show_bug.cgi?id=21654">https://bugzilla.xamarin.com/show_bug.cgi?id=21654</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP" href="https://bugzilla.xamarin.com/show_bug.cgi?id=21654">https://bugzilla.xamarin.com/show_bug.cgi?id=21654</a></pre>
     </div>
 
     <div id="c11" class="bz_comment">

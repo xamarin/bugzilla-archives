@@ -349,7 +349,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - iOS Build Host build fails when including native library" href="show_bug.cgi?id=30262">30262</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - iOS Build Host build fails when including native library" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30262">30262</a> 
       </span>
       ()
     </td>
@@ -717,15 +717,15 @@ The following workaround works for me on XamarinVS 3.11.445 + Xamarin.iOS 8.10.0
 ### Further explanation
 
 The idea is to replace `${ProjectDir}` with one of the other "special variables" that is valid in the MtouchExtraArgs field. The current behavior of these variable seems to _mostly_ match the "Results on XVS 3.8.150" in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.9] MtouchExtraArgs variables no longer expand, causing &quot;Input string was not in a correct format&quot; error" href="show_bug.cgi?id=25758#c3">Bug 25758, Comment 3</a>. The problem is that the `${ProjectDir}` variable has reverted to expanding to the wrong `C:` path (similar to what happened around XVS 3.5 per <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Starting on XVS.iOS 3.5, &quot;Native linking error: file not found&quot; because native libraries in the project aren't copied to the build host" href="show_bug.cgi?id=23164#c0">Bug 23164, Comment 0</a>).
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.9] MtouchExtraArgs variables no longer expand, causing &quot;Input string was not in a correct format&quot; error" href="https://bugzilla.xamarin.com/show_bug.cgi?id=25758#c3">Bug 25758, Comment 3</a>. The problem is that the `${ProjectDir}` variable has reverted to expanding to the wrong `C:` path (similar to what happened around XVS 3.5 per <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Starting on XVS.iOS 3.5, &quot;Native linking error: file not found&quot; because native libraries in the project aren't copied to the build host" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23164#c0">Bug 23164, Comment 0</a>).
 
 
 
 ## Optional simpler test case
 
 The test case and steps to reproduce from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.9] MtouchExtraArgs variables no longer expand, causing &quot;Input string was not in a correct format&quot; error" href="show_bug.cgi?id=25758#c0">Bug 25758, Comment 0</a> are sufficient to reproduce this problem. (And that test case is 100% code that I created from scratch, including the native library, so you're welcome to use that test case any way you like).</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.9] MtouchExtraArgs variables no longer expand, causing &quot;Input string was not in a correct format&quot; error" href="https://bugzilla.xamarin.com/show_bug.cgi?id=25758#c0">Bug 25758, Comment 0</a> are sufficient to reproduce this problem. (And that test case is 100% code that I created from scratch, including the native library, so you're welcome to use that test case any way you like).</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -824,7 +824,7 @@ Hence closing this issue.</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - iOS Build Host build fails when including native library" href="show_bug.cgi?id=30262">Bug 30262</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - iOS Build Host build fails when including native library" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30262">Bug 30262</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
 

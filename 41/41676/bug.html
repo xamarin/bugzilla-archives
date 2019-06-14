@@ -593,10 +593,10 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - RestSharp not working after Xamarin Studio Update 6.0.1" href="show_bug.cgi?id=42153">42153</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - RestSharp not working after Xamarin Studio Update 6.0.1" href="https://bugzilla.xamarin.com/show_bug.cgi?id=42153">42153</a>
           </li>
           <li><a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [AppleTLS] We don't support HTTPS server with virtual domains." href="show_bug.cgi?id=41653">41653</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [AppleTLS] We don't support HTTPS server with virtual domains." href="https://bugzilla.xamarin.com/show_bug.cgi?id=41653">41653</a>
           </li></ul>
 
 </td>
@@ -1101,7 +1101,7 @@ request.GetResponse ();
 
 
 So at the moment this bug is a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE - HttpWebRequest.GetResponse fails for some https requests in Mono.Security.Protocol.Tls" href="show_bug.cgi?id=26658">Bug 26658</a>, and unfortunately the new "Apple TLS" feature that could allow us to test against a server that requires Diffie-Hellman agreement is a new feature in Cycle 7, so it would not be possible to test <a href="https://httpbin.org">https://httpbin.org</a> successfully using Cycle 6.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE - HttpWebRequest.GetResponse fails for some https requests in Mono.Security.Protocol.Tls" href="https://bugzilla.xamarin.com/show_bug.cgi?id=26658">Bug 26658</a>, and unfortunately the new "Apple TLS" feature that could allow us to test against a server that requires Diffie-Hellman agreement is a new feature in Cycle 7, so it would not be possible to test <a href="https://httpbin.org">https://httpbin.org</a> successfully using Cycle 6.
 
 I will look around a little to see if I can find another suitable HTTPS endpoint to use for this test that supports TLS v1.0 RSA key agreement.  Suggestions for possible alternative endpoints are welcome.</pre>
     </div>
@@ -1500,8 +1500,8 @@ After step 5, the "Application Output" window shows:
 ## Possible next steps
 
 The error you reported for the "36" endpoint _might_ be somehow similar to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpClient PostAsync fails with an IP Address as the Host Part of the URL." href="show_bug.cgi?id=41699">Bug 41699</a>.  But I also have a suspicion <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpClient PostAsync fails with an IP Address as the Host Part of the URL." href="show_bug.cgi?id=41699">Bug 41699</a> might be caused by the new default Apple TLS implementation, and I think Classic API Mac apps don't have access to that implementation, so the chances are maybe a bit slim.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpClient PostAsync fails with an IP Address as the Host Part of the URL." href="https://bugzilla.xamarin.com/show_bug.cgi?id=41699">Bug 41699</a>.  But I also have a suspicion <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpClient PostAsync fails with an IP Address as the Host Part of the URL." href="https://bugzilla.xamarin.com/show_bug.cgi?id=41699">Bug 41699</a> might be caused by the new default Apple TLS implementation, and I think Classic API Mac apps don't have access to that implementation, so the chances are maybe a bit slim.
 
 
 - When you get back, I'll be curious to know if you continue to see the same error with the "36" endpoint.
@@ -1655,9 +1655,9 @@ I have the same issue, but on iOS. The answers of your questions below:
 <pre class="bz_comment_text">@Mihail, the original reporter on this bug indicated that the "MonoTLS" setting did _not_ influence the results from his tests, so I suspect you are more likely seeing something more closely related to one of the following 2 symptoms:
 
 - <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AppleTLS and Managed HTTP Implementation cause HttpClient methods to hang" href="show_bug.cgi?id=41697">Bug 41697</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AppleTLS and Managed HTTP Implementation cause HttpClient methods to hang" href="https://bugzilla.xamarin.com/show_bug.cgi?id=41697">Bug 41697</a>
 - <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - HTTPS fails when using the managed HttpClient handler with Apple's TLS" href="show_bug.cgi?id=41206">Bug 41206</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - HTTPS fails when using the managed HttpClient handler with Apple's TLS" href="https://bugzilla.xamarin.com/show_bug.cgi?id=41206">Bug 41206</a>
 
 Those 2 bugs have a candidate fix that will be included in "Cycle 6 – Service Release 0" that is due to be released this week.  You can keep an eye on <a href="https://releases.xamarin.com/">https://releases.xamarin.com/</a> for the availability of that update.  If it doesn't help, then please do file a new bug report.  Since the issue you are seeing depends on some particular logic, it is highly recommended to minimize your full project to the smallest sample that still shows the problem and then attach the minimized version (optionally privately) on the bug report.  Thanks in advance!</pre>
     </div>
@@ -1733,7 +1733,7 @@ Thanks!</pre>
 
 
 <pre class="bz_comment_text">I just learned about another bug that might account for the original issue from <a href="bug.html">Comment 0</a>: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [AppleTLS] We don't support HTTPS server with virtual domains." href="show_bug.cgi?id=41653">Bug 41653</a>.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [AppleTLS] We don't support HTTPS server with virtual domains." href="https://bugzilla.xamarin.com/show_bug.cgi?id=41653">Bug 41653</a>.</pre>
     </div>
 
     <div id="c25" class="bz_comment">

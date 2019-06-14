@@ -630,7 +630,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Basic New Android Project with BeforeBuild target added to csproj
 
 Due to <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - Custom pre/post build events should use PostBuildEvent/PreBuildEvent" href="show_bug.cgi?id=13865">bug 13865</a>, the way to single source a pre-build command for Visual and Xamarin Studio is to use the MSBuild BeforeBuild target.  However, when I run the app, this target runs twice.  I have attached a sample project demonstrating this.  It's just a new Android project from Visual Studio with the following lines added at the bottom of the .csproj file:
+          bz_status_NEW " title="NEW - Custom pre/post build events should use PostBuildEvent/PreBuildEvent" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13865">bug 13865</a>, the way to single source a pre-build command for Visual and Xamarin Studio is to use the MSBuild BeforeBuild target.  However, when I run the app, this target runs twice.  I have attached a sample project demonstrating this.  It's just a new Android project from Visual Studio with the following lines added at the bottom of the .csproj file:
   &lt;Target Name="BeforeBuild"&gt;
     &lt;Message Text="### BeforeBuild target called ###" /&gt;
   &lt;/Target&gt;

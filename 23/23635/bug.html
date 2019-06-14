@@ -350,7 +350,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Starting on XVS.iOS 3.5, &quot;Native linking error: file not found&quot; because native libraries in the project aren't copied to the build host" href="show_bug.cgi?id=23164">23164</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Starting on XVS.iOS 3.5, &quot;Native linking error: file not found&quot; because native libraries in the project aren't copied to the build host" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23164">23164</a> 
       </span>
       ()
     </td>
@@ -647,8 +647,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">There is currently no good way to control what is copied to MacOSX host, and where/how it is copied.
 
 Some related issues are <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Starting on XVS.iOS 3.5, &quot;Native linking error: file not found&quot; because native libraries in the project aren't copied to the build host" href="show_bug.cgi?id=23164">bug 23164</a>, as well as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Relative OutputPath goes out of sandbox build directory on MacOSX host" href="show_bug.cgi?id=23633">bug 23633</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Starting on XVS.iOS 3.5, &quot;Native linking error: file not found&quot; because native libraries in the project aren't copied to the build host" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23164">bug 23164</a>, as well as <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Relative OutputPath goes out of sandbox build directory on MacOSX host" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23633">bug 23633</a>.
 
 Currently, the only way to get a file copied is to have it as a BundleResource or Content.
 However, doing so will also get it copied to the .app bundle (which is sometimes not wanted -- i.e. native libraries).
@@ -724,7 +724,7 @@ If it's just for native libraries, IMO we'd be better off improving the existing
 
 <pre class="bz_comment_text">Main use case was for
 - <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Relative OutputPath goes out of sandbox build directory on MacOSX host" href="show_bug.cgi?id=23633">bug 23633</a> would need to be fixed somehow (can apply to many other things that you copy in the root folder instead of sandboxing).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Relative OutputPath goes out of sandbox build directory on MacOSX host" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23633">bug 23633</a> would need to be fixed somehow (can apply to many other things that you copy in the root folder instead of sandboxing).
 - also, if we could just use Link instead of opposite LogicalName would help.
 
 Native Linking was just another side effect that might have been fixed easily that way too, but having a NativeReference that works well is probably better. However that wouldn't help the other use cases</pre>
@@ -757,7 +757,7 @@ Native Linking was just another side effect that might have been fixed easily th
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Starting on XVS.iOS 3.5, &quot;Native linking error: file not found&quot; because native libraries in the project aren't copied to the build host" href="show_bug.cgi?id=23164">Bug 23164</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Starting on XVS.iOS 3.5, &quot;Native linking error: file not found&quot; because native libraries in the project aren't copied to the build host" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23164">Bug 23164</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c4" class="bz_comment">
@@ -819,8 +819,8 @@ Native Linking was just another side effect that might have been fixed easily th
 Sample application
 
 I have try to verify this issue, as this issue is duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Starting on XVS.iOS 3.5, &quot;Native linking error: file not found&quot; because native libraries in the project aren't copied to the build host" href="show_bug.cgi?id=23164">bug 23164</a>, so I have used test sample attached in <a href="bug.html">comment3</a> of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Starting on XVS.iOS 3.5, &quot;Native linking error: file not found&quot; because native libraries in the project aren't copied to the build host" href="show_bug.cgi?id=23164">bug 23164</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Starting on XVS.iOS 3.5, &quot;Native linking error: file not found&quot; because native libraries in the project aren't copied to the build host" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23164">bug 23164</a>, so I have used test sample attached in <a href="bug.html">comment3</a> of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Starting on XVS.iOS 3.5, &quot;Native linking error: file not found&quot; because native libraries in the project aren't copied to the build host" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23164">bug 23164</a>.
 
 after setting copytooutput "Copyalways" in properties of libmysqlclient.a file it gives same build error again and again.
 

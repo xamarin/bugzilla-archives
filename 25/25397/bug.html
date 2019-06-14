@@ -645,7 +645,7 @@ Environment Info: <a href="https://gist.github.com/JohnPilczak/ba6db77c3e4814ee8
 
 
 <pre class="bz_comment_text">This is the same-but-different from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Exception while using OpenFd on pdf files" href="show_bug.cgi?id=23351">Bug #23351</a>: PdfRenderer *requires* that the parameter be "seekable", i.e. that it NOT be compressed:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Exception while using OpenFd on pdf files" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23351">Bug #23351</a>: PdfRenderer *requires* that the parameter be "seekable", i.e. that it NOT be compressed:
 
 <a href="https://developer.android.com/reference/android/graphics/pdf/PdfRenderer.html#PdfRenderer(android.os.ParcelFileDescriptor">https://developer.android.com/reference/android/graphics/pdf/PdfRenderer.html#PdfRenderer(android.os.ParcelFileDescriptor</a>)
 <span class="quote">&gt; Note: The provided file descriptor must be seekable, i.e. its data being randomly accessed,
@@ -683,7 +683,7 @@ The fix is to to either extract the Asset into a "normal" file and use the file,
 
 
 <pre class="bz_comment_text">This issue has been occurring even with AndroidStoreUncompressedFileExtensions set to prevent PDF files from being compressed. Doing this had fixed <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Exception while using OpenFd on pdf files" href="show_bug.cgi?id=23351">Bug #23351</a> and allowed the FileDescriptor/ParcelFileDescriptor for the pdf to be opened and passed into the constructor and into the native FPDF were this error appears to be coming from.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Exception while using OpenFd on pdf files" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23351">Bug #23351</a> and allowed the FileDescriptor/ParcelFileDescriptor for the pdf to be opened and passed into the constructor and into the native FPDF were this error appears to be coming from.
 
 Also, according to the source code for PdfRenderer, <a href="https://github.com/android/platform_frameworks_base/blob/master/core/jni/android/graphics/pdf/PdfRenderer.cpp#L89">https://github.com/android/platform_frameworks_base/blob/master/core/jni/android/graphics/pdf/PdfRenderer.cpp#L89</a> , the error's message appears to be cutting off information at the beginning and end as it should read "cannot create document. Error: &lt;errorcode&gt;".</pre>
     </div>

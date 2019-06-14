@@ -784,7 +784,7 @@ This would allow a more "immediate" experience to the developer, allowing them t
 <pre class="bz_comment_text">Zoltan: Ah. Well then we're probably seeing a bug. :-)
 
 For example, <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=10339">Bug #10339</a>: they start debugging an app, hit the stop button (which should kill the app), and then the app doesn't exit until ~10-20s later...on hardware (so not emulator overhead).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10339">Bug #10339</a>: they start debugging an app, hit the stop button (which should kill the app), and then the app doesn't exit until ~10-20s later...on hardware (so not emulator overhead).
 
 Our only current theory is that the 10-20s pause is because the IDE is waiting on sdb to "pause" all the threads before exiting the process, with the assumption that sdb was blocked waiting for an unmanaged thread to re-enter managed code. If sdb is in fact declaring threads executing native code as suspended, then this shouldn't be the case, and I thus have no idea why there's a 10-20s pause. :-(</pre>
     </div>

@@ -662,7 +662,7 @@ mono --version -&gt; 4.2.1.102/6dd2d0d</pre>
 
 
 <pre class="bz_comment_text">My mistake, looks like this is a duplicate of <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - System.NullReferenceException after access to ConfigurationManager" href="show_bug.cgi?id=24308">https://bugzilla.xamarin.com/show_bug.cgi?id=24308</a>.
+          bz_status_NEW " title="NEW - System.NullReferenceException after access to ConfigurationManager" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24308">https://bugzilla.xamarin.com/show_bug.cgi?id=24308</a>.
 
 I didn't notice it due to my search being too specific.
 In my case, the problem was WebConfigurationManager.FindWebConfig returning a null value, which is then passed into WebConfigurationHost.InitForConfiguration, which is called as (null, out a, out b, ., new object[] { null, null, null, null, null, null, false }), which then causes it to dereference the null value.

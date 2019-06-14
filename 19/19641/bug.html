@@ -662,7 +662,7 @@ However, since _PrepareApplicationBundle and similar targets offer no entry poin
 <pre class="bz_comment_text">1. The recommended way for doing this is to override the "BeforeCodesign" target and copy any additional content into the $(AppBundleDir) at that stage of the build.
 
 2. &lt;Link&gt; not working is a known issue (see <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - <Link>'ing Asset Catalogs does not work" href="show_bug.cgi?id=28106">https://bugzilla.xamarin.com/show_bug.cgi?id=28106</a>). That said, you don't need to copy the file to a/b.png, you could just set the "LogicalName" property to "a\b.png" while copying it anywhere in the project.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - <Link>'ing Asset Catalogs does not work" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28106">https://bugzilla.xamarin.com/show_bug.cgi?id=28106</a>). That said, you don't need to copy the file to a/b.png, you could just set the "LogicalName" property to "a\b.png" while copying it anywhere in the project.
 
 For more information, you can check out my StackOverflow answer on this topic at <a href="http://stackoverflow.com/questions/16938250/xamarin-studio-folder-structure-issue-in-ios-project/16951545#16951545">http://stackoverflow.com/questions/16938250/xamarin-studio-folder-structure-issue-in-ios-project/16951545#16951545</a></pre>
     </div>

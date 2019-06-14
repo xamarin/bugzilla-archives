@@ -592,7 +592,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">Hello
 
 Currently Mono itself and lots of other packages installed to /usr/lib but this is usually used for platform-dependent libraries. I've seen <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - MonoDevelop doesn't respect --libdir" href="show_bug.cgi?id=3650">https://bugzilla.xamarin.com/show_bug.cgi?id=3650</a> and reviewed <a href="http://www.gnu.org/software/autoconf/manual/autoconf.html#Installation-Directory-Variables">http://www.gnu.org/software/autoconf/manual/autoconf.html#Installation-Directory-Variables</a> .
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - MonoDevelop doesn't respect --libdir" href="https://bugzilla.xamarin.com/show_bug.cgi?id=3650">https://bugzilla.xamarin.com/show_bug.cgi?id=3650</a> and reviewed <a href="http://www.gnu.org/software/autoconf/manual/autoconf.html#Installation-Directory-Variables">http://www.gnu.org/software/autoconf/manual/autoconf.html#Installation-Directory-Variables</a> .
 I'd like you to consider ${datadir} as a more suitable place for GAC and other assemblies.
 
 P.S. Reason for this suggestion is to get better fit into distributives with multlib where /usr/lib is symlink either to /usr/lib64 or to /usr/lib32. One of such distributive I'm user of is Exherbo. See mail-list thread <a href="http://lists.exherbo.org/pipermail/exherbo-dev/2012-November/001179.html">http://lists.exherbo.org/pipermail/exherbo-dev/2012-November/001179.html</a> for upcoming discussions.

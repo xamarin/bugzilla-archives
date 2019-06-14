@@ -641,10 +641,10 @@ Test case
 Debugger does not properly display exceptions thrown from async methods.
 
 The symptoms of this bug are similar to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=24975">bug 24975</a>, but this bug has existed for much longer.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24975">bug 24975</a>, but this bug has existed for much longer.
 
 The test case is just an Android template project with the button connected to an async method that throws an exception. A matching iOS project is included, and the debugger _does_ handle that case correctly. The iOS test case was recently broken and re-fixed in Visual Studio (<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Exceptions thrown from async methods on device cause &quot;Debug information is not available for this frame&quot;" href="show_bug.cgi?id=23076">bug 23076</a>), but that is apparently unrelated.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Exceptions thrown from async methods on device cause &quot;Debug information is not available for this frame&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23076">bug 23076</a>), but that is apparently unrelated.
 
 
 Regression status: probably not a regression (see "Version Information").
@@ -1098,10 +1098,10 @@ Darwin ShrutiMac.local 14.5.0 Darwin Kernel Version 14.5.0
 The change mentioned in <a href="bug.html">Comment 7</a> restores this bug to its original reported behavior as described in <a href="bug.html">Comment 0</a>.
 
 <a href="bug.html">Comment 7</a> is in fact addressing the other bug I mentioned in <a href="bug.html">Comment 0</a>: non-public <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=24975">Bug 24975</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24975">Bug 24975</a>.
 
 <a href="bug.html">Comment 0</a> is about the behavior in XA 4.x (and earlier) and XA 6.x (and later), and _only_ affects exceptions from `async` methods, while <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=24975">Bug 24975</a> is about the behavior in XA 5.x and affects _all_ exceptions.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24975">Bug 24975</a> is about the behavior in XA 5.x and affects _all_ exceptions.
 
 
 
@@ -1134,7 +1134,7 @@ On iOS, after you click the "Break" button in the exception pop-up window:
 ## Next steps
 
 Both because the symptoms of this bug look deceptively similar to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=24975">Bug 24975</a>, and because this bug is in part about achieving consistent behavior across iOS and Android apps, it will perhaps be helpful if I create an internal document to describe the desired behavior for this bug. I will submit that document to the product management and engineering teams.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24975">Bug 24975</a>, and because this bug is in part about achieving consistent behavior across iOS and Android apps, it will perhaps be helpful if I create an internal document to describe the desired behavior for this bug. I will submit that document to the product management and engineering teams.
 
 For now I will leave the bug status unchanged while awaiting feedback on that document.
 

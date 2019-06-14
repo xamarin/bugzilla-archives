@@ -214,7 +214,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="show_bug.cgi?id=58789">bug 58789</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58789">bug 58789</a>
       </span>
     </td>
   </tr>
@@ -545,7 +545,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="show_bug.cgi?id=58789">bug 58789</a></span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58789">bug 58789</a></span>
 </div>
 
 
@@ -640,7 +640,7 @@ C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Xamarin\iO
 <pre class="bz_comment_text">Its working fine if I turn to "Do not link", instead of "Link framework sdk only". But it doubles the app size!
 And my project was compiling fine a week ago, and i didn't change anything...
 I saw the zip file in here ,<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="show_bug.cgi?id=58789#c4">https://bugzilla.xamarin.com/show_bug.cgi?id=58789#c4</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58789#c4">https://bugzilla.xamarin.com/show_bug.cgi?id=58789#c4</a>
 As I understood, that should increase the info about the bug , but again - there was no bug in my app, and its working with debug and release mods - how would advance log change anything....</pre>
     </div>
 
@@ -673,7 +673,7 @@ As I understood, that should increase the info about the bug , but again - there
 <pre class="bz_comment_text"><span class="quote">&gt; how would advance log change anything</span>
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="show_bug.cgi?id=58789#c0">Bug 58789, Comment 0</a> explains that the error message you are seeing in your <a href="bug.html">Comment 0</a> when building is not the correct complete error message (due to a bug in Xamarin.iOS 10.12).  Specifically, this kind of error when building is _supposed_ to include the name of the assembly where the exception occurs when the managed linker [1] is running during the Xamarin.iOS build process, but in Xamarin.iOS 10.12 it does not.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58789#c0">Bug 58789, Comment 0</a> explains that the error message you are seeing in your <a href="bug.html">Comment 0</a> when building is not the correct complete error message (due to a bug in Xamarin.iOS 10.12).  Specifically, this kind of error when building is _supposed_ to include the name of the assembly where the exception occurs when the managed linker [1] is running during the Xamarin.iOS build process, but in Xamarin.iOS 10.12 it does not.
 
 [1] <a href="https://developer.xamarin.com/guides/ios/advanced_topics/linker/">https://developer.xamarin.com/guides/ios/advanced_topics/linker/</a>
 
@@ -681,11 +681,11 @@ As I understood, that should increase the info about the bug , but again - there
 Unfortunately, Xamarin.iOS version 10.12 includes _two_ layers of bugs related to this error message:
 
 - The first bug is <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="show_bug.cgi?id=58789">Bug 58789</a>.  That bug causes the error message to be _missing_ information.  This is a bug in Xamarin.iOS, not in your app.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58789">Bug 58789</a>.  That bug causes the error message to be _missing_ information.  This is a bug in Xamarin.iOS, not in your app.
 
 - An example of the second bug is described in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;Error processing the method 'System.Void ...' Value cannot be null.&quot; due to ArgumentNullException for `instruction` parameter in Mono.Linker's `MarkException()` method when a referenced assembly has problematic debug symbols, for example &quot;Couchbase.Lite&quot;" href="show_bug.cgi?id=58834">Bug 58834</a>.  <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;Error processing the method 'System.Void ...' Value cannot be null.&quot; due to ArgumentNullException for `instruction` parameter in Mono.Linker's `MarkException()` method when a referenced assembly has problematic debug symbols, for example &quot;Couchbase.Lite&quot;" href="show_bug.cgi?id=58834">Bug 58834</a> shows an example of the correct "full" error message from the linker during the build process that shows the name of the problematic assembly.  This is also a bug in Xamarin.iOS and not a bug in your app.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;Error processing the method 'System.Void ...' Value cannot be null.&quot; due to ArgumentNullException for `instruction` parameter in Mono.Linker's `MarkException()` method when a referenced assembly has problematic debug symbols, for example &quot;Couchbase.Lite&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58834">Bug 58834</a>.  <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;Error processing the method 'System.Void ...' Value cannot be null.&quot; due to ArgumentNullException for `instruction` parameter in Mono.Linker's `MarkException()` method when a referenced assembly has problematic debug symbols, for example &quot;Couchbase.Lite&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58834">Bug 58834</a> shows an example of the correct "full" error message from the linker during the build process that shows the name of the problematic assembly.  This is also a bug in Xamarin.iOS and not a bug in your app.
 
 
 
@@ -693,18 +693,18 @@ Unfortunately, Xamarin.iOS version 10.12 includes _two_ layers of bugs related t
 ## Some possible options for your next steps
 
 - You could downgrade Xamarin.iOS temporarily [2] until a candidate build is available that contain the fixes for both <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="show_bug.cgi?id=58789">Bug 58789</a> and <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;Error processing the method 'System.Void ...' Value cannot be null.&quot; due to ArgumentNullException for `instruction` parameter in Mono.Linker's `MarkException()` method when a referenced assembly has problematic debug symbols, for example &quot;Couchbase.Lite&quot;" href="show_bug.cgi?id=58834">Bug 58834</a>.  (Work is currently underway to prepare an appropriate Xamarin.iOS installer package that includes both fixes.)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58789">Bug 58789</a> and <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;Error processing the method 'System.Void ...' Value cannot be null.&quot; due to ArgumentNullException for `instruction` parameter in Mono.Linker's `MarkException()` method when a referenced assembly has problematic debug symbols, for example &quot;Couchbase.Lite&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58834">Bug 58834</a>.  (Work is currently underway to prepare an appropriate Xamarin.iOS installer package that includes both fixes.)
 
 - For now you could temporarily proceed with development with the linker disabled until the candidate build are available.  (Device builds can be fairly slow with the linker disabled due to the AOT compilation having more work to do, but simulator builds should be fine.)
 
 - You could install the `mtouch` patch from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="show_bug.cgi?id=58789#c0">Bug 58789, Comment 0</a> and follow the steps mentioned on that bug to gather the diagnostic verbose build output with the patch in place.  That will allow you to see which assembly _in particular_ is causing this linker error.  Once you know which assembly is causing the issue, you can potentially work around the issue temporarily by moving the debugger symbol files (*.pdb and *.dll.mdb) for that problematic NuGet package to a backup location outside of your project directory.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58789#c0">Bug 58789, Comment 0</a> and follow the steps mentioned on that bug to gather the diagnostic verbose build output with the patch in place.  That will allow you to see which assembly _in particular_ is causing this linker error.  Once you know which assembly is causing the issue, you can potentially work around the issue temporarily by moving the debugger symbol files (*.pdb and *.dll.mdb) for that problematic NuGet package to a backup location outside of your project directory.
 
 [2] (The last section of <a href="https://releases.xamarin.com/stable-release-15-3/">https://releases.xamarin.com/stable-release-15-3/</a> lists the previous Xamarin.iOS version number and where to find it.)
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="show_bug.cgi?id=58789">bug 58789</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [mtouch] NullReferenceException / MT0000 (while reporting another error)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58789">bug 58789</a> ***</pre>
     </div>
 
 

@@ -881,7 +881,7 @@ This causes the InvalidCastException every time for me, using MonoDevelop 2.8.1 
 <pre class="bz_comment_text">After some further investigation, I think in my case it's a different bug. The NSNumber class is not added to Class.type_map unless one of its constructors is called. Adding a call to new NSNumber() before the call to NSNumber.FromInt32() prevents the exception.
 
 If the new NSObject() call is omitted, Class.LookUp() enters an infinite loop suggesting that the root cause is the same as that of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Infinite loop in MonoMac.ObjCRuntime.Class.Lookup() with NSProxy subclass" href="show_bug.cgi?id=408">bug 408</a>.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Infinite loop in MonoMac.ObjCRuntime.Class.Lookup() with NSProxy subclass" href="https://bugzilla.xamarin.com/show_bug.cgi?id=408">bug 408</a>.</pre>
     </div>
 
     <div id="c8" class="bz_comment">
@@ -948,7 +948,7 @@ The right approach as you noted is to override Dispose (bool disposing) which is
 
 
 <pre class="bz_comment_text">I have opened <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - InvalidCastException when using only static methods to create Objective-C objects" href="show_bug.cgi?id=1825">bug 1825</a> for the problem I was experiencing.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - InvalidCastException when using only static methods to create Objective-C objects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1825">bug 1825</a> for the problem I was experiencing.</pre>
     </div>
 
 

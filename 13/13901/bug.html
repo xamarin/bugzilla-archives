@@ -602,7 +602,7 @@ Result:
 Notes:
 
 We have been using a custom copy of the tip MemoryMappedFile.cs from github in order to dodge another unrelated MemoryMappedFile issue previously reported (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.IO.MemoryMappedFile implementation nonfunctional (cannot p/invoke to getpagesize())." href="show_bug.cgi?id=12739">https://bugzilla.xamarin.com/show_bug.cgi?id=12739</a>).  Until such time as that prior issue is fixed/released, our only changes to the module are to call our own native getpagesize() implementation which is absent on Android.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.IO.MemoryMappedFile implementation nonfunctional (cannot p/invoke to getpagesize())." href="https://bugzilla.xamarin.com/show_bug.cgi?id=12739">https://bugzilla.xamarin.com/show_bug.cgi?id=12739</a>).  Until such time as that prior issue is fixed/released, our only changes to the module are to call our own native getpagesize() implementation which is absent on Android.
 
 The root cause of this new issue appears to be the logic where system mmap() calls are made.   E.g.:
 

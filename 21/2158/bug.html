@@ -349,7 +349,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - crash (monodevelop 2.8.8.4, mono 2.11, mac os snow leopard)" href="show_bug.cgi?id=4199">4199</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - crash (monodevelop 2.8.8.4, mono 2.11, mac os snow leopard)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4199">4199</a> 
       </span>
       ()
     </td>
@@ -857,7 +857,7 @@ Native stacktrace:
 
 
 <pre class="bz_comment_text">This might be related to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Context menus flaky near left edge of screen" href="show_bug.cgi?id=2157">bug 2157</a>.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Context menus flaky near left edge of screen" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2157">bug 2157</a>.</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -1286,7 +1286,7 @@ Logical CPU: 0</pre>
 
 
 <pre class="bz_comment_text">The most recent crash may have been caused by <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Pango in Mono 2.10.9_2 causing in MonoDevelop" href="show_bug.cgi?id=3340">bug 3340</a>.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Pango in Mono 2.10.9_2 causing in MonoDevelop" href="https://bugzilla.xamarin.com/show_bug.cgi?id=3340">bug 3340</a>.</pre>
     </div>
 
     <div id="c7" class="bz_comment">
@@ -1738,7 +1738,7 @@ get_window_point_from_screen_point. There are a couple of g_log calls shortly be
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - crash (monodevelop 2.8.8.4, mono 2.11, mac os snow leopard)" href="show_bug.cgi?id=4199">Bug 4199</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - crash (monodevelop 2.8.8.4, mono 2.11, mac os snow leopard)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4199">Bug 4199</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c21" class="bz_comment">
@@ -1917,7 +1917,7 @@ Gdk-Critical: generate_grab_broken_event: assertion `window != NULL' failed
 GLib-GObject-Critical: g_object_unref: assertion `G_IS_OBJECT (object)' failed
 
 This was just when editing in the text editor, though the code completion or tooltip may have been involved. I think that <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelops text editor stops responding to mouse events" href="show_bug.cgi?id=4497">bug 4497</a> *might* be a duplicate of this, since the symptoms are the same, and AFAIK we included an earlier version of the patch into recent Mono builds.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelops text editor stops responding to mouse events" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4497">bug 4497</a> *might* be a duplicate of this, since the symptoms are the same, and AFAIK we included an earlier version of the patch into recent Mono builds.</pre>
     </div>
 
     <div id="c26" class="bz_comment">
@@ -2019,7 +2019,7 @@ This would imply that we have a possible case in which an event is generated wit
 
 
 <pre class="bz_comment_text">I think it has something to do with the code completion window, which gets hidden (but not destroyed) in response to keystrokes, and <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelops text editor stops responding to mouse events" href="show_bug.cgi?id=4497">bug 4497</a> indicates something strange is going on with its grabs.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelops text editor stops responding to mouse events" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4497">bug 4497</a> indicates something strange is going on with its grabs.</pre>
     </div>
 
     <div id="c29" class="bz_comment">
@@ -2405,11 +2405,11 @@ Testing would of course be good, and I would love to learn about any potential r
 <pre class="bz_comment_text">It is hard to say whether fixing this bug also fixes bugs 4651 and 4497.
 
 What did happen with this bug is that faulty grabs were created, grabs with a NULL (or perhaps in the case without valgrind, a busted) window pointer. This *could* make a case that <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelops text editor stops responding to mouse events" href="show_bug.cgi?id=4497">bug 4497</a> is fixed, because in 4497 stuck grabs are experienced.  But I can absolutely not say for sure.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelops text editor stops responding to mouse events" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4497">bug 4497</a> is fixed, because in 4497 stuck grabs are experienced.  But I can absolutely not say for sure.
 
 In <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop crashed when editing code with syntax errors" href="show_bug.cgi?id=4651">bug 4651</a> we are dealing with a different stack trace. This trace cannot be created if event_window is NULL, because there's an if statement guarding for a NULL window pointer right at the start of _gdk_windowing_got_event().  However, recall that I mentioned in <a href="bug.html">comment 35</a> that the trace in <a href="bug.html">comment 29</a> could also not happen with a NULL window pointer, but, perhaps, when valgrind is not used we are dealing with a busted pointer instead of a NULL pointer. If so, this busted pointer could also come into play in this case, causing <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop crashed when editing code with syntax errors" href="show_bug.cgi?id=4651">bug 4651</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop crashed when editing code with syntax errors" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4651">bug 4651</a> we are dealing with a different stack trace. This trace cannot be created if event_window is NULL, because there's an if statement guarding for a NULL window pointer right at the start of _gdk_windowing_got_event().  However, recall that I mentioned in <a href="bug.html">comment 35</a> that the trace in <a href="bug.html">comment 29</a> could also not happen with a NULL window pointer, but, perhaps, when valgrind is not used we are dealing with a busted pointer instead of a NULL pointer. If so, this busted pointer could also come into play in this case, causing <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop crashed when editing code with syntax errors" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4651">bug 4651</a>.
 
 
 So, we cannot really say whether 4497 and 4651 have been fixed as well now -- the above comments are purely speculations.</pre>
@@ -3156,7 +3156,7 @@ How can we crash on a GdkWindow pointer? I guess possibly if we access a GdkWind
 
 
 Is it possible this is caused by some mono memory corruption like what is mentioned as possibility in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=7820">bug 7820</a>?</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7820">bug 7820</a>?</pre>
     </div>
 
     <div id="c60" class="bz_comment">

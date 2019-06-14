@@ -643,8 +643,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 ## Additional information
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [regression] [3.0] mdtool cannot build from command-line" href="show_bug.cgi?id=5039">Bug #5039</a> reported a similar "out of sync" error message, though that one happened during `MonoDevelop.Projects.BuildTool.Run()`, rather than during `BackgroundInitialize()`. It sounds like in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [regression] [3.0] mdtool cannot build from command-line" href="show_bug.cgi?id=5039">bug #5039</a>, the problem was a timing / race issue?
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [regression] [3.0] mdtool cannot build from command-line" href="https://bugzilla.xamarin.com/show_bug.cgi?id=5039">Bug #5039</a> reported a similar "out of sync" error message, though that one happened during `MonoDevelop.Projects.BuildTool.Run()`, rather than during `BackgroundInitialize()`. It sounds like in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [regression] [3.0] mdtool cannot build from command-line" href="https://bugzilla.xamarin.com/show_bug.cgi?id=5039">bug #5039</a>, the problem was a timing / race issue?
 
 If I'm reading the error messages correctly, it looks like there could be 2 separate issues here. First the "out of sync" error happens, and then while LogFatalError() is trying to log that error a NullReferenceException happens.</pre>
     </div>

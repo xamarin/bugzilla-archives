@@ -356,7 +356,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.11] AOT of Cirrious.MvvmCross.Binding.dll with &quot;-v -v -v -v&quot; verbose logging causes &quot;System.ArgumentOutOfRangeException: startIndex > this.length&quot;" href="show_bug.cgi?id=31009">31009</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.11] AOT of Cirrious.MvvmCross.Binding.dll with &quot;-v -v -v -v&quot; verbose logging causes &quot;System.ArgumentOutOfRangeException: startIndex > this.length&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31009">31009</a> 
   </td>
   </tr>
 
@@ -892,7 +892,7 @@ It seems that the failure during `mono-cil-strip` is non-fatal? If you change th
 The original test app built and launched successfully in the iPhone|Release configuration after I removed the "Additional mtouch arguments".
 
 (Beware of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.9] &quot;Linker behavior&quot; project option displays incorrect value compared to the &quot;MtouchLink&quot; property" href="show_bug.cgi?id=26308">bug 26308</a> when adjusting this setting via the project properties. You'll need to manually re-select "Link SDK assemblies only" each time you open the properties to ensure the correct linker setting is maintained.)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.9] &quot;Linker behavior&quot; project option displays incorrect value compared to the &quot;MtouchLink&quot; property" href="https://bugzilla.xamarin.com/show_bug.cgi?id=26308">bug 26308</a> when adjusting this setting via the project properties. You'll need to manually re-select "Link SDK assemblies only" each time you open the properties to ensure the correct linker setting is maintained.)
 
 
 
@@ -966,8 +966,8 @@ This all seems a bit curious. `System.Net.Http.Primitives.dll` looks like it mig
 
 
 <pre class="bz_comment_text">It is possible to hit the same error using Xamarin Studio on Mac, but it requires a slightly different test case, so I filed a separate bug for that: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker-modified System.Net.Http.Primitives.dll causes ArgumentOutOfRangeException during mono-cil-strip" href="show_bug.cgi?id=28617">Bug 28617</a>. Depending on how <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker-modified System.Net.Http.Primitives.dll causes ArgumentOutOfRangeException during mono-cil-strip" href="show_bug.cgi?id=28617">Bug 28617</a> ends up getting fixed, it might directly solve this bug too.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker-modified System.Net.Http.Primitives.dll causes ArgumentOutOfRangeException during mono-cil-strip" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28617">Bug 28617</a>. Depending on how <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker-modified System.Net.Http.Primitives.dll causes ArgumentOutOfRangeException during mono-cil-strip" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28617">Bug 28617</a> ends up getting fixed, it might directly solve this bug too.</pre>
     </div>
 
     <div id="c9" class="bz_comment">
@@ -1154,15 +1154,15 @@ Darwin Pauls-iMac.local 14.3.0 Darwin Kernel Version 14.3.0
 ## Other updates
 
 The fixes for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker-modified System.Net.Http.Primitives.dll causes ArgumentOutOfRangeException during mono-cil-strip" href="show_bug.cgi?id=28617">bug 28617</a> (as mentioned in <a href="bug.html">comment 8</a>) are included in the current Alpha/Beta versions (XamarinVS 3.11, Xamarin.iOS 8.10, Mono 4.0). Those fixes stop the problem in my minimized test case from <a href="bug.html">comment 7</a> (see also the "Version information" below). So I suspect this bug is in fact a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker-modified System.Net.Http.Primitives.dll causes ArgumentOutOfRangeException during mono-cil-strip" href="show_bug.cgi?id=28617">bug 28617</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker-modified System.Net.Http.Primitives.dll causes ArgumentOutOfRangeException during mono-cil-strip" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28617">bug 28617</a> (as mentioned in <a href="bug.html">comment 8</a>) are included in the current Alpha/Beta versions (XamarinVS 3.11, Xamarin.iOS 8.10, Mono 4.0). Those fixes stop the problem in my minimized test case from <a href="bug.html">comment 7</a> (see also the "Version information" below). So I suspect this bug is in fact a duplicate of <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker-modified System.Net.Http.Primitives.dll causes ArgumentOutOfRangeException during mono-cil-strip" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28617">bug 28617</a>.
 
 
 Unfortunately there is a second (I think unrelated) regression in Xamarin.iOS 8.10 (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - [XI 8.10] AOT &quot;error: invalid symbol redefinition&quot; caused by certain uses of generic types in Visual Basic PCLs" href="show_bug.cgi?id=29256">Bug 29256</a>) exposed by the original full test case (from private <a href="bug.html">comment 1</a>). That second bug is currently blocking me from verifying whether the fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker-modified System.Net.Http.Primitives.dll causes ArgumentOutOfRangeException during mono-cil-strip" href="show_bug.cgi?id=28617">bug 28617</a> solves the problem for the original test case. So I will leave this bug (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - [XI 8.10] AOT &quot;error: invalid symbol redefinition&quot; caused by certain uses of generic types in Visual Basic PCLs" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29256">Bug 29256</a>) exposed by the original full test case (from private <a href="bug.html">comment 1</a>). That second bug is currently blocking me from verifying whether the fix for <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker-modified System.Net.Http.Primitives.dll causes ArgumentOutOfRangeException during mono-cil-strip" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28617">bug 28617</a> solves the problem for the original test case. So I will leave this bug (<a class="bz_bug_link 
           bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Mono CIL Stripper error on Index is less than 0 or more than or equal to the list count." href="bug.html">bug 25344</a>) open for now. Once <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - [XI 8.10] AOT &quot;error: invalid symbol redefinition&quot; caused by certain uses of generic types in Visual Basic PCLs" href="show_bug.cgi?id=29256">bug 29256</a> is fixed, I will test the original full test case once more to verify that it builds without error.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - [XI 8.10] AOT &quot;error: invalid symbol redefinition&quot; caused by certain uses of generic types in Visual Basic PCLs" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29256">bug 29256</a> is fixed, I will test the original full test case once more to verify that it builds without error.
 
 
 
@@ -1217,9 +1217,9 @@ Xcode 6.2 (6776), Build 6C131e</pre>
 
 
 <pre class="bz_comment_text">Small update: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - [XI 8.10] AOT &quot;error: invalid symbol redefinition&quot; caused by certain uses of generic types in Visual Basic PCLs" href="show_bug.cgi?id=29256">Bug 29256</a> is now fixed as of "Cycle 5 – Service Release 2", but it turns out that final verification of the test case from private <a href="bug.html">comment 1</a> also depends on <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.11] AOT of Cirrious.MvvmCross.Binding.dll with &quot;-v -v -v -v&quot; verbose logging causes &quot;System.ArgumentOutOfRangeException: startIndex > this.length&quot;" href="show_bug.cgi?id=31009">Bug 31009</a>. I will update this bug again after <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.11] AOT of Cirrious.MvvmCross.Binding.dll with &quot;-v -v -v -v&quot; verbose logging causes &quot;System.ArgumentOutOfRangeException: startIndex > this.length&quot;" href="show_bug.cgi?id=31009">Bug 31009</a> is fixed.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - [XI 8.10] AOT &quot;error: invalid symbol redefinition&quot; caused by certain uses of generic types in Visual Basic PCLs" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29256">Bug 29256</a> is now fixed as of "Cycle 5 – Service Release 2", but it turns out that final verification of the test case from private <a href="bug.html">comment 1</a> also depends on <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.11] AOT of Cirrious.MvvmCross.Binding.dll with &quot;-v -v -v -v&quot; verbose logging causes &quot;System.ArgumentOutOfRangeException: startIndex > this.length&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31009">Bug 31009</a>. I will update this bug again after <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.11] AOT of Cirrious.MvvmCross.Binding.dll with &quot;-v -v -v -v&quot; verbose logging causes &quot;System.ArgumentOutOfRangeException: startIndex > this.length&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31009">Bug 31009</a> is fixed.</pre>
     </div>
 
     <div id="c14" class="bz_comment">
@@ -1282,7 +1282,7 @@ Xcode 6.2 (6776), Build 6C131e</pre>
 I have now verified that the original full test case for this bug builds without error as of "Cycle 5 –&nbsp;Service Release 2" Stable.
 
 As it turned out, the final Stable build of "Cycle 5 – Service Release 2" somehow stopped the particular cause of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.11] AOT of Cirrious.MvvmCross.Binding.dll with &quot;-v -v -v -v&quot; verbose logging causes &quot;System.ArgumentOutOfRangeException: startIndex > this.length&quot;" href="show_bug.cgi?id=31009">Bug 31009</a> in the test case from private <a href="bug.html">comment 1</a> (I had tested with Alpha or Beta versions in <a href="bug.html">comment 13</a>). The build completes without error in the "Release|iPhone" configuration following the exact steps to reproduce from <a href="bug.html">comment 3</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS.iOS 3.11] AOT of Cirrious.MvvmCross.Binding.dll with &quot;-v -v -v -v&quot; verbose logging causes &quot;System.ArgumentOutOfRangeException: startIndex > this.length&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31009">Bug 31009</a> in the test case from private <a href="bug.html">comment 1</a> (I had tested with Alpha or Beta versions in <a href="bug.html">comment 13</a>). The build completes without error in the "Release|iPhone" configuration following the exact steps to reproduce from <a href="bug.html">comment 3</a>.
 
 
 

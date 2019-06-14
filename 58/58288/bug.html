@@ -215,7 +215,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="show_bug.cgi?id=56787">bug 56787</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56787">bug 56787</a>
       </span>
     </td>
   </tr>
@@ -550,7 +550,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="show_bug.cgi?id=56787">bug 56787</a></span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56787">bug 56787</a></span>
 </div>
 
 
@@ -605,7 +605,7 @@ ToolBarItems Button Clicked Error
 
 I follow this 
 ( <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="show_bug.cgi?id=56787">https://bugzilla.xamarin.com/show_bug.cgi?id=56787</a> )
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56787">https://bugzilla.xamarin.com/show_bug.cgi?id=56787</a> )
 but still not debuging..
 
 
@@ -708,11 +708,11 @@ Web translation to English tells me this translates to:
 &gt; 2.0.0.0 has been redirected to 4.0.0.0.</span>
 
 That line indicates that you have applied a redirect in the devenv.exe.config file.  As mentioned in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="show_bug.cgi?id=56787#c59">Bug 56787, Comment 59</a>:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56787#c59">Bug 56787, Comment 59</a>:
 <span class="quote">&gt; 1. Ensure that you have _not_ added any binding redirects for
 &gt; Monos.Posix.dll to your devenv.exe.config file.  (Note that I have
 &gt; marked [<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="show_bug.cgi?id=56787#c29">Bug 56787, Comment 29</a>] _obsolete_ because adding that binding
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56787#c29">Bug 56787, Comment 29</a>] _obsolete_ because adding that binding
 &gt; redirect will by default _break_ this workaround.)</span>
 
 So for the problem described in <a href="bug.html">Comment 0</a>, you must _remove_ the Mono.Posix.dll redirect that is currently in your devenv.exe.config file.  After that, you will need to follow the "Temporary workaround" as described on [1] to place the Mono.Posix.dll file in the expected location and Unblock it (if you have not already followed those steps).
@@ -725,14 +725,14 @@ So for the problem described in <a href="bug.html">Comment 0</a>, you must _remo
 ## Alternate option: install a side-by-side instance of Visual Studio 2017 _Preview_ version 15.3.0 Preview 4 or higher
 
 The fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="show_bug.cgi?id=56787">Bug 56787</a> removes the code path that calls Mono.Posix.dll so that it no longer exists at all.  That fix is now included in the latest Visual Studio 2017 Preview version 15.3.0 Preview 4 release [2], so another option to stop the problem would be to install that version.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56787">Bug 56787</a> removes the code path that calls Mono.Posix.dll so that it no longer exists at all.  That fix is now included in the latest Visual Studio 2017 Preview version 15.3.0 Preview 4 release [2], so another option to stop the problem would be to install that version.
 
 [2] <a href="https://www.visualstudio.com/en-us/news/releasenotes/vs2017-preview-relnotes">https://www.visualstudio.com/en-us/news/releasenotes/vs2017-preview-relnotes</a>
 
 Note that you can install Visual Studio 2017 Preview alongside your existing Visual Studio 2017 non-preview installation without affecting the non-preview installation.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="show_bug.cgi?id=56787">bug 56787</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56787">bug 56787</a> ***</pre>
     </div>
 
 

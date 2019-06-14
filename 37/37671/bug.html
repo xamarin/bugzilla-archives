@@ -675,9 +675,9 @@ This should be a non-breaking change as FileImageSource is based on ImageSource 
 <pre class="bz_comment_text">This is a long-standing feature request. I've made 2 related requests in the past:
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Please make ToolbarItem use ImageSource rather than FileImageSource" href="show_bug.cgi?id=30767">https://bugzilla.xamarin.com/show_bug.cgi?id=30767</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Please make ToolbarItem use ImageSource rather than FileImageSource" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30767">https://bugzilla.xamarin.com/show_bug.cgi?id=30767</a>
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Please open up ImageSource for subclassing" href="show_bug.cgi?id=30763">https://bugzilla.xamarin.com/show_bug.cgi?id=30763</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Please open up ImageSource for subclassing" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30763">https://bugzilla.xamarin.com/show_bug.cgi?id=30763</a>
 
 It makes no sense to me that we have an abstract ImageSource class and yet require all image-type assets in stock XF objects to be FileImageSource. The justification for this is apparently that Xamarin doesn't want developers to be able to shoot themselves in the foot by setting UI objects to get their icons from the network. While I understand the concern I do not share it - that's what a cache is for.
 

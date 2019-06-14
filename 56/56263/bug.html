@@ -687,7 +687,7 @@ Note: This could be a problem inside a UITableView and ListView as well, as I se
 <pre class="bz_comment_text">
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Scrollview don't scroll SearchBar to top, if soft-keyboard appears" href="show_bug.cgi?id=25378">bug 25378</a> ***</pre>
+          bz_status_CONFIRMED " title="CONFIRMED - Scrollview don't scroll SearchBar to top, if soft-keyboard appears" href="https://bugzilla.xamarin.com/show_bug.cgi?id=25378">bug 25378</a> ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -717,7 +717,7 @@ Note: This could be a problem inside a UITableView and ListView as well, as I se
 
 
 <pre class="bz_comment_text">I don't feel it's the same as <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Scrollview don't scroll SearchBar to top, if soft-keyboard appears" href="show_bug.cgi?id=25378">bug 25378</a>
+          bz_status_CONFIRMED " title="CONFIRMED - Scrollview don't scroll SearchBar to top, if soft-keyboard appears" href="https://bugzilla.xamarin.com/show_bug.cgi?id=25378">bug 25378</a>
 That bug is about a particular view is not visible, because the ScrollView does not scroll (properly).
 Here is no need to scroll when user is working in the upper half of the custom editor view. But the ScrollView always scrolls, making this part invisible.
 The point here is, it is impossible to prepare ScrollView and its renderers to always scroll to the right place, because you don't know what kind of views can be inside. You can prepare for builtin Xamarin Forms views, but this is just the default behavior. In this case - whole screen text editor - scroll should be handled in the custom renderer. But there is no chance to do this, as ScrollViewRenderer does not make the included KeyboardInsetTracker configurable, even by its derived classes.</pre>

@@ -617,7 +617,7 @@ Mono.Unix.Native.Syscall also defines getdomainname and gethostname. <a href="ht
 This uses MPH lib which defines the functions here: <a href="https://github.com/mono/mono/blob/b7a308f660de8174b64697a422abfc7315d07b8c/support/unistd.c#L212">https://github.com/mono/mono/blob/b7a308f660de8174b64697a422abfc7315d07b8c/support/unistd.c#L212</a>
 
 The patch at <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - Missing declarations on Solaris" href="show_bug.cgi?id=32010">https://bugzilla.xamarin.com/show_bug.cgi?id=32010</a> will add the correct getdomainname and gethostname functions to unistd.c (maybe ?). In order to fix CommonUnixIPGlobalProperties I think we should have it call into Mono.Unix.Native.Syscall.getdomainname instead of declaring getdomainname as an extern to libc.
+          bz_status_NEW " title="NEW - Missing declarations on Solaris" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32010">https://bugzilla.xamarin.com/show_bug.cgi?id=32010</a> will add the correct getdomainname and gethostname functions to unistd.c (maybe ?). In order to fix CommonUnixIPGlobalProperties I think we should have it call into Mono.Unix.Native.Syscall.getdomainname instead of declaring getdomainname as an extern to libc.
 
 This popped up because the System.Net.CookieContainer class was migrated to use the ms reference sources. The ms reference sources grab the domain name <a href="https://github.com/Microsoft/referencesource/blob/master/System/net/System/Net/cookiecontainer.cs#L122">https://github.com/Microsoft/referencesource/blob/master/System/net/System/Net/cookiecontainer.cs#L122</a>.
 

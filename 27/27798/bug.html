@@ -685,7 +685,7 @@ Repro sample
 I'm seeing inconsistencies with the Page.OnAppearing and OnDisappearing events on Android vs. iOS and WP. In our app I have the home page and a configuration page, and I've attempted to use Configuration.OnDisappearing to check if changes have been made and then apply them, so that the Home.OnAppearing cam check for changes and refresh itself.
 
 However, I'm seeing that Home.OnAppearing is firing before Configuration.OnDisappearing on Android, but not on iOS or WP. I've looked at <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - OnAppearing event inconsistency on platforms" href="show_bug.cgi?id=26479">https://bugzilla.xamarin.com/show_bug.cgi?id=26479</a> which perhaps seems related, but don't see a known bug specifically on inconsistent ordering of these events. 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - OnAppearing event inconsistency on platforms" href="https://bugzilla.xamarin.com/show_bug.cgi?id=26479">https://bugzilla.xamarin.com/show_bug.cgi?id=26479</a> which perhaps seems related, but don't see a known bug specifically on inconsistent ordering of these events. 
 
 In the attached sample, here's the Windows Phone and iOS 8.1 output navigating from Page1 to Page2, hitting the back button:
 

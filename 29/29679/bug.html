@@ -1277,7 +1277,7 @@ gives the same output.</pre>
 <pre class="bz_comment_text">Without the patch, you will end up with an assertion error - I've had the same when just using 'monodis' on mscorelib.dll. The original problem (not the later one stated by Alexander) was the assertion error, because Mono runtime could not accept something defined as class (token 0x12) to be used as valuetype (0x11).
 
 I'd love to have this patch merged, working on the next step will be to improve generics support - because Mono is unable to understand many methods with generic which are contained in the CoreCLR mscorlib.dll - this is <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Assertion: at loader.c:297 trying to get signature of CoreCLR System.Collections.ObjectModel.ReadOnlyCollection`1<class System.Exception>::.ctor(class System.Collections.Generic.IList`1<!0>)" href="show_bug.cgi?id=31244">https://bugzilla.xamarin.com/show_bug.cgi?id=31244</a>.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Assertion: at loader.c:297 trying to get signature of CoreCLR System.Collections.ObjectModel.ReadOnlyCollection`1<class System.Exception>::.ctor(class System.Collections.Generic.IList`1<!0>)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31244">https://bugzilla.xamarin.com/show_bug.cgi?id=31244</a>.</pre>
     </div>
 
     <div id="c20" class="bz_comment">

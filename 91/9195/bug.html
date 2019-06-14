@@ -694,8 +694,8 @@ In the attachment you can find a gdb trace. I did also the steps described in 'R
 <pre class="bz_comment_text">From the native trace it looks like the MD's main thread has finished and the runtime is waiting for threads to shutdown. Unfortunately all the threads are also waiting for various things - signals, reads, etc. It could be that one of the threads needs to be marked as a background thread so it doesn't prevent shutdown, or it might be a runtime bug.
 
 Maybe a dup of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop hangs on quit" href="show_bug.cgi?id=5647">bug 5647</a> or <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - mdtool sometimes hangs" href="show_bug.cgi?id=7003">bug 7003</a>.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop hangs on quit" href="https://bugzilla.xamarin.com/show_bug.cgi?id=5647">bug 5647</a> or <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - mdtool sometimes hangs" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7003">bug 7003</a>.</pre>
     </div>
 
     <div id="c3" class="bz_comment">

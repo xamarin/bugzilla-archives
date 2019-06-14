@@ -350,9 +350,9 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - NullReferenceExcception in the linker" href="show_bug.cgi?id=56702">56702</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=57733">57733</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Project builds in Debug but not in Release" href="show_bug.cgi?id=58182">58182</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - NullReferenceExcception in the linker" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56702">56702</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57733">57733</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Project builds in Debug but not in Release" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58182">58182</a> 
       </span>
       ()
     </td>
@@ -593,7 +593,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=58063">58063</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58063">58063</a>
           </li></ul>
 
 </td>
@@ -760,7 +760,7 @@ macOS 10.12.5</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - NullReferenceExcception in the linker" href="show_bug.cgi?id=56702">Bug 56702</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - NullReferenceExcception in the linker" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56702">Bug 56702</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -790,7 +790,7 @@ macOS 10.12.5</pre>
 
 
 <pre class="bz_comment_text">Coming from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - NullReferenceExcception in the linker" href="show_bug.cgi?id=56702">bug 56702</a>. Like stated over there, I have the same problem, but I wanted to add that neither the failing project nor my other (working) projects the failing project depends on include a reference to System.Data.Portable.dll
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - NullReferenceExcception in the linker" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56702">bug 56702</a>. Like stated over there, I have the same problem, but I wanted to add that neither the failing project nor my other (working) projects the failing project depends on include a reference to System.Data.Portable.dll
 
 @Brendan Zagaeski: How did you determine the problematic reference? Is there a chance for me to identify it? I cannot remove references because then my project will most likely not compile anymore. I wonder if the name of the problematic assembly appears in any log, maybe in a verbose mode?</pre>
     </div>
@@ -855,7 +855,7 @@ I think it would be possible to attach the Visual Studio debugger to the MSBuild
 <pre class="bz_comment_text">It looks like duplicate of #58182
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Project builds in Debug but not in Release" href="show_bug.cgi?id=58182">bug 58182</a> ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Project builds in Debug but not in Release" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58182">bug 58182</a> ***</pre>
     </div>
 
     <div id="c7" class="bz_comment">
@@ -885,7 +885,7 @@ I think it would be possible to attach the Visual Studio debugger to the MSBuild
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Project builds in Debug but not in Release" href="show_bug.cgi?id=58182">Bug 58182</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Project builds in Debug but not in Release" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58182">Bug 58182</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c8" class="bz_comment">
@@ -915,7 +915,7 @@ I think it would be possible to attach the Visual Studio debugger to the MSBuild
 
 
 <pre class="bz_comment_text">OK, I reopened this bug. Please note <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Project builds in Debug but not in Release" href="show_bug.cgi?id=58182#c12">https://bugzilla.xamarin.com/show_bug.cgi?id=58182#c12</a> which explain, what is the issue here. Matthew, would it be possible to fix the Mono.Data.Sqlite.Portable and release new version?
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Project builds in Debug but not in Release" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58182#c12">https://bugzilla.xamarin.com/show_bug.cgi?id=58182#c12</a> which explain, what is the issue here. Matthew, would it be possible to fix the Mono.Data.Sqlite.Portable and release new version?
 
 I will meanwhile create PR for linker to throw exception with more information about the issue in case it will possibly happen with some other assemblies as well in future.</pre>
     </div>
@@ -947,14 +947,14 @@ I will meanwhile create PR for linker to throw exception with more information a
 
 
 <pre class="bz_comment_text">In reply to action #4, marking this a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Project builds in Debug but not in Release" href="show_bug.cgi?id=58182">bug 58182</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Project builds in Debug but not in Release" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58182">bug 58182</a>
 
 My original <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - NullReferenceExcception in the linker" href="show_bug.cgi?id=56702">bug 56702</a> was deemed a duplicate of this <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - NullReferenceExcception in the linker" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56702">bug 56702</a> was deemed a duplicate of this <a class="bz_bug_link 
           bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;The &quot;LinkAssemblies&quot; task failed unexpectedly&quot; due to a NullReferenceException in Mono.Linker's `ProcessLibrary()` method when project references certain assemblies, for example &quot;Mono.Data.Sqlite.Portable&quot; NuGet package" href="bug.html">bug 57645</a>.
 Then this <a class="bz_bug_link 
           bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;The &quot;LinkAssemblies&quot; task failed unexpectedly&quot; due to a NullReferenceException in Mono.Linker's `ProcessLibrary()` method when project references certain assemblies, for example &quot;Mono.Data.Sqlite.Portable&quot; NuGet package" href="bug.html">bug 57645</a> was deemed to be a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Project builds in Debug but not in Release" href="show_bug.cgi?id=58182">bug 58182</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Project builds in Debug but not in Release" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58182">bug 58182</a>.
 
 You definitely need to stop declaring the report that existed FIRST to be the duplicate of the newer one. This doesn't make sense, it's the other way round. Flagging otherwise might even mess up the system because already collected information is disregarded and data like "since when is the bug known to exist" will be lost. :)</pre>
     </div>
@@ -1044,7 +1044,7 @@ You definitely need to stop declaring the report that existed FIRST to be the du
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=57733">Bug 57733</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57733">Bug 57733</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c13" class="bz_comment">
@@ -1105,7 +1105,7 @@ Native csc (pre-Roslyn version) when encountered typeforwarded type it added aut
 
 
 <pre class="bz_comment_text">It looks like the same thing happens for XI (when using F#): <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=58063#c10">https://bugzilla.xamarin.com/show_bug.cgi?id=58063#c10</a></pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58063#c10">https://bugzilla.xamarin.com/show_bug.cgi?id=58063#c10</a></pre>
     </div>
 
     <div id="c16" class="bz_comment">
@@ -1193,7 +1193,7 @@ Native csc (pre-Roslyn version) when encountered typeforwarded type it added aut
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=58063">Bug 58063</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58063">Bug 58063</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c19" class="bz_comment">
@@ -1387,7 +1387,7 @@ The fix for this issue has now been published in Xamarin.Android 7.4.5.1, availa
 
 
 <pre class="bz_comment_text"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=57733">https://bugzilla.xamarin.com/show_bug.cgi?id=57733</a> was marked as a duplicate of this issue, however, it manifested on Xamarin iOS. Was this issue resolved on Xamarin.iOS as well? And if so, which version?</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57733">https://bugzilla.xamarin.com/show_bug.cgi?id=57733</a> was marked as a duplicate of this issue, however, it manifested on Xamarin iOS. Was this issue resolved on Xamarin.iOS as well? And if so, which version?</pre>
     </div>
 
     <div id="c34" class="bz_comment">

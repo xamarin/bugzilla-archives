@@ -640,7 +640,7 @@ Projects files from templates
 When creating a new Forms project, the iOS .csproj file includes &lt;CodesignEntitlements&gt;Entitlements.plist&lt;/CodesignEntitlements&gt; in the Debug|iPhoneSimulator and Release|iPhoneSimulator configurations.
 
 Because Xam.iOS 8.10 now correctly checks Entitlements.plist to determine if the build should be signed, this results in users hitting <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;Project properties -> iOS Bundle Signing&quot; shows &quot;This page is valid only for hardware platforms&quot; when targeting Simulator" href="show_bug.cgi?id=29654">bug #29654</a> if they don't have code signing keys on the build host and does not let them debug using a simulator.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;Project properties -> iOS Bundle Signing&quot; shows &quot;This page is valid only for hardware platforms&quot; when targeting Simulator" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29654">bug #29654</a> if they don't have code signing keys on the build host and does not let them debug using a simulator.
 
 Note: The iOS project templates do not experience this issue, only the Forms templates. I've attached two .csproj files, (1) from the Forms PCL template and (2) from the iOS iPhone Single View App template.
 

@@ -812,7 +812,7 @@ Alas, no.
 The Android native stack walking code seems to be "stupid" -- or maybe it's the ARM stack walking ABI which is stupid, whichever; *something* is stupid -- because all stack frames from JIT'd code are always missing from the Java-side stack traces such as this.
 
 For example, consider the stack trace on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Google Play Service Rev 12 Android.Views.InflateException" href="show_bug.cgi?id=16019">Bug #16019</a>:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Google Play Service Rev 12 Android.Views.InflateException" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16019">Bug #16019</a>:
 
 <span class="quote">&gt; UNHANDLED EXCEPTION: Android.Views.InflateException: Exception of type 'Android.Views.InflateException' was thrown.
 &gt; at Android.Runtime.JNIEnv.CallNonvirtualVoidMethod (intptr,intptr,intptr,Android.Runtime.JValue[]) [0x00024] in /Users/builder/data/lanes/monodroid-mlion-monodroid-4.8.2-branch/a25a31d0/source/monodroid/src/Mono.Android/src/Runtime/JNIEnv.g.cs:616

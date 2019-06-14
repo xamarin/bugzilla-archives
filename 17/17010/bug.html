@@ -1122,7 +1122,7 @@ If that version is not enough, then we'll have to find a more creative solution.
 
 
 <pre class="bz_comment_text">Aleksey, is that a duplicate of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - [AppDomain] System.MissingMethodException because wrong assemblies are loaded into domain" href="show_bug.cgi?id=49308">https://bugzilla.xamarin.com/show_bug.cgi?id=49308</a>?</pre>
+          bz_status_CONFIRMED " title="CONFIRMED - [AppDomain] System.MissingMethodException because wrong assemblies are loaded into domain" href="https://bugzilla.xamarin.com/show_bug.cgi?id=49308">https://bugzilla.xamarin.com/show_bug.cgi?id=49308</a>?</pre>
     </div>
 
     <div id="c13" class="bz_comment">
@@ -1152,20 +1152,20 @@ If that version is not enough, then we'll have to find a more creative solution.
 
 
 <pre class="bz_comment_text">I don't think this is related to <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - [AppDomain] System.MissingMethodException because wrong assemblies are loaded into domain" href="show_bug.cgi?id=49308">bug 49308</a>:
+          bz_status_CONFIRMED " title="CONFIRMED - [AppDomain] System.MissingMethodException because wrong assemblies are loaded into domain" href="https://bugzilla.xamarin.com/show_bug.cgi?id=49308">bug 49308</a>:
 
 * <a class="bz_bug_link 
           bz_status_REOPENED " title="REOPENED - System.ExecutionEngineException when reflecting a class with a static constructor and non-resolvable instance type" href="bug.html">Bug 17010</a> is about implementation details of class initialization.
 
 * <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - [AppDomain] System.MissingMethodException because wrong assemblies are loaded into domain" href="show_bug.cgi?id=49308">Bug 49308</a> is about implementation details of MarshalByRefObject
+          bz_status_CONFIRMED " title="CONFIRMED - [AppDomain] System.MissingMethodException because wrong assemblies are loaded into domain" href="https://bugzilla.xamarin.com/show_bug.cgi?id=49308">Bug 49308</a> is about implementation details of MarshalByRefObject
   serialization/deserialization.
 
 If I'm understanding the repro correctly, <a class="bz_bug_link 
           bz_status_REOPENED " title="REOPENED - System.ExecutionEngineException when reflecting a class with a static constructor and non-resolvable instance type" href="bug.html">bug 17010</a> is about the semantics of broken types (in this case about how much initialization has to be done before IsAssignableFrom is usable).  I believe one can change the repro for this bug to use reflection or something instead of AppDomains.  
 
 <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - [AppDomain] System.MissingMethodException because wrong assemblies are loaded into domain" href="show_bug.cgi?id=49308">Bug 49308</a> is about whether the serialization/deserialization of MarshalByRefObjects should trigger class initialization.</pre>
+          bz_status_CONFIRMED " title="CONFIRMED - [AppDomain] System.MissingMethodException because wrong assemblies are loaded into domain" href="https://bugzilla.xamarin.com/show_bug.cgi?id=49308">Bug 49308</a> is about whether the serialization/deserialization of MarshalByRefObjects should trigger class initialization.</pre>
     </div>
 
 

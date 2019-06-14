@@ -803,7 +803,7 @@ We could build a monotouch.dll with that #define disabled and see if that fixes 
 <pre class="bz_comment_text">Right, that X509ExtensionCollection.cs avoid reflection/cryptoconfig and helps the linker.
 
 Other LINQ removal are related to code generation and were the cause for another regression (<a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="show_bug.cgi?id=587">bug #587</a>) unless the linker was used (because it would remove most of the code that the define avoids).
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="https://bugzilla.xamarin.com/show_bug.cgi?id=587">bug #587</a>) unless the linker was used (because it would remove most of the code that the define avoids).
 
 I don't see how that could interact with to cause the stack trace. René could you confirm:
 
@@ -872,7 +872,7 @@ Thanks!</pre>
 <pre class="bz_comment_text">René, as we don't have a test case to duplicate your issue we'll need your help to try with only HTTP (i.e. without SSL) and also test for (b). Thanks.
 
 note: <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="show_bug.cgi?id=587">bug #587</a> only occured on devices when "Don't link" was used so I don't think this is the same issue</pre>
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="https://bugzilla.xamarin.com/show_bug.cgi?id=587">bug #587</a> only occured on devices when "Don't link" was used so I don't think this is the same issue</pre>
     </div>
 
     <div id="c12" class="bz_comment">

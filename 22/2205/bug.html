@@ -793,7 +793,7 @@ System.InvalidOperationException: Node type Element is not supported in this ope
 
 
 <pre class="bz_comment_text">The "Node type Element is not supported" error seems to be caused by the way Mono serializes the object. This might ultimately be the same issue reported on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - DataContractSerializer: data serialized on MonoTouch is deserialized wrong on Win (IList<IIterface>)" href="show_bug.cgi?id=11801">bug #11801</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - DataContractSerializer: data serialized on MonoTouch is deserialized wrong on Win (IList<IIterface>)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=11801">bug #11801</a>.
 
 Compare the XML serialization from .NET:
 <span class="quote">&gt; &lt;MyObject xmlns="<a href="http://schemas.datacontract.org/2004/07/ServiceTest">http://schemas.datacontract.org/2004/07/ServiceTest</a>" xmlns:i="<a href="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</a>"&gt;
@@ -818,7 +818,7 @@ Deserializing the Mono output using .NET [1] produces a similar error message:
 
 
 Deserializing the .NET output in .NET works, but deserializing it in Mono causes another problem. "Type not found; name: string, namespace:" See <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - XmlFormatterDeserializer.GetTypeFromNamePair() throws &quot;Type not found; name: string, namespace:&quot; when deserializing KnownType(typeof(string[]))" href="show_bug.cgi?id=15572">bug #15572</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - XmlFormatterDeserializer.GetTypeFromNamePair() throws &quot;Type not found; name: string, namespace:&quot; when deserializing KnownType(typeof(string[]))" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15572">bug #15572</a>.
 
 
 
@@ -888,7 +888,7 @@ The project includes the XML output files from both Mono and .NET.
 Running the project as-is will deserialize the Mono XML serialization.
 
 Switching the commented lines for "ServiceTest.Serialized.Mono.xml" and "ServiceTest.Serialized.DotNet.xml" will switch to the .NET XML serialization. (This is the test scenario for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - XmlFormatterDeserializer.GetTypeFromNamePair() throws &quot;Type not found; name: string, namespace:&quot; when deserializing KnownType(typeof(string[]))" href="show_bug.cgi?id=15572">bug #15572</a>)</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - XmlFormatterDeserializer.GetTypeFromNamePair() throws &quot;Type not found; name: string, namespace:&quot; when deserializing KnownType(typeof(string[]))" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15572">bug #15572</a>)</pre>
     </div>
 
     <div id="c4" class="bz_comment">

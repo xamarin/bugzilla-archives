@@ -190,7 +190,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <div class="bz_short_desc_container edit_form">
      <a href="bug.html"><b>Bug&nbsp;41963</b></a> <span id="summary_container" class="bz_default_hidden">
       - <span id="short_desc_nonedit_display">[Cycle 7] The fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=35667">Bug 35667</a> removes the "version" string from `.ipa` package as requested, but also moves the package _into_ a date-stamped directory, possibly breaking convention compared to other C# project types</span>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35667">Bug 35667</a> removes the "version" string from `.ipa` package as requested, but also moves the package _into_ a date-stamped directory, possibly breaking convention compared to other C# project types</span>
      </span>
 
     <div id="summary_input"><span class="field_label " id="field_label_short_desc">
@@ -351,8 +351,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=41871">41871</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Generating an IPA creates new folders every time" href="show_bug.cgi?id=42821">42821</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=41871">41871</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Generating an IPA creates new folders every time" href="https://bugzilla.xamarin.com/show_bug.cgi?id=42821">42821</a> 
       </span>
       ()
     </td>
@@ -368,7 +368,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Follow-up to Bug 41963 on Windows: Setting the `IpaPackageDir` property to a custom value breaks the logic that automatically copies the `.ipa` file to Windows from the Mac" href="show_bug.cgi?id=42387">42387</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Follow-up to Bug 41963 on Windows: Setting the `IpaPackageDir` property to a custom value breaks the logic that automatically copies the `.ipa` file to Windows from the Mac" href="https://bugzilla.xamarin.com/show_bug.cgi?id=42387">42387</a> 
   </td>
   </tr>
 
@@ -625,7 +625,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">[Cycle 7] The fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=35667">Bug 35667</a> removes the "version" string from `.ipa` package as requested, but also moves the package _into_ a date-stamped directory, possibly breaking convention compared to other C# project types
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35667">Bug 35667</a> removes the "version" string from `.ipa` package as requested, but also moves the package _into_ a date-stamped directory, possibly breaking convention compared to other C# project types
 
 
 
@@ -635,7 +635,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 maccore/master 72ad4abd0f7f78f90276551ccd23c110af193b0f
 
 (Which corresponds to the fix for non-public <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=35667">Bug 35667</a>: "Created IPA uses Build number in stead of Version number for created file")
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35667">Bug 35667</a>: "Created IPA uses Build number in stead of Version number for created file")
 
 
 
@@ -1081,7 +1081,7 @@ I would recommend that the Xamarin team consider at least 3 possible options for
 
 
 1. Precisely revert the change introduced by the fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=35667">Bug 35667</a> for now.  Additional consideration can then be given to re-implementing the change in some way in a future release, taking extra care to make the reimplemented change as easy-to-use across a variety of CI systems as possible and being sure to "loudly" document the change in the release notes.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35667">Bug 35667</a> for now.  Additional consideration can then be given to re-implementing the change in some way in a future release, taking extra care to make the reimplemented change as easy-to-use across a variety of CI systems as possible and being sure to "loudly" document the change in the release notes.
 
 
 2. Change the behavior to use a "static" name for the `.ipa` output file that includes neither a version string nor a timestamp.  This option would need to be researched to some degree to get some sense of (a) how many users are still depending on a worfklow where previous `.ipa` files are retained directly in the `bin/` folder, and (b) how many users' CI build scripts currently depend on the inclusion of the version string in the final `.ipa` package name (otherwise this change would cause the same kinds of breakages as the current behavior, though probably noticeably easier for users to fix on their own).
@@ -1429,7 +1429,7 @@ Also introduced $(IpaPackageDir) so you can set that instead of the full path an
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=41871">Bug 41871</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=41871">Bug 41871</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c25" class="bz_comment">
@@ -1528,7 +1528,7 @@ In short, until we have that Beta version published, I'll request that we contin
 
 
 <pre class="bz_comment_text">Blocked to verify this issue due to issue <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=42225">https://bugzilla.xamarin.com/show_bug.cgi?id=42225</a></pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=42225">https://bugzilla.xamarin.com/show_bug.cgi?id=42225</a></pre>
     </div>
 
     <div id="c28" class="bz_comment">
@@ -1699,7 +1699,7 @@ The forum announcement for the new Beta channels builds has been posted as well:
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Generating an IPA creates new folders every time" href="show_bug.cgi?id=42821">Bug 42821</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Generating an IPA creates new folders every time" href="https://bugzilla.xamarin.com/show_bug.cgi?id=42821">Bug 42821</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c33" class="bz_comment">

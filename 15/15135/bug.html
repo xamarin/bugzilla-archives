@@ -349,8 +349,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Cant download more than 240 files before NameResolutionFailure" href="show_bug.cgi?id=11634">11634</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="show_bug.cgi?id=13750">13750</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Cant download more than 240 files before NameResolutionFailure" href="https://bugzilla.xamarin.com/show_bug.cgi?id=11634">11634</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13750">13750</a> 
       </span>
       ()
     </td>
@@ -676,7 +676,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">Note: I may be an idiot, or I'm missing something fundamental, or I just have unrealistic expectations.
 
 Context: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="show_bug.cgi?id=13750">https://bugzilla.xamarin.com/show_bug.cgi?id=13750</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13750">https://bugzilla.xamarin.com/show_bug.cgi?id=13750</a>
 
 Background (i.e. Why I Care): a Socket uses file descriptors, and Android's Linux (emulator) only allows a limited number of them to be open at once (~982, by my estimation). If an app downloads lots of http(s) URLs and the Socket's aren't closed, the process will run out of file descriptors and start reporting "bizarre" errors, including NameResolutionFailure and Network is unreachable. The problem isn't that the network has suddenly broken; the problem is that the process has run out of file descriptors, and nothing that requires file descriptors will work sanely.
 
@@ -810,7 +810,7 @@ Sample execution. Note that _sometimes_ the Socket is disposed, and sometimes (u
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="show_bug.cgi?id=13750">Bug 13750</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13750">Bug 13750</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -1025,7 +1025,7 @@ Granted, the Handle value is never larger than 4 for you, but that doesn't make 
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Cant download more than 240 files before NameResolutionFailure" href="show_bug.cgi?id=11634">Bug 11634</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Cant download more than 240 files before NameResolutionFailure" href="https://bugzilla.xamarin.com/show_bug.cgi?id=11634">Bug 11634</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c8" class="bz_comment">
@@ -1117,7 +1117,7 @@ This is particular problematic for SSL connections because there is a significan
 
 
 <pre class="bz_comment_text">OK, so I have a version of my app that can run with the simple .NET framework.  It serves its UI up via a local HTTP Server.  This lets me run the exact same code on Mono as well as on .NET on Windows.  I can't do a proper comparative analysis using this because of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Using System.Net.HttpRequest::EndGetRequestStream" href="show_bug.cgi?id=12875">https://bugzilla.xamarin.com/show_bug.cgi?id=12875</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Using System.Net.HttpRequest::EndGetRequestStream" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12875">https://bugzilla.xamarin.com/show_bug.cgi?id=12875</a>
 
 That said.  I run  the iOS version of my app in the simulator (even with Microsoft's HTTP library) and I find that connections are **NOT** reused.  I don't see permanent file handle leaks from these web requests.  A GC seems to make them go away.  If I run using Microsoft's .NET, I get perfect connection reuse.  I see a max of 4 connections per host.
 
@@ -2874,7 +2874,7 @@ When it happens on critical services, it really affect app start time.</pre>
 It never occurred to me after running HttpClient many times during last year.
 
 This bug was not posted in February, it dates back from August 2013: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="show_bug.cgi?id=13750">https://bugzilla.xamarin.com/show_bug.cgi?id=13750</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13750">https://bugzilla.xamarin.com/show_bug.cgi?id=13750</a>
 
 I see the status is RESOLVE FIXED which it shouldn't.</pre>
     </div>

@@ -624,7 +624,7 @@ sizeof(MonoGenericParamFull) = 32bytes (32bit build)
 2. when mono_image_alloc0() or g_memdup() is called it allocates memory equal to "sizeof(MonoGenericParamFull) = 32bytes".
 During the release resources of "MonoType *res" memory will be freed only by the number of bytes equal to sizeof(MonoGenericParam) = 12bytes. Memleak.
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Leak in gsharedvt code" href="show_bug.cgi?id=16787">https://bugzilla.xamarin.com/show_bug.cgi?id=16787</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Leak in gsharedvt code" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16787">https://bugzilla.xamarin.com/show_bug.cgi?id=16787</a>
 
 3. Buffer overflow. memcpy will copy the bytes beyond(32-12=20bytes) "MonoGenericParam *par" to "MonoGenericParam *copy"(20bytes overflow)</pre>
     </div>

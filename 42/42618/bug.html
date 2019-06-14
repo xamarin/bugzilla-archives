@@ -805,7 +805,7 @@ We believe we're seeing similar behavior; is there anything we can to do provide
 <pre class="bz_comment_text">The sshd instances are consequence of orphan MSBuild instances in Windows side. They maintain an active SSH connection, that keeps the sshd processes running.
 
 We have introduced some fixes to avoid these orphan MSBuild instances, that might affect directly on this bug. For more details on the MSBUild issue, see this related bug: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - MSBuild orphaned" href="show_bug.cgi?id=42717">https://bugzilla.xamarin.com/show_bug.cgi?id=42717</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - MSBuild orphaned" href="https://bugzilla.xamarin.com/show_bug.cgi?id=42717">https://bugzilla.xamarin.com/show_bug.cgi?id=42717</a>
 
 The fixes should be available on our cycle8 release, from 4.2.0.541 version.
 
@@ -907,7 +907,7 @@ Cheers.</pre>
 <pre class="bz_comment_text">We have identified an issue within our build connection layer, which was causing CPU overhead and also some issues on the disposing and closing chain of the resources.
 
 This is the bug related to that fix, that would also fix the remaining things for this bug: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MSBuild process produces high CPU usage due to incorrect parent process monitor on XMA" href="show_bug.cgi?id=57339">https://bugzilla.xamarin.com/show_bug.cgi?id=57339</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MSBuild process produces high CPU usage due to incorrect parent process monitor on XMA" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57339">https://bugzilla.xamarin.com/show_bug.cgi?id=57339</a>
 
 This is the last commit of the series of fixes we did for this case and the bug above: b586e5bc2a59e01f5e14ff32a6e6995238bae433
 

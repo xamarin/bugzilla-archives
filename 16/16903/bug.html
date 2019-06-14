@@ -214,7 +214,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Managed->Java->Managed Exception Propagation is broken" href="show_bug.cgi?id=7634">bug 7634</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Managed->Java->Managed Exception Propagation is broken" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7634">bug 7634</a>
       </span>
     </td>
   </tr>
@@ -605,7 +605,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Managed->Java->Managed Exception Propagation is broken" href="show_bug.cgi?id=7634">bug 7634</a></span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Managed->Java->Managed Exception Propagation is broken" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7634">bug 7634</a></span>
 </div>
 
 
@@ -789,7 +789,7 @@ Darwin Bens-MacBook-Pro.local 13.0.0 Darwin Kernel Version 13.0.0
 
 
 <pre class="bz_comment_text">The problem is that cross-VM exception propagation is broken, as per <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Managed->Java->Managed Exception Propagation is broken" href="show_bug.cgi?id=7634">Bug #7634</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Managed->Java->Managed Exception Propagation is broken" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7634">Bug #7634</a>.
 
 What _should_ happen is that when there are "interleaved" stack frames between the JVM and Mono, the Mono stack frame will catch all exceptions, convert the exception into a JVM exception, and then return. The JVM will then receive an exception and re-raise it.
 
@@ -812,7 +812,7 @@ This will generate a Java-side Exception, which will then be raised on the calli
 I apologize for the leaky abstraction. :-(
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Managed->Java->Managed Exception Propagation is broken" href="show_bug.cgi?id=7634">bug 7634</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Managed->Java->Managed Exception Propagation is broken" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7634">bug 7634</a> ***</pre>
     </div>
 
     <div id="c5" class="bz_comment">
@@ -1033,7 +1033,7 @@ The problem is after AndroidEnvironment.RaiseThrowable() is called, a Java-side 
 In the case of ContentProvider.Query(), it has a String[] parameter, which requires that the string values be marshaled back (in case your overridden ContentProvider.Query() method changed the array contents). This in turn requires calling JNIEnv.NewString() as part of the "unmarshal args" code, and since a Java exception is now pending it is raised, and things blow up.
 
 Unfortunately this means that <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Managed->Java->Managed Exception Propagation is broken" href="show_bug.cgi?id=7634">Bug #7634</a> must be properly fixed.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Managed->Java->Managed Exception Propagation is broken" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7634">Bug #7634</a> must be properly fixed.
 
 The only workaround I can think of is to have the ContentProvider in Java, allowing the Java code to throw IllegalArgumentException/etc. You could use [ExportAttribute] on a Java.Lang.Object C# subclass to expose additional methods to your Java code, so e.g. you could have a `Java.Lang.String[] errors` parameter, and the Java code could pass an array and throw the stored string if necessary.</pre>
     </div>

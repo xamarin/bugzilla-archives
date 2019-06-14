@@ -734,7 +734,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 <pre class="bz_comment_text">Didn't you read the documentation about those classes? Didn't the thought that Google added them for some reason - the same reason I specified in the description?
 As I said, the multi-dex option has nothing to do with the problem. There are Android virtual machines for Android which do not support multi-dexing - they post the message of "VM with version 1.6.0 does not have multidex support" (the exact version varies, of course) in the log. This means that a multi-dexed application (that is, one compiled with the option turned on) crashes on such virtual machines. To fix this problem, support for multi-dexing has to be manually installed by the application itself. This is achieved by using one of the 3 approaches described at <a href="https://developer.android.com/reference/android/support/multidex/MultiDexApplication.html">https://developer.android.com/reference/android/support/multidex/MultiDexApplication.html</a> . Since the first approach does not work with custom Application-derived classes, the last 2 remain - and they are impossible to achieve because Monodroid wraps neither MultiDexApplication nor MultiDex, and it also crashes at overriding attachBaseContext (<a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - Unable to override Application.AttachBaseContext(Context)" href="show_bug.cgi?id=11182">https://bugzilla.xamarin.com/show_bug.cgi?id=11182</a>).
+          bz_status_ASSIGNED " title="ASSIGNED - Unable to override Application.AttachBaseContext(Context)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=11182">https://bugzilla.xamarin.com/show_bug.cgi?id=11182</a>).
 In the future, if you don't understand the problem, just ask, don't just mark as answered.</pre>
     </div>
 
@@ -765,7 +765,7 @@ In the future, if you don't understand the problem, just ask, don't just mark as
 
 
 <pre class="bz_comment_text">Still, thank you for mentioning that the JAR is included, it helped solve a problem with our workaround (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Java binding for MultiDexApplication causes Application.Context to be null" href="show_bug.cgi?id=34209">https://bugzilla.xamarin.com/show_bug.cgi?id=34209</a>).</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Java binding for MultiDexApplication causes Application.Context to be null" href="https://bugzilla.xamarin.com/show_bug.cgi?id=34209">https://bugzilla.xamarin.com/show_bug.cgi?id=34209</a>).</pre>
     </div>
 
     <div id="c7" class="bz_comment">

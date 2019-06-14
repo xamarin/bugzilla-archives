@@ -638,7 +638,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Example
 
 This is similar to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - NavigationRenderer.ParentingViewController breaks things" href="show_bug.cgi?id=24484">https://bugzilla.xamarin.com/show_bug.cgi?id=24484</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - NavigationRenderer.ParentingViewController breaks things" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24484">https://bugzilla.xamarin.com/show_bug.cgi?id=24484</a>
 
 If you make a custom renderer for a NavigatonPage and set the NavigationBar to translucent then the UINavigationController wants to lay out its children to fill the whole view, including underneath (z-order) the NavigationBar. The content of the child view controller should appear through the NavigationBar. The NavigationRenderer doesn't handle this properly. Instead of filling the whole view you end up with a view that is too short, but starts at the top. This leaves a blank area below the view (the size of the navigation bar plus the status bar).
 

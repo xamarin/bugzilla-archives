@@ -684,7 +684,7 @@ Unhandled Exception: System.OverflowException: Arithmetic operation resulted in 
 
 
 When investigating this issue I found an obvious bug in mcs/class/System.ServiceModel/System.ServiceModel/ClientRealProxy.cs where the variable outArgs is never actually constructed, but is used to build a return value. I also found about this bug and associated patch: <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - ClientRealProxy cannot handle async methods with ref parameters" href="show_bug.cgi?id=11414">https://bugzilla.xamarin.com/show_bug.cgi?id=11414</a> which might be related.</pre>
+          bz_status_NEW " title="NEW - ClientRealProxy cannot handle async methods with ref parameters" href="https://bugzilla.xamarin.com/show_bug.cgi?id=11414">https://bugzilla.xamarin.com/show_bug.cgi?id=11414</a> which might be related.</pre>
     </div>
 
 

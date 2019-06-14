@@ -613,8 +613,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">I tested my app on a new Android phone last night. On that particular device I got the following exception when running a debug build, even though the debug build runs happily on other devices and the release build runs happily on all of my test devices. The device it fails on is running Android 7.0, which none of the other devices run.
 
 When I got this exception, it initially could not find AndroidSentTextMessageReceiver. I went through my code and removed all references of that class. On running again, the same exception was reported, but now referring to another class. As I experimented, the classes named were a mixture of mine and of third-party plugins. To me, it looks like an issue with Multi-Dex. My guess is that my release build is fine because it ends up with &lt; 64k Java methods, but the debug build has more than 64k Java methods, and the class that could not be found is possibly not in the first 64k Java methods. Why it works on all but one of my test devices - again at a guess, I suspect that Android 7 handles large apps differently in some way. Vague guesswork I know. I've Googled around this and found many similar reports. Unfortunately, none gave a clear answer as to what causes it or how to workaround it. Lots of "I did this and it went away". Some pointing the finger at James Montemagno's connectivity plugin (I'm pretty sure that's not the cause, although I do use it). Whether it is an Android problem, or whether it is a problem in the build processes for Multi-Dex, or both, needs investigation. Also, could be related to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="show_bug.cgi?id=55268">https://bugzilla.xamarin.com/show_bug.cgi?id=55268</a> which is logged as a Mono problem (see <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="show_bug.cgi?id=55268#c11">https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c11</a> )
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55268">https://bugzilla.xamarin.com/show_bug.cgi?id=55268</a> which is logged as a Mono problem (see <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c11">https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c11</a> )
 
 java.lang.ClassNotFoundException: Didn't find class "md5b1140724aef5ec7a0d1d152758003f9f.AndroidSentTextMessageReceiver" on path: DexPathList[[zip file "/data/app/com.MyApp.MyApp-1/base.apk"],nativeLibraryDirectories=[/data/app/com.MyApp.MyApp-1/lib/arm, /data/app/com.MyApp.MyApp-1/base.apk!/lib/armeabi-v7a, /system/lib, /vendor/lib]]
 dalvik.system.BaseDexClassLoader.findClass()BaseDexClassLoader.java:56
@@ -768,10 +768,10 @@ Are you only seeing the exception on some test devices (perhaps Android 7), rath
 <pre class="bz_comment_text">## Cross-reference
 
 One likely cause of this error message with Xamarin.Android 7.4 is <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Multidex.keep file missing newlines" href="show_bug.cgi?id=59036">Bug 59036</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Multidex.keep file missing newlines" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59036">Bug 59036</a>.
 
 As noted in that bug, one way to work around that issue temporarily is to copy the generated multidex.keep file into your project folder, add the missing newlines, and then add it to your project with a build action of MultiDexMainDexList.  If that manual workaround does indeed resolve the issue for the reporter of this bug, this bug can be marked as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Multidex.keep file missing newlines" href="show_bug.cgi?id=59036">Bug 59036</a>.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Multidex.keep file missing newlines" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59036">Bug 59036</a>.</pre>
     </div>
 
     <div id="c4" class="bz_comment">

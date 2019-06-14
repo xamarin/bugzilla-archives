@@ -214,7 +214,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unlike the .NET implementation, `new ZipArchive()` indirectly calls `System.Text.Encoding.GetEncoding()`" href="show_bug.cgi?id=54361">bug 54361</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unlike the .NET implementation, `new ZipArchive()` indirectly calls `System.Text.Encoding.GetEncoding()`" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54361">bug 54361</a>
       </span>
     </td>
   </tr>
@@ -546,7 +546,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unlike the .NET implementation, `new ZipArchive()` indirectly calls `System.Text.Encoding.GetEncoding()`" href="show_bug.cgi?id=54361">bug 54361</a></span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unlike the .NET implementation, `new ZipArchive()` indirectly calls `System.Text.Encoding.GetEncoding()`" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54361">bug 54361</a></span>
 </div>
 
 
@@ -728,7 +728,7 @@ BAD: Xamarin.iOS 9.1.0.27 (1f068b4) + Mono 4.0.5 (detached/1d8d582)
 It seem that the codepage 720 text encoding has to date not yet been implemented in Mono. I have accordingly filed a new enhancement request to more precisely pinpoint that issue, and I am marking this bug as a duplicate.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - &quot;No data is available for encoding 720&quot; because Mono does not yet support codepage 720 for &quot;System.Text.Encoding.GetEncoding(720)&quot;" href="show_bug.cgi?id=37467">bug 37467</a> ***</pre>
+          bz_status_CONFIRMED " title="CONFIRMED - &quot;No data is available for encoding 720&quot; because Mono does not yet support codepage 720 for &quot;System.Text.Encoding.GetEncoding(720)&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=37467">bug 37467</a> ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -758,7 +758,7 @@ It seem that the codepage 720 text encoding has to date not yet been implemented
 
 
 <pre class="bz_comment_text">There is an additional complication with this bug that might be interesting to mention: the .NET implementation of `ZipArchive.Create()` does not call the problematic `System.Text.Encoding.GetEncoding()` method at all, even when the current culture is set to Arabic. So it's possible that the original test case from <a href="bug.html">comment 0</a> could stop showing symptoms even before <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - &quot;No data is available for encoding 720&quot; because Mono does not yet support codepage 720 for &quot;System.Text.Encoding.GetEncoding(720)&quot;" href="show_bug.cgi?id=37467">Bug 37467</a> is addressed (if Mono imports the .NET implementation of ZipArchive sooner than it adds support for the codepage 720 text encoding).
+          bz_status_CONFIRMED " title="CONFIRMED - &quot;No data is available for encoding 720&quot; because Mono does not yet support codepage 720 for &quot;System.Text.Encoding.GetEncoding(720)&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=37467">Bug 37467</a> is addressed (if Mono imports the .NET implementation of ZipArchive sooner than it adds support for the codepage 720 text encoding).
 
 
 For example, the following lines will fail with the Mono implementation of System.IO.Compression. But you can run them successfully on desktop Mono if you switch the System.IO.Compression reference to use the .NET CoreFX implementation [1].
@@ -813,7 +813,7 @@ This same approach also works for the simple iOS test case from <a href="bug.htm
 As of the current development branch named "2017-02", Mono has imported the .NET Core implementation of ZipArchive.  I will accordingly adjust this bug for bookkeeping to be a duplicate of a corresponding bug I just filed that records the verification status of that implementation change.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unlike the .NET implementation, `new ZipArchive()` indirectly calls `System.Text.Encoding.GetEncoding()`" href="show_bug.cgi?id=54361">bug 54361</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unlike the .NET implementation, `new ZipArchive()` indirectly calls `System.Text.Encoding.GetEncoding()`" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54361">bug 54361</a> ***</pre>
     </div>
 
 

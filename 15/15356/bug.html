@@ -627,7 +627,7 @@ And I get this from
 
 
 If I set the callback methods as IsOneWay = true I get the same as <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - WCF NetTcpBinding Callback" href="show_bug.cgi?id=14279">https://bugzilla.xamarin.com/show_bug.cgi?id=14279</a> : it doesn't work without any trace.</pre>
+          bz_status_NEW " title="NEW - WCF NetTcpBinding Callback" href="https://bugzilla.xamarin.com/show_bug.cgi?id=14279">https://bugzilla.xamarin.com/show_bug.cgi?id=14279</a> : it doesn't work without any trace.</pre>
     </div>
 
     <div id="c1" class="bz_comment">
@@ -659,7 +659,7 @@ If I set the callback methods as IsOneWay = true I get the same as <a class="bz_
 <pre class="bz_comment_text">You can try the following code to partially reproduce. I don't see the dispatch operation exception in console but I get the same exception on the callback call. Execute the code and then in console press and hold any key and you'll get the error at some point.
 
 With extra luck you'll get the "Exception Object of type 'System.ServiceModel.MonoInternal.DuplexServiceRuntimeChannel' doesn't match target type 'System.ServiceModel.IClientChannel'   at System.Reflection.MonoMethod.Invoke" exception also reported there <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - Exception with Duplex Channel, Mono tries to cast to a not implemented Interface" href="show_bug.cgi?id=11631">https://bugzilla.xamarin.com/show_bug.cgi?id=11631</a> at app start.
+          bz_status_NEW " title="NEW - Exception with Duplex Channel, Mono tries to cast to a not implemented Interface" href="https://bugzilla.xamarin.com/show_bug.cgi?id=11631">https://bugzilla.xamarin.com/show_bug.cgi?id=11631</a> at app start.
 
 using System;
 using System.ServiceModel;

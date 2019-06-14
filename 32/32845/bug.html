@@ -370,7 +370,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="blocked_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Adding items to Resources/drawable folder causes VS to hang" href="show_bug.cgi?id=31667">31667</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Adding items to Resources/drawable folder causes VS to hang" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31667">31667</a> 
   </td>
   </tr>
 
@@ -650,8 +650,8 @@ Adding a new template AXML layout to the resources folder hangs Visual Studio GU
 
 
 The symptoms of this bug are very similar to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Modifying Android resources hangs Visual Studio GUI thread in `JavaProcessConnection.PostMessage()` if the currently installed version of Android SDK Tools is incompatible" href="show_bug.cgi?id=31519">Bug 31519</a>, but the steps to reproduce are slightly different, the Android SDK version is _not_ mismatched with the Xamarin version in this bug, and this bug is _not_ yet fixed on master (whereas my tests showed that <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Modifying Android resources hangs Visual Studio GUI thread in `JavaProcessConnection.PostMessage()` if the currently installed version of Android SDK Tools is incompatible" href="show_bug.cgi?id=31519">Bug 31519</a> _is_ fixed on master).
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Modifying Android resources hangs Visual Studio GUI thread in `JavaProcessConnection.PostMessage()` if the currently installed version of Android SDK Tools is incompatible" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31519">Bug 31519</a>, but the steps to reproduce are slightly different, the Android SDK version is _not_ mismatched with the Xamarin version in this bug, and this bug is _not_ yet fixed on master (whereas my tests showed that <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Modifying Android resources hangs Visual Studio GUI thread in `JavaProcessConnection.PostMessage()` if the currently installed version of Android SDK Tools is incompatible" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31519">Bug 31519</a> _is_ fixed on master).
 
 Opening _existing_ layouts works fine.
 
@@ -661,7 +661,7 @@ The problem does not seem to happen (at least not as easily) on Xamarin Studio o
 
 
 ## Regression status: appears to be a regression that corresponds with the update for Android SDK Tools 24.3 compatibility (<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Android designer does not work with latest sdk tools version 24.3" href="show_bug.cgi?id=30556">Bug 30556</a>)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Android designer does not work with latest sdk tools version 24.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30556">Bug 30556</a>)
 
 
 ### BAD 
@@ -702,7 +702,7 @@ Xamarin  3.11.458.0 (7acdedd)
 ## Results
 
 Visual Studio freezes. Attaching a second instance of VS, pausing, and looking at the Main Thread shows a call stack that appears to be identical to the call stack from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Modifying Android resources hangs Visual Studio GUI thread in `JavaProcessConnection.PostMessage()` if the currently installed version of Android SDK Tools is incompatible" href="show_bug.cgi?id=31519">Bug 31519</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Modifying Android resources hangs Visual Studio GUI thread in `JavaProcessConnection.PostMessage()` if the currently installed version of Android SDK Tools is incompatible" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31519">Bug 31519</a>.
 
 
 ### Top of the call stack
@@ -861,7 +861,7 @@ This allowed me to add new layouts to the project without any hangs after step 5
 <pre class="bz_comment_text">
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - First attempt to open a storyboard after disconnecting and reconnecting to build host fails during &quot;CoreSimulator.get_SupportedRuntimes()&quot;" href="show_bug.cgi?id=31603">bug 31603</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - First attempt to open a storyboard after disconnecting and reconnecting to build host fails during &quot;CoreSimulator.get_SupportedRuntimes()&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31603">bug 31603</a> ***</pre>
     </div>
 
     <div id="c6" class="bz_comment">
@@ -893,7 +893,7 @@ This allowed me to add new layouts to the project without any hangs after step 5
 <pre class="bz_comment_text">
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Modifying Android resources hangs Visual Studio GUI thread in `JavaProcessConnection.PostMessage()` if the currently installed version of Android SDK Tools is incompatible" href="show_bug.cgi?id=31519">bug 31519</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Modifying Android resources hangs Visual Studio GUI thread in `JavaProcessConnection.PostMessage()` if the currently installed version of Android SDK Tools is incompatible" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31519">bug 31519</a> ***</pre>
     </div>
 
     <div id="c7" class="bz_comment">
@@ -930,8 +930,8 @@ GOOD: XamarinVS 4.0.0.1111  (a1dc0d5) + Android SDK Tools 24.3.4
 
 
 According to my tests this is not a precise duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Modifying Android resources hangs Visual Studio GUI thread in `JavaProcessConnection.PostMessage()` if the currently installed version of Android SDK Tools is incompatible" href="show_bug.cgi?id=31519">Bug 31519</a>. If I downgrade to Android SDK Tools 24.3.3 with XamarinVS 3.11.1433.0 (0ed0149) so that my versions are mismatched as in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Modifying Android resources hangs Visual Studio GUI thread in `JavaProcessConnection.PostMessage()` if the currently installed version of Android SDK Tools is incompatible" href="show_bug.cgi?id=31519">Bug 31519</a>, I do _not_ hit the hang from that bug. I am accordingly adjusting this <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Modifying Android resources hangs Visual Studio GUI thread in `JavaProcessConnection.PostMessage()` if the currently installed version of Android SDK Tools is incompatible" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31519">Bug 31519</a>. If I downgrade to Android SDK Tools 24.3.3 with XamarinVS 3.11.1433.0 (0ed0149) so that my versions are mismatched as in <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Modifying Android resources hangs Visual Studio GUI thread in `JavaProcessConnection.PostMessage()` if the currently installed version of Android SDK Tools is incompatible" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31519">Bug 31519</a>, I do _not_ hit the hang from that bug. I am accordingly adjusting this <a class="bz_bug_link 
           bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XVS 3.11.586] Adding a new template AXML layout to the resources folder hangs Visual Studio GUI thread in `JavaProcessConnection.PostMessage()` unless Android Designer is already started" href="bug.html">Bug 32845</a> to remove the duplicate status.
 
 

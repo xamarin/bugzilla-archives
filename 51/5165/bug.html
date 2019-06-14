@@ -632,7 +632,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 we updated our components for Mono for Android from 4.0.6-p2 to  4.2.1. After that  Update we get a System.Data.DBConcurrencyException in DbDataAdapter.Update method.
 
 What I did as a test was create a new Object and set some values and save it to the database. I needed to apply some changes to adapter to make it work at all (<a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - Support Mono.Data.Sqlite DataTable metadata" href="show_bug.cgi?id=2128">https://bugzilla.xamarin.com/show_bug.cgi?id=2128</a>) but I don't think these changes have something to do with the problem.
+          bz_status_ASSIGNED " title="ASSIGNED - Support Mono.Data.Sqlite DataTable metadata" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2128">https://bugzilla.xamarin.com/show_bug.cgi?id=2128</a>) but I don't think these changes have something to do with the problem.
 
 I switched back to the version 4.0.6-p2 to verify that the problem has something to do with mono and not with our code.
 
@@ -745,7 +745,7 @@ Hendrik.</pre>
 Looks like a dup of 2128, or is there some other bug I should be looking at?
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - Support Mono.Data.Sqlite DataTable metadata" href="show_bug.cgi?id=2128">bug 2128</a> ***</pre>
+          bz_status_ASSIGNED " title="ASSIGNED - Support Mono.Data.Sqlite DataTable metadata" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2128">bug 2128</a> ***</pre>
     </div>
 
     <div id="c4" class="bz_comment">
@@ -777,7 +777,7 @@ Looks like a dup of 2128, or is there some other bug I should be looking at?
 <pre class="bz_comment_text">Hello,
 
 this is definitly no duplicate. As I said in my prior post I needed to apply some changes to the Mono.Data.Sqlite (because of <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - Support Mono.Data.Sqlite DataTable metadata" href="show_bug.cgi?id=2128">https://bugzilla.xamarin.com/show_bug.cgi?id=2128</a>) that would result in your error. My changes are in the Mono.Data.Sqlite.M4A.dll. It looks like there was the original Mono.Data.Sqlite.dll loaded in your case. In the sample project I definitly referenced the custom one(Mono.Data.Sqlite.M4A.dll). For exactly that reason I gave the assembly another name to make sure that my one is loaded and not the one from the sdk.
+          bz_status_ASSIGNED " title="ASSIGNED - Support Mono.Data.Sqlite DataTable metadata" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2128">https://bugzilla.xamarin.com/show_bug.cgi?id=2128</a>) that would result in your error. My changes are in the Mono.Data.Sqlite.M4A.dll. It looks like there was the original Mono.Data.Sqlite.dll loaded in your case. In the sample project I definitly referenced the custom one(Mono.Data.Sqlite.M4A.dll). For exactly that reason I gave the assembly another name to make sure that my one is loaded and not the one from the sdk.
 
 I tried to reproduce this bug on Windows with System.Data.Sqlite also. And I get the same result. So I think it must have something to do with the Sqlite implementation not with mono. If  I use another database (SqlServerCe for example) the same sample is working. I really searched a long time on the net but did not find a real solution for that.
 

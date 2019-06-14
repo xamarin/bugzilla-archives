@@ -637,7 +637,7 @@ When I call DateTime.Now in a secondary AppDomain I get a NullReferenceException
 I have attached a simple example app to demonstrate this.
 
 This may be related to the fix to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Determine TimeZone from java.util.TimeZone, not persist.sys.timezone" href="show_bug.cgi?id=4902">bug 4902</a>.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Determine TimeZone from java.util.TimeZone, not persist.sys.timezone" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4902">bug 4902</a>.</pre>
     </div>
 
     <div id="c1" class="bz_comment">
@@ -715,14 +715,14 @@ This may be related to the fix to <a class="bz_bug_link
 &gt; I/mono-stdout(23168):   at Other.Boom.Bang () [0x00000] in &lt;filename unknown&gt;:0 </span>
 
 The suggestion that this is related to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Determine TimeZone from java.util.TimeZone, not persist.sys.timezone" href="show_bug.cgi?id=4902">Bug #4902</a> is correct. The problem is the fix. :-/
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Determine TimeZone from java.util.TimeZone, not persist.sys.timezone" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4902">Bug #4902</a> is correct. The problem is the fix. :-/
 
 Background: Xamarin.Android wasn't designed with multiple AppDomains in mind (oops). Consequently, JNIEnv.Handle is IntPtr.Zero outside of the default AppDomain, and accessing it will result in the above NullReferenceException, because the internal JNIInvokeInterface instance hasn't been initialized for the non-default AppDomain, preventing us from obtaining the JNIEnv* for the current thread within the non-default AppDomain.
 
 <a href="http://docs.oracle.com/javase/1.5.0/docs/guide/jni/spec/invocation.html#GetEnv">http://docs.oracle.com/javase/1.5.0/docs/guide/jni/spec/invocation.html#GetEnv</a>
 
 The reason why <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Determine TimeZone from java.util.TimeZone, not persist.sys.timezone" href="show_bug.cgi?id=4902">Bug #4902</a> breaks things is visible from the above stack trace: DateTime.Now calls TimeZone.CurrentTimeZone, which uses Java.Util.TimeZone to determine the current timezone. This in turn requires a Java invocation, but the core information needed to perform Java invocations hasn't been initialized for the non-default AppDomain, and things fall apart from there.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Determine TimeZone from java.util.TimeZone, not persist.sys.timezone" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4902">Bug #4902</a> breaks things is visible from the above stack trace: DateTime.Now calls TimeZone.CurrentTimeZone, which uses Java.Util.TimeZone to determine the current timezone. This in turn requires a Java invocation, but the core information needed to perform Java invocations hasn't been initialized for the non-default AppDomain, and things fall apart from there.
 
 That said, the pre-#4902 behavior was broken, in that the timezone obtained within the non-default AppDomain may not have been the correct timezone.</pre>
     </div>
@@ -832,8 +832,8 @@ Visual Studio extension to enable development for Xamarin.iOS.</pre>
 
 
 <pre class="bz_comment_text">This is (kinda-sorta) fixed via monodroid/f60c21c0 / <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - DateTime.Now returns time off by 1 hour" href="show_bug.cgi?id=23405">Bug #23405</a> SO LONG AS the target Android device provides the persist.sys.timezone system property; see also <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Determine TimeZone from java.util.TimeZone, not persist.sys.timezone" href="show_bug.cgi?id=4902">Bug #4902</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - DateTime.Now returns time off by 1 hour" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23405">Bug #23405</a> SO LONG AS the target Android device provides the persist.sys.timezone system property; see also <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Determine TimeZone from java.util.TimeZone, not persist.sys.timezone" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4902">Bug #4902</a>.
 
 So if you happen to be fortunate enough to have an Android target which sets the persist.sys.timezone property, then you should be able to use DateTime.Now from a secondary AppDomain without a problem in 4.18.1.
 

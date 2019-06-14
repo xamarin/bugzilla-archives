@@ -631,13 +631,13 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Test app that reproduces the error
 
 This issue is similar to the resolved <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Application freeze during heavy network use/low memory" href="show_bug.cgi?id=1534">bug 1534</a>. When the bug manifests, the observed behavior is the same as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Application freeze during heavy network use/low memory" href="show_bug.cgi?id=1534">bug 1534</a> (mysterious stack trace with no exception and an app freeze and ANR message).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Application freeze during heavy network use/low memory" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1534">bug 1534</a>. When the bug manifests, the observed behavior is the same as <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Application freeze during heavy network use/low memory" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1534">bug 1534</a> (mysterious stack trace with no exception and an app freeze and ANR message).
 
 I have created a test case that will consistently reproduce the error. It seems that a mixture of heavy network, file IO, memory, and UI updating causes it to trigger. Running the attached test case for about 60 seconds will reproduce the error. It creates 2 threads that download and write a large file to disk (endlessly), and 3 threads that use a lot of memory then make https requests (endlessly), all the while the UI is being updated (via Handler.Post()).
 
 Not sure if this has anything to do with the GC as the assertion I experience with <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Application freeze during heavy network use/low memory" href="show_bug.cgi?id=1534">bug 1534</a> is not present.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Application freeze during heavy network use/low memory" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1534">bug 1534</a> is not present.</pre>
     </div>
 
     <div id="c1" class="bz_comment">

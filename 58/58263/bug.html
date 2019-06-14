@@ -783,12 +783,12 @@ Darwin 16.6.0 Darwin Kernel Version 16.6.0
 <pre class="bz_comment_text">Hi Eric,
 
 This does seem to be a timing issue and is related to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Entry / Editor and a Button. Tapping the button dismisses the keyboard" href="show_bug.cgi?id=45723">bug 45723</a>. What's happening in this case is that touching the page while the keyboard is open will fire off a UITapGestureRecognizer we've added to automatically close the keyboard[1]. The touch event does still get passed to the Button, however since we're wired up to TouchUpInside event your guess about the Button being moved at the same time does seem to be correct. 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Entry / Editor and a Button. Tapping the button dismisses the keyboard" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45723">bug 45723</a>. What's happening in this case is that touching the page while the keyboard is open will fire off a UITapGestureRecognizer we've added to automatically close the keyboard[1]. The touch event does still get passed to the Button, however since we're wired up to TouchUpInside event your guess about the Button being moved at the same time does seem to be correct. 
 
 To avoid this you would need to add a delay like you've already done. If you like, you could simplify it by just adding a 1ms delay instead of creating a new thread. But ultimately this would be recommended approach in order to accomplish this right now.
 
 There is a pull request for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Entry / Editor and a Button. Tapping the button dismisses the keyboard" href="show_bug.cgi?id=45723">bug 45723</a> to add a platform-specific feature that allows you to set controls as first responder on iOS. This would prevent the touch gesture from going to the page so you would be responsible for closing the keyboard, but that would allow the Clicked event to be fired beforehand. 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Entry / Editor and a Button. Tapping the button dismisses the keyboard" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45723">bug 45723</a> to add a platform-specific feature that allows you to set controls as first responder on iOS. This would prevent the touch gesture from going to the page so you would be responsible for closing the keyboard, but that would allow the Clicked event to be fired beforehand. 
 
 I am going to keep this report open as confirmed so the team can review it further and determine if this behavior should be kept or changed. Thanks!
 

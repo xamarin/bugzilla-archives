@@ -605,7 +605,7 @@ var temp =
 Console.WriteLine(temp.Config.GetType().FullName);
 
 As <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.Xml.XPath.Extensions.XPathEvaluate returns wrong result types" href="show_bug.cgi?id=2383">bug 2383</a> mentioned, the MSDN said that the return type should be "a bool, a double, a string, or an IEnumerable&lt;T&gt;".
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.Xml.XPath.Extensions.XPathEvaluate returns wrong result types" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2383">bug 2383</a> mentioned, the MSDN said that the return type should be "a bool, a double, a string, or an IEnumerable&lt;T&gt;".
 
 When running in .NET 4.0, this piece of code returns:
 System.Xml.XPath.XPathEvaluator+&lt;EvaluateIterator&gt;d__0`1[[System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
@@ -618,7 +618,7 @@ System.Xml.XPath.AxisIterator
 It is an Iterator. And it could not cast into IEnumerable&lt;object&gt;, or IEnumerable.
 
 Notice: It is quite different from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.Xml.XPath.Extensions.XPathEvaluate returns wrong result types" href="show_bug.cgi?id=2383">bug 2383</a>, which seems return a type which could cast into IEnumerable at least. However, in my case, it couldn't. So it is not easy to walk around so that it could run with both .NET and Mono.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.Xml.XPath.Extensions.XPathEvaluate returns wrong result types" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2383">bug 2383</a>, which seems return a type which could cast into IEnumerable at least. However, in my case, it couldn't. So it is not easy to walk around so that it could run with both .NET and Mono.</pre>
     </div>
 
     <div id="c1" class="bz_comment">

@@ -656,7 +656,7 @@ Actual result: App hangs with spin dump below:
 
 I commented out some code I used to try to workaround the issue, and if that code is commented in the steps to reproduce above will work and will deliver the expected results, but this does not count for directories being deleted from outside of the app so there is a bug here that needs to be addressed. I also filed a Mono bug discovered at the same time as this bug. 
 See bug <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Disposing a FileSystemWatcher object causes ArgumentOutOfRangeException" href="show_bug.cgi?id=30043">https://bugzilla.xamarin.com/show_bug.cgi?id=30043</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Disposing a FileSystemWatcher object causes ArgumentOutOfRangeException" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30043">https://bugzilla.xamarin.com/show_bug.cgi?id=30043</a>
 
 
 ## Spin dump report:
@@ -828,7 +828,7 @@ Parameter name: startIndex
   at System.IO.KqueueMonitor.DoMonitor () [0x00047] in /Library/Frameworks/Xamarin.Mac.framework/Versions/2.0.0.262/src/mono/mcs/class/System/System.IO/KeventWatcher.cs:268 
 
 I am 99% sure that when mono fixes their bug (<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Disposing a FileSystemWatcher object causes ArgumentOutOfRangeException" href="show_bug.cgi?id=30043">https://bugzilla.xamarin.com/show_bug.cgi?id=30043</a>) and XM issues you are seeing will go away. In general, when mono crashes / throws exceptions internally things don't tend to go well for XM afterwords.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Disposing a FileSystemWatcher object causes ArgumentOutOfRangeException" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30043">https://bugzilla.xamarin.com/show_bug.cgi?id=30043</a>) and XM issues you are seeing will go away. In general, when mono crashes / throws exceptions internally things don't tend to go well for XM afterwords.</pre>
     </div>
 
     <div id="c2" class="bz_comment">

@@ -701,7 +701,7 @@ The DebugRuntime package includes libmonosgen-2.0.so for both armeabi and armeab
 However, by default Release apps include the armeabi runtime, _not_ the armeabi-v7a runtime. (You can control this in Project Properties &gt; Application tab &gt; Supported architectures.)
 
 Thus, if you're running a Release app and you haven't changed the Supported architectures field, you'll be running the armeabi (ARMv5) runtime, and ARMv5 doesn't support multiple processors; see also <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - armeabi architecture needs to be tied to a single core." href="show_bug.cgi?id=281">Bug #281</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - armeabi architecture needs to be tied to a single core." href="https://bugzilla.xamarin.com/show_bug.cgi?id=281">Bug #281</a>.
 
 You may want to adjust your project properties to either exclusively use armeabi-v7a or include both.</pre>
     </div>

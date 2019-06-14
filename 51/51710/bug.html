@@ -528,7 +528,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Native linker fails when linking framework with large number of exported functions" href="show_bug.cgi?id=54417">54417</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Native linker fails when linking framework with large number of exported functions" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54417">54417</a>
           </li></ul>
 
 </td>
@@ -696,8 +696,8 @@ This issue seems to be introduced with <a href="https://github.com/xamarin/xamar
 
 
 <pre class="bz_comment_text">This is the tvOS-version (and probably watchOS as well) of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Compile Error MT5211 When Using Mobile Center" href="show_bug.cgi?id=51548">bug&nbsp;#51548</a> (the fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Compile Error MT5211 When Using Mobile Center" href="show_bug.cgi?id=51548">bug #51548</a> was to pass '-u _symbolX' to the linker, but '-u' is not allowed for bitcode).
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Compile Error MT5211 When Using Mobile Center" href="https://bugzilla.xamarin.com/show_bug.cgi?id=51548">bug&nbsp;#51548</a> (the fix for <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Compile Error MT5211 When Using Mobile Center" href="https://bugzilla.xamarin.com/show_bug.cgi?id=51548">bug #51548</a> was to pass '-u _symbolX' to the linker, but '-u' is not allowed for bitcode).
 
 @Sebastien, my suggestion here would be to bump this to C10, because tvOS (and watchOS) is much less used than iOS, so the impact should be lower (and the workaround is trivial). Once fixed, we can evaluate if we want it in a C9 service release or not.</pre>
     </div>
@@ -1175,7 +1175,7 @@ cycle9: <a href="https://github.com/xamarin/xamarin-macios/pull/1591">https://gi
 <pre class="bz_comment_text">@Jahmai, sorry, I was confused, this bug refers to a somewhat different issue than what you're running into, and we ended up talking about different things.
 
 You're running into the workaround for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [iOS cycle9] MT3001 Could not AOT the assembly" href="show_bug.cgi?id=52727">bug #52727</a>, which has not been fixed properly (the workaround is still in place). I've filed a new issue (<a href="https://github.com/xamarin/xamarin-macios/issues/3174">https://github.com/xamarin/xamarin-macios/issues/3174</a>) for us to look into fixing this somehow.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [iOS cycle9] MT3001 Could not AOT the assembly" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52727">bug #52727</a>, which has not been fixed properly (the workaround is still in place). I've filed a new issue (<a href="https://github.com/xamarin/xamarin-macios/issues/3174">https://github.com/xamarin/xamarin-macios/issues/3174</a>) for us to look into fixing this somehow.</pre>
     </div>
 
 

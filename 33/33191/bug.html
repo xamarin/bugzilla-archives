@@ -631,7 +631,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 <pre class="bz_comment_text">HttpListener crashes under load with both exceptions in the managed threading code and native segmentation violations.
 The code crashes during runtime (it will terminate after 10 seconds), if this would be fixed we still have to verify it does not crash during shutdown. (see <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Race condition in HttpListener.Close" href="show_bug.cgi?id=32978">https://bugzilla.xamarin.com/show_bug.cgi?id=32978</a>)
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Race condition in HttpListener.Close" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32978">https://bugzilla.xamarin.com/show_bug.cgi?id=32978</a>)
 
 To replicate:
 
@@ -990,8 +990,8 @@ Can someone confirm?</pre>
 
 
 <pre class="bz_comment_text">This might be related to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - NRE in System.Threading.Timer+Scheduler.SchedulerThread" href="show_bug.cgi?id=29299">bug #29299</a> and <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGV on shutdown in threadpool stress test" href="show_bug.cgi?id=29212">bug #29212</a>, which only happens on certain linux kernels.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - NRE in System.Threading.Timer+Scheduler.SchedulerThread" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29299">bug #29299</a> and <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGV on shutdown in threadpool stress test" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29212">bug #29212</a>, which only happens on certain linux kernels.
 
 @Christian, which OS (and version) are you running?</pre>
     </div>

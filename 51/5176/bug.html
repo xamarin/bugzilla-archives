@@ -1044,7 +1044,7 @@ Updated patch, changes:
 <pre class="bz_comment_text">The patch works great, thanks!
 
 I had some trouble debugging marshalling the event into managed code, and it turned out Mono's struct layout didn't match the gcc one - it was trying to align the doubles to 8 bytes (filed as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Struct layout on 32-bit MacOS doesn't match gcc" href="show_bug.cgi?id=5405">bug 5405</a>). I was able to fix that without C getter functions, by overriding the struct packing, but it'll probably cause problems if/when we do a 64-bit port. But that's incredibly low on the priority list right now, and we have a bunch of similar cases in MD already, so IMO we should leave the patch as-is.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Struct layout on 32-bit MacOS doesn't match gcc" href="https://bugzilla.xamarin.com/show_bug.cgi?id=5405">bug 5405</a>). I was able to fix that without C getter functions, by overriding the struct packing, but it'll probably cause problems if/when we do a 64-bit port. But that's incredibly low on the priority list right now, and we have a bunch of similar cases in MD already, so IMO we should leave the patch as-is.
 
 I've landed the patch in bockbuild and landed the wrapper code in MD. I'll land the patches for text editor zoom support after some cleanup.</pre>
     </div>

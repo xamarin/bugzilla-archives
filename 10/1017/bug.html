@@ -214,7 +214,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="show_bug.cgi?id=587">bug 587</a>
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="https://bugzilla.xamarin.com/show_bug.cgi?id=587">bug 587</a>
       </span>
     </td>
   </tr>
@@ -545,7 +545,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="show_bug.cgi?id=587">bug 587</a></span>
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="https://bugzilla.xamarin.com/show_bug.cgi?id=587">bug 587</a></span>
 </div>
 
 
@@ -649,7 +649,7 @@ I've tried to create a sample project outside of my main project, but cannot rep
 Can you try it with the default value, i.e. "Link SDK assemblies" ?
 
 It could be related to <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="show_bug.cgi?id=587">bug #587</a> which is already fixed and only occured when "Don't Link" is used.
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="https://bugzilla.xamarin.com/show_bug.cgi?id=587">bug #587</a> which is already fixed and only occured when "Don't Link" is used.
 
 <span class="quote">&gt;I've tried to create a sample project outside of my main project, but cannot
 &gt;reproduce. Sorry.</span>
@@ -808,7 +808,7 @@ Back to (A) you could try to reproduce the issue by adding:
 var count = _object.Entries.OfType&lt;IMyType&gt;().LongCount(); 
 
 or somthing similar that will do a "OfType&lt;IMyType&gt;().LongCount();" inside your Main method and use the "Link SDK assemblies". Since it would be executed very earlier there's a good chance it would not trigger the issues you have using (B). If you get past that line then we'll know (A) is <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="show_bug.cgi?id=587">bug #587</a>, otherwise we'll know this needs further investigation.</pre>
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="https://bugzilla.xamarin.com/show_bug.cgi?id=587">bug #587</a>, otherwise we'll know this needs further investigation.</pre>
     </div>
 
     <div id="c6" class="bz_comment">
@@ -876,7 +876,7 @@ Nothing is executed before the Main method (even your FinishedLaunching method) 
 &gt; Linq queries fail, even with "Don't Link".</span>
 
 Using "Don't link" was a workaround for <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="show_bug.cgi?id=587">bug #587</a> (fixed in upcoming 4.2.2) but it won't solve issues, like #767, that hits limitations of generic usage under AOT.
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="https://bugzilla.xamarin.com/show_bug.cgi?id=587">bug #587</a> (fixed in upcoming 4.2.2) but it won't solve issues, like #767, that hits limitations of generic usage under AOT.
 
 <a href="http://ios.xamarin.com/Documentation/Limitations#Limited_Generics_Support">http://ios.xamarin.com/Documentation/Limitations#Limited_Generics_Support</a>
 
@@ -941,7 +941,7 @@ You can workaround them (some cases are easier than others) and we can also help
 <pre class="bz_comment_text">Look for "Product Download and Activation Self Service" on <a href="http://support.xamarin.com/">http://support.xamarin.com/</a>
 
 You might also want to try 4.2.2 (to be released soon) since that will remove any doubt about <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="show_bug.cgi?id=587">bug #587</a>.</pre>
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="https://bugzilla.xamarin.com/show_bug.cgi?id=587">bug #587</a>.</pre>
     </div>
 
     <div id="c11" class="bz_comment">
@@ -971,7 +971,7 @@ You might also want to try 4.2.2 (to be released soon) since that will remove an
 
 
 <pre class="bz_comment_text">Its possible that this is <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="show_bug.cgi?id=587">bug #587</a> as I have reproduced (with less complexity) in a test app. 
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="https://bugzilla.xamarin.com/show_bug.cgi?id=587">bug #587</a> as I have reproduced (with less complexity) in a test app. 
 
 When set to "Don't Link" the code fails, but when set to "Link SDK" it works.
 
@@ -1066,7 +1066,7 @@ namespace test
 <pre class="bz_comment_text">MonoTouch 4.2.2 fixes this.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="show_bug.cgi?id=587">bug 587</a> ***</pre>
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Full-AOT failure when *not* linking the application" href="https://bugzilla.xamarin.com/show_bug.cgi?id=587">bug 587</a> ***</pre>
     </div>
 
 

@@ -670,11 +670,11 @@ This equivalent Regex does not show the massive slowdown:
 I tried both Mono 2.10.5 (Debian package) and Mono 2.11.2 (tarball), and for each I tried with and without MONO_NEW_RX=1. The only combination that is incredibly slow is Mono 2.11.2 *without* MONO_NEW_RX=1.
 
 Given that this regression is recent and linked to the "|" operator, I think it's probably to do with this fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Regular Expressions bug" href="show_bug.cgi?id=2663">bug 2663</a>:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Regular Expressions bug" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2663">bug 2663</a>:
 
 <a href="https://github.com/mono/mono/commit/60a463c6f3164784939cd9535acf865f6b33ef20">https://github.com/mono/mono/commit/60a463c6f3164784939cd9535acf865f6b33ef20</a>
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Regular Expressions bug" href="show_bug.cgi?id=2663">https://bugzilla.xamarin.com/show_bug.cgi?id=2663</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Regular Expressions bug" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2663">https://bugzilla.xamarin.com/show_bug.cgi?id=2663</a>
 
 I'm not familiar enough with the regex implementation to understand what's going on in there.</pre>
     </div>

@@ -602,7 +602,7 @@ A customer is using a code analysis tool that requires the &lt;TargetFrameworkVe
 The issue is that if a user adds the &lt;TargetFrameworkVersion&gt;v1.0&lt;/TargetFrameworkVersion&gt; to the iOS .csproj file, when that project is opened in Visual Studio the element is removed, causing issues with the code analysis tools our customer is using.
 
 I think this removal may be intentional to avoid errors, perhaps due to this old bug: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - VS addin has incorrect TargetFrameworkVersion for MonoTouch framework" href="show_bug.cgi?id=13312">https://bugzilla.xamarin.com/show_bug.cgi?id=13312</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - VS addin has incorrect TargetFrameworkVersion for MonoTouch framework" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13312">https://bugzilla.xamarin.com/show_bug.cgi?id=13312</a>
 
 If so, perhaps it would be possible to not remove the element but change the conditional in C:\Program Files (x86)\MSBuild\Xamarin\iOS\Xamarin.iOS.CSharp.targets to something like:
 

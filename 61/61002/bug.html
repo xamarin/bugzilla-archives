@@ -350,7 +350,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=61003">61003</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=61003">61003</a> 
       </span>
       ()
     </td>
@@ -736,7 +736,7 @@ at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw () [0x0000c] in 
 <pre class="bz_comment_text">
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=61003">bug 61003</a> ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=61003">bug 61003</a> ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -971,7 +971,7 @@ Terminating app due to uncaught exception 'System.AggregateException: A Task's e
 
 
 <pre class="bz_comment_text">Someone please make <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=61003">bug 61003</a> public, please. Says I do not have to access to it</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=61003">bug 61003</a> public, please. Says I do not have to access to it</pre>
     </div>
 
     <div id="c9" class="bz_comment">
@@ -1117,7 +1117,7 @@ Terminating app due to uncaught exception 'System.AggregateException: A Task's e
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=61003">Bug 61003</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=61003">Bug 61003</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c14" class="bz_comment">
@@ -1549,7 +1549,7 @@ It is saved into the `MobileAuthenticatedStream.lastException` field so that it 
 <pre class="bz_comment_text">## Cross-reference note for the Xamarin team
 
 Non-public <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE" href="show_bug.cgi?id=60387">Bug 60387</a> shows the same exception message during a NuGet package restore operation in MonoDevelop on Linux.  It is not clear from that report how reproducible the exception might be in that scenario.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=60387">Bug 60387</a> shows the same exception message during a NuGet package restore operation in MonoDevelop on Linux.  It is not clear from that report how reproducible the exception might be in that scenario.</pre>
     </div>
 
     <div id="c27" class="bz_comment">
@@ -1613,12 +1613,12 @@ I have been able to replicate this exception using a NuGet package restore opera
 <pre class="bz_comment_text">## Small update
 
 I can force the `ObjectDisposedException` for `MobileAuthenticatedStream` to happen using the following console program based on the test case from <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - [New Web Stack] BCL HttpClientHandler sometimes throws invalid HttpRequestException on cancellation." href="show_bug.cgi?id=55872">Bug 55872</a>.  This test case is roughly similar to what NuGet restore does: dispatching multiple requests in parallel, and canceling and retrying some of them if they exceed a timeout [1].  With Mono 5.2 (from the "d15-3" branch, based on the 2017-04 branch), it seems that the exception for `MobileAuthenticatedStream` never gets thrown, unlike in Mono 5.4 (from the "2017-06" branch).  But `ObjectDisposedException`s are thrown for `System.Net.Sockets.Socket` and `System.Net.Sockets.NetworkStream` in _both_ versions.
+          bz_status_ASSIGNED " title="ASSIGNED - [New Web Stack] BCL HttpClientHandler sometimes throws invalid HttpRequestException on cancellation." href="https://bugzilla.xamarin.com/show_bug.cgi?id=55872">Bug 55872</a>.  This test case is roughly similar to what NuGet restore does: dispatching multiple requests in parallel, and canceling and retrying some of them if they exceed a timeout [1].  With Mono 5.2 (from the "d15-3" branch, based on the 2017-04 branch), it seems that the exception for `MobileAuthenticatedStream` never gets thrown, unlike in Mono 5.4 (from the "2017-06" branch).  But `ObjectDisposedException`s are thrown for `System.Net.Sockets.Socket` and `System.Net.Sockets.NetworkStream` in _both_ versions.
 
 It seems that these exceptions are usually _handled_ within the network stack itself and not surfaced as _unhandled_ exceptions.  So far I haven't gotten an _unhandled_ `ObjectDisposedException` for `MobileAuthenticatedStream` with the console program at all, though I have seen unhandled object disposed exceptions for `System.Net.Sockets.Socket` and `System.Net.Sockets.NetworkStream`.
 
 Preliminary experimentation with the console program suggests that the refactoring work related to <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - [New Web Stack] BCL HttpClientHandler sometimes throws invalid HttpRequestException on cancellation." href="show_bug.cgi?id=55872">Bug 55872</a> might help with this <a class="bz_bug_link 
+          bz_status_ASSIGNED " title="ASSIGNED - [New Web Stack] BCL HttpClientHandler sometimes throws invalid HttpRequestException on cancellation." href="https://bugzilla.xamarin.com/show_bug.cgi?id=55872">Bug 55872</a> might help with this <a class="bz_bug_link 
           bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Runtime exception: Cannot access a disposed object. Object name: 'MobileAuthenticatedStream'." href="bug.html">Bug 61002</a> as well: I did not get _any_ unhandled exceptions when using the latest development builds of desktop Mono [2] that include that candidate work.
 
 [1] <a href="https://github.com/NuGet/NuGet.Client/blob/8a38fe7c21a1af9a1dc4c388ec67cce02c4bb76f/src/NuGet.Core/NuGet.Protocol/HttpSource/HttpRetryHandler.cs#L82">https://github.com/NuGet/NuGet.Client/blob/8a38fe7c21a1af9a1dc4c388ec67cce02c4bb76f/src/NuGet.Core/NuGet.Protocol/HttpSource/HttpRetryHandler.cs#L82</a>
@@ -1719,7 +1719,7 @@ Task WriteAsync ()
 Out of these methods, the console test program only hits `IAsyncResult BeginWrite()`.  Based on some initial experimentation, it seems that the problem might be that the corresponding `MobileAuthenticatedStream.EndWrite()` isn't called to observe the exceptions from `BeginWrite()`.  I will continue to investigate.
 
 (To follow up briefly on the role of the refactoring work related to <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - [New Web Stack] BCL HttpClientHandler sometimes throws invalid HttpRequestException on cancellation." href="show_bug.cgi?id=55872">Bug 55872</a>, I'll note that that work does _change_ the failure scenario of this test case, but it does not completely solve it.  When running under that candidate code, the test case hits unobserved "The request was canceled." `WebException`s rather than `ObjectDisposedException`s.  I will file a separate follow-up bug for those different unobserved exceptions for the new refactored code.)
+          bz_status_ASSIGNED " title="ASSIGNED - [New Web Stack] BCL HttpClientHandler sometimes throws invalid HttpRequestException on cancellation." href="https://bugzilla.xamarin.com/show_bug.cgi?id=55872">Bug 55872</a>, I'll note that that work does _change_ the failure scenario of this test case, but it does not completely solve it.  When running under that candidate code, the test case hits unobserved "The request was canceled." `WebException`s rather than `ObjectDisposedException`s.  I will file a separate follow-up bug for those different unobserved exceptions for the new refactored code.)
 
 
 
@@ -2440,8 +2440,8 @@ I first re-confirmed that I was able to produce the unobserved exceptions using 
 I was unable to produce any unobserved exceptions under these conditions.
 
 I then further stress-tested the candidate fix using desktop Mono with scenarios based on the test case from <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - [New Web Stack] BCL HttpClientHandler sometimes throws invalid HttpRequestException on cancellation." href="show_bug.cgi?id=55872">Bug 55872</a> and the test case from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - ObjectDisposedException when canceling postAsync" href="show_bug.cgi?id=31507">Bug 31507</a>.  Before the fix, I was able to produce unobserved exceptions on every run for both scenarios.  After the fix, I was unable to produce any unobserved exceptions across a number of different combinations of cancellation timings, HTTPS endpoints, simultaneous requests, and POST versus GET requests.</pre>
+          bz_status_ASSIGNED " title="ASSIGNED - [New Web Stack] BCL HttpClientHandler sometimes throws invalid HttpRequestException on cancellation." href="https://bugzilla.xamarin.com/show_bug.cgi?id=55872">Bug 55872</a> and the test case from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - ObjectDisposedException when canceling postAsync" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31507">Bug 31507</a>.  Before the fix, I was able to produce unobserved exceptions on every run for both scenarios.  After the fix, I was unable to produce any unobserved exceptions across a number of different combinations of cancellation timings, HTTPS endpoints, simultaneous requests, and POST versus GET requests.</pre>
     </div>
 
     <div id="c47" class="bz_comment">

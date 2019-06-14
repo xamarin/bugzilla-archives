@@ -631,7 +631,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Sample project that shows the issue.
 
 I need to specify the HeightRequest of a SearchBar control in XAML file for the Android platform only due to this bug: <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - The SearchBar doesn't display on Android N" href="show_bug.cgi?id=43975">https://bugzilla.xamarin.com/show_bug.cgi?id=43975</a>, and I need to leave the default values for the other platforms, however, at runtime and in the Forms Previewer, the SeachBar on iOS is not visible (with a heighrequest of 0) even though I didn't set the value of the OnPlatform for iOS.
+          bz_status_CONFIRMED " title="CONFIRMED - The SearchBar doesn't display on Android N" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43975">https://bugzilla.xamarin.com/show_bug.cgi?id=43975</a>, and I need to leave the default values for the other platforms, however, at runtime and in the Forms Previewer, the SeachBar on iOS is not visible (with a heighrequest of 0) even though I didn't set the value of the OnPlatform for iOS.
 
 Here's my sample SearchBar that shows the issue:
 
@@ -658,7 +658,7 @@ The onplatformbugPage.xaml Page shows the onplatform setting for android only wh
 The WithIOSHeightRequest Page shows that both search bars show if I set an On Platform for iOS with an explicit height (I don't want to set it as I want the OS to use the default height).
 
 The WithoutHeightRequest shows that the iOS searchbar shows fine at it's default height, but the Android search bar does not show because of this bug: <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - The SearchBar doesn't display on Android N" href="show_bug.cgi?id=43975">https://bugzilla.xamarin.com/show_bug.cgi?id=43975</a></pre>
+          bz_status_CONFIRMED " title="CONFIRMED - The SearchBar doesn't display on Android N" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43975">https://bugzilla.xamarin.com/show_bug.cgi?id=43975</a></pre>
     </div>
 
     <div id="c1" class="bz_comment">
@@ -696,7 +696,7 @@ To avoid this, you will need to set the HeightRequest on iOS (and any other plat
 This will be easier to do in 2.3.5 as you will be able to set a single default value that is returned in these scenarios[2] instead of providing one for each platform.
 
 However I also looked at the Google bug[3] linked to in <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - The SearchBar doesn't display on Android N" href="show_bug.cgi?id=43975">bug 43975</a> and it says it should be fixed in v25 of the support libraries. If your Android project is using Forms 2.3.4 and is set to compile with Android 7.0 or higher, you can update the support library packages to the latest version where this issue should be fixed. This might be a better solution as you will not have to use OnPlatform as a workaround.
+          bz_status_CONFIRMED " title="CONFIRMED - The SearchBar doesn't display on Android N" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43975">bug 43975</a> and it says it should be fixed in v25 of the support libraries. If your Android project is using Forms 2.3.4 and is set to compile with Android 7.0 or higher, you can update the support library packages to the latest version where this issue should be fixed. This might be a better solution as you will not have to use OnPlatform as a workaround.
 
 Hope this helps!
 

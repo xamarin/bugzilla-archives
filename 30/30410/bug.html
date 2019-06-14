@@ -355,7 +355,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Can't sign and distribute an app with extensions - ERROR ITMS-90161: &quot;Invalid Provisioning Profile.&quot;" href="show_bug.cgi?id=30320">30320</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Can't sign and distribute an app with extensions - ERROR ITMS-90161: &quot;Invalid Provisioning Profile.&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30320">30320</a> 
   </td>
   </tr>
 
@@ -644,7 +644,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Screenshot of rejection
 
 Every time I want to submit an app I have to hack the Archive. You have <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - iTunesArtwork packaged in AppStore .ipa's, should only be exported in AdHoc ipa's" href="show_bug.cgi?id=24412">bug #24412</a> marked resolved but I still get this error.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - iTunesArtwork packaged in AppStore .ipa's, should only be exported in AdHoc ipa's" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24412">bug #24412</a> marked resolved but I still get this error.
 
 === Xamarin Studio ===
 
@@ -734,12 +734,12 @@ Darwin muon.local 14.3.0 Darwin Kernel Version 14.3.0
 
 
 <pre class="bz_comment_text">This is a dup of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="show_bug.cgi?id=29180">bug #29180</a>, not #24412.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29180">bug #29180</a>, not #24412.
 
 More information can also be found here: <a href="http://forums.xamarin.com/discussion/40388/disallowed-paths-itunesmetadata-plist-found-at-when-submitting-to-app-store/p1">http://forums.xamarin.com/discussion/40388/disallowed-paths-itunesmetadata-plist-found-at-when-submitting-to-app-store/p1</a>
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="show_bug.cgi?id=29180">bug 29180</a> ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29180">bug 29180</a> ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -800,7 +800,7 @@ More information can also be found here: <a href="http://forums.xamarin.com/disc
 <pre class="bz_comment_text">To make a guess, if by chance you might be using Xcode to submit the app (rather than the "Sign and Distribute" button in Xamarin Studio followed by Application Loader), then you will still hit this error by default.
 
 The explanation is essentially that Xamarin's `.xcarchive` format is not in fact 100% compatible with Apple's `.xcarchive` format (see <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="show_bug.cgi?id=29180#c16">Bug 29180, Comment 16</a>). So if you wish to use Xcode to submit the app, you will need to manually remove the `iTunesMetadata.plist` file from the `.xcarchive` bundle before submitting the app.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29180#c16">Bug 29180, Comment 16</a>). So if you wish to use Xcode to submit the app, you will need to manually remove the `iTunesMetadata.plist` file from the `.xcarchive` bundle before submitting the app.
 
 
 From the forum thread:
@@ -881,7 +881,7 @@ I'm just a member of the Xamarin Support Team, so I am not the perfect person to
 
 
 But my personal assessment is that the comment I linked before (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="show_bug.cgi?id=29180#c16">Bug 29180, Comment 16</a>) mostly answers the question. To paraphrase that comment in the form of a question: is it worth the time and effort to attempt to more perfectly reverse engineer the `.xcarchive` format and the Xcode app submission logic?
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29180#c16">Bug 29180, Comment 16</a>) mostly answers the question. To paraphrase that comment in the form of a question: is it worth the time and effort to attempt to more perfectly reverse engineer the `.xcarchive` format and the Xcode app submission logic?
 
 
 Related follow-up questions:
@@ -938,7 +938,7 @@ That lack of flexibility can lead to the following error when submitting the app
 <span class="quote">&gt; ERROR ITMS-90161: "Invalid Provisioning Profile."</span>
 
 (That issue is being tracked in the non-public <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Can't sign and distribute an app with extensions - ERROR ITMS-90161: &quot;Invalid Provisioning Profile.&quot;" href="show_bug.cgi?id=30320">Bug 30320</a> that has just been marked as a dependency for this bug.)</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Can't sign and distribute an app with extensions - ERROR ITMS-90161: &quot;Invalid Provisioning Profile.&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30320">Bug 30320</a> that has just been marked as a dependency for this bug.)</pre>
     </div>
 
     <div id="c7" class="bz_comment">
@@ -968,7 +968,7 @@ That lack of flexibility can lead to the following error when submitting the app
 
 
 <pre class="bz_comment_text">As someone who just had to manually work around a *different* tool <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Watch App Info.plist UIDeviceFamily array incorrect" href="show_bug.cgi?id=30958">bug #30958</a> that caused me to need to manually edit the archive, I was very surprised I then had to also manually delete the iTunes Metadata file as well.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Watch App Info.plist UIDeviceFamily array incorrect" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30958">bug #30958</a> that caused me to need to manually edit the archive, I was very surprised I then had to also manually delete the iTunes Metadata file as well.
 
 So please consider that from time to time customers may need to hack the archive because of unexpected bug, so ensure that the file is complaint otherwise.
 
@@ -1039,7 +1039,7 @@ You see, I want archives to work because *I don't trust you* to reverse engineer
 
 
 <pre class="bz_comment_text">To reiterate, I'm just a member of the Support Team. My comments on this bug are purely a "thought experiment" expansion on the statements from the engineering team in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="show_bug.cgi?id=29180">Bug 29180</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29180">Bug 29180</a>.
 
 
 I will mention this bug to Miguel and Jeff to see if they would like to offer additional insight from the engineering perspective.
@@ -1061,7 +1061,7 @@ or
 
 
 As stated in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="show_bug.cgi?id=29180#c14">Bug 29180, Comment 14</a>:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29180#c14">Bug 29180, Comment 14</a>:
 
 <span class="quote">&gt; FWIW, Xcode's Archive publishing logic somehow pulls the iTunesArtwork and
 &gt; iTunesMetadata.plist files from the project and not from anywhere in the
@@ -1069,7 +1069,7 @@ As stated in <a class="bz_bug_link
 &gt; the same way.</span>
 
 And <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="show_bug.cgi?id=29180#c16">Bug 29180, Comment 16</a>:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Rogue iTunesMetadata.plist causes issues with StoreKit on iOS7" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29180#c16">Bug 29180, Comment 16</a>:
 
 <span class="quote">&gt;  I never figured out exactly how they create .ipa's and pull in iTunesArtwork
 &gt;  and iTunesMetadata.plist files when making ad-hoc IPA's since Xcode's

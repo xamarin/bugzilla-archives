@@ -350,7 +350,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Dot is stripped from assembly name" href="show_bug.cgi?id=31975">31975</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Dot is stripped from assembly name" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31975">31975</a> 
       </span>
       ()
     </td>
@@ -659,20 +659,20 @@ Reloading iOS project removes "." period characters from the "AssemblyName" elem
 ## Regression status: this has been messy for quite some time.
 
 It appears this is related to the fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=19662">Bug 19662</a> and <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=19902">Bug 19902</a>?
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19662">Bug 19662</a> and <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19902">Bug 19902</a>?
 
 
 At its core, it might be a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=16081">Bug 16081</a>?
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16081">Bug 16081</a>?
 
 
 If we look at <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Able to build apps with non-alphanumeric characters in the assembly name" href="show_bug.cgi?id=19483">Bug 19483</a>, we see some discussion to the effect that "fixing up" the AssemblyName automatically within the `.csproj` is probably _not_ the desired behavior. Users should probably be allowed to set the AssemblyName _any way that Visual Studio will allow_ within the `.csproj`, and VS shouldn't "change that behind the user's back." If Xamarin.iOS has to do some "internal fixups" of that name during the build process, that's another question. Throwing build errors rather than performing an "internal fixup" is another approach. A mix of approaches might be appropriate, but this all probably needs careful consideration.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Able to build apps with non-alphanumeric characters in the assembly name" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19483">Bug 19483</a>, we see some discussion to the effect that "fixing up" the AssemblyName automatically within the `.csproj` is probably _not_ the desired behavior. Users should probably be allowed to set the AssemblyName _any way that Visual Studio will allow_ within the `.csproj`, and VS shouldn't "change that behind the user's back." If Xamarin.iOS has to do some "internal fixups" of that name during the build process, that's another question. Throwing build errors rather than performing an "internal fixup" is another approach. A mix of approaches might be appropriate, but this all probably needs careful consideration.
 
 
 What's more, as per <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=30348#c8">Bug 30348, Comment 8</a>, it appears that the "The assembly name ... cannot contain more than one dot." restriction is being lifted in Cycle 5 – Service Release 3, so this specific issue with removing "." dot characters is now even "more different" than how it used to be.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30348#c8">Bug 30348, Comment 8</a>, it appears that the "The assembly name ... cannot contain more than one dot." restriction is being lifted in Cycle 5 – Service Release 3, so this specific issue with removing "." dot characters is now even "more different" than how it used to be.
 
 
 If nothing else, I believe we can now allow "." characters within the AssemblyName in XVS.
@@ -680,7 +680,7 @@ If nothing else, I believe we can now allow "." characters within the AssemblyNa
 
 
 GOOD: Xamarin for Visual Studio   2.1.7.0 (4c7fa6a) (from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=16081#c6">Bug 16081, Comment 6</a>)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16081#c6">Bug 16081, Comment 6</a>)
 
 BAD:  Xamarin   4.0.0.683  (daebc31)
 BAD:  Xamarin   3.11.816.0 (cefca47)
@@ -736,7 +736,7 @@ All the dots have been removed from the AssemblyName:
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Dot is stripped from assembly name" href="show_bug.cgi?id=31975">Bug 31975</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Dot is stripped from assembly name" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31975">Bug 31975</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">

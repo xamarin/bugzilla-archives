@@ -918,8 +918,8 @@ I can give you a source code of my test project. I use Fody and MvvmCross, and n
 <pre class="bz_comment_text">## Cross-referencing note
 
 There is a chance that the underlying issue from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE - Unable to hit PCL breakpoints on iOS device in CrossPlatform Xamarin.Forms PCL template" href="show_bug.cgi?id=56893">Bug 56893</a> might account for this bug report too even though the output shown in <a href="bug.html">Comment 2</a> is from an iOS simulator and <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE - Unable to hit PCL breakpoints on iOS device in CrossPlatform Xamarin.Forms PCL template" href="show_bug.cgi?id=56893">Bug 56893</a> is so far only confirmed to affect debugging on iOS devices.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE - Unable to hit PCL breakpoints on iOS device in CrossPlatform Xamarin.Forms PCL template" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56893">Bug 56893</a> might account for this bug report too even though the output shown in <a href="bug.html">Comment 2</a> is from an iOS simulator and <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE - Unable to hit PCL breakpoints on iOS device in CrossPlatform Xamarin.Forms PCL template" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56893">Bug 56893</a> is so far only confirmed to affect debugging on iOS devices.
 
 
 
@@ -927,7 +927,7 @@ There is a chance that the underlying issue from <a class="bz_bug_link
 ## Possible next step for the reporter of the bug
 
 As a quick experiment, the reporter of this bug and other users watching the report might wish to try the "possible temporary workaround" from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE - Unable to hit PCL breakpoints on iOS device in CrossPlatform Xamarin.Forms PCL template" href="show_bug.cgi?id=56893#c2">Bug 56893, Comment 2</a> to switch to portable .pdb files and see that is effective for their particular scenarios.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE - Unable to hit PCL breakpoints on iOS device in CrossPlatform Xamarin.Forms PCL template" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56893#c2">Bug 56893, Comment 2</a> to switch to portable .pdb files and see that is effective for their particular scenarios.
 
 Note that a fix for another potential cause of issues with breakpoints is included in Visual Studio 2017 (26430.12) from May 30 (and XamarinVS 4.5.0.476 for Visual Studio 2015), so updating to that version is also recommended (along with the corresponding Stable channel updates for Mac).
 
@@ -999,7 +999,7 @@ Thanks!</pre>
 Since sharing a full project can be tricky to coordinate unless the reporter has a simple test project that they know matches the complete symptoms from the full original project, a couple alternative ways the reporter (@Artem) could help double-check the verification for the original scenario from <a href="bug.html">Comment 0</a> would be to:
 
 (a) Check if the "possible temporary workaround" from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE - Unable to hit PCL breakpoints on iOS device in CrossPlatform Xamarin.Forms PCL template" href="show_bug.cgi?id=56893#c2">Bug 56893, Comment 2</a> is also effective for the original scenario from <a href="bug.html">Comment 0</a> where the reporter observed the issue.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE - Unable to hit PCL breakpoints on iOS device in CrossPlatform Xamarin.Forms PCL template" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56893#c2">Bug 56893, Comment 2</a> is also effective for the original scenario from <a href="bug.html">Comment 0</a> where the reporter observed the issue.
 
 or
 
@@ -1096,7 +1096,7 @@ To be precise, as mentioned in <a href="bug.html">Comment 5</a>, this _exact_ bu
 
 <span class="quote">&gt; I tried all alpha channels</span>
 (a) To help clarify a few details, as mentioned indirectly in <a href="bug.html">Comment 7</a>, the current 15.3 release preview does not yet included the candidate fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE - Unable to hit PCL breakpoints on iOS device in CrossPlatform Xamarin.Forms PCL template" href="show_bug.cgi?id=56893">Bug 56893</a>.  It would be necessary to wait for a little bit longer until the next Xamarin "15.3 release" preview is available (tentatively within the next week) to test that candidate fix using the a preview build.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE - Unable to hit PCL breakpoints on iOS device in CrossPlatform Xamarin.Forms PCL template" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56893">Bug 56893</a>.  It would be necessary to wait for a little bit longer until the next Xamarin "15.3 release" preview is available (tentatively within the next week) to test that candidate fix using the a preview build.
 
 (b) The Alpha channel is in a special circumstance at the moment where it is a few versions _older_ than the Beta channel because it is being used to provide a few early previews of features that aren't yet intended to be included in the Beta versions.  So the most recent preview versions are on the Beta channel, and the next _Beta_ version (to be published tentatively within the next week) would be the best version to check for remaining issues.
 

@@ -775,7 +775,7 @@ Darwin ShrutiMac.local 13.3.0 Darwin Kernel Version 13.3.0
 The "Check for updates" bug is different. Checking for updates can take a long while especially if one of your NuGet package sources is Team City. Whilst cancelling the original 'check for updates' request may not that straightforward, without re-implementing parts of NuGet, we might be able to do things like ignore the results that come back, and allow other 'check for updates' requests to be sent, check for cancellations after each project has been checked, and clear the status bar when the solution is closed.
 
 There is another <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - When package updating, you cannot remove packages" href="show_bug.cgi?id=21784">bug #21784</a> logged for 'Check for updates' where it blocks the use of NuGet if the check takes a long time. These two issues may be addressed at the same time. Currently the 'Check for updates' uses the background dispatcher which runs one thing at a time. The 'Check for updates' does not need to use this background dispatcher and instead it could use another background thread.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - When package updating, you cannot remove packages" href="https://bugzilla.xamarin.com/show_bug.cgi?id=21784">bug #21784</a> logged for 'Check for updates' where it blocks the use of NuGet if the check takes a long time. These two issues may be addressed at the same time. Currently the 'Check for updates' uses the background dispatcher which runs one thing at a time. The 'Check for updates' does not need to use this background dispatcher and instead it could use another background thread.</pre>
     </div>
 
     <div id="c3" class="bz_comment">

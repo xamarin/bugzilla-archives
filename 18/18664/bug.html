@@ -637,10 +637,10 @@ I currently have an Indie level Xamarin subscription. I integrated the latest Se
 After doing some digging, it doesn't appear as though the ServiceStack client lib is actually using System.ServiceModel, but perhaps it is implicitly referenced in the PCL process? PCLs are a bit of a mystery to me still. I found some bug reports and similar questions relating to Android libraries, but haven't found a workaround or fix yet.
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Compiler complains I am using System.ServiceModel when I am not" href="show_bug.cgi?id=13370">https://bugzilla.xamarin.com/show_bug.cgi?id=13370</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Compiler complains I am using System.ServiceModel when I am not" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13370">https://bugzilla.xamarin.com/show_bug.cgi?id=13370</a>
 
 <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Adding Azure Mobile Services component triggers System.ServiceModel license check" href="show_bug.cgi?id=17247">https://bugzilla.xamarin.com/show_bug.cgi?id=17247</a>
+          bz_status_CONFIRMED " title="CONFIRMED - Adding Azure Mobile Services component triggers System.ServiceModel license check" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17247">https://bugzilla.xamarin.com/show_bug.cgi?id=17247</a>
 
 I've attached a simple project that exhibits the problem.  Creating a reference to a ServiceStack JsonServiceClient is enough to trigger the window stating the need for a Business level subscription.
 

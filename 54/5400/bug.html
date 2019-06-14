@@ -651,7 +651,7 @@ I made a screencast: <a href="http://youtu.be/aCtuFpVwqAw">http://youtu.be/aCtuF
 
 
 <pre class="bz_comment_text">Oh, I still do reproduce it, but just found out it only happens when my solution is inside a folder which is a symlink to other folder, like it happened in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Does not stop execution in breakpoint if solution is inside a symlinked path" href="show_bug.cgi?id=5225">bug 5225</a>, so I'm wondering if there are more path comparisons that are taking place without calling realpath() like we did in <a href="https://github.com/mono/monodevelop/commit/4346021d5754082b04cf961b79ed18c2f1946c82">https://github.com/mono/monodevelop/commit/4346021d5754082b04cf961b79ed18c2f1946c82</a> ?</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Does not stop execution in breakpoint if solution is inside a symlinked path" href="https://bugzilla.xamarin.com/show_bug.cgi?id=5225">bug 5225</a>, so I'm wondering if there are more path comparisons that are taking place without calling realpath() like we did in <a href="https://github.com/mono/monodevelop/commit/4346021d5754082b04cf961b79ed18c2f1946c82">https://github.com/mono/monodevelop/commit/4346021d5754082b04cf961b79ed18c2f1946c82</a> ?</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -741,7 +741,7 @@ I made a screencast: <a href="http://youtu.be/aCtuFpVwqAw">http://youtu.be/aCtuF
 <pre class="bz_comment_text">Thanks Jeff. To be honest I tried a very similar fix you did locally and didn't work, kept me thinking... then saw your fix, updated my MD and tested, didn't work either.
 
 Then I thought of going back to basics again, I tested an even more basic test than the one in the screencast in <a href="bug.html">comment#0</a>, and it seems there is still some bug around this area which is not related to removing breakpoints but just about hitting them (again similar as <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Does not stop execution in breakpoint if solution is inside a symlinked path" href="show_bug.cgi?id=5225">bug 5225</a>).
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Does not stop execution in breakpoint if solution is inside a symlinked path" href="https://bugzilla.xamarin.com/show_bug.cgi?id=5225">bug 5225</a>).
 
 So I just opened a new bug, hopefully by fixing this one now everything will be ok?? The bug is 11092.</pre>
     </div>

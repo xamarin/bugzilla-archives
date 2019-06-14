@@ -594,7 +594,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">There is already same <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - InvalidOperationException in ServicePoint.RemoveConnectionGroup" href="show_bug.cgi?id=19823">Bug#19823</a> - which is marked as fixed. But I still get same errors on latest (v3.10) Mono version
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - InvalidOperationException in ServicePoint.RemoveConnectionGroup" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19823">Bug#19823</a> - which is marked as fixed. But I still get same errors on latest (v3.10) Mono version
 
 2015-01-06 16:54:28,860 FATAL [readpool worker] ThisApp              - AppDomain exception occured
 System.InvalidOperationException: Operation is not valid due to the current state of the object
@@ -695,9 +695,9 @@ at System.Net.ServicePoint.RemoveConnectionGroup (System.Net.WebConnectionGroup 
 
 
 <pre class="bz_comment_text">Per the description, that this bug is reported against Mono v3.10; however the most recent comment on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - InvalidOperationException in ServicePoint.RemoveConnectionGroup" href="show_bug.cgi?id=19823">Bug#19823</a> indicates that one was actually fixed in Mono v4.0:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - InvalidOperationException in ServicePoint.RemoveConnectionGroup" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19823">Bug#19823</a> indicates that one was actually fixed in Mono v4.0:
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - InvalidOperationException in ServicePoint.RemoveConnectionGroup" href="show_bug.cgi?id=19823#c16">https://bugzilla.xamarin.com/show_bug.cgi?id=19823#c16</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - InvalidOperationException in ServicePoint.RemoveConnectionGroup" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19823#c16">https://bugzilla.xamarin.com/show_bug.cgi?id=19823#c16</a>
 
 That comment was made on 2015-03-24, and the current stable version is Mono v4.0.4
 Neither of these bug reports has received an updated comment since after that fixed version was reported. Marking this bug as NEEDINFO pending some indication if it's reproducible in the current stable version.</pre>

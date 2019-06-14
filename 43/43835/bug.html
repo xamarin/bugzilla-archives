@@ -644,7 +644,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">Thanks for the report.
 
 One possible way this issue can arise is <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED UPSTREAM - &quot;The name 'InitializeComponent' does not exist in the current context&quot; VS IntelliSense error due to missing `.g.cs` file if you manually delete the `obj` folder and then reload the solution" href="show_bug.cgi?id=40666">Bug 40666</a>.  To summarize, the issue can occur if the codebehind files are deleted or changed outside of Visual Studio.  As noted on that bug report, that issue appears be tightly related to the hooks Visual Studio itself provides for generating code behind files for any project type (not just Xamarin).  It might even an intentional optimization in the Visual Studio logic.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED UPSTREAM - &quot;The name 'InitializeComponent' does not exist in the current context&quot; VS IntelliSense error due to missing `.g.cs` file if you manually delete the `obj` folder and then reload the solution" href="https://bugzilla.xamarin.com/show_bug.cgi?id=40666">Bug 40666</a>.  To summarize, the issue can occur if the codebehind files are deleted or changed outside of Visual Studio.  As noted on that bug report, that issue appears be tightly related to the hooks Visual Studio itself provides for generating code behind files for any project type (not just Xamarin).  It might even an intentional optimization in the Visual Studio logic.
 
 
 If in your opinion that bug does not match the particular scenario you have observed yourself, then to help the Xamarin team address this issue as efficiently as possible, please provide additional information, such as:
@@ -656,7 +656,7 @@ If in your opinion that bug does not match the particular scenario you have obse
 
 
 - When you are in the "bad" state, do the codebehind files exist in the `obj\` folder?  See for example the `dir` commands in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED UPSTREAM - &quot;The name 'InitializeComponent' does not exist in the current context&quot; VS IntelliSense error due to missing `.g.cs` file if you manually delete the `obj` folder and then reload the solution" href="show_bug.cgi?id=40666#c0">Bug 40666, Comment 0</a> such as:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED UPSTREAM - &quot;The name 'InitializeComponent' does not exist in the current context&quot; VS IntelliSense error due to missing `.g.cs` file if you manually delete the `obj` folder and then reload the solution" href="https://bugzilla.xamarin.com/show_bug.cgi?id=40666#c0">Bug 40666, Comment 0</a> such as:
 
 <span class="quote">&gt; dir /b obj\Debug\*.g.cs</span>
 

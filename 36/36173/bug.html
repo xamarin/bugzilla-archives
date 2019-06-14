@@ -850,7 +850,7 @@ My app uses CustomTheme and I have set
 <pre class="bz_comment_text">Ah, just found the trigger for the problem on WinPhone 8.1. For me, this is no longer critical (it may still be for Thomas Williams though).
 
 To work around a Xamarin bug on Windows desktop ( <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - On Windows, ScrollToAsync does not take into account the presence of the Toolbar" href="show_bug.cgi?id=32213">https://bugzilla.xamarin.com/show_bug.cgi?id=32213</a> ), I had added some code on Windows to move the navigation page up a bit, and to then pad content pages. That is currently still required on Windows desktop. However, that same piece of code was also being executed on Windows 8.1 phones. What I have found is that the moment I do the following on a Windows 8.1 phone, ScrollViews stop scrolling vertically:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - On Windows, ScrollToAsync does not take into account the presence of the Toolbar" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32213">https://bugzilla.xamarin.com/show_bug.cgi?id=32213</a> ), I had added some code on Windows to move the navigation page up a bit, and to then pad content pages. That is currently still required on Windows desktop. However, that same piece of code was also being executed on Windows 8.1 phones. What I have found is that the moment I do the following on a Windows 8.1 phone, ScrollViews stop scrolling vertically:
 
                     navigationPage.TranslationY = -40; 
 

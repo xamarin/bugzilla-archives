@@ -591,7 +591,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">I have a machine with a Dual Xeon CPU and 96 GB Ram that is bound together via NUMA. This results in a division of CPU and memory ressources into nodes. When Mono is run inside a virtual machine using Linux KVM, Mono fails to allocate more than 48 GB of memory since the NUMA based architecture in conjunction with KVM prevents the usage of the 2nd CPU's memory (read here for details: <a href="http://www.admin-magazine.com/Archive/2014/20/Best-practices-for-KVM-on-NUMA-servers/(offset)/3">http://www.admin-magazine.com/Archive/2014/20/Best-practices-for-KVM-on-NUMA-servers/(offset)/3</a> ; and this issue for reference: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Error: Garbage collector could not allocate 16384 bytes of memory for major heap section ; even though 50 GB of memory are free" href="show_bug.cgi?id=39563">https://bugzilla.xamarin.com/show_bug.cgi?id=39563</a>)
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Error: Garbage collector could not allocate 16384 bytes of memory for major heap section ; even though 50 GB of memory are free" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39563">https://bugzilla.xamarin.com/show_bug.cgi?id=39563</a>)
 
 However when run on the native hardware with Ubuntu 14.04 the app fails with the same error, of not being able to allocate more than 48 GB of memory, even though there are 96 GB available. I guess that Mono somehow sees 96 GB of available memory, but due to the NUMA architecture specialties is not able to allocate more than 48 GB.
 

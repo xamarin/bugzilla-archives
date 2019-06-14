@@ -633,8 +633,8 @@ Test Project
 ## Description
 
 Having a adaptive segue (iOS 8 feature) in a storyboard that is set to "Builds for iOS 8 and later", to get around <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=29100">bug 29100</a> ( <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=29100">https://bugzilla.xamarin.com/show_bug.cgi?id=29100</a> ) causes an NSInvalidUnarchiveOperationException when deploying to an iOS 7 device or simulator.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29100">bug 29100</a> ( <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29100">https://bugzilla.xamarin.com/show_bug.cgi?id=29100</a> ) causes an NSInvalidUnarchiveOperationException when deploying to an iOS 7 device or simulator.
 
 ## Steps to reproduce
 
@@ -650,7 +650,7 @@ Actual Result: App crashes with NSInvalidUnarchiveOperationException.
 ## Notes
 
 I tried to see if this issue can be resolved by downgrading to Xcode 6.2, as is the case with <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=29100">bug 29100</a>, but the issue persisted when using Xcode 6.2. 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29100">bug 29100</a>, but the issue persisted when using Xcode 6.2. 
 
 
 ## Stack trace
@@ -767,7 +767,7 @@ Well, I just put the storyboard from the above test project into a new Xcode pro
 Whether using XCode or XS, changing the segue to be a Modal segue rather than a Present Modally segue resolves the issue. 
 
 However in Xcode, setting the "Builds for " property of the storyboard to "Project Deployment Target" (or "iOS 7 and later") from "iOS 8.0 or later" allows the test project to run on both iOS 7 and 8 simulators, but this is not currently an option for Xamarin Studio due to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=29100">bug 29100</a>.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29100">bug 29100</a>.</pre>
     </div>
 
     <div id="c3" class="bz_comment">

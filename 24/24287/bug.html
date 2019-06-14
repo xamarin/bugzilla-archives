@@ -1300,7 +1300,7 @@ Aside: To find satellite assemblies, we use the &lt;ResolveAssemblyReference/&gt
 What is the normal .resx mechanism?
 
 Consider an app uses a Build action of EmbeddedResource for a .resx file, as is done in <span class=""><a href="attachment.cgi?id=3808" name="attach_3808" title="I18nResourcesBug.zip">Attachment #3808</a> <a href="attachment.cgi?id=3808&amp;action=edit" title="I18nResourcesBug.zip">[details]</a></span> in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - No support for .Net style resources" href="show_bug.cgi?id=5037">Bug #5037</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - No support for .Net style resources" href="https://bugzilla.xamarin.com/show_bug.cgi?id=5037">Bug #5037</a>.
 
 When the project is built, the @(EmbeddedResource) files are processed by the &lt;GenerateResources/&gt; task (in Microsoft.Common.targets), which are used to fill the @(ManifestResourceWithNoCulture) and @(ManifestResourceWithCulture) groups. These groups are then used by the GenerateSatelliteAssemblies target to generate the .resources.dll file.
 

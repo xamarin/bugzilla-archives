@@ -707,7 +707,7 @@ Contains build logs and IDE logs</pre>
 The prediction would be that you would get the same set of dialogs if you ran the same build (using the same code signing key) directly in Xamarin Studio on the Mac (under the same user account currently used by VS).
 
 (Non-public <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=31959">Bug 31959</a> might provide some useful additional background context.  The short version is that there are 2 options for unlocking the keychain:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31959">Bug 31959</a> might provide some useful additional background context.  The short version is that there are 2 options for unlocking the keychain:
 
 (a) Store the permission for `codesign` permanently.
 
@@ -805,7 +805,7 @@ I also switched my main development Mac to WiFi and did not encounter this issue
 <pre class="bz_comment_text"><span class="quote">&gt; This is also occurring whether or not the System keychain is unlocked</span>
 
 I'm not sure there is an "unlocked" state for the _keychain_ in the way it sounds like you're picturing.  The "Allow" button on the dialog from <a href="bug.html">Comment 0</a> will allow the key to be used _once_.  For keys that are stored in the _login_ key chain, you will get an additional "Always Allow" button, but it seems that the dialog for keys in the System keychain don't offer that button.  So you might need to explicitly allow `codesign` to access the key as described in step 4 from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=31959">Bug 31959</a>:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31959">Bug 31959</a>:
 
 
 1. Open the Keychain Access app.

@@ -1405,7 +1405,7 @@ System.NullReferenceException: Object reference not set to an instance of an obj
 
 
 <pre class="bz_comment_text">The issue you experienced there is a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=5894">bug #5894</a>. I just fixed this in git and it should be contained in the next release. The change is to make monodevelop prompt you to either accept or reject an untrusted certificate if one is encountered.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=5894">bug #5894</a>. I just fixed this in git and it should be contained in the next release. The change is to make monodevelop prompt you to either accept or reject an untrusted certificate if one is encountered.
 
 The 'correct' fix is to add GitHub's ssl certificate to the trusted store  on your computer using certmgr: <a href="http://linux.die.net/man/1/certmgr">http://linux.die.net/man/1/certmgr</a>.
 

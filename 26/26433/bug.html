@@ -601,7 +601,7 @@ The project will be attached in a private comment, but it gets data from a serve
 ## Additional information
 
 I have linked the customer to the following bug report, but it was not helpful as the customer indicates the app doesn't use multiple threads for SQLite: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - SIGSEGV when calling libsqlite on multiple background threads" href="show_bug.cgi?id=21492">https://bugzilla.xamarin.com/show_bug.cgi?id=21492</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - SIGSEGV when calling libsqlite on multiple background threads" href="https://bugzilla.xamarin.com/show_bug.cgi?id=21492">https://bugzilla.xamarin.com/show_bug.cgi?id=21492</a>
 
 The main thread is used for the UI (progressbar) and an async call (background thread) is used for the SQLite. Additionally, he is using Mono.Data.SQLite.SQLiteConnection and there is no property to set for SQLiteOpenFlags.FullMutex.
 

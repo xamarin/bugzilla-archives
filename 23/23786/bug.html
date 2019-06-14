@@ -596,7 +596,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">Passing String.Empty to DisplayAlert as the Cancel overload causes an NSInvalidArgumentException.
 
 The following code works on iOS 8, but throws the exception on iOS 7.1. Per <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - DisplayAlert throws ArgumentNullException" href="show_bug.cgi?id=21397">https://bugzilla.xamarin.com/show_bug.cgi?id=21397</a> it appears that passing an empty string should be acceptable.  
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - DisplayAlert throws ArgumentNullException" href="https://bugzilla.xamarin.com/show_bug.cgi?id=21397">https://bugzilla.xamarin.com/show_bug.cgi?id=21397</a> it appears that passing an empty string should be acceptable.  
 	
 	DisplayAlert("Feedback Accepted", "Thank you for submitting your feedback.","ok",string.Empty);
 

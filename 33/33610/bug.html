@@ -642,9 +642,9 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 When using NTLM auth with a POST request with a body, the internal buffers of StreamContent are not reset properly,  making the authenticated replay of the POST request body send a content-length of zero.
 
 This issue is similar to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - HttpClient authentication not working" href="show_bug.cgi?id=30869">https://bugzilla.xamarin.com/show_bug.cgi?id=30869</a>, <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HTTPWebRequest POST eventually fails when using proxy and NTLM authentication" href="show_bug.cgi?id=15213">https://bugzilla.xamarin.com/show_bug.cgi?id=15213</a> and <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [HttpWebRequest]: Correctly resend the body when using authentication and POST" href="show_bug.cgi?id=19119">https://bugzilla.xamarin.com/show_bug.cgi?id=19119</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - HttpClient authentication not working" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30869">https://bugzilla.xamarin.com/show_bug.cgi?id=30869</a>, <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HTTPWebRequest POST eventually fails when using proxy and NTLM authentication" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15213">https://bugzilla.xamarin.com/show_bug.cgi?id=15213</a> and <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [HttpWebRequest]: Correctly resend the body when using authentication and POST" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19119">https://bugzilla.xamarin.com/show_bug.cgi?id=19119</a>.
 
 See the attached sample for a repro and potential workaround.</pre>
     </div>

@@ -591,7 +591,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">I thought this had been resolved at some point after the discussion on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Command line tools not installed on El Capitan" href="show_bug.cgi?id=33912">bug 33912</a>, but the Mac installer for the Mono framework, as of "4.6 Service Release 1 (4.6.2.7)", does not seem to check for and create /usr/local/ and /usr/local/bin/ if they do not exist.  The 'mono' command ends up being unavailable from the command line because the shortcuts to the actual framework are not created anywhere within reach of bash's $PATH.  These two directories do not exist by default in macOS.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Command line tools not installed on El Capitan" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33912">bug 33912</a>, but the Mac installer for the Mono framework, as of "4.6 Service Release 1 (4.6.2.7)", does not seem to check for and create /usr/local/ and /usr/local/bin/ if they do not exist.  The 'mono' command ends up being unavailable from the command line because the shortcuts to the actual framework are not created anywhere within reach of bash's $PATH.  These two directories do not exist by default in macOS.
 
 P.S.: Is the install script anywhere on GitHub?  I'm currently inspecting it as part of the actual .pkg I downloaded because I can't find it on the repo.</pre>
     </div>

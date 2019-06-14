@@ -988,7 +988,7 @@ Update Repro Project</pre>
 <pre class="bz_comment_text">I'm not sure why you're mentioning IntProperty. Regardless...
 
 Your attempt to call LogManager.AddDebugListener() is running afoul of <a class="bz_bug_link 
-          bz_status_REOPENED " title="REOPENED - Application deriving only works with OnCreate() method" href="show_bug.cgi?id=18350">Bug #18350</a>, meaning that it isn to in fact being called.
+          bz_status_REOPENED " title="REOPENED - Application deriving only works with OnCreate() method" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18350">Bug #18350</a>, meaning that it isn to in fact being called.
 
 You can fix this by moving the LogManager.AddDebugListener() call to an overriding Application.OnCreate() method:
 

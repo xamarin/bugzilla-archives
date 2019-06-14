@@ -594,7 +594,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 The underlying exception is about an invalid culture. 
 
 This seems to be because whilst testing <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Unable to switch UI language on Windows 10" href="show_bug.cgi?id=33008">bug #33008</a> I had set the current language for Xamarin Studio to explicitly by English. So it may well be a Xamarin Studio problem due to changes in Windows 10.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Unable to switch UI language on Windows 10" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33008">bug #33008</a> I had set the current language for Xamarin Studio to explicitly by English. So it may well be a Xamarin Studio problem due to changes in Windows 10.
 
  System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&gt; System.TypeInitializationException: The type initializer for 'Microsoft.FSharp.Compiler.SourceCodeServices.FSharpChecker' threw an exception. ---&gt; System.TypeInitializationException: The type initializer for '&lt;StartupCode$FSharp-Compiler-Service&gt;.$Service' threw an exception. ---&gt; System.TypeInitializationException: The type initializer for '&lt;StartupCode$FSharp-Compiler-Service&gt;.$Reactor' threw an exception. ---&gt; System.Globalization.CultureNotFoundException: Culture is not supported.
     Parameter name: culture
@@ -762,7 +762,7 @@ Windows 6.2.9200.0</pre>
 <pre class="bz_comment_text">This should be fixed in Xamarin Studio 5.10.0.556.
 
 Fixing <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Unable to switch UI language on Windows 10" href="show_bug.cgi?id=33008">bug #33008</a> has also fixed this problem. Installing XS 5.10.0.556 and with the language set to English I can open a file without an error about an unsupported culture.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Unable to switch UI language on Windows 10" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33008">bug #33008</a> has also fixed this problem. Installing XS 5.10.0.556 and with the language set to English I can open a file without an error about an unsupported culture.</pre>
     </div>
 
     <div id="c3" class="bz_comment">

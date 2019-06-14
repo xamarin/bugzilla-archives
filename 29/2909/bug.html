@@ -629,7 +629,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">VisualStudio writes the UTF-8 BOM at the start of the csproj files. MonoDevelop does not. If MonoDevelop is saving a file that when it opened had a BOM, it should persist that BOM back to the file. This is a constant problem with diffs across VS and MD in our team.
 
 Effectively the same problem as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop lowercases booleans in msbuild files" href="show_bug.cgi?id=2612">bug 2612</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoDevelop lowercases booleans in msbuild files" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2612">bug 2612</a>.
 
 The attached is a daily problem for us in reviews and git fighting, showing both the boolean serialization issue and the BOM issue.</pre>
     </div>

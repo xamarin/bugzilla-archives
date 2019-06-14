@@ -349,7 +349,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Notification Service extension just dies on call" href="show_bug.cgi?id=58167">58167</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Notification Service extension just dies on call" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58167">58167</a> 
       </span>
       ()
     </td>
@@ -365,7 +365,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Improve the static registrar to generate code that does not need any reflection at runtime" href="show_bug.cgi?id=56022">56022</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Improve the static registrar to generate code that does not need any reflection at runtime" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56022">56022</a> 
   </td>
   </tr>
 
@@ -583,10 +583,10 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Async/await crash notification extension" href="show_bug.cgi?id=58566">58566</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Async/await crash notification extension" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58566">58566</a>
           </li>
           <li><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=60597">60597</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=60597">60597</a>
           </li></ul>
 
 </td>
@@ -698,7 +698,7 @@ The problem is that there seems to be a 10mb memory limit in the extension, and 
 A quick test with Instruments and a normal iOS app reveals that your simple JSON serialization statement uses ~3mb of memory for a release build (with a debug build and without the debugger attached it's ~4mb; with the debugger attached it would be a bit more, but this is cumbersome to measure with Instruments so I didn't try). Have in mind that most of this memory is allocated because the types and methods in question are used for the first time, if you executed the same statement again this does not indicate how much memory each iteration would need (although Newtonsoft.Json is known for using a significant amount of memory).
 
 I've tested how much memory is available in the extension by allocating memory in small increments and checking when it crashes, and for a release build the extension crashes after allocating ~3.8mb (~2.5mb for a debug build). This means that this is the amount you have to work with (unfortunately the minimal memory footprint in Xamarin.iOS is not as low as we'd wish it to be; this is something we're working on and have plans to improve - see <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - RegisterTypeUnsafe reflects on immutable metadata during app startup" href="show_bug.cgi?id=47048">bug #47048</a> for instance).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - RegisterTypeUnsafe reflects on immutable metadata during app startup" href="https://bugzilla.xamarin.com/show_bug.cgi?id=47048">bug #47048</a> for instance).
 
 My recommendation would be to find an alternative to Newtonsoft.Json to parse JSON (iOS provides the NSJsonSerialization class, but I haven't tried it so I don't know if it might work for you).</pre>
     </div>
@@ -1109,7 +1109,7 @@ So, I got SimpleJson working but now have just kicked the problem down the road.
 Questions:
 
 1. It is my understanding the NSUrlSessionHandler uses less memory.  I would love to use that but cannot due to: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - NSUrlSessionHandler failing after update to Xamarin 6.2" href="show_bug.cgi?id=53220">https://bugzilla.xamarin.com/show_bug.cgi?id=53220</a>.  Any ideas?
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - NSUrlSessionHandler failing after update to Xamarin 6.2" href="https://bugzilla.xamarin.com/show_bug.cgi?id=53220">https://bugzilla.xamarin.com/show_bug.cgi?id=53220</a>.  Any ideas?
 
 2. Any other way to get my memory footprint down?
 
@@ -1154,7 +1154,7 @@ Questions:
 &gt; 1. It is my understanding the NSUrlSessionHandler uses less memory.  I would
 &gt; love to use that but cannot due to:
 &gt; <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - NSUrlSessionHandler failing after update to Xamarin 6.2" href="show_bug.cgi?id=53220">https://bugzilla.xamarin.com/show_bug.cgi?id=53220</a>.  Any ideas?</span>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - NSUrlSessionHandler failing after update to Xamarin 6.2" href="https://bugzilla.xamarin.com/show_bug.cgi?id=53220">https://bugzilla.xamarin.com/show_bug.cgi?id=53220</a>.  Any ideas?</span>
 
 You can use the iOS API instead of the managed API (NSUrlSession for instance: <a href="https://developer.xamarin.com/api/type/Foundation.NSUrlSession/">https://developer.xamarin.com/api/type/Foundation.NSUrlSession/</a>)
 
@@ -1166,7 +1166,7 @@ You can use the iOS API instead of the managed API (NSUrlSession for instance: <
 Yes, this is possible, but not trivial.
 
 I helped another customer do this here: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Loading images in UNNotificationServiceExtension doesn't work" href="show_bug.cgi?id=43985#c12">https://bugzilla.xamarin.com/show_bug.cgi?id=43985#c12</a>, try following those steps, and just ask (in this bug) if you run into problems and I'll help you.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Loading images in UNNotificationServiceExtension doesn't work" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43985#c12">https://bugzilla.xamarin.com/show_bug.cgi?id=43985#c12</a>, try following those steps, and just ask (in this bug) if you run into problems and I'll help you.</pre>
     </div>
 
     <div id="c15" class="bz_comment">
@@ -1339,7 +1339,7 @@ Ted</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Notification Service extension just dies on call" href="show_bug.cgi?id=58167">Bug 58167</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Notification Service extension just dies on call" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58167">Bug 58167</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c19" class="bz_comment">
@@ -1369,7 +1369,7 @@ Ted</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Notification Service extension just dies on call" href="show_bug.cgi?id=58167">Bug 58167</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Notification Service extension just dies on call" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58167">Bug 58167</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c20" class="bz_comment">
@@ -1399,7 +1399,7 @@ Ted</pre>
 
 
 <pre class="bz_comment_text">Now that <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Improve the static registrar to generate code that does not need any reflection at runtime" href="show_bug.cgi?id=56022">bug #56022</a> has been fixed, memory usage has decreased, but it doesn't look like enough to make JSON.Net work.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Improve the static registrar to generate code that does not need any reflection at runtime" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56022">bug #56022</a> has been fixed, memory usage has decreased, but it doesn't look like enough to make JSON.Net work.
 
 It's entirely possible that JSON.Net will never work, if it allocates more than iOS allows for file provider extensions there's nothing we can do about it.
 

@@ -630,7 +630,7 @@ thisPage.IsBusy = false;
 That requires code to be restructured so that nothing in MethodThatRunsATaskThatReturnsAView() actually touches the UI hierarchy of thisPage, with the only touch being after the await has returned (in this case an assignment to thisPage.Content).
 
 However... there are issues with this workaround when executed on UWP (e.g. <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - [UWP] Setting FontSize on Entry causes The application called an interface that was marshalled for a different thread" href="show_bug.cgi?id=39399">https://bugzilla.xamarin.com/show_bug.cgi?id=39399</a> ), so to show the Page's busy indicator Android, requires extra Task code and then workarounds to stop it breaking on UWP, typically using Device.BeginInvokeOnMainThread on UWP
+          bz_status_CONFIRMED " title="CONFIRMED - [UWP] Setting FontSize on Entry causes The application called an interface that was marshalled for a different thread" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39399">https://bugzilla.xamarin.com/show_bug.cgi?id=39399</a> ), so to show the Page's busy indicator Android, requires extra Task code and then workarounds to stop it breaking on UWP, typically using Device.BeginInvokeOnMainThread on UWP
 
 See also <a href="http://forums.xamarin.com/discussion/17439/using-contentpage-isbusy">http://forums.xamarin.com/discussion/17439/using-contentpage-isbusy</a> where other people also describe having issues with IsBusy on Android</pre>
     </div>

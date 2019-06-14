@@ -814,12 +814,12 @@ If you tell me that you do NOT get the output of PSPDFKit that there are 5 livin
 
 
 <pre class="bz_comment_text">The first example is a bug in MonoTouch. It's a variation of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - UINavigationController leaks view controllers" href="show_bug.cgi?id=1889">bug #1889</a> - internally we keep a stack of modal view controllers, pushing and popping when PresentViewController and DismissViewController are called. The problem relies in the Close button that's shown - when that button is tapped (by the user, not programmatically) we're not notified that the modal view controller has exited, and the stack of modal view controllers is not updated. I'll investigate this to see if I can come up with a solution.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - UINavigationController leaks view controllers" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1889">bug #1889</a> - internally we keep a stack of modal view controllers, pushing and popping when PresentViewController and DismissViewController are called. The problem relies in the Close button that's shown - when that button is tapped (by the user, not programmatically) we're not notified that the modal view controller has exited, and the stack of modal view controllers is not updated. I'll investigate this to see if I can come up with a solution.
 
 I do get the 5 instance warning with this sample.
 
 The second example is <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - UINavigationController leaks view controllers" href="show_bug.cgi?id=1889">bug #1889</a>. That bug also contains a workaround (though I would recommend against it unless you really need the memory right away - it's technically not a leak, it's just getting freed a bit later).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - UINavigationController leaks view controllers" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1889">bug #1889</a>. That bug also contains a workaround (though I would recommend against it unless you really need the memory right away - it's technically not a leak, it's just getting freed a bit later).
 
 I can't reproduce the HeapShot results you get with the third example, in my case there is only one instance of KSKioskViewController no matter what I do. I do find it quite strange though (I've never seen the profiler being wrong before, yet your evidence seems to prove it). Can you screenshot exactly what you do with HeapShot to get this behavior?</pre>
     </div>

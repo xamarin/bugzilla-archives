@@ -593,7 +593,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">When creating a .NET runtime via embedding, the mono_jit_init() function does not initialize the AppDomain data structure(s) appropriately, such that AppDomain.CurrentDomain.SetupInformation.ConfigurationFile = null.
 
 This causes a number of calls, such as Dns.GetHostName() to fail as this call looks up the ConfigurationFile and fails with the NPE.  I filled a library bug for the NPE: <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - Dns.GetHostName() fails in the standard mono 3.0.3 (OSX 10.8.2)" href="show_bug.cgi?id=9520">https://bugzilla.xamarin.com/show_bug.cgi?id=9520</a>.  But it may be more appropriate to have mono_jit_init() adjust the AppDomain info appropriately.
+          bz_status_NEW " title="NEW - Dns.GetHostName() fails in the standard mono 3.0.3 (OSX 10.8.2)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9520">https://bugzilla.xamarin.com/show_bug.cgi?id=9520</a>.  But it may be more appropriate to have mono_jit_init() adjust the AppDomain info appropriately.
 
 I do the following:
 

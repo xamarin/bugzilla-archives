@@ -567,10 +567,10 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - WindowSoftInputMode Attribute is Ignored When Using AppCompat" href="show_bug.cgi?id=39765">39765</a>
+          bz_status_CONFIRMED " title="CONFIRMED - WindowSoftInputMode Attribute is Ignored When Using AppCompat" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39765">39765</a>
           </li>
           <li><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Page with ListView or ScrollView not resized properly when using WindowSoftInputModeAdjust.Resize" href="show_bug.cgi?id=58556">58556</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Page with ListView or ScrollView not resized properly when using WindowSoftInputModeAdjust.Resize" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58556">58556</a>
           </li></ul>
 
 </td>
@@ -670,10 +670,10 @@ The activity's main window is not resized to make room for the soft keyboard. Ra
 *Related Bugs:
 
 <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - WindowSoftInputMode Attribute is Ignored When Using AppCompat" href="show_bug.cgi?id=39765">https://bugzilla.xamarin.com/show_bug.cgi?id=39765</a>
+          bz_status_CONFIRMED " title="CONFIRMED - WindowSoftInputMode Attribute is Ignored When Using AppCompat" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39765">https://bugzilla.xamarin.com/show_bug.cgi?id=39765</a>
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [Android] Content inside ScrollView not scrollable" href="show_bug.cgi?id=37202">https://bugzilla.xamarin.com/show_bug.cgi?id=37202</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [Android] Content inside ScrollView not scrollable" href="https://bugzilla.xamarin.com/show_bug.cgi?id=37202">https://bugzilla.xamarin.com/show_bug.cgi?id=37202</a>
 
 *Version Information
 
@@ -942,14 +942,14 @@ Here is what I found: Yes, the ListView is covered partly when the Entry is sele
 made no difference either whether using the FormsApplicationActivity or FormsAppCompatActivity.
 
 OK, then I see that your entry was at the top and was not about to be covered by the keyboard. I have to check native android, but in this case I don't believe the Android OS will do anything. If I move the Entry to the bottom, under the ListView, then I get the behavior as described in <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - WindowSoftInputMode Attribute is Ignored When Using AppCompat" href="show_bug.cgi?id=39765">bug 39765</a>. IOW without the workaround, I can only scroll to some but not all of the listView items. This is true regardless of using FormsApplicationActivity or FormsAppCompatActivity. In other words it seems the WindowSoftInputMode property of the Activity Attribute is indeed ignored, but it is always ignored as far as I can tell. Or as noted in the other bug report that it is reset after base.OnCreate is called. 
+          bz_status_CONFIRMED " title="CONFIRMED - WindowSoftInputMode Attribute is Ignored When Using AppCompat" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39765">bug 39765</a>. IOW without the workaround, I can only scroll to some but not all of the listView items. This is true regardless of using FormsApplicationActivity or FormsAppCompatActivity. In other words it seems the WindowSoftInputMode property of the Activity Attribute is indeed ignored, but it is always ignored as far as I can tell. Or as noted in the other bug report that it is reset after base.OnCreate is called. 
 
 At this time I think that the exact issue in this bug is invalid. IOW because the Entry was not in danger of being covered by the keyboard, no action is taken by the OS, i.e. no panning or resizing will occur unless the Entry is going to be covered by the keyboard. 
 
 I am going to mark this particular bug as RESOLVED INVALID. 
 
 I think the underlying issue is <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - WindowSoftInputMode Attribute is Ignored When Using AppCompat" href="show_bug.cgi?id=39765">bug 39765</a> that the WindowSoftInputMode property of the Activity attribute is ignored (for both FormsApplicationActivity and FormAppCompatActivity).</pre>
+          bz_status_CONFIRMED " title="CONFIRMED - WindowSoftInputMode Attribute is Ignored When Using AppCompat" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39765">bug 39765</a> that the WindowSoftInputMode property of the Activity attribute is ignored (for both FormsApplicationActivity and FormAppCompatActivity).</pre>
     </div>
 
     <div id="c8" class="bz_comment">
@@ -1015,7 +1015,7 @@ As you already mentioned it seems the bug is now also active without FormsAppCom
 <pre class="bz_comment_text">Just to add a bit of more detail, the default behavior in Android is "adjustUnspecified"[1], however Xamarin.Forms does set it to AdjustPan by default on both FormsApplicationActivity and FormsAppCompatActivity now unless you use the platform specific from <a href="bug.html">comment 1</a>. 
 
 I talked with the team and they agreed that we should not be ignoring the value from the Activity attribute as Jon mentioned in <a href="bug.html">comment 7</a>. That issue will be tracked with <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - WindowSoftInputMode Attribute is Ignored When Using AppCompat" href="show_bug.cgi?id=39765">bug 39765</a>. However once that is fixed, the default setting when no attribute or platform specific is provided should be "adjustUnspecified" so you will still have to manually set it to AdjustResize regardless.
+          bz_status_CONFIRMED " title="CONFIRMED - WindowSoftInputMode Attribute is Ignored When Using AppCompat" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39765">bug 39765</a>. However once that is fixed, the default setting when no attribute or platform specific is provided should be "adjustUnspecified" so you will still have to manually set it to AdjustResize regardless.
 
 [1] <a href="https://developer.android.com/guide/topics/manifest/activity-element.html#wsoft">https://developer.android.com/guide/topics/manifest/activity-element.html#wsoft</a></pre>
     </div>

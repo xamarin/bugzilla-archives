@@ -584,7 +584,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">I am developing my own packages, and using them in other solutions. So, say I have already included version 1.2.0 of MyPackageA in a new solution. MyPackageA depends on version 2.0.0 of MyPackageB. Now, I create a pre-release version of MyPackageA, called 1.3.0-alpha1, and a pre-release version of MyPackageB, called 2.1.0-alpha1 and pushed them both to my repository. MyPackageA 1.3.0-alpha1 has a dependency on MyPackageB at any version HIGHER than 2.0.0 (2.0.0 &lt; x). So, 2.1.0-alpha1 of MyPackageB satisfies the dependency.
 
 So, I try to install MyPackageA 1.3.0-alpha1. (I have to work around <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Xamarin Studio doesn't recognize pre-release packages as updates" href="show_bug.cgi?id=31071">bug #31071</a>, but let's assume I have removed MyPackageA 1.2.0 already). I go to Add Package, check the "Show Pre-Releases" checkbox, select MyPackageA 1.3.0-alpha1 and Add.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Xamarin Studio doesn't recognize pre-release packages as updates" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31071">bug #31071</a>, but let's assume I have removed MyPackageA 1.2.0 already). I go to Add Package, check the "Show Pre-Releases" checkbox, select MyPackageA 1.3.0-alpha1 and Add.
 
 The installation fails because XS doesn't find the pre-release MyPackageB 2.1.0-alpha1. The package is there because I can see it in the package list in the dialogue, but XS doesn't look for pre-releases when doing the dependency checking.
 

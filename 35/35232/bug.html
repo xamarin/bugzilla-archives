@@ -350,7 +350,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=35220">35220</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35220">35220</a> 
       </span>
       ()
     </td>
@@ -380,7 +380,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="blocked_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 9.1] The new behavior of btouch in XI 9.1 breaks all existing binding projects that include enum types. Perhaps this can be solved by changing the behavior of the &quot;ObjcBindingCoreSource&quot; build action?" href="show_bug.cgi?id=35231">35231</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 9.1] The new behavior of btouch in XI 9.1 breaks all existing binding projects that include enum types. Perhaps this can be solved by changing the behavior of the &quot;ObjcBindingCoreSource&quot; build action?" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35231">35231</a> 
   </td>
   </tr>
 
@@ -812,7 +812,7 @@ Diagnostic build output from XVS 3.11.1585</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=35220">Bug 35220</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35220">Bug 35220</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -932,8 +932,8 @@ I have also checked assembly reference (binding project) with main project and s
 
 
 <pre class="bz_comment_text">Confirming this bug will now be a little tricky because of the fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 9.1] The new behavior of btouch in XI 9.1 breaks all existing binding projects that include enum types. Perhaps this can be solved by changing the behavior of the &quot;ObjcBindingCoreSource&quot; build action?" href="show_bug.cgi?id=35231">Bug 35231</a>. The fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 9.1] The new behavior of btouch in XI 9.1 breaks all existing binding projects that include enum types. Perhaps this can be solved by changing the behavior of the &quot;ObjcBindingCoreSource&quot; build action?" href="show_bug.cgi?id=35231">Bug 35231</a> means that by default, the `enum` generation behavior is OFF, which means the `btouch` behavior will be back to the old familiar behavior from Xamarin.iOS 9.0 and earlier, where there was no `Foo.g.cs` file.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 9.1] The new behavior of btouch in XI 9.1 breaks all existing binding projects that include enum types. Perhaps this can be solved by changing the behavior of the &quot;ObjcBindingCoreSource&quot; build action?" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35231">Bug 35231</a>. The fix for <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 9.1] The new behavior of btouch in XI 9.1 breaks all existing binding projects that include enum types. Perhaps this can be solved by changing the behavior of the &quot;ObjcBindingCoreSource&quot; build action?" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35231">Bug 35231</a> means that by default, the `enum` generation behavior is OFF, which means the `btouch` behavior will be back to the old familiar behavior from Xamarin.iOS 9.0 and earlier, where there was no `Foo.g.cs` file.
 
 To enable the new generation behavior for `Foo.g.cs` it is necessary to pass the "-process-enums" command line option to `btouch`. The most direct way to do that might be to copy-and-paste the `btouch` command from the diagnostic build output into Terminal.app on the Mac, and then add the -process-enums option.</pre>
     </div>

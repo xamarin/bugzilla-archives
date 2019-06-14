@@ -661,7 +661,7 @@ System.InvalidOperationException: Nested transactions are not supported.
   at WindowsService1.Service1.OnStart (System.String[] args) [0x00000] in &lt;filename unknown&gt;:0 
 
 The only possibly relevant explanation i could find is this one: <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - ServiceHost.Open() shouldn't create Transaction" href="show_bug.cgi?id=14844">https://bugzilla.xamarin.com/show_bug.cgi?id=14844</a>
+          bz_status_NEW " title="NEW - ServiceHost.Open() shouldn't create Transaction" href="https://bugzilla.xamarin.com/show_bug.cgi?id=14844">https://bugzilla.xamarin.com/show_bug.cgi?id=14844</a>
 But that is not even about a database transaction, just some WCF one. Or maybe there is some shared pipe/socket/something where the MySQL driver could see the (posibly identical) BEGIN command and pick it up?
 
 I realize this might just as well be a problem on MySQL's side and will report the bug to them too if you don't find anything in your code. But MySQL should not be reachable from some WCF service code no matter what, so i guess the bug is in their interconnection provided by Mono.

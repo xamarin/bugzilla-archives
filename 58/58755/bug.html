@@ -610,7 +610,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">Today's 7.1 update broke our Android builds. You can use the same project supplied with <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=58063">https://bugzilla.xamarin.com/show_bug.cgi?id=58063</a>. And yes, that means that now we can't build for EITHER PLATFORM. &gt;:(
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58063">https://bugzilla.xamarin.com/show_bug.cgi?id=58063</a>. And yes, that means that now we can't build for EITHER PLATFORM. &gt;:(
 
 FYI, I get the same four errors listed here, in addition to the existing error in 58063 if I try to build for iOS with today's release as well.
 
@@ -1084,10 +1084,10 @@ Build: 4 errors, 1 warning</pre>
 
 
 <pre class="bz_comment_text">The errors you are seeing seem similar to those reported in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - F# Forms Android Project Does Not Include FSharp.Core Package" href="show_bug.cgi?id=58371">bug #58371</a> although I do not see the same failures if I create a new Xamarin.Forms project with VS Mac 7.1.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - F# Forms Android Project Does Not Include FSharp.Core Package" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58371">bug #58371</a> although I do not see the same failures if I create a new Xamarin.Forms project with VS Mac 7.1.
 
 The fixes required to the Android project for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - F# Forms Android Project Does Not Include FSharp.Core Package" href="show_bug.cgi?id=58371">bug #58371</a> were:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - F# Forms Android Project Does Not Include FSharp.Core Package" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58371">bug #58371</a> were:
 
 1) Adding FSharp.Core 4.0.0.1 NuGet package to the Android project. (The PCL project with a new Forms project also has the FSharp.Core 4.0.0.1 NuGet package referenced).
 2) Add a reference to mscorlib. (This was to fix the 'The referenced or default base CLI library 'mscorlib' is binary-incompatible with the referenced F# core library' error):

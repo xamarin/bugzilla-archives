@@ -1288,7 +1288,7 @@ This is logcat with GREF logging turned on.</pre>
 <pre class="bz_comment_text">Is it possible that this error is same as mentioned here?
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGV while executing native code" href="show_bug.cgi?id=13521">https://bugzilla.xamarin.com/show_bug.cgi?id=13521</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGV while executing native code" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13521">https://bugzilla.xamarin.com/show_bug.cgi?id=13521</a></pre>
     </div>
 
     <div id="c22" class="bz_comment">
@@ -1518,7 +1518,7 @@ as the above comes from the following GREF allocation, so hopefully that can nar
 
 
 <pre class="bz_comment_text">@Sohail: Regarding <a href="bug.html">Comment #21</a>, it is unlikely to be <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGV while executing native code" href="show_bug.cgi?id=13521">Bug #13521</a>, as that only happens when using other native libraries which invalidate the JNIEnv context for the current thread "underneath" Xamarin.Android.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGV while executing native code" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13521">Bug #13521</a>, as that only happens when using other native libraries which invalidate the JNIEnv context for the current thread "underneath" Xamarin.Android.
 
 <a href="bug.html">Comment #22</a> may be unrelated to Bitmaps, but it appears to be the same "attempting to invoke a Java method on a collected instance" problem.
 
@@ -1622,7 +1622,7 @@ Please let me know when can we have this fix.</pre>
 <pre class="bz_comment_text">This bug has the EXACT same error that we are facing on Mono 4.2.7 app running on Android 4.3. Can we back port the fix to 4.2.7?
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Unexpected invalid certificate exception" href="show_bug.cgi?id=6501">https://bugzilla.xamarin.com/show_bug.cgi?id=6501</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Unexpected invalid certificate exception" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6501">https://bugzilla.xamarin.com/show_bug.cgi?id=6501</a></pre>
     </div>
 
     <div id="c31" class="bz_comment">
@@ -1805,10 +1805,10 @@ Regardless, as mentioned in <a href="bug.html">Comment #17</a> they look like wh
 Mono 4.8.x migrated Xamarin.Android from Mono 2.10 to Mono 3.2, which includes a large number of VM and GC changes, fixes, and improvements.
 
 However, there were also some bugs, in particular <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Got a SIGSEGV while executing native code" href="show_bug.cgi?id=13858">Bug #13858</a>, in which the GC would prematurely collect instances when it shouldn't. This is fixed in Xamarin.Android 4.10.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Got a SIGSEGV while executing native code" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13858">Bug #13858</a>, in which the GC would prematurely collect instances when it shouldn't. This is fixed in Xamarin.Android 4.10.
 
 I would be willing to blame this on every stack trace that has JNIEnv.Call*Method near the top on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Got a SIGSEGV while executing native code" href="show_bug.cgi?id=13858">Bug #13858</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Got a SIGSEGV while executing native code" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13858">Bug #13858</a>.
 
 Have you tried using Xamarin.Android 4.10.1?</pre>
     </div>
@@ -1993,7 +1993,7 @@ I can't get 4.10.1 to even install correctly. I get the attached error when I st
 <pre class="bz_comment_text">Any suggestions on how to get past this 4.10.1 installation issue? I have already tried what is given in
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Can not load Xamarin.Android Project" href="show_bug.cgi?id=12835">https://bugzilla.xamarin.com/show_bug.cgi?id=12835</a></pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Can not load Xamarin.Android Project" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12835">https://bugzilla.xamarin.com/show_bug.cgi?id=12835</a></pre>
     </div>
 
     <div id="c41" class="bz_comment">
@@ -2414,7 +2414,7 @@ The problem is this:
 What Xamarin.Android version are you using? "PKIX" is the TrustManagerFactory.DefaultAlgorithm value, and our SSL code was updated to explicitly use X.509 in:
 
 	<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Unexpected invalid certificate exception" href="show_bug.cgi?id=6501#c10">https://bugzilla.xamarin.com/show_bug.cgi?id=6501#c10</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Unexpected invalid certificate exception" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6501#c10">https://bugzilla.xamarin.com/show_bug.cgi?id=6501#c10</a>
 
 Xamarin.Android 4.8 introduced the above fix.
 
@@ -2481,7 +2481,7 @@ Are you sure you're not using an older Xamarin.Android version?</pre>
 Indeed, and that's so impossibly old to me (15 months) that I just thought you meant you were using Xamarin Studio 4.2.x, not realizing that Xamarin Studio 4.2.2 is the current stable, and 4.2.7 doesn't exist.
 
 _Fifteen months_. There have been at least 111 bug fixes in that time frame, in all areas of the product, including SSL (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Unexpected invalid certificate exception" href="show_bug.cgi?id=6501">Bug #6501</a>), which you are currently hitting. Android v4.3 also _removed_ PKIX support, which is why XA 4.6 doesn't work for you either.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Unexpected invalid certificate exception" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6501">Bug #6501</a>), which you are currently hitting. Android v4.3 also _removed_ PKIX support, which is why XA 4.6 doesn't work for you either.
 
 Let's see if Dean has any other suggestions on getting 4.10.1 installed...</pre>
     </div>
@@ -2598,7 +2598,7 @@ At this point you should have a completely clean system. You can then try to ins
 Actually I have already tried these steps since they are mentioned in the following bug. (See <a href="bug.html">comment 40</a>).
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Can not load Xamarin.Android Project" href="show_bug.cgi?id=12835">https://bugzilla.xamarin.com/show_bug.cgi?id=12835</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Can not load Xamarin.Android Project" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12835">https://bugzilla.xamarin.com/show_bug.cgi?id=12835</a>
 
 Anyway, I will give it one more shot. Maybe it will work this time.</pre>
     </div>
@@ -3440,7 +3440,7 @@ Regards</pre>
 
 
 <pre class="bz_comment_text">@Sohali: We believe that the issues you're seeing are due to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Random &quot;The type or namespace name 'XXX' could not be found&quot; errors when building" href="show_bug.cgi?id=10433">Bug #10433</a>, which unfortunately has not yet been released, nor am I certain of the exact timeframe for when it will be released. :-(</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Random &quot;The type or namespace name 'XXX' could not be found&quot; errors when building" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10433">Bug #10433</a>, which unfortunately has not yet been released, nor am I certain of the exact timeframe for when it will be released. :-(</pre>
     </div>
 
     <div id="c81" class="bz_comment">
@@ -3631,7 +3631,7 @@ Regards</pre>
 <pre class="bz_comment_text">A fix for one cause of the "Bad Record MAC" error was recently released (it's in the current beta version Xamarin.Android 4.12.4).
 
 See <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.Net.Security.SslStream on Mono crashes but works with .Net" href="show_bug.cgi?id=15293">bug #15293</a>, and the corresponding pull request: <a href="https://github.com/mono/mono/pull/929">https://github.com/mono/mono/pull/929</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.Net.Security.SslStream on Mono crashes but works with .Net" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15293">bug #15293</a>, and the corresponding pull request: <a href="https://github.com/mono/mono/pull/929">https://github.com/mono/mono/pull/929</a>
 
 
 Hopefully upgrading to this latest version will resolve the problem in your app too!</pre>

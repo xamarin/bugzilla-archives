@@ -675,7 +675,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Test case
 
 This bug is loosely related to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Signing with Entitlements, but without linking causes &quot;System.DllNotFoundException: libc.dylib&quot;" href="show_bug.cgi?id=16250">bug 16250</a>. In that case the `keychain-access-groups` entitlement imposed a requirement that libc.dylib had to be loaded using the full path name.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Signing with Entitlements, but without linking causes &quot;System.DllNotFoundException: libc.dylib&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16250">bug 16250</a>. In that case the `keychain-access-groups` entitlement imposed a requirement that libc.dylib had to be loaded using the full path name.
 
 In this new case, the problem is instead that the _bundled_ native libraries (like libgdiplus.dylib) contain references to the other bundled native libraries, and these references use relative "@executable_path" references. Apparently the use of "@executable_path" is not permitted when using the `keychain-access-groups` entitlement.
 
@@ -724,7 +724,7 @@ I'm including this on the bug report just to make the bug easier to find. Since 
 ## Additional note about the test project
 
 To allow the app to be run from the command line despite <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Signing with Entitlements, but without linking causes &quot;System.DllNotFoundException: libc.dylib&quot;" href="show_bug.cgi?id=16250">bug 16250</a>, I added the following as an "After Build" Custom Command:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Signing with Entitlements, but without linking causes &quot;System.DllNotFoundException: libc.dylib&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16250">bug 16250</a>, I added the following as an "After Build" Custom Command:
 
 <span class="quote">&gt; sed -i "" -e "s:libc.dylib:/usr/lib/libc.dylib:" ${TargetDir}/SystemDrawingColorTest.app/Contents/MonoBundle/config</span>
 

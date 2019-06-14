@@ -594,7 +594,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Getting a FontFamilyNotFound exception when trying to run an app bundled using Xamarin.Mac on a client machine running Mac OS X 10.7 .
 
 Already using the patched version of mmp as per the private bug report at <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=11351#c7">https://bugzilla.xamarin.com/show_bug.cgi?id=11351#c7</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=11351#c7">https://bugzilla.xamarin.com/show_bug.cgi?id=11351#c7</a>
 
 Project sources don't appear to have space in them, which I believe is another potential cause of mmp issues.</pre>
     </div>
@@ -733,7 +733,7 @@ The app works fine when run on our 10.8.3 build Mac.
 I then deployed to a test Mac running OS X 10.7.5 and Mono not installed (all other defaults on the Mac as per a brand new install). I'm getting a similar but slightly different FontFamilyNotFound error - this time concerned with the GenericSansSerif font family. I understand this refers to the Microsoft Sans Serif font.
 
 I can confirm both Courier New.ttf and Microsoft Sans Serif.ttf are present in /Library/Fonts on both the 10.7 and 10.8 Macs. I wonder if there could be any connection with this bug report: <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - Regression: Creating a System.Windows.Forms.Form() crashes on Mac on Mono 3.0" href="show_bug.cgi?id=7962">https://bugzilla.xamarin.com/show_bug.cgi?id=7962</a>
+          bz_status_NEW " title="NEW - Regression: Creating a System.Windows.Forms.Form() crashes on Mac on Mono 3.0" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7962">https://bugzilla.xamarin.com/show_bug.cgi?id=7962</a>
 
 Stacktrace below:
 

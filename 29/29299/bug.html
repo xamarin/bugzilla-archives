@@ -1157,7 +1157,7 @@ This is a private machine, so I can't open it up too freely, but if someone from
 
 
 <pre class="bz_comment_text">Is this a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGV on shutdown in threadpool stress test" href="show_bug.cgi?id=29212">bug 29212</a>?
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGV on shutdown in threadpool stress test" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29212">bug 29212</a>?
 
 I noticed this in my automated tests recently after I upgraded to latest Ubuntu patches. Occurred on my test suite every time, running what was top of tree around mono 3.10, once I upgraded my Ubuntu 14.04 kernel to version 3.13.0-52-generic. Sometimes I would get a sig fault and sometimes I would get NullReference exceptions in the SchedulerThread but in different spots.
 
@@ -1194,7 +1194,7 @@ Then I downgraded to kernel 3.13.0-46 and the problem has not recurred.</pre>
 
 
 <pre class="bz_comment_text">I don't think so. The <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGV on shutdown in threadpool stress test" href="show_bug.cgi?id=29212">bug 29212</a> seems to have something to do with "newer" kernels (various reports about 3.13+?, see also <a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1450584">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1450584</a>, maybe a fix?). The Timer NRE occurs on older kernels, too (e.g. with 2.6.32 with lucid).</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGV on shutdown in threadpool stress test" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29212">bug 29212</a> seems to have something to do with "newer" kernels (various reports about 3.13+?, see also <a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1450584">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1450584</a>, maybe a fix?). The Timer NRE occurs on older kernels, too (e.g. with 2.6.32 with lucid).</pre>
     </div>
 
     <div id="c14" class="bz_comment">
@@ -1345,7 +1345,7 @@ On our old lucid systems our software seems to have stopped crashing with one of
 
 
 <pre class="bz_comment_text">Nothing new from my side. We have updated the Kernel on all testing and customer machines last month and the issue was fixed. I didn't test anything with 4.1+ Kernel (according to last comments on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGV on shutdown in threadpool stress test" href="show_bug.cgi?id=29212">https://bugzilla.xamarin.com/show_bug.cgi?id=29212</a>, the issue is still there) since I don't work on that project any more ;)
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SIGSEGV on shutdown in threadpool stress test" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29212">https://bugzilla.xamarin.com/show_bug.cgi?id=29212</a>, the issue is still there) since I don't work on that project any more ;)
 
 So for now I would propose to mark it as duplicate of #29212.
 

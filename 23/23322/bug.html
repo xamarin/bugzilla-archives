@@ -687,14 +687,14 @@ Should test proxy authentication for connecting to Xamarin's back end servers:
 <pre class="bz_comment_text">The original problem that NuGet had is explained in this comment:
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - WebException.Response is null when https request needs proxy authentication" href="show_bug.cgi?id=19594#c2">https://bugzilla.xamarin.com/show_bug.cgi?id=19594#c2</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - WebException.Response is null when https request needs proxy authentication" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19594#c2">https://bugzilla.xamarin.com/show_bug.cgi?id=19594#c2</a>
 
 When a system wide proxy was configured for both http and https traffic, no credentials saved anywhere, the user was never prompted for their credentials when looking for NuGet packages on <a href="https://nuget.org">https://nuget.org</a>. In order to fix the problem for NuGet a patch was applied to NuGet. Xamarin Studio has the same NuGet code for its proxy authentication logic so it is worth testing whether a prompt will occur if a proxy is configured for all web traffic including https and the various https services are used (e.g. components and updater)
 
 There is also some instructions on testing NuGet using Fiddler as the proxy in this comment which may or may not help:
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Multiple Proxy credentials windows open when connect to Nuget package source" href="show_bug.cgi?id=19522#c4">https://bugzilla.xamarin.com/show_bug.cgi?id=19522#c4</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Multiple Proxy credentials windows open when connect to Nuget package source" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19522#c4">https://bugzilla.xamarin.com/show_bug.cgi?id=19522#c4</a></pre>
     </div>
 
     <div id="c3" class="bz_comment">

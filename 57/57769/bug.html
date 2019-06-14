@@ -684,7 +684,7 @@ The only way I could get this to work was to set a global property in the MSBuil
 However SetGlobalProperty is an internal method so this cannot be done from the .NET Core addin.
 
 So I suspect the simplest way to fix this to add the Microsoft.FSharp.NetSdk.props and .targets to Mono's MSBuild. There is a separate <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - F#.NET Core 2.0 projects do not compile" href="show_bug.cgi?id=57771">bug #57771</a> for adding these files to Mono so MSBuild can compile F# .NET Core 2.0 projects from the command line.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - F#.NET Core 2.0 projects do not compile" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57771">bug #57771</a> for adding these files to Mono so MSBuild can compile F# .NET Core 2.0 projects from the command line.</pre>
     </div>
 
     <div id="c3" class="bz_comment">

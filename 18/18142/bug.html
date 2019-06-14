@@ -590,7 +590,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">In <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - locals init is forced to true, even when it is not set" href="show_bug.cgi?id=18068">bug #18068</a>, a new flag has been added to Mono runtime to support locals init=false.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - locals init is forced to true, even when it is not set" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18068">bug #18068</a>, a new flag has been added to Mono runtime to support locals init=false.
 
 This result in various speedup in JIT (it avoids double clearing/setting of memory in many cases, especially combined with "out" memory). This is very useful in game programming, especially for mathematics code and some very tight loop that we have to put in separate functions due to "ref" array accesses.
 

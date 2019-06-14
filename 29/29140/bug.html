@@ -656,7 +656,7 @@ Refer attached sample code.</pre>
 
 
 <pre class="bz_comment_text">This is <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - WindowManagerImpl fails to cast to IWindowManager" href="show_bug.cgi?id=16604">Bug #16604</a>, which at the time was closed NOT_ON_ROADMAP, because I didn't want to enumerate all interfaces that a type implemented in preference to checking the base classes when determining the "best fit" wrapper type.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - WindowManagerImpl fails to cast to IWindowManager" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16604">Bug #16604</a>, which at the time was closed NOT_ON_ROADMAP, because I didn't want to enumerate all interfaces that a type implemented in preference to checking the base classes when determining the "best fit" wrapper type.
 
 Theoretically, we could check interface types if the default base-class strategy fails. The problem with checking interfaces at all is that JNI doesn't expose a way to enumerate all the interfaces a class implements, which means to do so we would need to use JNI to invoke java.lang.Class.getInterfaces()...which is certainly possible.
 

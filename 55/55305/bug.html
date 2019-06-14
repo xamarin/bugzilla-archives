@@ -595,7 +595,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">This is a new issue related to (but not fixed in)  <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - AndroidClientHandler ignores Timeout value and CancellationToken" href="show_bug.cgi?id=44673">https://bugzilla.xamarin.com/show_bug.cgi?id=44673</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - AndroidClientHandler ignores Timeout value and CancellationToken" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44673">https://bugzilla.xamarin.com/show_bug.cgi?id=44673</a>.
 
 The latest changes in Android 7.2 release still do not work if using a misconfigured network (incorrect proxy settings, network requires login to use, etc).  On these networks, all HTTP connect calls block on the Connect() call for 2 minutes or more, regardless of the timeout specified.  In this case, I do see the httpConnection.Disconnect() call made when the token is cancelled, but that has no effect.  
 

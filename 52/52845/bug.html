@@ -215,7 +215,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Follow-up to bug 52845: Satellite assemblies not loaded by app when using &quot;Bundle assemblies into native code&quot; even though they are now successfully mkbundled" href="show_bug.cgi?id=55603">bug 55603</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Follow-up to bug 52845: Satellite assemblies not loaded by app when using &quot;Bundle assemblies into native code&quot; even though they are now successfully mkbundled" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55603">bug 55603</a>
       </span>
     </td>
   </tr>
@@ -614,7 +614,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Follow-up to bug 52845: Satellite assemblies not loaded by app when using &quot;Bundle assemblies into native code&quot; even though they are now successfully mkbundled" href="show_bug.cgi?id=55603">bug 55603</a></span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Follow-up to bug 52845: Satellite assemblies not loaded by app when using &quot;Bundle assemblies into native code&quot; even though they are now successfully mkbundled" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55603">bug 55603</a></span>
 </div>
 
 
@@ -720,7 +720,7 @@ Yes.  Based on the reporter's description, this seems likely to be a side-effect
 ## Specific to one particular project, development computer, or target mobile device?
 
 It might be specific to Windows and the path separator character.  It seems like in theory it should be fairly easy to reproduce the issue with any satellite assembly test case (such as the test case attached to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;Symbol ... is already defined&quot; error with &quot;Embed assemblies in native code&quot; and multiple .resx files" href="show_bug.cgi?id=15948">Bug 15948</a>).  I will plan to try that test case and post back the results in a follow-up comment.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;Symbol ... is already defined&quot; error with &quot;Embed assemblies in native code&quot; and multiple .resx files" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15948">Bug 15948</a>).  I will plan to try that test case and post back the results in a follow-up comment.
 
 
 
@@ -767,13 +767,13 @@ Not too many yet, but there is a slowly increasing number of users on CC on the 
 Test case (for Android)
 
 This does indeed appear to be caused by the new use of `Path.DirectorySeparatorChar()` in the fix for Mono <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mkbundle doesn't support satellite assemblies" href="show_bug.cgi?id=11430">Bug 11430</a> [1].
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mkbundle doesn't support satellite assemblies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=11430">Bug 11430</a> [1].
 
 [1] <a href="https://github.com/mono/mono/commit/787b047886da494ec2f05a2db86baca33a9f39f7">https://github.com/mono/mono/commit/787b047886da494ec2f05a2db86baca33a9f39f7</a>
 
 
 This should in theory affect the test case for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mkbundle doesn't support satellite assemblies" href="show_bug.cgi?id=11430">Bug 11430</a> in desktop Mono on Windows too.  I will aim to file a follow-up bug for that shortly.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mkbundle doesn't support satellite assemblies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=11430">Bug 11430</a> in desktop Mono on Windows too.  I will aim to file a follow-up bug for that shortly.
 
 
 
@@ -837,7 +837,7 @@ msbuild /p:Configuration=Release /t:SignAndroidPackage I18nResourcesBug\I18nReso
 ## Testing note for Xamarin.Android 7.1 and lower
 
 Due to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - NDK r12b+ is not supported" href="show_bug.cgi?id=48678">Bug 48678</a>, it is necessary to use Android NDK r11c or lower when testing the behavior of `mkbundle` on Xamarin.Android 7.1 and lower.  That limitation is no longer present in Xamarin.Android 7.1.99 (aka 7.2).  (And for the purposes of this particular bug, that limitation is not too important because the results are the same when using either NDK r12 or NDK r11 with Xamarin.Android 7.1.99.)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - NDK r12b+ is not supported" href="https://bugzilla.xamarin.com/show_bug.cgi?id=48678">Bug 48678</a>, it is necessary to use Android NDK r11c or lower when testing the behavior of `mkbundle` on Xamarin.Android 7.1 and lower.  That limitation is no longer present in Xamarin.Android 7.1.99 (aka 7.2).  (And for the purposes of this particular bug, that limitation is not too important because the results are the same when using either NDK r12 or NDK r11 with Xamarin.Android 7.1.99.)
 
 
 
@@ -893,7 +893,7 @@ KitKat (Android 4.4 - API 19) Visual Studio Android Emulator</pre>
 
 
 <pre class="bz_comment_text"><span class="quote">&gt; This should in theory affect the test case for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mkbundle doesn't support satellite assemblies" href="show_bug.cgi?id=11430">Bug 11430</a> in desktop
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - mkbundle doesn't support satellite assemblies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=11430">Bug 11430</a> in desktop
 &gt; Mono on Windows too.  I will aim to file a follow-up bug for that
 &gt; shortly.</span>
 
@@ -1004,7 +1004,7 @@ In short, the initial verification of this bug appears to have been incomplete o
 (In case it might come in handy for future reference, note also that in general new bug reports have better visibility to the engineering team compared to comments on Verified Fixed bugs.)
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Follow-up to bug 52845: Satellite assemblies not loaded by app when using &quot;Bundle assemblies into native code&quot; even though they are now successfully mkbundled" href="show_bug.cgi?id=55603">bug 55603</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Follow-up to bug 52845: Satellite assemblies not loaded by app when using &quot;Bundle assemblies into native code&quot; even though they are now successfully mkbundled" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55603">bug 55603</a> ***</pre>
     </div>
 
     <div id="c10" class="bz_comment">

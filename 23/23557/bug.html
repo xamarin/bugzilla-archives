@@ -190,7 +190,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <div class="bz_short_desc_container edit_form">
      <a href="bug.html"><b>Bug&nbsp;23557</b></a> <span id="summary_container" class="bz_default_hidden">
       - <span id="short_desc_nonedit_display">Performance issues likely due to failure to patch even after <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Calls from generic shared methods not always patched" href="show_bug.cgi?id=23021">bug 23021</a> fixed</span>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Calls from generic shared methods not always patched" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23021">bug 23021</a> fixed</span>
      </span>
 
     <div id="summary_input"><span class="field_label " id="field_label_short_desc">
@@ -689,7 +689,7 @@ Xamarin.iOS project that reproduces the performance problem</pre>
 
 
 <pre class="bz_comment_text"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Calls from generic shared methods not always patched" href="show_bug.cgi?id=23021">Bug 23021</a> was fixed and improved performance of our iOS app dramatically both at launch and in specific operations that occur in our app. The fix also fixed the repro I provided showing how we could spend over 90% of our time in generic_trampoline_jit.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Calls from generic shared methods not always patched" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23021">Bug 23021</a> was fixed and improved performance of our iOS app dramatically both at launch and in specific operations that occur in our app. The fix also fixed the repro I provided showing how we could spend over 90% of our time in generic_trampoline_jit.
 
 However, even with the fix, we still spend quite a bit of our launch time and other operations in generic_trampoline_jit. I took one of the remaining problematic scenarios in our app and distilled a new repro out of it. This repro involves iterating over an IEnumerable that uses a lot of templated structs. It does all of this at launch and a simple foreach spends over 90% of its time in generic_trampoline_jit.
 

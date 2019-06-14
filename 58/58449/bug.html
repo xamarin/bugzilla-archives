@@ -215,7 +215,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="show_bug.cgi?id=55268">bug 55268</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55268">bug 55268</a>
       </span>
     </td>
   </tr>
@@ -716,7 +716,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="show_bug.cgi?id=55268">bug 55268</a></span>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55268">bug 55268</a></span>
 </div>
 
 
@@ -798,7 +798,7 @@ Note:
 - The problem only occurs when more than 1 DEX file is created.
 - The problem only occurs when sub-classing application.
 - Attached project is taken from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Custom Application subclass does not extend MultiDexApplication when MultiDex is enabled" href="show_bug.cgi?id=40976">https://bugzilla.xamarin.com/show_bug.cgi?id=40976</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Custom Application subclass does not extend MultiDexApplication when MultiDex is enabled" href="https://bugzilla.xamarin.com/show_bug.cgi?id=40976">https://bugzilla.xamarin.com/show_bug.cgi?id=40976</a>
 
 Simulate to work:
 - Get the attached project and remove library, (eg: Xamarin.Facebook which would exceed the maximum method count), to make it runnable.
@@ -869,20 +869,20 @@ Platform Build Tool</pre>
 I believe you are running into the following similar issue where I've posted a workaround:
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="show_bug.cgi?id=55268#c8">https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c8</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c8">https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c8</a>
 
 I believe this is an issue of the respective Xamarin.Android glue classes and your custom application class not making the main dex list when they need to be on it prior to startup. The workaround above demonstrates how you can "By hand" fix this. My comments in the following bug below demonstrate that there is a need to fix this:
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="show_bug.cgi?id=55268#c11">https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c11</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c11">https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c11</a>
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="show_bug.cgi?id=55268#c12">https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c12</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c12">https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c12</a>
 
 Thus I am marking this bug as a duplicate of 55268 as they are more or less the same issue of things not making the main dex list when they should.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="show_bug.cgi?id=55268">bug 55268</a> ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55268">bug 55268</a> ***</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -933,7 +933,7 @@ I reported this after refer to the following references:
 <a href="https://www.majormojo.co.uk/blog/using-android-java-libraries-with-xamarin-pt-1.html">https://www.majormojo.co.uk/blog/using-android-java-libraries-with-xamarin-pt-1.html</a>
 <a href="https://developer.xamarin.com/guides/android/advanced_topics/java_integration_overview/working_with_jni/">https://developer.xamarin.com/guides/android/advanced_topics/java_integration_overview/working_with_jni/</a>
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="show_bug.cgi?id=55268">https://bugzilla.xamarin.com/show_bug.cgi?id=55268</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55268">https://bugzilla.xamarin.com/show_bug.cgi?id=55268</a></pre>
     </div>
 
     <div id="c4" class="bz_comment">
@@ -1131,12 +1131,12 @@ After including the Xamarin.Adnroid "Glue" classes, I mark this issue as duplica
 
 This is important knowledge to know the Xamarin.Android glue classes.
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="show_bug.cgi?id=55268#c12">https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c12</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c12">https://bugzilla.xamarin.com/show_bug.cgi?id=55268#c12</a>
 
 May I know how can I identify those glue classes to be includes in future?
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="show_bug.cgi?id=55268">bug 55268</a> ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Multidex + ApplicationAttribute = exception application class not found on android 4.4" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55268">bug 55268</a> ***</pre>
     </div>
 
     <div id="c10" class="bz_comment">

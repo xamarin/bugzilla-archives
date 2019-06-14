@@ -630,7 +630,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">If a MonoMac type is created, but its constructor has never been called (for example, by calling a static method such as NSNumber.FromInt32()), an InvalidCastException is raised. This appears to be because an entry is only added to Class.type_map when a type's constructor is first called.
 
 In addition, in the event that none of the constructors for the ancestors of the class have been called, Class.Lookup() enters an infinite loop. (This appears to have the same cause as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Infinite loop in MonoMac.ObjCRuntime.Class.Lookup() with NSProxy subclass" href="show_bug.cgi?id=408">bug 408</a>).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Infinite loop in MonoMac.ObjCRuntime.Class.Lookup() with NSProxy subclass" href="https://bugzilla.xamarin.com/show_bug.cgi?id=408">bug 408</a>).
 
 This bug appears to be present in the latest revision of MonoMac in git, at the time of writing.
 

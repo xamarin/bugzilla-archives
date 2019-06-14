@@ -1395,7 +1395,7 @@ Note that the base class is android.app.Application, *not* AppBase.</pre>
 <pre class="bz_comment_text">What's interesting is that using the OSS Java.Interop and/or xamarin-android repo, ThisUsedToWorkScenario has the correct base class, which means the bug was introduced after we created those repos.
 
 The cause appears to be due to the fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Custom Application subclass does not extend MultiDexApplication when MultiDex is enabled" href="show_bug.cgi?id=40976">Bug #40976</a>, which does:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Custom Application subclass does not extend MultiDexApplication when MultiDex is enabled" href="https://bugzilla.xamarin.com/show_bug.cgi?id=40976">Bug #40976</a>, which does:
 
 <span class="quote">&gt; if (JniType.IsApplication(type) &amp;&amp; !string.IsNullOrEmpty(ApplicationJavaClass))
 &gt;     extendsType = ApplicationJavaClass;</span>

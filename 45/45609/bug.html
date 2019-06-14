@@ -642,7 +642,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">In reference to: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Xamarin.Android apps on the Samsung Galaxy S7 fails to start with the error System.ExecutionEngineException SIGILL" href="show_bug.cgi?id=39859">https://bugzilla.xamarin.com/show_bug.cgi?id=39859</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Xamarin.Android apps on the Samsung Galaxy S7 fails to start with the error System.ExecutionEngineException SIGILL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39859">https://bugzilla.xamarin.com/show_bug.cgi?id=39859</a>
 
 I'm raising a new issue for the SIGILL on Samsung devices as it appears to still be an issue.
 
@@ -800,7 +800,7 @@ As usual I do not have a reproduction for this as it is extremely rare.</pre>
 
 
 <pre class="bz_comment_text">I think this is related to this issue: <a class="bz_bug_link 
-          bz_status_NEEDINFO " title="NEEDINFO - Variables and params randomly null on Samsung devices" href="show_bug.cgi?id=45530">https://bugzilla.xamarin.com/show_bug.cgi?id=45530</a></pre>
+          bz_status_NEEDINFO " title="NEEDINFO - Variables and params randomly null on Samsung devices" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45530">https://bugzilla.xamarin.com/show_bug.cgi?id=45530</a></pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -952,7 +952,7 @@ Can you give me some numbers on how rare it is?</pre>
 I'll mark it as NEEDINFO and hope that someone else runs into the same issue in a more reliable way. Otherwise, there isn't much we can do about it.
 
 Jahmai, please keep posting crash logs here and <a class="bz_bug_link 
-          bz_status_NEEDINFO " title="NEEDINFO - Variables and params randomly null on Samsung devices" href="show_bug.cgi?id=45530">https://bugzilla.xamarin.com/show_bug.cgi?id=45530</a>
+          bz_status_NEEDINFO " title="NEEDINFO - Variables and params randomly null on Samsung devices" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45530">https://bugzilla.xamarin.com/show_bug.cgi?id=45530</a>
 They are _probably_ related, but let's keep tracking them as different bugs.</pre>
     </div>
 
@@ -1449,7 +1449,7 @@ Non-fatal Exception: java.lang.Throwable: System.ExecutionEngineException: SIGIL
 
 
 <pre class="bz_comment_text">I am having the same Problem with an App that recently went live in the Google Play Store. All happening on Samsung devices (like in Bug <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Xamarin.Android apps on the Samsung Galaxy S7 fails to start with the error System.ExecutionEngineException SIGILL" href="show_bug.cgi?id=39859">https://bugzilla.xamarin.com/show_bug.cgi?id=39859</a>).</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Xamarin.Android apps on the Samsung Galaxy S7 fails to start with the error System.ExecutionEngineException SIGILL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39859">https://bugzilla.xamarin.com/show_bug.cgi?id=39859</a>).</pre>
     </div>
 
     <div id="c18" class="bz_comment">
@@ -1516,7 +1516,7 @@ Xamarin caused by: android.runtime.JavaProxyThrowable: System.ExecutionEngineExc
 <pre class="bz_comment_text">Thanks for the reports.
 
 Alas, the general problem has to be fixed in kernel-space (but we all know this won't happen on a lot of Android devices).  Our current solution for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Xamarin.Android apps on the Samsung Galaxy S7 fails to start with the error System.ExecutionEngineException SIGILL" href="show_bug.cgi?id=39859">https://bugzilla.xamarin.com/show_bug.cgi?id=39859</a> has a flaw where a race could still happen if you're really really unlucky.  At least I thought so.  Maybe that's what your users are hitting. There's a way to avoid this race, which comes with a small performance hit. We will try this patch, *maybe* it'll help: <a href="https://github.com/mono/mono/pull/3934">https://github.com/mono/mono/pull/3934</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Xamarin.Android apps on the Samsung Galaxy S7 fails to start with the error System.ExecutionEngineException SIGILL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39859">https://bugzilla.xamarin.com/show_bug.cgi?id=39859</a> has a flaw where a race could still happen if you're really really unlucky.  At least I thought so.  Maybe that's what your users are hitting. There's a way to avoid this race, which comes with a small performance hit. We will try this patch, *maybe* it'll help: <a href="https://github.com/mono/mono/pull/3934">https://github.com/mono/mono/pull/3934</a>
 
 It'll be part of the next release (C9).
 
@@ -1904,7 +1904,7 @@ Any predictions on when the Alpha will be Stable?</pre>
 
 
 <pre class="bz_comment_text">Any particular reason this wasn't included in C8SR2, but <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - After network reconnected, web request fails for a couple of minutes with a NameResolutionFailure" href="show_bug.cgi?id=45761">https://bugzilla.xamarin.com/show_bug.cgi?id=45761</a> was?</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - After network reconnected, web request fails for a couple of minutes with a NameResolutionFailure" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45761">https://bugzilla.xamarin.com/show_bug.cgi?id=45761</a> was?</pre>
     </div>
 
     <div id="c28" class="bz_comment">
@@ -2254,7 +2254,7 @@ As I already said in <a href="bug.html">comment #8</a>, there is not much we can
 
 
 @Geir Ludvigsen (<a href="bug.html">comment #23</a>): you should update your Xamarin.Android version.  Your version of Xamarin.Android (7db2aac37) doesn't contain the fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Xamarin.Android apps on the Samsung Galaxy S7 fails to start with the error System.ExecutionEngineException SIGILL" href="show_bug.cgi?id=39859">https://bugzilla.xamarin.com/show_bug.cgi?id=39859</a></pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Xamarin.Android apps on the Samsung Galaxy S7 fails to start with the error System.ExecutionEngineException SIGILL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39859">https://bugzilla.xamarin.com/show_bug.cgi?id=39859</a></pre>
     </div>
 
     <div id="c37" class="bz_comment">

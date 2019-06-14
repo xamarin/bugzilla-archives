@@ -600,7 +600,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - iOS Designer automatically changed class name and deleted an outlet" href="show_bug.cgi?id=44509">44509</a>
+          bz_status_CONFIRMED " title="CONFIRMED - iOS Designer automatically changed class name and deleted an outlet" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44509">44509</a>
           </li></ul>
 
 </td>
@@ -675,7 +675,7 @@ _______.xib: Error: 2017-12-06 23:33:00.482 ibtoold[908:28200] [MT] IBPlatformTo
 I reported this bug to Apple but it was a duplicate of an existing bug so they know about it.  I have not been able to build for about five hours because of this marshalling error as I try various tricks to get it to compile which have usually worked in the past.
 
 The problem is that iOS Designer opens the failing XIB in Visual Studio to show the error ***and it also automatically converts all of the project's *.designer.cs files to the iOS Designer format***.  Because of <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - iOS Designer automatically changed class name and deleted an outlet" href="show_bug.cgi?id=44509">bug 44509</a> which I reported, this mangles some of my project's classes and I need to roll back all of my *.designer.cs files to their previous contents.  I am literally making a ZIP file of my project before every build in case iOS Designer mangles my files when it shows the XIB error message.  I then use Beyond Compare to copy my saved files back to their previous contents.  iOS Designer is making a frustrating problem even worse.
+          bz_status_CONFIRMED " title="CONFIRMED - iOS Designer automatically changed class name and deleted an outlet" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44509">bug 44509</a> which I reported, this mangles some of my project's classes and I need to roll back all of my *.designer.cs files to their previous contents.  I am literally making a ZIP file of my project before every build in case iOS Designer mangles my files when it shows the XIB error message.  I then use Beyond Compare to copy my saved files back to their previous contents.  iOS Designer is making a frustrating problem even worse.
 
 It would be helpful if Visual Studio provided a setting to say what the default app is to open a XIB so I could set it to Xcode.  In lieu of that, it would be great if iOS Designer could be told to not automatically convert the designer files and just show the XIB.</pre>
     </div>

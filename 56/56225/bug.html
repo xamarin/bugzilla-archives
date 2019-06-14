@@ -356,7 +356,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2] Could not connect to debugger, app exits on launch, or breakpoints skipped when Optimize property is not explicitly set to False" href="show_bug.cgi?id=56238">56238</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2] Could not connect to debugger, app exits on launch, or breakpoints skipped when Optimize property is not explicitly set to False" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56238">56238</a> 
   </td>
   </tr>
 
@@ -774,7 +774,7 @@ I think Xamarin messed up this whole release</pre>
 <pre class="bz_comment_text">## Possible next steps to check for users watching this bug
 
 Based on <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2] Could not connect to debugger, app exits on launch, or breakpoints skipped when Optimize property is not explicitly set to False" href="show_bug.cgi?id=56238#c4">Bug 56238, Comment 4</a>, it appears that one cause of this issue for Android can be a change in the behavior of the `$(Optimize)` MSBuild property for Xamarin.Android.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2] Could not connect to debugger, app exits on launch, or breakpoints skipped when Optimize property is not explicitly set to False" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56238#c4">Bug 56238, Comment 4</a>, it appears that one cause of this issue for Android can be a change in the behavior of the `$(Optimize)` MSBuild property for Xamarin.Android.
 
 Users on this bug report can try setting Optimize to `False` for the affected Debug configurations by editing those configurations in the Android app project's .csproj file (in a text editor), and adding the following element to the PropertyGroup for those configurations:
 
@@ -874,7 +874,7 @@ I will briefly check on the effect of that setting locally, and follow-up with a
 &gt; ...
 &gt; &lt;AndroidEnableMultipleDex&gt;</span>
 Yes, that issue is covered separately in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - csproj loses multidex support on upgrade to 4.5" href="show_bug.cgi?id=56192">Bug 56192</a>.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - csproj loses multidex support on upgrade to 4.5" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56192">Bug 56192</a>.</pre>
     </div>
 
     <div id="c8" class="bz_comment">
@@ -939,7 +939,7 @@ Yes, that issue is covered separately in <a class="bz_bug_link
 <pre class="bz_comment_text"><span class="quote">&gt; That bug was fixed recently, though, so it should no longer be an
 &gt; issue.</span>
 To provide additional details, <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2] Could not connect to debugger, app exits on launch, or breakpoints skipped when Optimize property is not explicitly set to False" href="show_bug.cgi?id=56238">Bug 56238</a> has a candidate fix, but it has not been released yet.  It is currently on track for release within the next couple of business days.  So for the moment, please continue to make sure &lt;Optimize&gt;false&lt;/Optimize&gt; is explicitly specified in the affected Debug configurations.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2] Could not connect to debugger, app exits on launch, or breakpoints skipped when Optimize property is not explicitly set to False" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56238">Bug 56238</a> has a candidate fix, but it has not been released yet.  It is currently on track for release within the next couple of business days.  So for the moment, please continue to make sure &lt;Optimize&gt;false&lt;/Optimize&gt; is explicitly specified in the affected Debug configurations.
 
 
 <span class="quote">&gt; @Brendan, do you have that bug number handy for reference? </span>
@@ -1189,10 +1189,10 @@ version 4.5.0.486 is working perfectly fine.</pre>
 <pre class="bz_comment_text"><span class="quote">&gt; If I select "Optimize code" the breakpoints are not hit, if I don't
 &gt; select "Optimize code" the breakpoints are hit.</span>
 That is the correct expected behavior at this time.  If the Optimize property is _explicitly_ set to `true`, then it is the expected correct behavior that the full debug symbols will _not_ be included.  The fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2] Could not connect to debugger, app exits on launch, or breakpoints skipped when Optimize property is not explicitly set to False" href="show_bug.cgi?id=56238">Bug 56238</a> is simply to make it so that when _no_ `Optimize` property is present, the _default_ value for the property is `false`.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2] Could not connect to debugger, app exits on launch, or breakpoints skipped when Optimize property is not explicitly set to False" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56238">Bug 56238</a> is simply to make it so that when _no_ `Optimize` property is present, the _default_ value for the property is `false`.
 
 (If curious, see the corresponding commit that resolves <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2] Could not connect to debugger, app exits on launch, or breakpoints skipped when Optimize property is not explicitly set to False" href="show_bug.cgi?id=56238">Bug 56238</a>: <a href="https://github.com/xamarin/xamarin-android/commit/fd86ab04e66c8578c49f687650b2a4e5a477f832">https://github.com/xamarin/xamarin-android/commit/fd86ab04e66c8578c49f687650b2a4e5a477f832</a>)</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2] Could not connect to debugger, app exits on launch, or breakpoints skipped when Optimize property is not explicitly set to False" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56238">Bug 56238</a>: <a href="https://github.com/xamarin/xamarin-android/commit/fd86ab04e66c8578c49f687650b2a4e5a477f832">https://github.com/xamarin/xamarin-android/commit/fd86ab04e66c8578c49f687650b2a4e5a477f832</a>)</pre>
     </div>
 
 

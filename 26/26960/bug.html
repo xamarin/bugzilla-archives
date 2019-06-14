@@ -597,7 +597,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 I am able to open and build Portable.Data.Sqlite PCL project from source in Visual Studio, but not in Xamarin Studio. (github repo: <a href="https://github.com/ellisnet/Portable.Data.Sqlite">https://github.com/ellisnet/Portable.Data.Sqlite</a>)
 
 I filed one bug on this already for an internal compiler error: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Project compiles in Visual Studio but not in Xamarin Studio." href="show_bug.cgi?id=26753">https://bugzilla.xamarin.com/show_bug.cgi?id=26753</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Project compiles in Visual Studio but not in Xamarin Studio." href="https://bugzilla.xamarin.com/show_bug.cgi?id=26753">https://bugzilla.xamarin.com/show_bug.cgi?id=26753</a>
 
 That bug is now fixed (not released) but did not explain why it still built in Visual Studio, so upon further investigation I found that the platform targets in Visual Studio did _not_ include Windows Store Apps, but when opened in Xamarin Studio the platform targets _did_ include Windows Store Apps and any effort to unselect Windows Store Apps resulted in it being implicitly selected and no change occurred. The underlying issue is that IConvertible, which is used in the PCL project, is not available in Windows Store Apps platform target, so I can not build this PCL project in Xamarin Studio unless I can get rid of the Windows Store Apps target. 
 

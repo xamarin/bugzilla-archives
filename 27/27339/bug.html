@@ -730,14 +730,14 @@ debug log</pre>
 
 
 <pre class="bz_comment_text">This is similar/identical to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.EntryPointNotFoundException: monodroid_get_system_property when connecting to MSSQL" href="show_bug.cgi?id=24756">Bug #24756</a>, and I can't currently fathom how either of them can happen.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.EntryPointNotFoundException: monodroid_get_system_property when connecting to MSSQL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24756">Bug #24756</a>, and I can't currently fathom how either of them can happen.
 
 monodroid_get_system_property() *should* be exported from libmonodroid.so, which needs to be synchronized with the mscorilb.dll bundled with the app. I can't think of any way for these to get out of sync, short of "messing around with" the .apk after its built, e.g. adding a Xamarin.Android 4.20 mscorlib.dll to a .apk containing libmonodroid.so from Xamarin.Android 4.10 (or something similarly crazy).
 
 Furthermore, we haven't been able to reproduce this:
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.EntryPointNotFoundException: monodroid_get_system_property when connecting to MSSQL" href="show_bug.cgi?id=24756#c3">https://bugzilla.xamarin.com/show_bug.cgi?id=24756#c3</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.EntryPointNotFoundException: monodroid_get_system_property when connecting to MSSQL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24756#c3">https://bugzilla.xamarin.com/show_bug.cgi?id=24756#c3</a>
 
 What device are you seeing this on?</pre>
     </div>

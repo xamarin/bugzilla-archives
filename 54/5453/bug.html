@@ -350,7 +350,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Environment.OSVersion.PlatformID is Unix on MacOSX" href="show_bug.cgi?id=6153">6153</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Environment.OSVersion.PlatformID is Unix on MacOSX" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6153">6153</a> 
       </span>
       ()
     </td>
@@ -678,7 +678,7 @@ However supporting 'Mac' (which is Unix too) turned out to regress quite a bit o
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Environment.OSVersion.PlatformID is Unix on MacOSX" href="show_bug.cgi?id=6153">Bug 6153</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Environment.OSVersion.PlatformID is Unix on MacOSX" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6153">Bug 6153</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -774,7 +774,7 @@ However supporting 'Mac' (which is Unix too) turned out to regress quite a bit o
 <pre class="bz_comment_text">I'm thinking to add a correct OSVersion property to the UnixEnvironment which contains those functionalities that makes sense to Mono but maybe not making sense to .NET and are not available on Microsoft's platform. That way we could keep the compatilibility.
 
 For platform version check, I found an article that describes the correct method (<a href="http://cocoadev.com/wiki/DeterminingOSVersion">http://cocoadev.com/wiki/DeterminingOSVersion</a>), but had no time to check it yet. I agree that if it is extended it should be done correctly and report correct OS versions too. Anyway my problem when I found out that MacOSX was not reported correctly was that I tried to implement a warning for myself that MacOSX's syslog does not support LOG_DEBUG and LOG_NOTICE (see <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - OSX Lion, syslog call does not send message to syslog" href="show_bug.cgi?id=6125">bug 6125</a>). In this case it is completly enough to know that the OS is MacOSX.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - OSX Lion, syslog call does not send message to syslog" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6125">bug 6125</a>). In this case it is completly enough to know that the OS is MacOSX.
 
 I don't know what BCL stands for but if you would like to use any of the Unix specific functionality like directory right management and so on, you should have a reference to Mono.Posix.dll anyway, so if you're doing low level fun I think that could be no problem from the code depending on the framework (or if it is I think the user of the dll should dependency inject it). From the point of the code inside the framework, I don't know if it is a problem or not.</pre>
     </div>

@@ -763,8 +763,8 @@ Tried the attached project in VS2015 and it happily dumped private fields and me
 
 
 <pre class="bz_comment_text">Yes.  Attached project has two assemblies.  <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - CodeDom can't compile code on El Capitan" href="show_bug.cgi?id=31369">Bug31369</a> has some classes and has the DisablePrivateReflection attribute.   ReproRuntime is a separate assembly that  calls Assembly.Load() to bring in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - CodeDom can't compile code on El Capitan" href="show_bug.cgi?id=31369">Bug31369</a> and then dumps all the fields and methods from one of its classes.  You get everything.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - CodeDom can't compile code on El Capitan" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31369">Bug31369</a> has some classes and has the DisablePrivateReflection attribute.   ReproRuntime is a separate assembly that  calls Assembly.Load() to bring in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - CodeDom can't compile code on El Capitan" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31369">Bug31369</a> and then dumps all the fields and methods from one of its classes.  You get everything.
 
 (Tried it both in Debug and Release modes in VS and checked that I was using .NET 4.6).
 

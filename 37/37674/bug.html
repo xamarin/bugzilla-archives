@@ -637,8 +637,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 This is a direct follow-up to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED ANSWERED - [XVS 4.0] &quot;The application UnifiedSingleViewIphone1 needs to be rebuilt due to an inconsistency between the connected Mac and the local app&quot; due to warning &quot;Could not authenticate the user using the existing ssh keys&quot; during build" href="show_bug.cgi?id=37600">Bug 37600</a> (and <a class="bz_bug_link 
-          bz_status_NEEDINFO " title="NEEDINFO" href="show_bug.cgi?id=36050">Bug 36050</a>).
+          bz_status_VERIFIED  bz_closed" title="VERIFIED ANSWERED - [XVS 4.0] &quot;The application UnifiedSingleViewIphone1 needs to be rebuilt due to an inconsistency between the connected Mac and the local app&quot; due to warning &quot;Could not authenticate the user using the existing ssh keys&quot; during build" href="https://bugzilla.xamarin.com/show_bug.cgi?id=37600">Bug 37600</a> (and <a class="bz_bug_link 
+          bz_status_NEEDINFO " title="NEEDINFO" href="https://bugzilla.xamarin.com/show_bug.cgi?id=36050">Bug 36050</a>).
 
 
 
@@ -686,7 +686,7 @@ One of the messages in `/var/log/system.log` file explains why the SSH keys were
 ## Possible improvements
 
 Because this particular cause of the problem has proven to be fairly common for customers (see <a class="bz_bug_link 
-          bz_status_NEEDINFO " title="NEEDINFO" href="show_bug.cgi?id=36050">Bug 36050</a>), it might be appropriate to add an additional check for this specific cause so that a more specific message can be displayed.
+          bz_status_NEEDINFO " title="NEEDINFO" href="https://bugzilla.xamarin.com/show_bug.cgi?id=36050">Bug 36050</a>), it might be appropriate to add an additional check for this specific cause so that a more specific message can be displayed.
 
 
 There are a few different ways the test could be done. I think a direct approach for just this _one_ permissions problem would be fine. (Trying to cover all the various ways `sshd` could possibly fail during a key-based authentication is definitely not a requirement.)

@@ -593,7 +593,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 On Android, the header cell is rendered as a standard TextCell and the Text remains empty. This results in a big empty space followed by a divider line in the Accent color which cannot be removed either.
 
 In <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - In Android cannot remove the divider line between header and listitems." href="show_bug.cgi?id=26104">https://bugzilla.xamarin.com/show_bug.cgi?id=26104</a> (which was filed 1.5 years ago for XF 1.3.1) <a href="mailto:rj.lala@belastingdienst.nl">rj.lala@belastingdienst.nl</a> described a workaround which removes the empty TextCell after it was created by the TableViewModelRenderer. But 1) the workaround is ugly and 2) the divider line is not removed.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - In Android cannot remove the divider line between header and listitems." href="https://bugzilla.xamarin.com/show_bug.cgi?id=26104">https://bugzilla.xamarin.com/show_bug.cgi?id=26104</a> (which was filed 1.5 years ago for XF 1.3.1) <a href="mailto:rj.lala@belastingdienst.nl">rj.lala@belastingdienst.nl</a> described a workaround which removes the empty TextCell after it was created by the TableViewModelRenderer. But 1) the workaround is ugly and 2) the divider line is not removed.
 
 This has to be fixed in TableViewModelRenderer.GetCellForPosition which is unfortunately private and cannot be overridden by the user.</pre>
     </div>

@@ -565,7 +565,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="show_bug.cgi?id=52838">52838</a>
+          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52838">52838</a>
           </li></ul>
 
 </td>
@@ -854,12 +854,12 @@ Xamarin.Forms Team</pre>
 
 
 <pre class="bz_comment_text">I will mark this bug as related to <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="show_bug.cgi?id=52838">Bug 52838</a> where by chance I dug into closely related question in a bit more depth.  (Hopefully that will to help consolidate information for other users who might have similar questions in the future.)
+          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52838">Bug 52838</a> where by chance I dug into closely related question in a bit more depth.  (Hopefully that will to help consolidate information for other users who might have similar questions in the future.)
 
 One thing that is a little mysterious on this <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - UWP: Startup crash with Native tool chain &quot;FileNotFound_AssemblyNotFound, clrcompression&quot;" href="bug.html">Bug 51565</a> compared to <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="show_bug.cgi?id=52838">Bug 52838</a> is that the exception as reported in <a href="bug.html">Comment 0</a> sounds like it is an _unhandled_ exception, but the code for `WindowsPhonePlatformServices.GetAssemblies()` catches and ignores all `IOException` sub-classes [1].  That includes `FileNotFoundException` and explains why the steps to replicate on <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="show_bug.cgi?id=52838">Bug 52838</a> require setting the debugger to break on all CLR exceptions.  Perhaps there is (or was) indeed some unusual incorrect exception handling behavior in one of the VS 2017 RC versions.
+          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52838">Bug 52838</a> is that the exception as reported in <a href="bug.html">Comment 0</a> sounds like it is an _unhandled_ exception, but the code for `WindowsPhonePlatformServices.GetAssemblies()` catches and ignores all `IOException` sub-classes [1].  That includes `FileNotFoundException` and explains why the steps to replicate on <a class="bz_bug_link 
+          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52838">Bug 52838</a> require setting the debugger to break on all CLR exceptions.  Perhaps there is (or was) indeed some unusual incorrect exception handling behavior in one of the VS 2017 RC versions.
 
 [1] <a href="https://github.com/xamarin/Xamarin.Forms/blob/release-2.3.3/Xamarin.Forms.Platform.WinRT/WindowsBasePlatformServices.cs#L52-L71">https://github.com/xamarin/Xamarin.Forms/blob/release-2.3.3/Xamarin.Forms.Platform.WinRT/WindowsBasePlatformServices.cs#L52-L71</a></pre>
     </div>

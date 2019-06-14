@@ -215,7 +215,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker for PCL with &quot;duplicate&quot; System.Net.Primitives references causes &quot;Could not load file or assembly 'System.Net.Primitives'&quot; on simulator" href="show_bug.cgi?id=31379">bug 31379</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker for PCL with &quot;duplicate&quot; System.Net.Primitives references causes &quot;Could not load file or assembly 'System.Net.Primitives'&quot; on simulator" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31379">bug 31379</a>
       </span>
     </td>
   </tr>
@@ -548,7 +548,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker for PCL with &quot;duplicate&quot; System.Net.Primitives references causes &quot;Could not load file or assembly 'System.Net.Primitives'&quot; on simulator" href="show_bug.cgi?id=31379">bug 31379</a></span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker for PCL with &quot;duplicate&quot; System.Net.Primitives references causes &quot;Could not load file or assembly 'System.Net.Primitives'&quot; on simulator" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31379">bug 31379</a></span>
 </div>
 
 
@@ -899,7 +899,7 @@ Darwin Jons-iMac.local 14.3.0 Darwin Kernel Version 14.3.0
 I was able to trim down the original test case to just a few lines of code that use the Refit NuGet package. Using that minimal test case, I was able to trace the problem to being an issue with Xamarin.iOS rather than XamarinVS.
 
 I have accordingly filed a new bug with the new tiny test case: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker for PCL with &quot;duplicate&quot; System.Net.Primitives references causes &quot;Could not load file or assembly 'System.Net.Primitives'&quot; on simulator" href="show_bug.cgi?id=31379">Bug 31379</a>. For tidiness, I will now mark this bug as a duplicate of that new bug.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker for PCL with &quot;duplicate&quot; System.Net.Primitives references causes &quot;Could not load file or assembly 'System.Net.Primitives'&quot; on simulator" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31379">Bug 31379</a>. For tidiness, I will now mark this bug as a duplicate of that new bug.
 
 
 ## Side note
@@ -907,7 +907,7 @@ I have accordingly filed a new bug with the new tiny test case: <a class="bz_bug
 As I was working on minimizing the test case, I discovered that the the "Models" PCL project references `Components\sqlcipher-for-xamarin-android-3.3.0.0\lib\android\Mono.Data.Sqlcipher.dll` which is _not_ a PCL library. In theory, that platform-specific SQLCipher library should not be used as a reference in any PCL. If that reference is working as desired right now, it is purely "by luck." It could stop working in any future Xamarin release. I would recommend re-organizing the solution to avoid referencing that platform-dependent library in the PCL.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker for PCL with &quot;duplicate&quot; System.Net.Primitives references causes &quot;Could not load file or assembly 'System.Net.Primitives'&quot; on simulator" href="show_bug.cgi?id=31379">bug 31379</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker for PCL with &quot;duplicate&quot; System.Net.Primitives references causes &quot;Could not load file or assembly 'System.Net.Primitives'&quot; on simulator" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31379">bug 31379</a> ***</pre>
     </div>
 
 

@@ -1018,7 +1018,7 @@ Let me re-run things with XM 3.4 installed to double check that.</pre>
 /Library/Frameworks/Mono.framework/Versions/5.0.1/lib/mono/msbuild/15.0/bin/Microsoft.Common.CurrentVersion.targets(5,5): Error: The OutputPath property is not set for project 'TodayExtension.csproj'.  Please check to make sure that you have specified a valid combination of Configuration and Platform for this project.  Configuration='Debug'  Platform='x86'.  This error may also appear if some other project is trying to follow a project-to-project reference to this project, this project has been unloaded or is not included in the solution, and the referencing project does not build using the same or an equivalent Configuration or Platform. (ExtensionSamples)
 
 which is this bug: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=57495">https://bugzilla.xamarin.com/show_bug.cgi?id=57495</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57495">https://bugzilla.xamarin.com/show_bug.cgi?id=57495</a>
 
 Swapping back to xbuild, or using 3.6 (from <a href="https://jenkins.mono-project.com/view/Xamarin.MaciOS/job/xamarin-macios-builds-d15-4/">https://jenkins.mono-project.com/view/Xamarin.MaciOS/job/xamarin-macios-builds-d15-4/</a>) with msbuild both work for me.
 

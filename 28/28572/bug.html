@@ -592,7 +592,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">It appears that in Xamarin Android and mono 3.3.0 the System.Numerics.Complex.Divide(Complex dividend, Complex divisor) returns the wrong result when the dividend is 0 and the divisor is infinity. Mathematically, the result should be zero. In addition, the .Net implementation's result, matches the mathematical result.
 
 This is similar to a bug I reported earlier (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Incorrect System.Numerics.Complex.Pow(Complex v, Complex p) result" href="show_bug.cgi?id=28562">https://bugzilla.xamarin.com/show_bug.cgi?id=28562</a>) and the fix for that issue might be related to the fix for this one.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Incorrect System.Numerics.Complex.Pow(Complex v, Complex p) result" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28562">https://bugzilla.xamarin.com/show_bug.cgi?id=28562</a>) and the fix for that issue might be related to the fix for this one.
 
 To reproduce this issue, run the following code snippet
 var n = new System.Numerics.Complex (0, 0);

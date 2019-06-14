@@ -350,7 +350,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=40446">40446</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=40446">40446</a> 
       </span>
       ()
     </td>
@@ -817,7 +817,7 @@ So, given that we have made radical changes to activation, I think that we shoul
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=40446">Bug 40446</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=40446">Bug 40446</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c9" class="bz_comment">
@@ -849,7 +849,7 @@ So, given that we have made radical changes to activation, I think that we shoul
 <pre class="bz_comment_text">It would be nice if we could see Resource.designer.fs:65, but probably not relevant.
 
 What I believe is the relevant difference between Xamarin.Android 6.0 (Cycle 6) and 6.1 (Cycle 7) that would impact F# generation is that FSharp.Compiler.CodeDom.dll was upgraded from 0.9.2 to 0.9.4, which was done in monodroid/cdc1a3b8 to fix <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - F# reserved keyword 'end' being generated in member for resource.designer.fs" href="show_bug.cgi?id=24709">Bug #24709</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - F# reserved keyword 'end' being generated in member for resource.designer.fs" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24709">Bug #24709</a>.
 
 I would surmise that while 0.9.4 may have fixed one F# generation bug, it presumably introduced another.
 
@@ -1023,8 +1023,8 @@ Regardless, there are two options here:
 2. We go back to FSharp.Compiler.CodeDom 0.9.2, which was distributed with C6SR4.
 
 This *may* reopen <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED UPSTREAM" href="show_bug.cgi?id=40613">Bug #40613</a> and <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - F# reserved keyword 'end' being generated in member for resource.designer.fs" href="show_bug.cgi?id=24709">Bug #24709</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED UPSTREAM" href="https://bugzilla.xamarin.com/show_bug.cgi?id=40613">Bug #40613</a> and <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - F# reserved keyword 'end' being generated in member for resource.designer.fs" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24709">Bug #24709</a>.
 
 In the absence of fixing FSharp.Compiler.CodeDom (help?), these appear to be the only options.
 
@@ -1089,8 +1089,8 @@ I'm not sure what should be done for master.</pre>
 
 
 <pre class="bz_comment_text"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Getting build error on creating Archive for F# android application." href="show_bug.cgi?id=41254">Bug #41254</a> was caused by a new support lib reference in the templates, and is a dupe of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - F# reserved keyword 'end' being generated in member for resource.designer.fs" href="show_bug.cgi?id=24709">Bug #24709</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Getting build error on creating Archive for F# android application." href="https://bugzilla.xamarin.com/show_bug.cgi?id=41254">Bug #41254</a> was caused by a new support lib reference in the templates, and is a dupe of <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - F# reserved keyword 'end' being generated in member for resource.designer.fs" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24709">Bug #24709</a>.
 
 I'm able to verify the fix for this specific error with the following steps:
 1. Create a new 'Modern Development' F# Android App in XS

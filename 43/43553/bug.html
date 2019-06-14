@@ -349,7 +349,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=43537">43537</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43537">43537</a> 
       </span>
       ()
     </td>
@@ -620,7 +620,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Somewhat difficult to interpret error &quot;&quot;GenerateJavaStubs&quot; task failed unexpectedly ... Sequence contains no elements&quot; if an Android app project by accident does not have any subclasses of `Activity`" href="show_bug.cgi?id=43548">43548</a>
+          bz_status_CONFIRMED " title="CONFIRMED - Somewhat difficult to interpret error &quot;&quot;GenerateJavaStubs&quot; task failed unexpectedly ... Sequence contains no elements&quot; if an Android app project by accident does not have any subclasses of `Activity`" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43548">43548</a>
           </li></ul>
 
 </td>
@@ -693,7 +693,7 @@ Using "Run Code Analysis" on Android Class Library hits ""GenerateJavaStubs" tas
 
 
 This bug is related to <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Somewhat difficult to interpret error &quot;&quot;GenerateJavaStubs&quot; task failed unexpectedly ... Sequence contains no elements&quot; if an Android app project by accident does not have any subclasses of `Activity`" href="show_bug.cgi?id=43548">Bug 43548</a>, but that bug discusses the error message in the context of the normal build and deploy process for Android _application projects_.  In this second bug, the problem instead occurs under the more "special" condition of using the "Run Code Analysis" feature on Android _class libraries_.
+          bz_status_CONFIRMED " title="CONFIRMED - Somewhat difficult to interpret error &quot;&quot;GenerateJavaStubs&quot; task failed unexpectedly ... Sequence contains no elements&quot; if an Android app project by accident does not have any subclasses of `Activity`" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43548">Bug 43548</a>, but that bug discusses the error message in the context of the normal build and deploy process for Android _application projects_.  In this second bug, the problem instead occurs under the more "special" condition of using the "Run Code Analysis" feature on Android _class libraries_.
 
 It looks like the problem in this scenario is that setting the `RunCodeAnalysis` MSBuild property to `true` causes some additional targets to run that are not part of the normal build steps for Android class libraries.  It seems that some of those additional targets are only compatible with Android _application projects_ and should not ever be run for _class libraries_, regardless of whether `RunCodeAnalysis` is set to `true` or not.
 
@@ -739,7 +739,7 @@ public class MainActivity : Activity
 ## BAD Results
 
 The build fails with the same error as <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Somewhat difficult to interpret error &quot;&quot;GenerateJavaStubs&quot; task failed unexpectedly ... Sequence contains no elements&quot; if an Android app project by accident does not have any subclasses of `Activity`" href="show_bug.cgi?id=43548">Bug 43548</a>.  Presumably this is because the build process is being "tricked into thinking" that it's building an application project.  Of course Android class libraries should _not_ be required to contain an `Activity` subclass, so the build failure is not appropriate in this scenario.
+          bz_status_CONFIRMED " title="CONFIRMED - Somewhat difficult to interpret error &quot;&quot;GenerateJavaStubs&quot; task failed unexpectedly ... Sequence contains no elements&quot; if an Android app project by accident does not have any subclasses of `Activity`" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43548">Bug 43548</a>.  Presumably this is because the build process is being "tricked into thinking" that it's building an application project.  Of course Android class libraries should _not_ be required to contain an `Activity` subclass, so the build failure is not appropriate in this scenario.
 
 <span class="quote">&gt; /Library/Frameworks/Mono.framework/External/xbuild/Xamarin/Android/Xamarin.Android.Common.targets: error : Error executing task GenerateJavaStubs: Sequence contains no elements
 &gt; 		Error executing task GenerateJavaStubs: System.InvalidOperationException: Sequence contains no elements
@@ -846,7 +846,7 @@ Detailed version information</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=43537">Bug 43537</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43537">Bug 43537</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c3" class="bz_comment">

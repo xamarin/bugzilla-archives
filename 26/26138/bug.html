@@ -633,7 +633,7 @@ I also sometimes see "The package contains PowerShell scripts that will not be r
 1) I cannot reproduce this but I might be doing something different to you. It seems to show the correct number of packages when I update each project separately.
 
 2) This a <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Updating all packages in a solution does not refresh the update info in the Solution window" href="show_bug.cgi?id=25505">bug #25505</a> I introduced in 5.7 whilst fixing a problem with Xamarin.Forms not being updating its dependent packages. It should be fixed in 5.8.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Updating all packages in a solution does not refresh the update info in the Solution window" href="https://bugzilla.xamarin.com/show_bug.cgi?id=25505">bug #25505</a> I introduced in 5.7 whilst fixing a problem with Xamarin.Forms not being updating its dependent packages. It should be fixed in 5.8.
 
 3) I get the same behaviour in Visual Studio. It logs a messaging saying "Skipping 'XYZ' because it was modified" and then later you get a prompt asking to overwrite it. This warning message is logged when the old MvvmCross package is uninstalled. The prompt to overwrite is shown when the new MvvmCross version is installed since it is trying to overwrite the existing file. So the warning message from NuGet seems to be correct. You can see the skipping warning if you just uninstall the MvvmCross starter pack NuGet package.
 

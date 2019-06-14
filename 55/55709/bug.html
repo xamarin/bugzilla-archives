@@ -633,7 +633,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Sample project. Use with slow network, tap button and watch output window.
 
 This does seem very similar to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpClient hangs indefinitely when internet connection is lost during a chunked POST transfer" href="show_bug.cgi?id=51423">https://bugzilla.xamarin.com/show_bug.cgi?id=51423</a> , however I have tested with the latest Stable and Alpha as of 4/27/17 and it still reproduces. Also, in this case we're explicitly cancelling rather than disconnecting the network.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpClient hangs indefinitely when internet connection is lost during a chunked POST transfer" href="https://bugzilla.xamarin.com/show_bug.cgi?id=51423">https://bugzilla.xamarin.com/show_bug.cgi?id=51423</a> , however I have tested with the latest Stable and Alpha as of 4/27/17 and it still reproduces. Also, in this case we're explicitly cancelling rather than disconnecting the network.
 
 When calling HttpClient.SendAsync with a CancellationToken, cancelling that token after a certain time "causes no response and HttpClient will hang indefinitely (no exception or response back)" (quoted from the other bug because the resulting symptom is the same).
 

@@ -350,7 +350,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - The name 'InitializeComponent' does not exist in the current context error with XAML on UWP" href="show_bug.cgi?id=36935">36935</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - The name 'InitializeComponent' does not exist in the current context error with XAML on UWP" href="https://bugzilla.xamarin.com/show_bug.cgi?id=36935">36935</a> 
       </span>
       ()
     </td>
@@ -366,7 +366,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XF 1.4.4] Modifying XAML files causes IntelliSense for references to other PCLs to fail in the &quot;.xaml.cs&quot; codebehind files with errors of the form &quot;are you missing an assembly reference?&quot;" href="show_bug.cgi?id=32988">32988</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XF 1.4.4] Modifying XAML files causes IntelliSense for references to other PCLs to fail in the &quot;.xaml.cs&quot; codebehind files with errors of the form &quot;are you missing an assembly reference?&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32988">32988</a> 
   </td>
   </tr>
 
@@ -617,7 +617,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 The fix for this might be similar to the old fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Windows] &quot;The name 'InitializeComponent' does not exist in the current context&quot; error when building Windows app" href="show_bug.cgi?id=29501">Bug 29501</a>? That old bug (about Windows Store Windows 8.1 projects rather than UWP projects) had a very similar behavior until it was fixed.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Windows] &quot;The name 'InitializeComponent' does not exist in the current context&quot; error when building Windows app" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29501">Bug 29501</a>? That old bug (about Windows Store Windows 8.1 projects rather than UWP projects) had a very similar behavior until it was fixed.
 
 
 
@@ -641,8 +641,8 @@ The fix for this might be similar to the old fix for <a class="bz_bug_link
 ### Variations
 
 - You can optionally apply the "Partial Workaround" from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - XamlC target causes &quot;Error HRESULT E_FAIL has been returned from a call to a COM component.&quot; dialog when using &quot;Run Custom Tool&quot; on a XAML file in a UWP project" href="show_bug.cgi?id=39826#c0">Bug 39826, Comment 0</a> after step 6 and then rebuild. That partial workaround has _no effect_ in this case, suggesting that this bug has a different underlying cause compared to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - XamlC target causes &quot;Error HRESULT E_FAIL has been returned from a call to a COM component.&quot; dialog when using &quot;Run Custom Tool&quot; on a XAML file in a UWP project" href="show_bug.cgi?id=39826">Bug 39826</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - XamlC target causes &quot;Error HRESULT E_FAIL has been returned from a call to a COM component.&quot; dialog when using &quot;Run Custom Tool&quot; on a XAML file in a UWP project" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39826#c0">Bug 39826, Comment 0</a> after step 6 and then rebuild. That partial workaround has _no effect_ in this case, suggesting that this bug has a different underlying cause compared to <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - XamlC target causes &quot;Error HRESULT E_FAIL has been returned from a call to a COM component.&quot; dialog when using &quot;Run Custom Tool&quot; on a XAML file in a UWP project" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39826">Bug 39826</a>.
 
 - You can optionally replace steps 1 - 4 with a single step of creating a new "Visual C# -&gt; Cross-Platform -&gt; Blank App (Xamarin.Forms Shared)" project. The results will be the same.
 
@@ -727,7 +727,7 @@ Windows 10 (64-bit)</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - The name 'InitializeComponent' does not exist in the current context error with XAML on UWP" href="show_bug.cgi?id=36935">Bug 36935</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - The name 'InitializeComponent' does not exist in the current context error with XAML on UWP" href="https://bugzilla.xamarin.com/show_bug.cgi?id=36935">Bug 36935</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -798,7 +798,7 @@ In .targets file of Xamarin.Forms the one that come inside .nuget package... So 
 <pre class="bz_comment_text">## Note to the Xamarin team
 
 It turns out that using `BeforeTargets="XamlPreCompile"` introduces some incompatibilities when building with Xamarin Studio on Mac. There is an in-progress discussion of this complication along with possible alternatives starting at <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XF 1.4.4] Modifying XAML files causes IntelliSense for references to other PCLs to fail in the &quot;.xaml.cs&quot; codebehind files with errors of the form &quot;are you missing an assembly reference?&quot;" href="show_bug.cgi?id=32988#c22">Bug 32988, Comment 22</a>.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XF 1.4.4] Modifying XAML files causes IntelliSense for references to other PCLs to fail in the &quot;.xaml.cs&quot; codebehind files with errors of the form &quot;are you missing an assembly reference?&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32988#c22">Bug 32988, Comment 22</a>.</pre>
     </div>
 
     <div id="c7" class="bz_comment">

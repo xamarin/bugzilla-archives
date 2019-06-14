@@ -661,7 +661,7 @@ Change any one of these things and the code will run as expected.
 Based on this evidence, and tinkering with the target URL, I think the likely culprit has something to do with DNS resolution. Perhaps cancelling a task when a DNS query is being processed somehow corrupts the state of the HttpClient object? It is a natural area for lock protection, but perhaps the cancellation logic forgets the unlock?
 
 The sample code is adapted from a @MihaMarkic bug report about a related (or possibly identical) problem: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpClient stops working after cancellation" href="show_bug.cgi?id=20974">https://bugzilla.xamarin.com/show_bug.cgi?id=20974</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpClient stops working after cancellation" href="https://bugzilla.xamarin.com/show_bug.cgi?id=20974">https://bugzilla.xamarin.com/show_bug.cgi?id=20974</a></pre>
     </div>
 
     <div id="c1" class="bz_comment">
@@ -691,7 +691,7 @@ The sample code is adapted from a @MihaMarkic bug report about a related (or pos
 
 
 <pre class="bz_comment_text">This issue is fixed in the current Xamarin.Android stable release (6.0.0-34) and it appears to be a different issue than the one reported in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpClient stops working after cancellation" href="show_bug.cgi?id=20974">bug #20974</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpClient stops working after cancellation" href="https://bugzilla.xamarin.com/show_bug.cgi?id=20974">bug #20974</a></pre>
     </div>
 
     <div id="c2" class="bz_comment">

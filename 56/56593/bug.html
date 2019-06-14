@@ -720,8 +720,8 @@ However I believe the reason for this issue is that PushAsync() may not be the b
 Fortunately there are ways to modify the stack that don't result in actual navigation. In this case, you can use InsertPageBefore() _after_ navigating to ViewC (or the page you want to be the last)  in order to add the pages to the stack in the correct order.
 
 I also demonstrated this in the repro project so you can check it out. Using this approach also seems to resolve the issues you mention in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Multiple navigations in NavigationPage results in an incorrect Title on Android" href="show_bug.cgi?id=44115">bug 44115</a> and <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - NavigationPage.CurrentPage not set properly when reusing a NavigationPage instance" href="show_bug.cgi?id=45978">bug 45978</a>.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Multiple navigations in NavigationPage results in an incorrect Title on Android" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44115">bug 44115</a> and <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - NavigationPage.CurrentPage not set properly when reusing a NavigationPage instance" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45978">bug 45978</a>.</pre>
     </div>
 
     <div id="c2" class="bz_comment">

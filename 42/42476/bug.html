@@ -628,20 +628,20 @@ available at runtime. Those two meshots take a lot of CPU when managing referenc
 &gt; making useless string.Format calls.</span>
 
 Does it? As per <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - JNIEnv.GetArray(IntPtr, JniHandleOwnership.TransferLocalRef, typeof(byte)) floods log with exceptions in Xamarin.Android 6" href="show_bug.cgi?id=41733">Bug #41733</a>, the overhead from those methods is negligible so long as the asserts don't actually fire:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - JNIEnv.GetArray(IntPtr, JniHandleOwnership.TransferLocalRef, typeof(byte)) floods log with exceptions in Xamarin.Android 6" href="https://bugzilla.xamarin.com/show_bug.cgi?id=41733">Bug #41733</a>, the overhead from those methods is negligible so long as the asserts don't actually fire:
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - JNIEnv.GetArray(IntPtr, JniHandleOwnership.TransferLocalRef, typeof(byte)) floods log with exceptions in Xamarin.Android 6" href="show_bug.cgi?id=41733#c6">https://bugzilla.xamarin.com/show_bug.cgi?id=41733#c6</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - JNIEnv.GetArray(IntPtr, JniHandleOwnership.TransferLocalRef, typeof(byte)) floods log with exceptions in Xamarin.Android 6" href="https://bugzilla.xamarin.com/show_bug.cgi?id=41733#c6">https://bugzilla.xamarin.com/show_bug.cgi?id=41733#c6</a>
 
 <span class="quote">&gt; Xamarin.Android 6.0 results: 264-351ms</span>
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - JNIEnv.GetArray(IntPtr, JniHandleOwnership.TransferLocalRef, typeof(byte)) floods log with exceptions in Xamarin.Android 6" href="show_bug.cgi?id=41733#c10">https://bugzilla.xamarin.com/show_bug.cgi?id=41733#c10</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - JNIEnv.GetArray(IntPtr, JniHandleOwnership.TransferLocalRef, typeof(byte)) floods log with exceptions in Xamarin.Android 6" href="https://bugzilla.xamarin.com/show_bug.cgi?id=41733#c10">https://bugzilla.xamarin.com/show_bug.cgi?id=41733#c10</a>
 
 <span class="quote">&gt; Xamarin.Android 6.1 + "workaround": ~240-300ms</span>
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - JNIEnv.GetArray(IntPtr, JniHandleOwnership.TransferLocalRef, typeof(byte)) floods log with exceptions in Xamarin.Android 6" href="show_bug.cgi?id=41733#c11">https://bugzilla.xamarin.com/show_bug.cgi?id=41733#c11</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - JNIEnv.GetArray(IntPtr, JniHandleOwnership.TransferLocalRef, typeof(byte)) floods log with exceptions in Xamarin.Android 6" href="https://bugzilla.xamarin.com/show_bug.cgi?id=41733#c11">https://bugzilla.xamarin.com/show_bug.cgi?id=41733#c11</a>
 
 <span class="quote">&gt; [the patch] appears to have alleviated the performance problem.</span></pre>
     </div>
@@ -826,7 +826,7 @@ And for the other counters, I was not aware those may be useful at all, so I don
 
 
 <pre class="bz_comment_text">@Jonathan, I have tried to reproduce this Issue using attached project mentioned in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - JNIEnv.GetArray(IntPtr, JniHandleOwnership.TransferLocalRef, typeof(byte)) floods log with exceptions in Xamarin.Android 6" href="show_bug.cgi?id=41733#c0">https://bugzilla.xamarin.com/show_bug.cgi?id=41733#c0</a>, Application getting deployed and launched on device but I am not sure where I can check CPU utilization for those two meshots.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - JNIEnv.GetArray(IntPtr, JniHandleOwnership.TransferLocalRef, typeof(byte)) floods log with exceptions in Xamarin.Android 6" href="https://bugzilla.xamarin.com/show_bug.cgi?id=41733#c0">https://bugzilla.xamarin.com/show_bug.cgi?id=41733#c0</a>, Application getting deployed and launched on device but I am not sure where I can check CPU utilization for those two meshots.
 
 Could you please let me know how can I reproduce this Issue so that I can verify it.</pre>
     </div>

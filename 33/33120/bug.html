@@ -676,12 +676,12 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">I'm using .NET satellite assemblies for localization, and found that when deploying with "Use Fast Deployment" checked in Visual Studio under Debug mode, none of the satellite dlls get loaded when running my app.
 
 If I use msbuild (like <a href="bug.html">comment 34</a> from this old bug: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - No support for .Net style resources" href="show_bug.cgi?id=5037#c34">https://bugzilla.xamarin.com/show_bug.cgi?id=5037#c34</a>) then the satellite dll folders get copied into the .__override__ folder.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - No support for .Net style resources" href="https://bugzilla.xamarin.com/show_bug.cgi?id=5037#c34">https://bugzilla.xamarin.com/show_bug.cgi?id=5037#c34</a>) then the satellite dll folders get copied into the .__override__ folder.
 
 I also found that when compiling in Release mode the satellite dlls are copied into the .apk file, but my app always displays English and isn't loading any of the other language resources.
 
 It looks like <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - No support for .Net style resources" href="show_bug.cgi?id=5037">bug 5037</a> may need to be re-opened? Although even there building in Release mode solved the issue which isn't the case now</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - No support for .Net style resources" href="https://bugzilla.xamarin.com/show_bug.cgi?id=5037">bug 5037</a> may need to be re-opened? Although even there building in Release mode solved the issue which isn't the case now</pre>
     </div>
 
     <div id="c1" class="bz_comment">
@@ -803,7 +803,7 @@ lowercase mx in es-mx in debug/bin output folder</pre>
 
 
 <pre class="bz_comment_text">In the screencast you used a Windows form project, but I'm having the problem in Xamarin Android. I attached a zip folder with logs and a modified VS solution based on the sample project from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - No support for .Net style resources" href="show_bug.cgi?id=5037">bug 5037</a>. 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - No support for .Net style resources" href="https://bugzilla.xamarin.com/show_bug.cgi?id=5037">bug 5037</a>. 
 
 I also attached a screenshot that shows two folders in the bin/debug output directory, fr-CA and es-mx. The es-mx should have a capital MX, but for some reason only fr has the capital CA. The resulting apk file also has the lowercase mx which leads to the app not displaying the spanish translated text.
 

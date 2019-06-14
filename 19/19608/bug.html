@@ -661,10 +661,10 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Full call stacks for exceptions
 
 Currently the TLS handshake process on Xamarin.Android always throws and catches a few exceptions. This is explained briefly in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - SSL Exception when connection google-based API" href="show_bug.cgi?id=12106#c5">https://bugzilla.xamarin.com/show_bug.cgi?id=12106#c5</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - SSL Exception when connection google-based API" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12106#c5">https://bugzilla.xamarin.com/show_bug.cgi?id=12106#c5</a>.
 
 If it wouldn't cause problems for any existing apps, maybe these exceptions could be avoided entirely? This might also help with any future investigation of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - SSL Exception when connection google-based API" href="show_bug.cgi?id=12106">bug #12106</a> or similar bugs. Perhaps the "Store [Root/CA] doesn't exists" errors were actually a red herring on that case.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - SSL Exception when connection google-based API" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12106">bug #12106</a> or similar bugs. Perhaps the "Store [Root/CA] doesn't exists" errors were actually a red herring on that case.
 
 
 ## Possible fix?
@@ -979,7 +979,7 @@ This still bugs me on an almost daily basis. (I have to continually enable and d
 
 <pre class="bz_comment_text">Related bug:
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="show_bug.cgi?id=9615">https://bugzilla.xamarin.com/show_bug.cgi?id=9615</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9615">https://bugzilla.xamarin.com/show_bug.cgi?id=9615</a></pre>
     </div>
 
     <div id="c9" class="bz_comment">
@@ -1205,7 +1205,7 @@ to MainActivity and AppDelegate has fixed it but I don't think this should be pe
 
 
 <pre class="bz_comment_text">I wonder if this will be taken care of with <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="show_bug.cgi?id=9615">https://bugzilla.xamarin.com/show_bug.cgi?id=9615</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - &quot;User code only&quot; support for catchpoints" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9615">https://bugzilla.xamarin.com/show_bug.cgi?id=9615</a>
 
 I think Target Milestone C7 = Xamarin Studio 6 (Roslyn)</pre>
     </div>
@@ -1390,7 +1390,7 @@ Xamarin.Android 6.0.1.10   (e98e962): TLS verification _does_ call `X509Chain.Bu
 I have filed a new detailed bug report to discuss the behavior of the debugger when both "break on all thrown exceptions" and "Just My Code" are enabled in Visual Studio:
 
 - <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - &quot;Just My Code&quot; fails to let the debugger skip exceptions that are thrown and caught entirely within external libraries (when the debugger is set to break on all thrown CLR exceptions)" href="show_bug.cgi?id=39345">Bug 39345</a>
+          bz_status_CONFIRMED " title="CONFIRMED - &quot;Just My Code&quot; fails to let the debugger skip exceptions that are thrown and caught entirely within external libraries (when the debugger is set to break on all thrown CLR exceptions)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39345">Bug 39345</a>
 
 
 ### Xamarin Studio
@@ -1398,11 +1398,11 @@ I have filed a new detailed bug report to discuss the behavior of the debugger w
 I have also filed a corresponding bug report for Xamarin Studio (where the "Just My Code" option is named "Debug project code only"):
 
 - <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - &quot;Debug project code only&quot; does not prevent the debugger from breaking on exception catchpoints in non-user code unless the exception is thrown and caught within a `Task.Delay ().ContinueWith ()`" href="show_bug.cgi?id=39346">Bug 39346</a>
+          bz_status_CONFIRMED " title="CONFIRMED - &quot;Debug project code only&quot; does not prevent the debugger from breaking on exception catchpoints in non-user code unless the exception is thrown and caught within a `Task.Delay ().ContinueWith ()`" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39346">Bug 39346</a>
 
 
 <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - &quot;Debug project code only&quot; does not prevent the debugger from breaking on exception catchpoints in non-user code unless the exception is thrown and caught within a `Task.Delay ().ContinueWith ()`" href="show_bug.cgi?id=39346">Bug 39346</a> already has an update from the engineering team about some fixes that will be needed in the Mono soft debugger agent to allow this behavior to work as desired.
+          bz_status_CONFIRMED " title="CONFIRMED - &quot;Debug project code only&quot; does not prevent the debugger from breaking on exception catchpoints in non-user code unless the exception is thrown and caught within a `Task.Delay ().ContinueWith ()`" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39346">Bug 39346</a> already has an update from the engineering team about some fixes that will be needed in the Mono soft debugger agent to allow this behavior to work as desired.
 
 
 

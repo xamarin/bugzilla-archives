@@ -717,7 +717,7 @@ Darwin MacBook-Pro-admin.local 12.3.0 Darwin Kernel Version 12.3.0
 
 
 <pre class="bz_comment_text">UIImage.Scale(SizeF) was modified to not use the device scale factor (it didn't use to, and when we "fixed" it we broke existing code - see <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - UIImage.Scale generates images that's twice the requested size" href="show_bug.cgi?id=11069">bug #11069</a> for instance - so it had to be reverted).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - UIImage.Scale generates images that's twice the requested size" href="https://bugzilla.xamarin.com/show_bug.cgi?id=11069">bug #11069</a> for instance - so it had to be reverted).
 
 There is a new UIImage.Scale(SizeF,float) overload that will let you specify the scale factor (and if you specify 0 as the scale factor it will be detected automatically).</pre>
     </div>

@@ -1363,7 +1363,7 @@ This wasn't the case for the android:debuggable attribute until I fixed it as pe
 4) Set the Debug Info to anything but None (valid values are None, PdbOnly and Full)
 
 This will result in $(DebugSymbols) being set to true and the pdb and then the mdb files being generated and included in the apk (once I commit the fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Breakpoint not hit when disable fastdebug and linking sdk assemblies only" href="show_bug.cgi?id=9433">https://bugzilla.xamarin.com/show_bug.cgi?id=9433</a>)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Breakpoint not hit when disable fastdebug and linking sdk assemblies only" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9433">https://bugzilla.xamarin.com/show_bug.cgi?id=9433</a>)
 
 If we are including .mdb files in the release build because the developer set the Debug Info to full or pdbonly in their release configuration then I would expect the android:debuggable attribute to be set to true. I know its counter intuitive to debug release mode stuff, but I know guys who work this way.</pre>
     </div>
@@ -1468,10 +1468,10 @@ With this fix, the AndroidManifest.xml /manifest/application/@android:debuggable
 2. $(DebugType) is Full.
 
 Consequently, if you do a build with "PdbOnly" symbols, the /manifest/application/@android:debuggable  attribute will _not_ be implicitly created, and (once <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Breakpoint not hit when disable fastdebug and linking sdk assemblies only" href="show_bug.cgi?id=9433">Bug #9433</a> is fixed) .mdb files will NOT appear in the .apk.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Breakpoint not hit when disable fastdebug and linking sdk assemblies only" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9433">Bug #9433</a> is fixed) .mdb files will NOT appear in the .apk.
 
 If $(DebugType) is Full, then /manifest/application/@android:debuggable will be set to true (unless overridden via custom attributes, etc.) and .mdb files WILL be deployed (or _eventually_ will be deployed, with the fix of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Breakpoint not hit when disable fastdebug and linking sdk assemblies only" href="show_bug.cgi?id=9433">Bug #9433</a>), EVEN ON Release BUILDS.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Breakpoint not hit when disable fastdebug and linking sdk assemblies only" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9433">Bug #9433</a>), EVEN ON Release BUILDS.
 
 Rephrasing: Release builds w/ PdbOnly symbols: No debug symbols in .apk.
 Release builds w/ Full symbols: Debug symbols included in .apk.</pre>
@@ -1504,7 +1504,7 @@ Release builds w/ Full symbols: Debug symbols included in .apk.</pre>
 
 
 <pre class="bz_comment_text">Landed pdbonly support in XS master (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MD does not support DebugType pdbonly" href="show_bug.cgi?id=3478">bug 3478</a>).</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MD does not support DebugType pdbonly" href="https://bugzilla.xamarin.com/show_bug.cgi?id=3478">bug 3478</a>).</pre>
     </div>
 
     <div id="c32" class="bz_comment">

@@ -1045,7 +1045,7 @@ I've attached build logs and system info. There are no crash reports, it just si
 
 
 <pre class="bz_comment_text">In your case the problem is that we don't support structs with explicit layout (with [FieldOffset (X)]) (I've opened a bug report - <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - [registrar] Show helpful error message when trying to bind API that takes structs with FieldOffsets" href="show_bug.cgi?id=57470">bug #57470</a> - to get a better error message for this scenario).
+          bz_status_ASSIGNED " title="ASSIGNED - [registrar] Show helpful error message when trying to bind API that takes structs with FieldOffsets" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57470">bug #57470</a> - to get a better error message for this scenario).
 
 You can work around this by creating an intermediate struct which has the same size as the struct with the explicit layout, and use that in the bindings, and make it internal. Then you declare a public method in a partial class with the API you want to expose, and do the necessary marshalling to convert to/from the internal and public structs.
 
@@ -2283,7 +2283,7 @@ which supposed to be bounded like below
 <pre class="bz_comment_text">also since you are here, maybe you have any contacts with android team, there is an issue which is quite critical for us, but there is no any response there...
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - BINDINGSGENERATOR: warning BG8C00: For type Java.Util.IList, base interface Java.Util.ICollection does not exist." href="show_bug.cgi?id=56436">https://bugzilla.xamarin.com/show_bug.cgi?id=56436</a></pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - BINDINGSGENERATOR: warning BG8C00: For type Java.Util.IList, base interface Java.Util.ICollection does not exist." href="https://bugzilla.xamarin.com/show_bug.cgi?id=56436">https://bugzilla.xamarin.com/show_bug.cgi?id=56436</a></pre>
     </div>
 
     <div id="c38" class="bz_comment">

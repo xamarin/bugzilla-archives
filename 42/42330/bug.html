@@ -682,7 +682,7 @@ Sample Project
    This really affects ReactiveCommand in ReactiveUI because it automatically changes the CanExecute as soon as you Execute the ReactiveCommand. This means that every time you Refresh with the ListView, the indicator disappears and the warning is outputted. However, the attached sample reproduces the same behavior in a realistic scenario without using ReactiveUI or ReactiveCommand.
 
 This is very similar to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - ListView.RefreshCommand and ReactiveUI.ReactiveCommand confilct" href="show_bug.cgi?id=32858">https://bugzilla.xamarin.com/show_bug.cgi?id=32858</a>, except it does look like the code calls EndRefreshing: <a href="https://github.com/xamarin/Xamarin.Forms/blob/2.3.0/Xamarin.Forms.Platform.iOS/Renderers/ListViewRenderer.cs#L1058">https://github.com/xamarin/Xamarin.Forms/blob/2.3.0/Xamarin.Forms.Platform.iOS/Renderers/ListViewRenderer.cs#L1058</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - ListView.RefreshCommand and ReactiveUI.ReactiveCommand confilct" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32858">https://bugzilla.xamarin.com/show_bug.cgi?id=32858</a>, except it does look like the code calls EndRefreshing: <a href="https://github.com/xamarin/Xamarin.Forms/blob/2.3.0/Xamarin.Forms.Platform.iOS/Renderers/ListViewRenderer.cs#L1058">https://github.com/xamarin/Xamarin.Forms/blob/2.3.0/Xamarin.Forms.Platform.iOS/Renderers/ListViewRenderer.cs#L1058</a>
 
 Related code:
 

@@ -601,7 +601,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [ARKit] TriangleIndices, Vertices and TextureCoordinates should be respectively short [], Vector3 [] and Vector2 []" href="show_bug.cgi?id=61056">https://bugzilla.xamarin.com/show_bug.cgi?id=61056</a> is the result of a binding mistake where 'unsafe short* TriangleIndices { get; }' was ignore.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [ARKit] TriangleIndices, Vertices and TextureCoordinates should be respectively short [], Vector3 [] and Vector2 []" href="https://bugzilla.xamarin.com/show_bug.cgi?id=61056">https://bugzilla.xamarin.com/show_bug.cgi?id=61056</a> is the result of a binding mistake where 'unsafe short* TriangleIndices { get; }' was ignore.
 
 While the mistake "should" be easy to avoid because of 'unsafe short*' alone, maybe adding a nice '[Verify]' attribute would make this extra clear that it shouldn't be just bound to a 'short'.
 

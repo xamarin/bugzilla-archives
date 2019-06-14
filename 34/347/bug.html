@@ -749,7 +749,7 @@ Your Saambaa.iPhone.Controllers.Posting.Location.MapView does not have this ctor
 There is some GC questions/answers on <a href="http://stackoverflow.com/questions/7113145/what-does-it-mean-if-the-garbage-collector-is-more-aggressive-in-monotouch-4">http://stackoverflow.com/questions/7113145/what-does-it-mean-if-the-garbage-collector-is-more-aggressive-in-monotouch-4</a> that explain some other things wrt GC
 
 I'll keep an eye open for such cases while working on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - UITextField AutoCorrection causes crash" href="show_bug.cgi?id=325">bug #325</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - UITextField AutoCorrection causes crash" href="https://bugzilla.xamarin.com/show_bug.cgi?id=325">bug #325</a></pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -789,7 +789,7 @@ So couple questions:
 3. If ShowsUserLocation is really the problem, shouldn't it stop updating user location once it is GC'd? And shouldn't the underlying MKLocationManager be collected and dealloc as a consequence of MKMapView being GC'd?
 
 Side note: I have done more dev on our project since <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - UITextField AutoCorrection causes crash" href="show_bug.cgi?id=325">bug #325</a> and it would probably be better for me to send separately the lastest code for this specific map issue if you need it. But my MapView class has been left unchanged while surrounding classes have changed. You'll see that MapView is nothing more than a Constructor and Destructor.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - UITextField AutoCorrection causes crash" href="https://bugzilla.xamarin.com/show_bug.cgi?id=325">bug #325</a> and it would probably be better for me to send separately the lastest code for this specific map issue if you need it. But my MapView class has been left unchanged while surrounding classes have changed. You'll see that MapView is nothing more than a Constructor and Destructor.</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -867,7 +867,7 @@ site note: Feel free to send me an update (unless this hides/complexify) looking
 1. Regarding the "symmetric api", is it generally a good practice to always make sure to remove something that has been added? For example, if I add an Annotation to my MapView, should I remove the Annotation when the ViewController disappears? Or if I add a gesture recognizer to a view, should I then remove it when ViewController disappears? If so, is this documented anywhere?
 
 I can send an update for this issue but when looking at <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - UITextField AutoCorrection causes crash" href="show_bug.cgi?id=325">bug #325</a> it is probably better to stick with what I gave you the first time. Less confusion.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - UITextField AutoCorrection causes crash" href="https://bugzilla.xamarin.com/show_bug.cgi?id=325">bug #325</a> it is probably better to stick with what I gave you the first time. Less confusion.</pre>
     </div>
 
     <div id="c5" class="bz_comment">

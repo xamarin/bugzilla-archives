@@ -671,7 +671,7 @@ A warning message appears with the message "Reference to unknown project 'XamFor
 There is another bug reported with the same error message but there the Xamarin.Forms project name and solution name seem to be the same so it may be that the other bug is a different problem:
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Sometimes I get &quot;A reference to unknown project X ignored&quot;" href="show_bug.cgi?id=21184">https://bugzilla.xamarin.com/show_bug.cgi?id=21184</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Sometimes I get &quot;A reference to unknown project X ignored&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=21184">https://bugzilla.xamarin.com/show_bug.cgi?id=21184</a></pre>
     </div>
 
     <div id="c1" class="bz_comment">
@@ -1006,10 +1006,10 @@ Screenshof of add-ins.</pre>
 
 
 <pre class="bz_comment_text">@Robert - OK I can reproduce the "Reference to unknown project" if Xamarin Studio thinks Xamarin.Android is not installed. The cause is different to this bug so I have opened another <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Reference to unknown project ignored message when creating new Xamarin.Forms project if Xamarin.Android is not installed" href="show_bug.cgi?id=30164">bug #30164</a> with the message you are seeing.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Reference to unknown project ignored message when creating new Xamarin.Forms project if Xamarin.Android is not installed" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30164">bug #30164</a> with the message you are seeing.
 
 Now fixing <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Reference to unknown project ignored message when creating new Xamarin.Forms project if Xamarin.Android is not installed" href="show_bug.cgi?id=30164">bug #30164</a> will not help you since the fix will prevent you from creating an Xamarin.Forms project with an Android project. So the real fix for you will be to work out why Xamarin Studio thinks Xamarin.Android is not installed on your machine.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Reference to unknown project ignored message when creating new Xamarin.Forms project if Xamarin.Android is not installed" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30164">bug #30164</a> will not help you since the fix will prevent you from creating an Xamarin.Forms project with an Android project. So the real fix for you will be to work out why Xamarin Studio thinks Xamarin.Android is not installed on your machine.
 
 Looking at the source code Xamarin Studio basically checks that a set of files exist on your machine.
 

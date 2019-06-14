@@ -565,7 +565,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP" href="show_bug.cgi?id=48285">48285</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP" href="https://bugzilla.xamarin.com/show_bug.cgi?id=48285">48285</a>
           </li></ul>
 
 </td>
@@ -640,15 +640,15 @@ For builds on Mac, XamlC or Cecil incorrectly updates .mdb files for iOS apps, m
 (One common use of the Xamarin.Build.Download NuGet package is to support the Xamarin.Google.iOS.Analytics NuGet package.)
 
 Note that this bug is different from non-public <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP" href="show_bug.cgi?id=48285">Bug 48285</a> because in this bug the XamlCTask _is_ updating the .mdb file (that is, in this case the `DebugSymbols` parameter is `true`).  The problem in this case is instead that the XamlC task seems to be corrupting the .mdb file.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP" href="https://bugzilla.xamarin.com/show_bug.cgi?id=48285">Bug 48285</a> because in this bug the XamlCTask _is_ updating the .mdb file (that is, in this case the `DebugSymbols` parameter is `true`).  The problem in this case is instead that the XamlC task seems to be corrupting the .mdb file.
 
 While researching this bug I came across <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Debugger won't stop at breakpoint in partial class in PCL." href="show_bug.cgi?id=45021">Bug 45021</a>, and that bug does share at least a few similarities with the bad results for this bug.  So updating the Cecil version from 0.9.6.0 to 0.10 or higher in both the Xamarin.Forms NuGet package and the Xamarin.Build.Download might help with this bug too [1].  On the other hand, in my testing I was not able to replicate the problem on Windows.  But maybe the `pdb2mdb` conversion on Windows hides the bug in Cecil?
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Debugger won't stop at breakpoint in partial class in PCL." href="https://bugzilla.xamarin.com/show_bug.cgi?id=45021">Bug 45021</a>, and that bug does share at least a few similarities with the bad results for this bug.  So updating the Cecil version from 0.9.6.0 to 0.10 or higher in both the Xamarin.Forms NuGet package and the Xamarin.Build.Download might help with this bug too [1].  On the other hand, in my testing I was not able to replicate the problem on Windows.  But maybe the `pdb2mdb` conversion on Windows hides the bug in Cecil?
 
 
 
 [1] I made sure to double-check the results below on Mono and Xamarin.iOS versions that included the Cecil update discussed in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Debugger won't stop at breakpoint in partial class in PCL." href="show_bug.cgi?id=45021">Bug 45021</a>.  The same problems were still present, but the Xamarin.Forms and Xamarin.Build.Download packages also include their own internal copies of Cecil that I did _not_ attempt to update.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Debugger won't stop at breakpoint in partial class in PCL." href="https://bugzilla.xamarin.com/show_bug.cgi?id=45021">Bug 45021</a>.  The same problems were still present, but the Xamarin.Forms and Xamarin.Build.Download packages also include their own internal copies of Cecil that I did _not_ attempt to update.
 
 
 

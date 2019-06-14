@@ -706,7 +706,7 @@ mdtool simply ignored &lt;Import&gt; elements AFAICT, but xbuild only partially 
 <pre class="bz_comment_text">@Jesse: xbuild special cases the MSBuildExtensionsPath property in the Import element Project attribute so that it represents multiple locations. This special casing is not done for any other elements or attributes.
 
 @Tom: xbuild implements them just fine. Are you certain the Platform property is what you want? It's set by your solution configuration. I imagine what you actually want is "'$(Os)'!='Unix'" (see also <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE - ($OS) conditionals do not support &quot;OSX&quot; yet" href="show_bug.cgi?id=15974#c1">bug 15974 comment 1</a>).</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE - ($OS) conditionals do not support &quot;OSX&quot; yet" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15974#c1">bug 15974 comment 1</a>).</pre>
     </div>
 
     <div id="c3" class="bz_comment">

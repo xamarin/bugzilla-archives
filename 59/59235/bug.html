@@ -752,7 +752,7 @@ E5. `Dictionary&lt;TKey, TValue&gt;.Remove()` then executes Handler.GetHashCode(
 From some additional searching on Slack, this test *might* be related to:
 
 <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Getting INtPTRZero Error during Runtime" href="show_bug.cgi?id=31338#c11">https://bugzilla.xamarin.com/show_bug.cgi?id=31338#c11</a></pre>
+          bz_status_CONFIRMED " title="CONFIRMED - Getting INtPTRZero Error during Runtime" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31338#c11">https://bugzilla.xamarin.com/show_bug.cgi?id=31338#c11</a></pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -825,7 +825,7 @@ That said, I did find this conversation in Slack:
 <span class="quote">&gt; @jonp:
 &gt;   Delegate.GetHashCode() is breaking me :wink:
 &gt;   <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Getting INtPTRZero Error during Runtime" href="show_bug.cgi?id=31338#c11">https://bugzilla.xamarin.com/show_bug.cgi?id=31338#c11</a>
+          bz_status_CONFIRMED " title="CONFIRMED - Getting INtPTRZero Error during Runtime" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31338#c11">https://bugzilla.xamarin.com/show_bug.cgi?id=31338#c11</a>
 &gt;   largely because mono’s Delegate.GetHashCode() invokes
 &gt;   Delegate.Target.GetHashCode(), while .NET’s doesn’t.
 &gt; @kumpera:
@@ -847,7 +847,7 @@ The above fix was effectively reverted in:
 <a href="https://github.com/mono/mono/commit/3acee7af00ae05348ab663e6702d298bd071ce55">https://github.com/mono/mono/commit/3acee7af00ae05348ab663e6702d298bd071ce55</a>
 
 This was to fix <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Delegates as collection key are ~500x slower than previously" href="show_bug.cgi?id=58399">Bug #58399</a>.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Delegates as collection key are ~500x slower than previously" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58399">Bug #58399</a>.</pre>
     </div>
 
     <div id="c5" class="bz_comment">

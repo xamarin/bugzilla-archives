@@ -680,7 +680,7 @@ The "Deserialize_System_Xml_Linq_XElement_AnyTypeArray" test from the attached "
 ## Changes in the "Deserialization" patch
 
 1. Change GetSerializableQName() to allow non-empty qualified names for types with `XmlSchemaProviderAttribute.IsAny == true`. The original version of this line was added to help with <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.Xml.Linq.XElement cannot be de/serialized" href="show_bug.cgi?id=11916">bug #11916</a>. Since that bug is also about `XElement`, I suspect this proposed change is OK.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.Xml.Linq.XElement cannot be de/serialized" href="https://bugzilla.xamarin.com/show_bug.cgi?id=11916">bug #11916</a>. Since that bug is also about `XElement`, I suspect this proposed change is OK.
 
 
 Before this change, the test fails with the following stack trace (abbreviated):
@@ -695,7 +695,7 @@ Before this change, the test fails with the following stack trace (abbreviated):
 2. Add a private parameterless constructor to `XElement`.
 
 As discussed on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - XElements cannot be serialized with XmlSerializer" href="show_bug.cgi?id=4507">bug #4507</a>, `XElement` lacks a parameterless constructor. This conflicts with the requirement stated on [1] that any class that implements `IXmlSerializable` "must have a parameterless constructor." On .NET, although `XElement` does not have a _public_ parameterless constructor, it does have a _private_ parameterless constructor.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - XElements cannot be serialized with XmlSerializer" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4507">bug #4507</a>, `XElement` lacks a parameterless constructor. This conflicts with the requirement stated on [1] that any class that implements `IXmlSerializable` "must have a parameterless constructor." On .NET, although `XElement` does not have a _public_ parameterless constructor, it does have a _private_ parameterless constructor.
 
 <span class="quote">&gt; [1] <a href="http://msdn.microsoft.com/en-us/library/system.xml.serialization.ixmlserializable.aspx">http://msdn.microsoft.com/en-us/library/system.xml.serialization.ixmlserializable.aspx</a></span>
 

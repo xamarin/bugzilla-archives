@@ -350,10 +350,10 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpWebRequest fails after wifi change" href="show_bug.cgi?id=23806">23806</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - After Airplane Mode turned off, web request fails for a couple of minutes with a NameResolutionFailure" href="show_bug.cgi?id=45383">45383</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - After Airplane Mode turned off, web request fails for a couple of minutes with a NameResolutionFailure" href="show_bug.cgi?id=45763">45763</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Http requests do not work when wifi is toggled off and back on" href="show_bug.cgi?id=46792">46792</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpWebRequest fails after wifi change" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23806">23806</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - After Airplane Mode turned off, web request fails for a couple of minutes with a NameResolutionFailure" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45383">45383</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - After Airplane Mode turned off, web request fails for a couple of minutes with a NameResolutionFailure" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45763">45763</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Http requests do not work when wifi is toggled off and back on" href="https://bugzilla.xamarin.com/show_bug.cgi?id=46792">46792</a> 
       </span>
       ()
     </td>
@@ -614,7 +614,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Http requests do not work when wifi is toggled off and back on" href="show_bug.cgi?id=46792">46792</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Http requests do not work when wifi is toggled off and back on" href="https://bugzilla.xamarin.com/show_bug.cgi?id=46792">46792</a>
           </li></ul>
 
 </td>
@@ -729,7 +729,7 @@ As stated, eventually if you keep sending requests the after step 8 above, the r
 The  attached sample is using a HttpWebRequest however I have other customers reporting the same issue  using HttpClient.  
 
 This issue initially was reported against Xamarin Android (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - After Airplane Mode turned off, web request fails for a couple of minutes with a NameResolutionFailure" href="show_bug.cgi?id=45383">bug #45383</a>, marking as a duplicate of this bug). I initially I thought this was a DNS caching issue and was able to resolve in another customers test case by making sure no request was sent when the network was not available. I found some posts that Android caches bad DNS queries and thought that was the issue. But upon discovering that XA 6.1.2.21 does not display this issue, I reconsidered. Also, upon further reading and investigation, I found out that the bad DNS query should only be cached for 10 seconds while the NameResolutionFailure exception persists for a couple of minutes after restoring network connection. But after reports of this occurring on iOS, I tested with a Mono console app and was able to reproduce. 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - After Airplane Mode turned off, web request fails for a couple of minutes with a NameResolutionFailure" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45383">bug #45383</a>, marking as a duplicate of this bug). I initially I thought this was a DNS caching issue and was able to resolve in another customers test case by making sure no request was sent when the network was not available. I found some posts that Android caches bad DNS queries and thought that was the issue. But upon discovering that XA 6.1.2.21 does not display this issue, I reconsidered. Also, upon further reading and investigation, I found out that the bad DNS query should only be cached for 10 seconds while the NameResolutionFailure exception persists for a couple of minutes after restoring network connection. But after reports of this occurring on iOS, I tested with a Mono console app and was able to reproduce. 
 
 ## Environment
 
@@ -854,7 +854,7 @@ Xamarin Inspector 0.10.0.0</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - After Airplane Mode turned off, web request fails for a couple of minutes with a NameResolutionFailure" href="show_bug.cgi?id=45383">Bug 45383</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - After Airplane Mode turned off, web request fails for a couple of minutes with a NameResolutionFailure" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45383">Bug 45383</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -884,7 +884,7 @@ Xamarin Inspector 0.10.0.0</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - After Airplane Mode turned off, web request fails for a couple of minutes with a NameResolutionFailure" href="show_bug.cgi?id=45763">Bug 45763</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - After Airplane Mode turned off, web request fails for a couple of minutes with a NameResolutionFailure" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45763">Bug 45763</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c4" class="bz_comment">
@@ -1123,7 +1123,7 @@ Updating target milestone for initial assessment based on the reported regressio
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Http requests do not work when wifi is toggled off and back on" href="show_bug.cgi?id=46792">Bug 46792</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Http requests do not work when wifi is toggled off and back on" href="https://bugzilla.xamarin.com/show_bug.cgi?id=46792">Bug 46792</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c15" class="bz_comment">
@@ -1211,7 +1211,7 @@ Updating target milestone for initial assessment based on the reported regressio
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpWebRequest fails after wifi change" href="show_bug.cgi?id=23806">Bug 23806</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - HttpWebRequest fails after wifi change" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23806">Bug 23806</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c18" class="bz_comment">

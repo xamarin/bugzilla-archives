@@ -606,7 +606,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Then the build will choose .NET 4.6 as the target runtime passed to the C# 6.0 compiler, which in turn will transform "new int[0]" into "Array.Empty&lt;int&gt;()" which is currently not supported in Mono.
 
 This leads to either linker errors such as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Linker for Java Bindings" href="show_bug.cgi?id=29882">https://bugzilla.xamarin.com/show_bug.cgi?id=29882</a>.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Linker for Java Bindings" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29882">https://bugzilla.xamarin.com/show_bug.cgi?id=29882</a>.</pre>
     </div>
 
     <div id="c1" class="bz_comment">

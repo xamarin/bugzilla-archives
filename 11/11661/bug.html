@@ -869,7 +869,7 @@ Which seems really bad - it implies it's probably opening a vast number of large
 * we should consider having a (configurable?) cap on the size of the files the search can open
 * we should make sure we don't keep references to giant strings. For example, <a href="https://github.com/mono/monodevelop/blob/master/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide.FindInFiles/SearchResultWidget.cs#L579">https://github.com/mono/monodevelop/blob/master/main/src/core/MonoDevelop.Ide/MonoDevelop.Ide.FindInFiles/SearchResultWidget.cs#L579</a> keeps a dictionary of entire documents, which could easily get enormous. Maybe it could truncate rendered results to 1000chars and cache those? Discard documents that are not used by any lines within view? 
 * we should consider fixing <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - Find in directory should only search project files" href="show_bug.cgi?id=2055">https://bugzilla.xamarin.com/show_bug.cgi?id=2055</a>
+          bz_status_NEW " title="NEW - Find in directory should only search project files" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2055">https://bugzilla.xamarin.com/show_bug.cgi?id=2055</a>
 * we should make "ignore hidden files" also ignore hidden directories 
 * we should make a "find in project directories" that just looks at the files in the project.
 

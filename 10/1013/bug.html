@@ -688,7 +688,7 @@ GetType() returns System.MarshalByRefObject</pre>
 
 
 <pre class="bz_comment_text">See also <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - RealProxy returns MarshalByRefObject for an Interface instead of the real interface type" href="show_bug.cgi?id=17325">bug 17325</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - RealProxy returns MarshalByRefObject for an Interface instead of the real interface type" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17325">bug 17325</a></pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -747,7 +747,7 @@ GetType() returns System.MarshalByRefObject</pre>
 
 
 <pre class="bz_comment_text">This seems more challenging to fix than <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - RealProxy returns MarshalByRefObject for an Interface instead of the real interface type" href="show_bug.cgi?id=17325">bug 17325</a> without causing performance regressions in all uses of System.Object.GetType().
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - RealProxy returns MarshalByRefObject for an Interface instead of the real interface type" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17325">bug 17325</a> without causing performance regressions in all uses of System.Object.GetType().
 
 As it happens System.Object.GetType() is a little bit special in that Mono's JIT tries to replace calls to that method by a direct access to a System.Type that's stored in the vtable.  When we see IL for a call to System.Object.GetType, the doesn't bother emitting a call, it just emits straight line code to load the object vtable and load the stored System.Type.   This happens both for real objects and for transparent proxies. Pretty much the only time we call the real System.Object.GetType method is when working indirectly (for example using reflection).
 
@@ -787,7 +787,7 @@ just to make sure it's never invoked via remoting just to return
 the information already known by the caller (the proxied type).
 
 So, for my use case the fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - RealProxy returns MarshalByRefObject for an Interface instead of the real interface type" href="show_bug.cgi?id=17325">bug 17325</a> is just fine.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - RealProxy returns MarshalByRefObject for an Interface instead of the real interface type" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17325">bug 17325</a> is just fine.</pre>
     </div>
 
     <div id="c5" class="bz_comment">
@@ -817,7 +817,7 @@ So, for my use case the fix for <a class="bz_bug_link
 
 
 <pre class="bz_comment_text">Same here, the fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - RealProxy returns MarshalByRefObject for an Interface instead of the real interface type" href="show_bug.cgi?id=17325">bug 17325</a> does the job.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - RealProxy returns MarshalByRefObject for an Interface instead of the real interface type" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17325">bug 17325</a> does the job.</pre>
     </div>
 
     <div id="c6" class="bz_comment">

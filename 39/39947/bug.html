@@ -684,10 +684,10 @@ So this is a bug that should be fixed one way or another - by removing the mangl
 <pre class="bz_comment_text"><span class="quote">&gt; So this is a bug that should be fixed one way or another - by removing the mangling </span>
 
 The mangling is performed in order to avoid a nasty corner case in binding generation. See also <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="show_bug.cgi?id=16826">Bug #16826</a> and <a href="https://developer.xamarin.com/releases/android/xamarin.android_5/xamarin.android_5.1/#Android_Callable_Wrapper_Naming">https://developer.xamarin.com/releases/android/xamarin.android_5/xamarin.android_5.1/#Android_Callable_Wrapper_Naming</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16826">Bug #16826</a> and <a href="https://developer.xamarin.com/releases/android/xamarin.android_5/xamarin.android_5.1/#Android_Callable_Wrapper_Naming">https://developer.xamarin.com/releases/android/xamarin.android_5/xamarin.android_5.1/#Android_Callable_Wrapper_Naming</a>
 
 We are considering allowing the package name algorithm to be user-selectable, but (1) there's no timeframe for this, and (2) returning to the pre-5.1 behavior would re-open variants on <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="show_bug.cgi?id=16826">Bug #16826</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16826">Bug #16826</a>.
 
 In the meantime, if *you* control the Activity, *you* can explicitly specify a name by using the ActivityAttribute.Name property:
 

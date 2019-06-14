@@ -657,7 +657,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     identically-named resource "sources" from Library projects.
 
     See <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=29172">Bug #29172</a> for repro.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29172">Bug #29172</a> for repro.
 
  2. App resources should be checked for duplicates.
 
@@ -666,7 +666,7 @@ These don't sound conflicting, but they are, because aapt.
 (2) was fixed in monodroid/290dad05 (test in monodroid/7d99748a) by changing the `aapt -S DIR` ordering so that the App resource dir was *last*, which allowed resources to be checked for duplicates (and generate an appropriate error).
 
 The problem is that fixing (2) broke (1), because in order for (1) to work the App resource dir must be specified *first*, not last, and various other efforts to "square this circle" came up empty (e.g. <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=29172#c11">Bug #29172 Comment #11</a>).
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29172#c11">Bug #29172 Comment #11</a>).
 
 The (hopeful) fix, then, is to (kinda/sorta) do what gradle does [0]:
 
@@ -772,8 +772,8 @@ Example project with android library and app to show resource overriding</pre>
 <span class="quote">&gt; This bug is breaking an existing and well-known logic of android</span>
 
 That breakage is in fact <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=29172">Bug #29172</a>, which was fixed in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=29172#c12">Bug #29172 Comment #12</a>, and will be in a forthcoming beta release.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29172">Bug #29172</a>, which was fixed in <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29172#c12">Bug #29172 Comment #12</a>, and will be in a forthcoming beta release.</pre>
     </div>
 
     <div id="c4" class="bz_comment">
@@ -803,7 +803,7 @@ That breakage is in fact <a class="bz_bug_link
 
 
 <pre class="bz_comment_text">Ah, i see. I'm not authorized to access <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=29172">bug #29172</a>, so I wasn't aware of that situation. Thank you anyway.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29172">bug #29172</a>, so I wasn't aware of that situation. Thank you anyway.</pre>
     </div>
 
     <div id="c5" class="bz_comment">
@@ -996,7 +996,7 @@ Thanks!
 I have checked this issue with  mono-android-6.0.0-9_79b448ed03b67e956ab7904a3a43c05421c88c55 and observed that issue is still exist with the help of attached projecthttps://bugzilla.xamarin.com/show_bug.cgi?id=29172#c1
 Screencast:  <a href="http://www.screencast.com/t/pqzWcACe">http://www.screencast.com/t/pqzWcACe</a>
 Build Error of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=29172">Bug 29172</a> : <a href="https://gist.github.com/Arpit360/efe463c8c9f439f69107">https://gist.github.com/Arpit360/efe463c8c9f439f69107</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29172">Bug 29172</a> : <a href="https://gist.github.com/Arpit360/efe463c8c9f439f69107">https://gist.github.com/Arpit360/efe463c8c9f439f69107</a>
 
 I am not getting issue using attached sample in <a class="bz_bug_link 
           bz_status_IN_PROGRESS " title="IN_PROGRESS - Resource overriding with aapt is FUBAR" href="bug.html">https://bugzilla.xamarin.com/show_bug.cgi?id=29757#c2</a>  and observed that I am able to build and deploy application successfully.

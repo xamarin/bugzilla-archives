@@ -349,7 +349,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=20595">20595</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=20595">20595</a> 
       </span>
       ()
     </td>
@@ -712,12 +712,12 @@ ACWs are Java source code, generated at build, in which the namespace name becom
 In your F# sample, that is _not_ the case -- "&lt;StartupCode$Test-Android&gt;.$TestActivity/get_Adapter@53" is not a valid Java identifier (nor can it be stored on-disk, as Java requires that the filename match the public class name), which is why you get error XA4209.
 
 In theory, this will be fixed when <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="show_bug.cgi?id=16826">Bug #16826</a> is fixed, but that'll be awhile, particularly since such a change would be a semantically breaking change.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16826">Bug #16826</a> is fixed, but that'll be awhile, particularly since such a change would be a semantically breaking change.
 
 For now, Don't Do That. Use explicit types.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="show_bug.cgi?id=16826">bug 16826</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16826">bug 16826</a> ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -747,7 +747,7 @@ For now, Don't Do That. Use explicit types.
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=20595">Bug 20595</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=20595">Bug 20595</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -777,11 +777,11 @@ For now, Don't Do That. Use explicit types.
 
 
 <pre class="bz_comment_text">Upon closer inspection, <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="show_bug.cgi?id=16826">Bug #16826</a> is not exactly identical to this bug, as <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="show_bug.cgi?id=16826">Bug #16826</a> is only correcting the Java package name, and is *not* correcting the Jaava *type* name. This is (currently) a deliberate decision, because managed stack traces will already be more difficult to interpret because the C# namespace is obliterated; at least the *type* name is preserved, so some degree of sanity can be retained.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16826">Bug #16826</a> is not exactly identical to this bug, as <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16826">Bug #16826</a> is only correcting the Java package name, and is *not* correcting the Jaava *type* name. This is (currently) a deliberate decision, because managed stack traces will already be more difficult to interpret because the C# namespace is obliterated; at least the *type* name is preserved, so some degree of sanity can be retained.
 
 When it comes to F#, the type name is still not a valid Java identifier -- assuming that `$TestActivity/get_Adapter@53` is the type name -- and thus simply because <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="show_bug.cgi?id=16826">Bug #16826</a> is fix does not mean that F# is fully fixed.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - ACWs: Create unique package names instead of lowercasing the namespace" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16826">Bug #16826</a> is fix does not mean that F# is fully fixed.</pre>
     </div>
 
     <div id="c4" class="bz_comment">

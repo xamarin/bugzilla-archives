@@ -979,7 +979,7 @@ The problem is that `source` is not reliably or consistently closed; there were 
 Fixing the code to ensure that previous values are Close()d before overwriting them removed the timeout exception.
 
 The aforementioned "issue" in our code is that in attempting to fix a <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="show_bug.cgi?id=15135">Bug #15135</a>, we now internally reuse Sockets, along with various other changes in the HttpWebRequest code. The result of this is that it is now apparently more important to ensure that WebResponse.Close() is invoked, otherwise things are not adequately cleaned up.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15135">Bug #15135</a>, we now internally reuse Sockets, along with various other changes in the HttpWebRequest code. The result of this is that it is now apparently more important to ensure that WebResponse.Close() is invoked, otherwise things are not adequately cleaned up.</pre>
     </div>
 
     <div id="c19" class="bz_comment">

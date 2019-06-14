@@ -617,7 +617,7 @@ Looking at the relevant code, it seems like conversion is done unconditionally:
 
 Encoding would be the preferred solution for XML, but it seems that is broken. That issues has already be reported:
 <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - xbuild doesn't handle special character escapes correctly" href="show_bug.cgi?id=6759">https://bugzilla.xamarin.com/show_bug.cgi?id=6759</a>
+          bz_status_NEW " title="NEW - xbuild doesn't handle special character escapes correctly" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6759">https://bugzilla.xamarin.com/show_bug.cgi?id=6759</a>
 
 Using Mono 4.0.2 on CentOS 6</pre>
     </div>
@@ -649,7 +649,7 @@ Using Mono 4.0.2 on CentOS 6</pre>
 
 
 <pre class="bz_comment_text">XML entity escapting was working in Mono 4.0.1 but the currently nightly build of Mono 4.3.0 (as of 23/06/15) is no longer working as described in this bug (and <a class="bz_bug_link 
-          bz_status_NEW " title="NEW - xbuild doesn't handle special character escapes correctly" href="show_bug.cgi?id=6759">bug 6759</a>).
+          bz_status_NEW " title="NEW - xbuild doesn't handle special character escapes correctly" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6759">bug 6759</a>).
 
 In my case %22 is no longer being converted to a double quote, which is being used to escape the possibility of spaces in paths.
 

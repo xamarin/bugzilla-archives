@@ -588,13 +588,13 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">Related to <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Hotkeys do not work unless the first hotkey is pressed under English keyboard layout" href="show_bug.cgi?id=17050">bug 17050</a>
+          bz_status_CONFIRMED " title="CONFIRMED - Hotkeys do not work unless the first hotkey is pressed under English keyboard layout" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17050">bug 17050</a>
 
 When troubleshooting the above bug, I installed GTK# for .Net 2.12.23, as suggested in the original forum discussion (
 <a href="http://forums.xamarin.com/discussion/11881/keyboard-shortcuts-stopped-working-properly-in-the-code-editor">http://forums.xamarin.com/discussion/11881/keyboard-shortcuts-stopped-working-properly-in-the-code-editor</a>).
 
 It did not solve the hotkey problem described in the <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Hotkeys do not work unless the first hotkey is pressed under English keyboard layout" href="show_bug.cgi?id=17050">bug 17050</a>, and introduced another problem - Cyrillic letters cannot be entered anywhere in Xamarin Studio (code editor, text fields in the dialog boxes etc).
+          bz_status_CONFIRMED " title="CONFIRMED - Hotkeys do not work unless the first hotkey is pressed under English keyboard layout" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17050">bug 17050</a>, and introduced another problem - Cyrillic letters cannot be entered anywhere in Xamarin Studio (code editor, text fields in the dialog boxes etc).
 
 Another problem was that the Studio interface became Russian despite it was set to English in the Studio settings.
 
@@ -645,7 +645,7 @@ Installed keyboard layouts: en-us, ru-ru. Ru-ru is default.</pre>
 <pre class="bz_comment_text"><span class="quote">&gt; Another problem was that the Studio interface became Russian despite it was set to English in the Studio settings.</span>
 
 I believe this is probably the issue described here: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - switching language via Options (Preference) does not take effect on Windows" href="show_bug.cgi?id=16724">https://bugzilla.xamarin.com/show_bug.cgi?id=16724</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - switching language via Options (Preference) does not take effect on Windows" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16724">https://bugzilla.xamarin.com/show_bug.cgi?id=16724</a>
 
 If so, we'll be releasing the fix for that hopefully soon. Feel free to grab the intl.dll and libintl-8.dll that are linked there if you'd like to. If you do that, let me know if those fix or don't fix the issue for you.
 
@@ -743,7 +743,7 @@ I will have to look into the Cyrillic input still. That is unrelated to the disp
 
 
 <pre class="bz_comment_text">Status update: As of GTK# 2.12.25, Cyrillic input works (so this bug might apparently be closed), but the Xamarin Studio interface would remain Russian regardless of the menu setting. I had to roll back to GTK# 2.12.22 to fix the interface. Hopefully Studio 4.2.4 release will fix that too (<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - switching language via Options (Preference) does not take effect on Windows" href="show_bug.cgi?id=16724">bug 16724</a>), but as of 4.2.3 the problem remains.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - switching language via Options (Preference) does not take effect on Windows" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16724">bug 16724</a>), but as of 4.2.3 the problem remains.</pre>
     </div>
 
     <div id="c5" class="bz_comment">
@@ -775,7 +775,7 @@ I will have to look into the Cyrillic input still. That is unrelated to the disp
 <pre class="bz_comment_text">Thanks!
 
 Yes, <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - switching language via Options (Preference) does not take effect on Windows" href="show_bug.cgi?id=16724">bug 16724</a> is fixed but requires changes in both GTK# and the Xamarin Studio Once the next release is out that should be fixed for you. I *think* it may already be fixed in the Alpha channel, but I'm not absolutely sure.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - switching language via Options (Preference) does not take effect on Windows" href="https://bugzilla.xamarin.com/show_bug.cgi?id=16724">bug 16724</a> is fixed but requires changes in both GTK# and the Xamarin Studio Once the next release is out that should be fixed for you. I *think* it may already be fixed in the Alpha channel, but I'm not absolutely sure.</pre>
     </div>
 
 

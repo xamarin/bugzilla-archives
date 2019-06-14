@@ -590,7 +590,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">This is similar to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MKMapView with MKPinAnnotationView dragging crash due to missing Export _original_setCoordinate" href="show_bug.cgi?id=2352">bug #2352</a> and the old novell bugzilla 686788. I get a crash on the device in a release build but can't determine the location since I just get my module name and an offset in the crash, not a function name.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MKMapView with MKPinAnnotationView dragging crash due to missing Export _original_setCoordinate" href="https://bugzilla.xamarin.com/show_bug.cgi?id=2352">bug #2352</a> and the old novell bugzilla 686788. I get a crash on the device in a release build but can't determine the location since I just get my module name and an offset in the crash, not a function name.
 
 Running in a debug build my setCoordinate function gets values with a high negative E value (like 1.231231231231E-311). This is probably caused by the runtime calling the function with a bad pointer.
 

@@ -735,7 +735,7 @@ I attached a simple repro case to that bug.</pre>
 
 
 <pre class="bz_comment_text">For those that speak in URIs: <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Runtime hangs on exit on mac" href="show_bug.cgi?id=52604">https://bugzilla.xamarin.com/show_bug.cgi?id=52604</a>
+          bz_status_CONFIRMED " title="CONFIRMED - Runtime hangs on exit on mac" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52604">https://bugzilla.xamarin.com/show_bug.cgi?id=52604</a>
 
 I highly suspect that's the root cause of this issue, although I also think the PR in <a href="bug.html">comment #1</a> is correct (a method called "KillProcess" probably does want to send SIGKILL 
  (ForceTerminate) and not SIGTERM (Terminate)).</pre>
@@ -836,7 +836,7 @@ Commit: dac776e0d941c9a00c711e82eaa2a390155db885 (mono/monodevelop)</pre>
 2) Hanging
 
 Crashing is bug in runtime and is reported as  <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Runtime hangs on exit on mac" href="show_bug.cgi?id=52604">https://bugzilla.xamarin.com/show_bug.cgi?id=52604</a> other bug Hanging is fixed with this bug. So test if applications are closed after debugging is stopped, crashing and report windows are not fixed with this bug since it's runtime bug.</pre>
+          bz_status_CONFIRMED " title="CONFIRMED - Runtime hangs on exit on mac" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52604">https://bugzilla.xamarin.com/show_bug.cgi?id=52604</a> other bug Hanging is fixed with this bug. So test if applications are closed after debugging is stopped, crashing and report windows are not fixed with this bug since it's runtime bug.</pre>
     </div>
 
     <div id="c9" class="bz_comment">

@@ -673,7 +673,7 @@ Leaving as NEW for now.</pre>
 
 
 <pre class="bz_comment_text">To some extent, the problem is that Java.Lang.Object exists as parameter or return types at all; see <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - Unify Java.Lang.Object and System.Object" href="show_bug.cgi?id=6085">Bug #6085</a>.  That won't be fixed anytime soon.
+          bz_status_ASSIGNED " title="ASSIGNED - Unify Java.Lang.Object and System.Object" href="https://bugzilla.xamarin.com/show_bug.cgi?id=6085">Bug #6085</a>.  That won't be fixed anytime soon.
 
 In the meantime, how are you getting the internal wrapper? Ideally, you shouldn't know that it's there...which clearly isn't happening. Adding some public "unwrap" method also isn't ideal, as then you'd need to know it exists so that you can manually unwrap instances, which just seems like a different kind of pain.
 

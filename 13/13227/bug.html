@@ -624,12 +624,12 @@ MT9023 will happen if the user has a license that expired before the xamarin 2.0
 <pre class="bz_comment_text">So the key here is what you mean by 'had an expired license'.
 
 If they're in the EXPIRED state and they try to use the updater, they'll get <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=12810">https://bugzilla.xamarin.com/show_bug.cgi?id=12810</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12810">https://bugzilla.xamarin.com/show_bug.cgi?id=12810</a>
 
 Users, however, should not be getting into the EXPIRED state on their own (just going past the subscription end date of the license does not get you into this state). The key thing to determine for these cases is how the hell they got into the EXPIRED / INVALID state. 
 
 There's one such hole which is discussed in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=12810#c3">bug 12810, comment 3</a>, where people switching workstations actively can get into an INVALID state. For them, building any project should re-activate with the correct license.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12810#c3">bug 12810, comment 3</a>, where people switching workstations actively can get into an INVALID state. For them, building any project should re-activate with the correct license.
 
 It's also possible as Rolf suggests, that there a hole in the behavior for users with a different ProductID on the license. This apparently is causing 9023 errors instead of 9018. XS may only handle the MT9018 version of the invalid error. If that's the case, I have to ask - why are there separate invalid license error codes?
 

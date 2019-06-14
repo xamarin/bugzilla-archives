@@ -633,7 +633,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Test case
 
 This bug is reminiscent of the old <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Interlocked.Exchange<T>(...) crashes the App and throws System.ExecutionEngineException in debug" href="show_bug.cgi?id=234">bug #234</a>, but in this new test case, the AOT compiler still skips `System.Threading.Interlocked.Exchange()` when it shouldn't. The reference to the `Exchange()` method is less direct in this case than in the old bug.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Interlocked.Exchange<T>(...) crashes the App and throws System.ExecutionEngineException in debug" href="https://bugzilla.xamarin.com/show_bug.cgi?id=234">bug #234</a>, but in this new test case, the AOT compiler still skips `System.Threading.Interlocked.Exchange()` when it shouldn't. The reference to the `Exchange()` method is less direct in this case than in the old bug.
 
 
 ## Steps to reproduce

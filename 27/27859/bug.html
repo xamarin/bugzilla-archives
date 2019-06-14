@@ -682,7 +682,7 @@ The "real" primary problem on this bug can be reproduced by adding 1 line of cod
 
 
 That problem is a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.NullReferenceException:... with System.Web.HttpUtility.HtmlDecode" href="show_bug.cgi?id=12565">bug 12565</a>. A workaround suggested on that bug is to add the following line before the call to `UrlEncode()`:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.NullReferenceException:... with System.Web.HttpUtility.HtmlDecode" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12565">bug 12565</a>. A workaround suggested on that bug is to add the following line before the call to `UrlEncode()`:
 
 
 <span class="quote">&gt; System.Web.Util.HttpEncoder.Current = System.Web.Util.HttpEncoder.Default;</span>
@@ -703,13 +703,13 @@ This line is also _already present_ in the original full app from this bug, but 
 ## The long (long) answer
 
 As it was originally described above, this bug was a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Default constructor not found for type System.Web.Configuration.WebConfigurationHost; needs [Preserve]?" href="show_bug.cgi?id=15389">bug 15389</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Default constructor not found for type System.Web.Configuration.WebConfigurationHost; needs [Preserve]?" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15389">bug 15389</a>.
 
 "Default constructor not found for type System.Web.Configuration.WebConfigurationHost" is the result of enabling link for apps that use certain APIs that depend on System.Configuration.
 
 
 You can stop that problem (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Default constructor not found for type System.Web.Configuration.WebConfigurationHost; needs [Preserve]?" href="show_bug.cgi?id=15389">bug 15389</a>) with the following:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - Default constructor not found for type System.Web.Configuration.WebConfigurationHost; needs [Preserve]?" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15389">bug 15389</a>) with the following:
 
 1. Add the following lines in a file in the project called "System.Web.xml" (or any other name you like):
 
@@ -738,7 +738,7 @@ The remaining details below are actually essentially _irrelevant_ because the ha
 Side note: I was able to solve the launch crash in Xamarin.Mac 1.12 by catching all exceptions in the IDE, and then looking at the exception messages. There are 2 changes to `[Export("CheckboxChanged:")]` attributes that need to be made to satisfy the stricter registrar in Xamarin.Mac 1.12.
 
 After the upgrade to Xamarin.Mac 1.12, the only remaining issue is <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.NullReferenceException:... with System.Web.HttpUtility.HtmlDecode" href="show_bug.cgi?id=12565">bug 12565</a>, which is discussed above.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.NullReferenceException:... with System.Web.HttpUtility.HtmlDecode" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12565">bug 12565</a>, which is discussed above.
 
 
 
@@ -756,7 +756,7 @@ I was able to reproduce the stack trace from <a href="bug.html">comment 1</a> wi
 
 
 I was able to avoid the hang and instead crash immediately with the NullReferenceException (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.NullReferenceException:... with System.Web.HttpUtility.HtmlDecode" href="show_bug.cgi?id=12565">bug 12565</a>) if I simply commented out the 2 calls to `Environment.Exit(1)` in `Main.cs`.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.NullReferenceException:... with System.Web.HttpUtility.HtmlDecode" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12565">bug 12565</a>) if I simply commented out the 2 calls to `Environment.Exit(1)` in `Main.cs`.
 
 Then I get the unhandled exception dumped straight to the console:
 <span class="quote">&gt; [ERROR] FATAL UNHANDLED EXCEPTION: System.NullReferenceException: Object reference not set to an instance of an object

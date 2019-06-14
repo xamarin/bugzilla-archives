@@ -350,7 +350,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - App crashes using Link SDK Assemblies Only when built from Visual Studio Only (Works in Xamarin Studio)" href="show_bug.cgi?id=31258">31258</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - App crashes using Link SDK Assemblies Only when built from Visual Studio Only (Works in Xamarin Studio)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31258">31258</a> 
       </span>
       ()
     </td>
@@ -380,7 +380,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="blocked_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker for PCL with &quot;duplicate&quot; System.Threading.Tasks references causes &quot;Could not load file or assembly 'System.Threading.Tasks'&quot; on simulator" href="show_bug.cgi?id=31560">31560</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker for PCL with &quot;duplicate&quot; System.Threading.Tasks references causes &quot;Could not load file or assembly 'System.Threading.Tasks'&quot; on simulator" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31560">31560</a> 
   </td>
   </tr>
 
@@ -677,12 +677,12 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Test case
 
 This is a new bug to provide a minimal from-scratch test case for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - App crashes using Link SDK Assemblies Only when built from Visual Studio Only (Works in Xamarin Studio)" href="show_bug.cgi?id=31258">Bug 31258</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - App crashes using Link SDK Assemblies Only when built from Visual Studio Only (Works in Xamarin Studio)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31258">Bug 31258</a>.
 
 
 The behavior seems to be closely related to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker with Profile 7 PCL that uses System.IO.Compression causes &quot;Could not load file or assembly 'System.IO.Compression'&quot; at runtime" href="show_bug.cgi?id=29211">Bug 29211</a>, but <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker with Profile 7 PCL that uses System.IO.Compression causes &quot;Could not load file or assembly 'System.IO.Compression'&quot; at runtime" href="show_bug.cgi?id=29211">Bug 29211</a> is resolved in XI 8.10.2.37 while this bug is _not_.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker with Profile 7 PCL that uses System.IO.Compression causes &quot;Could not load file or assembly 'System.IO.Compression'&quot; at runtime" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29211">Bug 29211</a>, but <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker with Profile 7 PCL that uses System.IO.Compression causes &quot;Could not load file or assembly 'System.IO.Compression'&quot; at runtime" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29211">Bug 29211</a> is resolved in XI 8.10.2.37 while this bug is _not_.
 
 
 
@@ -690,7 +690,7 @@ The behavior seems to be closely related to <a class="bz_bug_link
 ## Workaround
 
 As with <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker with Profile 7 PCL that uses System.IO.Compression causes &quot;Could not load file or assembly 'System.IO.Compression'&quot; at runtime" href="show_bug.cgi?id=29211">Bug 29211</a>, it is possible to stop the error by adding "-linkskip=System.Net.Primitives" under "project options -&gt; iOS Build -&gt; Additional mtouch arguments".
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker with Profile 7 PCL that uses System.IO.Compression causes &quot;Could not load file or assembly 'System.IO.Compression'&quot; at runtime" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29211">Bug 29211</a>, it is possible to stop the error by adding "-linkskip=System.Net.Primitives" under "project options -&gt; iOS Build -&gt; Additional mtouch arguments".
 
 
 
@@ -753,7 +753,7 @@ Note the duplicate reference to "System.Net.Primitives".
 
 
 - The app does _not_ hit this error when deployed and run on an iOS _device_ rather than an iOS simulator. This is probably related to the change in XI 8.10 that attempts to load all assemblies at startup when running on simulator (see also non-public <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker with Profile 7 PCL that uses System.IO.Compression causes &quot;Could not load file or assembly 'System.IO.Compression'&quot; at runtime" href="show_bug.cgi?id=29211#c5">Bug 29211, Comment 5</a>).
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [XI 8.10] Enabling linker with Profile 7 PCL that uses System.IO.Compression causes &quot;Could not load file or assembly 'System.IO.Compression'&quot; at runtime" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29211#c5">Bug 29211, Comment 5</a>).
 
 
 
@@ -849,7 +849,7 @@ Logs and version information</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - App crashes using Link SDK Assemblies Only when built from Visual Studio Only (Works in Xamarin Studio)" href="show_bug.cgi?id=31258">Bug 31258</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - App crashes using Link SDK Assemblies Only when built from Visual Studio Only (Works in Xamarin Studio)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=31258">Bug 31258</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c4" class="bz_comment">

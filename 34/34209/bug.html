@@ -632,7 +632,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 A project to reproduce the problem
 
 In order to work around <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - MultiDexApplication and MultiDex missing" href="show_bug.cgi?id=34203">https://bugzilla.xamarin.com/show_bug.cgi?id=34203</a>, I tried creating my own binding for android-support-multidex. I took the JAR from the Android SDK - extras/android/support/multidex/library/libs. I have attached the project. Using MultiDexApplication as the base class of a custom Application in a Monodroid app causes Application.Context to be null.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - MultiDexApplication and MultiDex missing" href="https://bugzilla.xamarin.com/show_bug.cgi?id=34203">https://bugzilla.xamarin.com/show_bug.cgi?id=34203</a>, I tried creating my own binding for android-support-multidex. I took the JAR from the Android SDK - extras/android/support/multidex/library/libs. I have attached the project. Using MultiDexApplication as the base class of a custom Application in a Monodroid app causes Application.Context to be null.</pre>
     </div>
 
     <div id="c1" class="bz_comment">
@@ -757,7 +757,7 @@ Alex</pre>
 <pre class="bz_comment_text">Hello Alex,
 
 My workaround was that a binding for MultiDexApplication is actually useless. As Atsushi Eno has clearly explained at <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - MultiDexApplication and MultiDex missing" href="show_bug.cgi?id=34203">https://bugzilla.xamarin.com/show_bug.cgi?id=34203</a>, Monodroid automatically generates Java code using MultiDexApplication as soon as support for multi-dexing is requested in the project properties. The problem to begin with was that because of a Google's bug which Atsushi Eno found multi-dexing failed with a certain version of the Android SDK, so I tried working around with it with my own binding. This, as you can see, failed, so using his guidance I simply upgraded the Android build tools we use to 23.0.1 where the bug in question has been fixed.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - MultiDexApplication and MultiDex missing" href="https://bugzilla.xamarin.com/show_bug.cgi?id=34203">https://bugzilla.xamarin.com/show_bug.cgi?id=34203</a>, Monodroid automatically generates Java code using MultiDexApplication as soon as support for multi-dexing is requested in the project properties. The problem to begin with was that because of a Google's bug which Atsushi Eno found multi-dexing failed with a certain version of the Android SDK, so I tried working around with it with my own binding. This, as you can see, failed, so using his guidance I simply upgraded the Android build tools we use to 23.0.1 where the bug in question has been fixed.</pre>
     </div>
 
     <div id="c5" class="bz_comment">

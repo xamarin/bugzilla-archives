@@ -715,7 +715,7 @@ If that is the case, it appears to be due to the fact that we hard code "public.
 
 The fact that we don't expose those contacts is now filed under: 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - NSPasteboardItemDataProvider binding errors" href="show_bug.cgi?id=36926">https://bugzilla.xamarin.com/show_bug.cgi?id=36926</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - NSPasteboardItemDataProvider binding errors" href="https://bugzilla.xamarin.com/show_bug.cgi?id=36926">https://bugzilla.xamarin.com/show_bug.cgi?id=36926</a>
 
 Swapping the writableTypes array in ImageDocument.cs and the case in ImageInfoDataProvider in the sample and it appears to work.
 
@@ -780,7 +780,7 @@ Chris, is it OK to you to expose objects like NSPasteboardTypeString? I do not w
 
 
 <pre class="bz_comment_text">That's what the second bug I filed (<a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - NSPasteboardItemDataProvider binding errors" href="show_bug.cgi?id=36926">https://bugzilla.xamarin.com/show_bug.cgi?id=36926</a>) was tracking. That will be fixed in Cycle 7. Until then, you can use this to retrieve it manually:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - NSPasteboardItemDataProvider binding errors" href="https://bugzilla.xamarin.com/show_bug.cgi?id=36926">https://bugzilla.xamarin.com/show_bug.cgi?id=36926</a>) was tracking. That will be fixed in Cycle 7. Until then, you can use this to retrieve it manually:
 
 NSString s = ObjCRuntime.Dlfcn.GetStringConstant (ObjCRuntime.Dlfcn.dlopen ("/System/Library/Frameworks/AppKit.framework/AppKit", 0), "NSPasteboardTypeString");</pre>
     </div>

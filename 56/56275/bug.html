@@ -350,9 +350,9 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - warning MSB3026 Could not copy &quot;obj\Debug\xxxxx.dll&quot; to &quot;bin\Debug\xxxxx.dll&quot;. Beginning retry 1 in 1000ms. The process cannot access the file 'bin\Debug\xxxxx.dll' because it is being used by another process" href="show_bug.cgi?id=56306">56306</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Could not copy &quot;obj\Debug\dllName.dll&quot; to &quot;bin\Debug\dllName.dll&quot;. Exceeded retry count of 10. Failed." href="show_bug.cgi?id=56800">56800</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - VS2017 Build failed PortableSharedProject.dll is locked" href="show_bug.cgi?id=56917">56917</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - warning MSB3026 Could not copy &quot;obj\Debug\xxxxx.dll&quot; to &quot;bin\Debug\xxxxx.dll&quot;. Beginning retry 1 in 1000ms. The process cannot access the file 'bin\Debug\xxxxx.dll' because it is being used by another process" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56306">56306</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Could not copy &quot;obj\Debug\dllName.dll&quot; to &quot;bin\Debug\dllName.dll&quot;. Exceeded retry count of 10. Failed." href="https://bugzilla.xamarin.com/show_bug.cgi?id=56800">56800</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - VS2017 Build failed PortableSharedProject.dll is locked" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56917">56917</a> 
       </span>
       ()
     </td>
@@ -368,7 +368,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="show_bug.cgi?id=56587">56587</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56587">56587</a> 
   </td>
   </tr>
 
@@ -1094,7 +1094,7 @@ It happens on both Android and iOS.</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - warning MSB3026 Could not copy &quot;obj\Debug\xxxxx.dll&quot; to &quot;bin\Debug\xxxxx.dll&quot;. Beginning retry 1 in 1000ms. The process cannot access the file 'bin\Debug\xxxxx.dll' because it is being used by another process" href="show_bug.cgi?id=56306">Bug 56306</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - warning MSB3026 Could not copy &quot;obj\Debug\xxxxx.dll&quot; to &quot;bin\Debug\xxxxx.dll&quot;. Beginning retry 1 in 1000ms. The process cannot access the file 'bin\Debug\xxxxx.dll' because it is being used by another process" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56306">Bug 56306</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c13" class="bz_comment">
@@ -4211,7 +4211,7 @@ Thanks for the update.</pre>
 ## Note to the Xamarin team and the users on this bug
 
 I have a fairly strong suspicion that any candidate fix that can be found to resolve <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="show_bug.cgi?id=56587">Bug 56587</a> that I filed and marked as a "depends on" of this bug yesterday might resolve issue for all scenarios.  That bug provides a detailed characterization of the probability of hitting the issue consistently in a scenario related to a Xamarin.Forms template solution as long as the solution includes a Xamarin.Android project.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56587">Bug 56587</a> that I filed and marked as a "depends on" of this bug yesterday might resolve issue for all scenarios.  That bug provides a detailed characterization of the probability of hitting the issue consistently in a scenario related to a Xamarin.Forms template solution as long as the solution includes a Xamarin.Android project.
 
 The Xamarin team has another consistent way to replicate the problem using a solution that includes a Xamarin.Android project, a PCL library, and a Unit Test project.
 
@@ -4223,7 +4223,7 @@ Both scenarios will be tested against candidate fixes, and any successful candid
 ## Bookkeeping note
 
 For thorough bookkeeping I will also record the regression status on this bug under "Is this bug a regression?"  There is little doubt based on the user reports and the characterization of the particular scenario on <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="show_bug.cgi?id=56587">Bug 56587</a> that this behavior is a change compared to Xamarin.VisualStudio 4.4.0.34 (3f99c5a).
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56587">Bug 56587</a> that this behavior is a change compared to Xamarin.VisualStudio 4.4.0.34 (3f99c5a).
 
 
 
@@ -4424,7 +4424,7 @@ I'm still on my previous path, but I'm posting it here in case it helps someone.
 <pre class="bz_comment_text"><span class="quote">&gt; This problem has gone away on quite a few machines if you clear the .vs folder</span>
 
 Note that the test case on <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="show_bug.cgi?id=56587">Bug 56587</a> does not include an initial .vs folder, and it consistently demonstrates the issue starting from the clean test case, so users should note that at best this workaround would only stop the issue for the initial load of the solution.  Reloading the solution would potentially bring back the issue until the .vs folder was deleted again.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56587">Bug 56587</a> does not include an initial .vs folder, and it consistently demonstrates the issue starting from the clean test case, so users should note that at best this workaround would only stop the issue for the initial load of the solution.  Reloading the solution would potentially bring back the issue until the .vs folder was deleted again.
 
 
 
@@ -4432,7 +4432,7 @@ Note that the test case on <a class="bz_bug_link
 <span class="quote">&gt; this only happens when Android apps are involved, not for iOS?</span>
 
 The test scenario on <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="show_bug.cgi?id=56587">Bug 56587</a> also demonstrates the problem when the iOS app project is built, but interestingly, the problem stops once the Android project is removed from the solution (even though only the same 3 projects (2 PCLs and 1 iOS project) are being built in both cases).
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56587">Bug 56587</a> also demonstrates the problem when the iOS app project is built, but interestingly, the problem stops once the Android project is removed from the solution (even though only the same 3 projects (2 PCLs and 1 iOS project) are being built in both cases).
 
 
 So I believe we can ask a slightly more specific question for any users who might be seeing this issue, on the chance it might help the Xamarin team for thorough data gathering.
@@ -4983,7 +4983,7 @@ Commit: 030924d98ba23d814e0183b85f297c568b4743ed (xamarin/XamarinVS)</pre>
 <pre class="bz_comment_text">## Status update
 
 I have tested the candidate change from <a href="bug.html">Comment 125</a> in an unsigned local test build for my particular local test scenario in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="show_bug.cgi?id=56587#c5">Bug 56587, Comment 5</a>.  The candidate change is verified in that scenario.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56587#c5">Bug 56587, Comment 5</a>.  The candidate change is verified in that scenario.
 
 I will update the bug again as the change makes its way into a signed build (that is suitable for distribution to users).
 
@@ -5489,7 +5489,7 @@ Can you build the Xamarin Evolve 2016 app from <a href="https://github.com/xamar
 <a href="bug.html">Comment 139</a> (by the Xamarin scenario running team) is unfortunately probably not a meaningful verification, so I have marked it as obsolete.  There is a decent chance that the scenarios tested in <a href="bug.html">Comment 139</a> would not have hit this problem even _without_ the fix.
 
 I will proceed to verify my particular local test scenario from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="show_bug.cgi?id=56587">Bug 56587</a> (where I was consistently able to hit the issue, and where I recorded the probability of hitting the issue) with today's planned release build as a final local verification.  The Xamarin team will also monitor user feedback after the release to watch for potential additional reports of the issue for other scenarios.  (The currently available information about the cause and resolution of the issue suggests that the fix is complete for all reported scenarios.  So at this time it is not expected that any new scenarios will be reported after the release.)</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56587">Bug 56587</a> (where I was consistently able to hit the issue, and where I recorded the probability of hitting the issue) with today's planned release build as a final local verification.  The Xamarin team will also monitor user feedback after the release to watch for potential additional reports of the issue for other scenarios.  (The currently available information about the cause and resolution of the issue suggests that the fix is complete for all reported scenarios.  So at this time it is not expected that any new scenarios will be reported after the release.)</pre>
     </div>
 
     <div id="c143" class="bz_comment">
@@ -6022,8 +6022,8 @@ OK
 
 
 <pre class="bz_comment_text">I have filed follow-up <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="show_bug.cgi?id=56787">Bug 56787</a> to organize the investigation of the issue from <a href="bug.html">Comment 154</a> and <a href="bug.html">Comment 155</a>.  Additional discussion of that issue can be directed onto that follow-up <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="show_bug.cgi?id=56787">Bug 56787</a> to ensure a clean thread of discussion for it.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56787">Bug 56787</a> to organize the investigation of the issue from <a href="bug.html">Comment 154</a> and <a href="bug.html">Comment 155</a>.  Additional discussion of that issue can be directed onto that follow-up <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56787">Bug 56787</a> to ensure a clean thread of discussion for it.
 
 Thanks in advance,
 Brendan</pre>
@@ -6103,7 +6103,7 @@ Now I am not sure if the IOS problem was caused by Xamarin 4.5.0.475 or it might
 
 
 <pre class="bz_comment_text collapsed" id="comment_text_158">@Brendan, I was too late reading <a href="bug.html">comment 156</a>. Can you clean my <a href="bug.html">comment 157</a> to keep this thread clean? I already reposted my comment in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="show_bug.cgi?id=56787">Bug 56787</a></pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56787">Bug 56787</a></pre>
     </div>
 
     <div id="c159" class="bz_comment">
@@ -6266,7 +6266,7 @@ Please let me know if its right.</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Could not copy &quot;obj\Debug\dllName.dll&quot; to &quot;bin\Debug\dllName.dll&quot;. Exceeded retry count of 10. Failed." href="show_bug.cgi?id=56800">Bug 56800</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Could not copy &quot;obj\Debug\dllName.dll&quot; to &quot;bin\Debug\dllName.dll&quot;. Exceeded retry count of 10. Failed." href="https://bugzilla.xamarin.com/show_bug.cgi?id=56800">Bug 56800</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c164" class="bz_comment">
@@ -6483,7 +6483,7 @@ is there a goal of produced software quality in the team?</pre>
 
 
 <pre class="bz_comment_text collapsed" id="comment_text_170">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Debugging session aborts due to &quot;Could not load file or assembly 'Mono.Posix...' or one of its dependencies&quot; even when Mono.Posix.dll is present in Common7\IDE\Extensions\Xamarin\Xamarin" href="show_bug.cgi?id=56839">Bug 56839</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Debugging session aborts due to &quot;Could not load file or assembly 'Mono.Posix...' or one of its dependencies&quot; even when Mono.Posix.dll is present in Common7\IDE\Extensions\Xamarin\Xamarin" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56839">Bug 56839</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c171" class="bz_comment">
@@ -6820,7 +6820,7 @@ dte.Events.BuildEvents.OnBuildBegin += (s, a) =&gt; GC.Collect();
 ## Results
 
 I tested this approach using the particular local test scenario from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="show_bug.cgi?id=56587">Bug 56587</a>, and it stopped the problem completely across multiple trials.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56587">Bug 56587</a>, and it stopped the problem completely across multiple trials.
 
 
 
@@ -6828,7 +6828,7 @@ I tested this approach using the particular local test scenario from <a class="b
 ## Additional background info
 
 The call stack that holds open the problematic file handle (see <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="show_bug.cgi?id=56587#c6">Bug 56587, Comment 6</a>) starts when the IDE OnBuildBegin event [1] fires.  This happens each time the user triggers a Build, Rebuild, or Clean in the IDE.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Companion to Bug 56275 for example scenario that hits &quot;Could not copy &quot;obj\Debug\...&quot; to &quot;bin\Debug\...&quot;. Exceeded retry count of 10.&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56587#c6">Bug 56587, Comment 6</a>) starts when the IDE OnBuildBegin event [1] fires.  This happens each time the user triggers a Build, Rebuild, or Clean in the IDE.
 
 The `AndroidSetup::OnBuildBegin()` method in particular runs a `GetAssemblyInfo()` method on every assembly that is referenced directly by an Android project.  (The `GetAssemblyInfo()` method only opens assemblies that already exist at the _start_ of the build.  That's why manually deleting the .dll files between builds is effective.)  The recent change in behavior of the Cecil library (<a href="https://github.com/mono/cecil">https://github.com/mono/cecil</a>) to read the assemblies from disk at this step means that the object must be explicitly disposed to release the file handle, for example by adding `using()` as in <a href="https://github.com/mono/mono/commit/5077205a44a7dc97edf6b67072bea53f043cf815">https://github.com/mono/mono/commit/5077205a44a7dc97edf6b67072bea53f043cf815</a>.  Forcing a garbage collection is another way to do this.
 
@@ -7470,7 +7470,7 @@ As an additional status clarification, the candidate fix from <a href="bug.html"
 
 Might be this one here:
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="show_bug.cgi?id=56787">https://bugzilla.xamarin.com/show_bug.cgi?id=56787</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56787">https://bugzilla.xamarin.com/show_bug.cgi?id=56787</a>
 
 
 ---------------------------
@@ -7528,7 +7528,7 @@ OK
 
 <pre class="bz_comment_text">Ok, that seems to be yet another bug:
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="show_bug.cgi?id=56787">https://bugzilla.xamarin.com/show_bug.cgi?id=56787</a></pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56787">https://bugzilla.xamarin.com/show_bug.cgi?id=56787</a></pre>
     </div>
 
     <div id="c202" class="bz_comment">
@@ -7689,7 +7689,7 @@ If any user still hits a similar behavior consistently after updating to Visual 
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - VS2017 Build failed PortableSharedProject.dll is locked" href="show_bug.cgi?id=56917">Bug 56917</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - VS2017 Build failed PortableSharedProject.dll is locked" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56917">Bug 56917</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
 

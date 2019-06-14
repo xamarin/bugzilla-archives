@@ -350,8 +350,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Unknown exception thrown when debug on Android 2.3.5 device" href="show_bug.cgi?id=15829">15829</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Projects using support library crashing on Android V2.3 but working on V4+" href="show_bug.cgi?id=15879">15879</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Unknown exception thrown when debug on Android 2.3.5 device" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15829">15829</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Projects using support library crashing on Android V2.3 but working on V4+" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15879">15879</a> 
       </span>
       ()
     </td>
@@ -855,7 +855,7 @@ JNIEnv.AllocObject() + JNIEnv.CallVoidMethod()
 JNIEnv.NewObject() works, and is what we've always done.
 
 JNIEnv.AllocObject() + JNIEnv.CallVoidMethod() is the new approach introduced with <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=14999">Bug #14999</a>, and apparently API-10 does NOT like this combination.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=14999">Bug #14999</a>, and apparently API-10 does NOT like this combination.
 
 @PeterC: does this happen on any API-levels _before_ API-10? Or is this just the odd-man out?</pre>
     </div>
@@ -924,10 +924,10 @@ I'm still trying to figure out _why_ java.lang.Cloneable is required on API-10. 
 Using JNIEnv.CallNonvirtualVoidMethod() instead of JNIEnv.CallVoidMethod() doesn't make any difference to workaround the Dalvik bug.
 
 Which raises a wonderful question: how to fix this without regressing <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=14999">Bug #14999</a>?
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=14999">Bug #14999</a>?
 
 1. Undo <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=14999">Bug #14999</a>'s fix, and use some alternate mechanism/hack. We can use JNIEnv.AllocObject()+JNIEnv.CallVoidMethod() when we can drop &lt; API-10 (&lt; API-14?) support. (In...2-4 years?)
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=14999">Bug #14999</a>'s fix, and use some alternate mechanism/hack. We can use JNIEnv.AllocObject()+JNIEnv.CallVoidMethod() when we can drop &lt; API-10 (&lt; API-14?) support. (In...2-4 years?)
 
 2. Modify ACW generation logic so that java.lang.Cloneable is _always_ implemented. This seems incredibly stupid, but it does appear to fix things. (It would need to be _all_ ACWs, as this same issue impacts user code, e.g. `class Demo : Java.Lang.Object {}` and `new Demo()` will blow up.)
 
@@ -1002,7 +1002,7 @@ Pre-Honeycomb, StartCreateInstance() is NewObject(), and FinishCreateInstance() 
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Unknown exception thrown when debug on Android 2.3.5 device" href="show_bug.cgi?id=15829">Bug 15829</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Unknown exception thrown when debug on Android 2.3.5 device" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15829">Bug 15829</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c11" class="bz_comment">
@@ -1032,7 +1032,7 @@ Pre-Honeycomb, StartCreateInstance() is NewObject(), and FinishCreateInstance() 
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Unknown exception thrown when debug on Android 2.3.5 device" href="show_bug.cgi?id=15829">Bug 15829</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Unknown exception thrown when debug on Android 2.3.5 device" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15829">Bug 15829</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c12" class="bz_comment">
@@ -1062,7 +1062,7 @@ Pre-Honeycomb, StartCreateInstance() is NewObject(), and FinishCreateInstance() 
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Projects using support library crashing on Android V2.3 but working on V4+" href="show_bug.cgi?id=15879">Bug 15879</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Projects using support library crashing on Android V2.3 but working on V4+" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15879">Bug 15879</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c13" class="bz_comment">

@@ -879,7 +879,7 @@ You can also see this easily by adding a Console.WriteLine after your dispose. E
 That means the event you set (for `Dismissed`) has been potentially [1] been collected and the (native) control tries to go back to managed code (that has been freed) and will crash.
 
 A common solution is to promote your `alert` from a local variable to a field (see <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE - Crash when setting a UITextFieldDelegate method in an UIAlertView" href="show_bug.cgi?id=17533">bug #17533</a>) and not to dispose it until you know it's not used anymore (e.g. when that View gets disposed). That field will ensure a reference is kept to the (managed) instance of UIAlertView and the GC won't be allowed to collect it.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE - Crash when setting a UITextFieldDelegate method in an UIAlertView" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17533">bug #17533</a>) and not to dispose it until you know it's not used anymore (e.g. when that View gets disposed). That field will ensure a reference is kept to the (managed) instance of UIAlertView and the GC won't be allowed to collect it.
 
 Another option is to make the the Show call "blocking" and let the GC collect it (do not dispose it manually). Here's a nice helper method [2] to do this. 
 

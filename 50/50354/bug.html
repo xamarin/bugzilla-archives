@@ -1411,7 +1411,7 @@ Xamarin.iOS and Xamarin.Mac Reference Assemblies and MSBuild support.</pre>
 <pre class="bz_comment_text">Does anyone CC'd on this bug have a reproduction project that demonstrates this behavior? Although I've ran into this in the past, it's typically because of another hang in the deployment process and zipalign is the last task in APK creation. i.e. zipalign is ran after the APK is signed. I have however seen reports where zipalign is the hanging process and it actually fails internally, but we do not exit from it as soon as it fails.
 
 This perhaps could be fixed using apksigner as per my bug report here: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Support apksigner in AndroidSignPackage" href="show_bug.cgi?id=57914">https://bugzilla.xamarin.com/show_bug.cgi?id=57914</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Support apksigner in AndroidSignPackage" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57914">https://bugzilla.xamarin.com/show_bug.cgi?id=57914</a>
 
 I'm asking for any additional help in pinpointing this issue as it's not a 100% reproducible situation. Basically once I can get a reproduction project or at least an environment in which I can reproduce, I can dig further into this MSBuild target/task and indicate whether zipalign is working / failing and see what's going on for these situations where there is a hang.</pre>
     </div>

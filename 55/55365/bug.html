@@ -570,7 +570,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - OnDetachingFrom for Behavior is never called, therefore memory can leak due to event handlers not being unbound" href="show_bug.cgi?id=44074">44074</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - OnDetachingFrom for Behavior is never called, therefore memory can leak due to event handlers not being unbound" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44074">44074</a>
           </li></ul>
 
 </td>
@@ -641,7 +641,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 To reproduce the bug, run the attached App4 UWP project, press the Clear button followed by the Garbage button.
 
 The changes made for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - OnDetachingFrom for Behavior is never called, therefore memory can leak due to event handlers not being unbound" href="show_bug.cgi?id=44074">Bug 44074</a> and 51503 release in 2.3.4.184-pre2 are causing crashes when the ~ViewElement finalizer code executes on a UWP App.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - OnDetachingFrom for Behavior is never called, therefore memory can leak due to event handlers not being unbound" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44074">Bug 44074</a> and 51503 release in 2.3.4.184-pre2 are causing crashes when the ~ViewElement finalizer code executes on a UWP App.
 
 		~VisualElement()
 		{
@@ -668,7 +668,7 @@ Additional information: The application called an interface that was marshalled 
 According to Microsoft <a href="https://msdn.microsoft.com/en-us/library/system.object.finalize(v=vs.110).aspx">https://msdn.microsoft.com/en-us/library/system.object.finalize(v=vs.110).aspx</a>: "The Finalize method is used to perform cleanup operations on unmanaged resources".
 
 The changes to ~VisualElement for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - OnDetachingFrom for Behavior is never called, therefore memory can leak due to event handlers not being unbound" href="show_bug.cgi?id=44074">bug 44074</a> are cleaning up managed resources and should not be implemented in a finalizer.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - OnDetachingFrom for Behavior is never called, therefore memory can leak due to event handlers not being unbound" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44074">bug 44074</a> are cleaning up managed resources and should not be implemented in a finalizer.
 
 To reproduce the bug, run the attached App4 UWP project, press the Clear button followed by the Garbage button.</pre>
     </div>

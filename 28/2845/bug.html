@@ -708,7 +708,7 @@ One final "that's interesting": if you remove the array allocation in abort.cs:5
 <pre class="bz_comment_text">Looks like the GC gets into an infinite loop, at least with my original sample anyway (have not tried Jon's code on OSX I must confess)...
 
 Anyway, I thought I'd post a quick update as I had noticed that if you run my original sample (<span class=""><a href="attachment.cgi?id=881" name="attach_881" title="example project that intermittently crashes">attachment #881</a> <a href="attachment.cgi?id=881&amp;action=edit" title="example project that intermittently crashes">[details]</a></span> on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - misc. crashes in mono runtime particularly on operations on a particular string" href="show_bug.cgi?id=1394">bug #1394</a>) using MFA with the following logging:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - misc. crashes in mono runtime particularly on operations on a particular string" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1394">bug #1394</a>) using MFA with the following logging:
 
 adb shell setprop debug.mono.env MONO_GC_DEBUG=5
 

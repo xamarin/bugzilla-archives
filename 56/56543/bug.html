@@ -615,7 +615,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 <pre class="bz_comment_text"># Steps to reproduce
 I delete an account from the account store using the code below. When debugging, in the code followed after the deletion, the accountstore contains no more accounts (there was only 1 in the store before the deletion). After restarting the app, the account is available in the accountstore again. I tested it once with the DeleteAsync method which did appear to work. However I had to downgrade to 4.4.0.34 because of another bug (<a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Unable to copy appname.dll from obj to bin because it is being used by another process" href="show_bug.cgi?id=56275">https://bugzilla.xamarin.com/show_bug.cgi?id=56275</a>).
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Unable to copy appname.dll from obj to bin because it is being used by another process" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56275">https://bugzilla.xamarin.com/show_bug.cgi?id=56275</a>).
 
 The code I used:
 using accountStore.Delete(account, Constants.AccesStoreName);

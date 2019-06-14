@@ -608,7 +608,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">This is a spin-off bug from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Crash when using TestFlight API and SOAP" href="show_bug.cgi?id=4120">bug #4120</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Crash when using TestFlight API and SOAP" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4120">bug #4120</a>.
 
 Currently for SIGSEGVs, Mono will:
 
@@ -618,7 +618,7 @@ Currently for SIGSEGVs, Mono will:
 4) Raise SIGABRT.
 
 The problem here is 4), when raising SIGABRT the register/thread/process state from the SIGSEGV is lost, and it may contain information crucial to diagnose a crash (see <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Crash when using TestFlight API and SOAP" href="show_bug.cgi?id=4120">bug #4120</a>, comments 22/24 for examples).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Crash when using TestFlight API and SOAP" href="https://bugzilla.xamarin.com/show_bug.cgi?id=4120">bug #4120</a>, comments 22/24 for examples).
 
 Suggestion:
 

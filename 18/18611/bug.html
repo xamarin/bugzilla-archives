@@ -875,7 +875,7 @@ Then you should be able to use Xamarin Studio's Restore Packages menu option, th
 
 
 <pre class="bz_comment_text">It seems like it is an xbuild problem, possibly <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - xbuild evaluates Choose/When too late" href="show_bug.cgi?id=18106">bug #18106</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - xbuild evaluates Choose/When too late" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18106">bug #18106</a>.
 
 What version of NuGet.exe is in your .nuget folder?
 
@@ -1005,7 +1005,7 @@ However for existing projects that still use the custom MSBuild targets file it 
 Using the NuGet.target file attached to this bug causes the build to fail. The packages.config file is not passed to the NuGet.exe install command line but instead an empty string is passed. I believe this is due to the &lt;Choose&gt; element being used and is tracked by another bug:
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - xbuild evaluates Choose/When too late" href="show_bug.cgi?id=18106">https://bugzilla.xamarin.com/show_bug.cgi?id=18106</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - xbuild evaluates Choose/When too late" href="https://bugzilla.xamarin.com/show_bug.cgi?id=18106">https://bugzilla.xamarin.com/show_bug.cgi?id=18106</a>
 
 So one workaround is to update the NuGet.targets file.
 

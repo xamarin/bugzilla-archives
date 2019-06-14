@@ -791,7 +791,7 @@ NSUrlSessionDownloadTask NSUrlSessionDownloadTask(NSUrlRequest request) {
 
 
 <pre class="bz_comment_text">This is probably related to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unable to cast object of type NSUrlSessionTask to NSUrlSessionUploadTask" href="show_bug.cgi?id=24961">bug #24961</a>, where the iOS API is returning objects of the wrong type.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unable to cast object of type NSUrlSessionTask to NSUrlSessionUploadTask" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24961">bug #24961</a>, where the iOS API is returning objects of the wrong type.
 
 You're calling this method on NSURLSession [1]:
 
@@ -835,7 +835,7 @@ This works fine in Objective-C, where there are no type checks, but we try to be
 Would you please fix this bug for the other NSURLSession classes as well :
 
 NSURLSessionUploadTask   - Already fixed (as per <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unable to cast object of type NSUrlSessionTask to NSUrlSessionUploadTask" href="show_bug.cgi?id=24961">bug #24961</a>)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Unable to cast object of type NSUrlSessionTask to NSUrlSessionUploadTask" href="https://bugzilla.xamarin.com/show_bug.cgi?id=24961">bug #24961</a>)
 NSURLSessionDownloadTask - This bug report
 NSURLSessionDataTask     - Does this one needs a fix also ?
 NSURLSessionTask         - Shouldn't be affected.

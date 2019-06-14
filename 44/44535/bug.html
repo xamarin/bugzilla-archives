@@ -190,7 +190,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <div class="bz_short_desc_container edit_form">
      <a href="bug.html"><b>Bug&nbsp;44535</b></a> <span id="summary_container" class="bz_default_hidden">
       - <span id="short_desc_nonedit_display">[Cycle 8, reversion of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 7, VS 2013 only] &quot;'System.ComponentModel.INotifyPropertyChanged' is defined in an assembly that is not referenced. You must add a reference to assembly 'System.ObjectModel&quot; for Android projects that reference PCLs that use `INotifyPropertyChanged`" href="show_bug.cgi?id=41665">Bug 41665</a>] "'System.ComponentModel.INotifyPropertyChanged' is defined in an assembly that is not referenced. You must add a reference to assembly 'System.ObjectModel" for projects that reference PCLs with `INotifyPropertyChanged`</span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 7, VS 2013 only] &quot;'System.ComponentModel.INotifyPropertyChanged' is defined in an assembly that is not referenced. You must add a reference to assembly 'System.ObjectModel&quot; for Android projects that reference PCLs that use `INotifyPropertyChanged`" href="https://bugzilla.xamarin.com/show_bug.cgi?id=41665">Bug 41665</a>] "'System.ComponentModel.INotifyPropertyChanged' is defined in an assembly that is not referenced. You must add a reference to assembly 'System.ObjectModel" for projects that reference PCLs with `INotifyPropertyChanged`</span>
      </span>
 
     <div id="summary_input"><span class="field_label " id="field_label_short_desc">
@@ -351,7 +351,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Build errors using Lists and Tasks of a referenced PCL" href="show_bug.cgi?id=44363">44363</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Build errors using Lists and Tasks of a referenced PCL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44363">44363</a> 
       </span>
       ()
     </td>
@@ -676,7 +676,7 @@ Trying to build an Android project in VS2013 that references a PCL is resulting 
 This appears to be realted with PCLs because if the same class that implements 'INotifyPropertyChanged' is moved to the actual project, then it builds without error.
 
 This sounds similar to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=32425">bug 32425</a> however this new issue occurs in VS2013 instead of VS2015. This is also a regression in C8 as I tested with the previous C7 stable build and the error did not occur.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32425">bug 32425</a> however this new issue occurs in VS2013 instead of VS2015. This is also a regression in C8 as I tested with the previous C7 stable build and the error did not occur.
 
 Version Info and build output: <a href="https://gist.github.com/jimmgarrido/d499a627dd77b3560485249c7554ac18">https://gist.github.com/jimmgarrido/d499a627dd77b3560485249c7554ac18</a>
 
@@ -721,7 +721,7 @@ Build will fail with `error CS0012: The type 'System.ComponentModel.INotifyPrope
 
 
 <pre class="bz_comment_text">This is a reversion of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 7, VS 2013 only] &quot;'System.ComponentModel.INotifyPropertyChanged' is defined in an assembly that is not referenced. You must add a reference to assembly 'System.ObjectModel&quot; for Android projects that reference PCLs that use `INotifyPropertyChanged`" href="show_bug.cgi?id=41665">Bug 41665</a>.  The fix is for that bug needs to be included into the Cycle 8 branch.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 7, VS 2013 only] &quot;'System.ComponentModel.INotifyPropertyChanged' is defined in an assembly that is not referenced. You must add a reference to assembly 'System.ObjectModel&quot; for Android projects that reference PCLs that use `INotifyPropertyChanged`" href="https://bugzilla.xamarin.com/show_bug.cgi?id=41665">Bug 41665</a>.  The fix is for that bug needs to be included into the Cycle 8 branch.
 
 The fix is a one line change in src/Xamarin.Android.Build.Tasks/Xamarin.Android.Common.props:
 <a href="https://github.com/xamarin/xamarin-android/commit/eea35c8b">https://github.com/xamarin/xamarin-android/commit/eea35c8b</a>
@@ -815,7 +815,7 @@ Patched Xamarin.Android.Common.props for manual fix</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Build errors using Lists and Tasks of a referenced PCL" href="show_bug.cgi?id=44363">Bug 44363</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Build errors using Lists and Tasks of a referenced PCL" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44363">Bug 44363</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c6" class="bz_comment">

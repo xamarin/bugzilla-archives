@@ -638,7 +638,7 @@ In less than 1 minute the screen will stop flashing and if you press pause on th
 The larger the byte array length being appended to the queue the quicker the app will die.
 
 I no longer use ConcurrentQueue because of this bug, I just created my own thread safe queue class so I am not waiting on this to be fixed. However the behaviour is very similar to bug <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - FileStream Read on created Thread hangs the app after time" href="show_bug.cgi?id=20360">https://bugzilla.xamarin.com/show_bug.cgi?id=20360</a>. As that bug uses multiple threads and the fail is the same. Execution is halted, the debugger no longer responds, and no message in the android log. As this one is much more repeatable investigating this issue could shed some light on the other bug (which is stopping my app from being released).</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - FileStream Read on created Thread hangs the app after time" href="https://bugzilla.xamarin.com/show_bug.cgi?id=20360">https://bugzilla.xamarin.com/show_bug.cgi?id=20360</a>. As that bug uses multiple threads and the fail is the same. Execution is halted, the debugger no longer responds, and no message in the android log. As this one is much more repeatable investigating this issue could shed some light on the other bug (which is stopping my app from being released).</pre>
     </div>
 
     <div id="c1" class="bz_comment">

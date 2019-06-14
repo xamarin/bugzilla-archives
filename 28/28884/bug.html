@@ -770,7 +770,7 @@ c. wait for our next stable build (XI 8.9.2) that adds support for iOS 8.3 (alon
 The archiving issue is different (XS) and the workaround is in <a href="bug.html">comment #4</a>.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - App Submission and Validation fail due to non-public API Usage" href="show_bug.cgi?id=28609">bug 28609</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - App Submission and Validation fail due to non-public API Usage" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28609">bug 28609</a> ***</pre>
     </div>
 
     <div id="c6" class="bz_comment">
@@ -821,7 +821,7 @@ Technically perhaps I should file a new bug for this because the error is now be
 1. Perhaps using Xcode 6.3 is part of the problem? Maybe the customer would need to use Xcode 6.2 until Xamarin support for iOS 8.3 support is released (as mentioned in (c) on <a href="bug.html">comment 5</a>)?
 
 2. Perhaps somehow the build output from an old version of Xamarin Studio is still lying around. In that case, maybe double-checking that Xamarin Studio 5.8.3.1 is installed, deleting all of the `bin/` and `obj/` folders in the solution directory by hand, and then rebuilding would help? (Note: I suspect this will _not_ help because the "Invalid WatchKit Support" message is now only happening via email _after_ Xcode has validated the app and successfully uploaded it to iTunes Connect.) (For Xamarin team: see also Xamarin internal <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=27987#c8">bug 27987, comment 8</a>.)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=27987#c8">bug 27987, comment 8</a>.)
 
 3. Maybe there's a problem related to bundle identifiers or provisioning profiles?</pre>
     </div>

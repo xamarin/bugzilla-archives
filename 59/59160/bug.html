@@ -190,8 +190,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <div class="bz_short_desc_container edit_form">
      <a href="bug.html"><b>Bug&nbsp;59160</b></a> <span id="summary_container" class="bz_default_hidden">
       - <span id="short_desc_nonedit_display">Follow-up to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker fails randomly when processing a specific set dependencies" href="show_bug.cgi?id=58711">Bug 58711</a>: the fix for non-public <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=57889">Bug 57889</a> is not yet included on xamarin-android/d15-4 branch</span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker fails randomly when processing a specific set dependencies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58711">Bug 58711</a>: the fix for non-public <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57889">Bug 57889</a> is not yet included on xamarin-android/d15-4 branch</span>
      </span>
 
     <div id="summary_input"><span class="field_label " id="field_label_short_desc">
@@ -591,11 +591,11 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">Follow-up to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker fails randomly when processing a specific set dependencies" href="show_bug.cgi?id=58711">Bug 58711</a>: the fix for non-public <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=57889">Bug 57889</a> is not yet included on xamarin-android/d15-4 branch
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker fails randomly when processing a specific set dependencies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58711">Bug 58711</a>: the fix for non-public <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57889">Bug 57889</a> is not yet included on xamarin-android/d15-4 branch
 
 This bug is to track getting the fix for non-public <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=57889">Bug 57889</a> included into the d15-4 branch.  Currently this second "half" of the fix (related to avoiding broken builds during linking due to mismatched debug symbols) is _not_ included on the d15-4 branch.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57889">Bug 57889</a> included into the d15-4 branch.  Currently this second "half" of the fix (related to avoiding broken builds during linking due to mismatched debug symbols) is _not_ included on the d15-4 branch.
 
 The fix made on mono/cecil/xamarin-android-d15-3 was:
 <a href="https://github.com/mono/cecil/commit/82a2fe15984df2b697c42b2fef5ccc17370007e3">https://github.com/mono/cecil/commit/82a2fe15984df2b697c42b2fef5ccc17370007e3</a>
@@ -611,7 +611,7 @@ The current tip of xamarin-android/d15-4 is eca0e84:
 <a href="https://github.com/mono/cecil/commits/362e2bb00fa693d04c2d140a4cd313eb82c78d95">https://github.com/mono/cecil/commits/362e2bb00fa693d04c2d140a4cd313eb82c78d95</a>
 
 The important thing for this bug is that the Mono.Cecil commit history does _not_ include the "do not set scope.Start when start_instruction is null" fix from non-public <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=57889">Bug 57889</a>.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57889">Bug 57889</a>.</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -643,8 +643,8 @@ The important thing for this bug is that the Mono.Cecil commit history does _not
 <pre class="bz_comment_text">Apologies.  The commit timestamps, order of commit locations, and commit messages misled me.  After reexamining the commits and explicitly testing the behavior, I am marking this bug as invalid.
 
 Long story short, the follow-up fix for non-public <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=57889">Bug 57889</a> was a simplification of the fix for non-public <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=57675">Bug 57675</a>.  It _replaced_ the original fix.  So only that _second_ version of the fix was needed in d15-4 (and later), and it was added in a _single_ commit.  I have replicated the problem on older versions and verified that is working correctly using the latest d15-4 version in my testing below.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57889">Bug 57889</a> was a simplification of the fix for non-public <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57675">Bug 57675</a>.  It _replaced_ the original fix.  So only that _second_ version of the fix was needed in d15-4 (and later), and it was added in a _single_ commit.  I have replicated the problem on older versions and verified that is working correctly using the latest d15-4 version in my testing below.
 
 Thanks!
 
@@ -654,7 +654,7 @@ Thanks!
 ## Steps followed to test
 
 1. Extract the test case from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker fails randomly when processing a specific set dependencies" href="show_bug.cgi?id=58711#c0">Bug 58711, Comment 0</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker fails randomly when processing a specific set dependencies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58711#c0">Bug 58711, Comment 0</a>.
 
 2. Open the solution in Visual Studio for Mac to restore the NuGet packages.
 
@@ -679,7 +679,7 @@ There are no warnings or errors during the `LinkAssemblies` task.
 ## BAD results with Xamarin.Android 7.5.0-3 (d15-4/3e66e8e)
 
 The build fails as described in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker fails randomly when processing a specific set dependencies" href="show_bug.cgi?id=58711">Bug 58711</a>.  Top of the call stack from the build output:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Linker fails randomly when processing a specific set dependencies" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58711">Bug 58711</a>.  Top of the call stack from the build output:
 
 <span class="quote">&gt; error MSB4018: The "LinkAssemblies" task failed unexpectedly.
 &gt; error MSB4018: Mono.Linker.MarkException: Error processing method: 'System.Void Xamarin.Forms.Platform.Android.ViewRenderer`2::set_Control(TNativeView)' in assembly: 'Xamarin.Forms.Platform.Android.dll' ---&gt; System.ArgumentNullException: Value cannot be null.
@@ -696,10 +696,10 @@ The build fails as described in <a class="bz_bug_link
 
 
 ## BAD results with Xamarin.Android 7.4.0-17 (d15-3/ebbee99) (before the fix for non-public <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=57889">Bug 57889</a>)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57889">Bug 57889</a>)
 
 The build fails as described in non-public <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=57889">Bug 57889</a>.  Top of the call stack from the build output:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57889">Bug 57889</a>.  Top of the call stack from the build output:
 
 <span class="quote">&gt; error MSB4018: The "LinkAssemblies" task failed unexpectedly.
 &gt; error MSB4018: System.NotSupportedException: Specified method is not supported.</span>

@@ -629,8 +629,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Zip-file with 5 small C# files.
 
 The fix for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - CS0314 with partial classes and constraints (REGRESSION) - order of input files matters" href="show_bug.cgi?id=13289">bug 13289</a> did indeed work. However while the commit 37bad99b16e0d53eda63fca546f68840c76355ad fixed the test case from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - CS0314 with partial classes and constraints (REGRESSION) - order of input files matters" href="show_bug.cgi?id=13289">bug 13289</a>, it still cannot compile my code base (mono 2.10.9 can).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - CS0314 with partial classes and constraints (REGRESSION) - order of input files matters" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13289">bug 13289</a> did indeed work. However while the commit 37bad99b16e0d53eda63fca546f68840c76355ad fixed the test case from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - CS0314 with partial classes and constraints (REGRESSION) - order of input files matters" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13289">bug 13289</a>, it still cannot compile my code base (mono 2.10.9 can).
 
 I have created another test case (attached) that demonstrates the problem. It might not be 100% minimal but it is probably close.
 
@@ -654,7 +654,7 @@ WHAT SHOULD HAVE HAPPENED?
 mcs should have compiled without errors and the final executable should just print "Done" when executed.
 
 NOTICE! As in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - CS0314 with partial classes and constraints (REGRESSION) - order of input files matters" href="show_bug.cgi?id=13289">bug 13289</a> the order of the input files makes a difference. IE this command makes mcs compile just fine:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - CS0314 with partial classes and constraints (REGRESSION) - order of input files matters" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13289">bug 13289</a> the order of the input files makes a difference. IE this command makes mcs compile just fine:
 (Note that A.cs and B.cs have been swapped)
 mcs B.cs A.cs C.cs I.cs Test.cs /out:Test.cs</pre>
     </div>

@@ -830,7 +830,7 @@ When something is supported in PCL it does not mean it's supported by XI as ever
 
 
 <pre class="bz_comment_text">I was able to make the FiletimeLib compile by switching to Profile111 which has a System.Runtime.InteropServices.dll contract (contrary to Profile259 where the struct is defined in mscorlib.dll). But of course even with that the actual app fails to compile since the forwarded type isn't there, see also Sebastien's comment in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.Runtime.InteropServices.Marshal.GetNativeVariantForObject missing" href="show_bug.cgi?id=37632#c1">https://bugzilla.xamarin.com/show_bug.cgi?id=37632#c1</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - System.Runtime.InteropServices.Marshal.GetNativeVariantForObject missing" href="https://bugzilla.xamarin.com/show_bug.cgi?id=37632#c1">https://bugzilla.xamarin.com/show_bug.cgi?id=37632#c1</a>.
 
 I do wonder though whether we should add stubs that throw PlatformNotSupportedException so that the app/lib at least compiles when using the PCL? Do we have API diffs between Xamarin.iOS and the PCLs to see what is there and what isn't?</pre>
     </div>

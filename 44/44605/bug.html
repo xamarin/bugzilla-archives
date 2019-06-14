@@ -586,7 +586,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Unable to attach debugger on iOS 8.0 device, possibly due to &quot;Assertion at ... debugger-agent.c:9635, condition `flags == 0' not met&quot;" href="show_bug.cgi?id=43929">43929</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Unable to attach debugger on iOS 8.0 device, possibly due to &quot;Assertion at ... debugger-agent.c:9635, condition `flags == 0' not met&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43929">43929</a>
           </li></ul>
 
 </td>
@@ -663,10 +663,10 @@ One ugly thing this does is fill up the device with crash logs during just any o
 
 
 Taking into consideration my observations on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Unable to attach debugger on iOS 8.0 device, possibly due to &quot;Assertion at ... debugger-agent.c:9635, condition `flags == 0' not met&quot;" href="show_bug.cgi?id=43929">Bug 43929</a>, I also have a hunch that this underlying issue might somehow account for a new cluster of bugs reported against Cycle 8: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cant debug on device (iOS): When trying to debug my XF app on device, it compile and then and the output window 'Launch failed. The app 'app' could not be launched on 'iPhone'. Please check the logs for more details.'" href="show_bug.cgi?id=44567">Bug 44567</a>, <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cannot debug any solution from VS on my iPad anymore" href="show_bug.cgi?id=44578">Bug 44578</a>, <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE" href="show_bug.cgi?id=44301">Bug 44301</a>.  My (wild) guess is that some timing or conditional logic might have changed in Cycle 8 in such a way that this failed assertion is now being triggered in certain environments at the _start_ of debugging rather than at the end of debugging.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Unable to attach debugger on iOS 8.0 device, possibly due to &quot;Assertion at ... debugger-agent.c:9635, condition `flags == 0' not met&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43929">Bug 43929</a>, I also have a hunch that this underlying issue might somehow account for a new cluster of bugs reported against Cycle 8: <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cant debug on device (iOS): When trying to debug my XF app on device, it compile and then and the output window 'Launch failed. The app 'app' could not be launched on 'iPhone'. Please check the logs for more details.'" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44567">Bug 44567</a>, <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cannot debug any solution from VS on my iPad anymore" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44578">Bug 44578</a>, <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=44301">Bug 44301</a>.  My (wild) guess is that some timing or conditional logic might have changed in Cycle 8 in such a way that this failed assertion is now being triggered in certain environments at the _start_ of debugging rather than at the end of debugging.
 
 
 

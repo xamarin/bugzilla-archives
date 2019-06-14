@@ -350,7 +350,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="show_bug.cgi?id=30936">30936</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30936">30936</a> 
       </span>
       ()
     </td>
@@ -380,7 +380,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="blocked_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="show_bug.cgi?id=30936">30936</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30936">30936</a> 
   </td>
   </tr>
 
@@ -656,14 +656,14 @@ Starting Tasks or thread pool work items can briefly pause existing Tasks or wor
 
 
 This is a companion bug for non-public <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="show_bug.cgi?id=30936">Bug 30936</a>. The idea for this bug is to discuss a small desktop Mono test case that shows a potentially interesting behavior. I suspect that this behavior might be "acceptable," and not anything that the Mono team will choose to optimize right now, but I am filing the bug anyway to at least provide some documentation about the behavior.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30936">Bug 30936</a>. The idea for this bug is to discuss a small desktop Mono test case that shows a potentially interesting behavior. I suspect that this behavior might be "acceptable," and not anything that the Mono team will choose to optimize right now, but I am filing the bug anyway to at least provide some documentation about the behavior.
 
 
 The test case has 2 pieces. One piece is a loop that runs approximately once every 50 ms, using `Task.Delay(50)` to perform the idle timeout. The other piece is a set of thread pool "work items" that starts each time a key is typed into the console input. Each time these work items start, the `Task.Delay(50)` in the loop takes longer than usual to return.
 
 
 This might be related to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - ThreadPool QueueUserWorkItem is slow" href="show_bug.cgi?id=1653">Bug 1653</a>?
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - ThreadPool QueueUserWorkItem is slow" href="https://bugzilla.xamarin.com/show_bug.cgi?id=1653">Bug 1653</a>?
 
 
 
@@ -997,7 +997,7 @@ Logical cores (`sysctl -n hw.ncpu`): 4</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="show_bug.cgi?id=30936">Bug 30936</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30936">Bug 30936</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
 

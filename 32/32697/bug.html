@@ -641,21 +641,21 @@ This will ensure that the SayHelloTask is only invoked when building the .exe pr
 
 
 <pre class="bz_comment_text">Thanks for the report. At first glance this appears to be the same symptom described in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="show_bug.cgi?id=26484">Bug 26484</a>. The QA testing on that bug suggested that it was fixed in the Cycle 5 "XamarinVS 3.11" release.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="https://bugzilla.xamarin.com/show_bug.cgi?id=26484">Bug 26484</a>. The QA testing on that bug suggested that it was fixed in the Cycle 5 "XamarinVS 3.11" release.
 
 I see that this bug (<a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Running msbuild from the command line tries (and fails) multiple mtbs connections" href="bug.html">Bug 32697</a>) does not currently include version information. If you are using XamarinVS 3.11.x, there are 3 possibilities:
 
 (a) There has been a regression in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="show_bug.cgi?id=26484">Bug 26484</a> between the version tested in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="show_bug.cgi?id=26484#c8">Bug 26484, Comment 8</a> and the version you are using.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="https://bugzilla.xamarin.com/show_bug.cgi?id=26484">Bug 26484</a> between the version tested in <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="https://bugzilla.xamarin.com/show_bug.cgi?id=26484#c8">Bug 26484, Comment 8</a> and the version you are using.
 
 (b) <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="show_bug.cgi?id=26484#c8">Bug 26484, Comment 8</a> did not accurately verify the test case from <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="show_bug.cgi?id=26484#c0">Bug 26484, Comment 0</a>, so the bug was never properly fixed.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="https://bugzilla.xamarin.com/show_bug.cgi?id=26484#c8">Bug 26484, Comment 8</a> did not accurately verify the test case from <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="https://bugzilla.xamarin.com/show_bug.cgi?id=26484#c0">Bug 26484, Comment 0</a>, so the bug was never properly fixed.
 
 (c) Your particular solution (or computer environment) is hitting a scenario that is different from the test case (and environment) in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="show_bug.cgi?id=26484#c0">Bug 26484, Comment 0</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="https://bugzilla.xamarin.com/show_bug.cgi?id=26484#c0">Bug 26484, Comment 0</a>.
 
 
 I have just re-verified (a) and (b) on XamarinVS 3.11.836 + Xamarin.iOS 8.10.4.46, so we are left with possibility (c).
@@ -694,7 +694,7 @@ Thanks in advance.
 If I recall correctly, iOS library projects will sometimes require a connection to the Mac build host (for example, to build storyboards and XIBs).
 
 Similarly, if the solution contains 2 iOS app projects, then (at least with the old behavior of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="show_bug.cgi?id=26484">Bug 26484</a>) one of them will skip the remote build phase and fail to produce a signed `.app`  or `.ipa`.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Only the first SayHelloTask run by a command-line MSBuild process successfully negotiates a connection with the build server" href="https://bugzilla.xamarin.com/show_bug.cgi?id=26484">Bug 26484</a>) one of them will skip the remote build phase and fail to produce a signed `.app`  or `.ipa`.
 
 
 

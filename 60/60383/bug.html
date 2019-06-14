@@ -215,7 +215,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="show_bug.cgi?id=59045">bug 59045</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59045">bug 59045</a>
       </span>
     </td>
   </tr>
@@ -590,7 +590,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="show_bug.cgi?id=59045">bug 59045</a></span>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59045">bug 59045</a></span>
 </div>
 
 
@@ -642,18 +642,18 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Test App source code and two log files corresponding to the two different test cases
 
 +++ This bug was initially created as a clone of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="show_bug.cgi?id=59045">Bug #59045</a> +++
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59045">Bug #59045</a> +++
 
 When running Xamarin.Form's code, Android app crashes.
 
 This bug is related to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="show_bug.cgi?id=59045">Bug #59045</a> and #52733, and most likely a duplicate of them, i.e. sharing the same root cause. <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="show_bug.cgi?id=59045">Bug #59045</a> has been resolved on Sept 12, 2017. However, with Visual Studio v15.4.1, Xamarin 4.7.10.22, and Xamarin.Android SDK - 8.0.0.33, all of which were released on Oct 20, 2017, <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="show_bug.cgi?id=59045">Bug #59045</a> and #52733 can still be reproduced.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59045">Bug #59045</a> and #52733, and most likely a duplicate of them, i.e. sharing the same root cause. <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59045">Bug #59045</a> has been resolved on Sept 12, 2017. However, with Visual Studio v15.4.1, Xamarin 4.7.10.22, and Xamarin.Android SDK - 8.0.0.33, all of which were released on Oct 20, 2017, <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59045">Bug #59045</a> and #52733 can still be reproduced.
 
 I've reduces the code to the bare minimum for reproducing the crash. The test App is a bit different from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="show_bug.cgi?id=59045">Bug #59045</a> and #52733. The key point is, by toggling a line of code, the test App can produce the same crash as that of either <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="show_bug.cgi?id=59045">Bug #59045</a> or #52733.  
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59045">Bug #59045</a> and #52733. The key point is, by toggling a line of code, the test App can produce the same crash as that of either <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59045">Bug #59045</a> or #52733.  
 
 Build Environment
 - Visual Studio 2017 v15.4.1, MS .NET Framework v4.6.01586, on Windows 10
@@ -765,7 +765,7 @@ Thank you for the really prompt response!
 I build and tested the attached test App with VS 2017 15.5 Preview 2, with Pixel XL, Android 8.0.0.
 
 The crash cases reported with both Xamarin <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="show_bug.cgi?id=59045">Bug #59045</a> and #52733 have been fixed.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59045">Bug #59045</a> and #52733 have been fixed.
 
 I will test more Android platforms and let you know the results.
 
@@ -874,7 +874,7 @@ Joshua</pre>
 Thank you for the report!
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="show_bug.cgi?id=59045">bug 59045</a> ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - JNI ERROR (app bug): attempt to use stale Local 0x19 (should be 0x100019)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=59045">bug 59045</a> ***</pre>
     </div>
 
 

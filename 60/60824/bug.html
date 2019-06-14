@@ -799,7 +799,7 @@ XtraReports package</pre>
 
 
 <pre class="bz_comment_text">This looks very similar to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Unable to copy or delete bin\MyAssembly.dll because it is being used by another process." href="show_bug.cgi?id=60164">https://bugzilla.xamarin.com/show_bug.cgi?id=60164</a>. In that case, Fody PropertyChanged was locking the file. The fix if you're using that is super simple: just upgrade Fody (not the weaver, the root package) to 2.2 or later. With .NetStandard you'll need to actually install that package. The dependency that you get automatically is 2.0, which has the bug.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Unable to copy or delete bin\MyAssembly.dll because it is being used by another process." href="https://bugzilla.xamarin.com/show_bug.cgi?id=60164">https://bugzilla.xamarin.com/show_bug.cgi?id=60164</a>. In that case, Fody PropertyChanged was locking the file. The fix if you're using that is super simple: just upgrade Fody (not the weaver, the root package) to 2.2 or later. With .NetStandard you'll need to actually install that package. The dependency that you get automatically is 2.0, which has the bug.
 
 Please let me know if this looks like your issue.
 

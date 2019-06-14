@@ -707,8 +707,8 @@ No.
 What would be helpful is if you print Exception.ToString() instead of Exception.Message, so that the full stack trace is provided.
 
 That said, it's possible (probable) that you're running out of file descriptors; see <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="show_bug.cgi?id=15135">Bug #15135</a> and <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="show_bug.cgi?id=13750#c16">https://bugzilla.xamarin.com/show_bug.cgi?id=13750#c16</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15135">Bug #15135</a> and <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Exception While calling WCF Services in Mono Android appilcation" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13750#c16">https://bugzilla.xamarin.com/show_bug.cgi?id=13750#c16</a>.
 
 If this is the issue you're seeing (and I suspect it is), the workaround is for you to call GC.Collect() "occasionally" in order to ensure that the Sockets are GC'd and the associated file descriptors are freed.</pre>
     </div>
@@ -937,7 +937,7 @@ A side note: I get Error: NameResolutionFailure on Xamarin.iOS when in airplane 
 
 
 <pre class="bz_comment_text">May be related to: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="show_bug.cgi?id=15135">https://bugzilla.xamarin.com/show_bug.cgi?id=15135</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15135">https://bugzilla.xamarin.com/show_bug.cgi?id=15135</a></pre>
     </div>
 
     <div id="c9" class="bz_comment">

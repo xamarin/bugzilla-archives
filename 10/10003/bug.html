@@ -849,7 +849,7 @@ We won't be able to do much without reproducible test cases.  Also, could you pl
 <pre class="bz_comment_text">Stacktraces in this issue were for 2.10.8 with sgen gc.
 
 In <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Mono crash instead throwing OutOfMemory exception" href="show_bug.cgi?id=10005">bug #10005</a> I provided test case, which tries to allocate whole memory by 100K chunks. The results were:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - Mono crash instead throwing OutOfMemory exception" href="https://bugzilla.xamarin.com/show_bug.cgi?id=10005">bug #10005</a> I provided test case, which tries to allocate whole memory by 100K chunks. The results were:
 mono 2.10.8.1 Boehm - at first all free memory was allocated, than started to allocate memory from swap. After long time of swapping and awaiting the final message (couple of hours), I killed the program. Will try it again later on virtual machine with small swap.
 mono 2.10.8.1 Sgen - program allocated all free memory and crashed 
 mono 3.0.4 Sgen - at first program allocated all free memory, than all swap memory and than throwed OutOfMemoryException</pre>

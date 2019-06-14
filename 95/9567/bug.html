@@ -987,7 +987,7 @@ any ideas which exception is being thrown that I shouldn't be seeing?</pre>
 
 
 <pre class="bz_comment_text">As I explained in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=8746">bug 8746</a>, the CryptographicException not a bug. It is caught and handled internally in Mono, and is only being shown in the debugger because catchpoints are enabled. The exception shown in your video is caught and handled here: <a href="https://github.com/mono/mono/blob/master/mcs/class/System/System.Security.Cryptography.X509Certificates/X509Chain.cs#L282">https://github.com/mono/mono/blob/master/mcs/class/System/System.Security.Cryptography.X509Certificates/X509Chain.cs#L282</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=8746">bug 8746</a>, the CryptographicException not a bug. It is caught and handled internally in Mono, and is only being shown in the debugger because catchpoints are enabled. The exception shown in your video is caught and handled here: <a href="https://github.com/mono/mono/blob/master/mcs/class/System/System.Security.Cryptography.X509Certificates/X509Chain.cs#L282">https://github.com/mono/mono/blob/master/mcs/class/System/System.Security.Cryptography.X509Certificates/X509Chain.cs#L282</a></pre>
     </div>
 
     <div id="c14" class="bz_comment">

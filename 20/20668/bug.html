@@ -592,7 +592,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">Adding an event handler to NSOutlineView.SelectionDidChange does nothing.
 
 It appears that the implementation is attempting to rely upon the NSTableView implementation of the event, which is known to have problems. (See <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - NSTableView.SelectionDidChange problem" href="show_bug.cgi?id=12467">bug 12467</a>)
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - NSTableView.SelectionDidChange problem" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12467">bug 12467</a>)
 
 If you attempt to add an event handler to NSOutlineView.SelectionDidChange, no delegate is assigned (well, technically, the Delegate field remains null).
 

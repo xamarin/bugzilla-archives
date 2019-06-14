@@ -596,10 +596,10 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 This is a follow-up to <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - InitializeComponent() method call in XAML code behind page constructor &quot;does not exist in current context&quot; (IntelliSense error)" href="show_bug.cgi?id=33181">Bug 33181</a>. It is a _minor_ bug. On top of that, it is a _subtle_ bug. For example, I spent over 8 hours precisely characterizing the bug's behavior before I felt I was ready to file this report. So that's a caution to be especially methodical and attentive when reading this bug report compared to bug reports for other less subtle problems.
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - InitializeComponent() method call in XAML code behind page constructor &quot;does not exist in current context&quot; (IntelliSense error)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33181">Bug 33181</a>. It is a _minor_ bug. On top of that, it is a _subtle_ bug. For example, I spent over 8 hours precisely characterizing the bug's behavior before I felt I was ready to file this report. So that's a caution to be especially methodical and attentive when reading this bug report compared to bug reports for other less subtle problems.
 
 The summary of the issue is that the fix for <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - InitializeComponent() method call in XAML code behind page constructor &quot;does not exist in current context&quot; (IntelliSense error)" href="show_bug.cgi?id=33181">Bug 33181</a> (that is included in the Xamarin.Forms 2.2.0 pre-releases) leaves 1 very specific situation where the "'InitializeComponent' does not exist" message can _still occur_. This remaining issue seems to happen because Visual Studio writes some information into the `.suo` file that causes Visual Studio not to re-run certain tasks during project load. Workaround options 4 and 5 support this theory: both of those workarounds only modify the `.suo` file.
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - InitializeComponent() method call in XAML code behind page constructor &quot;does not exist in current context&quot; (IntelliSense error)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33181">Bug 33181</a> (that is included in the Xamarin.Forms 2.2.0 pre-releases) leaves 1 very specific situation where the "'InitializeComponent' does not exist" message can _still occur_. This remaining issue seems to happen because Visual Studio writes some information into the `.suo` file that causes Visual Studio not to re-run certain tasks during project load. Workaround options 4 and 5 support this theory: both of those workarounds only modify the `.suo` file.
 
 
 
@@ -631,7 +631,7 @@ BAD: Xamarin.Forms 2.1.0.6529
 BAD: Xamarin.Forms 1.4.3.6376
 
 There are some additional subtleties about this regression status because 2.2.0.23-pre4 includes the fix for <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - InitializeComponent() method call in XAML code behind page constructor &quot;does not exist in current context&quot; (IntelliSense error)" href="show_bug.cgi?id=33181">Bug 33181</a>. For example, on 2.1.0.6529, only workaround options 2 and 3 are effective. None of the other workarounds will work with that older version. I will post a follow-up comment to discuss a few more details about the regression status.
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - InitializeComponent() method call in XAML code behind page constructor &quot;does not exist in current context&quot; (IntelliSense error)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33181">Bug 33181</a>. For example, on 2.1.0.6529, only workaround options 2 and 3 are effective. None of the other workarounds will work with that older version. I will post a follow-up comment to discuss a few more details about the regression status.
 
 
 
@@ -641,7 +641,7 @@ There are some additional subtleties about this regression status because 2.2.0.
 1. Create a new "Visual C# &gt; Cross-Platform &gt; Blank App (Xamarin.Forms Portable)" project in Visual Studio (tested in VS 2013 Update 5 and VS 2015 Update 1).
 
 2. If you're using VS 2013, delete the "GettingStarted.Xamarin" file from the portable library project to avoid <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - &quot;The type initializer for 'NuGet.EnvironmentUtility' threw an exception&quot; in the Package Manager Console in VS 2013 if the &quot;GettingStarted.Xamarin&quot; file from a Xamarin.Forms portable library project is already open when VS loads the solution" href="show_bug.cgi?id=40327">Bug 40327</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - &quot;The type initializer for 'NuGet.EnvironmentUtility' threw an exception&quot; in the Package Manager Console in VS 2013 if the &quot;GettingStarted.Xamarin&quot; file from a Xamarin.Forms portable library project is already open when VS loads the solution" href="https://bugzilla.xamarin.com/show_bug.cgi?id=40327">Bug 40327</a>.
 
 3. (Optional) Remove all of the projects from the solution except for the portable library project.
 
@@ -746,7 +746,7 @@ Tested on both Windows 10 (64-bit) and Windows 8.1 (64-bit)</pre>
 <pre class="bz_comment_text">## Extra complication: from a certain perspective, this issue actually _is_ a regression in Xamarin.Forms 2.2.0
 
 If you use the _new_ `Xamarin.Forms.targets` from 2.2.0 (that includes the fix for <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - InitializeComponent() method call in XAML code behind page constructor &quot;does not exist in current context&quot; (IntelliSense error)" href="show_bug.cgi?id=33181">Bug 33181</a>) with the _old_ `Xamarin.Forms.Build.Tasks.dll` from 2.1.0.6529, that _stops_ the problem.
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - InitializeComponent() method call in XAML code behind page constructor &quot;does not exist in current context&quot; (IntelliSense error)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33181">Bug 33181</a>) with the _old_ `Xamarin.Forms.Build.Tasks.dll` from 2.1.0.6529, that _stops_ the problem.
 
 In other words, the reason 2.1.0.6529 and 1.4.3.6376 were "BAD" was that the `.targets` files were "bad." But the breakage in 2.2.0 is a _different_ problem where the `Xamarin.Forms.Build.Tasks.dll` file is "bad."
 

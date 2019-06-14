@@ -630,7 +630,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 Repro
 
 Run `fsharpi --debug tmp.fsx` using the attached file to reproduce. This code can be compiled to an executable and run without issue. May be related to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - TypeLoadException when resolving qualified names of generic, compiler-generated F# types" href="show_bug.cgi?id=15124">bug 15124</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - TypeLoadException when resolving qualified names of generic, compiler-generated F# types" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15124">bug 15124</a>.
 
 System.TypeLoadException: A type load exception has occurred.
   at Microsoft.FSharp.Core.CompilerServices.GeneratedSequenceBase`1[System.Tuple`2[Microsoft.FSharp.Collections.FSharpList`1[System.Char],FSI_0001+LazyList`1[System.Char]]].System-Collections-Generic-IEnumerable`1-GetEnumerator () [0x00000] in /private/tmp/source/bockbuild-xamarin/profiles/mono-mac-xamarin/build-root/fsharp-fsharp-f3c8ea8/src/fsharp/FSharp.Core/seq.fs:792

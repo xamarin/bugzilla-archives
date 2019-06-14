@@ -547,13 +547,13 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - registrar generated code leads to &quot;'initWithCoder:' has been explicitly marked unavailable&quot;" href="show_bug.cgi?id=41319">41319</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - registrar generated code leads to &quot;'initWithCoder:' has been explicitly marked unavailable&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=41319">41319</a>
           </li>
           <li><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - AVPlayer constructor exception" href="show_bug.cgi?id=35458">35458</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - AVPlayer constructor exception" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35458">35458</a>
           </li>
           <li><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - A New Custom UIBarButtonItem Is Not Enabled By Default" href="show_bug.cgi?id=28998">28998</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - A New Custom UIBarButtonItem Is Not Enabled By Default" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28998">28998</a>
           </li></ul>
 
 </td>
@@ -636,7 +636,7 @@ in this case, if the native class' init ctor chains to its own initWithA: select
 1b) managed default ctor is executed, which eventually calls NSObject's ctor which calls the native init method.
 1c) native init method does: [self initWithA:]
 1d) our initWithA trampoline is hit, we detect that we already have a managed object for this pointer, and do not invoke the initWithB managed ctor. Instead we call super's initWithA selector directly (since we have to call some init method - see <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - AVPlayer constructor exception" href="show_bug.cgi?id=35458">bug #35458</a>).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - AVPlayer constructor exception" href="https://bugzilla.xamarin.com/show_bug.cgi?id=35458">bug #35458</a>).
 
 This is correct behavior.
 

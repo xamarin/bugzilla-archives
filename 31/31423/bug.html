@@ -645,11 +645,11 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 This is a preliminary bug report to start tracking a new problem that has similar symptoms to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cannot build: The last access/last write time on file &quot;bin\Debug\Sensus.Android.dll.mdb&quot; cannot be set." href="show_bug.cgi?id=26841">Bug 26841</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cannot build: The last access/last write time on file &quot;bin\Debug\Sensus.Android.dll.mdb&quot; cannot be set." href="https://bugzilla.xamarin.com/show_bug.cgi?id=26841">Bug 26841</a>.
 
 
 I do not yet have a set of steps to reproduce the problem, nor do I have log files, but it "feels" like this problem could have been directly caused by the fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cannot build: The last access/last write time on file &quot;bin\Debug\Sensus.Android.dll.mdb&quot; cannot be set." href="show_bug.cgi?id=26841">Bug 26841</a> or one of the project-cleaning fixes related to debugging. Those changes have only been present in the most recent XamarinVS releases.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cannot build: The last access/last write time on file &quot;bin\Debug\Sensus.Android.dll.mdb&quot; cannot be set." href="https://bugzilla.xamarin.com/show_bug.cgi?id=26841">Bug 26841</a> or one of the project-cleaning fixes related to debugging. Those changes have only been present in the most recent XamarinVS releases.
 
 I will expand on this bug report if I am able to reproduce the problem again.
 
@@ -664,7 +664,7 @@ I will expand on this bug report if I am able to reproduce the problem again.
 ## Symptoms
 
 The symptoms closely resemble <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cannot build: The last access/last write time on file &quot;bin\Debug\Sensus.Android.dll.mdb&quot; cannot be set." href="show_bug.cgi?id=26841">Bug 26841</a>, but importantly the files that are locked in this case are `.dll` files _not_ `.dll.mdb` files. The evidence available so far suggests that the problem is specific to Portable Class Libraries.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - Cannot build: The last access/last write time on file &quot;bin\Debug\Sensus.Android.dll.mdb&quot; cannot be set." href="https://bugzilla.xamarin.com/show_bug.cgi?id=26841">Bug 26841</a>, but importantly the files that are locked in this case are `.dll` files _not_ `.dll.mdb` files. The evidence available so far suggests that the problem is specific to Portable Class Libraries.
 
 
 ### Error messages from the Error List
@@ -1135,7 +1135,7 @@ this is the build output from VS 2017 u3 preview:
 
 this is restated in here:
 <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Unable to copy appname.dll from obj to bin because it is being used by another process" href="show_bug.cgi?id=56275#c204">https://bugzilla.xamarin.com/show_bug.cgi?id=56275#c204</a>
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Unable to copy appname.dll from obj to bin because it is being used by another process" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56275#c204">https://bugzilla.xamarin.com/show_bug.cgi?id=56275#c204</a>
 
 VS 2017 15.3 (26510.0-Preview)
 Xamarin 4.6.0.560: installed throug the extensions and updates.
@@ -1172,7 +1172,7 @@ Regards.</pre>
 
 
 <pre class="bz_comment_text">You're right, the issue reported on <a href="bug.html">Comment 19</a> was <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Unable to copy appname.dll from obj to bin because it is being used by another process" href="show_bug.cgi?id=56275">Bug 56275</a>.
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - Unable to copy appname.dll from obj to bin because it is being used by another process" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56275">Bug 56275</a>.
 The root cause was identified, we found out it's totally unrelated to this <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [XVS] Locked .dll files: Could not copy &quot;... PortableClassLibrary1.dll&quot; to &quot;bin\Debug\PortableClassLibrary1.dll&quot;. Exceeded retry count of 10. Failed." href="bug.html">bug 31423</a>, although the symptom is the same, and it was already fixed (but not published yet for VS2017).
 

@@ -350,11 +350,11 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Visual Studio hangs indefinitely when setting google-services.json file Build Action to GoogleServicesJson" href="show_bug.cgi?id=52906">52906</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Visual Studio is still unresponsive - AAPT" href="show_bug.cgi?id=53071">53071</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - aapt.exe is continuously spawning and freezing Visual Studio 2015 IDE" href="show_bug.cgi?id=53585">53585</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin.Android build and deploy succeed, but Visual Studio freezes on 'Start debugging Android application...'" href="show_bug.cgi?id=54337">54337</a> <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=54345">54345</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Visual Studio hangs indefinitely when setting google-services.json file Build Action to GoogleServicesJson" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52906">52906</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Visual Studio is still unresponsive - AAPT" href="https://bugzilla.xamarin.com/show_bug.cgi?id=53071">53071</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - aapt.exe is continuously spawning and freezing Visual Studio 2015 IDE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=53585">53585</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin.Android build and deploy succeed, but Visual Studio freezes on 'Start debugging Android application...'" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54337">54337</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54345">54345</a> 
       </span>
       ()
     </td>
@@ -663,8 +663,8 @@ Updating to NuGet package Xamarin.Build.Download 0.4.3-beta2 [1] or higher resol
 ## Notes
 
 Although this issue has several related bug reports (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Visual Studio hangs indefinitely when setting google-services.json file Build Action to GoogleServicesJson" href="show_bug.cgi?id=52906">Bug 52906</a>, <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Xamarin.Android build is extremely slow" href="show_bug.cgi?id=52967">Bug 52967</a>, 53585), I am filing a new clean bug report for this exact symptom:
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Visual Studio hangs indefinitely when setting google-services.json file Build Action to GoogleServicesJson" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52906">Bug 52906</a>, <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Xamarin.Android build is extremely slow" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52967">Bug 52967</a>, 53585), I am filing a new clean bug report for this exact symptom:
 
 
 (a) Because I was able to replicate the issue locally and collect detailed information about it, including a simple test case attached to the bug report and a set of steps to replicate that worked consistently in my environment.
@@ -676,7 +676,7 @@ Although this issue has several related bug reports (<a class="bz_bug_link
 
 
 (c) Because <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Xamarin.Android build is extremely slow" href="show_bug.cgi?id=52967">Bug 52967</a> went down a path of also discussing a slightly separate symptom with incremental builds, making it a bit tougher to see that the `aapt.exe` issue has in fact been resolved.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Xamarin.Android build is extremely slow" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52967">Bug 52967</a> went down a path of also discussing a slightly separate symptom with incremental builds, making it a bit tougher to see that the `aapt.exe` issue has in fact been resolved.
 
 
 
@@ -717,7 +717,7 @@ Although this issue has several related bug reports (<a class="bz_bug_link
 
 
 ## Steps to test the new Xamarin.Build.Download package v0.4.3-beta3 (and higher) from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Xamarin.Android build is extremely slow" href="show_bug.cgi?id=52967#c25">Bug 52967, Comment 25</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Xamarin.Android build is extremely slow" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52967#c25">Bug 52967, Comment 25</a>
 
 1. Unzip a fresh copy of the test case.
 
@@ -824,7 +824,7 @@ GOOD: Xamarin.Build.Download 0.4.3-beta2
 BAD:  Xamarin.Build.Download 0.4.3-beta1
 
 (Downgrading from 0.4.3-beta2 to 0.4.3-beta1 caused the problem to come _back_, which concurs precisely with the expected location of the fix as described in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Xamarin.Android build is extremely slow" href="show_bug.cgi?id=52967#c23">Bug 52967, Comment 23</a>.)</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Xamarin.Android build is extremely slow" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52967#c23">Bug 52967, Comment 23</a>.)</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -854,7 +854,7 @@ BAD:  Xamarin.Build.Download 0.4.3-beta1
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Visual Studio hangs indefinitely when setting google-services.json file Build Action to GoogleServicesJson" href="show_bug.cgi?id=52906">Bug 52906</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Visual Studio hangs indefinitely when setting google-services.json file Build Action to GoogleServicesJson" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52906">Bug 52906</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c4" class="bz_comment">
@@ -884,7 +884,7 @@ BAD:  Xamarin.Build.Download 0.4.3-beta1
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - aapt.exe is continuously spawning and freezing Visual Studio 2015 IDE" href="show_bug.cgi?id=53585">Bug 53585</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - aapt.exe is continuously spawning and freezing Visual Studio 2015 IDE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=53585">Bug 53585</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c5" class="bz_comment">
@@ -914,7 +914,7 @@ BAD:  Xamarin.Build.Download 0.4.3-beta1
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Visual Studio is still unresponsive - AAPT" href="show_bug.cgi?id=53071">Bug 53071</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Visual Studio is still unresponsive - AAPT" href="https://bugzilla.xamarin.com/show_bug.cgi?id=53071">Bug 53071</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c6" class="bz_comment">
@@ -944,7 +944,7 @@ BAD:  Xamarin.Build.Download 0.4.3-beta1
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=54345">Bug 54345</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54345">Bug 54345</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c7" class="bz_comment">
@@ -974,7 +974,7 @@ BAD:  Xamarin.Build.Download 0.4.3-beta1
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin.Android build and deploy succeed, but Visual Studio freezes on 'Start debugging Android application...'" href="show_bug.cgi?id=54337">Bug 54337</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Xamarin.Android build and deploy succeed, but Visual Studio freezes on 'Start debugging Android application...'" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54337">Bug 54337</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c8" class="bz_comment">

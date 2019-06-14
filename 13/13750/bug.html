@@ -214,7 +214,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="show_bug.cgi?id=15135">bug 15135</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15135">bug 15135</a>
       </span>
     </td>
   </tr>
@@ -584,7 +584,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="show_bug.cgi?id=15135">bug 15135</a></span>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15135">bug 15135</a></span>
 </div>
 
 
@@ -818,7 +818,7 @@ This forums thread appears relevant: <a href="http://forums.xamarin.com/discussi
 The current guess is that this is an Android v4.3 bug: <a href="https://code.google.com/p/android/issues/detail?id=58230">https://code.google.com/p/android/issues/detail?id=58230</a>
 
 If this is in fact caused by Android <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - LLVM JIT fails under some combination of PIE, -fno-plt, -Wl,-z,now" href="show_bug.cgi?id=58230">bug 58230</a>, there is nothing that Xamarin.Android can do about it. :-(
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - LLVM JIT fails under some combination of PIE, -fno-plt, -Wl,-z,now" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58230">bug 58230</a>, there is nothing that Xamarin.Android can do about it. :-(
 
 There is a workaround listed for the above bug; it may be worth trying: <a href="https://code.google.com/p/android/issues/detail?id=58230#c35">https://code.google.com/p/android/issues/detail?id=58230#c35</a>
 <a href="https://code.google.com/p/android/issues/detail?id=58230#c106">https://code.google.com/p/android/issues/detail?id=58230#c106</a></pre>
@@ -851,7 +851,7 @@ There is a workaround listed for the above bug; it may be worth trying: <a href=
 
 
 <pre class="bz_comment_text">The other possibility that comes to mind is that it's an issue with migrating between WiFi and 3G networks, which is <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="show_bug.cgi?id=12640">Bug #12640</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=12640">Bug #12640</a>.
 
 Is this being observed with Wifi/3G network transitions or not?</pre>
     </div>
@@ -1013,7 +1013,7 @@ At least, that's how it fails on the emulator. On my N10 it just flat out hangs,
 WHY are we running out of file descriptors?!
 
 Enter <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="show_bug.cgi?id=15135">Bug #15135</a>: When using Mono's HttpWebRequest/HttpWebResponse, a Socket must be created for the network communication, but the Socket is not reliably _closed_. As long as the Socket remains open, a file descriptor is used, and the process is brought ever closer to the EMFILE limit (at which point all hell breaks loose).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15135">Bug #15135</a>: When using Mono's HttpWebRequest/HttpWebResponse, a Socket must be created for the network communication, but the Socket is not reliably _closed_. As long as the Socket remains open, a file descriptor is used, and the process is brought ever closer to the EMFILE limit (at which point all hell breaks loose).
 
 Furthermore, the likelihood of running out of file descriptors is predicated on the GC, as the Socket finalizer close the socket. Consequently, behavior seems "random"
 
@@ -1034,10 +1034,10 @@ If the Use GC checkbox is enabled/clicked, then Start Web Requests will issue a 
 WORKAROUND:
 
 Given my current understanding of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="show_bug.cgi?id=15135">Bug #15135</a>, I (unfortunately) need to suggest that you call GC.Collect() at some helpful interval when using HttpWebRequest in order to ensure that the Sockets are cleaned up.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15135">Bug #15135</a>, I (unfortunately) need to suggest that you call GC.Collect() at some helpful interval when using HttpWebRequest in order to ensure that the Sockets are cleaned up.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="show_bug.cgi?id=15135">bug 15135</a> ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - HttpWebRequest leaks sockets" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15135">bug 15135</a> ***</pre>
     </div>
 
     <div id="c17" class="bz_comment">

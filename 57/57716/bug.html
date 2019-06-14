@@ -631,7 +631,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">For a page that will get a lot of use, I kept a WeakReference to the page object and used that when pushing the page onto the navigation stack on 2nd and subsequent uses. I had disabled that code long ago as it resulted in problems, but people in the forums had said recently that they were doing that successfully, so I re-enabled it. Well, it does still cause problems, so I'll be disabling it again. In the meantime, here's how to reproduce using the code below.
 
 Push an instance of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="show_bug.cgi?id=54977">Bug54977</a>ReproRootPageView onto the navigation stack.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54977">Bug54977</a>ReproRootPageView onto the navigation stack.
 Press the button.
 Check for the toolbar (it is visible).
 Hit back.
@@ -651,16 +651,16 @@ using Xamarin.Forms;
 namespace ViewsUsingXamarinForms
 {
     public class <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="show_bug.cgi?id=54977">Bug54977</a>ReproRootPageView : ContentPage
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54977">Bug54977</a>ReproRootPageView : ContentPage
     {
         private static WeakReference <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="show_bug.cgi?id=54977">bug54977</a>ReproPageView;
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54977">bug54977</a>ReproPageView;
 
         public <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="show_bug.cgi?id=54977">Bug54977</a>ReproRootPageView()
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54977">Bug54977</a>ReproRootPageView()
         {
             Title = "<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="show_bug.cgi?id=54977">Bug54977</a> Page 1";
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54977">Bug54977</a> Page 1";
             Content = new Button
             {
                 Text = "Press me",
@@ -674,17 +674,17 @@ namespace ViewsUsingXamarinForms
         private Task OnClickAsync()
         {
             <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="show_bug.cgi?id=54977">Bug54977</a>ReproPageView page
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54977">Bug54977</a>ReproPageView page
                 = <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="show_bug.cgi?id=54977">bug54977</a>ReproPageView?.Target as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="show_bug.cgi?id=54977">Bug54977</a>ReproPageView;
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54977">bug54977</a>ReproPageView?.Target as <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54977">Bug54977</a>ReproPageView;
 
             if (page == null)
             {
                 page = new <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="show_bug.cgi?id=54977">Bug54977</a>ReproPageView();
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54977">Bug54977</a>ReproPageView();
                 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="show_bug.cgi?id=54977">bug54977</a>ReproPageView = new WeakReference(page);
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54977">bug54977</a>ReproPageView = new WeakReference(page);
             }
 
             return Navigation.PushAsync(page);
@@ -693,13 +693,13 @@ namespace ViewsUsingXamarinForms
     } // class
 
     internal class <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="show_bug.cgi?id=54977">Bug54977</a>ReproPageView : ContentPage
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54977">Bug54977</a>ReproPageView : ContentPage
     {
         internal <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="show_bug.cgi?id=54977">Bug54977</a>ReproPageView()
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54977">Bug54977</a>ReproPageView()
         {
             this.Title = "<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="show_bug.cgi?id=54977">Bug54977</a> Page 2";
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - Toolbaritems do not appear. Regression from 2.3.3" href="https://bugzilla.xamarin.com/show_bug.cgi?id=54977">Bug54977</a> Page 2";
 
             Content = new Label
             {

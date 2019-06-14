@@ -592,7 +592,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">`Class.ThrowOnInitFailure` does not throw the expected exception in cases where `NSObject(NSObjectFlag)` is used.
 
 ref: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - SIGSEGV while executing native code (Android.Net.UriInvoker)" href="show_bug.cgi?id=13707">bug #13707</a></pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - SIGSEGV while executing native code (Android.Net.UriInvoker)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=13707">bug #13707</a></pre>
     </div>
 
     <div id="c1" class="bz_comment">
@@ -622,8 +622,8 @@ ref: <a class="bz_bug_link
 
 
 <pre class="bz_comment_text">It's <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - AVAudioPlayer.FromUrl fails but returns an null error" href="show_bug.cgi?id=14307">bug #14307</a> (not 13707) and it's also the cause of confusion in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE - System.NullReferenceException occurring only in iOS7" href="show_bug.cgi?id=15973">bug #15973</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - AVAudioPlayer.FromUrl fails but returns an null error" href="https://bugzilla.xamarin.com/show_bug.cgi?id=14307">bug #14307</a> (not 13707) and it's also the cause of confusion in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FEATURE - System.NullReferenceException occurring only in iOS7" href="https://bugzilla.xamarin.com/show_bug.cgi?id=15973">bug #15973</a>.
 
 The issue is that `Class.ThrowOnInitFailure` actually checks after `alloc` not after `init*`. So if `alloc` succeed (the Handle is non-nil) and `init*` fails (Handle becomes nil) then the condition remains unreported.
 
@@ -788,7 +788,7 @@ monotouch/master: 99d6262348d5224a9415f3fe6aee529d511f5b46</pre>
 
 
 <pre class="bz_comment_text">This is technically a breaking change (see <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=17089">bug #17089</a>), so maybe we should live this fix for later (XI 8.0 for instance)?</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=17089">bug #17089</a>), so maybe we should live this fix for later (XI 8.0 for instance)?</pre>
     </div>
 
     <div id="c7" class="bz_comment">

@@ -633,7 +633,7 @@ Diagnostic build output
 Incremental Build setting causes Unified app crash during launch: "Library not loaded ... libmonosgen-2.0.dylib"
 
 The symptoms of this bug are superficially quite similar to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Incremental Build project setting causes a Classic app to not load (startup crash)" href="show_bug.cgi?id=23526">bug 23526</a>, but the underlying cause is different. In this case code signing is not the problem because the problem occurs on iOS 7 and iOS 7 does not require codesigned `.dylib` files. Instead the problem is that the build process for Unified API projects does not copy `libmonosgen-2.0.dylib` into the app bundle _at all_.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Incremental Build project setting causes a Classic app to not load (startup crash)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=23526">bug 23526</a>, but the underlying cause is different. In this case code signing is not the problem because the problem occurs on iOS 7 and iOS 7 does not require codesigned `.dylib` files. Instead the problem is that the build process for Unified API projects does not copy `libmonosgen-2.0.dylib` into the app bundle _at all_.
 
 The results are the same when building via Visual Studio or when building via `xbuild` (or Xamarin Studio) on Mac.
 
@@ -760,7 +760,7 @@ I'll also mention another workaround because it makes it clear that the missing 
 
 
 The app will now launch successfully on iOS 7 devices. It will still fail on iOS 8 devices (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Incremental Build setting causes Unified app crash during launch on iOS 8: &quot;Library not loaded ... *.exe.dylib&quot;" href="show_bug.cgi?id=26405">bug 26405</a>).</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Incremental Build setting causes Unified app crash during launch on iOS 8: &quot;Library not loaded ... *.exe.dylib&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=26405">bug 26405</a>).</pre>
     </div>
 
     <div id="c2" class="bz_comment">

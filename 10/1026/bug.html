@@ -588,7 +588,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">I think that the <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Test hierarchies are not colored correctly during testing" href="show_bug.cgi?id=385">Bug 385</a> fix sorted out the issue with non-generic classes, but it looks like inheriting from generic classes still fails (or possibly fails because of the fix).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Test hierarchies are not colored correctly during testing" href="https://bugzilla.xamarin.com/show_bug.cgi?id=385">Bug 385</a> fix sorted out the issue with non-generic classes, but it looks like inheriting from generic classes still fails (or possibly fails because of the fix).
 
 I've got an "AbstractEqualityTest" class (<a href="http://dev.ibboard.co.uk/projects/ibboard/browser/IBBoard.NUnit/AbstractEqualityTest.cs">http://dev.ibboard.co.uk/projects/ibboard/browser/IBBoard.NUnit/AbstractEqualityTest.cs</a>) that is in its own project. I reference that project in other projects and inherit from it so that I get some stubs to fill out and a set of basic equality tests. The abstract test class uses generics so that methods of the type can be available if necessary.
 

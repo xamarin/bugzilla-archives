@@ -817,7 +817,7 @@ It's not an AOT issue then, the input must be incorrect / stale.</pre>
 When we do incremental builds, we build each assembly to a dynamic library (dylib), and each native library is linked into the dylib for the corresponding assembly. The problem arises because we don't know that there's a dependency between the native libraries in multiple binding assemblies, so we don't compute the correct arguments for the native linker.
 
 In this particular case we can't compute the dependency automatically, because the native dependency is not reflected in the managed assemblies (Microsoft.Azure.Mobile.Analytics.iOS.Bindings.dll does not reference Microsoft.Azure.Mobile.iOS.Bindings.dll), but even if that were the case, it would still not build in the current stable (that's already reported in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [incremental builds] AOT compiler cannot find symbols between binding projects" href="show_bug.cgi?id=43689">bug #43689</a>).
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [incremental builds] AOT compiler cannot find symbols between binding projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43689">bug #43689</a>).
 
 A workaround the Mobile Center team can implement is to unify the two binding assemblies into one (and put both static libraries in the same binding assembly). This will work for customers with older versions of Xamarin.iOS as well.
 
@@ -826,7 +826,7 @@ A trivial workaround I can implement for 15.1 would be to automatically disable 
 We can also add a LinkWithAttribute.SupportsIncrementalBuilds option (which defaults to true). This way binding projects can opt out of incremental builds themselves easily (which is nice because incremental builds + binding libraries is a recurrent problem, every time we fix one issue a new one pops up). This might not be a viable option for MobileCenter, because it would require every customer to upgrade to Xamarin.iOS 10.4.
 
 For the future, once <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [incremental builds] AOT compiler cannot find symbols between binding projects" href="show_bug.cgi?id=43689">bug #43689</a> is fixed, we can remove the workaround, and instead communicate that if there are dependencies between native libraries in multiple binding assemblies, then those dependencies must be reflected in the managed assemblies (in this case Microsoft.Azure.Mobile.Analytics.iOS.Bindings.dll must reference Microsoft.Azure.Mobile.iOS.Bindings.dll).
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [incremental builds] AOT compiler cannot find symbols between binding projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43689">bug #43689</a> is fixed, we can remove the workaround, and instead communicate that if there are dependencies between native libraries in multiple binding assemblies, then those dependencies must be reflected in the managed assemblies (in this case Microsoft.Azure.Mobile.Analytics.iOS.Bindings.dll must reference Microsoft.Azure.Mobile.iOS.Bindings.dll).
 
 @Sebastien, does that sound good?
 
@@ -951,7 +951,7 @@ PR to add LinkWithAttribute.SupportsIncrementalBuilds: <a href="https://github.c
 
 
 <pre class="bz_comment_text">(Mobile Center will preemptively address the explicit referencing issue to prepare for a future release including fix for <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [incremental builds] AOT compiler cannot find symbols between binding projects" href="show_bug.cgi?id=43689">https://bugzilla.xamarin.com/show_bug.cgi?id=43689</a>)</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [incremental builds] AOT compiler cannot find symbols between binding projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43689">https://bugzilla.xamarin.com/show_bug.cgi?id=43689</a>)</pre>
     </div>
 
     <div id="c9" class="bz_comment">
@@ -1125,7 +1125,7 @@ Closing for QA validation for C9SR0.</pre>
 
 
 <pre class="bz_comment_text"><span class="quote">&gt; For the future, once <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [incremental builds] AOT compiler cannot find symbols between binding projects" href="show_bug.cgi?id=43689">bug #43689</a> is fixed, we can remove the workaround,...</span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [incremental builds] AOT compiler cannot find symbols between binding projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43689">bug #43689</a> is fixed, we can remove the workaround,...</span>
 
 @Rolf, now that #43689 has been fixed is the workaround in place possible to be removed so we'll no longer the the following message
 

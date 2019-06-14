@@ -1014,7 +1014,7 @@ Did you read it?</pre>
 If you've enabled multidex or proguard, this error should be resolved. You can read a bit more about this on the following bug:
 
 <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Xamarin.Android projects hit the multidex limit much quicker than Android Studio projects" href="show_bug.cgi?id=55117">https://bugzilla.xamarin.com/show_bug.cgi?id=55117</a>
+          bz_status_CONFIRMED " title="CONFIRMED - Xamarin.Android projects hit the multidex limit much quicker than Android Studio projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55117">https://bugzilla.xamarin.com/show_bug.cgi?id=55117</a>
 
 If you enabled multidex and still run into this error, something else is going on. We would need a diagnostic build output log to determine what that is.
 
@@ -1023,7 +1023,7 @@ If you enabled multidex and still run into this error, something else is going o
 Proguard can only be run in a "Release" configuration or you can follow the limitations for enabling in "Debug":
 
 <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Xamarin.Android projects hit the multidex limit much quicker than Android Studio projects" href="show_bug.cgi?id=55117#c6">https://bugzilla.xamarin.com/show_bug.cgi?id=55117#c6</a>
+          bz_status_CONFIRMED " title="CONFIRMED - Xamarin.Android projects hit the multidex limit much quicker than Android Studio projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=55117#c6">https://bugzilla.xamarin.com/show_bug.cgi?id=55117#c6</a>
 
 Either way, one of these options should fix the problem(multidex will allow going over the limit, proguard will shrink), and enabling both should even further fix this problem. We will need more information via the build output log to further diagnose.</pre>
     </div>

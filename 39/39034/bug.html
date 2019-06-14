@@ -572,7 +572,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 </th>
   <td class="field_value " id="field_container_see_also"><ul class="bug_urls">
           <li><a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 8 Beta] Visual Studio often hangs (pauses, freezes) during `TastyConfig.DebugLaunch()` on second deployment attempt" href="show_bug.cgi?id=43565">43565</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 8 Beta] Visual Studio often hangs (pauses, freezes) during `TastyConfig.DebugLaunch()` on second deployment attempt" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43565">43565</a>
           </li></ul>
 
 </td>
@@ -649,7 +649,7 @@ The first time when that happened, I tried to delete all bin and obj folders, re
 Unfortunately I have this problem at least once a day now. I think it also correlates with editing some Android layouts in .axml files. But this could also be a coincidence because I do mostly that currently and I started with it at the same time I installed 4.0.1.96.
 
 I found <a class="bz_bug_link 
-          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - [XVS 4.0] Hang/freeze when opening or working on a solution that contains an Android project, during background Xamarin.Android &quot;GetAdditionalResourcesFromAssemblies&quot; Task" href="show_bug.cgi?id=36185">bug #36185</a> last week. It is a different problem, but I used the comments from there to get more info. It always seems to hang in Xamarin.VisualStudio.MsBuild.MsBuildService. Although I found two methods where it occurred: CreateBuildSubmission and BuildSubmission.
+          bz_status_CLOSED  bz_closed" title="CLOSED FIXED - [XVS 4.0] Hang/freeze when opening or working on a solution that contains an Android project, during background Xamarin.Android &quot;GetAdditionalResourcesFromAssemblies&quot; Task" href="https://bugzilla.xamarin.com/show_bug.cgi?id=36185">bug #36185</a> last week. It is a different problem, but I used the comments from there to get more info. It always seems to hang in Xamarin.VisualStudio.MsBuild.MsBuildService. Although I found two methods where it occurred: CreateBuildSubmission and BuildSubmission.
 
 
 I run Windows 10 in a Parallels VM on the Mac. My solution is written in Xamarin Forms and currently includes only Android and iOS projects. The attached .zip includes more info which I thought useful.
@@ -768,7 +768,7 @@ VS -&gt; Tools -&gt; Options -&gt; Projects and Solutions -&gt; Build and Run</p
 <pre class="bz_comment_text">I think this can be closed. The problem does not occur anymore.
 
 I'm on XamarinVS 4.0.3.214 now. I cannot use a newer one because of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - NavigationPage rendering pages that aren't shown, will freeze the app (Material Design)" href="show_bug.cgi?id=38982">https://bugzilla.xamarin.com/show_bug.cgi?id=38982</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - NavigationPage rendering pages that aren't shown, will freeze the app (Material Design)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=38982">https://bugzilla.xamarin.com/show_bug.cgi?id=38982</a>
 
 My Maximum number of parallel Project builds is at 2. I cannot remember whether I changed it manually.</pre>
     </div>
@@ -943,7 +943,7 @@ Maybe that helps you to find the exact spot where it happened.</pre>
 <pre class="bz_comment_text">## Note to the Xamarin team
 
 It appears I might have found a fairly consistent way to replicate this problem in the Cycle 8 builds in particular: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 8 Beta] Visual Studio often hangs (pauses, freezes) during `TastyConfig.DebugLaunch()` on second deployment attempt" href="show_bug.cgi?id=43565">Bug 43565</a>.  Admittedly the test case on that bug is a Xamarin.iOS project and I only see the problem with Cycle 8 (unlike the older versions mentioned on this bug), so there is still a chance the 2 problems are distinct, but the call stack does look quite similar, and deleting the `.suo` file (or the `.vs` folder) helps in that case too.</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Cycle 8 Beta] Visual Studio often hangs (pauses, freezes) during `TastyConfig.DebugLaunch()` on second deployment attempt" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43565">Bug 43565</a>.  Admittedly the test case on that bug is a Xamarin.iOS project and I only see the problem with Cycle 8 (unlike the older versions mentioned on this bug), so there is still a chance the 2 problems are distinct, but the call stack does look quite similar, and deleting the `.suo` file (or the `.vs` folder) helps in that case too.</pre>
     </div>
 
     <div id="c9" class="bz_comment">

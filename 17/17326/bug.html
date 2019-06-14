@@ -688,7 +688,7 @@ class Program
 If I'm right then it is a "soft" bug (because we does not 100% match MS) and was done on purpose since the validation is a quite costly part of the initiating an SSL/TLS connection with a server. It also means it should be safe since the cache is short-lived and the server must accept to renegotiate with the same parameters. If not a full dance (handshake and certificate check) will be done.
 
 It looks related to <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED - SslStream.AuthenticateAsClient() does not invoke RemoteCertificateValidationCallback on every call, unlike .NET" href="show_bug.cgi?id=19141">bug #19141</a>. I've not tested the patch yet but seems to kill only half of the optimization (the crypto handshake is not duplicated, just the certificate check). That might be a solution.
+          bz_status_ASSIGNED " title="ASSIGNED - SslStream.AuthenticateAsClient() does not invoke RemoteCertificateValidationCallback on every call, unlike .NET" href="https://bugzilla.xamarin.com/show_bug.cgi?id=19141">bug #19141</a>. I've not tested the patch yet but seems to kill only half of the optimization (the crypto handshake is not duplicated, just the certificate check). That might be a solution.
 
 Note that this is not the kind of "behaviour" that application should not rely on. Either us (or MS newer FX versions) could change this behaviour in the future.</pre>
     </div>

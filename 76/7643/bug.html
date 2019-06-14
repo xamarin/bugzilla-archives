@@ -745,7 +745,7 @@ public abstract class UIPickerDataSource&lt;TItem&gt; : UIPickerViewModel
 This is not supported, and may lead to all sorts of inexplicable behavior. I suggest you try making those classes non-generic (you can use Monotouch 6.0.3 to detect all cases where this happens - you'll get an error at build time).
 
 See also <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID" href="show_bug.cgi?id=7390">bug #7390</a>.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7390">bug #7390</a>.
 
 If it still fails without any generics, please reopen this bug report.</pre>
     </div>
@@ -782,7 +782,7 @@ Ok, I will try without generics, hoping I don't have to change too much code.
 I have also other controls in this way, and I've seen the error MT4112 in MonoTouch 6.0.2, signaled as a warning in 6.0.3: did you refer to this, when you say "error at build time" ?
 
 PS: I cannot open <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID" href="show_bug.cgi?id=7390">bug #7390</a>, it says "Access Denied"</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7390">bug #7390</a>, it says "Access Denied"</pre>
     </div>
 
     <div id="c4" class="bz_comment">
@@ -814,7 +814,7 @@ PS: I cannot open <a class="bz_bug_link
 <pre class="bz_comment_text">Yes, it's the MT4112 message you can use to ensure you're not exporting any generic methods.
 
 And I meant to point at <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoTouch 6.0.2 breaks generic struct type sub-classing of controllers/views" href="show_bug.cgi?id=7547">bug #7547</a> (which is the but about the MT4112 error), not 7390.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - MonoTouch 6.0.2 breaks generic struct type sub-classing of controllers/views" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7547">bug #7547</a> (which is the but about the MT4112 error), not 7390.</pre>
     </div>
 
     <div id="c6" class="bz_comment">

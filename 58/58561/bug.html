@@ -215,7 +215,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=58865">bug 58865</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58865">bug 58865</a>
       </span>
     </td>
   </tr>
@@ -696,7 +696,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=58865">bug 58865</a></span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58865">bug 58865</a></span>
 </div>
 
 
@@ -941,14 +941,14 @@ Diagnostic build log with timing</pre>
 <pre class="bz_comment_text">Just ballparking based on the Task timing, it looks like this build in particular took about ~47 seconds. There was a recent enhancement added for _UpdateAndroidResGen:
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - _UpdateAndroidResgen constantly being called" href="show_bug.cgi?id=58169">https://bugzilla.xamarin.com/show_bug.cgi?id=58169</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - _UpdateAndroidResgen constantly being called" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58169">https://bugzilla.xamarin.com/show_bug.cgi?id=58169</a>
 
 You should be able to get an Alpha build this week with this fix in it to see if this helps build timing at all. If not, we should refer to Dean Ellis (Assigned this bug) to look further into this.
 
 I'm not sure if your project has many library projects referenced, but it never hurts to try:
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - _UpdateAndroidResgen constantly being called" href="show_bug.cgi?id=58169#c8">https://bugzilla.xamarin.com/show_bug.cgi?id=58169#c8</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - _UpdateAndroidResgen constantly being called" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58169#c8">https://bugzilla.xamarin.com/show_bug.cgi?id=58169#c8</a>
 
 Finally, it would be a very good idea to include a binary log using (msbuild.exe /bl) to this post. You can find details for how to get one here:
 
@@ -984,7 +984,7 @@ Thank you!</pre>
 
 
 <pre class="bz_comment_text">I suspect that this is related to <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=58865">Bug #58865</a>, which is also fixed xamarin-android/master, but not d15-4.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58865">Bug #58865</a>, which is also fixed xamarin-android/master, but not d15-4.
 
 Reading <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=24012&amp;file=build.zip" name="attach_24012" title="Diagnostic build log with timing">Attachment #24012</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=24012&amp;file=build.zip" title="Diagnostic build log with timing">[details]</a></span>, the biggest problem is `_CompileJava` and `_CompileToDalvikWithDx`:
 
@@ -1022,17 +1022,17 @@ In fact, that's the very first line of <span class=""><a href="https://bugzilla.
 @Michal: Is this *actually* a "no changes" build? Is it possible that "something" is touching `TapHome.Commons\FormatValue.cs`?
 
 All that said -- and the `FormatValue.cs` issue should be investigated further -- rebuilding `TapHome.Android.dll` shouldn't matter *that* much: `&lt;GenerateJavaStubs/&gt;` shouldn't update `.java` timestamps unless the content has changed. This is why <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=58865">Bug #58865</a> looks like the actual culprit to me:
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58865">Bug #58865</a> looks like the actual culprit to me:
 
 <span class="quote">&gt;Target "_CreateBaseApk: (TargetId:146)" in file "C:\Program Files (x86)\Microsoft Visual Studio\Preview\Community\MSBuild\Xamarin\Android\Xamarin.Android.Common.targets" from project "C:\work\taphome\TapHome.Android\TapHome.Android.csproj" (target "_CompileJava" depends on it):
 &gt;Building target "_CreateBaseApk" completely.
 &gt;Input file "obj\Debug\android\AndroidManifest.xml" is newer than output file "obj\Debug\android\bin\packaged_resources".</span>
 
 That's the same symptom as <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=58865">Bug #58865</a>: `AndroidManifest.xml` is *always* instead, which causes the `.apk` to always be rebuilt, which -- I *think* -- is what's causing the .java to be rebuilt in the first place.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58865">Bug #58865</a>: `AndroidManifest.xml` is *always* instead, which causes the `.apk` to always be rebuilt, which -- I *think* -- is what's causing the .java to be rebuilt in the first place.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="show_bug.cgi?id=58865">bug 58865</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58865">bug 58865</a> ***</pre>
     </div>
 
     <div id="c8" class="bz_comment">

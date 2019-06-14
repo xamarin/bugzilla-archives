@@ -214,7 +214,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Threadpool is segfaulting" href="show_bug.cgi?id=30148">bug 30148</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Threadpool is segfaulting" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30148">bug 30148</a>
       </span>
     </td>
   </tr>
@@ -547,7 +547,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Threadpool is segfaulting" href="show_bug.cgi?id=30148">bug 30148</a></span>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Threadpool is segfaulting" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30148">bug 30148</a></span>
 </div>
 
 
@@ -598,7 +598,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 <pre class="bz_comment_text">This is a multi-threaded application following a pretty standard Producer/Consumer pattern using BlockingCollection&lt;T&gt; and ConcurrentBag&lt;T&gt;. I spin up a reader thread, read lines into a BlockingCollection&lt;T&gt; and several parsing threads dequeue for processing. I follow a similar model with several more producer/consumers in other parts of the program, however this particular section of code crashes every time. There are no async/await calls in my code, however I haven't dug all the way down the stack to be sure. Producer/Consumers are started using "Task.Factory.StartNew" and kept in a list where they are finally Task.WhenAll.
 
 As I mentioned, this model is used in several places in the codebase and only fails in one particular spot. It is possibly related to <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - SIGSEGV when using Multiple threads and BlockCollection<T> with ConcurrentQueue<T> as data store" href="show_bug.cgi?id=32122">https://bugzilla.xamarin.com/show_bug.cgi?id=32122</a>, but it isn't identical.
+          bz_status_CONFIRMED " title="CONFIRMED - SIGSEGV when using Multiple threads and BlockCollection<T> with ConcurrentQueue<T> as data store" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32122">https://bugzilla.xamarin.com/show_bug.cgi?id=32122</a>, but it isn't identical.
 
 In related news, I cannot test this on Windows because of another Mono bug where CreateZStream is missing on Mono for Windows.
 
@@ -1138,7 +1138,7 @@ Aborted (core dumped)</pre>
 
 
 <pre class="bz_comment_text">Looks like the same issue as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Threadpool is segfaulting" href="show_bug.cgi?id=30148">Bug 30148</a>. Did you try using boehm gc?</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Threadpool is segfaulting" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30148">Bug 30148</a>. Did you try using boehm gc?</pre>
     </div>
 
     <div id="c4" class="bz_comment">
@@ -1170,7 +1170,7 @@ Aborted (core dumped)</pre>
 <pre class="bz_comment_text">It appears that switching to boehm fixes the problem. Thanks for pointing that out. I will follow 30148 for progress on the fix.
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Threadpool is segfaulting" href="show_bug.cgi?id=30148">bug 30148</a> ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Threadpool is segfaulting" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30148">bug 30148</a> ***</pre>
     </div>
 
 

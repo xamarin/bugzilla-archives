@@ -349,7 +349,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Unified API Packages and Builds do not work on 10.7" href="show_bug.cgi?id=27173">27173</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Unified API Packages and Builds do not work on 10.7" href="https://bugzilla.xamarin.com/show_bug.cgi?id=27173">27173</a> 
       </span>
       ()
     </td>
@@ -718,7 +718,7 @@ Darwin Apples-iMac.local 14.0.0 Darwin Kernel Version 14.0.0
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Unified API Packages and Builds do not work on 10.7" href="show_bug.cgi?id=27173">Bug 27173</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Unified API Packages and Builds do not work on 10.7" href="https://bugzilla.xamarin.com/show_bug.cgi?id=27173">Bug 27173</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c2" class="bz_comment">
@@ -1053,7 +1053,7 @@ Many Thanks</pre>
 Awesome. I haven't tested the full matrix of combinations (so 64-bit might work), as I had to use a remote 10.7 machine which was _very_ slow. This should match whatever Xcode supports on 10.7 (let me know if this is not true).
 
 So the SDK version determines what header files you are linking against. Since XM is doing binding for you, some of the new APIs may work (not something we currently test), but it also might let you "use" an API and have it fail at runtime if it not supported on this is OS X version. This is something we know is painful (<a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Need better support in tracking down Availability of Cocoa calls in large projects" href="show_bug.cgi?id=26728">https://bugzilla.xamarin.com/show_bug.cgi?id=26728</a>).
+          bz_status_CONFIRMED " title="CONFIRMED - Need better support in tracking down Availability of Cocoa calls in large projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=26728">https://bugzilla.xamarin.com/show_bug.cgi?id=26728</a>).
 
 Sometimes, Apple does checks against which SDK you were linked against, so you might not get new behavior. Sorry I can't be more clear, a lot of these are things that Apple does on a case by case basis.
 

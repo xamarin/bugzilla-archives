@@ -630,15 +630,15 @@ Test Error : travis_test.RijndaelTests.BlockSize
 ######################################################################
 
 This issue seems to be pretty similar: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Mono.Security.Cryptography RijndaelManaged class issue using CFB-8 mode" href="show_bug.cgi?id=7193">https://bugzilla.xamarin.com/show_bug.cgi?id=7193</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Mono.Security.Cryptography RijndaelManaged class issue using CFB-8 mode" href="https://bugzilla.xamarin.com/show_bug.cgi?id=7193">https://bugzilla.xamarin.com/show_bug.cgi?id=7193</a>
 Except the exception gets thrown at InternalTransformBlock, not FinalEncrypt.
 
 This one is also pretty similar: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Error &quot;Invalid input block size&quot; using AES Encryption" href="show_bug.cgi?id=14243">https://bugzilla.xamarin.com/show_bug.cgi?id=14243</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NORESPONSE - Error &quot;Invalid input block size&quot; using AES Encryption" href="https://bugzilla.xamarin.com/show_bug.cgi?id=14243">https://bugzilla.xamarin.com/show_bug.cgi?id=14243</a>
 Except it uses AesManaged and the stack trace is entirely different.
 
 This bug occurs with a Stream, which I am not using. Also there is no exception. It may be related anyway: <a class="bz_bug_link 
-          bz_status_IN_PROGRESS " title="IN_PROGRESS - RijndaelManaged/CFB CryptoStream fails on read/write" href="show_bug.cgi?id=9247">https://bugzilla.xamarin.com/show_bug.cgi?id=9247</a>
+          bz_status_IN_PROGRESS " title="IN_PROGRESS - RijndaelManaged/CFB CryptoStream fails on read/write" href="https://bugzilla.xamarin.com/show_bug.cgi?id=9247">https://bugzilla.xamarin.com/show_bug.cgi?id=9247</a>
 
 I think it might be this line responsible for the exception:
 <a href="https://github.com/mono/mono/blob/master/mcs/class/Mono.Security/Mono.Security.Cryptography/SymmetricTransform.cs#L278">https://github.com/mono/mono/blob/master/mcs/class/Mono.Security/Mono.Security.Cryptography/SymmetricTransform.cs#L278</a>

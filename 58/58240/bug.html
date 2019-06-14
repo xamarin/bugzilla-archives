@@ -852,7 +852,7 @@ Thank you!</pre>
 Here's a similar bug report on this issue:
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - SIGSEGV when calling libsqlite on multiple background threads" href="show_bug.cgi?id=21492">https://bugzilla.xamarin.com/show_bug.cgi?id=21492</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED INVALID - SIGSEGV when calling libsqlite on multiple background threads" href="https://bugzilla.xamarin.com/show_bug.cgi?id=21492">https://bugzilla.xamarin.com/show_bug.cgi?id=21492</a>
 
 The solution was to add `SQLiteOpenFlags.FullMutex` to the `new SQLiteConnection()` call.
 

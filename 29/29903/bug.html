@@ -590,7 +590,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">Seems like the AndroidLinkSkip feature is not working.  I'm trying to prevent an assembly from being linked to work around <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Latest Alpa Linking issus" href="show_bug.cgi?id=29900">bug 29900</a> in the platform.  However, the assembly is still linked which results in me having to turn off linking for all assemblies to get a Release build out.  Our apk unfortunately goes from 18MB to 43MB which is unacceptable.  Other users seem to [have reported](<a href="http://forums.xamarin.com/discussion/16279/android-skip-linking-broken-in-4-12-03003">http://forums.xamarin.com/discussion/16279/android-skip-linking-broken-in-4-12-03003</a>) the issue as well.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Latest Alpa Linking issus" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29900">bug 29900</a> in the platform.  However, the assembly is still linked which results in me having to turn off linking for all assemblies to get a Release build out.  Our apk unfortunately goes from 18MB to 43MB which is unacceptable.  Other users seem to [have reported](<a href="http://forums.xamarin.com/discussion/16279/android-skip-linking-broken-in-4-12-03003">http://forums.xamarin.com/discussion/16279/android-skip-linking-broken-in-4-12-03003</a>) the issue as well.</pre>
     </div>
 
     <div id="c1" class="bz_comment">
@@ -624,8 +624,8 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 If you have "Project Properties -&gt; Android Options -&gt; Linker [tab] -&gt; Linking" set to "Sdk Assemblies Only", then the _application assembly_ isn't being _modified_ by the linker anyway.
 
 The problem with <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Latest Alpa Linking issus" href="show_bug.cgi?id=29900">Bug 29900</a> is that the linker is _reflecting_ on the application assembly to determine which types are safe to link out of the _other_ (SDK) assemblies. So unfortunately, if the linker is enabled _at all_ then you will hit <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Latest Alpa Linking issus" href="show_bug.cgi?id=29900">Bug 29900</a>, regardless of how many assemblies you skip using the `AndroidLinkSkip` property.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Latest Alpa Linking issus" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29900">Bug 29900</a> is that the linker is _reflecting_ on the application assembly to determine which types are safe to link out of the _other_ (SDK) assemblies. So unfortunately, if the linker is enabled _at all_ then you will hit <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Latest Alpa Linking issus" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29900">Bug 29900</a>, regardless of how many assemblies you skip using the `AndroidLinkSkip` property.
 
 In short, I believe this bug can be marked RESOLVED ANSWERED (or similar).</pre>
     </div>
@@ -657,7 +657,7 @@ In short, I believe this bug can be marked RESOLVED ANSWERED (or similar).</pre>
 
 
 <pre class="bz_comment_text">Yes, that's right. Even when the assembly is marked to be skipped, it needs to be loaded. Fortunately the <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Latest Alpa Linking issus" href="show_bug.cgi?id=29900">bug #29900</a> is already fixed.</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Latest Alpa Linking issus" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29900">bug #29900</a> is already fixed.</pre>
     </div>
 
     <div id="c3" class="bz_comment">

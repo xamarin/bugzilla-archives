@@ -349,7 +349,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     </th>
     <td class="field_value">
       <span id="duplicates"><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - System.IO.Compression.ZipArchiveEntry - issue with reopening entries" href="show_bug.cgi?id=38295">38295</a> 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - System.IO.Compression.ZipArchiveEntry - issue with reopening entries" href="https://bugzilla.xamarin.com/show_bug.cgi?id=38295">38295</a> 
       </span>
       ()
     </td>
@@ -2021,7 +2021,7 @@ Dave</pre>
 <pre class="bz_comment_text">There is still something subtly wrong/different about the zip file format being created by ZipArchive. Microsoft Excel for Android cannot open Open XML spreadsheets (.xlsx files) creating using this version of ZipArchive, and Windows Excel reports that the file contains unreadable content, although file(1) now reports the same value as that produced by ZipStore and the native Windows support.
 
 Also, the problem documented under <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Creating a new System.IO.Compression.ZipArchive fails on mono with SharpCompress.Common.ArchiveException" href="show_bug.cgi?id=32725">https://bugzilla.xamarin.com/show_bug.cgi?id=32725</a> still exists.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Creating a new System.IO.Compression.ZipArchive fails on mono with SharpCompress.Common.ArchiveException" href="https://bugzilla.xamarin.com/show_bug.cgi?id=32725">https://bugzilla.xamarin.com/show_bug.cgi?id=32725</a> still exists.
 
 The SDK attempts to open the zip file for update and we end up with the crash noted below. I made a small change to the SDK to get this to work for our needs, but it would be nice if the Xamarin support could be fixed. I believe all that is needed is to test the size of the file or stream being opened with ZipArchive and only attempt to read the archive's director if the size of the file or stream is not 0.
 
@@ -2441,7 +2441,7 @@ Dave</pre>
 
 
 <pre class="bz_comment_text">*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - System.IO.Compression.ZipArchiveEntry - issue with reopening entries" href="show_bug.cgi?id=38295">Bug 38295</a> has been marked as a duplicate of this bug. ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - System.IO.Compression.ZipArchiveEntry - issue with reopening entries" href="https://bugzilla.xamarin.com/show_bug.cgi?id=38295">Bug 38295</a> has been marked as a duplicate of this bug. ***</pre>
     </div>
 
     <div id="c46" class="bz_comment">

@@ -967,7 +967,7 @@ So what will need to change for start <a href="https://github.com/mono/mono/blob
 After that <a href="https://github.com/mono/mono/blob/4504107/mcs/class/corlib/System/Console.iOS.cs#L51">https://github.com/mono/mono/blob/4504107/mcs/class/corlib/System/Console.iOS.cs#L51</a> will need to pass this boolean down to native implementation `xamarin_log`. Which will then need some logic to decide to use NSLog or stdout/stderr to write messages...
 When debugger is connected it would make most sense to decide based on <a href="https://github.com/xamarin/xamarin-macios/blob/ad3a4a1/runtime/monotouch-debug.m#L1255-L1258">https://github.com/xamarin/xamarin-macios/blob/ad3a4a1/runtime/monotouch-debug.m#L1255-L1258</a> if `connect stderr/stdout`(use stderr/stdout) instead of `connect output`(use NSLog)...
 Similar logic should probably also be applies to fix <a class="bz_bug_link 
-          bz_status_ASSIGNED " title="ASSIGNED" href="show_bug.cgi?id=20211">Bug 20211</a>.
+          bz_status_ASSIGNED " title="ASSIGNED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=20211">Bug 20211</a>.
 
 Reassigning this to XI as changes are needed there.</pre>
     </div>

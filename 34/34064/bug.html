@@ -764,7 +764,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 The test runner doesn't successfully return once it's done, it simply hangs indefinitely until manually killed and the console session doesn't respond to any input, even Ctrl-C.
 
 I've already verified with Brad Wilson that this issue is not an issue with Xunit itself. I don't believe the issue to be with Xunit or DNX as it appears to work fine on Windows. It reads almost exactly like the issue in Mono <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SynchronizationContext.SetSynchronizationContext leaks back inappropriately into caller" href="show_bug.cgi?id=28793">bug 28793</a> (<a href="http://www.debugthings.com/2015/04/07/debugging-vnext-mono/">http://www.debugthings.com/2015/04/07/debugging-vnext-mono/</a>), but the thread isn't waiting on itself, but on some other handle I can't traverse due to an unknown issue with GDB or the Mono support it has.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - SynchronizationContext.SetSynchronizationContext leaks back inappropriately into caller" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28793">bug 28793</a> (<a href="http://www.debugthings.com/2015/04/07/debugging-vnext-mono/">http://www.debugthings.com/2015/04/07/debugging-vnext-mono/</a>), but the thread isn't waiting on itself, but on some other handle I can't traverse due to an unknown issue with GDB or the Mono support it has.
 
 The issue I believe sits somewhere on the handle that thread 2 is waiting on. Notice the errors in both of the thread 2 backtraces below. Please let me know how I can help provide more information if this isn't enough.
 

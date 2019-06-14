@@ -777,8 +777,8 @@ Visual Studio extension to enable development for Xamarin.iOS.</pre>
 <pre class="bz_comment_text">## Quick non-engineering team review
 
 The summary of this bug currently says: "System.IO.FileNotFoundException in mscorlib.ni.dll Could not load clrcompression".  I suspect the important assembly name is "clrcompression" rather than either "mscorlib.ni.dll" or "System.Private.Reflection.Core.dll".  And that in turn sounds like a duplicate of either <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - UWP: Startup crash with Native tool chain &quot;FileNotFound_AssemblyNotFound, clrcompression&quot;" href="show_bug.cgi?id=51565">Bug 51565</a> or <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="show_bug.cgi?id=52838">Bug 52838</a> (filed just today), depending on whether or not the debugger is set to break on all first-chance exceptions.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - UWP: Startup crash with Native tool chain &quot;FileNotFound_AssemblyNotFound, clrcompression&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=51565">Bug 51565</a> or <a class="bz_bug_link 
+          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52838">Bug 52838</a> (filed just today), depending on whether or not the debugger is set to break on all first-chance exceptions.
 
 
 
@@ -786,9 +786,9 @@ The summary of this bug currently says: "System.IO.FileNotFoundException in msco
 ## Specific to one particular project, development computer, or target mobile device?
 
 Unclear.  In the circumstances for <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="show_bug.cgi?id=52838">Bug 52838</a> in particular, this exception is always a _handled_ exception.  If the exception is _unhandled_ in this <a class="bz_bug_link 
+          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52838">Bug 52838</a> in particular, this exception is always a _handled_ exception.  If the exception is _unhandled_ in this <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - System.IO.FileNotFoundException in mscorlib.ni.dll Could not load clrcompression on UWP Xamarin Forms Init?" href="bug.html">Bug 52482</a>, it is not yet clear how that is possible, unless perhaps the exception is being thrown from a different location than in <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="show_bug.cgi?id=52838">Bug 52838</a>.  The bug report does not currently include a test case or steps to reproduce that might allow the Xamarin team to study this issue locally.
+          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52838">Bug 52838</a>.  The bug report does not currently include a test case or steps to reproduce that might allow the Xamarin team to study this issue locally.
 
 
 
@@ -949,7 +949,7 @@ If you run into the same exception again, I would definitely recommend pasting b
 
 
 <pre class="bz_comment_text">Is this related: <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - Microsoft C++ exception: EEMessageException thrown in UWP app" href="show_bug.cgi?id=51796">https://bugzilla.xamarin.com/show_bug.cgi?id=51796</a>?</pre>
+          bz_status_CONFIRMED " title="CONFIRMED - Microsoft C++ exception: EEMessageException thrown in UWP app" href="https://bugzilla.xamarin.com/show_bug.cgi?id=51796">https://bugzilla.xamarin.com/show_bug.cgi?id=51796</a>?</pre>
     </div>
 
     <div id="c7" class="bz_comment">
@@ -979,7 +979,7 @@ If you run into the same exception again, I would definitely recommend pasting b
 
 
 <pre class="bz_comment_text">Is this one related: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Exception thrown at 0x745DB802 in MyProj.UWP.exe: Microsoft C++ exception" href="show_bug.cgi?id=57599">https://bugzilla.xamarin.com/show_bug.cgi?id=57599</a>?</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - Exception thrown at 0x745DB802 in MyProj.UWP.exe: Microsoft C++ exception" href="https://bugzilla.xamarin.com/show_bug.cgi?id=57599">https://bugzilla.xamarin.com/show_bug.cgi?id=57599</a>?</pre>
     </div>
 
     <div id="c8" class="bz_comment">

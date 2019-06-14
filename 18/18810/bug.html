@@ -214,7 +214,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - FromAsync on NetworkStreams leaks memory and leads to eventual OOM crash." href="show_bug.cgi?id=18398">bug 18398</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - FromAsync on NetworkStreams leaks memory and leads to eventual OOM crash." href="https://bugzilla.xamarin.com/show_bug.cgi?id=18398">bug 18398</a>
       </span>
     </td>
   </tr>
@@ -629,7 +629,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - FromAsync on NetworkStreams leaks memory and leads to eventual OOM crash." href="show_bug.cgi?id=18398">bug 18398</a></span>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - FromAsync on NetworkStreams leaks memory and leads to eventual OOM crash." href="https://bugzilla.xamarin.com/show_bug.cgi?id=18398">bug 18398</a></span>
 </div>
 
 
@@ -1030,7 +1030,7 @@ From what I can see the only thing that differs is that the PCL version is calli
 <pre class="bz_comment_text">
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - FromAsync on NetworkStreams leaks memory and leads to eventual OOM crash." href="show_bug.cgi?id=18398">bug 18398</a> ***</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - FromAsync on NetworkStreams leaks memory and leads to eventual OOM crash." href="https://bugzilla.xamarin.com/show_bug.cgi?id=18398">bug 18398</a> ***</pre>
     </div>
 
     <div id="c10" class="bz_comment">
@@ -1128,7 +1128,7 @@ You can check Mono commits for the change</pre>
 Obviously this isn't the case, since using await on a Task from a PCL does leak the Task whereas using a wait on a Task inside an iOS assembly does not leak the task. Hence my question for clarification. 
 
 I'm just questioning whether the fix referenced in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - FromAsync on NetworkStreams leaks memory and leads to eventual OOM crash." href="show_bug.cgi?id=18398">bug 18398</a> would really resolve this issue. 7.4 probably still has a long way to go until it hits stable and I'd hate to find out the issue is not fixed once it rolls out. Following Xamarins promise of supporting async and PCLs we've started to rely heavily on that combination only to find out that it fails in production. 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - FromAsync on NetworkStreams leaks memory and leads to eventual OOM crash." href="https://bugzilla.xamarin.com/show_bug.cgi?id=18398">bug 18398</a> would really resolve this issue. 7.4 probably still has a long way to go until it hits stable and I'd hate to find out the issue is not fixed once it rolls out. Following Xamarins promise of supporting async and PCLs we've started to rely heavily on that combination only to find out that it fails in production. 
 
 I'd love to run the sample with mono trunk myself, but I do currently not see how I'd be able to do so until the Brian's commit makes its way into alpha at least.</pre>
     </div>

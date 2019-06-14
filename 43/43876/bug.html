@@ -774,7 +774,7 @@ Darwin MacBook-Pro-Admin-2.local 15.3.0 Darwin Kernel Version 15.3.0
 <pre class="bz_comment_text">Hi, so watchOS projects are working fine with latest versions of XS and XI. I can deploy on both the watchOS 2 and watchOS 3 simulators and device.
 
 I believe there is a possibility you're hitting the issue covered in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=43610">https://bugzilla.xamarin.com/show_bug.cgi?id=43610</a> (in that case it's a reference to Microsoft.Bcl.Build.targets in the main app that break app extensions and watch apps and removing the import in your main project's csproj should fix everything).
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=43610">https://bugzilla.xamarin.com/show_bug.cgi?id=43610</a> (in that case it's a reference to Microsoft.Bcl.Build.targets in the main app that break app extensions and watch apps and removing the import in your main project's csproj should fix everything).
 
 You could be hitting something else but in order to investigate precisely we'd need a full verbose build log (Xamarin Studio &gt; Preferences &gt; Projects &gt; Build &gt; Log verbosity &gt; Diagnostic) and also if possible a test case so we can check your project options and easily reproduce the issue here.
 

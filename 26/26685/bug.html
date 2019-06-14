@@ -843,7 +843,7 @@ As of now I am trying to reproduce the SIGSEGV, without success. When it comes a
 <pre class="bz_comment_text">When you get a crash, please dump `adb logcat` to a file and attach it, particularly when it's a crash in JNIEnv.
 
 What may be happening is a variation on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [Lollipop] Instability in Android app on older devices which have been upgraded to Lollipop, possibly related to .Handle is IntPtr.Zero before being disposed." href="show_bug.cgi?id=25443">Bug #25443</a> (still being investigated...), in which an invalid JNI handle is being passed to Android, and Android is aborting the process.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [Lollipop] Instability in Android app on older devices which have been upgraded to Lollipop, possibly related to .Handle is IntPtr.Zero before being disposed." href="https://bugzilla.xamarin.com/show_bug.cgi?id=25443">Bug #25443</a> (still being investigated...), in which an invalid JNI handle is being passed to Android, and Android is aborting the process.
 
 Application output will NOT contain any additional information; `adb logcat` WILL.</pre>
     </div>

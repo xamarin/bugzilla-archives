@@ -656,7 +656,7 @@ actual result: menu drawer stays open until ListView is loaded and then closes w
 ## Notes
 
 The issue ultimately seems to be the amount of time it is taking to layout the page with the ListView. Seeing that there was some issue with bindings generator being fired multiple times ( <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED" href="show_bug.cgi?id=60699">bug #60699</a>), even though that was only reported for Android API 24+, I changed all of the bindings in the ViewCell to use static text instead. This did not change the page loading time that I could notice, IOW the issue persisted. 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=60699">bug #60699</a>), even though that was only reported for Android API 24+, I changed all of the bindings in the ViewCell to use static text instead. This did not change the page loading time that I could notice, IOW the issue persisted. 
 
 I tried simplifying the ViewCell layout so there was only one Label, and though this improved the issue there was still a "stutter" during the menu close animation.
 

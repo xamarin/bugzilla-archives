@@ -657,7 +657,7 @@ It seems that mcs fails to resolve method invocations to the _private_ one (whic
 Repro:
 
 Almost the same as <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Runtime metadata bug with RX." href="show_bug.cgi?id=8320">bug #8320</a>, but with the updated patch attached here this time. You could remove mcs/class/*Reactive* and [checkout mcs/class/Makefile and re-apply add-rx-libs.patch] or [edit mcs/class/Makefile and add System.Reactive.Debugger]. This patch updates involves some Makefile changes, additional sources and additional build args, so you most likely want to remove old directories.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Runtime metadata bug with RX." href="https://bugzilla.xamarin.com/show_bug.cgi?id=8320">bug #8320</a>, but with the updated patch attached here this time. You could remove mcs/class/*Reactive* and [checkout mcs/class/Makefile and re-apply add-rx-libs.patch] or [edit mcs/class/Makefile and add System.Reactive.Debugger]. This patch updates involves some Makefile changes, additional sources and additional build args, so you most likely want to remove old directories.
 
 Then run "make run-test"
 

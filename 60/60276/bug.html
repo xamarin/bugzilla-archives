@@ -822,7 +822,7 @@ Do the same thing for the `SnappyCrappy.iOS.Watch` project (edit its csproj for 
 Once this is fixed the MSBuild tasks will successfully create the `Watch` folder inside the iOS project and you'll have `../Watch/MyApp.iOS.Watch.app/Info.plist`.
 
 Now I'm not sure why the project reference was not invalidated because the csproj path is clearly wrong (we'll likely mapping with GUID though) so I filed a bug for that: <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - ProjectReference with invalid `Include` is not erring / invalidated" href="show_bug.cgi?id=60302">https://bugzilla.xamarin.com/show_bug.cgi?id=60302</a>
+          bz_status_CONFIRMED " title="CONFIRMED - ProjectReference with invalid `Include` is not erring / invalidated" href="https://bugzilla.xamarin.com/show_bug.cgi?id=60302">https://bugzilla.xamarin.com/show_bug.cgi?id=60302</a>
 
 Also could you please detail exactly how you renamed the folders? Do you recall? That would help us in case we're not renaming things properly.
 

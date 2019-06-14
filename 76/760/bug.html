@@ -600,7 +600,7 @@ select score.Name
 ...where "sessions" and "scores" are just List&lt;Session&gt; and List&lt;Score&gt; types, where Session and Score are simple classes.
 
 This does not appear to be a dup of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.ExecutionEngineException - Attempting to JIT compile method 'System.Linq.OrderedEnumerable`1<Jrp.Snap.CardModelInfo>:GetEnumerator ()' while running with --aot-only." href="show_bug.cgi?id=300">bug 300</a>, as that was a problem that ran into the known problem with structs in LINQ.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.ExecutionEngineException - Attempting to JIT compile method 'System.Linq.OrderedEnumerable`1<Jrp.Snap.CardModelInfo>:GetEnumerator ()' while running with --aot-only." href="https://bugzilla.xamarin.com/show_bug.cgi?id=300">bug 300</a>, as that was a problem that ran into the known problem with structs in LINQ.
 
 The class file that generates this bug (including all referenced classes) is below for reference.
 
@@ -680,7 +680,7 @@ namespace JIT20110908
 <pre class="bz_comment_text">The power of LINQ is to allow a simple syntax to do complex things. So a "simple" JOIN turns into a far more complex, and generic heavy, thing than people expect.
 
 You can get a hint of this by looking at the stack trace from the device (in "Application Output"). You'll see that the LINQ statement requires some non-obvious (to the static AOT compiler) generic types and that it match closely the description from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.ExecutionEngineException - Attempting to JIT compile method 'System.Linq.OrderedEnumerable`1<Jrp.Snap.CardModelInfo>:GetEnumerator ()' while running with --aot-only." href="show_bug.cgi?id=300">bug #300</a> and
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.ExecutionEngineException - Attempting to JIT compile method 'System.Linq.OrderedEnumerable`1<Jrp.Snap.CardModelInfo>:GetEnumerator ()' while running with --aot-only." href="https://bugzilla.xamarin.com/show_bug.cgi?id=300">bug #300</a> and
 <a href="http://ios.xamarin.com/Documentation/Limitations#Value_types_as_Dictionary_Keys">http://ios.xamarin.com/Documentation/Limitations#Value_types_as_Dictionary_Keys</a>
 
 [0x3e4a148c:] EXCEPTION handling: System.ExecutionEngineException: Attempting to JIT compile method 'System.Linq.Enumerable:&lt;ToLookup`2&gt;m__20&lt;AbCrash.ActualScore, int&gt; (AbCrash.ActualScore)' while running with --aot-only.
@@ -732,7 +732,7 @@ You can get a hint of this by looking at the stack trace from the device (in "Ap
 <pre class="bz_comment_text">I realize that under the hood LINQ does a lot of stuff that might ultimately cause the problem -- and I also understand that what looks simple in LINQ might be quite complex (that's why I use it!). 
 
 But if we're saying that System.Linq.Enumerable.Join() is not usable in MT (and is not likely to ever be so), the Limitations doc should probably be more explicit -- that's a pretty big loss in LINQ. Although the stack trace is similar to <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.ExecutionEngineException - Attempting to JIT compile method 'System.Linq.OrderedEnumerable`1<Jrp.Snap.CardModelInfo>:GetEnumerator ()' while running with --aot-only." href="show_bug.cgi?id=300">bug 300</a>, it's MT/core code that's causing the fail; everything looks kosher from the point of view of the calling code.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_ON_ROADMAP - System.ExecutionEngineException - Attempting to JIT compile method 'System.Linq.OrderedEnumerable`1<Jrp.Snap.CardModelInfo>:GetEnumerator ()' while running with --aot-only." href="https://bugzilla.xamarin.com/show_bug.cgi?id=300">bug 300</a>, it's MT/core code that's causing the fail; everything looks kosher from the point of view of the calling code.
 
 Off to de-LINQ my core code. Thank god for unit tests!</pre>
     </div>

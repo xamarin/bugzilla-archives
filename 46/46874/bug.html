@@ -214,7 +214,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
       <span id="static_bug_status">RESOLVED
           DUPLICATE
             of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="show_bug.cgi?id=45278">bug 45278</a>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45278">bug 45278</a>
       </span>
     </td>
   </tr>
@@ -371,7 +371,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="blocked_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="show_bug.cgi?id=45278">45278</a> 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45278">45278</a> 
   </td>
   </tr>
 
@@ -601,7 +601,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
     <noscript><br> duplicate</noscript>
     <span id="duplicate_display">of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="show_bug.cgi?id=45278">bug 45278</a></span>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45278">bug 45278</a></span>
 </div>
 
 
@@ -712,7 +712,7 @@ Clean the entire solution before building the project it appears to be stable an
 
 
 <pre class="bz_comment_text">We need the backtrace from all the threads to diagnose this, and to fix it. It could just be another occurrence of <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="show_bug.cgi?id=46707">bug #46707</a>. Ben, can you repro it and get the traces, or is there some documentation/instructions we can pass to the reporters so they can gather it?</pre>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=46707">bug #46707</a>. Ben, can you repro it and get the traces, or is there some documentation/instructions we can pass to the reporters so they can gather it?</pre>
     </div>
 
     <div id="c4" class="bz_comment">
@@ -934,7 +934,7 @@ Reassigning this to General for now as there is still nothing actionable from ou
 
 
 <pre class="bz_comment_text">The same issue is causing the deadlock in <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="show_bug.cgi?id=45278">bug #45278</a></pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45278">bug #45278</a></pre>
     </div>
 
     <div id="c13" class="bz_comment">
@@ -964,7 +964,7 @@ Reassigning this to General for now as there is still nothing actionable from ou
 
 
 <pre class="bz_comment_text">That commit you indicated was actually the fix for this bug: <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="show_bug.cgi?id=45278">https://bugzilla.xamarin.com/show_bug.cgi?id=45278</a>.
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45278">https://bugzilla.xamarin.com/show_bug.cgi?id=45278</a>.
 
 The deadlock this bug is dealing with was mitigated by changing `AsyncManager.Run` to `AsyncManager.RunAsync` as part of this commit, <a href="https://github.com/xamarin/XamarinVS/commit/f18ef199b768479ba936908ba82d24b9ade032b1">https://github.com/xamarin/XamarinVS/commit/f18ef199b768479ba936908ba82d24b9ade032b1</a>, however the usage of `AsyncManager.RunAsync` is incorrect and can lead to deadlocks.
 
@@ -998,14 +998,14 @@ I'm waiting for Android Arnott to review a doc before I push it to the repositor
 
 
 <pre class="bz_comment_text">Let's assume this one is just a direct duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="show_bug.cgi?id=45278">bug #45278</a> then, which was an incorrect usage of AsyncManager.Run. 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45278">bug #45278</a> then, which was an incorrect usage of AsyncManager.Run. 
 
 I filed <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking when invoking AndroidDesignerSession.DisposeAsync" href="show_bug.cgi?id=51580">bug #51580</a> to deal with the other AsyncManager.Run issue noted in this comment: <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking when invoking AndroidDesignerSession.DisposeAsync" href="https://bugzilla.xamarin.com/show_bug.cgi?id=51580">bug #51580</a> to deal with the other AsyncManager.Run issue noted in this comment: <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - Visual Studio 2015 frequently freezes during build" href="bug.html">https://bugzilla.xamarin.com/show_bug.cgi?id=46874#c10</a>
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="show_bug.cgi?id=45278">bug 45278</a> ***</pre>
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - AsyncManager.Run is deadlocking the IDE" href="https://bugzilla.xamarin.com/show_bug.cgi?id=45278">bug 45278</a> ***</pre>
     </div>
 
 

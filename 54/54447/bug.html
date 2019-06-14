@@ -664,7 +664,7 @@ To see:
 4. Tap on menu item - action is invoked for last item selected while menu item text mentions the first one.
 
 The similar problem described in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - ContextActions are not hidden when listview item selection changes" href="show_bug.cgi?id=33642">https://bugzilla.xamarin.com/show_bug.cgi?id=33642</a> and it does not fixed.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - ContextActions are not hidden when listview item selection changes" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33642">https://bugzilla.xamarin.com/show_bug.cgi?id=33642</a> and it does not fixed.
 
 In general - context actions menu items should be updated on list view selection change.
 Its' _context_ actions, so it should be updated on context change.</pre>
@@ -730,7 +730,7 @@ Its' _context_ actions, so it should be updated on context change.</pre>
 As mentioned, when the ContextActions for a cell are open, selecting another cell does not close the ContextActions or update the open one for the new cell. However the command executed when tapping the MenuItem is the command from the new cell instead of the original.
 
 <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - ContextActions are not hidden when listview item selection changes" href="show_bug.cgi?id=33642">Bug 33642</a> referenced in the description was for a similar issue that resulted in a crash. The crash was fixed, however the ContextActions still remain open and results in this new issue, so perhaps the desired behavior should be for the ContextActions to be closed when the selected item changes. 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - ContextActions are not hidden when listview item selection changes" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33642">Bug 33642</a> referenced in the description was for a similar issue that resulted in a crash. The crash was fixed, however the ContextActions still remain open and results in this new issue, so perhaps the desired behavior should be for the ContextActions to be closed when the selected item changes. 
 
 This issue only affects Android due to the way ContextActions work on the platform.
 

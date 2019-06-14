@@ -589,7 +589,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
 
 
 <pre class="bz_comment_text">Different as reported in <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - MTOUCH: error MT2001: Could not link assemblies. Reason: Value cannot be null." href="show_bug.cgi?id=48246">bug 48246</a>, /Library/Frameworks/Xamarin.iOS.framework/Versions/Current/bin/mtouch already is in 64 version, and error persists.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED NOT_REPRODUCIBLE - MTOUCH: error MT2001: Could not link assemblies. Reason: Value cannot be null." href="https://bugzilla.xamarin.com/show_bug.cgi?id=48246">bug 48246</a>, /Library/Frameworks/Xamarin.iOS.framework/Versions/Current/bin/mtouch already is in 64 version, and error persists.
 After several tries, seems to be the "[XamlCompilation (XamlCompilationOptions.Compile)]" attribute the reason of our errors. As related in "<a href="https://developer.xamarin.com/guides/xamarin-forms/xaml/xamlc/">https://developer.xamarin.com/guides/xamarin-forms/xaml/xamlc/</a>" Xamarin's docs page, this attribute serves to increase app's performance. We're using Visual Studio 2015 Update 3, trying to create the IPA file with Ad-Hoc and iPhone Build Configuration, connected on Mac running MacOS Sierra 10.11.13.
 After completely removing this attribute, mtouch was able to compile and generate IPA file, without erros.</pre>
     </div>

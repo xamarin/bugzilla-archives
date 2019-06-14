@@ -355,7 +355,7 @@ body {background: #c8c8c8;font-family: Helvetica, Arial, Geneva;padding-left: 1e
     <span id="dependson_input_area">
     </span>
 <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED" href="show_bug.cgi?id=30884">30884</a> 
+          bz_status_CONFIRMED " title="CONFIRMED" href="https://bugzilla.xamarin.com/show_bug.cgi?id=30884">30884</a> 
   </td>
   </tr>
 
@@ -682,7 +682,7 @@ Actual Result: Custom Controls are not displayed.
 ## Note
 
 Initially I was investigating this issue because a customer's custom controls were not showing up in the toolbox when the assembly of the iOS library  had a period in the name. I saw this bug report and thought perhaps the period in the assembly name was also causing this issue: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [XVS.iOS 3.9 SR3] XIB files and BundleResources within iOS Class Libraries where project name contains &quot;.&quot; period characters cause &quot;Cannot copy ... as the source file doesn't exist&quot;" href="show_bug.cgi?id=28299">https://bugzilla.xamarin.com/show_bug.cgi?id=28299</a>
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - [XVS.iOS 3.9 SR3] XIB files and BundleResources within iOS Class Libraries where project name contains &quot;.&quot; period characters cause &quot;Cannot copy ... as the source file doesn't exist&quot;" href="https://bugzilla.xamarin.com/show_bug.cgi?id=28299">https://bugzilla.xamarin.com/show_bug.cgi?id=28299</a>
 
 The customer rebuilt their library removing the periods from the assembly name and then they were able to see the custom controls from the iOS Library assembly. This was on 3/26 before the new stable of XS and XI were released which supposedly had a fix for the above bug, however the customer reported that updating did not resolve the issue, but removing the periods from the assembly name did. Today I updated to the new stable releases, XS 5.8.1 and XI 8.8.1.9, so I could test this issue. Oddly, at first I was able to reproduce the issue in that iOS Designer did not bring in Custom Controls from an iOS library project that had a period in the name... this was while referencing the project not the .DLL. However after I thought I had a reliable reproduction, I removed all obj and bin folders and zipped up the solution. Then when going to write this bug report, I opened the zipped solution and then all of a sudden I could not reproduce the issue, but instead I had trouble getting the Custom Controls to get recognized by iOS Designer if referencing the .DLLs directly and could not get the custom controls to show up in the tool box with or without a period in the assembly name. So that is why there are two Custom Control projects, one with and one without a period. However testing the same thing yesterday, before the new stable update, I was able to see Custom Controls from a referenced .DLL if the assembly had no periods in the name, but not from an assembly that had periods. 
 

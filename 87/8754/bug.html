@@ -851,7 +851,7 @@ Consequently, I think it would be more "intellectually honest" if all methods ha
 &gt; part.</span>
 
 Ah, but it _can_, if we squint "just right". Case in point, <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Add [Export] support to mandroid" href="show_bug.cgi?id=382">Bug #382</a> + Java serialization. Java Serialization requires that the readObject() and writeObject() methods have `throws` clauses, which is why we needed the ExportAttribute.Throws property.
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - Add [Export] support to mandroid" href="https://bugzilla.xamarin.com/show_bug.cgi?id=382">Bug #382</a> + Java serialization. Java Serialization requires that the readObject() and writeObject() methods have `throws` clauses, which is why we needed the ExportAttribute.Throws property.
 
 If we generated `throws Throwable` on all method declarations, we'd simplify this usecase, allowing:
 
