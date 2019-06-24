@@ -673,7 +673,7 @@ Also, see <a href="https://github.com/IronLanguages/ironpython2/issues/37">https
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -707,7 +707,7 @@ Ludovic</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -746,7 +746,7 @@ So the other way around works.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -779,7 +779,7 @@ So the other way around works.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -814,7 +814,7 @@ Parameter name: method</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -843,7 +843,7 @@ Parameter name: method</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -872,7 +872,7 @@ Parameter name: method</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -901,7 +901,7 @@ Parameter name: method</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 8</a>
+          <a href="#c8">Comment 8</a>
         </span>
 
         <span class="bz_comment_user">
@@ -923,7 +923,7 @@ Parameter name: method</pre>
 
 <pre class="bz_comment_text">@Alex Earl: yes we bundle pretty ancient versions and we should update them at some point. They are only distributed on macOS.
 
-I'll take a look at the issue, an error still happens with Mono 5.11 as mentioned in <a href="bug.html">Comment 4</a>, even with the downloaded IronPython-2.7.7-win.zip</pre>
+I'll take a look at the issue, an error still happens with Mono 5.11 as mentioned in <a href="#c4">Comment 4</a>, even with the downloaded IronPython-2.7.7-win.zip</pre>
     </div>
 
     <div id="c9" class="bz_comment">
@@ -932,7 +932,7 @@ I'll take a look at the issue, an error still happens with Mono 5.11 as mentione
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 9</a>
+          <a href="#c9">Comment 9</a>
         </span>
 
         <span class="bz_comment_user">
@@ -974,9 +974,9 @@ I then remembered that we switched the main "mono" binary from 32bit to 64bit in
 &gt;   File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/warnings.py", line 8, in &lt;module&gt;
 &gt; SystemError: Object reference not set to an instance of an objectIronPython 3.0 (3.0.0.0) on .NET 4.0.30319.42000</span>
 
-My current (unverified) assumption is that it tries to load some OS library and falls over the 32/64bit trap. A quick test using ipy64.exe resulted in the initial error from <a href="bug.html">Comment 4</a>.
+My current (unverified) assumption is that it tries to load some OS library and falls over the 32/64bit trap. A quick test using ipy64.exe resulted in the initial error from <a href="#c4">Comment 4</a>.
 
-Next I tried using the binaries in IronPython-2.7.7-win.zip from <a href="bug.html">Comment 1</a>. I see the same behavior there ("works" with mono32), except that IRONPYTHONPATH env var isn't set but it loads modules from the Lib/ subfolder. If I rename the folder then the REPL boots with the python traceback from before.
+Next I tried using the binaries in IronPython-2.7.7-win.zip from <a href="#c1">Comment 1</a>. I see the same behavior there ("works" with mono32), except that IRONPYTHONPATH env var isn't set but it loads modules from the Lib/ subfolder. If I rename the folder then the REPL boots with the python traceback from before.
 
 I assume it is the same underlying issue in both IronPython-2.7.7 and the old one we bundle in Mono. I'll try building IronPython now and step through the code :)</pre>
     </div>
@@ -987,7 +987,7 @@ I assume it is the same underlying issue in both IronPython-2.7.7 and the old on
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 10</a>
+          <a href="#c10">Comment 10</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1016,7 +1016,7 @@ I assume it is the same underlying issue in both IronPython-2.7.7 and the old on
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 11</a>
+          <a href="#c11">Comment 11</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1045,7 +1045,7 @@ I assume it is the same underlying issue in both IronPython-2.7.7 and the old on
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 12</a>
+          <a href="#c12">Comment 12</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1074,7 +1074,7 @@ I assume it is the same underlying issue in both IronPython-2.7.7 and the old on
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 13</a>
+          <a href="#c13">Comment 13</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1103,7 +1103,7 @@ I assume it is the same underlying issue in both IronPython-2.7.7 and the old on
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 14</a>
+          <a href="#c14">Comment 14</a>
         </span>
 
         <span class="bz_comment_user">

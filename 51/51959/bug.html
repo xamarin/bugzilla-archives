@@ -663,7 +663,7 @@ System.AggregateException: One or more errors occurred. ---&gt; System.ServiceMo
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -702,7 +702,7 @@ For now, I'll add some notes on a slightly different topic because there have be
 
 - At the same time, starting in this version of Visual Studio, the .NET Standard project type now provides the new "WCF Web Service Reference connected service provider" [3] tool.  That tool _only_ generates Task-based asynchronous methods.  It generates neither synchronous methods [4] nor the old APM style (begin/end) asynchronous methods.
 
-(As hinted at in <a href="bug.html">Comment 0</a>, before this latest Visual Studio 2017 release, the .NET Standard project type did not provide a direct way of adding WCF service references, so users would use other project types and copy over the generated proxies.)
+(As hinted at in <a href="#c0">Comment 0</a>, before this latest Visual Studio 2017 release, the .NET Standard project type did not provide a direct way of adding WCF service references, so users would use other project types and copy over the generated proxies.)
 
 [3] <a href="https://www.visualstudio.com/news/releasenotes/vs2017-relnotes#WCFTools">https://www.visualstudio.com/news/releasenotes/vs2017-relnotes#WCFTools</a>
 [4] <a href="https://github.com/dotnet/wcf/issues/654">https://github.com/dotnet/wcf/issues/654</a>
@@ -730,7 +730,7 @@ In my (admittedly very simple) tests with a template "Visual C# &gt; WCF &gt; WC
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -768,7 +768,7 @@ After I created a project of this type, the item became visible by default once 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -801,7 +801,7 @@ Is there a workaround?</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -839,7 +839,7 @@ When targeting .NET Standard 1.4, you would need to hand-edit the resulting Refe
 
 ## Alternate partial workaround
 
-Another option is to create a Portable Class Library project (as per <a href="bug.html">Comment 3</a>), use the old "Project &gt; Add Service Reference..." menu command (rather than the new "Project &gt; Add Connected Service" menu command), and then copy the generated Reference.cs proxy from the PCL into the .NET Standard project.  Generating the proxy this way automatically avoids the `IExtensibleDataObject` and `ExtensionDataObject` types.
+Another option is to create a Portable Class Library project (as per <a href="#c3">Comment 3</a>), use the old "Project &gt; Add Service Reference..." menu command (rather than the new "Project &gt; Add Connected Service" menu command), and then copy the generated Reference.cs proxy from the PCL into the .NET Standard project.  Generating the proxy this way automatically avoids the `IExtensibleDataObject` and `ExtensionDataObject` types.
 
 
 
@@ -855,7 +855,7 @@ Another option is to create a Portable Class Library project (as per <a href="bu
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -888,7 +888,7 @@ With the new defaults for Xamarin.Projects in VS2017 15.5 and higher using these
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">

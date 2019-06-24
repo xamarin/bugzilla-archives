@@ -619,7 +619,7 @@ iPhone Simulator - iOS 10.2</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -650,7 +650,7 @@ I will assign this bug to myself temporarily for an initial quick review.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -752,7 +752,7 @@ Both systems are set to US English locale and US Eastern time zone</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -785,7 +785,7 @@ You can workaround it by using correct visibility flags. Something like
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -812,7 +812,7 @@ You can workaround it by using correct visibility flags. Something like
 
 ## Verification status: verified answered for the original test case too
 
-I can verify that the approach from <a href="bug.html">Comment 4</a> works with the original non-public test case too.  I got the desired behavior (no exception, and the app successfully displayed the login fields) when I changed PropertyExpressionParser.cs line 110 to (for example):
+I can verify that the approach from <a href="#c4">Comment 4</a> works with the original non-public test case too.  I got the desired behavior (no exception, and the app successfully displayed the login fields) when I changed PropertyExpressionParser.cs line 110 to (for example):
 
 .GetField(mi.Name, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly)
 

@@ -656,7 +656,7 @@ WORKAROUND: If linker is set to 'Do Not Link' it works. So something is being st
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -688,7 +688,7 @@ I dug into this kind of issue once before on <a class="bz_bug_link
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -711,9 +711,9 @@ I dug into this kind of issue once before on <a class="bz_bug_link
 <pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=21120&amp;file=GreekEncodingZipArchiveTest.zip" name="attach_21120" title="Imprecise test case that fails even when the linker is OFF">attachment 21120</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=21120&amp;file=GreekEncodingZipArchiveTest.zip" title="Imprecise test case that fails even when the linker is OFF">[details]</a></span>
 Imprecise test case that fails even when the linker is OFF
 
-## The symptoms in <a href="bug.html">Comment 0</a> are probably already fixed indirectly in the current "15.2" source code branch of Xamarin.iOS
+## The symptoms in <a href="#c0">Comment 0</a> are probably already fixed indirectly in the current "15.2" source code branch of Xamarin.iOS
 
-Caveat: These 2 results are for the _attached test case_.  The behavior of this test case is at least a bit different from the exact symptoms as reported in <a href="bug.html">Comment 0</a>: it hits the error _regardless of the linker setting_.  I'll say a bit more on that later, but long story short I suspect that the un-QA'd, experimental-quality 10.9.0 build linked below would be one (somewhat indirect) way to stop the problem described in <a href="bug.html">Comment 0</a>.
+Caveat: These 2 results are for the _attached test case_.  The behavior of this test case is at least a bit different from the exact symptoms as reported in <a href="#c0">Comment 0</a>: it hits the error _regardless of the linker setting_.  I'll say a bit more on that later, but long story short I suspect that the un-QA'd, experimental-quality 10.9.0 build linked below would be one (somewhat indirect) way to stop the problem described in <a href="#c0">Comment 0</a>.
 
 <span class="quote">&gt; GOOD: Xamarin.iOS 10.9.0.466 (d15-2: 0719ced1) (Latest CI development build for the v-next "15.2" release from [1])
 &gt; BAD:  Xamarin.iOS 10.8.0.175 (d15-1: a04678c2) (Latest CI development build for the upcoming, currently in Beta, "15.1" release from [2])</span>
@@ -737,7 +737,7 @@ Xamarin.iOS 10.9 uses Mono's 2017-02 branch, and in that branch, `ZipArchive` ha
 
 ## Alternate possible workaround
 
-The attached test case explicitly sets the `CurrentCulture` to Greek to simplify testing on simulators or devices that aren't set to the Greek language.  This approach can potentially be used "in reverse" as a workaround for the problem reported in <a href="bug.html">Comment 0</a>.  That is, it might be acceptable to do:
+The attached test case explicitly sets the `CurrentCulture` to Greek to simplify testing on simulators or devices that aren't set to the Greek language.  This approach can potentially be used "in reverse" as a workaround for the problem reported in <a href="#c0">Comment 0</a>.  That is, it might be acceptable to do:
 
 ```
 CultureInfo originalCulture = Thread.CurrentThread.CurrentCulture;
@@ -803,7 +803,7 @@ One approach is to start with a `fullname` wildcard for each namespace in the as
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -836,7 +836,7 @@ I am going to move on to linker settings. I am perplexed as to why "Don't Link" 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -875,7 +875,7 @@ For the record I tried System.IO*, System.Text* and System.Globalization* togeth
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -911,7 +911,7 @@ In case it might be helpful, one possible explanation for this behavior is if th
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -944,7 +944,7 @@ We have gotten good responses from the Xamarin team when reporting bugs. Please 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -975,7 +975,7 @@ Now that 15.2 has released into the stable branch, could you check this again an
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 8</a>
+          <a href="#c8">Comment 8</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1008,7 +1008,7 @@ Paul</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 9</a>
+          <a href="#c9">Comment 9</a>
         </span>
 
         <span class="bz_comment_user">

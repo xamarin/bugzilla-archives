@@ -651,7 +651,7 @@ Other people have this Problem as well and I don't know of any workaround, which
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -680,7 +680,7 @@ Other people have this Problem as well and I don't know of any workaround, which
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -710,7 +710,7 @@ Not a .net dll</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -739,7 +739,7 @@ Not a .net dll</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -768,7 +768,7 @@ Not a .net dll</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -799,7 +799,7 @@ Weird thing is after a couple of builds it now happens again --&gt; So it seems 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -833,7 +833,7 @@ Xamarin.Forms Team</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -858,7 +858,7 @@ Xamarin.Forms Team</pre>
 
 One thing that is a little mysterious on this <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed" title="RESOLVED ANSWERED - UWP: Startup crash with Native tool chain &quot;FileNotFound_AssemblyNotFound, clrcompression&quot;" href="bug.html">Bug 51565</a> compared to <a class="bz_bug_link 
-          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52838">Bug 52838</a> is that the exception as reported in <a href="bug.html">Comment 0</a> sounds like it is an _unhandled_ exception, but the code for `WindowsPhonePlatformServices.GetAssemblies()` catches and ignores all `IOException` sub-classes [1].  That includes `FileNotFoundException` and explains why the steps to replicate on <a class="bz_bug_link 
+          bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52838">Bug 52838</a> is that the exception as reported in <a href="#c0">Comment 0</a> sounds like it is an _unhandled_ exception, but the code for `WindowsPhonePlatformServices.GetAssemblies()` catches and ignores all `IOException` sub-classes [1].  That includes `FileNotFoundException` and explains why the steps to replicate on <a class="bz_bug_link 
           bz_status_CONFIRMED " title="CONFIRMED - blank UWP release build throws exceptions upon app start" href="https://bugzilla.xamarin.com/show_bug.cgi?id=52838">Bug 52838</a> require setting the debugger to break on all CLR exceptions.  Perhaps there is (or was) indeed some unusual incorrect exception handling behavior in one of the VS 2017 RC versions.
 
 [1] <a href="https://github.com/xamarin/Xamarin.Forms/blob/release-2.3.3/Xamarin.Forms.Platform.WinRT/WindowsBasePlatformServices.cs#L52-L71">https://github.com/xamarin/Xamarin.Forms/blob/release-2.3.3/Xamarin.Forms.Platform.WinRT/WindowsBasePlatformServices.cs#L52-L71</a></pre>

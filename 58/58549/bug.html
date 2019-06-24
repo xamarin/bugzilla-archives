@@ -673,7 +673,7 @@ For this repro to work, you need your system GAC to contain an FSharp.Core 4.4.1
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -704,7 +704,7 @@ static const AssemblyVersionMap framework_assemblies [] = {</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -735,7 +735,7 @@ If I remove my FSharp.Core from the GAC, and instead reference manually FSharp.C
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -758,7 +758,7 @@ If I remove my FSharp.Core from the GAC, and instead reference manually FSharp.C
 <pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=23990&amp;file=a.exe.config" name="attach_23990" title="a.exe.config for the repro">attachment 23990</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=23990&amp;file=a.exe.config" title="a.exe.config for the repro">[details]</a></span>
 a.exe.config for the repro
 
-The workaround in <a href="bug.html">Comment 2</a> only works with mono's legacy loader which is lax about versions of strong named assemblies - the legacy loader will load the first FSharp.Core.dll that it finds regardless of its version.   The strict loader `mono --assembly-loader=strict` will still cause the sample program to fail.
+The workaround in <a href="#c2">Comment 2</a> only works with mono's legacy loader which is lax about versions of strong named assemblies - the legacy loader will load the first FSharp.Core.dll that it finds regardless of its version.   The strict loader `mono --assembly-loader=strict` will still cause the sample program to fail.
 
 The correct solution is to bundle a rebinding file (a.exe.config) that remaps 4.4.0.0 requests to 4.4.1.0.  (Attached)
 
@@ -771,7 +771,7 @@ Using `mono --assembly-loader=strict` is the correct .net framework-compatible b
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -817,7 +817,7 @@ So in summary:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -846,7 +846,7 @@ So in summary:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">

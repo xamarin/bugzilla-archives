@@ -692,7 +692,7 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)<
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -723,7 +723,7 @@ At first glance this sounds like it shouldn't be anything too complicated, but I
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -746,7 +746,7 @@ At first glance this sounds like it shouldn't be anything too complicated, but I
 <pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=19466&amp;file=SwigXamarinIosExample.zip" name="attach_19466" title="Completed working example, including Xcode and Xamarin projects">attachment 19466</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=19466&amp;file=SwigXamarinIosExample.zip" title="Completed working example, including Xcode and Xamarin projects">[details]</a></span>
 Completed working example, including Xcode and Xamarin projects
 
-The attached files in <a href="bug.html">Comment 0</a> were missing Xcode and Xamarin project files as well as the SWIG module file.  I followed the instructions on [1 - 3] to fill in the missing pieces.  The resulting example (attached) builds and runs successfully.
+The attached files in <a href="#c0">Comment 0</a> were missing Xcode and Xamarin project files as well as the SWIG module file.  I followed the instructions on [1 - 3] to fill in the missing pieces.  The resulting example (attached) builds and runs successfully.
 
 [1] <a href="http://www.swig.org/tutorial.html">http://www.swig.org/tutorial.html</a>
 [2] <a href="http://blog.reblochon.org/2013/01/c-bindings-for-monotouch-using-swig.html">http://blog.reblochon.org/2013/01/c-bindings-for-monotouch-using-swig.html</a>
@@ -834,7 +834,7 @@ cp -i LibExample.dll UnifiedSingleViewIphone1/UnifiedSingleViewIphone1/
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -854,7 +854,7 @@ cp -i LibExample.dll UnifiedSingleViewIphone1/UnifiedSingleViewIphone1/
 
 
 
-<pre class="bz_comment_text">In case it might be informative, based on the symbol names in the `nm` output it looks like the issue with the original "libexample.a" from <a href="bug.html">Comment 0</a> might have been that the distinction between C and C++ was not maintained consistently when building the library.  "example_wrap.c" in the attachment from <a href="bug.html">Comment 0</a> appears to have been produced by SWIG invoked without the `-c++` command line option.  That makes sense since the base library ("example.c" in this case) is also plain C, but it means that the "example_wrap.c" file should be compiled as a plain C file in the Xcode project (not as a C++ file).</pre>
+<pre class="bz_comment_text">In case it might be informative, based on the symbol names in the `nm` output it looks like the issue with the original "libexample.a" from <a href="#c0">Comment 0</a> might have been that the distinction between C and C++ was not maintained consistently when building the library.  "example_wrap.c" in the attachment from <a href="#c0">Comment 0</a> appears to have been produced by SWIG invoked without the `-c++` command line option.  That makes sense since the base library ("example.c" in this case) is also plain C, but it means that the "example_wrap.c" file should be compiled as a plain C file in the Xcode project (not as a C++ file).</pre>
     </div>
 
 

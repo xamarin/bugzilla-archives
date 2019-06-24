@@ -678,7 +678,7 @@ InspectorDebugSession(0): Disposed</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -715,7 +715,7 @@ That line indicates that you have applied a redirect in the devenv.exe.config fi
           bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [15.2.2] &quot;System.IO.FileNotFoundException: Could not load file or assembly 'Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756' or one of its dependencies.&quot; when attempting to start apps" href="https://bugzilla.xamarin.com/show_bug.cgi?id=56787#c29">Bug 56787, Comment 29</a>] _obsolete_ because adding that binding
 &gt; redirect will by default _break_ this workaround.)</span>
 
-So for the problem described in <a href="bug.html">Comment 0</a>, you must _remove_ the Mono.Posix.dll redirect that is currently in your devenv.exe.config file.  After that, you will need to follow the "Temporary workaround" as described on [1] to place the Mono.Posix.dll file in the expected location and Unblock it (if you have not already followed those steps).
+So for the problem described in <a href="#c0">Comment 0</a>, you must _remove_ the Mono.Posix.dll redirect that is currently in your devenv.exe.config file.  After that, you will need to follow the "Temporary workaround" as described on [1] to place the Mono.Posix.dll file in the expected location and Unblock it (if you have not already followed those steps).
 
 [1] <a href="https://releases.xamarin.com/common-issues-in-the-xamarin-15-2-2-release-being-tracked-by-the-xamarin-team/">https://releases.xamarin.com/common-issues-in-the-xamarin-15-2-2-release-being-tracked-by-the-xamarin-team/</a>
 

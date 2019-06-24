@@ -877,7 +877,7 @@ Darwin 16.6.0 Darwin Kernel Version 16.6.0
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -960,7 +960,7 @@ Darwin Davids-MacBook-Pro.local 15.6.0 Darwin Kernel Version 15.6.0
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -999,7 +999,7 @@ Note: I'm using the following environment <a href="https://gist.github.com/Vince
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1045,7 +1045,7 @@ Dave</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1082,7 +1082,7 @@ Dave</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1111,7 +1111,7 @@ Dave</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1150,7 +1150,7 @@ Also what makes you think the issue is related to this socket change: 13c15c25fb
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 8</a>
+          <a href="#c8">Comment 8</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1183,7 +1183,7 @@ Any questions give me a shout.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 10</a>
+          <a href="#c10">Comment 10</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1209,9 +1209,9 @@ GOOD: Xamarin.iOS 11.0.0.0   (xcode9 152b654a)
 GOOD: Xamarin.iOS 10.12.3.3  (d15-3  8a391069) (Embedded Mono: 14f2c81)
 BAD:  Xamarin.iOS 10.10.0.36 (d15-2  d2270eec) (Embedded Mono: 5077205)
 
-Between Mono 5077205 (BAD) and 14f2c81 (GOOD), there was a change in the `Socket.QueueIOSelectorJob()` (precisely the suspicious method that David pointed out in the analysis in <a href="bug.html">Comment 8</a>).  In particular, the following pull request added a "fast path" to avoid the call to `ContinueWith()` and the creation of the anonymous function: <a href="https://github.com/mono/mono/pull/4516">https://github.com/mono/mono/pull/4516</a>.
+Between Mono 5077205 (BAD) and 14f2c81 (GOOD), there was a change in the `Socket.QueueIOSelectorJob()` (precisely the suspicious method that David pointed out in the analysis in <a href="#c8">Comment 8</a>).  In particular, the following pull request added a "fast path" to avoid the call to `ContinueWith()` and the creation of the anonymous function: <a href="https://github.com/mono/mono/pull/4516">https://github.com/mono/mono/pull/4516</a>.
 
-Based on my results for the GOOD and BAD versions, this change does appear to resolve the symptom for the precise scenario from the current master branch of <a href="https://github.com/ingybing/XamarinStreams">https://github.com/ingybing/XamarinStreams</a>.  That said, if the analysis in <a href="bug.html">Comment 8</a> is correct, then it would be reasonable to guess that the problematic behavior would still arise in cases where the Task returned by `sem.WaitAsync()` in `QueueIOSelectorJob()` does _not_ have `IsCompleted` set to `true`.  Off-hand I am not sure how to adjust the test case to force that Task to have `IsCompleted` initially set to `false`.  To facilitate further investigation, I will post a follow-up comment with a console Mono test case that I quickly pasted together based on the original iOS test case.
+Based on my results for the GOOD and BAD versions, this change does appear to resolve the symptom for the precise scenario from the current master branch of <a href="https://github.com/ingybing/XamarinStreams">https://github.com/ingybing/XamarinStreams</a>.  That said, if the analysis in <a href="#c8">Comment 8</a> is correct, then it would be reasonable to guess that the problematic behavior would still arise in cases where the Task returned by `sem.WaitAsync()` in `QueueIOSelectorJob()` does _not_ have `IsCompleted` set to `true`.  Off-hand I am not sure how to adjust the test case to force that Task to have `IsCompleted` initially set to `false`.  To facilitate further investigation, I will post a follow-up comment with a console Mono test case that I quickly pasted together based on the original iOS test case.
 
 
 
@@ -1289,7 +1289,7 @@ User name: macuser</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 11</a>
+          <a href="#c11">Comment 11</a>
         </span>
 
         <span class="bz_comment_user">

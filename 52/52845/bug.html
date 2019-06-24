@@ -683,7 +683,7 @@ Here is visual studio output:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -734,7 +734,7 @@ Not too many yet, but there is a slowly increasing number of users on CC on the 
 
 ## Makes development (a) difficult, impossible, or potentially hazardous, (b) moderately inconvenient, or (c) mildly inconvenient for users?
 
-(a) This issue would prevent further development using satellite assemblies on Android, at least in the described conditions from <a href="bug.html">Comment 0</a>.  There might be a workaround that could be used to move forward temporarily, but the specifics of that have not been worked out yet</pre>
+(a) This issue would prevent further development using satellite assemblies on Android, at least in the described conditions from <a href="#c0">Comment 0</a>.  There might be a workaround that could be used to move forward temporarily, but the specifics of that have not been worked out yet</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -743,7 +743,7 @@ Not too many yet, but there is a slowly increasing number of users on CC on the 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -799,7 +799,7 @@ msbuild /p:Configuration=Release /t:SignAndroidPackage I18nResourcesBug\I18nReso
 ## BAD Results with Xamarin.Android 7.1 (and higher)
 
 
-- The build completes "successfully", but the build produces an incorrect .apk file because the mkbundle process does not succeed for all the satellite assemblies.  Here is a section from the diagnostic build output for this particular test case that matches up approximately with the log excerpt from <a href="bug.html">Comment 0</a>:
+- The build completes "successfully", but the build produces an incorrect .apk file because the mkbundle process does not succeed for all the satellite assemblies.  Here is a section from the diagnostic build output for this particular test case that matches up approximately with the log excerpt from <a href="#c0">Comment 0</a>:
 
 <span class="quote">&gt; [CC] "C:\android-ndk-r11c\toolchains\arm-linux-androideabi-4.9\prebuilt\windows-x86_64\bin\arm-linux-androideabi-gcc.exe" -c -o obj\Release\bundles\armeabi-v7a\temp.o -I C:\android-ndk-r11c\platforms\android-4\arch-arm\usr\include obj\Release\bundles\armeabi-v7a\temp.c
 &gt;   [cc stderr] obj\Release\bundles\armeabi-v7a\temp.c:25:84: warning: unknown escape sequence: '\I'
@@ -872,7 +872,7 @@ KitKat (Android 4.4 - API 19) Visual Studio Android Emulator</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -906,7 +906,7 @@ On second thought, setting up the environment for testing that on Windows requir
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -936,7 +936,7 @@ Sample app showing satellite assemblies not embedded with 'Bundle assemblies int
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 8</a>
+          <a href="#c8">Comment 8</a>
         </span>
 
         <span class="bz_comment_user">
@@ -977,7 +977,7 @@ If I uncheck 'Bundle assemblies in native code' everything works fine. I need so
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 9</a>
+          <a href="#c9">Comment 9</a>
         </span>
 
         <span class="bz_comment_user">
@@ -997,9 +997,9 @@ If I uncheck 'Bundle assemblies in native code' everything works fine. I need so
 
 
 
-<pre class="bz_comment_text">Thanks for the extra verification attempt in <a href="bug.html">Comment 7</a> and <a href="bug.html">Comment 8</a>!  Ideally the verification attempt for this exact bug report would be based on the existing test case presented in <a href="bug.html">Comment 3</a>, so I have re-tested that test case and found that indeed it does _not_ behave as expected.
+<pre class="bz_comment_text">Thanks for the extra verification attempt in <a href="#c7">Comment 7</a> and <a href="#c8">Comment 8</a>!  Ideally the verification attempt for this exact bug report would be based on the existing test case presented in <a href="#c3">Comment 3</a>, so I have re-tested that test case and found that indeed it does _not_ behave as expected.
 
-In short, the initial verification of this bug appears to have been incomplete or incorrect.  I have filed a new bug to describe a remaining failure behavior for the test case, steps to replicate, and testing environment as described in <a href="bug.html">Comment 3</a>.  I will mark this bug as a duplicate of that follow-up bug for tracking purposes.
+In short, the initial verification of this bug appears to have been incomplete or incorrect.  I have filed a new bug to describe a remaining failure behavior for the test case, steps to replicate, and testing environment as described in <a href="#c3">Comment 3</a>.  I will mark this bug as a duplicate of that follow-up bug for tracking purposes.
 
 (In case it might come in handy for future reference, note also that in general new bug reports have better visibility to the engineering team compared to comments on Verified Fixed bugs.)
 
@@ -1013,7 +1013,7 @@ In short, the initial verification of this bug appears to have been incomplete o
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 10</a>
+          <a href="#c10">Comment 10</a>
         </span>
 
         <span class="bz_comment_user">

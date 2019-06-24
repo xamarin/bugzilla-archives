@@ -785,7 +785,7 @@ Windows 8.1 (64-bit), Version 6.3 (Build 9600)</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -860,7 +860,7 @@ Removing line 474 of "Xamarin.Android.Common.targets" in XamarinVS 4.3.0.490 (03
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -882,7 +882,7 @@ Removing line 474 of "Xamarin.Android.Common.targets" in XamarinVS 4.3.0.490 (03
 
 <pre class="bz_comment_text">## Next steps
 
-The "hack" used to stop the problem in Tests 3 and 4 from <a href="bug.html">Comment 1</a> might not be the ideal final fix for this issue.  Maybe it's important for `UpdateAndroidResources` to be included as a DependsOn in order for certain other behaviors to work as expected?  But if we're lucky, maybe it really is OK to skip it?  I'll turn to the Xamarin.Android team to help decide the best approach.</pre>
+The "hack" used to stop the problem in Tests 3 and 4 from <a href="#c1">Comment 1</a> might not be the ideal final fix for this issue.  Maybe it's important for `UpdateAndroidResources` to be included as a DependsOn in order for certain other behaviors to work as expected?  But if we're lucky, maybe it really is OK to skip it?  I'll turn to the Xamarin.Android team to help decide the best approach.</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -891,7 +891,7 @@ The "hack" used to stop the problem in Tests 3 and 4 from <a href="bug.html">Com
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -921,7 +921,7 @@ The "hack" used to stop the problem in Tests 3 and 4 from <a href="bug.html">Com
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -951,7 +951,7 @@ The "hack" used to stop the problem in Tests 3 and 4 from <a href="bug.html">Com
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -981,7 +981,7 @@ The "hack" used to stop the problem in Tests 3 and 4 from <a href="bug.html">Com
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1026,7 +1026,7 @@ Build Log:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1046,7 +1046,7 @@ Build Log:
 
 
 
-<pre class="bz_comment_text">Note from <a href="bug.html">Comment 0</a>:
+<pre class="bz_comment_text">Note from <a href="#c0">Comment 0</a>:
 
 <span class="quote">&gt; This bug is _only_ about the case where Warning 1 also appears and there are no other warnings or errors.</span>
 It is also only about the case where building "all referenced dependencies" _resolves_ the warning.
@@ -1063,7 +1063,7 @@ If you are seeing the issue as a build _error_ rather than as a _warning_, that 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 9</a>
+          <a href="#c9">Comment 9</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1086,7 +1086,7 @@ If you are seeing the issue as a build _error_ rather than as a _warning_, that 
 <pre class="bz_comment_text">## Verification status: Improved but not yet resolved in the latest preview version
 
 <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - IDE0006 warning on File -> New CrossPlatform App" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58448">Bug 58448</a> is a partial duplicate of this bug, just about the "Warning 2" symptom (from <a href="bug.html">Comment 0</a>).  A fix for <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - IDE0006 warning on File -> New CrossPlatform App" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58448">Bug 58448</a> is a partial duplicate of this bug, just about the "Warning 2" symptom (from <a href="#c0">Comment 0</a>).  A fix for <a class="bz_bug_link 
           bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - IDE0006 warning on File -> New CrossPlatform App" href="https://bugzilla.xamarin.com/show_bug.cgi?id=58448">Bug 58448</a> was added in <a href="https://github.com/xamarin/xamarin-android/pull/730">https://github.com/xamarin/xamarin-android/pull/730</a>.  As described in that pull request, the problem is apparently that the "design-time" build [1] of the Android library project intentionally does _not_ provide a .dll that can be consumed by the design-time build of the application project.  This is reasonable because design-time builds are meant to be minimal builds that "gather just enough information to populate the language service and other project services" [1].  But this means that Xamarin.Android's custom "ResolveLibraryProjectImports" task will always "fail unexpectedly" during the design-time build because it won't be able to find the library project .dll file.  The IntelliSense issues are a side-effect of the fact that the design-time build aborts early.
 
 (Note: Errors and warnings that occur in _design-time_ builds are all shown as _warnings_ in the "View &gt; Error List" window.)

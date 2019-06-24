@@ -622,7 +622,7 @@ Stacktrace:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -666,7 +666,7 @@ This is a test-case we have in FAKE test-suite.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -695,7 +695,7 @@ This is a test-case we have in FAKE test-suite.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -763,7 +763,7 @@ builder.Save("FSI-ASSEMBLY.dll")</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -812,7 +812,7 @@ mono FAKE.4.9.6/tools/FAKE.exe build.fsx</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -834,7 +834,7 @@ mono FAKE.4.9.6/tools/FAKE.exe build.fsx</pre>
 
 <pre class="bz_comment_text">In mono_image_add_cattrs () we call mono_image_create_token on a ConstructorBuilder object, but that function expects to only be called on System.Reflection objects, not on System.Reflection.Emit objects. (It assumes calls are coming from managed code, and there everything is routed through ModuleBuilder.GetToken(MemberInfo) which handles all the Builders in managed code).
 
-I should have C# testcases shortly.  (I think there are actually two bad cases here. The one like the F# code in <a href="bug.html">Comment 4</a> where the custom attribute is applied to the assembly that it is defined in, and another one where we have two assembly builders going and one of them makes an attribute that's applied to the other).</pre>
+I should have C# testcases shortly.  (I think there are actually two bad cases here. The one like the F# code in <a href="#c4">Comment 4</a> where the custom attribute is applied to the assembly that it is defined in, and another one where we have two assembly builders going and one of them makes an attribute that's applied to the other).</pre>
     </div>
 
     <div id="c6" class="bz_comment">
@@ -843,7 +843,7 @@ I should have C# testcases shortly.  (I think there are actually two bad cases h
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -872,7 +872,7 @@ I should have C# testcases shortly.  (I think there are actually two bad cases h
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -905,7 +905,7 @@ Fixed on mono 2017-02 <a href="https://github.com/mono/mono/commit/1d0445bfc7d1d
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 8</a>
+          <a href="#c8">Comment 8</a>
         </span>
 
         <span class="bz_comment_user">
@@ -935,7 +935,7 @@ Can you please provide proper steps or description with expected condition, for 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 9</a>
+          <a href="#c9">Comment 9</a>
         </span>
 
         <span class="bz_comment_user">
@@ -957,7 +957,7 @@ Can you please provide proper steps or description with expected condition, for 
 
 <pre class="bz_comment_text">Roshan,
 
-See Jason's <a href="bug.html">Comment 4</a> for the reproduction steps.
+See Jason's <a href="#c4">Comment 4</a> for the reproduction steps.
 
 The expected output is that the last step "mono FAKE.4.9.6/tools/FAKE.exe build.fsx" exits without an error.</pre>
     </div>

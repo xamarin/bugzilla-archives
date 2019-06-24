@@ -628,7 +628,7 @@ Logs: Attached.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -657,7 +657,7 @@ Logs: Attached.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -686,7 +686,7 @@ Logs: Attached.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -706,23 +706,23 @@ Logs: Attached.</pre>
 
 
 
-<pre class="bz_comment_text">The fix for this bug was not complete as of <a href="bug.html">Comment 3</a>.  For example, in the master branch as of the time of <a href="bug.html">Comment 2</a> and <a href="bug.html">Comment 3</a>, the `GetAdditionalResourcesFromAssemblies` task would still fail _later_ in the design-time build process.
+<pre class="bz_comment_text">The fix for this bug was not complete as of <a href="#c3">Comment 3</a>.  For example, in the master branch as of the time of <a href="#c2">Comment 2</a> and <a href="#c3">Comment 3</a>, the `GetAdditionalResourcesFromAssemblies` task would still fail _later_ in the design-time build process.
 
 These later failures were addressed in <a href="https://github.com/xamarin/xamarin-android/pull/889">https://github.com/xamarin/xamarin-android/pull/889</a>.  That change was merged to the master branch in xamarin-android/master/87411b5 and picked onto the d15-5 branch in xamarin-android/d15-5/437144a.  But the change is _not_ present on the d15-4 branch:
 
-- The change is _missing_ in Xamarin.Android 8.0.0.33 (d15-4), so the warning from <a href="bug.html">Comment 0</a> still occurs with that version.
+- The change is _missing_ in Xamarin.Android 8.0.0.33 (d15-4), so the warning from <a href="#c0">Comment 0</a> still occurs with that version.
 
 - The change is _present_ in Xamarin.Android 8.1.0.21 (d15-5), and the warning does _not_ occur with that version.
 
-- By chance, this issue will also be resolved for the precise scenario described in <a href="bug.html">Comment 0</a> in the _next_ release from the d15-4 branch.  The reason is that <a href="https://github.com/xamarin/xamarin-android/pull/952">https://github.com/xamarin/xamarin-android/pull/952</a> (the partial reversion of <a href="https://github.com/xamarin/xamarin-android/pull/709">https://github.com/xamarin/xamarin-android/pull/709</a> to stop <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - After upgrading to latest Xamarin- Visual Studio stuck/hangs at initialization of xamarin.andorid project while loading projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=60080">Bug 60080</a> in the d15-4 branch) disabled the `GetAdditionalResourcesFromAssemblies` task entirely during design-time builds, and that is sufficient to stop the issue for the particular new project scenario described in <a href="bug.html">Comment 0</a>.  (That said, d15-4 does _not_ contain the change to the `Aapt` task from xamarin-android/pull/889, so there might still be scenarios on d15-4 where the `Aapt` task will cause this warning.)
+- By chance, this issue will also be resolved for the precise scenario described in <a href="#c0">Comment 0</a> in the _next_ release from the d15-4 branch.  The reason is that <a href="https://github.com/xamarin/xamarin-android/pull/952">https://github.com/xamarin/xamarin-android/pull/952</a> (the partial reversion of <a href="https://github.com/xamarin/xamarin-android/pull/709">https://github.com/xamarin/xamarin-android/pull/709</a> to stop <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED FIXED - After upgrading to latest Xamarin- Visual Studio stuck/hangs at initialization of xamarin.andorid project while loading projects" href="https://bugzilla.xamarin.com/show_bug.cgi?id=60080">Bug 60080</a> in the d15-4 branch) disabled the `GetAdditionalResourcesFromAssemblies` task entirely during design-time builds, and that is sufficient to stop the issue for the particular new project scenario described in <a href="#c0">Comment 0</a>.  (That said, d15-4 does _not_ contain the change to the `Aapt` task from xamarin-android/pull/889, so there might still be scenarios on d15-4 where the `Aapt` task will cause this warning.)
 
 
 
 
 ## Follow-up topics
 
-The current approach from xamarin-android/pull/730 and xamarin-android/pull/889 of adding `ContinueOnError` attributes to certain Tasks _improves_ the user experience for this bug because it allows IntelliSense to behave as expected, and it stops the _exact_ warning described in <a href="bug.html">Comment 0</a>, _but_ it still leaves behind some confusing warnings in the error list.
+The current approach from xamarin-android/pull/730 and xamarin-android/pull/889 of adding `ContinueOnError` attributes to certain Tasks _improves_ the user experience for this bug because it allows IntelliSense to behave as expected, and it stops the _exact_ warning described in <a href="#c0">Comment 0</a>, _but_ it still leaves behind some confusing warnings in the error list.
 
 I have added follow-up questions about the remaining warnings in <a class="bz_bug_link 
           bz_status_CONFIRMED " title="CONFIRMED - Unlike other C# project types, Xamarin.Android projects show warning &quot;&quot;ResolveLibraryProjectImports&quot; task failed unexpectedly&quot; and lack some IntelliSense features unless all referenced dependencies have been built" href="https://bugzilla.xamarin.com/show_bug.cgi?id=50914#c9">Bug 50914, Comment 9</a> because that bug contains additional background context about those warnings.</pre>
@@ -734,7 +734,7 @@ I have added follow-up questions about the remaining warnings in <a class="bz_bu
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -774,7 +774,7 @@ I have added follow-up questions about the remaining warnings in <a class="bz_bu
 
 ## GOOD Results with Visual Studio 2017 version 15.4.2, Xamarin.Android SDK 8.0.2.1
 
-The Error List contains _no_ "IDE0006 Error encountered while loading the project" warnings. (One other familiar old warning still appears for the Android project, but as mentioned in <a href="bug.html">Comment 4</a> the follow-up discussion for that can be handled in <a class="bz_bug_link 
+The Error List contains _no_ "IDE0006 Error encountered while loading the project" warnings. (One other familiar old warning still appears for the Android project, but as mentioned in <a href="#c4">Comment 4</a> the follow-up discussion for that can be handled in <a class="bz_bug_link 
           bz_status_CONFIRMED " title="CONFIRMED - Unlike other C# project types, Xamarin.Android projects show warning &quot;&quot;ResolveLibraryProjectImports&quot; task failed unexpectedly&quot; and lack some IntelliSense features unless all referenced dependencies have been built" href="https://bugzilla.xamarin.com/show_bug.cgi?id=50914">Bug 50914</a>.)
 
 
