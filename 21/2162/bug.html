@@ -678,7 +678,7 @@ Further, I have watched the debug output (DALVIK) when the ACQUIRE is done, no e
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -707,7 +707,7 @@ Further, I have watched the debug output (DALVIK) when the ACQUIRE is done, no e
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -742,7 +742,7 @@ You can also confirm network packets by using wireshark, and just filter for for
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -776,7 +776,7 @@ Android has its OWN multicast socket class, which differs from the normal socket
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -807,7 +807,7 @@ I just tried your test case. You have _Running perpetually set to false. When I 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -846,7 +846,7 @@ HTC EVO 4G</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -877,7 +877,7 @@ I tried this on a Sony Tablet S. I'll try to test this on one of those devices.<
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -910,7 +910,7 @@ Samsung Galaxy S
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 8</a>
+          <a href="#c8">Comment 8</a>
         </span>
 
         <span class="bz_comment_user">
@@ -939,7 +939,7 @@ Samsung Galaxy S
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 9</a>
+          <a href="#c9">Comment 9</a>
         </span>
 
         <span class="bz_comment_user">
@@ -972,7 +972,7 @@ CHANGE_WIFI_MULTICAST_STATE
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 10</a>
+          <a href="#c10">Comment 10</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1001,7 +1001,7 @@ CHANGE_WIFI_MULTICAST_STATE
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 11</a>
+          <a href="#c11">Comment 11</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1023,7 +1023,7 @@ CHANGE_WIFI_MULTICAST_STATE
 
 <pre class="bz_comment_text">I'm now confused. What's the bug?
 
-If I take <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=1073&amp;file=MulticastTest.zip" name="attach_1073" title="Multicast failure">Attachment 1073</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1073&amp;file=MulticastTest.zip" title="Multicast failure">[details]</a></span> (from <a href="bug.html">Comment 3</a>) and changed as per <a href="bug.html">Comment 5</a> and <a href="bug.html">Comment 9</a>, it works on my N1 and my Xoom. It is most certainly not hanging at mCastSocketRX.ReceiveFrom() for me. :-(
+If I take <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=1073&amp;file=MulticastTest.zip" name="attach_1073" title="Multicast failure">Attachment 1073</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=1073&amp;file=MulticastTest.zip" title="Multicast failure">[details]</a></span> (from <a href="#c3">Comment 3</a>) and changed as per <a href="#c5">Comment 5</a> and <a href="#c9">Comment 9</a>, it works on my N1 and my Xoom. It is most certainly not hanging at mCastSocketRX.ReceiveFrom() for me. :-(
 
 It does fail on the emulator. Further tracing shows that the reason why it fails on the emulator is that Get_IP_List() "fails" on the emulator, returning "0.0.0.0" instead of a sane/real IP address. Investigation by others suggests that multicasting on the emulator is "known-broken."
 
@@ -1059,7 +1059,7 @@ Running this command allows me to test that the handler is being invoked.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 13</a>
+          <a href="#c13">Comment 13</a>
         </span>
 
         <span class="bz_comment_user">
