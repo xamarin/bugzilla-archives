@@ -663,7 +663,7 @@ Nobuaki</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -696,7 +696,7 @@ Problem is XAML page comes from a shared project.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -725,7 +725,7 @@ Problem is XAML page comes from a shared project.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -754,7 +754,7 @@ Problem is XAML page comes from a shared project.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -783,7 +783,7 @@ Problem is XAML page comes from a shared project.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -812,7 +812,7 @@ Problem is XAML page comes from a shared project.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -841,7 +841,7 @@ Problem is XAML page comes from a shared project.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -870,7 +870,7 @@ Problem is XAML page comes from a shared project.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 8</a>
+          <a href="#c8">Comment 8</a>
         </span>
 
         <span class="bz_comment_user">
@@ -898,7 +898,7 @@ Problem is XAML page comes from a shared project.</pre>
 5) Add new .xaml file to Shared Project, CrossPlatform-&gt;Forms Xaml Page
 6) Run “Run Custom Tool" on file inside UWP project(App.xaml)
 
-See exception I mentioned in <a href="bug.html">Comment 6</a> and also 'InitializeComponent' missing error in Page1.xaml.cs file.</pre>
+See exception I mentioned in <a href="#c6">Comment 6</a> and also 'InitializeComponent' missing error in Page1.xaml.cs file.</pre>
     </div>
 
     <div id="c9" class="bz_comment">
@@ -907,7 +907,7 @@ See exception I mentioned in <a href="bug.html">Comment 6</a> and also 'Initiali
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 9</a>
+          <a href="#c9">Comment 9</a>
         </span>
 
         <span class="bz_comment_user">
@@ -940,7 +940,7 @@ See exception I mentioned in <a href="bug.html">Comment 6</a> and also 'Initiali
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 10</a>
+          <a href="#c10">Comment 10</a>
         </span>
 
         <span class="bz_comment_user">
@@ -964,14 +964,14 @@ See exception I mentioned in <a href="bug.html">Comment 6</a> and also 'Initiali
           bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - &quot;The name 'InitializeComponent' does not exist&quot; when using XAML files in a shared project that is referenced from a UWP project" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39827">Bug 39827</a> to provide a clean starting point for further discussion of the "'InitializeComponent' does not exist" _build_ error for Shared Projects combined with UWP projects. I will accordingly mark this bug as a duplicate.
 
 - I have also now filed <a class="bz_bug_link 
-          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - XamlC target causes &quot;Error HRESULT E_FAIL has been returned from a call to a COM component.&quot; dialog when using &quot;Run Custom Tool&quot; on a XAML file in a UWP project" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39826">Bug 39826</a> for the issue with "Run Custom Tool" mentioned in <a href="bug.html">Comment 6</a> and <a href="bug.html">Comment 8</a>. Somewhat surprisingly, it seems that that error is unrelated to the primary problem with "InitializeComponent".
+          bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - XamlC target causes &quot;Error HRESULT E_FAIL has been returned from a call to a COM component.&quot; dialog when using &quot;Run Custom Tool&quot; on a XAML file in a UWP project" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39826">Bug 39826</a> for the issue with "Run Custom Tool" mentioned in <a href="#c6">Comment 6</a> and <a href="#c8">Comment 8</a>. Somewhat surprisingly, it seems that that error is unrelated to the primary problem with "InitializeComponent".
 
 
 ## Additional information
 
 According to my tests, the "'InitializeComponent' does not exist" _build_ error from this bug is slightly different from the IntelliSense error in <a class="bz_bug_link 
           bz_status_CLOSED  bz_closed" title="CLOSED FIXED - InitializeComponent() method call in XAML code behind page constructor &quot;does not exist in current context&quot; (IntelliSense error)" href="https://bugzilla.xamarin.com/show_bug.cgi?id=33181">Bug 33181</a>. The problem in this case (<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - The name 'InitializeComponent' does not exist in the current context error with XAML on UWP" href="bug.html">Bug 36935</a>) is that no `.g.cs` files are being generated for the XAML pages in the Shared Project during build. As mentioned in <a href="bug.html">Comment 0</a>, a similar issue was indeed resolved for Windows 8.1 projects in Xamarin.Forms 1.4.4 (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed" title="RESOLVED DUPLICATE - The name 'InitializeComponent' does not exist in the current context error with XAML on UWP" href="bug.html">Bug 36935</a>) is that no `.g.cs` files are being generated for the XAML pages in the Shared Project during build. As mentioned in <a href="#c0">Comment 0</a>, a similar issue was indeed resolved for Windows 8.1 projects in Xamarin.Forms 1.4.4 (<a class="bz_bug_link 
           bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [Windows] &quot;The name 'InitializeComponent' does not exist in the current context&quot; error when building Windows app" href="https://bugzilla.xamarin.com/show_bug.cgi?id=29501">Bug 29501</a>).
 
 *** This bug has been marked as a duplicate of <a class="bz_bug_link 
@@ -984,7 +984,7 @@ According to my tests, the "'InitializeComponent' does not exist" _build_ error 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 11</a>
+          <a href="#c11">Comment 11</a>
         </span>
 
         <span class="bz_comment_user">
