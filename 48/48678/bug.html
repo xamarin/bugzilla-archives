@@ -638,7 +638,7 @@ We need to fix the &lt;MakeBundleNativeCodeExternal/&gt; task to:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -667,7 +667,7 @@ We need to fix the &lt;MakeBundleNativeCodeExternal/&gt; task to:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -696,7 +696,7 @@ We need to fix the &lt;MakeBundleNativeCodeExternal/&gt; task to:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -725,7 +725,7 @@ We need to fix the &lt;MakeBundleNativeCodeExternal/&gt; task to:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -754,7 +754,7 @@ We need to fix the &lt;MakeBundleNativeCodeExternal/&gt; task to:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -788,7 +788,7 @@ I dont get why it complains about API level 4. I support min Api Level 21 in my 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -817,7 +817,7 @@ I dont get why it complains about API level 4. I support min Api Level 21 in my 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -848,7 +848,7 @@ As part of the QA process we need to mark the bug as fixed so that our QA team w
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 8</a>
+          <a href="#c8">Comment 8</a>
         </span>
 
         <span class="bz_comment_user">
@@ -901,7 +901,7 @@ I will post a follow-up verification comment to test that build locally with the
 
 
 
-After completing these steps, I was able to use the NDK successfully.  In particular, I was able to build, deploy, and run successfully with "Bundle assemblies into native code" enabled, whereas with r12-beta-1 I had hit the error as described in <a href="bug.html">Comment 0</a>.</pre>
+After completing these steps, I was able to use the NDK successfully.  In particular, I was able to build, deploy, and run successfully with "Bundle assemblies into native code" enabled, whereas with r12-beta-1 I had hit the error as described in <a href="#c0">Comment 0</a>.</pre>
     </div>
 
     <div id="c9" class="bz_comment">
@@ -910,7 +910,7 @@ After completing these steps, I was able to use the NDK successfully.  In partic
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 9</a>
+          <a href="#c9">Comment 9</a>
         </span>
 
         <span class="bz_comment_user">
@@ -985,7 +985,7 @@ KitKat (Android 4.4 - API 19) Visual Studio Android Emulator</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 10</a>
+          <a href="#c10">Comment 10</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1005,14 +1005,14 @@ KitKat (Android 4.4 - API 19) Visual Studio Android Emulator</pre>
 
 
 
-<pre class="bz_comment_text">(<a href="bug.html">Comment 9</a> was a verification for part (2) from <a href="bug.html">Comment 0</a>: the mkbundle step now searches for the lowest available platform in the NDK folder.)
+<pre class="bz_comment_text">(<a href="#c9">Comment 9</a> was a verification for part (2) from <a href="#c0">Comment 0</a>: the mkbundle step now searches for the lowest available platform in the NDK folder.)
 
-Here is a verification for part (1) from <a href="bug.html">Comment 0</a> (the swallowed error).
-
-
+Here is a verification for part (1) from <a href="#c0">Comment 0</a> (the swallowed error).
 
 
-## Verification status for part (1) from <a href="bug.html">Comment 0</a> 0: also verified fixed in XamarinVS 4.3.1.1, Xamarin.Android 7.1.99 (aka 7.2.0)
+
+
+## Verification status for part (1) from <a href="#c0">Comment 0</a> 0: also verified fixed in XamarinVS 4.3.1.1, Xamarin.Android 7.1.99 (aka 7.2.0)
 
 GOOD: XamarinVS 4.3.1.1   (3b21f70), Xamarin.Android 7.1.99.93 (8943b85)
 BAD:  XamarinVS 4.3.0.784 (73f58d6), Xamarin.Android 7.1.0.41  (9578cdc)
@@ -1035,7 +1035,7 @@ BAD:  XamarinVS 4.3.0.784 (73f58d6), Xamarin.Android 7.1.0.41  (9578cdc)
 
 ### GOOD Results with XamarinVS 4.3.1.1 (3b21f70), Xamarin.Android 7.1.99.93 (8943b85)
 
-As desired for the correction proposed in <a href="bug.html">Comment 0</a>, the build FAILS as soon as it is unable to locate `mkbundle`:
+As desired for the correction proposed in <a href="#c0">Comment 0</a>, the build FAILS as soon as it is unable to locate `mkbundle`:
 
 <span class="quote">&gt; [mkbundle] C:\Program Files (x86)\MSBuild\Xamarin\Android\mkbundle.exe --dos2unix=false ...
 &gt; The system cannot find the file specified
@@ -1047,7 +1047,7 @@ As desired for the correction proposed in <a href="bug.html">Comment 0</a>, the 
 
 ### BAD Results with XamarinVS 4.3.0.784 (73f58d6), Xamarin.Android 7.1.0.41 (9578cdc)
 
-As described in <a href="bug.html">Comment 0</a>, the build completes "successfully", but the resulting .apk is invalid.  The problem is that the failure to locate `mkbundle` does not stop the build.  Here's an excerpt from the diagnostic build output that shows the BuildApk task starting after the error:
+As described in <a href="#c0">Comment 0</a>, the build completes "successfully", but the resulting .apk is invalid.  The problem is that the failure to locate `mkbundle` does not stop the build.  Here's an excerpt from the diagnostic build output that shows the BuildApk task starting after the error:
 
 <span class="quote">&gt;[mkbundle] C:\Program Files (x86)\MSBuild\Xamarin\Android\mkbundle.exe --dos2unix=false ...
 &gt; Error: System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
@@ -1089,7 +1089,7 @@ US English locale, US eastern time zone</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 11</a>
+          <a href="#c11">Comment 11</a>
         </span>
 
         <span class="bz_comment_user">

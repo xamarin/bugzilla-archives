@@ -787,7 +787,7 @@ Darwin MacPro.local 15.5.0 Darwin Kernel Version 15.5.0
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -816,7 +816,7 @@ Darwin MacPro.local 15.5.0 Darwin Kernel Version 15.5.0
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -845,7 +845,7 @@ Darwin MacPro.local 15.5.0 Darwin Kernel Version 15.5.0
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -874,7 +874,7 @@ Darwin MacPro.local 15.5.0 Darwin Kernel Version 15.5.0
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -903,7 +903,7 @@ Darwin MacPro.local 15.5.0 Darwin Kernel Version 15.5.0
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -924,9 +924,9 @@ Darwin MacPro.local 15.5.0 Darwin Kernel Version 15.5.0
 
 
 <pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=16284&amp;file=Bug41676ClassicMapApp.zip" name="attach_16284" title="Test case as described in Comment 0">attachment 16284</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=16284&amp;file=Bug41676ClassicMapApp.zip" title="Test case as described in Comment 0">[details]</a></span>
-Test case as described in <a href="bug.html">Comment 0</a>
+Test case as described in <a href="#c0">Comment 0</a>
 
-I have attached a Classic API Mac project that I created by following the steps listed in <a href="bug.html">Comment 0</a>.
+I have attached a Classic API Mac project that I created by following the steps listed in <a href="#c0">Comment 0</a>.
 
 
 
@@ -940,7 +940,7 @@ Build and run the attached project in the Debug configuration in Xamarin Studio 
 
 ## Regression status: not a regression (according to my testing, for this precise test case)
 
-It appear that the scenario described in <a href="bug.html">Comment 0</a> also fails in the older Cycle 5 and Cycle 6 versions.  The error message has changed in Cycle 7, but it is not directly clear whether the underlying problem has changed.
+It appear that the scenario described in <a href="#c0">Comment 0</a> also fails in the older Cycle 5 and Cycle 6 versions.  The error message has changed in Cycle 7, but it is not directly clear whether the underlying problem has changed.
 
 
 
@@ -976,7 +976,7 @@ Xcode 7.3 (10183.3), Build 7D175</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -999,7 +999,7 @@ Xcode 7.3 (10183.3), Build 7D175</pre>
 <pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=16285&amp;file=Bug41676ConsoleApp.zip" name="attach_16285" title="Console app test case">attachment 16285</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=16285&amp;file=Bug41676ConsoleApp.zip" title="Console app test case">[details]</a></span>
 Console app test case
 
-I also observed precisely the same results as described in <a href="bug.html">Comment 5</a> with a pure console C# test case: it failed on Cycle 5 and Cycle 6 with "SendFailure", and it failed on Cycle 7 with "SecureChannelFailure".
+I also observed precisely the same results as described in <a href="#c5">Comment 5</a> with a pure console C# test case: it failed on Cycle 5 and Cycle 6 with "SendFailure", and it failed on Cycle 7 with "SecureChannelFailure".
 
 Testing with a plain console app has the advantage that the project can easily be tested on Windows .NET.  The attached test case does indeed run without error on Windows .NET.  So even though it's not clear that this test case demonstrates a _regression_, it certainly does demonstrate a difference in Mono behavior compared to .NET on Windows that would be nice to resolve for a future Mono release.</pre>
     </div>
@@ -1010,7 +1010,7 @@ Testing with a plain console app has the advantage that the project can easily b
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1043,7 +1043,7 @@ really hoping when you say "would be nice to resolve for a future Mono release."
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 8</a>
+          <a href="#c8">Comment 8</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1072,7 +1072,7 @@ really hoping when you say "would be nice to resolve for a future Mono release."
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 9</a>
+          <a href="#c9">Comment 9</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1092,7 +1092,7 @@ really hoping when you say "would be nice to resolve for a future Mono release."
 
 
 
-<pre class="bz_comment_text">Ohhh.  The problem described in <a href="bug.html">Comment 5</a> and <a href="bug.html">Comment 6</a> is that <a href="https://httpbin.org">https://httpbin.org</a> only supports Diffie-Helmman key agreement, which is not supported by Mono's managed TLS implementation (that only supports up to TLS v1.0).
+<pre class="bz_comment_text">Ohhh.  The problem described in <a href="#c5">Comment 5</a> and <a href="#c6">Comment 6</a> is that <a href="https://httpbin.org">https://httpbin.org</a> only supports Diffie-Helmman key agreement, which is not supported by Mono's managed TLS implementation (that only supports up to TLS v1.0).
 
 The following lines fail in the same way:
 
@@ -1112,7 +1112,7 @@ I will look around a little to see if I can find another suitable HTTPS endpoint
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 10</a>
+          <a href="#c10">Comment 10</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1141,7 +1141,7 @@ I will look around a little to see if I can find another suitable HTTPS endpoint
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 11</a>
+          <a href="#c11">Comment 11</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1182,7 +1182,7 @@ Thanks in advance.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 12</a>
+          <a href="#c12">Comment 12</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1211,7 +1211,7 @@ Thanks in advance.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 13</a>
+          <a href="#c13">Comment 13</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1246,7 +1246,7 @@ cheers</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 14</a>
+          <a href="#c14">Comment 14</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1280,7 +1280,7 @@ original project is a Xamarin.Mac classic app</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 15</a>
+          <a href="#c15">Comment 15</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1328,7 +1328,7 @@ Does this endpoint work correctly for you too in your original app?
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 16</a>
+          <a href="#c16">Comment 16</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1363,7 +1363,7 @@ thanks.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 17</a>
+          <a href="#c17">Comment 17</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1430,7 +1430,7 @@ The resource you are looking for has been removed, had its name changed, or is t
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 18</a>
+          <a href="#c18">Comment 18</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1450,15 +1450,15 @@ The resource you are looking for has been removed, had its name changed, or is t
 
 
 
-<pre class="bz_comment_text">Many thanks for the additional experimentation in <a href="bug.html">Comment 17</a> and setting up those sample Azure endpoints!  Unfortunately, it looks like there is still something unique about your test environment that I have not yet managed to replicate locally.
+<pre class="bz_comment_text">Many thanks for the additional experimentation in <a href="#c17">Comment 17</a> and setting up those sample Azure endpoints!  Unfortunately, it looks like there is still something unique about your test environment that I have not yet managed to replicate locally.
 
 
 
 
-## Steps followed to test <a href="bug.html">Comment 17</a>
+## Steps followed to test <a href="#c17">Comment 17</a>
 
 
-1. Download the test case from <a href="bug.html">Comment 5</a>.  (I also tested the same steps with the console app from <a href="bug.html">Comment 6</a> and a corresponding Xamarin.iOS app for good measure).
+1. Download the test case from <a href="#c5">Comment 5</a>.  (I also tested the same steps with the console app from <a href="#c6">Comment 6</a> and a corresponding Xamarin.iOS app for good measure).
 
 
 2. Replace the `var client =` and `var request =` lines with the following:
@@ -1512,7 +1512,7 @@ The error you reported for the "36" endpoint _might_ be somehow similar to <a cl
 [1] <a href="https://store.xamarin.com/account/my/subscription/downloads#cycle6">https://store.xamarin.com/account/my/subscription/downloads#cycle6</a>
 
 
-- Comparing the error in <a href="bug.html">Comment 13</a> against the different errors in <a href="bug.html">Comment 17</a>, it looks like the new test with the "36" endpoint might be hitting a separate issue from the original test.  Does downgrading also stop the problem in your original test?
+- Comparing the error in <a href="#c13">Comment 13</a> against the different errors in <a href="#c17">Comment 17</a>, it looks like the new test with the "36" endpoint might be hitting a separate issue from the original test.  Does downgrading also stop the problem in your original test?
 
 
 Thanks again in advance!
@@ -1522,7 +1522,7 @@ Thanks again in advance!
 
 ## Additional test
 
-As an additional test, I deployed another sample REST app [1] to Azure, and that sample also worked OK for me.  It returned the correct output for the `api/products` endpoint [2] accessed over HTTPS (again using the test app from <a href="bug.html">Comment 5</a>).
+As an additional test, I deployed another sample REST app [1] to Azure, and that sample also worked OK for me.  It returned the correct output for the `api/products` endpoint [2] accessed over HTTPS (again using the test app from <a href="#c5">Comment 5</a>).
 
 [1] <a href="http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api">http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api</a>
 [2] var request = new RestRequest ("api/products");</pre>
@@ -1534,7 +1534,7 @@ As an additional test, I deployed another sample REST app [1] to Azure, and that
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 19</a>
+          <a href="#c19">Comment 19</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1556,7 +1556,7 @@ As an additional test, I deployed another sample REST app [1] to Azure, and that
 
 <pre class="bz_comment_text">Hi Brendan. Thanks for the above.
 
-Running steps 1 thru 5 in <a href="bug.html">Comment 18</a> does indeed give the expected response.
+Running steps 1 thru 5 in <a href="#c18">Comment 18</a> does indeed give the expected response.
 
 Can you explain whats going on here, whats changed?
 
@@ -1569,7 +1569,7 @@ cheers.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 20</a>
+          <a href="#c20">Comment 20</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1598,7 +1598,7 @@ cheers.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 21</a>
+          <a href="#c21">Comment 21</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1632,7 +1632,7 @@ I have the same issue, but on iOS. The answers of your questions below:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 22</a>
+          <a href="#c22">Comment 22</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1668,7 +1668,7 @@ Those 2 bugs have a candidate fix that will be included in "Cycle 6 – Service 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 23</a>
+          <a href="#c23">Comment 23</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1690,17 +1690,17 @@ Those 2 bugs have a candidate fix that will be included in "Cycle 6 – Service 
 
 <pre class="bz_comment_text">@vinnievivace,
 
-<span class="quote">&gt; Running steps 1 thru 5 in <a href="bug.html">Comment 18</a> does indeed give the expected response.</span>
+<span class="quote">&gt; Running steps 1 thru 5 in <a href="#c18">Comment 18</a> does indeed give the expected response.</span>
 
 <span class="quote">&gt; Can you explain whats going on here, whats changed?</span>
 
 <span class="quote">&gt; Were you able to replicate the error using my code unchanged?</span>
 
 
-Steps 1 - 5 were my best attempt to replicate your original code as closely as possible based on <a href="bug.html">Comment 0</a> and <a href="bug.html">Comment 17</a>.  So I am not yet certain how the results for the "36" endpoint produced a different error in your initial tests.  If you like, you may zip up and attach (optionally privately) the actual original sample project you created that produces the "bad" result for the "36" endpoint in <a href="bug.html">Comment 17</a>.  I will then see if I can hit the error you saw for the "36" endpoint and see if I can find the difference between the two apps.
+Steps 1 - 5 were my best attempt to replicate your original code as closely as possible based on <a href="#c0">Comment 0</a> and <a href="#c17">Comment 17</a>.  So I am not yet certain how the results for the "36" endpoint produced a different error in your initial tests.  If you like, you may zip up and attach (optionally privately) the actual original sample project you created that produces the "bad" result for the "36" endpoint in <a href="#c17">Comment 17</a>.  I will then see if I can hit the error you saw for the "36" endpoint and see if I can find the difference between the two apps.
 
 
-That said, the errors in <a href="bug.html">Comment 17</a> might in the end even be unrelated to the error in your original app (comparing the error in <a href="bug.html">Comment 13</a> against the different errors in <a href="bug.html">Comment 17</a>).  So as a double-check before we dig deeper into troubleshooting strategies for you original app (that still hits the "The authentication or decryption has failed" error), it might be worth double-checking that downgrading does indeed stop that problem in your original app.
+That said, the errors in <a href="#c17">Comment 17</a> might in the end even be unrelated to the error in your original app (comparing the error in <a href="#c13">Comment 13</a> against the different errors in <a href="#c17">Comment 17</a>).  So as a double-check before we dig deeper into troubleshooting strategies for you original app (that still hits the "The authentication or decryption has failed" error), it might be worth double-checking that downgrading does indeed stop that problem in your original app.
 
 
 Thanks!</pre>
@@ -1712,7 +1712,7 @@ Thanks!</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 24</a>
+          <a href="#c24">Comment 24</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1732,7 +1732,7 @@ Thanks!</pre>
 
 
 
-<pre class="bz_comment_text">I just learned about another bug that might account for the original issue from <a href="bug.html">Comment 0</a>: <a class="bz_bug_link 
+<pre class="bz_comment_text">I just learned about another bug that might account for the original issue from <a href="#c0">Comment 0</a>: <a class="bz_bug_link 
           bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - [AppleTLS] We don't support HTTPS server with virtual domains." href="https://bugzilla.xamarin.com/show_bug.cgi?id=41653">Bug 41653</a>.</pre>
     </div>
 
@@ -1742,7 +1742,7 @@ Thanks!</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 25</a>
+          <a href="#c25">Comment 25</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1773,7 +1773,7 @@ However the original (full) project still exhibited the bug. So I methodically m
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 26</a>
+          <a href="#c26">Comment 26</a>
         </span>
 
         <span class="bz_comment_user">

@@ -723,7 +723,7 @@ Tested on both Windows 10 (64-bit) and Windows 8.1 (64-bit)</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -754,7 +754,7 @@ In other words, the reason 2.1.0.6529 and 1.4.3.6376 were "BAD" was that the `.t
 
 ### Steps to demonstrate this more subtle regression status
 
-1. Start with the "bad" project from <a href="bug.html">Comment 0</a>.
+1. Start with the "bad" project from <a href="#c0">Comment 0</a>.
 
 
 2. Quit Visual Studio.
@@ -767,7 +767,7 @@ In other words, the reason 2.1.0.6529 and 1.4.3.6376 were "BAD" was that the `.t
 4. Open the solution in Visual Studio and apply workaround Option 1, 4, or 5. (Don't use option 2 or 3 because they behave a little differently. I believe the problem is that they don't modify the `.suo` file.)
 
 
-5. You can now repeat steps 7 - 12 from <a href="bug.html">Comment 0</a> as many times as you like, and the `.g.cs` file will _always_ be generated during project load.
+5. You can now repeat steps 7 - 12 from <a href="#c0">Comment 0</a> as many times as you like, and the `.g.cs` file will _always_ be generated during project load.
 
 
 
@@ -784,7 +784,7 @@ I have a hunch that _maybe_ what's happening is that the new "bad" build tasks m
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">

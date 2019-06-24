@@ -797,7 +797,7 @@ Mac OS 10.11.6</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -890,7 +890,7 @@ As you can see, everything is correct (except that `InitializeComponent()` shoul
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -912,9 +912,9 @@ As you can see, everything is correct (except that `InitializeComponent()` shoul
 
 <pre class="bz_comment_text">That sounds sensible and looks pretty good to me.  I wouldn't be too surprised to hear that simply updating the Cecil versions included in the Xamarin.Forms and Xamarin.Build.Download packages does indeed resolve this issue.
 
-<a href="bug.html">Comment 1</a> sounds like it might also already have been using a nice narrow test for determining the involvement of Cecil: start with the commit for the known "bad" version of Xamarin.Forms 2.3.3.168, update the Cecil reference to a "good" version (0.10.0-beta2), rebuild the Xamarin.Forms NuGet package, and then check the test case with the new package.  Is that indeed how the test in <a href="bug.html">Comment 1</a> was done?  If so, then I think I'd be fine with having this bug marked "resolved fixed" as soon as the master branch of Xamarin.Forms has been updated to reference one of those new "good" versions of Cecil (which might have already happened).
+<a href="#c1">Comment 1</a> sounds like it might also already have been using a nice narrow test for determining the involvement of Cecil: start with the commit for the known "bad" version of Xamarin.Forms 2.3.3.168, update the Cecil reference to a "good" version (0.10.0-beta2), rebuild the Xamarin.Forms NuGet package, and then check the test case with the new package.  Is that indeed how the test in <a href="#c1">Comment 1</a> was done?  If so, then I think I'd be fine with having this bug marked "resolved fixed" as soon as the master branch of Xamarin.Forms has been updated to reference one of those new "good" versions of Cecil (which might have already happened).
 
-If there is a Xamarin.Forms package easily available that already includes the newer Cecil version, we might as well do one additional quick check just to be extra thorough: diff the `mdbdump` output to compare between when XamlC is enabled vs. disabled to make sure my "by eye" assessment of the results in <a href="bug.html">Comment 1</a> is accurate.  I'll tentatively plan to take a quick try at that when I get a chance.</pre>
+If there is a Xamarin.Forms package easily available that already includes the newer Cecil version, we might as well do one additional quick check just to be extra thorough: diff the `mdbdump` output to compare between when XamlC is enabled vs. disabled to make sure my "by eye" assessment of the results in <a href="#c1">Comment 1</a> is accurate.  I'll tentatively plan to take a quick try at that when I get a chance.</pre>
     </div>
 
     <div id="c3" class="bz_comment">
@@ -923,7 +923,7 @@ If there is a Xamarin.Forms package easily available that already includes the n
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -952,7 +952,7 @@ If there is a Xamarin.Forms package easily available that already includes the n
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1004,7 +1004,7 @@ see <a href="https://github.com/xamarin/Xamarin.Forms/pull/699">https://github.c
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1033,7 +1033,7 @@ see <a href="https://github.com/xamarin/Xamarin.Forms/pull/699">https://github.c
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">

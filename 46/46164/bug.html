@@ -679,7 +679,7 @@ Binoy</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -711,7 +711,7 @@ The command ""C:\Program Files (x86)\MSBuild\Xamarin\Android\mono-symbolicate" s
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -740,7 +740,7 @@ The command ""C:\Program Files (x86)\MSBuild\Xamarin\Android\mono-symbolicate" s
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -769,7 +769,7 @@ The command ""C:\Program Files (x86)\MSBuild\Xamarin\Android\mono-symbolicate" s
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -826,7 +826,7 @@ I don't know if this all helps.
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -857,7 +857,7 @@ Also, can you provide a small, self-contained application which would allow us t
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -890,7 +890,7 @@ Michele</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -922,7 +922,7 @@ Project to reproduce the bug</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 8</a>
+          <a href="#c8">Comment 8</a>
         </span>
 
         <span class="bz_comment_user">
@@ -953,7 +953,7 @@ Radek, can you check with the <a href="bug.html">comment 7</a> test case whether
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 9</a>
+          <a href="#c9">Comment 9</a>
         </span>
 
         <span class="bz_comment_user">
@@ -997,7 +997,7 @@ XA - 7.0.2.28</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 10</a>
+          <a href="#c10">Comment 10</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1027,7 +1027,7 @@ How can I try with the Beta version?</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 11</a>
+          <a href="#c11">Comment 11</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1060,7 +1060,7 @@ Tools -&gt; Options -&gt; Xamarin -&gt; Other (Select the Channel) and check for
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 12</a>
+          <a href="#c12">Comment 12</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1090,7 +1090,7 @@ Thanks a lot to everybody :)</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 13</a>
+          <a href="#c13">Comment 13</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1123,7 +1123,7 @@ Thanks to all.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 14</a>
+          <a href="#c14">Comment 14</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1168,7 +1168,7 @@ And the default behavior of this property if it's not specified.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 15</a>
+          <a href="#c15">Comment 15</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1198,7 +1198,7 @@ And the default behavior of this property if it's not specified.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 16</a>
+          <a href="#c16">Comment 16</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1234,7 +1234,7 @@ The underlying failed assertion in mono-symbolicate is presumably fundamentally 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 17</a>
+          <a href="#c17">Comment 17</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1256,7 +1256,7 @@ The underlying failed assertion in mono-symbolicate is presumably fundamentally 
 
 <pre class="bz_comment_text">## Investigation update
 
-According to my further tests, the root of this problem is indeed the particular `mono-symbolicate.exe` binary (as suggested in <a href="bug.html">Comment 13</a>) rather than a change in the default value of `AndroidManagedSymbols`.
+According to my further tests, the root of this problem is indeed the particular `mono-symbolicate.exe` binary (as suggested in <a href="#c13">Comment 13</a>) rather than a change in the default value of `AndroidManagedSymbols`.
 
 I was able to replicate the problem locally and carefully characterize its behavior across several versions, so I have filed a new bug to provide a detailed starting point for further investigation.  As mentioned there, my suspicion is that this problem might be related to the particular build environment (the particular computer) that was used to build this exact problematic version of the Xamarin.VisualStudio installer.
 

@@ -641,7 +641,7 @@ Additional Information:</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -667,7 +667,7 @@ Thank you for taking the time to submit this report!  I attempted to reproduce t
 
 [1] <a href="https://developercommunity.visualstudio.com/content/problem/149772/webservicediscoveryresultgeneratefiles-passes-inva.html">https://developercommunity.visualstudio.com/content/problem/149772/webservicediscoveryresultgeneratefiles-passes-inva.html</a>
 
-Apart from that issue with the `Namespace` attribute, the generated code works OK now.  In my tests with the latest versions, using `Invoke` for the web service method name did not cause any particular trouble.  I will accordingly mark this bug as "not reproducible" (no longer reproducible) at this time.  If by chance the original reporter of this bug from <a href="bug.html">Comment 0</a> comes back to this old bug in the future and notices something missing from the testing steps described below, feel free to add a comment and set the bug status to REOPENED for further investigation.  If any other user sees a similar issue in the future, please open a new bug report with your environment information and any additional details about how to reproduce the issue.  Thanks!
+Apart from that issue with the `Namespace` attribute, the generated code works OK now.  In my tests with the latest versions, using `Invoke` for the web service method name did not cause any particular trouble.  I will accordingly mark this bug as "not reproducible" (no longer reproducible) at this time.  If by chance the original reporter of this bug from <a href="#c0">Comment 0</a> comes back to this old bug in the future and notices something missing from the testing steps described below, feel free to add a comment and set the bug status to REOPENED for further investigation.  If any other user sees a similar issue in the future, please open a new bug report with your environment information and any additional details about how to reproduce the issue.  Thanks!
 
 
 
@@ -733,7 +733,7 @@ macOS 10.12.6</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -753,11 +753,11 @@ macOS 10.12.6</pre>
 
 
 
-<pre class="bz_comment_text">## Correction to <a href="bug.html">Comment 1</a>
+<pre class="bz_comment_text">## Correction to <a href="#c1">Comment 1</a>
 
-After a little additional consideration, I realized that my attempted steps to reproduce this issue in <a href="bug.html">Comment 1</a> were not quite correct because I was using the default "Framework &gt; Windows Communication Foundation (WCF)" setting in the "Add Web Reference" dialog in Visual Studio for Mac.  This generates a Reference.cs file that uses System.ServiceModel rather than System.Web.Services.
+After a little additional consideration, I realized that my attempted steps to reproduce this issue in <a href="#c1">Comment 1</a> were not quite correct because I was using the default "Framework &gt; Windows Communication Foundation (WCF)" setting in the "Add Web Reference" dialog in Visual Studio for Mac.  This generates a Reference.cs file that uses System.ServiceModel rather than System.Web.Services.
 
-Despite that inaccuracy in <a href="bug.html">Comment 1</a>, this bug can still safely be considered "no longer reproducible" for 2 reasons:
+Despite that inaccuracy in <a href="#c1">Comment 1</a>, this bug can still safely be considered "no longer reproducible" for 2 reasons:
 
 1. The "Framework &gt; .NET 2.0 Web Service" option in the "Add Web Reference" dialog no longer generates `BeginInvoke()` and `EndInvoke()` methods at all.  Instead it generates an `InvokeAsync()` method and an `InvokeCompleted` event handler to take advantage of the event-driven programming model in .NET 2.0.  I verified that this event-based code behaved correctly for a test web service with a method named `Invoke()`.
 

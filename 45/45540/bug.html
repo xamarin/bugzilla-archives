@@ -822,7 +822,7 @@ Mac OS 10.11.6</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -879,7 +879,7 @@ Just as in the bad cases when running under Mono, the Call Stack window shows th
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -908,7 +908,7 @@ Just as in the bad cases when running under Mono, the Call Stack window shows th
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -928,14 +928,14 @@ Just as in the bad cases when running under Mono, the Call Stack window shows th
 
 
 
-<pre class="bz_comment_text">Reassigning back to the compiler just for a quick confirmation on <a href="bug.html">Comment 2</a>:
+<pre class="bz_comment_text">Reassigning back to the compiler just for a quick confirmation on <a href="#c2">Comment 2</a>:
 
 <span class="quote">&gt; Exactly same code works when debuged as project in XS</span>
 
 
-Just to make sure we don't miss any subtlety on this somewhat subtle bug, that is not one of the results that I reported in my testing in <a href="bug.html">Comment 0</a> or <a href="bug.html">Comment 1</a>.  I also double-checked the behavior just now with Xamarin Studio 6.1.2.38 (8937e51ff879e4062e660a70d13463510a2664c4) debugging straight from the project in XS, and I got the same results as in <a href="bug.html">Comment 0</a>.
+Just to make sure we don't miss any subtlety on this somewhat subtle bug, that is not one of the results that I reported in my testing in <a href="#c0">Comment 0</a> or <a href="#c1">Comment 1</a>.  I also double-checked the behavior just now with Xamarin Studio 6.1.2.38 (8937e51ff879e4062e660a70d13463510a2664c4) debugging straight from the project in XS, and I got the same results as in <a href="#c0">Comment 0</a>.
 
-Was the result reported in <a href="bug.html">Comment 2</a> perhaps observed with a build of Xamarin Studio from master or similar?
+Was the result reported in <a href="#c2">Comment 2</a> perhaps observed with a build of Xamarin Studio from master or similar?
 
 Thanks!</pre>
     </div>
@@ -946,7 +946,7 @@ Thanks!</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -975,7 +975,7 @@ Thanks!</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -998,7 +998,7 @@ Thanks!</pre>
 <pre class="bz_comment_text">Created <span class=""><a href="https://bugzilla.xamarin.com/attachment.cgi?id=18171&amp;file=UnhandledExceptionFromAsyncMethodMonoXSMasterOct2016.swf" name="attach_18171" title="Screencast of the &quot;bad&quot; behavior in Xamarin Studio master + Mono master">attachment 18171</a> <a href="https://bugzilla.xamarin.com/attachment.cgi?id=18171&amp;file=UnhandledExceptionFromAsyncMethodMonoXSMasterOct2016.swf" title="Screencast of the &quot;bad&quot; behavior in Xamarin Studio master + Mono master">[details]</a></span>
 Screencast of the "bad" behavior in Xamarin Studio master + Mono master
 
-Hmm.  I can't seem to get the "good" behavior in Xamarin Studio master [1] + Mono master [2].  I get the same results with those versions as in <a href="bug.html">Comment 0</a>.
+Hmm.  I can't seem to get the "good" behavior in Xamarin Studio master [1] + Mono master [2].  I get the same results with those versions as in <a href="#c0">Comment 0</a>.
 
 I've attached a screencast showing the steps I followed and the resulting call stack that appears in Call Stack Pad when the debugger breaks on the unhandled exception.  The call stack is all "external code": it does not mention `MainClass` at all.
 
@@ -1017,7 +1017,7 @@ Brendan</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1048,7 +1048,7 @@ If you enable .Framework source code stepping in VS you'll break in mscorlib sou
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1068,9 +1068,9 @@ If you enable .Framework source code stepping in VS you'll break in mscorlib sou
 
 
 
-<pre class="bz_comment_text">I will reopen this bug and assign it to myself for the moment.  My concern is that on the surface <a href="bug.html">Comment 6</a> sounds like it's just repeating the results described in <a href="bug.html">Comment 1</a>: the application compiled with Mono shows the bad behavior on Windows.  The thing I'm worried about is that the app compiled on Windows with .NET works _as desired_ on Mac, and I'm not sure <a href="bug.html">Comment 6</a> fully explains that.
+<pre class="bz_comment_text">I will reopen this bug and assign it to myself for the moment.  My concern is that on the surface <a href="#c6">Comment 6</a> sounds like it's just repeating the results described in <a href="#c1">Comment 1</a>: the application compiled with Mono shows the bad behavior on Windows.  The thing I'm worried about is that the app compiled on Windows with .NET works _as desired_ on Mac, and I'm not sure <a href="#c6">Comment 6</a> fully explains that.
 
-I will experiment more with these 2 scenarios and the comment about "If you enable .Framework source code stepping" from <a href="bug.html">Comment 6</a> to see what I can find out about whether <a href="bug.html">Comment 6</a> does indeed explain why the .NET-compiled binary works as desired on Mac.</pre>
+I will experiment more with these 2 scenarios and the comment about "If you enable .Framework source code stepping" from <a href="#c6">Comment 6</a> to see what I can find out about whether <a href="#c6">Comment 6</a> does indeed explain why the .NET-compiled binary works as desired on Mac.</pre>
     </div>
 
     <div id="c8" class="bz_comment">
@@ -1079,7 +1079,7 @@ I will experiment more with these 2 scenarios and the comment about "If you enab
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 8</a>
+          <a href="#c8">Comment 8</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1099,7 +1099,7 @@ I will experiment more with these 2 scenarios and the comment about "If you enab
 
 
 
-<pre class="bz_comment_text">After much head-scratching trying to figure out why I could not replicate my results from <a href="bug.html">Comment 1</a> anymore today, my best theory is that I must have left out the `async` keyword for the Windows .exe.  I must have removed it in an earlier test to make sure I understood the "good" results on both Windows and Mac, and then (very unfortunately) I must have forgotten to add it back.
+<pre class="bz_comment_text">After much head-scratching trying to figure out why I could not replicate my results from <a href="#c1">Comment 1</a> anymore today, my best theory is that I must have left out the `async` keyword for the Windows .exe.  I must have removed it in an earlier test to make sure I understood the "good" results on both Windows and Mac, and then (very unfortunately) I must have forgotten to add it back.
 
 In any case, I found some better clues about this bug today and am now comfortable that there is indeed _no_ compiler issue.  I have filed a new bug to provide a clean starting point that focuses on the new clues for the Mono runtime + debugger: <a class="bz_bug_link 
           bz_status_CONFIRMED " title="CONFIRMED - Unlike the Visual Studio debugger, the Mono soft debugger does not break directly on unhandled exceptions in `async` methods even when &quot;Debug project code only&quot; is enabled" href="https://bugzilla.xamarin.com/show_bug.cgi?id=51684">Bug 51684</a>.  I am marking this bug as a duplicate accordingly.

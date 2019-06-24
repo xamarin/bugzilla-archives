@@ -727,7 +727,7 @@ Many thanks!</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -774,7 +774,7 @@ C. There are of course also various possible ways to customize the MSBuild prope
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -803,7 +803,7 @@ C. There are of course also various possible ways to customize the MSBuild prope
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -836,7 +836,7 @@ FWIW, the $(IpaPackagePath) MSBuild variable can be used to locate the .ipa file
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -863,14 +863,14 @@ FWIW, the $(IpaPackagePath) MSBuild variable can be used to locate the .ipa file
 
 ## Continuing the discussion
 
-As a small follow-up question for <a href="bug.html">Comment 4</a>, just to keep the conversation alive, would it break a documented supported worfklow if the `.ipa` file were placed directly in `bin/iPhone/Release/` without a version number?  At my first (quite possibly naive) glance, it seems like it could be OK to overwrite that file on each build, regardless of any of the settings in the `Info.plist`:
+As a small follow-up question for <a href="#c4">Comment 4</a>, just to keep the conversation alive, would it break a documented supported worfklow if the `.ipa` file were placed directly in `bin/iPhone/Release/` without a version number?  At my first (quite possibly naive) glance, it seems like it could be OK to overwrite that file on each build, regardless of any of the settings in the `Info.plist`:
 
 - For CI builds, I would expect users to have their build scripts copy the `.ipa` package for each CI build to a location outside of the `bin` folder, so there wouldn't be a need to preserve previous versions of the `.ipa` file in the `bin` folder itself.
 
 - For non-CI builds (or for CI builds that use `.xcarchive` bundles rather then `.ipa` files), the correlation to Xcode's style of timestamped naming would still be preserved because the `.xcarchive` bundles would still have timestamped names.
 
 
-From some quick searching about Xcode, it seems that the most likely way a user would create a `.ipa` package in Xcode without creating an intermediate `.xcarchive` would be from the command line [1].  And in that case, it looks like the default output path for the `.ipa` file would be the same directory as the `.app` bundle.  It looks like the output path for the Xcode command line build can also be customized by adding the `-o` command line switch.  That could be one data point in favor of implementing "possible improvement (a)" from <a href="bug.html">Comment 0</a> (regardless of what we settle on for the _default_ output path of the `.ipa` package).
+From some quick searching about Xcode, it seems that the most likely way a user would create a `.ipa` package in Xcode without creating an intermediate `.xcarchive` would be from the command line [1].  And in that case, it looks like the default output path for the `.ipa` file would be the same directory as the `.app` bundle.  It looks like the output path for the Xcode command line build can also be customized by adding the `-o` command line switch.  That could be one data point in favor of implementing "possible improvement (a)" from <a href="#c0">Comment 0</a> (regardless of what we settle on for the _default_ output path of the `.ipa` package).
 
 [1] <a href="http://stackoverflow.com/questions/2664885/xcode-build-and-archive-from-command-line">http://stackoverflow.com/questions/2664885/xcode-build-and-archive-from-command-line</a></pre>
     </div>
@@ -881,7 +881,7 @@ From some quick searching about Xcode, it seems that the most likely way a user 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -910,7 +910,7 @@ From some quick searching about Xcode, it seems that the most likely way a user 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 8</a>
+          <a href="#c8">Comment 8</a>
         </span>
 
         <span class="bz_comment_user">
@@ -941,7 +941,7 @@ This is why we had to put it in another directory if we did not use the build #.
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 9</a>
+          <a href="#c9">Comment 9</a>
         </span>
 
         <span class="bz_comment_user">
@@ -972,7 +972,7 @@ Personal feelings aside, is this change going to stay ? Should I update all the 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 10</a>
+          <a href="#c10">Comment 10</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1003,7 +1003,7 @@ Whether we change this or not, I will make sure that variable continues to be ac
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 11</a>
+          <a href="#c11">Comment 11</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1032,7 +1032,7 @@ Whether we change this or not, I will make sure that variable continues to be ac
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 12</a>
+          <a href="#c12">Comment 12</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1054,7 +1054,7 @@ Whether we change this or not, I will make sure that variable continues to be ac
 
 <pre class="bz_comment_text"><span class="quote">&gt; Should I update all the build scripts, or wait for a fix to undo it / change it ?</span>
 
-While this bug report is still under active discussion, it is tricky to make a final recommendation.  One temporary option (mentioned in passing in <a href="bug.html">Comment 2</a>) that would let you hold off on modifying your individual project files for now would be to "manually revert the change" in the `Xamarin.iOS.Common.targets` file itself.  The specifics of that option have been filled out by some users on the forums:
+While this bug report is still under active discussion, it is tricky to make a final recommendation.  One temporary option (mentioned in passing in <a href="#c2">Comment 2</a>) that would let you hold off on modifying your individual project files for now would be to "manually revert the change" in the `Xamarin.iOS.Common.targets` file itself.  The specifics of that option have been filled out by some users on the forums:
 
 <a href="https://forums.xamarin.com/discussion/comment/204894/#Comment_204894">https://forums.xamarin.com/discussion/comment/204894/#Comment_204894</a>
 
@@ -1087,7 +1087,7 @@ I would recommend that the Xamarin team consider at least 3 possible options for
 2. Change the behavior to use a "static" name for the `.ipa` output file that includes neither a version string nor a timestamp.  This option would need to be researched to some degree to get some sense of (a) how many users are still depending on a worfklow where previous `.ipa` files are retained directly in the `bin/` folder, and (b) how many users' CI build scripts currently depend on the inclusion of the version string in the final `.ipa` package name (otherwise this change would cause the same kinds of breakages as the current behavior, though probably noticeably easier for users to fix on their own).
 
 
-3. Keep the behavior unchanged (and hopefully add "possible improvements" (a) and (b) from <a href="bug.html">Comment 0</a>).  In this case it will be important to carefully document (in both the release notes and in the documentation guides) the reasons this option is superior to either option (1) or option (2).</pre>
+3. Keep the behavior unchanged (and hopefully add "possible improvements" (a) and (b) from <a href="#c0">Comment 0</a>).  In this case it will be important to carefully document (in both the release notes and in the documentation guides) the reasons this option is superior to either option (1) or option (2).</pre>
     </div>
 
     <div id="c16" class="bz_comment">
@@ -1096,7 +1096,7 @@ I would recommend that the Xamarin team consider at least 3 possible options for
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 16</a>
+          <a href="#c16">Comment 16</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1116,7 +1116,7 @@ I would recommend that the Xamarin team consider at least 3 possible options for
 
 
 
-<pre class="bz_comment_text">## Correction for the "manually revert the change" forum link in <a href="bug.html">Comment 12</a>:
+<pre class="bz_comment_text">## Correction for the "manually revert the change" forum link in <a href="#c12">Comment 12</a>:
 
 A better link for "manually revert the change" is:
 
@@ -1131,7 +1131,7 @@ A better link for "manually revert the change" is:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 17</a>
+          <a href="#c17">Comment 17</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1190,7 +1190,7 @@ These all need to be options in the xbuild and mdtool apps.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 18</a>
+          <a href="#c18">Comment 18</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1223,7 +1223,7 @@ My Jenkins build relied on Environment Variables for the Path of the IPA file, n
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 19</a>
+          <a href="#c19">Comment 19</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1243,10 +1243,10 @@ My Jenkins build relied on Environment Variables for the Path of the IPA file, n
 
 
 
-<pre class="bz_comment_text">I'll make sure that I review the release notes and request appropriate changes to various documentation for completeness once the Xamarin team has settled on what's happening with this bug.  For example, even if the Xamarin team keeps the current mechanism that writes `.ipa` packages into timestamped folders, if the team also implements the possible improvements from <a href="bug.html">Comment 0</a> those might be the more straightforward approach for integrating across a range of CI tools that might be invoked in various ways after the Xamarin MSBuild targets run.  So the Xamarin team would likely want to hold off on updating the documentation until those improvements are in place.
+<pre class="bz_comment_text">I'll make sure that I review the release notes and request appropriate changes to various documentation for completeness once the Xamarin team has settled on what's happening with this bug.  For example, even if the Xamarin team keeps the current mechanism that writes `.ipa` packages into timestamped folders, if the team also implements the possible improvements from <a href="#c0">Comment 0</a> those might be the more straightforward approach for integrating across a range of CI tools that might be invoked in various ways after the Xamarin MSBuild targets run.  So the Xamarin team would likely want to hold off on updating the documentation until those improvements are in place.
 
 
-To reiterate <a href="bug.html">Comment 12</a>:
+To reiterate <a href="#c12">Comment 12</a>:
 
 For now, if possible, I'd like to avoid expanding the discussion on this bug report too much further about recommended workarounds (including how to use IpaPackagePath) so that we can keep the discussion tightly focused on the potential outcomes for this bug.
 
@@ -1264,7 +1264,7 @@ Thanks!</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 20</a>
+          <a href="#c20">Comment 20</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1301,7 +1301,7 @@ My first try at a Google for "write environment variable msbuild" turned up some
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 21</a>
+          <a href="#c21">Comment 21</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1334,7 +1334,7 @@ If I can find an easy way of importing this MSBuild variable via an environment 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 22</a>
+          <a href="#c22">Comment 22</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1354,7 +1354,7 @@ If I can find an easy way of importing this MSBuild variable via an environment 
 
 
 
-<pre class="bz_comment_text">I'd be mostly on board with that.  That would correspond roughly to part (a) of the "possible improvements" from <a href="bug.html">Comment 0</a>.  The one little complication hinted at in the earlier discussion of that approach is that $(IpaPackagePath) "overrides" $(IpaPackageName).  That is, if you explicitly set the $(IpaPackagePath), then the value you set for $(IpaPackageName) will be ignored.  An alternative would be add customization of the $(_IpaOutputDir) instead.  Then you'd have 2 separate adjustments you could make:
+<pre class="bz_comment_text">I'd be mostly on board with that.  That would correspond roughly to part (a) of the "possible improvements" from <a href="#c0">Comment 0</a>.  The one little complication hinted at in the earlier discussion of that approach is that $(IpaPackagePath) "overrides" $(IpaPackageName).  That is, if you explicitly set the $(IpaPackagePath), then the value you set for $(IpaPackageName) will be ignored.  An alternative would be add customization of the $(_IpaOutputDir) instead.  Then you'd have 2 separate adjustments you could make:
 
 1. The old familiar $(IpaPackageName).
 
@@ -1364,11 +1364,11 @@ If I can find an easy way of importing this MSBuild variable via an environment 
 
 
 
-It wouldn't be the worst thing to use $(IpaPackagePath), but thinking another step ahead (part (b) of the "possible improvements" from <a href="bug.html">Comment 0</a>), it would be nice to have a setting in the Project Properties for adjusting the IPA output path, and if the implementation of that UI simply adds a text field for $(IpaPackagePath), then that text field would "conflict" with the existing text field for $(IpaPackageName) (because it would "override" it).
+It wouldn't be the worst thing to use $(IpaPackagePath), but thinking another step ahead (part (b) of the "possible improvements" from <a href="#c0">Comment 0</a>), it would be nice to have a setting in the Project Properties for adjusting the IPA output path, and if the implementation of that UI simply adds a text field for $(IpaPackagePath), then that text field would "conflict" with the existing text field for $(IpaPackageName) (because it would "override" it).
 
 
 
-If we do decide to go with this option (option 3 from <a href="bug.html">Comment 12</a>) of adding the possible improvements, then the Xamarin will need to make sure to update the documentation consistently across all of the documentation with the new best practice for accessing the `.ipa` package from build scripts.  In that case, I will aim to coordinate with the documentation team to ensure that the documentation is updated on precisely the same timeline as the release of the "possible improvements."</pre>
+If we do decide to go with this option (option 3 from <a href="#c12">Comment 12</a>) of adding the possible improvements, then the Xamarin will need to make sure to update the documentation consistently across all of the documentation with the new best practice for accessing the `.ipa` package from build scripts.  In that case, I will aim to coordinate with the documentation team to ensure that the documentation is updated on precisely the same timeline as the release of the "possible improvements."</pre>
     </div>
 
     <div id="c23" class="bz_comment">
@@ -1377,7 +1377,7 @@ If we do decide to go with this option (option 3 from <a href="bug.html">Comment
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 23</a>
+          <a href="#c23">Comment 23</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1408,7 +1408,7 @@ Also introduced $(IpaPackageDir) so you can set that instead of the full path an
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 24</a>
+          <a href="#c24">Comment 24</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1438,7 +1438,7 @@ Also introduced $(IpaPackageDir) so you can set that instead of the full path an
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 25</a>
+          <a href="#c25">Comment 25</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1467,7 +1467,7 @@ Also introduced $(IpaPackageDir) so you can set that instead of the full path an
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 26</a>
+          <a href="#c26">Comment 26</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1487,7 +1487,7 @@ Also introduced $(IpaPackageDir) so you can set that instead of the full path an
 
 
 
-<pre class="bz_comment_text"><a href="bug.html">Comment 23</a> was referring to a patch that has only been _committed_.  That change has not yet been released, so the property $(IpaPackagePath) doesn't yet exist in any published build.  As mentioned in <a href="bug.html">Comment 22</a>:
+<pre class="bz_comment_text"><a href="#c23">Comment 23</a> was referring to a patch that has only been _committed_.  That change has not yet been released, so the property $(IpaPackagePath) doesn't yet exist in any published build.  As mentioned in <a href="#c22">Comment 22</a>:
 
 <span class="quote">&gt; I will ... coordinate with the documentation team to ensure that the
 &gt; documentation is updated on precisely the same timeline as the release
@@ -1507,7 +1507,7 @@ In short, until we have that Beta version published, I'll request that we contin
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 27</a>
+          <a href="#c27">Comment 27</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1537,7 +1537,7 @@ In short, until we have that Beta version published, I'll request that we contin
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 28</a>
+          <a href="#c28">Comment 28</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1576,7 +1576,7 @@ So I am closing this issue.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 29</a>
+          <a href="#c29">Comment 29</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1605,7 +1605,7 @@ So I am closing this issue.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 30</a>
+          <a href="#c30">Comment 30</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1638,7 +1638,7 @@ Environment Info: <a href="https://gist.github.com/Arpit360/9a7238e892957599875f
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 31</a>
+          <a href="#c31">Comment 31</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1660,7 +1660,7 @@ Environment Info: <a href="https://gist.github.com/Arpit360/9a7238e892957599875f
 
 <pre class="bz_comment_text">## Status updates
 
-An initial version of the candidate change discussed in <a href="bug.html">Comment 23</a> is now available in the Beta channel.  A preliminary version of the corresponding release notes has also now been published:
+An initial version of the candidate change discussed in <a href="#c23">Comment 23</a> is now available in the Beta channel.  A preliminary version of the corresponding release notes has also now been published:
 
 <a href="https://developer.xamarin.com/releases/ios/xamarin.ios_9/xamarin.ios_9.8/#Xamarin.iOS_9.8.2_Service_Release_1">https://developer.xamarin.com/releases/ios/xamarin.ios_9/xamarin.ios_9.8/#Xamarin.iOS_9.8.2_Service_Release_1</a>
 
@@ -1678,7 +1678,7 @@ The forum announcement for the new Beta channels builds has been posted as well:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 32</a>
+          <a href="#c32">Comment 32</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1708,7 +1708,7 @@ The forum announcement for the new Beta channels builds has been posted as well:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 33</a>
+          <a href="#c33">Comment 33</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1737,7 +1737,7 @@ The forum announcement for the new Beta channels builds has been posted as well:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 34</a>
+          <a href="#c34">Comment 34</a>
         </span>
 
         <span class="bz_comment_user">

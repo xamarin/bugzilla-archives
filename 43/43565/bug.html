@@ -802,7 +802,7 @@ Changing the SSH.NET version had no effect.  I continued to hit the same hangs.<
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -837,7 +837,7 @@ This dependency on the `.suo` file sounds very similar to <a class="bz_bug_link
 
 
 
-So it seems possible that the commits that were added between the GOOD and BAD versions (as recorded in <a href="bug.html">Comment 0</a>) were actually _not_ the direct cause of the problem.  Maybe instead those commits are themselves "good" but they are just _triggering_ an underlying problem that was already present in some way in the older versions (<a class="bz_bug_link 
+So it seems possible that the commits that were added between the GOOD and BAD versions (as recorded in <a href="#c0">Comment 0</a>) were actually _not_ the direct cause of the problem.  Maybe instead those commits are themselves "good" but they are just _triggering_ an underlying problem that was already present in some way in the older versions (<a class="bz_bug_link 
           bz_status_VERIFIED  bz_closed" title="VERIFIED FIXED - VS2015 hangs an build" href="https://bugzilla.xamarin.com/show_bug.cgi?id=39034">Bug 39034</a>).
 
 
@@ -865,7 +865,7 @@ No.  I was able to hit this hang just as easily on a physical Windows machine as
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -891,7 +891,7 @@ No.  I was able to hit this hang just as easily on a physical Windows machine as
 
 
 
-I noticed that some of the "Worker Threads" in the minidump attached to <a href="bug.html">Comment 0</a> show various method calls originating in "Xamarin.VisualStudio.Forms.Intellisense.dll", so I tried removing the Xamarin.Forms.IntelliSense extension.
+I noticed that some of the "Worker Threads" in the minidump attached to <a href="#c0">Comment 0</a> show various method calls originating in "Xamarin.VisualStudio.Forms.Intellisense.dll", so I tried removing the Xamarin.Forms.IntelliSense extension.
 
 
 
@@ -926,7 +926,7 @@ After performing these steps, I was _no longer able to hit the hang_, even after
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1052,7 +1052,7 @@ To solve this problem I quit Visual Studio, manually ended all of the running `M
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">

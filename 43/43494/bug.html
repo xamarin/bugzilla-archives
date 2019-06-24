@@ -656,7 +656,7 @@ Add the System.Reactive nuget to an FSharp Android project (project tarball incl
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -763,7 +763,7 @@ Darwin retina.restphone.com 15.6.0 Darwin Kernel Version 15.6.0
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -866,7 +866,7 @@ The NuGet package manager in Visual Studio 2015 Update 3 shows the same inconsis
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -896,7 +896,7 @@ The NuGet package manager in Visual Studio 2015 Update 3 shows the same inconsis
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -925,7 +925,7 @@ The NuGet package manager in Visual Studio 2015 Update 3 shows the same inconsis
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -950,7 +950,7 @@ The NuGet package manager in Visual Studio 2015 Update 3 shows the same inconsis
 <span class="quote">&gt; It's kinda a big deal, and is gonna be a huge blocker in the coming weeks as
 &gt; the community migrates towards netstandard.</span>
 
-I'm not sure those statements are accurate for the exact symptom in this bug report.  This issue is not as generalizable as those statements seem to suggest.  As described in <a href="bug.html">Comment 2</a>, this issue appears to be a small upstream mistake in the files provided by the System.Runtime.Interop.Services.WindowsRuntime version 4.0.1 NuGet package.  It is possible to solve the issue by removing the superfluous reference.  (The package authors did not intend for System.Runtime.InteropServices.WindowsRuntime.4.0.1\lib\netstandard1.3\System.Runtime.InteropServices.WindowsRuntime.dll to be compatible with Xamarin.Android.)
+I'm not sure those statements are accurate for the exact symptom in this bug report.  This issue is not as generalizable as those statements seem to suggest.  As described in <a href="#c2">Comment 2</a>, this issue appears to be a small upstream mistake in the files provided by the System.Runtime.Interop.Services.WindowsRuntime version 4.0.1 NuGet package.  It is possible to solve the issue by removing the superfluous reference.  (The package authors did not intend for System.Runtime.InteropServices.WindowsRuntime.4.0.1\lib\netstandard1.3\System.Runtime.InteropServices.WindowsRuntime.dll to be compatible with Xamarin.Android.)
 
 
 
@@ -962,7 +962,7 @@ For a bit of extra "volunteer weekend fun," I'll do a clean-up pass on this bug 
 
 ## Verification status: verified UPSTREAM
 
-NuGet package System.Runtime.Interop.Services.WindowsRuntime version 4.3.0 resolves this issue because it now properly includes the file (as mentioned in <a href="bug.html">Comment 2</a>) that instructs Xamarin.Android not to use the extra assembly:
+NuGet package System.Runtime.Interop.Services.WindowsRuntime version 4.3.0 resolves this issue because it now properly includes the file (as mentioned in <a href="#c2">Comment 2</a>) that instructs Xamarin.Android not to use the extra assembly:
 System.Runtime.InteropServices.WindowsRuntime.4.3.0\lib\MonoAndroid10\_._
 
 (See also <a href="https://github.com/Reactive-Extensions/Rx.NET/issues/261">https://github.com/Reactive-Extensions/Rx.NET/issues/261</a>)
@@ -1029,7 +1029,7 @@ XamarinVS 4.1.2.18 (fcbe082)</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">

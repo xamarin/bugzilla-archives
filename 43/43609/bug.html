@@ -870,7 +870,7 @@ root:xnu-3248.50.21~8/RELEASE_X86_64 x86_64</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 1</a>
+          <a href="#c1">Comment 1</a>
         </span>
 
         <span class="bz_comment_user">
@@ -899,7 +899,7 @@ root:xnu-3248.50.21~8/RELEASE_X86_64 x86_64</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -928,7 +928,7 @@ root:xnu-3248.50.21~8/RELEASE_X86_64 x86_64</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -969,7 +969,7 @@ Thanks!</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1008,7 +1008,7 @@ monodroid/cycle8/193425fb
 
 
 
-(If that workaround doesn't succeed in your case, please proceed with sending over the additional information from <a href="bug.html">Comment 3</a>, and then REOPEN the bug.  Thanks!)</pre>
+(If that workaround doesn't succeed in your case, please proceed with sending over the additional information from <a href="#c3">Comment 3</a>, and then REOPEN the bug.  Thanks!)</pre>
     </div>
 
     <div id="c5" class="bz_comment">
@@ -1017,7 +1017,7 @@ monodroid/cycle8/193425fb
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1074,7 +1074,7 @@ Release:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1103,7 +1103,7 @@ Release:
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1160,13 +1160,13 @@ Release:
 
 
 
-## Possible explanation of why the note in the commit messages from <a href="bug.html">Comment 4</a> says that "Link SDK assemblies" and "Shared Runtime" are contradictory
+## Possible explanation of why the note in the commit messages from <a href="#c4">Comment 4</a> says that "Link SDK assemblies" and "Shared Runtime" are contradictory
 
 What does the "Link SDK assemblies only" setting do?  It removes unused types and methods from all of the assemblies that are shipped as part of the Xamarin SDK, including `Mono.Android.dll`, `Java.Interop.dll`, `mscorlib.dll`, and `System.dll`.
 
 Given that fact, what does it mean to have "Link SDK assemblies only" enabled when the shared runtime is also enabled?  It means that the only assemblies that could possibly have a different behavior at run time compared to "Don't Link" would be the facade assemblies.  All of the non-facade SDK assemblies are instead loaded from the shared runtime, so they are _not_ linked.
 
-It would therefore seem that enabling "Link SDK assemblies only" while the shared runtime is enabled would _not_ be very helpful as a way to detect _run time_ linker errors in the Debug build.  So perhaps the significant reduction in per-developer test time mentioned in <a href="bug.html">Comment 5</a> was instead about _build time_ errors?
+It would therefore seem that enabling "Link SDK assemblies only" while the shared runtime is enabled would _not_ be very helpful as a way to detect _run time_ linker errors in the Debug build.  So perhaps the significant reduction in per-developer test time mentioned in <a href="#c5">Comment 5</a> was instead about _build time_ errors?
 
 
 ### Can this reasoning account for the particular error message on this bug?
@@ -1217,7 +1217,7 @@ One small question I'm not yet sure about is why the shared runtime deployment s
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 8</a>
+          <a href="#c8">Comment 8</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1250,7 +1250,7 @@ I suppose even then it would still be possible to enable linking for those assem
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 9</a>
+          <a href="#c9">Comment 9</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1295,7 +1295,7 @@ It would be disappointing if we couldn't use the shared runtime anymore -- our a
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 10</a>
+          <a href="#c10">Comment 10</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1330,7 +1330,7 @@ More contemplation might be needed about whether such a "hybrid" mode would best
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 11</a>
+          <a href="#c11">Comment 11</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1358,7 +1358,7 @@ Hmmmmmmmm.  It looks like the current LinkAssemblies Task has in fact always (fo
 
 
 
-So at first glance the candidate fix from <a href="bug.html">Comment 4</a> seems sort of redundant.  Why is the linker rewriting the assembly references for `Java.Interop.dll` even though that assembly is linkskipped?  Is that necessary?
+So at first glance the candidate fix from <a href="#c4">Comment 4</a> seems sort of redundant.  Why is the linker rewriting the assembly references for `Java.Interop.dll` even though that assembly is linkskipped?  Is that necessary?
 
 
 
@@ -1394,7 +1394,7 @@ So at first glance the candidate fix from <a href="bug.html">Comment 4</a> seems
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 12</a>
+          <a href="#c12">Comment 12</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1427,7 +1427,7 @@ Given the behavior you described, if clear/non-surprising is the issue, perhaps 
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 13</a>
+          <a href="#c13">Comment 13</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1461,7 +1461,7 @@ Manually add the following string under "Project Options &gt; Build &gt; Android
 System.Runtime;System.Threading;System.Collections;System.Collections.Concurrent;System.Diagnostics.Debug;System.Reflection;System.Linq;System.Runtime.InteropServices;System.Runtime.Extensions;System.Reflection.Extensions
 
 
-(If the app uses other shared runtime assemblies that refer to other facade assemblies, you'd need to add those too.  One way to find the complete list is to look in the non-linked shared runtime .apk (as seen at the top of <a href="bug.html">Comment 7</a>).)
+(If the app uses other shared runtime assemblies that refer to other facade assemblies, you'd need to add those too.  One way to find the complete list is to look in the non-linked shared runtime .apk (as seen at the top of <a href="#c7">Comment 7</a>).)
 
 
 
@@ -1474,9 +1474,9 @@ The app now runs without error.
 
 ## Note to the Xamarin team
 
-Would it potentially be appropriate to revert the candidate fix from <a href="bug.html">Comment 4</a> and instead automatically linkskip all of the facade assemblies whenever the shared runtime is enabled?
+Would it potentially be appropriate to revert the candidate fix from <a href="#c4">Comment 4</a> and instead automatically linkskip all of the facade assemblies whenever the shared runtime is enabled?
 
-This also goes back to the question from the end of <a href="bug.html">Comment 7</a> about why the shared runtime deployment style puts the facade assemblies in the app .apk rather than including them in the shared runtime.</pre>
+This also goes back to the question from the end of <a href="#c7">Comment 7</a> about why the shared runtime deployment style puts the facade assemblies in the app .apk rather than including them in the shared runtime.</pre>
     </div>
 
     <div id="c14" class="bz_comment">
@@ -1485,7 +1485,7 @@ This also goes back to the question from the end of <a href="bug.html">Comment 7
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 14</a>
+          <a href="#c14">Comment 14</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1516,7 +1516,7 @@ We already put facade assemblies in the shared runtime, see <a href="https://git
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 15</a>
+          <a href="#c15">Comment 15</a>
         </span>
 
         <span class="bz_comment_user">
@@ -1538,9 +1538,9 @@ We already put facade assemblies in the shared runtime, see <a href="https://git
 
 <pre class="bz_comment_text">Ah very cool!  Thanks for the additional info that the facade assemblies are now included in the shared runtime.
 
-I can verify that the new Cycle 8 Beta 2 from yesterday no longer requires the manual workaround from <a href="bug.html">Comment 13</a> to build and run in the "Link all assemblies" + shared runtime configuration.  I can also verify that it successfully links external assemblies as desired in that configuration.
+I can verify that the new Cycle 8 Beta 2 from yesterday no longer requires the manual workaround from <a href="#c13">Comment 13</a> to build and run in the "Link all assemblies" + shared runtime configuration.  I can also verify that it successfully links external assemblies as desired in that configuration.
 
-I don't have a strong a preference about reverting the commits from <a href="bug.html">Comment 4</a>, especially now that the facade assemblies are included in the shared runtime.  After all (as mentioned in <a href="bug.html">Comment 10</a>), the old behavior of "Link SDK assemblies only" + shared runtime was arguably a bit "surprising" anyway.  I think it's fine to leave everything the way it is in Cycle 8 Beta 2.
+I don't have a strong a preference about reverting the commits from <a href="#c4">Comment 4</a>, especially now that the facade assemblies are included in the shared runtime.  After all (as mentioned in <a href="#c10">Comment 10</a>), the old behavior of "Link SDK assemblies only" + shared runtime was arguably a bit "surprising" anyway.  I think it's fine to leave everything the way it is in Cycle 8 Beta 2.
 
 So I will mark this bug as resolved.  Thanks for the fixes!
 
@@ -1553,7 +1553,7 @@ So I will mark this bug as resolved.  Thanks for the fixes!
 - In the "no linking" condition with the shared runtime enabled, Xamarin.Android still includes the facade assemblies in the app .apk.  I think it would be OK to skip bundling those into the app .apk now that they are all included in the shared runtime?  But this is at most only a very small issue, so there's no terrible urgency to address it.
 
 
-- In the "Link all assemblies" configuration, the .apk does _not_ contain the facade assemblies.  Applying the workaround from <a href="bug.html">Comment 13</a> causes those assemblies to again be bundled into the .apk.  This suggests to me that the linker might not currently be skipping the facade assemblies, so it might be appropriate to update the `Profile.SharedRuntimeAssemblies` list used at [1] to include the facade assemblies.
+- In the "Link all assemblies" configuration, the .apk does _not_ contain the facade assemblies.  Applying the workaround from <a href="#c13">Comment 13</a> causes those assemblies to again be bundled into the .apk.  This suggests to me that the linker might not currently be skipping the facade assemblies, so it might be appropriate to update the `Profile.SharedRuntimeAssemblies` list used at [1] to include the facade assemblies.
 
 [1] <a href="https://github.com/xamarin/xamarin-android/blob/3885fcc55c244bef6fd109ac6b7b9abc8fb6ab38/src/Xamarin.Android.Build.Tasks/Tasks/LinkAssemblies.cs#L102-L103">https://github.com/xamarin/xamarin-android/blob/3885fcc55c244bef6fd109ac6b7b9abc8fb6ab38/src/Xamarin.Android.Build.Tasks/Tasks/LinkAssemblies.cs#L102-L103</a>
 
