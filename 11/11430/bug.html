@@ -705,7 +705,7 @@ deals with filenames, not path names.</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 2</a>
+          <a href="#c2">Comment 2</a>
         </span>
 
         <span class="bz_comment_user">
@@ -738,7 +738,7 @@ This version makes deps resolution like mono or .Net</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 3</a>
+          <a href="#c3">Comment 3</a>
         </span>
 
         <span class="bz_comment_user">
@@ -768,7 +768,7 @@ This version makes deps resolution like mono or .Net</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 4</a>
+          <a href="#c4">Comment 4</a>
         </span>
 
         <span class="bz_comment_user">
@@ -805,7 +805,7 @@ Thanks</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 5</a>
+          <a href="#c5">Comment 5</a>
         </span>
 
         <span class="bz_comment_user">
@@ -834,7 +834,7 @@ Thanks</pre>
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 6</a>
+          <a href="#c6">Comment 6</a>
         </span>
 
         <span class="bz_comment_user">
@@ -872,7 +872,7 @@ We are investigating ways to do *some* IL stripping when using AOT, but there wo
 
 
         <span class="bz_comment_number">
-          <a href="bug.html">Comment 7</a>
+          <a href="#c7">Comment 7</a>
         </span>
 
         <span class="bz_comment_user">
@@ -906,7 +906,7 @@ Backported to mono/mono-4.8.0-branch, commit af086b0c70e4742669618b120b5a9681218
 
 ## Steps followed to test
 
-I followed the steps from <a href="bug.html">Comment 0</a>, with a couple small modifications: (a) I added a symlink for `pkg-config` on my $PATH for my convenience in testing and (b) I added the new required `--i18n` argument for `mkbundle`.
+I followed the steps from <a href="#c0">Comment 0</a>, with a couple small modifications: (a) I added a symlink for `pkg-config` on my $PATH for my convenience in testing and (b) I added the new required `--i18n` argument for `mkbundle`.
 
   $ unzip Scratch.I18n.zip
   $ sudo ln -s /Library/Frameworks/Mono.framework/Versions/4.8.0/bin/pkg-config32 /usr/local/bin/pkg-config
@@ -945,7 +945,7 @@ I followed the steps from <a href="bug.html">Comment 0</a>, with a couple small 
 <span class="quote">&gt; OS is: Darwin
 &gt; Sources: 5 Auto-dependencies: True
 &gt; ERROR: Duplicate assembly name `MyResources.resources.dll'. Both `/Users/Shared/Projects/Scratch.I18n/Scratch.I18n/bin/Debug/fr-CA/MyResources.resources.dll' and `/Users/Shared/Projects/Scratch.I18n/Scratch.I18n/bin/Debug/de-DE/MyResources.resources.dll' use same assembly name.</span>
-(The wording of the error changed a bit compared to <a href="bug.html">Comment 0</a> due to some earlier changes in `mkbundle` that provided a more descriptive error message for this scenario.)
+(The wording of the error changed a bit compared to <a href="#c0">Comment 0</a> due to some earlier changes in `mkbundle` that provided a more descriptive error message for this scenario.)
 
 
 
