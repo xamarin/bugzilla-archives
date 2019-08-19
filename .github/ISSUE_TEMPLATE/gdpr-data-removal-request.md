@@ -1,6 +1,6 @@
 ---
-name: GDPR Data Removal Request
-about: Request data to be removed for GDPR reasons
+name: GDPR Personal Data Removal Request
+about: Request personal data to be removed
 title: ''
 labels: ''
 assignees: ''
